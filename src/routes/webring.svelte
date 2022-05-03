@@ -1,5 +1,5 @@
 <script lang="ts">
-	const Rings = [
+	const hacks = [
 		{
 			theme: 'Music',
 			description:
@@ -23,7 +23,7 @@
 
 <main class="px-8 py-5 space-y-4">
 	<section>
-		<h1 class="text-2xl font-bold">Hacker House</h1>
+		<h1 class="text-2xl font-bold">Creatorsgarten</h1>
 	</section>
 
 	<section>
@@ -34,8 +34,8 @@
 		<a class="underline" href="#!">Webring</a>
 	</section>
 
-	<section>
-		{#each Hacks as hack}
+	<section class="space-y-2">
+		{#each hacks as hack}
 			<section class="text-gray-800 max-w-2xl">
 				<h3 class="font-bold">{hack.theme}</h3>
 				<p>{hack.description}</p>
