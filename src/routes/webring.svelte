@@ -22,18 +22,6 @@
 </script>
 
 <main class="px-8 py-5 space-y-4">
-	<section>
-		<h1 class="text-2xl font-bold">Creatorsgarten</h1>
-	</section>
-
-	<section>
-		<a href="/">Manifesto</a>
-		<span>|</span>
-		<a href="/hacks">Hacks</a>
-		<span>|</span>
-		<a class="underline" href="#!">Webring</a>
-	</section>
-
 	<section class="space-y-2">
 		{#each hacks as hack}
 			<section class="text-gray-800 max-w-2xl">
