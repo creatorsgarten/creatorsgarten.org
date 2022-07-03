@@ -19,7 +19,7 @@
 <section class="pb-6 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:gap-4">
     {#each [...hacks].reverse() as hack}
         <div class="aspect-square w-full hover:scale-[1.003] hover:shadow-sm hover:transition-all border-2 border-black">
-            <img src={hack.img} class="" alt="">
+            <img src={"images/"+hack.img} class="" alt="">
         </div>
     {/each}
 </section>
