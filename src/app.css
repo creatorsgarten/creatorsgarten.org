@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.prose a {
-	@apply underline;
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+body {
+    @apply bg-gray-50
+}
+
+section {
+    @apply px-6 md:px-10 lg:px-64
 }
