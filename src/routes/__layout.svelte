@@ -1,29 +1,11 @@
 <script>
-	import '../app.css'
-	import { page } from '$app/stores'
-
-	const navItems = [
-		{ path: '/', title: 'Manifesto' },
-		{ path: '/hacks', title: 'Hacks' },
-		{ path: '/webring', title: 'Webring' }
-	]
+  import "../app.css";
+  import Navbar from "../Components/Navbar.svelte"
 </script>
 
-<section class="px-8 pt-5">
-	<h1 class="text-2xl font-bold">Creatorsgarten</h1>
-</section>
 
-<section class="px-8">
-	{#each navItems as item, i}
-		{#if i > 0}
-			{' '}
-			<span>|</span>
-			{' '}
-		{/if}
-		<a href={item.path} class:underline={$page.url.pathname === item.path} sveltekit:prefetch
-			>{item.title}</a
-		>
-	{/each}
-</section>
+<Navbar />
 
 <slot />
+
+<footer class="flex justify-center py-3 mt-4 bg-gray-100 text-lg">© 2022 | Made with ♥ by Creatorsgarten</footer>
