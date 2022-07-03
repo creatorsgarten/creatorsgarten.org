@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@sveltejs/adapter-auto': next
-  '@sveltejs/adapter-netlify': 1.0.0-next.66
+  '@sveltejs/adapter-netlify': 1.0.0-next.65
   '@sveltejs/adapter-static': 1.0.0-next.34
   '@sveltejs/kit': next
   '@typescript-eslint/eslint-plugin': ^5.27.0
@@ -23,7 +23,7 @@ specifiers:
 
 devDependencies:
   '@sveltejs/adapter-auto': 1.0.0-next.53
-  '@sveltejs/adapter-netlify': 1.0.0-next.66
+  '@sveltejs/adapter-netlify': 1.0.0-next.65
   '@sveltejs/adapter-static': 1.0.0-next.34
   '@sveltejs/kit': 1.0.0-next.357_svelte@3.48.0
   '@typescript-eslint/eslint-plugin': 5.30.3_xuuykav7urhdozug7htlfgar3u
@@ -159,6 +159,15 @@ packages:
     dependencies:
       esbuild: 0.14.48
       worktop: 0.8.0-next.14
+    dev: true
+
+  /@sveltejs/adapter-netlify/1.0.0-next.65:
+    resolution: {integrity: sha512-81LYVqT0Fez7xqvOdE9ITD7b5kxdzzXjXwJ0ISBfJYt6wqg0fmABm3mcDy3opXau7DoQkhkhnlqkharTHfhJQg==}
+    dependencies:
+      '@iarna/toml': 2.2.5
+      esbuild: 0.14.48
+      set-cookie-parser: 2.5.0
+      tiny-glob: 0.2.9
     dev: true
 
   /@sveltejs/adapter-netlify/1.0.0-next.66:
