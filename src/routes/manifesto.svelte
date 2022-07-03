@@ -14,6 +14,6 @@
 
 <style>
     p {
-        @apply text-xl pb-4
+        @apply text-lg md:text-xl pb-4
     }
 </style>
