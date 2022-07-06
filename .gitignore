@@ -6,4 +6,8 @@ node_modules
 .env
 .env.*
 !.env.example
+<<<<<<< HEAD
 /.netlify
+=======
+/.netlify/
+>>>>>>> 9c808565349af7466b3d7a26a2ac7febae75f41e
