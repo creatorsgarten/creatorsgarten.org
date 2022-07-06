@@ -14,6 +14,6 @@
 
 <style>
     p {
-        @apply pb-4
+        @apply pb-4 
     }
 </style>
