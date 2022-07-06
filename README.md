@@ -6,7 +6,7 @@ We are a diverse group of people who are united by our love for creating things.
 
 We don't believe in disciplinary boundaries. As we think that all knowledge is connected, and that by breaking down barriers we can learn more and create more interesting things.
 
-We connect people through events, meetups, hackathons, and much more. We strive to create an environment where creators can come together to collaborate, share ideas, and learn from each other. 
+We connect people through events, meetups, hackathons, and much more. We strive to create an environment where creators can come together to collaborate, share ideas, and learn from each other.
 
 We stand for:
 

@@ -1,79 +1,60 @@
 export const hacks = [
     {
         name: "Stupid Hackathon Bangkok",
-        link: "https://stupidhackth.github.io/1",
-        img: "hacks/compressed/sht1.webp"
+        slug: "sht1"
     }, {
         name: "Stupid Hackathon Thailand #2",
-        link: "https://stupidhackth.github.io/2",
-        img: "hacks/compressed/sht2.webp"
+        slug: "sht2"
     }, {
         name: "Code Plearn: Code Play & Learn!",
-        link: "",
-        img: "hacks/compressed/codeplearn.webp"
+        slug: "codeplearn"
     }, {
         name: "Data Driven Love",
-        link: "",
-        img: "hacks/compressed/love.webp"
+        slug: "love"
     },{
         name: "Young Creators' Camp",
-        link: "",
-        img: "hacks/compressed/ycc1.webp"
+        slug: "ycc1"
     }, {
         name: "Stupid Hackathon Thailand #3",
-        link: "https://stupidhackth.github.io/3",
-        img: "hacks/compressed/sht3.webp"
+        slug: "sht3"
     }, {
         name: "Hacktoberfest Thailand 2019",
-        link: "",
-        img: "hacks/compressed/hacktoberfest2019.webp"
+        slug: "hacktoberfest2019"
     }, {
         name: "stupid hackathon thailand the fourth",
-        link: "https://stupidhackth.github.io/4",
-        img: "hacks/compressed/sht4.webp"
+        slug: "sht4"
     }, {
         name: "BKK.JS #14: The Return of BKK.JS",
-        link: "",
-        img: "hacks/compressed/bkkjs14.webp"
+        slug: "bkkjs14"
     }, {
         name: "Hacktoberfest Thailand 2020",
-        link: "",
-        img: "hacks/compressed/hacktoberfest2020.webp"
+        slug: "hacktoberfest2020"
     }, {
         name: "The 5th StuP1d H@CK THaIL@Nd",
-        link: "https://stupidhackth.github.io/5",
-        img: "hacks/compressed/sht5.webp"
+        slug: "sht5"
     }, {
         name: "GraphQL Meetup 10.0",
-        link: "",
-        img: "hacks/compressed/graphql.webp"
+        slug: "graphql"
     }, {
         name: "How to Learn (Almost) Anything",
-        link: "",
-        img: "hacks/compressed/learn.webp"
+        slug: "learn"
     }, {
         name: "Biological Aesthetic of Nature",
-        link: "",
-        img: "hacks/compressed/bio.webp"
+        slug: "bio"
     }, {
         name: "Polaryz Camp #1",
-        link: "",
-        img: "hacks/compressed/polaryz1.webp"
+        slug: "polaryz1"
     }, {
         name: "Marshmallow Campfire",
-        link: "",
-        img: "hacks/compressed/marshmallow.webp"
+        slug: "marshmallow"
     }, {
         name: "Code in the Wind",
-        link: "",
-        img: "hacks/compressed/wind.webp"
+        slug: "wind"
     }, {
         name: "Svelte Meetup Bangkok #1",
-        link: "",
-        img: "hacks/compressed/svelte1.webp"
+        slug: "svelte1"
     }, {
         name: "The 6th Stupid Hackathon Thailand",
-        link: "",
-        img: "hacks/compressed/sht6.webp"
+        slug: "sht6"
     },
 ]
