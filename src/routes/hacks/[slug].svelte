@@ -54,7 +54,11 @@
       <h1 class="pb-2 text-2xl font-medium md:w-11/12 md:text-4xl lg:text-3xl">{meta.name}</h1>
       <h3 class="text-lg">{meta.location}</h3>
       <h3 class="text-lg">{meta.date}</h3>
-      <h3 class="text-lg">Website: <a href={meta.site}>{meta.site}</a></h3>
+      {#if meta.site}
+        <h3 class="text-lg w-72 sm:w-80 md:w-96 lg:w-96 truncate">
+          Website: <a href={meta.site}>{meta.site}</a>
+        </h3>
+      {/if}
       <h3 class="text-lg">
         By:
         {#each meta.by as team}

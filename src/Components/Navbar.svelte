@@ -11,6 +11,6 @@
 
 <style>
   h2 {
-    @apply pl-2 text-lg font-normal sm:pl-4;
+    @apply pl-4 text-lg font-normal;
   }
 </style>

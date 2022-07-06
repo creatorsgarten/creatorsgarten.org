@@ -13,7 +13,7 @@
   </section>
 
   <section>
-    <h1>Creators</h1>
+    <h1>Creators Ring</h1>
     <ul>
       {#each creators as creator}
         <li><a href={creator.link}>{creator.name}</a></li>
