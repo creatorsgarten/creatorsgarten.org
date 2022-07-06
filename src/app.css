@@ -3,13 +3,35 @@
 @tailwind utilities;
 
 * {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    font-family: 'space grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
 body {
-    @apply bg-gray-50 min-h-full
+    @apply flex justify-center bg-gradient-to-br from-neutral-50 to-neutral-100 min-h-full w-full background-animate
 }
 
 section {
-    @apply px-6 md:px-10 lg:px-64
+    @apply px-6 md:px-10 lg:px-56 xl:px-72 2xl:px-[36rem]
 }
+
+p {
+    @apply text-lg
+}
+
+.background-animate {
+    background-size: 400%;
+
+    -webkit-animation: background-animation 10s ease infinite;
+    -moz-animation: background-animation 10s ease infinite;
+    animation: background-animation 10s ease infinite;
+  }
+
+  @keyframes background-animation {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
