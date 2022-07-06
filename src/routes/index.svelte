@@ -1,6 +1,5 @@
 <script>
   import { hacks } from '../data/hacks.js';
-  console.log(hacks.map((x) => x.slug));
 </script>
 
 <section>
