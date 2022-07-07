@@ -12,7 +12,7 @@ const headerParser = (match: string, title: string) => {
 };
 
 export function processMarkdown(input: MarkdownProcessInput): MarkdownProcessOutput {
-  const md = new MarkdownIt().use(mim).use(mihs).use(mila);
+  const md = new MarkdownIt({ html: true }).use(mim).use(mihs).use(mila);
   const body = input.content;
   const html = md.render(body).replace(/<h1>(.*)<\/h1>/g, headerParser);
   const meta = md.meta;
