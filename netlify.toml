@@ -1,3 +1,6 @@
 [build]
   command = "npm run build"
   publish = "build"
+
+[build.environment]
+  WIKI_STORAGE_URL = "https://directcommit-production.up.railway.app/api/mountpoints/creatorsgarten-wiki/contents/"

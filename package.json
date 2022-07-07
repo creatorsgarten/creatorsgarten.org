@@ -36,6 +36,7 @@
   },
   "type": "module",
   "dependencies": {
+    "axios": "^0.27.2",
     "markdown-it": "^13.0.1",
     "markdown-it-header-sections": "^1.0.0",
     "markdown-it-link-attributes": "^4.0.0",
