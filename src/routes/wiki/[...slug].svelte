@@ -65,6 +65,9 @@
           }
         );
         editingSha = response.data.content.sha;
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
         return true as const;
       })();
       submittingResult = resultPromise;
