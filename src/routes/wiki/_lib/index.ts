@@ -28,7 +28,7 @@ function getStorage(): WikiStorage {
   if (!storage) {
     const url =
       process.env.WIKI_STORAGE_URL ||
-      (process.env.NETLIFY
+      (!fs.existsSync('wiki')
         ? 'https://directcommit-production.up.railway.app/api/mountpoints/creatorsgarten-wiki/contents/'
         : '');
     storage = url ? new RemoteWikiStorage(url) : new LocalWikiStorage();
