@@ -8,6 +8,9 @@ export const groups = [
     },{
         name: "Stupid Hackathon Thailand",
         link: "https://stupidhackth.github.io",
+    }, {
+        name: "Polaryz Club",
+        link: "https://www.instagram.com/polaryz.club/"
     }
 ]
 
@@ -15,5 +18,9 @@ export const creators = [
     {
         name: "Chayapatr Archiwaranguprok",
         link: "https://spaceth.co/author/chayapatr"
+    },
+    {
+        name: "Phoomparin Mano",
+        link: "https://poom.dev"
     }
 ]
