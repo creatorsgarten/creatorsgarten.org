@@ -4,7 +4,7 @@
 
 <div class="min-h-[80vh]">
   <section>
-    <h1>Us & Our Neighbors</h1>
+    <h1>Us & Our Friends</h1>
     <ul>
       {#each groups as group}
         <li><a href={group.link}>{group.name}</a></li>
