@@ -5,9 +5,14 @@
   import Navbar from '../Components/Navbar.svelte';
 
   onMount(() => {
-    if (location.hostname === 'creatorsgarten.com') {
+    if (
+      location.hostname === 'creatorsgarten.com' ||
+      location.hostname === 'www.creatorsgarten.com'
+    ) {
       location.replace(location.href.replace('.com', '.org'));
     }
+    const flags = (new URLSearchParams(location.search).get('flags') || '').split(',');
+    document.body.dataset.flags = flags.join(' ');
   });
 </script>
 

@@ -2,7 +2,7 @@
   import { groups, creators } from '../data/ring';
 </script>
 
-<div class="min-h-[80vh]">
+<div class="cg-container min-h-[80vh]">
   <section>
     <h1>Us & Our Friends</h1>
     <ul>

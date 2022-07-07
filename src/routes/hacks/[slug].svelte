@@ -17,33 +17,16 @@
 </script>
 
 <script lang="ts">
-  import MarkdownIt from 'markdown-it';
-  import mim from 'markdown-it-meta';
-  import mihs from 'markdown-it-header-sections';
-  import mila from 'markdown-it-link-attributes';
-
   import { page } from '$app/stores';
-
+  import { processMarkdown } from '../../markdown';
   export let body: string;
-
-  let result: string;
-
-  const headerParser = (match: string, title: string) => {
-    return `<div class="relative flex py-2 items-center">
-        <div class="flex-grow border-t border-gray-600"></div>
-        <span class="flex-shrink text-xl mx-4 text-gray-600">${title}</span>
-        <div class="flex-grow border-t border-gray-600"></div>
-    </div>`;
-  };
-
-  const md = new MarkdownIt().use(mim).use(mihs).use(mila);
-  result = md.render(body).replace(/<h1>(.*)<\/h1>/g, headerParser);
-  const meta = md.meta;
-
-  const slug = $page.params.slug;
+  $: output = processMarkdown({ content: body });
+  $: meta = output.meta;
+  $: result = output.html;
+  $: slug = $page.params.slug;
 </script>
 
-<div>
+<div class="cg-container">
   <section class="flex flex-col w-full md:mb-4 md:flex-row">
     <img
       src={'/images/hacks/compressed/' + slug + '.webp'}
@@ -84,5 +67,9 @@
 
   div :global(ul) {
     @apply list-disc list-inside text-lg;
+  }
+
+  div :global(p) {
+    @apply text-lg;
   }
 </style>
