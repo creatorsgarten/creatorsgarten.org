@@ -79,7 +79,7 @@
 </script>
 
 <div class="cg-container">
-  <h1 class="text-3xl font-bold mt-16">
+  <h1 class="text-3xl md:text-4xl font-bold mt-16">
     {slug}
     <button
       class="inline-block"
@@ -95,7 +95,7 @@
       </svg>
     </button>
   </h1>
-  <article class="prose prose-lg max-w-none" class:hidden={edit}>
+  <article class="prose md:prose-lg max-w-none" class:hidden={edit}>
     {@html output.html}
   </article>
   <form class:hidden={!edit} on:submit|preventDefault={onSubmit}>
