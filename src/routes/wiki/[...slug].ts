@@ -7,10 +7,11 @@ export interface PageProps {
 }
 
 export const get: RequestHandler<PageProps> = async ({ params }) => {
+  const data = await getPage(params.slug);
   return {
     body: {
       slug: params.slug,
-      data: await getPage(params.slug)
+      data: data
     }
   };
 };
