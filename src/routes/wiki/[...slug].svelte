@@ -8,11 +8,11 @@
   let edit = false;
   export let slug: string;
   export let data: PageData;
-  let editingContent = data.content;
+  let editingContent = data.content || '';
   let editingSha = data.sha;
 
   $: output = processMarkdown({
-    content: data.content
+    content: data.content || 'This page doesn’t exist.'
   });
   $: signedIn = typeof $authState === 'object';
 
@@ -26,19 +26,25 @@
   }
 
   function getUrl() {
-    const baseUrl =
-      'https://directcommit-production.up.railway.app/api/mountpoints/creatorsgarten-wiki/contents/';
+    const baseUrl = 'https://directcommit.spacet.me/api/mountpoints/creatorsgarten-wiki/contents/';
     return baseUrl + slug + '.md';
   }
   async function checkPermission(): Promise<boolean> {
     const idToken = await getIdToken();
-    const response = await axios.get(getUrl(), {
-      headers: {
-        Authorization: `Bearer ${idToken}`
-      }
-    });
+    const response = await axios
+      .get(getUrl(), {
+        headers: {
+          Authorization: `Bearer ${idToken}`
+        }
+      })
+      .catch((e) => {
+        if (e.response?.status === 404) {
+          return e.response.data;
+        }
+        throw e;
+      });
     editingContent = new TextDecoder().decode(
-      base64.decode(response.data.content.replace(/\s/g, ''))
+      base64.decode((response.data.content || '').replace(/\s/g, ''))
     );
     editingSha = response.data.sha;
     return response.data.directcommit.permissions.write;
@@ -95,7 +101,7 @@
       </svg>
     </button>
   </h1>
-  <article class="prose md:prose-lg max-w-none" class:hidden={edit}>
+  <article class="prose md:prose-lg max-w-none mt-8" class:hidden={edit}>
     {@html output.html}
   </article>
   <form class:hidden={!edit} on:submit|preventDefault={onSubmit}>
@@ -116,7 +122,7 @@
         {:then permission}
           {#if permission}
             <div class="border rounded border-gray-400 overflow-hidden">
-              <textarea bind:value={editingContent} class="block w-full h-[32em] font-mono" />
+              <textarea bind:value={editingContent} class="block w-full h-[32em] font-mono p-2" />
             </div>
             <p class="my-2">
               <button
