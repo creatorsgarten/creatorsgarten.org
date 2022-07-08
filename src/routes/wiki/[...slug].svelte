@@ -13,6 +13,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>{slug} | Creatorsgarten Wiki</title>
+</svelte:head>
+
 <div class="cg-container">
   <h1 class="text-3xl md:text-4xl font-bold mt-16">
     {slug}
