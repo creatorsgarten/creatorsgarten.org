@@ -37,7 +37,7 @@
       })
       .catch((e) => {
         if (e.response?.status === 404) {
-          return e.response.data;
+          return e.response;
         }
         throw e;
       });
@@ -132,8 +132,9 @@
     {/if}
   {/if}
   <p class="mt-8">
-    You can also <a href="https://github.com/creatorsgarten/wiki/blob/main/{slug}.md"
-      >edit this page on GitHub</a
+    You can also edit <a href="https://github.com/creatorsgarten/wiki/blob/main/{slug}.md"
+      >this page on GitHub</a
     >
+    or on <a href="https://github.dev/creatorsgarten/wiki/blob/main/{slug}.md">GitHub.dev</a>.
   </p>
 </form>
