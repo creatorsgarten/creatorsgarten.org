@@ -2,24 +2,26 @@
   import { groups, creators } from '../data/ring';
 </script>
 
+<svelte:head>
+  <title>Ring | Creatorsgarten</title>
+</svelte:head>
+
 <div class="cg-container min-h-[80vh]">
-  <section>
-    <h1>Us & Our Friends</h1>
+  <div class="prose max-w-none prose-a:no-underline prose-a:text-sky-600">
+    <h2>Us & Our Friends</h2>
     <ul>
       {#each groups as group}
         <li><a href={group.link}>{group.name}</a></li>
       {/each}
     </ul>
-  </section>
 
-  <section>
-    <h1>Creators Ring</h1>
+    <h2>Creators Ring</h2>
     <ul>
       {#each creators as creator}
         <li><a href={creator.link}>{creator.name}</a></li>
       {/each}
     </ul>
-  </section>
+  </div>
 </div>
 
 <style>
