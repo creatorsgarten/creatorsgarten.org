@@ -56,7 +56,7 @@
           <h3 class="text-lg">{meta.location}</h3>
           <h3 class="text-lg">{meta.date}</h3>
           {#if meta.site}
-            <h3 class="text-lg w-72 sm:w-80 md:w-96 lg:w-96 truncate">
+            <h3 class="text-lg truncate">
               Website: <a href={meta.site}>{meta.site}</a>
             </h3>
           {/if}
