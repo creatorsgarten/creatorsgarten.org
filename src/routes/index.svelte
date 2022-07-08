@@ -51,9 +51,3 @@
     </section>
   </div>
 </div>
-
-<style>
-  p {
-    @apply text-lg;
-  }
-</style>
