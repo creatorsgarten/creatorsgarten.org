@@ -62,7 +62,7 @@
           {
             content: base64.encode(new TextEncoder().encode(editingContent)),
             sha: editingSha,
-            message: 'Update'
+            message: 'Update ' + slug
           },
           {
             headers: {
