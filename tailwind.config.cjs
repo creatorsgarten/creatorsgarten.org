@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -7,6 +9,15 @@ module.exports = {
         lg: {
           css: {
             lineHeight: '1.555555'
+          }
+        },
+        DEFAULT: {
+          css: {
+            '--tw-prose-links': colors.sky[600],
+            a: {
+              textDecoration: 'none',
+              fontWeight: 'inherit'
+            }
           }
         }
       }
