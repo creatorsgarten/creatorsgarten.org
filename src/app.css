@@ -32,6 +32,10 @@ a {
   @apply text-sky-600 hover:text-sky-800 transition-all;
 }
 
+.cg-btn {
+  @apply inline-block rounded-md border-2 border-black px-3 py-1 hover:bg-gray-200 text-black hover:text-black;
+}
+
 .background-animate {
   background-size: 400%;
 

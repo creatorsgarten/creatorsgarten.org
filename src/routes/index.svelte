@@ -33,9 +33,7 @@
         opportunity to learn something new and have some fun.
       </p>
       <p class="not-prose">
-        <button class=" rounded-md border-2 border-black px-2 py-1 hover:bg-gray-200"
-          ><a href="/manifesto" class="text-black hover:text-black">Manifesto</a></button
-        >
+        <a href="/manifesto" class="cg-btn">Manifesto</a>
       </p>
     </div>
 
