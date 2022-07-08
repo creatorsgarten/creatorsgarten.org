@@ -4,12 +4,12 @@ export const groups = [
     link: 'https://creatorsgarten.org'
   },
   {
-    name: 'showdown.space',
-    link: 'https://showdown.space'
+    name: 'The Stupid Hackathon Thailand',
+    link: 'https://stupidhackth.github.io'
   },
   {
-    name: 'Stupid Hackathon Thailand',
-    link: 'https://stupidhackth.github.io'
+    name: 'showdown.space',
+    link: 'https://showdown.space'
   },
   {
     name: 'Polaryz Club',
