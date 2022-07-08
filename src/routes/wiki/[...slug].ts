@@ -1,5 +1,6 @@
 import type { RequestHandler } from './__types/[...slug]';
-import { getPage, type PageData } from './_lib';
+import { getPage } from './_lib';
+import type { PageData } from './_lib/types';
 
 export interface PageProps {
   slug: string;
