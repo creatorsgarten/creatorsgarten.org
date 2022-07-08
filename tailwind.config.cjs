@@ -2,7 +2,15 @@
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {}
+    extend: {
+      typography: {
+        lg: {
+          css: {
+            lineHeight: '1.555555'
+          }
+        }
+      }
+    }
   },
   plugins: [require('@tailwindcss/typography')]
 };
