@@ -1,87 +1,16 @@
 <script lang="ts">
   import { processMarkdown } from '../../markdown';
-  import type { PageData } from './_lib';
-  import { authState, signIn, signOut, getIdToken } from './_lib/auth';
-  import axios from 'axios';
-  import * as base64 from '@stablelib/base64';
+  import type { PageData } from './_lib/types';
+  import { authState } from './_lib/auth';
+  import PageEditor from './_lib/PageEditor.svelte';
 
-  let edit = false;
+  let editing = false;
   export let slug: string;
   export let data: PageData;
-  let editingContent = data.content || '';
-  let editingSha = data.sha;
 
   $: output = processMarkdown({
     content: data.content || 'This page doesn’t exist.'
   });
-  $: signedIn = typeof $authState === 'object';
-
-  let permissionPromise: Promise<boolean> | undefined;
-  $: {
-    if (signedIn && !permissionPromise && edit) {
-      permissionPromise = checkPermission();
-    } else if (!signIn && permissionPromise) {
-      permissionPromise = undefined;
-    }
-  }
-
-  function getUrl() {
-    const baseUrl = 'https://directcommit.spacet.me/api/mountpoints/creatorsgarten-wiki/contents/';
-    return baseUrl + slug + '.md';
-  }
-  async function checkPermission(): Promise<boolean> {
-    const idToken = await getIdToken();
-    const response = await axios
-      .get(getUrl(), {
-        headers: {
-          Authorization: `Bearer ${idToken}`
-        }
-      })
-      .catch((e) => {
-        if (e.response?.status === 404) {
-          return e.response.data;
-        }
-        throw e;
-      });
-    editingContent = new TextDecoder().decode(
-      base64.decode((response.data.content || '').replace(/\s/g, ''))
-    );
-    editingSha = response.data.sha;
-    return response.data.directcommit.permissions.write;
-  }
-
-  let submitting = false;
-  let submittingResult: Promise<true> | undefined;
-  async function onSubmit() {
-    submitting = true;
-    try {
-      const resultPromise = (async () => {
-        const idToken = await getIdToken();
-        const response = await axios.put(
-          getUrl(),
-          {
-            content: base64.encode(new TextEncoder().encode(editingContent)),
-            sha: editingSha,
-            message: 'Update ' + slug
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${idToken}`
-            }
-          }
-        );
-        editingSha = response.data.content.sha;
-        setTimeout(() => {
-          location.reload();
-        }, 1000);
-        return true as const;
-      })();
-      submittingResult = resultPromise;
-      await resultPromise;
-    } finally {
-      submitting = false;
-    }
-  }
 </script>
 
 <div class="cg-container">
@@ -90,7 +19,7 @@
     <button
       class="inline-block"
       title="Edit"
-      on:click={() => (edit = !edit)}
+      on:click={() => (editing = !editing)}
       class:hidden={$authState === 'checking'}
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
@@ -101,57 +30,10 @@
       </svg>
     </button>
   </h1>
-  <article class="prose md:prose-lg max-w-none mt-8" class:hidden={edit}>
+  <article class="prose md:prose-lg max-w-none mt-8" class:hidden={editing}>
     {@html output.html}
   </article>
-  <form class:hidden={!edit} on:submit|preventDefault={onSubmit}>
-    {#if $authState === 'unauthenticated'}
-      <p>
-        To edit this page, please <button class="text-blue-700" type="button" on:click={signIn}
-          >sign in with GitHub</button
-        >.
-      </p>
-    {:else if typeof $authState === 'object'}
-      <p>
-        You are signed in as <strong>{$authState.name}</strong>.
-        <button type="button" class="text-blue-700" on:click={signOut}>[sign out]</button>
-      </p>
-      {#if permissionPromise}
-        {#await permissionPromise}
-          <p>Checking permissions…</p>
-        {:then permission}
-          {#if permission}
-            <div class="border rounded border-gray-400 overflow-hidden">
-              <textarea bind:value={editingContent} class="block w-full h-[32em] font-mono p-2" />
-            </div>
-            <p class="my-2">
-              <button
-                class="rounded-md border-2 border-black px-2 py-1 hover:bg-gray-200"
-                disabled={submitting}
-              >
-                Save
-              </button>
-              {#if submittingResult}
-                {#await submittingResult}
-                  Saving…
-                {:then _result}
-                  Saved
-                {:catch error}
-                  Unable to save! {String(error)}
-                {/await}
-              {/if}
-            </p>
-            <p class="text-xs">sha: {editingSha}</p>
-          {:else}
-            <p>You don't have permission to edit this page.</p>
-            <p>You must be a creatorsgarten GitHub organization member to edit this wiki.</p>
-          {/if}
-        {:catch error}
-          <p>Unable to check permissions: {String(error)}</p>
-        {/await}
-      {:else}
-        …
-      {/if}
-    {/if}
-  </form>
+  <div class:hidden={!editing} class="mt-8">
+    <PageEditor {editing} {data} {slug} />
+  </div>
 </div>

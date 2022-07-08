@@ -1,6 +1,7 @@
 import fs from 'fs';
 import axios from 'axios';
 import crypto from 'crypto';
+import type { PageData } from './types';
 
 interface WikiStorage {
   mode: 'local' | 'remote' | 'preview';
@@ -69,10 +70,4 @@ export async function getPage(slug: string): Promise<PageData> {
     sha: page?.sha,
     mode: 'local'
   };
-}
-
-export interface PageData {
-  content: string | null;
-  mode: 'local' | 'remote' | 'preview';
-  sha?: string;
 }
