@@ -18,7 +18,7 @@
 </script>
 
 <svelte:head>
-  <title>{slug} | Creatorsgarten Wiki</title>
+  <title>{meta.name || slug} | Creatorsgarten Wiki</title>
 </svelte:head>
 
 <div class="cg-container">
