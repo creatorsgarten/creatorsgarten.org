@@ -3,6 +3,7 @@
   import type { PageData } from './_lib/types';
   import { authState } from './_lib/auth';
   import PageEditor from './_lib/PageEditor.svelte';
+  import { getLayout } from './_lib/layout';
 
   let editing = false;
   export let slug: string;
@@ -11,6 +12,9 @@
   $: output = processMarkdown({
     content: data.content || 'This page doesn’t exist.'
   });
+
+  $: meta = output.meta;
+  $: layout = getLayout(meta.layout || 'default');
 </script>
 
 <svelte:head>
@@ -18,7 +22,11 @@
 </svelte:head>
 
 <div class="cg-container">
-  <h1 class="text-3xl md:text-4xl font-bold mt-16">
+  <h1
+    class={layout.headerStyle === 'large'
+      ? 'text-3xl md:text-4xl font-bold mt-16'
+      : 'opacity-50 mt-16'}
+  >
     {slug}
     <button
       class="inline-block"
@@ -34,9 +42,38 @@
       </svg>
     </button>
   </h1>
-  <article class="prose md:prose-lg max-w-none mt-8" class:hidden={editing}>
-    {@html output.html}
-  </article>
+
+  <div class:hidden={editing}>
+    {#if meta.layout === 'hacks'}
+      <section class="flex flex-col w-full md:mb-4 md:flex-row">
+        <img
+          src={'/images/hacks/compressed/' + slug.split('/').pop() + '.webp'}
+          class="mr-10 aspect-square w-full border-2 border-black md:w-5/12"
+          alt=""
+        />
+        <div class="mt-6 flex w-full flex-col justify-center md:mt-0">
+          <h1 class="pb-2 text-2xl font-medium md:w-11/12 md:text-4xl lg:text-3xl">{meta.name}</h1>
+          <h3 class="text-lg">{meta.location}</h3>
+          <h3 class="text-lg">{meta.date}</h3>
+          {#if meta.site}
+            <h3 class="text-lg w-72 sm:w-80 md:w-96 lg:w-96 truncate">
+              Website: <a href={meta.site}>{meta.site}</a>
+            </h3>
+          {/if}
+          <h3 class="text-lg">
+            By:
+            {#each meta.by as team}
+              <span class="pr-1">[{team}]</span>
+            {/each}
+          </h3>
+        </div>
+      </section>
+    {/if}
+
+    <article class="prose md:prose-lg max-w-none mt-8">
+      {@html output.html}
+    </article>
+  </div>
   <div class:hidden={!editing} class="mt-8">
     <PageEditor {editing} {data} {slug} />
   </div>

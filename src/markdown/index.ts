@@ -15,7 +15,7 @@ export function processMarkdown(input: MarkdownProcessInput): MarkdownProcessOut
   const md = new MarkdownIt({ html: true }).use(mim).use(mihs).use(mila);
   const body = input.content;
   const html = md.render(body).replace(/<h1>(.*)<\/h1>/g, headerParser);
-  const meta = md.meta;
+  const meta = md.meta || {};
   return { html, meta };
 }
 
@@ -25,5 +25,5 @@ export interface MarkdownProcessInput {
 
 export interface MarkdownProcessOutput {
   html: string;
-  meta: any;
+  meta: Record<string, any>;
 }
