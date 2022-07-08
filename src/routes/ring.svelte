@@ -7,7 +7,7 @@
 </svelte:head>
 
 <div class="cg-container min-h-[80vh]">
-  <div class="prose max-w-none prose-a:no-underline prose-a:text-sky-600">
+  <div class="prose prose-lg max-w-none">
     <h2>Us & Our Friends</h2>
     <ul class="ring-list">
       {#each groups as group}
