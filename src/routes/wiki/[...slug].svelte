@@ -25,7 +25,7 @@
   <h1
     class={layout.headerStyle === 'large'
       ? 'text-3xl md:text-4xl font-bold mt-16'
-      : 'opacity-50 mt-16'}
+      : 'opacity-50 mt-4'}
   >
     {slug}
     <button
