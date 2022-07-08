@@ -1,4 +1,4 @@
-<section class="pb-2">
+<section class="pb-2 cg-container">
   <h1 class="pb-4 text-2xl font-medium md:text-4xl">Who are we?</h1>
   <p>
     <span class="font-medium">We</span> are a diverse group of people who are united by our love for
