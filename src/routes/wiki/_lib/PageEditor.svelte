@@ -23,8 +23,8 @@
   }
 
   function getUrl() {
-    const baseUrl = 'https://directcommit.spacet.me/api/mountpoints/creatorsgarten-wiki/contents/wiki/';
-    return baseUrl + slug + '.md';
+    const baseUrl = 'https://directcommit.spacet.me/api/mountpoints/creatorsgarten-wiki/contents/';
+    return `${baseUrl}wiki/${slug}.md`;
   }
 
   async function checkPermission(): Promise<boolean> {
