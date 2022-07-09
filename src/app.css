@@ -25,15 +25,15 @@ body[data-flags*='font'] h6 {
 }
 
 .cg-container {
-  @apply px-6 md:px-10 lg:px-56 xl:px-72 2xl:px-[36rem];
+  @apply mx-auto max-w-[1440px] px-6 md:px-10 lg:px-56 xl:px-72;
 }
 
 a {
-  @apply text-sky-600 hover:text-sky-800 transition-all;
+  @apply text-sky-600 transition-all hover:text-sky-800;
 }
 
 .cg-btn {
-  @apply inline-block rounded-md border-2 border-black px-3 py-1 hover:bg-gray-200 text-black hover:text-black;
+  @apply inline-block rounded-md border-2 border-black px-3 py-1 text-black hover:bg-gray-200 hover:text-black;
 }
 
 .background-animate {
