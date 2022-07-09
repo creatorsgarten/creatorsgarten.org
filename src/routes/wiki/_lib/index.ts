@@ -56,7 +56,7 @@ function getStorage(): WikiStorage {
     const url =
       process.env.WIKI_STORAGE_URL ||
       (!fs.existsSync('wiki')
-        ? 'https://directcommit.spacet.me/api/mountpoints/creatorsgarten-wiki/contents/'
+        ? 'https://directcommit.spacet.me/api/mountpoints/creatorsgarten-wiki/contents/wiki/'
         : '');
     storage = url ? new RemoteWikiStorage(url) : new LocalWikiStorage();
   }
