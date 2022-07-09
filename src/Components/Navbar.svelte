@@ -2,7 +2,7 @@
   <a href="/"><img src="/images/creatorsgarten.svg" class="h-full" alt="" /></a>
   <div class="flex">
     <a href="/ring"><h2 class="text-black transition-all hover:text-gray-700">Ring</h2></a>
-    <a href="/manifesto"><h2 class="text-black transition-all hover:text-gray-700">Manifesto</h2></a
+    <a href="/wiki/Manifesto"><h2 class="text-black transition-all hover:text-gray-700">Manifesto</h2></a
     >
   </div>
 </section>
