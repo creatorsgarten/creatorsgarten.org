@@ -23,7 +23,7 @@
   }
 
   function getUrl() {
-    const baseUrl = 'https://directcommit.spacet.me/api/mountpoints/creatorsgarten-wiki/contents/';
+    const baseUrl = 'https://directcommit.spacet.me/api/mountpoints/creatorsgarten-wiki/contents/wiki/';
     return baseUrl + slug + '.md';
   }
 
@@ -132,9 +132,9 @@
     {/if}
   {/if}
   <p class="mt-8">
-    You can also edit <a href="https://github.com/creatorsgarten/wiki/blob/main/{slug}.md"
+    You can also edit <a href="https://github.com/creatorsgarten/wiki/blob/main/wiki/{slug}.md"
       >this page on GitHub</a
     >
-    or on <a href="https://github.dev/creatorsgarten/wiki/blob/main/{slug}.md">GitHub.dev</a>.
+    or on <a href="https://github.dev/creatorsgarten/wiki/blob/main/wiki/{slug}.md">GitHub.dev</a>.
   </p>
 </form>
