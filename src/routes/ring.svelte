@@ -23,7 +23,7 @@
     </ul>
 
     <p class="not-prose">
-      <a href="/wiki/Ring/About" class="cg-btn">About</a>
+      <a href="/wiki/About/Ring" class="cg-btn">About</a>
     </p>
   </div>
 </div>
