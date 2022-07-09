@@ -33,14 +33,14 @@
         opportunity to learn something new and have some fun.
       </p>
       <p class="not-prose">
-        <a href="/manifesto" class="cg-btn">Manifesto</a>
+        <a href="/wiki/Manifesto" class="cg-btn">Manifesto</a>
       </p>
     </div>
 
     <h2>Hacks</h2>
     <section class="not-prose grid grid-cols-2 gap-2 pb-6 md:grid-cols-3 lg:gap-4">
       {#each [...hacks].reverse() as hack}
-        <a href={hack.slug.includes('https://') ? hack.slug : 'hacks/' + hack.slug}>
+        <a href={hack.slug.includes('https://') ? hack.slug : '/wiki/Hacks/' + hack.slug}>
           <div
             class="aspect-square w-full border-2 border-black hover:scale-[1.003] hover:shadow-sm hover:transition-all"
           >
