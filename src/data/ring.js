@@ -25,5 +25,9 @@ export const creators = [
   {
     name: 'Phoomparin Mano',
     link: 'https://poom.dev'
+  },
+  {
+    name: 'Thai Pangsakulyanont',
+    link: 'https://dt.in.th'
   }
 ];
