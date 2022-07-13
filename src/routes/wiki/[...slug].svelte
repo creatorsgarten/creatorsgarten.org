@@ -24,7 +24,7 @@
 <div class="cg-container">
   <h1
     class={layout.headerStyle === 'large'
-      ? 'text-3xl md:text-4xl font-bold mt-16'
+      ? 'text-3xl md:text-4xl font-semibold mt-16'
       : 'opacity-50 mt-4'}
   >
     {slug}
@@ -77,7 +77,7 @@
     </article>
   </div>
   {#if data.mode !== 'generated'}
-      <div class:hidden={!editing} class="mt-8">
+    <div class:hidden={!editing} class="mt-8">
       <PageEditor {editing} {data} {slug} />
     </div>
   {/if}

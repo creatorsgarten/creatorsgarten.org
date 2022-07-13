@@ -39,14 +39,14 @@ export const hacks = [
         name: "How to Learn (Almost) Anything",
         slug: "learn"
     }, {
-        name: "Biological Aesthetic of Nature",
-        slug: "bio"
-    }, {
         name: "Polaryz Camp #1",
         slug: "polaryz1"
     }, {
         name: "Marshmallow Campfire",
         slug: "marshmallow"
+    }, {
+        name: "Biological Aesthetic of Nature",
+        slug: "bio"
     }, {
         name: "Code in the Wind",
         slug: "wind"

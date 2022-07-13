@@ -32,7 +32,7 @@
         <strong>Fun</strong>: We believe that work should be enjoyable, and that every day is an
         opportunity to learn something new and have some fun.
       </p>
-      <p class="not-prose">
+      <p class="not-prose mt-8">
         <a href="/wiki/Manifesto" class="cg-btn">Manifesto</a>
       </p>
     </div>
