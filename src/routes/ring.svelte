@@ -8,6 +8,13 @@
 
 <div class="cg-container min-h-[80vh]">
   <div class="prose prose-lg max-w-none">
+    <h2>Webring</h2>
+    <p>
+      As a collective with many different initiatives, each with their own uniqueness, there has
+      been separate websites dedicated to each. The Creatorsgarten Webring serves to bring all our
+      initiatives together under the same umbrella. It also serves to connect our members’ personal
+      websites.
+    </p>
     <h2>Us & Our Friends</h2>
     <ul class="ring-list">
       {#each groups as group}
@@ -22,7 +29,7 @@
       {/each}
     </ul>
 
-    <p class="not-prose">
+    <p class="not-prose mt-8">
       <a href="/wiki/About/Ring" class="cg-btn">About</a>
     </p>
   </div>

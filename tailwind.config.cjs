@@ -8,8 +8,8 @@ module.exports = {
       typography: {
         lg: {
           css: {
-            lineHeight: '1.555555'
-          }
+            lineHeight: '1.555555',
+          },
         },
         DEFAULT: {
           css: {
@@ -17,7 +17,10 @@ module.exports = {
             a: {
               textDecoration: 'none',
               fontWeight: 'inherit'
-            }
+            },
+            h2: {
+              fontWeight: 600,
+            },
           }
         }
       }
