@@ -15,6 +15,9 @@
       initiatives together under the same umbrella. It also serves to connect our members’ personal
       websites.
     </p>
+    <p class="not-prose">
+      <a href="/wiki/About/Ring" class="cg-btn">Learn More</a>
+    </p>
     <h2>Us & Our Friends</h2>
     <ul class="ring-list">
       {#each groups as group}
@@ -28,10 +31,6 @@
         <li><a href={creator.link}>{creator.name}</a></li>
       {/each}
     </ul>
-
-    <p class="not-prose mt-8">
-      <a href="/wiki/About/Ring" class="cg-btn">About</a>
-    </p>
   </div>
 </div>
 
