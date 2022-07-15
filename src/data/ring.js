@@ -29,5 +29,9 @@ export const creators = [
   {
     name: 'Thai Pangsakulyanont',
     link: 'https://dt.in.th'
+  },
+  {
+    name: 'Manassarn Manoonchai',
+    link: 'https://narze.live'
   }
 ];
