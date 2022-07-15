@@ -13,12 +13,14 @@ specifiers:
   eslint: ^8.16.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-svelte3: ^4.0.0
+  expiry-map: ^2.0.0
   firebase: ^9.8.4
   glob: ^8.0.3
   markdown-it: ^13.0.1
   markdown-it-header-sections: ^1.0.0
   markdown-it-link-attributes: ^4.0.0
   markdown-it-meta: ^0.0.1
+  p-memoize: ^7.1.0
   postcss: ^8.4.14
   prettier: ^2.7.1
   prettier-plugin-tailwindcss: ^0.1.11
@@ -33,12 +35,14 @@ specifiers:
 dependencies:
   '@stablelib/base64': 1.0.1
   axios: 0.27.2
+  expiry-map: 2.0.0
   firebase: 9.9.0
   glob: 8.0.3
   markdown-it: 13.0.1
   markdown-it-header-sections: 1.0.0
   markdown-it-link-attributes: 4.0.0
   markdown-it-meta: 0.0.1
+  p-memoize: 7.1.0
 
 devDependencies:
   '@sveltejs/adapter-netlify': 1.0.0-next.65
@@ -1587,6 +1591,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /expiry-map/2.0.0:
+    resolution: {integrity: sha512-K1I5wJe2fiqjyUZf/xhxwTpaopw3F+19DsO7Oggl20+3SVTXDIevVRJav0aBMfposQdkl2E4+gnuOKd3j2X0sA==}
+    engines: {node: '>=8'}
+    dependencies:
+      map-age-cleaner: 0.2.0
+    dev: false
+
   /fast-deep-equal/3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
     dev: true
@@ -1994,6 +2005,13 @@ packages:
       sourcemap-codec: 1.4.8
     dev: true
 
+  /map-age-cleaner/0.2.0:
+    resolution: {integrity: sha512-AvxTC6id0fzSf6OyNBTp1syyCuKO7nOJvHgYlhT0Qkkjvk40zZo+av3ayVgXlxnF/DxEzEfY9mMdd7FHsd+wKQ==}
+    engines: {node: '>=7.6'}
+    dependencies:
+      p-defer: 1.0.0
+    dev: false
+
   /markdown-it-header-sections/1.0.0:
     resolution: {integrity: sha512-GndZbs+iTo7NkNRf00VmT4mtFql7VoJNnSwB7hP5xkomGUTdQ78siVZIuRco4fbiWJd45JUemLxUS9vO8luPSA==}
     dev: false
@@ -2046,6 +2064,11 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.52.0
+    dev: false
+
+  /mimic-fn/4.0.0:
+    resolution: {integrity: sha512-vqiC06CuhBTUdZH+RYl8sFrL096vA45Ok5ISO6sE/Mr1jRbGH4Csnhi8f3wKVl7x8mO4Au7Ir9D3Oyv1VYMFJw==}
+    engines: {node: '>=12'}
     dev: false
 
   /min-indent/1.0.1:
@@ -2142,6 +2165,18 @@ packages:
       type-check: 0.4.0
       word-wrap: 1.2.3
     dev: true
+
+  /p-defer/1.0.0:
+    resolution: {integrity: sha512-wB3wfAxZpk2AzOfUMJNL+d36xothRSyj8EXOa4f6GMqYDN9BJaaSISbsk+wS9abmnebVw95C2Kb5t85UmpCxuw==}
+    engines: {node: '>=4'}
+    dev: false
+
+  /p-memoize/7.1.0:
+    resolution: {integrity: sha512-CvZTCSwDg0JBLhZtvY5jSfrHwNAFrQfL+0X0GPVgwtTpruhHGTmdGkx8NSA5WNkti9N8FrHfsseFX1GW4guLww==}
+    engines: {node: '>=14.16'}
+    dependencies:
+      mimic-fn: 4.0.0
+    dev: false
 
   /pako/1.0.11:
     resolution: {integrity: sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==}

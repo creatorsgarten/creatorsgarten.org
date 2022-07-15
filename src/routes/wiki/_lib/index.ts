@@ -1,7 +1,12 @@
 import fs from 'fs';
 import axios from 'axios';
 import crypto from 'crypto';
-import type { PageData } from './types';
+import type { PageData, Redirect } from './types';
+import pMemoize from 'p-memoize';
+import ExpiryMap from 'expiry-map';
+
+const cache = new ExpiryMap(60000);
+const query = pMemoize(<T>(key: string, f: () => Promise<T>) => f(), { cache });
 
 interface WikiStorage {
   mode: 'local' | 'remote' | 'preview' | 'generated';
@@ -63,13 +68,20 @@ export function getStorage(): WikiStorage {
   return storage;
 }
 
-export async function getPage(slug: string): Promise<PageData> {
-  if (slug === 'Special/AllPages') {
+function getIndex() {
+  return query('index', async () => {
     const file = await getStorage().readFile('index.json');
     if (!file) {
       throw new Error(`Unable to find index.json`);
     }
     const index = JSON.parse(file.content);
+    return index;
+  });
+}
+
+export async function getPage(slug: string): Promise<PageData | Redirect> {
+  if (slug === 'Special/AllPages') {
+    const index = await getIndex();
     const pages = index.pages;
     return {
       content:
@@ -89,6 +101,16 @@ export async function getPage(slug: string): Promise<PageData> {
 
   const path = `wiki/${slug}.md`;
   const page = await getStorage().readFile(path);
+  if (!page) {
+    const index = await getIndex();
+    const pages = index.pages;
+    const foundSlug = Object.keys(pages).find((k) => k.toLowerCase() === slug.toLowerCase());
+    if (foundSlug && slug !== foundSlug) {
+      return {
+        redirect: { newSlug: foundSlug }
+      };
+    }
+  }
   return {
     content: page?.content || null,
     sha: page?.sha,
