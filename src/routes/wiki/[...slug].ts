@@ -9,6 +9,14 @@ export interface PageProps {
 
 export const get: RequestHandler<PageProps> = async ({ params }) => {
   const data = await getPage(params.slug);
+  if ('redirect' in data) {
+    return {
+      status: 302,
+      headers: {
+        location: `/wiki/${data.redirect.newSlug}`
+      }
+    };
+  }
   return {
     body: {
       slug: params.slug,
