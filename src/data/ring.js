@@ -33,5 +33,9 @@ export const creators = [
   {
     name: 'Manassarn Manoonchai',
     link: 'https://narze.live'
+  },
+  {
+    name: 'Monthira Chaybanjonglerd',
+    link: 'https://www.mikkipastel.com/'
   }
 ];
