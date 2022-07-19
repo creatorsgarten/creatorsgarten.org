@@ -39,6 +39,10 @@ export const creators = [
     link: 'https://www.mikkipastel.com/'
   },
   {
+    name: 'Nutthapat Pongtanyavichai',
+    link: 'https://leomotors.me'
+  },
+  {
     name: 'Kitpipat Jaritwong',
     link: 'https://gusbell.tech'
   }
