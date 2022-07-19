@@ -37,5 +37,9 @@ export const creators = [
   {
     name: 'Monthira Chayabanjonglerd',
     link: 'https://www.mikkipastel.com/'
+  },
+  {
+    name: 'Kitpipat Jaritwong',
+    link: 'https://gusbell.tech'
   }
 ];
