@@ -20,7 +20,7 @@ export const groups = [
 export const creators = [
   {
     name: 'Chayapatr Archiwaranguprok',
-    link: 'https://spaceth.co/author/chayapatr'
+    link: 'https://chayapatr.github.io'
   },
   {
     name: 'Phoomparin Mano',
