@@ -45,5 +45,9 @@ export const creators = [
   {
     name: 'Kitpipat Jaritwong',
     link: 'https://gusbell.tech'
+  },
+  {
+    name: 'Phurit Dechaboonsiripanit',
+    link: 'https://phurit.de'
   }
 ];
