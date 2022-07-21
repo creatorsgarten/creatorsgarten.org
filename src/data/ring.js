@@ -49,5 +49,9 @@ export const creators = [
   {
     name: 'Phurit Dechaboonsiripanit',
     link: 'https://phurit.de'
+  },
+  {
+    name: 'Tinnaphat Somsang',
+    link: 'https://www.tinarskii.com/'
   }
 ];
