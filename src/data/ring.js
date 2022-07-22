@@ -53,5 +53,9 @@ export const creators = [
   {
     name: 'Tinnaphat Somsang',
     link: 'https://www.tinarskii.com/'
+  },
+  {
+    name: 'Khanaphon Phaengtan',
+    link: 'https://blog.0002011.xyz'
   }
 ];
