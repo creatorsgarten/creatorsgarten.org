@@ -56,5 +56,11 @@ export const hacks = [
     }, {
         name: "The 6th Stupid Hackathon Thailand",
         slug: "sht6"
-    },
+    }, {
+        name: "???",
+        slug: "golf1"
+    }, {
+        name: "???",
+        slug: "scisart"
+    }
 ]
