@@ -11,7 +11,7 @@
   <section class="max-w-[1440px] py-10 lg:py-20 lg:mx-10 lg:rounded-3xl mesh">
     <div class="mx-auto max-w-[1440px] px-4 md:px-8 lg:px-12 xl:px-32">
       <div class="w-11/12 md:w-4/5 xl:w-1/2 mx-4">
-        <h1>We create things to find the beauty and fun in everything around us.</h1>
+        <h1>We create things to find the beauty and fun around us.</h1>
         <p class="text-lg mt-4 mb-6">
           Creatorsgarten is a collective of creators who enjoy making things. We unite to create a
           supportive environment for all creators where they can come to create, learn, and share.
