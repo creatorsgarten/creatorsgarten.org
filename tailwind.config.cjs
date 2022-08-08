@@ -18,6 +18,9 @@ module.exports = {
               textDecoration: 'none',
               fontWeight: 'inherit'
             },
+            h1: {
+              fontWeight: 00,
+            },
             h2: {
               fontWeight: 600,
             },
