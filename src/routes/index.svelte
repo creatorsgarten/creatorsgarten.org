@@ -7,12 +7,12 @@
   <title>Creatorsgarten</title>
 </svelte:head>
 
-<div class="flex items-center justify-center lg:mt-6 mb-8 lg:mb-12">
+<div class="flex items-center justify-center mt-4 lg:mt-6 mb-10 lg:mb-12">
   <section class="max-w-[1440px] py-10 lg:py-20 lg:mx-10 lg:rounded-3xl mesh">
     <div class="mx-auto max-w-[1440px] px-4 md:px-8 lg:px-12 xl:px-32">
       <div class="w-11/12 md:w-4/5 xl:w-1/2 mx-4">
-        <h1 class="mb-6">We create things to find the beauty and fun in everything around us.</h1>
-        <p class="text-lg mb-6">
+        <h1>We create things to find the beauty and fun in everything around us.</h1>
+        <p class="text-lg mt-4 mb-6">
           Creatorsgarten is a collective of creators who enjoy making things. We unite to create a
           supportive environment for all creators where they can come to create, learn, and share.
         </p>
@@ -70,8 +70,8 @@
   <section class="max-w-[1440px] py-10 lg:py-20 lg:mx-10 lg:rounded-3xl mesh-3">
     <div class="mx-auto max-w-[1440px] px-4 md:px-8 lg:px-12 xl:px-32">
       <div class="w-11/12 md:w-4/5 xl:w-1/2 mx-4">
-        <h1 class="mb-6">Creatorsgarten = Garden of Creators</h1>
-        <p class="text-xl mb-6">
+        <h1>Creatorsgarten = Garden of Creators</h1>
+        <p class="text-xl my-6">
           The name Creatorsgarten comes from the word creators and garten, as in kindergarten, which
           means garden of children in German. We chose this name because we want to create a garden
           for all creators where they can come to create, learn, and share.
@@ -167,5 +167,8 @@
       radial-gradient(at 81% 52%, rgb(7, 89, 133) 0, transparent 52%),
       radial-gradient(at 19% 2%, rgb(147, 197, 253) 0, transparent 35%);
     /* radial-gradient(at 17% 34%, rgb(5, 150, 105) 0, transparent 6%); */
+  }
+  h1 {
+    @apply mb-2;
   }
 </style>
