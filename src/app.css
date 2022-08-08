@@ -24,8 +24,16 @@ body[data-flags*='font'] h6 {
   letter-spacing: 0;
 }
 
+h1 {
+  @apply text-4xl lg:text-[3.25rem] leading-none font-medium;
+}
+
 .cg-container {
-  @apply mx-auto max-w-[1440px] px-6 md:px-10 lg:px-56 xl:px-72;
+  @apply mx-auto max-w-[1440px] px-6 md:px-10 lg:px-48 xl:px-72;
+}
+
+.cg-large-container {
+  @apply mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12 xl:px-32;
 }
 
 a {

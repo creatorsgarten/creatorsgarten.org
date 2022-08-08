@@ -22,10 +22,10 @@
 </svelte:head>
 
 <div class="cg-container">
-  <h1
+  <h3
     class={layout.headerStyle === 'large'
       ? 'text-3xl md:text-4xl font-semibold mt-16'
-      : 'opacity-50 mt-4'}
+      : 'opacity-50 font-medium text-lg mt-4 mb-1'}
   >
     {slug}
     {#if data.mode !== 'generated'}
@@ -43,7 +43,7 @@
         </svg>
       </button>
     {/if}
-  </h1>
+  </h3>
 
   <div class:hidden={editing}>
     {#if meta.layout === 'hacks'}
