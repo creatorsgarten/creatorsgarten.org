@@ -16,6 +16,6 @@
 
 <style>
   h2 {
-    @apply pl-3 lg:pl-4 lg:text-lg font-normal;
+    @apply ml-3 lg:pl-4 lg:text-lg font-normal;
   }
 </style>
