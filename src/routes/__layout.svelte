@@ -1,8 +1,10 @@
 <script>
   import { onMount } from 'svelte';
+  import { navigating } from '$app/stores';
 
   import '../app.css';
   import Navbar from '../Components/Navbar.svelte';
+  import Loading from '../Components/Loading.svelte';
 
   onMount(() => {
     if (
@@ -18,7 +20,15 @@
 
 <Navbar />
 
-<slot />
+<main>
+  {#if $navigating}
+    <div class="h-[80vh] flex items-center justify-center">
+      <Loading />
+    </div>
+  {:else}
+    <slot />
+  {/if}
+</main>
 
 <div class="cg-large-container">
   <footer
