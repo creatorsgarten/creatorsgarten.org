@@ -14,7 +14,8 @@
         <h1>We create things to find the beauty and fun around us.</h1>
         <p class="text-lg mt-4 mb-6">
           Creatorsgarten is a collective of creators who enjoy making things. We unite to create a
-          supportive environment for all creators where they can come to create, learn, and share.
+          supportive environment for all the creators where they can come to create, learn, and
+          share.
         </p>
         <p>
           <a href="/wiki/Manifesto" class="cg-btn">Manifesto</a>
@@ -30,7 +31,7 @@
       <h1>Events</h1>
       <p class="w-full md:w-3/5 lg:w-5/6 lg:text-lg">
         Through workshops, meetups, hackathons, and much more, we bring people together to work on
-        new ideas, trying new things and working together across disciplines.
+        new ideas and trying new things together across the disciplines.
       </p>
       <p>
         <a href="/events" class="cg-btn">View All</a>
@@ -73,8 +74,8 @@
         <h1>Creatorsgarten = Garden of Creators</h1>
         <p class="text-xl my-6">
           The name Creatorsgarten comes from the word creators and garten, as in kindergarten, which
-          means garden of children in German. We chose this name because we want to create a garden
-          for all creators where they can come to create, learn, and share.
+          means a garden of children. We chose this name because we want to create a garden for all
+          the creators out there, where they can cultivate their ideas and watch them grow.
         </p>
       </div>
     </div>
