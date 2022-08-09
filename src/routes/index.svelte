@@ -40,7 +40,7 @@
 
   <div class="w-full">
     <h1 class="text-3xl">Upcoming</h1>
-    <section class="not-prose grid grid-cols-2 gap-2 pb-6 md:grid-cols-3 mb-4 lg:mb-6">
+    <section class="not-prose grid grid-cols-2 gap-2 pb-6 md:grid-cols-3 mb-4 lg:mb-6 pt-2">
       {#each [...upcoming].reverse() as event}
         <a href={event.slug.includes('https://') ? event.slug : '/wiki/Hacks/' + event.slug}>
           <div
@@ -52,7 +52,7 @@
       {/each}
     </section>
     <h1 class="text-3xl">Latest Events</h1>
-    <section class="not-prose grid grid-cols-2 gap-2 md:grid-cols-3">
+    <section class="not-prose grid grid-cols-2 gap-2 md:grid-cols-3 pt-2">
       {#each [...latest].reverse() as event}
         <a href={event.slug.includes('https://') ? event.slug : '/wiki/Hacks/' + event.slug}>
           <div
@@ -143,6 +143,7 @@
 
 <style>
   .mesh {
+    background: fixed;
     background-color: rgb(21, 94, 117);
     background-image: radial-gradient(at 48% 49%, rgb(254, 252, 232) 0, transparent 89%),
       radial-gradient(at 64% 44%, rgb(254, 242, 242) 0, transparent 18%),
@@ -160,6 +161,7 @@
       radial-gradient(at 29% 63%, rgb(250, 250, 250) 0, transparent 33%);
   } */
   .mesh-3 {
+    background: fixed;
     background-color: rgb(252, 165, 165);
     background-image: radial-gradient(at 79% 79%, rgb(236, 254, 255) 0, transparent 59%),
       radial-gradient(at 22% 84%, rgb(254, 249, 195) 0, transparent 47%),
