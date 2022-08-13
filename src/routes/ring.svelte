@@ -7,7 +7,7 @@
 </svelte:head>
 
 <div class="cg-container min-h-[80vh]">
-  <div class="prose prose-lg max-w-none">
+  <div class="prose max-w-none">
     <h2 class="text-3xl md:text-4xl font-semibold mt-16">Webring</h2>
     <p>
       As a collective with many different initiatives, each with their own uniqueness, there has

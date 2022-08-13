@@ -25,7 +25,7 @@
   <h3
     class={layout.headerStyle === 'large'
       ? 'text-3xl md:text-4xl font-semibold mt-16'
-      : 'opacity-50 font-medium text-lg mt-4 mb-1'}
+      : 'opacity-50 font-medium mt-4 mb-1'}
   >
     {slug}
     {#if data.mode !== 'generated'}
@@ -54,15 +54,15 @@
           alt=""
         />
         <div class="mt-6 flex w-full flex-col justify-center md:mt-0">
-          <h1 class="pb-2 text-2xl font-medium md:w-11/12 md:text-4xl lg:text-3xl">{meta.name}</h1>
-          <h3 class="text-lg">{meta.location}</h3>
-          <h3 class="text-lg">{meta.date}</h3>
+          <h1 class="pb-2 text-2xl md:w-11/12 md:text-4xl lg:text-3xl">{meta.name}</h1>
+          <h3 class="font-normal">{meta.location}</h3>
+          <h3 class="font-normal">Date: {meta.date}</h3>
           {#if meta.site}
-            <h3 class="text-lg truncate">
+            <h3 class="truncate font-normal">
               Website: <a href={meta.site}>{meta.site}</a>
             </h3>
           {/if}
-          <h3 class="text-lg">
+          <h3 class="font-normal">
             By:
             {#each meta.by as team}
               <span class="pr-1">[{team}]</span>
@@ -72,7 +72,7 @@
       </section>
     {/if}
 
-    <article class="prose md:prose-lg max-w-none mt-8">
+    <article class="prose max-w-none mt-8">
       {@html output.html}
     </article>
   </div>

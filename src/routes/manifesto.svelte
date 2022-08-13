@@ -3,7 +3,7 @@
 </svelte:head>
 
 <div class="cg-container">
-  <article class="prose prose-lg max-w-none">
+  <article class="prose max-w-none">
     <h2>Who are we?</h2>
     <p>
       <strong>We</strong> are a diverse group of people who are united by our love for creating things.

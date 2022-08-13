@@ -30,10 +30,10 @@ module.exports = {
               fontWeight: 'inherit'
             },
             h1: {
-              fontWeight: 00,
+              fontWeight: 400,
             },
             h2: {
-              fontWeight: 600,
+              fontWeight: 400,
             },
           }
         }
