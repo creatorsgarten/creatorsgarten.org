@@ -1,5 +1,4 @@
 <script>
-  import { hacks } from '../data/hacks.js';
   import { latest, upcoming, projects } from '../data/index';
 </script>
 
@@ -10,9 +9,9 @@
 <div class="flex items-center justify-center mt-4 lg:mt-6 mb-10 lg:mb-12">
   <section class="max-w-[1440px] py-10 lg:py-20 lg:mx-10 lg:rounded-3xl mesh">
     <div class="mx-auto max-w-[1440px] px-4 md:px-8 lg:px-12 xl:px-32">
-      <div class="w-11/12 md:w-4/5 xl:w-1/2 mx-4">
+      <div class="w-11/12 md:w-3/5 xl:w-1/2 mx-4">
         <h1>We create things to find the beauty and fun around us.</h1>
-        <p class="text-lg mt-4 mb-6">
+        <p class="text-lg my-6">
           Creatorsgarten is a collective of creators who enjoy making things. We unite to create a
           supportive environment for all the creators where they can come to create, learn, and
           share.
@@ -25,11 +24,11 @@
   </section>
 </div>
 
-<div class="cg-large-container flex flex-col lg:flex-row prose prose-lg max-w-none mb-16">
+<div class="cg-large-container flex flex-col lg:flex-row prose max-w-none mb-16">
   <div class="w-full lg:w-1/2 lg:mr-12 mb-4">
     <div class="mb-10 lg:mb-0 lg:sticky lg:top-6">
       <h1>Events</h1>
-      <p class="w-full md:w-3/5 lg:w-5/6 lg:text-lg">
+      <p class="w-full md:w-3/5 lg:w-5/6">
         Through workshops, meetups, hackathons, and much more, we bring people together to work on
         new ideas and trying new things together across the disciplines.
       </p>
@@ -70,9 +69,9 @@
 <div class="flex items-center justify-center mb-10 lg:mb-16">
   <section class="max-w-[1440px] py-10 lg:py-20 lg:mx-10 lg:rounded-3xl mesh-3">
     <div class="mx-auto max-w-[1440px] px-4 md:px-8 lg:px-12 xl:px-32">
-      <div class="w-11/12 md:w-4/5 xl:w-1/2 mx-4">
-        <h1>Creatorsgarten = Garden of Creators</h1>
-        <p class="text-xl my-6">
+      <div class="w-11/12 md:w-3/5 xl:w-1/2 mx-4">
+        <h1>Creatorsgarten = <br /> Garden of Creators</h1>
+        <p class="text-lg my-6">
           The name Creatorsgarten comes from the word creators and garten, as in kindergarten, which
           means a garden of children. We chose this name because we want to create a garden for all
           the creators out there, where they can cultivate their ideas and watch them grow.
@@ -82,11 +81,11 @@
   </section>
 </div>
 
-<div class="cg-large-container flex flex-col lg:flex-row prose prose-lg max-w-none mb-10 lg:mb-16">
+<div class="cg-large-container flex flex-col lg:flex-row prose max-w-none mb-10 lg:mb-16">
   <div class="w-full lg:w-1/2 lg:mr-12">
     <div class="mb-10 lg:mb-0 lg:sticky lg:top-6">
       <h1>Projects</h1>
-      <p class="w-full md:w-3/5 lg:w-5/6 lg:text-xl">
+      <p class="w-full md:w-3/5 lg:w-5/6 lg:text-lg">
         We believe that work should be enjoyable, and that every day is an opportunity to learn
         something new and have some fun.
       </p>
@@ -113,10 +112,10 @@
 </div>
 
 <div
-  class="cg-large-container flex flex-col lg:items-center prose prose-lg max-w-none mb-16 bg-gray-100 border-2 py-10"
+  class="cg-large-container flex flex-col lg:items-center prose max-w-none mb-16 bg-gray-50 border-2 py-10"
 >
   <h1 class="mb-2">Meet us</h1>
-  <p class="w-full md:w-3/5 lg:w-5/6 lg:text-xl lg:text-center">
+  <p class="w-full md:w-3/5 lg:w-5/6 lg:text-lg lg:text-center">
     As a collective with many initiatives, each with their own uniqueness, there has been separate
     organization dedicated to each. Creatorsgarten serves to bring all our initiatives together.
   </p>

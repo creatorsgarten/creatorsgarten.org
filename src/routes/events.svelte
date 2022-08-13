@@ -7,7 +7,7 @@
 </svelte:head>
 
 <div class="cg-container">
-  <div class="prose prose-lg max-w-none">
+  <div class="prose max-w-none">
     <h2 class="text-3xl md:text-4xl font-semibold mt-16">Events</h2>
     <p class="mb-12">
       Through workshops, meetups, hackathons, and much more, we bring people together to work on new

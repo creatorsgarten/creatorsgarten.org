@@ -3,29 +3,25 @@
 @tailwind utilities;
 
 body {
-  @apply background-animate min-h-full bg-gradient-to-br from-neutral-50 to-neutral-100 antialiased;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  @apply background-animate min-h-full antialiased text-gray-900;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  letter-spacing: -0.01em;
 }
 
-body[data-flags*='font'] {
-  font-family: DM Sans, 'space grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  font-family: 'Readex Pro', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  letter-spacing: 0.02em;
-}
-body[data-flags*='font'] h1,
-body[data-flags*='font'] h2,
-body[data-flags*='font'] h3,
-body[data-flags*='font'] h4,
-body[data-flags*='font'] h5,
-body[data-flags*='font'] h6 {
-  font-family: 'space grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  letter-spacing: 0;
 }
 
 h1 {
-  @apply text-4xl lg:text-[3.25rem] leading-none font-medium;
+  @apply text-3xl lg:text-[2.75rem] leading-none;
 }
 
 .cg-container {
