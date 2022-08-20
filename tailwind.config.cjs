@@ -19,8 +19,8 @@ module.exports = {
       typography: {
         lg: {
           css: {
-            lineHeight: '1.555555',
-          },
+            lineHeight: '1.555555'
+          }
         },
         DEFAULT: {
           css: {
@@ -30,11 +30,23 @@ module.exports = {
               fontWeight: 'inherit'
             },
             h1: {
-              fontWeight: 400,
+              fontWeight: 400
             },
             h2: {
-              fontWeight: 400,
+              fontWeight: 400
             },
+            details: {
+              backgroundColor: colors.gray[50],
+              marginTop: '1.25em',
+              marginBottom: '1.25em',
+              padding: '0.5rem'
+            },
+            summary: {
+              backgroundColor: colors.gray[100],
+              margin: '-0.5rem -0.5rem 0',
+              padding: '0.5rem',
+              cursor: 'pointer'
+            }
           }
         }
       }
