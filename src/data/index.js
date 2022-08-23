@@ -1,7 +1,4 @@
 export const latest = [{
-        name: "Polaryz Camp #1",
-        slug: "polaryz1"
-    }, {
         name: "Marshmallow Campfire",
         slug: "marshmallow"
     }, {
@@ -16,16 +13,16 @@ export const latest = [{
     }, {
         name: "The 6th Stupid Hackathon Thailand",
         slug: "sht6"
-    },
+    }, {
+        name: "???",
+        slug: "scisart"
+    }
 ]
 
 export const upcoming = [{
     name: "???",
     slug: "golf1"
-}, {
-    name: "???",
-    slug: "scisart"
-}]
+},]
 
 export const projects = [{
     name: "Contentsgarten",
