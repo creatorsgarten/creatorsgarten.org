@@ -90,7 +90,7 @@
         something new and have some fun.
       </p>
       <p>
-        <a href="https://github.com/creatorsgarten" class="cg-btn">Github</a>
+        <a href="https://github.com/creatorsgarten" class="cg-btn">GitHub</a>
       </p>
     </div>
   </div>
