@@ -40,7 +40,7 @@ export const creators = [
   },
   {
     name: 'Nutthapat Pongtanyavichai',
-    link: 'https://leomotors.me'
+    link: 'https://leomotors.net'
   },
   {
     name: 'Kitpipat Jaritwong',
