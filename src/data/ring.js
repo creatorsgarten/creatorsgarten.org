@@ -57,5 +57,9 @@ export const creators = [
   {
     name: 'Khanaphon Phaengtan',
     link: 'https://blog.0002011.xyz'
+  },
+  {
+    name: 'Panithi Makthiengtrong',
+    link: 'https://betich.me'
   }
 ];
