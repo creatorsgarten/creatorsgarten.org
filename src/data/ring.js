@@ -61,5 +61,9 @@ export const creators = [
   {
     name: 'Panithi Makthiengtrong',
     link: 'https://betich.me'
-  }
+  },
+  {
+    name: 'Siravij Praevisavakij',
+    link: 'https://github.com/siravijbb'
+  },
 ];
