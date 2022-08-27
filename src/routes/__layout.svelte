@@ -18,6 +18,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>Creatorsgarten</title>
+</svelte:head>
+
 <Navbar />
 
 <main>
