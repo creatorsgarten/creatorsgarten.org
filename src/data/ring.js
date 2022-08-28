@@ -57,5 +57,17 @@ export const creators = [
   {
     name: 'Khanaphon Phaengtan',
     link: 'https://blog.0002011.xyz'
+  },
+  {
+    name: 'Panithi Makthiengtrong',
+    link: 'https://betich.me'
+  },
+  {
+    name: 'Siravij Praevisavakij',
+    link: 'https://github.com/siravijbb'
+  },
+  {
+    name: 'Phumrapee Limpianchop',
+    link: 'https://rayriffy.com'
   }
 ];
