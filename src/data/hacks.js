@@ -58,9 +58,9 @@ export const hacks = [
         slug: "sht6"
     }, {
         name: "???",
-        slug: "golf1"
+        slug: "scisart"
     }, {
         name: "???",
-        slug: "scisart"
+        slug: "golf1"
     }
 ]

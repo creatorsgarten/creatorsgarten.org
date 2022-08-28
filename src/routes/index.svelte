@@ -39,30 +39,34 @@
   </div>
 
   <div class="w-full">
-    <h1 class="text-3xl">Upcoming</h1>
-    <section class="not-prose grid grid-cols-2 gap-2 pb-6 md:grid-cols-3 mb-4 lg:mb-6 pt-2">
-      {#each [...upcoming].reverse() as event}
-        <a href={event.slug.includes('https://') ? event.slug : '/wiki/Hacks/' + event.slug}>
-          <div
-            class="aspect-square w-full border-2 border-black hover:scale-[1.003] hover:shadow-sm hover:transition-all"
-          >
-            <img src={'images/hacks/compressed/' + event.slug + '.webp'} class="" alt="" />
-          </div>
-        </a>
-      {/each}
-    </section>
-    <h1 class="text-3xl">Latest Events</h1>
-    <section class="not-prose grid grid-cols-2 gap-2 md:grid-cols-3 pt-2">
-      {#each [...latest].reverse() as event}
-        <a href={event.slug.includes('https://') ? event.slug : '/wiki/Hacks/' + event.slug}>
-          <div
-            class="aspect-square w-full border-2 border-black hover:scale-[1.003] hover:shadow-sm hover:transition-all"
-          >
-            <img src={'images/hacks/compressed/' + event.slug + '.webp'} class="" alt="" />
-          </div>
-        </a>
-      {/each}
-    </section>
+    {#if upcoming.length >= 1}
+      <h1 class="text-3xl">Upcoming</h1>
+      <section class="not-prose grid grid-cols-2 gap-2 pb-6 md:grid-cols-3 mb-4 lg:mb-6 pt-2">
+        {#each [...upcoming].reverse() as event}
+          <a href={event.slug.includes('https://') ? event.slug : '/wiki/Hacks/' + event.slug}>
+            <div
+              class="aspect-square w-full border-2 border-black hover:scale-[1.003] hover:shadow-sm hover:transition-all"
+            >
+              <img src={'images/hacks/compressed/' + event.slug + '.webp'} class="" alt="" />
+            </div>
+          </a>
+        {/each}
+      </section>
+    {/if}
+    {#if latest.length >= 1}
+      <h1 class="text-3xl">Latest Events</h1>
+      <section class="not-prose grid grid-cols-2 gap-2 md:grid-cols-3 pt-2">
+        {#each [...latest].reverse() as event}
+          <a href={event.slug.includes('https://') ? event.slug : '/wiki/Hacks/' + event.slug}>
+            <div
+              class="aspect-square w-full border-2 border-black hover:scale-[1.003] hover:shadow-sm hover:transition-all"
+            >
+              <img src={'images/hacks/compressed/' + event.slug + '.webp'} class="" alt="" />
+            </div>
+          </a>
+        {/each}
+      </section>
+    {/if}
   </div>
 </div>
 
