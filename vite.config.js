@@ -4,7 +4,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 const config = {
   plugins: [sveltekit()],
   ssr: {
-    noExternal: ['p-memoize']
+    noExternal: ['p-memoize', 'devalue']
   }
 };
 
