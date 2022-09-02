@@ -1,17 +1,6 @@
-<script context="module">
-  /** @type {import('@sveltejs/kit').Load} */
-  export function load({ error, status }) {
-    return {
-      props: {
-        title: `${status}: ${String(error?.message)}`
-      }
-    };
-  }
-</script>
-
 <script>
-  /** @type {string} */
-  export let title;
+  import { page } from '$app/stores';
+  $: title = `${$page.status}: ${String($page.error?.message)}`;
 </script>
 
 <section class="cg-container h-[80vh] flex flex-col justify-center items-center">

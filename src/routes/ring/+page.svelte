@@ -1,5 +1,5 @@
 <script>
-  import { groups, creators } from '../data/ring';
+  import { groups, creators } from '../../data/ring';
 </script>
 
 <svelte:head>

@@ -1,18 +1,18 @@
 <script lang="ts">
-  import { processMarkdown } from '../../markdown';
-  import type { PageData } from './_lib/types';
-  import { authState } from './_lib/auth';
-  import PageEditor from './_lib/PageEditor.svelte';
-  import { getLayout } from './_lib/layout';
+  import type { PageData } from './$types';
+  import { processMarkdown } from '../../../markdown';
+  import { authState } from '../_lib/auth';
+  import PageEditor from '../_lib/PageEditor.svelte';
+  import { getLayout } from '../_lib/layout';
 
   let editing = false;
-  export let slug: string;
   export let data: PageData;
 
+  $: slug = data.slug;
+  $: wikiPageData = data.data;
   $: output = processMarkdown({
-    content: data.content || 'This page doesn’t exist.'
+    content: wikiPageData.content || 'This page doesn’t exist.'
   });
-
   $: meta = output.meta;
   $: layout = getLayout(meta.layout || 'default');
 </script>
@@ -28,7 +28,7 @@
       : 'opacity-50 font-medium mt-4 mb-1'}
   >
     {slug}
-    {#if data.mode !== 'generated'}
+    {#if wikiPageData.mode !== 'generated'}
       <button
         class="inline-block"
         title="Edit"
@@ -76,9 +76,9 @@
       {@html output.html}
     </article>
   </div>
-  {#if data.mode !== 'generated'}
+  {#if wikiPageData.mode !== 'generated'}
     <div class:hidden={!editing} class="mt-8">
-      <PageEditor {editing} {data} {slug} />
+      <PageEditor {editing} data={wikiPageData} {slug} />
     </div>
   {/if}
 </div>
