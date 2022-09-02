@@ -1,0 +1,37 @@
+<script lang="ts">
+  import { getIdeas } from './store';
+
+  const ideasPromise = getIdeas();
+</script>
+
+<svelte:head>
+  <title>Event Ideas | Creatorsgarten</title>
+</svelte:head>
+
+<div class="cg-container min-h-[80vh]">
+  <div class="prose max-w-none">
+    <h2 class="text-3xl md:text-4xl font-semibold mt-16">Event Ideas</h2>
+    <div class="lead">
+      <p>
+        These board shows the ideas for <strong>events that we would like to see happen.</strong>
+      </p>
+    </div>
+    {#await ideasPromise}
+      <p>(Loading…)</p>
+    {:then ideas}
+      {#each ideas as idea}
+        <div class="flex">
+          <div class="flex-none" />
+          <div class="flex-auto">
+            <h3 class="text-xl font-semibold">
+              <a href={idea.url}>{idea.title}</a>
+            </h3>
+            <p>{idea.excerpt}</p>
+          </div>
+        </div>
+      {/each}
+    {:catch error}
+      <p>Unable to fetch ideas: {error.message}</p>
+    {/await}
+  </div>
+</div>
