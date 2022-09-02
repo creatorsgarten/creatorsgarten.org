@@ -1,5 +1,5 @@
 <script>
-  import { hacks } from '../data/hacks.js';
+  import { hacks } from '../../data/hacks.js';
 </script>
 
 <svelte:head>

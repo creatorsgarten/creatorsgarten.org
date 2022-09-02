@@ -1,9 +1,11 @@
 <script lang="ts">
-  import { processMarkdown } from '../../markdown';
-  import type { PageData } from './_lib/types';
-  import { authState } from './_lib/auth';
-  import PageEditor from './_lib/PageEditor.svelte';
-  import { getLayout } from './_lib/layout';
+  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
+  import { processMarkdown } from '../../../markdown';
+  import type { PageData } from '../_lib/types';
+  import { authState } from '../_lib/auth';
+  import PageEditor from '../_lib/PageEditor.svelte';
+  import { getLayout } from '../_lib/layout';
 
   let editing = false;
   export let slug: string;
