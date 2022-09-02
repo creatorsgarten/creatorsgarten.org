@@ -9,7 +9,16 @@ export const getIdeas = pMemoize(async () => {
       ...n,
       excerpt: n.bodyText.trim().split(/\n/)[0],
     };
-  });
+  }) as Idea[];
 }, {
   cache: new ExpiryMap(60000)
 })
+
+export interface Idea {
+  number: number
+  excerpt: string
+  title: string
+  bodyHTML: string
+  bodyText: string
+  url: string
+}

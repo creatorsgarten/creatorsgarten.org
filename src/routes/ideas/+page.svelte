@@ -1,8 +1,5 @@
 <script lang="ts">
   import type { PageData } from './$types';
-  import { getIdeas } from './store';
-
-  const ideasPromise = getIdeas();
   export let data: PageData;
 </script>
 
@@ -23,7 +20,7 @@
         <div class="flex-none" />
         <div class="flex-auto">
           <h3 class="text-xl font-semibold">
-            <a href={idea.url}>{idea.title}</a>
+            <a href="/ideas/{idea.number}">{idea.title}</a>
           </h3>
           <p>{idea.excerpt}</p>
         </div>

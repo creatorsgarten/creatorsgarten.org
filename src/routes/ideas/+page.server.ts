@@ -1,11 +1,7 @@
-import type { PageServerLoad } from ".svelte-kit/types/src/routes/wiki/[...slug]/$types";
-import { getIdeas } from "./store";
+import type { PageServerLoad } from "./$types";
+import { getIdeas, type Idea } from "./store";
 
-export interface PageProps {
-  ideas: any[]
-}
-
-export const load: PageServerLoad<PageProps> = async ({ params }) => {
+export const load: PageServerLoad<{ ideas: Idea[] }> = async ({ params }) => {
   return {
     ideas: await getIdeas()
   };
