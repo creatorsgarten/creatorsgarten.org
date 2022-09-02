@@ -7,7 +7,7 @@ export interface PageProps {
   data: PageData;
 }
 
-export const get: RequestHandler<PageProps> = async ({ params }) => {
+export const GET: RequestHandler<PageProps> = async ({ params }) => {
   const data = await getPage(params.slug);
   if ('redirect' in data) {
     return {
@@ -25,7 +25,7 @@ export const get: RequestHandler<PageProps> = async ({ params }) => {
   };
 };
 
-export const post: RequestHandler<PageProps> = async ({ params, request }) => {
+export const POST: RequestHandler<PageProps> = async ({ params, request }) => {
   const data = await request.formData();
   return {
     body: {
