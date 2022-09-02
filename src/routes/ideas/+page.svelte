@@ -1,7 +1,9 @@
 <script lang="ts">
+  import type { PageData } from './$types';
   import { getIdeas } from './store';
 
   const ideasPromise = getIdeas();
+  export let data: PageData;
 </script>
 
 <svelte:head>
@@ -16,22 +18,16 @@
         These board shows the ideas for <strong>events that we would like to see happen.</strong>
       </p>
     </div>
-    {#await ideasPromise}
-      <p>(Loading…)</p>
-    {:then ideas}
-      {#each ideas as idea}
-        <div class="flex">
-          <div class="flex-none" />
-          <div class="flex-auto">
-            <h3 class="text-xl font-semibold">
-              <a href={idea.url}>{idea.title}</a>
-            </h3>
-            <p>{idea.excerpt}</p>
-          </div>
+    {#each data.ideas as idea}
+      <div class="flex">
+        <div class="flex-none" />
+        <div class="flex-auto">
+          <h3 class="text-xl font-semibold">
+            <a href={idea.url}>{idea.title}</a>
+          </h3>
+          <p>{idea.excerpt}</p>
         </div>
-      {/each}
-    {:catch error}
-      <p>Unable to fetch ideas: {error.message}</p>
-    {/await}
+      </div>
+    {/each}
   </div>
 </div>
