@@ -1,3 +1,4 @@
+import ExpiryMap from "expiry-map";
 import pMemoize from "p-memoize";
 
 export const getIdeas = pMemoize(async () => {
@@ -9,4 +10,6 @@ export const getIdeas = pMemoize(async () => {
       excerpt: n.bodyText.trim().split(/\n/)[0],
     };
   });
+}, {
+  cache: new ExpiryMap(60000)
 })
