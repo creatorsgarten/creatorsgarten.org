@@ -46,5 +46,6 @@
     "markdown-it-link-attributes": "^4.0.0",
     "markdown-it-meta": "^0.0.1",
     "p-memoize": "^7.1.0"
-  }
+  },
+  "packageManager": "yarn@3.2.3"
 }
