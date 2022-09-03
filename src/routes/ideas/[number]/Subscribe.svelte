@@ -43,11 +43,11 @@
         token: otp,
         type: 'magiclink'
       });
-      awaitingOtpEmail = '';
       await supabase.from('list_subscribers').insert({
         user_id: result.user!.id,
         list_id: listId
       });
+      awaitingOtpEmail = '';
       authenticatedEmail = result.user!.email || '';
       subscribed = true;
       awaitingMessage = true;
