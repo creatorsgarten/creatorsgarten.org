@@ -15,9 +15,9 @@
     </div>
     <h2 class="mt-2 text-3xl font-semibold md:text-4xl">{data.idea.title}</h2>
     {@html data.idea.bodyHTML}
-    <p class="not-prose">
+    <!-- <p class="not-prose">
       <a href={data.idea.url} class="cg-btn">Discuss on GitHub</a>
-    </p>
+    </p> -->
   </div>
-  <Subscribe />
+  <Subscribe listId="idea-{data.idea.number}" />
 </div>

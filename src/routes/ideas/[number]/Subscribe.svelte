@@ -1,102 +1,160 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
+  import SubscribeView from './SubscribeView.svelte';
+
+  let awaitingOtpEmail = '';
+  let authenticatedEmail = '';
+  let subscribed = false;
+  let awaitingMessage = false;
+  let working = false;
+  export let listId: string;
+
+  async function work<T>(f: () => Promise<void>): Promise<void> {
+    if (working) return;
+    working = true;
+    try {
+      return await f();
+    } catch (error) {
+      console.error(error);
+      alert(`${error}`);
+    } finally {
+      working = false;
+    }
+  }
+
+  const getSupabase = () => import('./supabase');
+
+  async function onSignIn(e: CustomEvent) {
+    const email: string = e.detail.email;
+    return work(async () => {
+      const { supabase } = await getSupabase();
+      await supabase.auth.signIn({ email });
+      awaitingOtpEmail = email;
+    });
+  }
+
+  async function onOtp(e: CustomEvent) {
+    const otp: string = e.detail.otp;
+    return work(async () => {
+      const { supabase } = await getSupabase();
+      const result = await supabase.auth.verifyOTP({
+        email: awaitingOtpEmail,
+        token: otp,
+        type: 'magiclink'
+      });
+      awaitingOtpEmail = '';
+      await supabase.from('list_subscribers').insert({
+        user_id: result.user!.id,
+        list_id: listId
+      });
+      subscribed = true;
+      awaitingMessage = true;
+    });
+  }
+
+  async function onSubscribe() {
+    return work(async () => {
+      const { supabase } = await getSupabase();
+      const user = supabase.auth.user();
+      if (!user) {
+        throw new Error('Not signed in');
+      }
+      await supabase.from('list_subscribers').insert({
+        user_id: user.id,
+        list_id: listId
+      });
+      subscribed = true;
+      awaitingMessage = true;
+    });
+  }
+
+  async function onUnsubscribe() {
+    return work(async () => {
+      const { supabase } = await getSupabase();
+      const user = supabase.auth.user();
+      if (!user) {
+        throw new Error('Not signed in');
+      }
+      await supabase.from('list_subscribers').delete().match({
+        user_id: user.id,
+        list_id: listId
+      });
+      subscribed = false;
+    });
+  }
+
+  async function onSignOut() {
+    return work(async () => {
+      const { supabase } = await getSupabase();
+      await supabase.auth.signOut();
+      await refresh();
+    });
+  }
+
+  async function onMessageSubmit(e: CustomEvent) {
+    const message = e.detail.message;
+    return work(async () => {
+      const { supabase } = await getSupabase();
+      const user = supabase.auth.user();
+      if (!user) {
+        throw new Error('Not signed in');
+      }
+      await supabase.from('list_subscribers').update({ message }).match({
+        user_id: user.id,
+        list_id: listId
+      });
+      awaitingMessage = false;
+    });
+  }
+
+  async function refresh() {
+    const { supabase } = await getSupabase();
+    const currentUser = supabase.auth.user();
+    if (currentUser) {
+      authenticatedEmail = currentUser.email || '';
+      const item = await supabase
+        .from('list_subscribers')
+        .select('*')
+        .eq('user_id', currentUser.id)
+        .eq('list_id', listId);
+      if (item.data?.length) {
+        subscribed = true;
+      } else {
+        subscribed = false;
+      }
+    } else {
+      authenticatedEmail = '';
+    }
+  }
+
+  onMount(() => {
+    work(refresh);
+  });
 </script>
 
-<div class="card">
-  <h3>Subscribe to get notified when we will organize this event</h3>
-  <form class="mt-4 flex flex-col justify-center gap-1 sm:flex-row">
-    <input
-      type="email"
-      class="w-full rounded-md border-2 border-gray-400 bg-white p-1 sm:w-[20em]"
-      placeholder="youremail@domain.com"
-    />
-    <button class="cg-btn">Subscribe</button>
-  </form>
-</div>
+<SubscribeView
+  {awaitingOtpEmail}
+  {authenticatedEmail}
+  {subscribed}
+  {awaitingMessage}
+  {working}
+  on:signIn={onSignIn}
+  on:otp={onOtp}
+  on:subscribe={onSubscribe}
+  on:message={onMessageSubmit}
+  on:unsubscribe={onUnsubscribe}
+  on:signout={onSignOut}
+/>
 
-<div class="card">
-  <h3>Enter the OTP sent to your email to confirm</h3>
-  <form class="mt-4 flex flex-row justify-center gap-1">
-    <input
-      type="text"
-      class="w-[8em] rounded-md border-2 border-gray-400 bg-white p-1"
-      placeholder="000000"
-    />
-    <button class="cg-btn">Confirm</button>
-  </form>
-</div>
+<!--
+<SubscribeView />
 
-<div class="card">
-  <h3>Subscribe to get notified when we will organize this event</h3>
-  <form class="mt-4 flex flex-row justify-center gap-1">
-    <button class="cg-btn">Subscribe as email@email.email</button>
-  </form>
-  <p class="mt-3 text-sm">
-    Not you? <a href="javascript:">Use a different email address</a>
-  </p>
-</div>
+<SubscribeView awaitingOtpEmail={'email@domain.com'} />
 
-<div class="card">
-  <h3 class="text-green-600">
-    <div class="inline-block align-middle">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-check-circle-fill block"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
-        />
-      </svg>
-    </div>
-    You have subscribed to this event
-  </h3>
-  <p class="mt-3 text-sm">
-    Would you like to say something to our team? Feel free to leave us a message:
-  </p>
-  <form class="mt-4 flex flex-col justify-center gap-1 sm:flex-row">
-    <input
-      type="text"
-      class="w-full rounded-md border-2 border-gray-400 bg-white p-1 sm:w-[28em]"
-      placeholder="Say anything!!"
-    />
-    <button class="cg-btn">Send</button>
-  </form>
-</div>
+<SubscribeView authenticatedEmail={'email@domain.com'} />
 
-<div class="card">
-  <h3 class="text-green-600">
-    <div class="inline-block align-middle">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-check-circle-fill block"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
-        />
-      </svg>
-    </div>
-    You have subscribed to this event
-  </h3>
-  <p class="mt-3 text-sm">
-    We will send an email to your@email.com when there are updates about this event.
-  </p>
-  <p class="mt-3 text-sm">
-    No longer interested? <a href="javascript:">Unsubscribe here</a>
-  </p>
-  <p class="mt-1 text-sm">
-    Not you? <a href="javascript:">Use a different email address</a>
-  </p>
-</div>
+<SubscribeView authenticatedEmail={'email@domain.com'} subscribed awaitingMessage />
 
-<style>
-  .card {
-    @apply rounded-3xl border-2 bg-gray-50 p-6 text-center;
-  }
-</style>
+<SubscribeView authenticatedEmail={'email@domain.com'} subscribed />
+-->
