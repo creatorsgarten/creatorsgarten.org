@@ -8,6 +8,7 @@
   let subscribed = false;
   let awaitingMessage = false;
   let working = false;
+  let subscribers = 0;
   export let listId: string;
 
   async function work<T>(f: () => Promise<void>): Promise<void> {
@@ -127,6 +128,12 @@
     } else {
       authenticatedEmail = '';
     }
+
+    const result = await supabase
+      .from('list_subscribers')
+      .select('user_id', { count: 'estimated', head: true })
+      .eq('list_id', listId);
+    subscribers = result.count || 0;
   }
 
   onMount(() => {
@@ -140,6 +147,7 @@
   {subscribed}
   {awaitingMessage}
   {working}
+  {subscribers}
   on:signIn={onSignIn}
   on:otp={onOtp}
   on:subscribe={onSubscribe}
@@ -148,14 +156,12 @@
   on:signout={onSignOut}
 />
 
-<!--
-<SubscribeView />
+<!-- <SubscribeView subscribers={2} />
 
-<SubscribeView awaitingOtpEmail={'email@domain.com'} />
+<SubscribeView subscribers={2} awaitingOtpEmail={'email@domain.com'} />
 
-<SubscribeView authenticatedEmail={'email@domain.com'} />
+<SubscribeView subscribers={2} authenticatedEmail={'email@domain.com'} />
 
-<SubscribeView authenticatedEmail={'email@domain.com'} subscribed awaitingMessage />
+<SubscribeView subscribers={2} authenticatedEmail={'email@domain.com'} subscribed awaitingMessage />
 
-<SubscribeView authenticatedEmail={'email@domain.com'} subscribed />
--->
+<SubscribeView subscribers={2} authenticatedEmail={'email@domain.com'} subscribed /> -->
