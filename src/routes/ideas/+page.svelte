@@ -9,12 +9,21 @@
 
 <div class="cg-container min-h-[80vh]">
   <div class="prose max-w-none">
-    <h2 class="text-3xl md:text-4xl font-semibold mt-16">Event Ideas</h2>
+    <h2 class="mt-16 text-3xl font-semibold md:text-4xl">Event Ideas Board</h2>
     <div class="lead">
       <p>
-        These board shows the ideas for <strong>events that we would like to see happen.</strong>
+        This board lists the <strong>events that we would like to see happen someday</strong> but don’t
+        know when yet.
       </p>
     </div>
+    <p>
+      If any idea below sounds interesting to you, you can subscribe to it. This will signal your
+      interest to us, and we will also notify you when an event based on that idea is scheduled.
+    </p>
+    <p class="not-prose">
+      <a href="/wiki/About/EventIdeas" class="cg-btn">Learn More</a>
+    </p>
+    <hr />
     {#each data.ideas as idea}
       <div class="flex">
         <div class="flex-none" />
