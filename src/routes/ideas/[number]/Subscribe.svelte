@@ -48,6 +48,7 @@
         user_id: result.user!.id,
         list_id: listId
       });
+      authenticatedEmail = result.user!.email || '';
       subscribed = true;
       awaitingMessage = true;
     });
