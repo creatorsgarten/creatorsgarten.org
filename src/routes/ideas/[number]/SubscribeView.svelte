@@ -8,18 +8,19 @@
   export let subscribed = false;
   export let awaitingMessage = false;
   export let working = false;
+  export let subscribers = 0;
 
   let emailInput: HTMLInputElement | undefined = undefined;
   let otpInput: HTMLInputElement | undefined = undefined;
   let messageInput: HTMLInputElement | undefined = undefined;
 </script>
 
-<div class="card">
+<div class="flex flex-col gap-4 rounded-3xl border-2 bg-gray-50 p-6 text-center">
   {#if !authenticatedEmail}
     {#if !awaitingOtpEmail}
       <h3>Subscribe to get notified when we will organize this event</h3>
       <form
-        class="mt-4 flex flex-col justify-center gap-1 sm:flex-row"
+        class="flex flex-col justify-center gap-1 sm:flex-row"
         on:submit|preventDefault={() => dispatch('signIn', { email: emailInput?.value })}
       >
         <input
@@ -34,7 +35,7 @@
     {:else}
       <h3>Enter the OTP sent to your email to confirm</h3>
       <form
-        class="mt-4 flex flex-row justify-center gap-1"
+        class="flex flex-row justify-center gap-1"
         on:submit|preventDefault={() => dispatch('otp', { otp: otpInput?.value })}
       >
         <input
@@ -49,12 +50,12 @@
   {:else if !subscribed}
     <h3>Subscribe to get notified when we will organize this event</h3>
     <form
-      class="mt-4 flex flex-row justify-center gap-1"
+      class="flex flex-row justify-center gap-1"
       on:submit|preventDefault={() => dispatch('subscribe')}
     >
       <button class="cg-btn" disabled={working}>Subscribe as {authenticatedEmail}</button>
     </form>
-    <p class="mt-3 text-sm">
+    <p class="text-sm">
       Not you?
       <a href="javascript:" on:click={() => dispatch('signout')}>Use a different email address</a>
     </p>
@@ -74,14 +75,14 @@
           />
         </svg>
       </div>
-      You have subscribed to this event
+      You have subscribed to this idea
     </h3>
     {#if awaitingMessage}
-      <p class="mt-3 text-sm">
+      <p class="text-sm">
         Would you like to say something to our team? Feel free to leave us a message:
       </p>
       <form
-        class="mt-4 flex flex-col justify-center gap-1 sm:flex-row"
+        class="flex flex-col justify-center gap-1 sm:flex-row"
         on:submit|preventDefault={() => dispatch('message', { message: messageInput?.value })}
       >
         <input
@@ -93,24 +94,25 @@
         <button class="cg-btn" disabled={working}>Send</button>
       </form>
     {:else}
-      <p class="mt-3 text-sm">
+      <p class="text-sm">
         We will send an email to {authenticatedEmail} when there are updates about this event.
       </p>
-      <p class="mt-3 text-sm">
-        No longer interested?
-        <a href="javascript:" on:click={() => dispatch('unsubscribe')}>Unsubscribe here</a>
-      </p>
-      <p class="mt-1 text-sm">
-        Not you? <a href="javascript:" on:click={() => dispatch('signout')}
-          >Use a different email address</a
-        >
-      </p>
+      <div class="flex flex-col gap-1">
+        <p class="text-sm">
+          No longer interested?
+          <a href="javascript:" on:click={() => dispatch('unsubscribe')}>Unsubscribe here</a>
+        </p>
+        <p class="text-sm">
+          Not you? <a href="javascript:" on:click={() => dispatch('signout')}
+            >Use a different email address</a
+          >
+        </p>
+      </div>
     {/if}
   {/if}
+  {#if subscribers > 0}
+    <p class="text-sm text-gray-500">
+      {subscribers == 1 ? '1 person has' : `${subscribers} people have`} subscribed to this idea
+    </p>
+  {/if}
 </div>
-
-<style>
-  .card {
-    @apply rounded-3xl border-2 bg-gray-50 p-6 text-center;
-  }
-</style>
