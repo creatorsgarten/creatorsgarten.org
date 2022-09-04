@@ -164,7 +164,7 @@
   }
 
   onMount(() => {
-    work(refresh);
+    refresh();
   });
 </script>
 
