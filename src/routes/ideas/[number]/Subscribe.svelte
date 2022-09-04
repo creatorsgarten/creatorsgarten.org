@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
 
   import SubscribeView from './SubscribeView.svelte';
+  import { rejectOnError } from './supabase-utils';
 
   let awaitingOtpEmail = '';
   let authenticatedEmail = '';
@@ -30,7 +31,7 @@
     const email: string = e.detail.email;
     return work(async () => {
       const { supabase } = await getSupabase();
-      await supabase.auth.signIn({ email });
+      await rejectOnError(supabase.auth.signIn({ email }));
       awaitingOtpEmail = email;
     });
   }
@@ -39,14 +40,24 @@
     const otp: string = e.detail.otp;
     return work(async () => {
       const { supabase } = await getSupabase();
-      const result = await supabase.auth.verifyOTP({
-        email: awaitingOtpEmail,
-        token: otp,
-        type: 'magiclink'
-      });
-      await supabase.from('list_subscribers').insert({
-        user_id: result.user!.id,
-        list_id: listId
+      const result = await rejectOnError(
+        supabase.auth.verifyOTP({
+          email: awaitingOtpEmail,
+          token: otp,
+          type: 'magiclink'
+        })
+      );
+      await rejectOnError(
+        supabase.from('list_subscribers').insert({
+          user_id: result.user!.id,
+          list_id: listId
+        })
+      ).catch((error) => {
+        if (error.cause?.code === '23505') {
+          // ignore duplicate key error
+        } else {
+          throw error;
+        }
       });
       awaitingOtpEmail = '';
       authenticatedEmail = result.user!.email || '';
@@ -62,9 +73,17 @@
       if (!user) {
         throw new Error('Not signed in');
       }
-      await supabase.from('list_subscribers').insert({
-        user_id: user.id,
-        list_id: listId
+      await rejectOnError(
+        supabase.from('list_subscribers').insert({
+          user_id: user.id,
+          list_id: listId
+        })
+      ).catch((error) => {
+        if (error.cause?.code === '23505') {
+          // ignore duplicate key error
+        } else {
+          throw error;
+        }
       });
       subscribed = true;
       awaitingMessage = true;
@@ -78,10 +97,12 @@
       if (!user) {
         throw new Error('Not signed in');
       }
-      await supabase.from('list_subscribers').delete().match({
-        user_id: user.id,
-        list_id: listId
-      });
+      await rejectOnError(
+        supabase.from('list_subscribers').delete().match({
+          user_id: user.id,
+          list_id: listId
+        })
+      );
       subscribed = false;
     });
   }
@@ -89,7 +110,7 @@
   async function onSignOut() {
     return work(async () => {
       const { supabase } = await getSupabase();
-      await supabase.auth.signOut();
+      await rejectOnError(supabase.auth.signOut());
       await refresh();
     });
   }
@@ -102,10 +123,12 @@
       if (!user) {
         throw new Error('Not signed in');
       }
-      await supabase.from('list_subscribers').update({ message }).match({
-        user_id: user.id,
-        list_id: listId
-      });
+      await rejectOnError(
+        supabase.from('list_subscribers').update({ message }).match({
+          user_id: user.id,
+          list_id: listId
+        })
+      );
       awaitingMessage = false;
     });
   }
@@ -115,11 +138,13 @@
     const currentUser = supabase.auth.user();
     if (currentUser) {
       authenticatedEmail = currentUser.email || '';
-      const item = await supabase
-        .from('list_subscribers')
-        .select('*')
-        .eq('user_id', currentUser.id)
-        .eq('list_id', listId);
+      const item = await rejectOnError(
+        supabase
+          .from('list_subscribers')
+          .select('*')
+          .eq('user_id', currentUser.id)
+          .eq('list_id', listId)
+      );
       if (item.data?.length) {
         subscribed = true;
       } else {
@@ -129,10 +154,12 @@
       authenticatedEmail = '';
     }
 
-    const result = await supabase
-      .from('list_subscribers')
-      .select('user_id', { count: 'estimated', head: true })
-      .eq('list_id', listId);
+    const result = await rejectOnError(
+      supabase
+        .from('list_subscribers')
+        .select('user_id', { count: 'estimated', head: true })
+        .eq('list_id', listId)
+    );
     subscribers = result.count || 0;
   }
 
