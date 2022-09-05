@@ -12,13 +12,14 @@
     <h2 class="mt-16 text-3xl font-semibold md:text-4xl">Event Ideas Board</h2>
     <div class="lead">
       <p>
-        This board lists the <strong>events that we would like to see happen someday</strong> but don’t
-        know when yet.
+        This board shows the <strong>events that we’d like to see someday</strong> but don’t know when
+        yet.
       </p>
     </div>
     <p>
-      If any idea below sounds interesting to you, you can subscribe to it. This will signal your
-      interest to us, and we will also notify you when an event based on that idea is scheduled.
+      If you find any idea below interesting, you can subscribe for updates to that idea. This will
+      signal your interest to us, and we will also notify you by email when an event based on that
+      idea is scheduled.
     </p>
     <p class="not-prose">
       <a href="/wiki/About/EventIdeas" class="cg-btn">Learn More</a>
