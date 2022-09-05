@@ -27,17 +27,22 @@
     <h2 class="mt-2 text-3xl font-semibold md:text-4xl">{data.idea.title}</h2>
     {@html parts[0]}
   </div>
-  <Subscribe listId="idea-{data.idea.number}" />
+  <div id="subscribe">
+    <Subscribe listId="idea-{data.idea.number}" />
+  </div>
   <div class="prose mt-[3em] max-w-none">
     {#if parts[1]}
       <hr />
     {/if}
     {@html parts[1]}
     <hr />
-    <ul>
-      <li>
-        <a href={data.idea.url}>Discuss this idea on GitHub Discussions</a>
-      </li>
-    </ul>
+  </div>
+  <div class="mt-[2em] flex flex-col gap-4 pb-[2em] text-center">
+    <h3 class="gap-4 text-gray-400">Get involved</h3>
+    <div class="flex flex-col flex-wrap items-center justify-center gap-2 sm:flex-row">
+      <a class="cg-btn" href="#subscribe">Subscribe for updates</a>
+      <a class="cg-btn" href={data.idea.url}>Discuss on GitHub</a>
+      <a class="cg-btn" href="https://garten.page.link/discord">Join our Discord server</a>
+    </div>
   </div>
 </div>
