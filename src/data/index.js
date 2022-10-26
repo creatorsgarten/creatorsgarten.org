@@ -1,25 +1,27 @@
 export const latest = [{
-        name: "Biological Aesthetic of Nature",
-        slug: "bio"
-    }, {
-        name: "Code in the Wind",
-        slug: "wind"
-    }, {
-        name: "Svelte Meetup Bangkok #1",
-        slug: "svelte1"
-    }, {
-        name: "The 6th Stupid Hackathon Thailand",
-        slug: "sht6"
-    }, {
-        name: "???",
-        slug: "scisart"
-    }, {
-        name: "???",
-        slug: "golf1"
-    }
-]
+    name: "Biological Aesthetic of Nature",
+    slug: "bio"
+}, {
+    name: "Code in the Wind",
+    slug: "wind"
+}, {
+    name: "Svelte Meetup Bangkok #1",
+    slug: "svelte1"
+}, {
+    name: "The 6th Stupid Hackathon Thailand",
+    slug: "sht6"
+}, {
+    name: "Sciยศาสตร์ Night: คืนไสยศาสตร์เดือนวิทยาศาสตร์กรุงเทพฯ",
+    slug: "scisart"
+}, {
+    name: "CodeGolf Party #1",
+    slug: "golf1"
+}]
 
-export const upcoming = []
+export const upcoming = [{
+    name: "Hacktoberfest Thailand 2022",
+    slug: "hacktoberfest2022"
+}]
 
 export const projects = [{
     name: "Contentsgarten",

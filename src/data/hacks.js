@@ -11,7 +11,7 @@ export const hacks = [
     }, {
         name: "Data Driven Love",
         slug: "love"
-    },{
+    }, {
         name: "Young Creators' Camp",
         slug: "ycc1"
     }, {
@@ -57,10 +57,13 @@ export const hacks = [
         name: "The 6th Stupid Hackathon Thailand",
         slug: "sht6"
     }, {
-        name: "???",
+        name: "Sciยศาสตร์ Night: คืนไสยศาสตร์เดือนวิทยาศาสตร์กรุงเทพฯ",
         slug: "scisart"
     }, {
-        name: "???",
+        name: "CodeGolf Party #1",
         slug: "golf1"
+    }, {
+        name: "Hacktoberfest Thailand 2022",
+        slug: "hacktoberfest2022"
     }
 ]
