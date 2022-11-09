@@ -65,5 +65,8 @@ export const hacks = [
     }, {
         name: "Hacktoberfest Thailand 2022",
         slug: "hacktoberfest2022"
+    }, {
+        name: "BKK.JS #17 Developer Showtime",
+        slug: "bkkjs17"
     }
 ]

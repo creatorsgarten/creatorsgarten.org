@@ -1,10 +1,4 @@
 export const latest = [{
-    name: "Biological Aesthetic of Nature",
-    slug: "bio"
-}, {
-    name: "Code in the Wind",
-    slug: "wind"
-}, {
     name: "Svelte Meetup Bangkok #1",
     slug: "svelte1"
 }, {
@@ -16,12 +10,15 @@ export const latest = [{
 }, {
     name: "CodeGolf Party #1",
     slug: "golf1"
-}]
-
-export const upcoming = [{
+}, {
     name: "Hacktoberfest Thailand 2022",
     slug: "hacktoberfest2022"
+}, {
+    name: "BKK.JS #17 Developer Showtime",
+    slug: "bkkjs17"
 }]
+
+export const upcoming = []
 
 export const projects = [{
     name: "Contentsgarten",
