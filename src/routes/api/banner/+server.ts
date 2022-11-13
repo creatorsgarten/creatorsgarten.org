@@ -1,6 +1,6 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
 
-import { hacks } from '../../../data/hacks';
+import { latest, upcoming } from '../../../data';
 
 export const GET: RequestHandler = async (event) => {
   return json({
@@ -8,7 +8,7 @@ export const GET: RequestHandler = async (event) => {
     data: {
       // gartenLogo will provide a special logo for the banner (rare occation, might change)
       gartenLogo: null,
-      hacks: hacks.map((hack) => ({
+      hacks: [...latest, ...upcoming].reverse().map((hack) => ({
         id: hack.slug,
         name: hack.name,
         banner: {
