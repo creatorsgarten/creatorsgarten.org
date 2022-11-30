@@ -13,11 +13,13 @@
   href={link}
   class="group grid grid-cols-3 xl:flex xl:flex-col gap-4 hover:scale-[1.001] hover:shadow-md transition-all border border-gray-600 bg-white"
 >
-  <img
-    src={img}
-    alt=""
-    class="aspect-square xl:aspect-video xl:h-auto object-cover border-r border-gray-600 md:border-r-0 md:border-b"
-  />
+  <div class=" aspect-square xl:aspect-video flex justify-center items-center">
+    <img
+      src={img}
+      alt=""
+      class="relative max-w-max h-full object-cover overflow-hidden border-r border-gray-600 md:border-r-0 md:border-b"
+    />
+  </div>
   <div
     class="col-span-2 py-3 xl:py-0 pr-5 xl:pl-3 xl:pb-4 flex flex-col justify-center lg:justify-between md:h-full"
   >
