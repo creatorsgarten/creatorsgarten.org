@@ -3,7 +3,6 @@
   import Card from '../Components/molecules/cards/Card.svelte';
   import ImageCard from '../Components/molecules/cards/ImageCard.svelte';
   import VideoCard from '../Components/molecules/cards/VideoCard.svelte';
-  import WideCard from '../Components/molecules/cards/WideCard.svelte';
 </script>
 
 <svelte:head>
