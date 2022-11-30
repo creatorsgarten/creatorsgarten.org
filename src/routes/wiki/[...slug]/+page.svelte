@@ -22,7 +22,13 @@
 </svelte:head>
 
 <div class="cg-container">
-  <h1 class={layout.headerStyle === 'large' ? 'mt-16' : 'opacity-50 font-medium mt-4 mb-1'}>
+  <h1
+    class={meta.layout === 'hacks'
+      ? 'text-base sans opacity-50 mb-1'
+      : layout.headerStyle === 'large'
+      ? 'mt-16'
+      : 'opacity-50 font-medium mt-4 mb-1'}
+  >
     {slug}
     {#if wikiPageData.mode !== 'generated'}
       <button

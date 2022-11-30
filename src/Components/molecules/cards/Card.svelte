@@ -13,11 +13,11 @@
   href={link}
   class="group grid grid-cols-3 xl:flex xl:flex-col gap-4 hover:scale-[1.001] hover:shadow-md transition-all border border-gray-600 bg-white"
 >
-  <div class=" aspect-square xl:aspect-video flex justify-center items-center">
+  <div class="aspect-square w-full xl:aspect-video flex justify-center items-center">
     <img
       src={img}
       alt=""
-      class="relative max-w-max h-full object-cover overflow-hidden border-r border-gray-600 md:border-r-0 md:border-b"
+      class="xl:aspect-video relative max-w-max h-full object-cover overflow-hidden border-r border-gray-600 xl:border-r-0 lg:border-b"
     />
   </div>
   <div
