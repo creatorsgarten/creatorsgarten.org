@@ -8,13 +8,13 @@
 
 <div class="cg-container min-h-[80vh]">
   <div class="prose max-w-none">
-    <h2 class="text-3xl md:text-4xl font-semibold mt-16">Webring</h2>
-    <p>
+    <h1 class="mt-16">Webring</h1>
+    <h2>
       As a collective with many different initiatives, each with their own uniqueness, there has
       been separate websites dedicated to each. The Creatorsgarten Webring serves to bring all our
       initiatives together under the same umbrella. It also serves to connect our members’ personal
       websites.
-    </p>
+    </h2>
     <p class="not-prose">
       <a href="/wiki/About/Ring" class="cg-btn">Learn More</a>
     </p>
@@ -37,5 +37,11 @@
 <style>
   .ring-list a {
     @apply px-2 py-[0.3rem] rounded-md bg-sky-50 hover:bg-sky-100;
+  }
+
+  h1 {
+    @apply text-3xl lg:text-4xl leading-tight;
+    font-family: 'Playfair Display', 'Inter', 'Anuphan', system-ui, -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', Roboto;
   }
 </style>

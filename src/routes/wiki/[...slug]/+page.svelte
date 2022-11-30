@@ -22,11 +22,7 @@
 </svelte:head>
 
 <div class="cg-container">
-  <h3
-    class={layout.headerStyle === 'large'
-      ? 'text-3xl md:text-4xl font-semibold mt-16'
-      : 'opacity-50 font-medium mt-4 mb-1'}
-  >
+  <h1 class={layout.headerStyle === 'large' ? 'mt-16' : 'opacity-50 font-medium mt-4 mb-1'}>
     {slug}
     {#if wikiPageData.mode !== 'generated'}
       <button
@@ -43,7 +39,7 @@
         </svg>
       </button>
     {/if}
-  </h3>
+  </h1>
 
   <div class:hidden={editing}>
     {#if meta.layout === 'hacks'}
@@ -55,19 +51,19 @@
         />
         <div class="mt-6 flex w-full flex-col justify-center md:mt-0">
           <h1 class="pb-2 text-2xl md:w-11/12 md:text-4xl lg:text-3xl">{meta.name}</h1>
-          <h3 class="font-normal">{meta.location}</h3>
-          <h3 class="font-normal">Date: {meta.date}</h3>
+          <h4 class="font-normal">{meta.location}</h4>
+          <h4 class="font-normal">Date: {meta.date}</h4>
           {#if meta.site}
-            <h3 class="truncate font-normal">
+            <h4 class="truncate font-normal">
               Website: <a href={meta.site}>{meta.site}</a>
-            </h3>
+            </h4>
           {/if}
-          <h3 class="font-normal">
+          <h4 class="font-normal">
             By:
             {#each meta.by as team}
               <span class="pr-1">[{team}]</span>
             {/each}
-          </h3>
+          </h4>
         </div>
       </section>
     {/if}

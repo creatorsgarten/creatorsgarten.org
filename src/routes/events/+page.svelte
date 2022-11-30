@@ -8,11 +8,11 @@
 
 <div class="cg-container">
   <div class="prose max-w-none">
-    <h2 class="text-3xl md:text-4xl font-semibold mt-16">Events</h2>
-    <p class="mb-12">
+    <h1 class="mt-16">Past Events</h1>
+    <h2 class="mb-12">
       Through workshops, meetups, hackathons, and much more, we bring people together to work on new
       ideas, trying new things and working together across disciplines.
-    </p>
+    </h2>
   </div>
   <section class="not-prose grid grid-cols-2 gap-2 md:grid-cols-3">
     {#each [...hacks].reverse() as hack}
@@ -26,3 +26,11 @@
     {/each}
   </section>
 </div>
+
+<style>
+  h1 {
+    @apply text-3xl lg:text-4xl leading-tight;
+    font-family: 'Playfair Display', 'Inter', 'Anuphan', system-ui, -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', Roboto;
+  }
+</style>
