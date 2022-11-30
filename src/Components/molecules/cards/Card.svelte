@@ -16,7 +16,7 @@
   <img
     src={img}
     alt=""
-    class="aspect-square h-full xl:aspect-video xl:h-auto object-cover border-r border-gray-600 md:border-r-0 md:border-b"
+    class="aspect-square xl:aspect-video xl:h-auto object-cover border-r border-gray-600 md:border-r-0 md:border-b"
   />
   <div
     class="col-span-2 py-3 xl:py-0 pr-5 xl:pl-3 xl:pb-4 flex flex-col justify-center lg:justify-between md:h-full"

@@ -31,7 +31,7 @@
       <img
         src="/images/pool/bkkjs17.webp"
         alt=""
-        class="lg:col-span-5 aspect-[5/3] object-cover h-full border-r border-gray-600"
+        class="lg:col-span-5 aspect-[5/3] object-cover border-r border-gray-600"
       />
       <div
         class="lg:col-span-3 flex flex-col gap-1 lg:gap-3 justify-center h-full pl-4 pr-5 xl:pl-1 xl:pr-10 pb-4"
