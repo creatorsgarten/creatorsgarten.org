@@ -25,13 +25,13 @@
 
   <section class="grid gap-5">
     <a
-      href="https://www.youtube.com/playlist?list=PLTuz2sLvbRpx9okBtTzA85rRsNqGlKR_5"
+      href="/wiki/Hacks/bkkjs17"
       class="group grid lg:grid-cols-8 gap-3 lg:gap-6 hover:shadow-md hover:scale-[1.001] transition-all bg-white border border-gray-600"
     >
       <img
-        src="/images/pool/bkkjs17.webp"
+        src="/images/pool/cover.webp"
         alt=""
-        class="lg:col-span-5 aspect-[5/3] object-cover border-r border-gray-600"
+        class="lg:col-span-5 aspect-[5/3] object-cover border-b lg:border-r border-gray-600"
       />
       <div
         class="lg:col-span-3 flex flex-col gap-1 lg:gap-3 justify-center h-full pl-4 pr-5 xl:pl-1 xl:pr-10 pb-4"
@@ -39,7 +39,7 @@
         <span class="font-medium">BKK.JS#17</span>
         <h1>From Methodologies to Projects: 5 Exciting Talks from BKK.JS#17</h1>
         <p class="mt-2">
-          <span class="font-medium">Playlist</span> | 29 October 2022
+          <span class="font-medium">Event</span> | 29 October 2022
         </p>
       </div>
     </a>
@@ -55,7 +55,7 @@
       />
       <Card
         header="10 years of Typescript"
-        img="/images/pool/call.webp"
+        img="/images/pool/job.webp"
         tag="BKK.JS#17"
         bold="Talk"
         normal="Jirachai Chansivanon"
@@ -96,14 +96,14 @@
   <section class="grid gap-4 mesh-3 p-6 z-10 border border-gray-900">
     <div class="flex justify-between items-center">
       <h1 class="font-medium text-gray-900">Latest Events</h1>
-      <a href="#"
+      <a href="/events"
         ><h2 class="hidden md:block font-medium text-gray-900 hover:underline">See More -></h2></a
       >
       <!-- <Icon icon={ArrowRight} class="header font-white" /> -->
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <ImageCard
-        img="https://media.gatesnotes.com/-/media/Images/Articles/Development/Global-Findex-2022/financial-inclusion_2022_thumbnail_320px_01.ashx"
+        img="/images/pool/bkkjs.webp"
         text="BKK.JS#17"
         link="https://creatorsgarten.org/wiki/Hacks/bkkjs17"
       />
@@ -137,7 +137,7 @@
     <VideoCard
       tag="HTBF Thailand 2022"
       img="/images/pool/htbf.webp"
-      header="Hacktoberfest 2022 Live Session 👾"
+      header="Hacktoberfest 2022 Live Session"
       bold="Playlist"
       normal="22 September 2022"
       link="https://www.youtube.com/playlist?list=PLTuz2sLvbRpzwwl-QqGveiFiG6hwbp2Ud"
