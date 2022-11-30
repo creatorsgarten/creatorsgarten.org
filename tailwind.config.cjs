@@ -30,10 +30,10 @@ module.exports = {
               fontWeight: 'inherit'
             },
             h1: {
-              fontWeight: 400
+              fontWeight: 500
             },
             h2: {
-              fontWeight: 400
+              fontWeight: 500
             },
             details: {
               backgroundColor: colors.gray[50],
