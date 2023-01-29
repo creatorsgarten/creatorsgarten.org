@@ -885,10 +885,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/adapter-static@npm:1.0.0-next.41":
-  version: 1.0.0-next.41
-  resolution: "@sveltejs/adapter-static@npm:1.0.0-next.41"
-  checksum: febfac4a1f7915f7f6c727676368a1df12521578f67ecea7bf6e79c4c970542c7eb867d253d3b681e557fade5450c5b7c4d0ff32cab3657ee29c792d23b0517e
+"@sveltejs/adapter-static@npm:1.0.5":
+  version: 1.0.5
+  resolution: "@sveltejs/adapter-static@npm:1.0.5"
+  peerDependencies:
+    "@sveltejs/kit": ^1.0.0
+  checksum: 7131edda6712bc0f459986981dd3e6681b6b5d07c705388815a83ac1c1f1babda504f23454ce04cdc2dee3205c0c6b8fe38385fb4fa4f3bc2661b579c111dc2a
   languageName: node
   linkType: hard
 
@@ -4249,7 +4251,7 @@ __metadata:
     "@stablelib/base64": ^1.0.1
     "@supabase/supabase-js": ^1.35.6
     "@sveltejs/adapter-netlify": 1.0.0-next.76
-    "@sveltejs/adapter-static": 1.0.0-next.41
+    "@sveltejs/adapter-static": 1.0.5
     "@sveltejs/kit": 1.0.0-next.463
     "@tailwindcss/typography": ^0.5.2
     "@typescript-eslint/eslint-plugin": ^5.27.0

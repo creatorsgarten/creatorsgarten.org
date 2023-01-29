@@ -1,10 +1,11 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@playwright/test': ^1.30.0
   '@stablelib/base64': ^1.0.1
   '@supabase/supabase-js': ^1.35.6
   '@sveltejs/adapter-netlify': 1.0.0-next.76
-  '@sveltejs/adapter-static': 1.0.0-next.41
+  '@sveltejs/adapter-static': 1.0.5
   '@sveltejs/kit': 1.0.0-next.463
   '@tailwindcss/typography': ^0.5.2
   '@typescript-eslint/eslint-plugin': ^5.27.0
@@ -47,8 +48,9 @@ dependencies:
   p-memoize: 7.1.0
 
 devDependencies:
+  '@playwright/test': 1.30.0
   '@sveltejs/adapter-netlify': 1.0.0-next.76
-  '@sveltejs/adapter-static': 1.0.0-next.41
+  '@sveltejs/adapter-static': 1.0.5_qec3silnww542rjfpyvzxr2dau
   '@sveltejs/kit': 1.0.0-next.463_svelte@3.48.0+vite@3.1.0
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.1.4
   '@typescript-eslint/eslint-plugin': 5.30.3_xuuykav7urhdozug7htlfgar3u
@@ -647,6 +649,15 @@ packages:
       fastq: 1.13.0
     dev: true
 
+  /@playwright/test/1.30.0:
+    resolution: {integrity: sha512-SVxkQw1xvn/Wk/EvBnqWIq6NLo1AppwbYOjNLmyU0R1RoQ3rLEBtmjTnElcnz8VEtn11fptj1ECxK0tgURhajw==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      '@types/node': 18.0.0
+      playwright-core: 1.30.0
+    dev: true
+
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
@@ -769,8 +780,12 @@ packages:
       tiny-glob: 0.2.9
     dev: true
 
-  /@sveltejs/adapter-static/1.0.0-next.41:
-    resolution: {integrity: sha512-Bw6MfEuzuqjKZuVCG7ZHXiOIy/LDoRVR278eeAf4kcwl1B8+YEvChqdCvG2N5Ur+rxUIHstPgeX39HezS8d+mw==}
+  /@sveltejs/adapter-static/1.0.5_qec3silnww542rjfpyvzxr2dau:
+    resolution: {integrity: sha512-W5jbgvy9sbYEHs27NQOSFEun+zQwdcL4kpk5qc2kSHl8cKsP5wfXuWDTDRmD1Co40aFcesi5Az5ZzdnPI8KCVg==}
+    peerDependencies:
+      '@sveltejs/kit': ^1.0.0
+    dependencies:
+      '@sveltejs/kit': 1.0.0-next.463_svelte@3.48.0+vite@3.1.0
     dev: true
 
   /@sveltejs/kit/1.0.0-next.463_svelte@3.48.0+vite@3.1.0:
@@ -2652,6 +2667,12 @@ packages:
   /pify/2.3.0:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /playwright-core/1.30.0:
+    resolution: {integrity: sha512-7AnRmTCf+GVYhHbLJsGUtskWTE33SwMZkybJ0v6rqR1boxq2x36U7p1vDRV7HO2IwTZgmycracLxPEJI49wu4g==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /postcss-import/14.1.0_postcss@8.4.14:
