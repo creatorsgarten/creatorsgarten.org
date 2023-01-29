@@ -20,7 +20,7 @@
         <div
           class="aspect-square w-full border-2 border-black hover:scale-[1.003] hover:shadow-sm hover:transition-all"
         >
-          <img src={'images/hacks/compressed/' + hack.slug + '.webp'} class="" alt="" />
+          <img src={'images/hacks/compressed/' + hack.slug + '.webp'} class="" alt={hack.name} />
         </div>
       </a>
     {/each}
