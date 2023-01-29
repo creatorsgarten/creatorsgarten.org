@@ -13,6 +13,7 @@
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "devDependencies": {
+    "@playwright/test": "^1.30.0",
     "@sveltejs/adapter-netlify": "1.0.0-next.76",
     "@sveltejs/adapter-static": "1.0.0-next.41",
     "@sveltejs/kit": "1.0.0-next.463",
