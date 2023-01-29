@@ -16,7 +16,7 @@
     "@playwright/test": "^1.30.0",
     "@sveltejs/adapter-netlify": "1.0.0-next.76",
     "@sveltejs/adapter-static": "1.0.0-next.41",
-    "@sveltejs/kit": "1.0.0-next.463",
+    "@sveltejs/kit": "1.0.0-next.406",
     "@tailwindcss/typography": "^0.5.2",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",

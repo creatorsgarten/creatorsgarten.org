@@ -797,16 +797,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/pluginutils@npm:^4.2.1":
-  version: 4.2.1
-  resolution: "@rollup/pluginutils@npm:4.2.1"
-  dependencies:
-    estree-walker: ^2.0.1
-    picomatch: ^2.2.2
-  checksum: 6bc41f22b1a0f1efec3043899e4d3b6b1497b3dea4d94292d8f83b4cf07a1073ecbaedd562a22d11913ff7659f459677b01b09e9598a98936e746780ecc93a12
-  languageName: node
-  linkType: hard
-
 "@stablelib/base64@npm:^1.0.1":
   version: 1.0.1
   resolution: "@stablelib/base64@npm:1.0.1"
@@ -892,13 +882,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:1.0.0-next.463":
-  version: 1.0.0-next.463
-  resolution: "@sveltejs/kit@npm:1.0.0-next.463"
+"@sveltejs/kit@npm:1.0.0-next.406":
+  version: 1.0.0-next.406
+  resolution: "@sveltejs/kit@npm:1.0.0-next.406"
   dependencies:
-    "@sveltejs/vite-plugin-svelte": ^1.0.4
+    "@sveltejs/vite-plugin-svelte": ^1.0.1
+    chokidar: ^3.5.3
     cookie: ^0.5.0
-    devalue: ^3.1.2
+    devalue: ^2.0.1
     kleur: ^4.1.4
     magic-string: ^0.26.2
     mime: ^3.0.0
@@ -910,31 +901,27 @@ __metadata:
     undici: ^5.8.1
   peerDependencies:
     svelte: ^3.44.0
-    vite: ^3.1.0-beta.1
+    vite: ^3.0.0
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 2b2df88fb33536b85b3295a9bc32b951202835493dc3527ce1a9fd550857946fb0a8a99631db1c2d7c7dd69a3560040d3a4c24011de29689e4c019d16f0f8e2f
+  checksum: 11e0e4ffffaf97113fac0847a0d469443a8266dd6ceff0455e34e6d0c2286d1785cff0489cd1fa07554d46129a3107a9d518870a1527e8023a18b9728aef5368
   languageName: node
   linkType: hard
 
-"@sveltejs/vite-plugin-svelte@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "@sveltejs/vite-plugin-svelte@npm:1.0.4"
+"@sveltejs/vite-plugin-svelte@npm:^1.0.1":
+  version: 1.4.0
+  resolution: "@sveltejs/vite-plugin-svelte@npm:1.4.0"
   dependencies:
-    "@rollup/pluginutils": ^4.2.1
     debug: ^4.3.4
     deepmerge: ^4.2.2
     kleur: ^4.1.5
-    magic-string: ^0.26.2
-    svelte-hmr: ^0.14.12
+    magic-string: ^0.26.7
+    svelte-hmr: ^0.15.1
+    vitefu: ^0.2.2
   peerDependencies:
-    diff-match-patch: ^1.0.5
     svelte: ^3.44.0
-    vite: ^3.0.0 || ^3.1.0-beta.1
-  peerDependenciesMeta:
-    diff-match-patch:
-      optional: true
-  checksum: 4d11bfe19ab9be8e0e31ec2d032b381ae964610e82decc7cef9513d836b7f6b7848297656e3b1d90c659ffed27cf34d634ef4930516d11ea4dccf93d51c006fa
+    vite: ^3.0.0
+  checksum: a5bb66fbf3bba7a9f1a21e66e2b3daed548f0b465c082c83cd4473035139b1defc82de20fc6e841ec5061e92a818249bd90ef997f73b6cd4afc9299aaf5b179c
   languageName: node
   linkType: hard
 
@@ -1688,10 +1675,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"devalue@npm:^3.1.2":
-  version: 3.1.3
-  resolution: "devalue@npm:3.1.3"
-  checksum: dda86c4a3274a29349319fbc5e739eeafc7680610d5d3ae2addc3cc3814155a75c85f8c590a9bd90c699ca61f6a42a85630f4cf4de5bbc83dfd4782dedfe4fd7
+"devalue@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "devalue@npm:2.0.1"
+  checksum: 94bedfba0311b3404ca3281180c56baf0259481b8411eae1cae8ffd5741e1add47092d560c2ea9091086c9eef940a887a3ce86c63128d9c310b7486002762a08
   languageName: node
   linkType: hard
 
@@ -2417,13 +2404,6 @@ __metadata:
   version: 5.3.0
   resolution: "estraverse@npm:5.3.0"
   checksum: 072780882dc8416ad144f8fe199628d2b3e7bbc9989d9ed43795d2c90309a2047e6bc5979d7e2322a341163d22cfad9e21f4110597fe487519697389497e4e2b
-  languageName: node
-  linkType: hard
-
-"estree-walker@npm:^2.0.1":
-  version: 2.0.2
-  resolution: "estree-walker@npm:2.0.2"
-  checksum: 6151e6f9828abe2259e57f5fd3761335bb0d2ebd76dc1a01048ccee22fabcfef3c0859300f6d83ff0d1927849368775ec5a6d265dde2f6de5a1be1721cd94efc
   languageName: node
   linkType: hard
 
@@ -3202,6 +3182,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"magic-string@npm:^0.26.7":
+  version: 0.26.7
+  resolution: "magic-string@npm:0.26.7"
+  dependencies:
+    sourcemap-codec: ^1.4.8
+  checksum: 89b0d60cbb32bbf3d1e23c46ea93db082d18a8230b972027aecb10a40bba51be519ecce0674f995571e3affe917b76b09f59d8dbc9a1b2c9c4102a2b6e8a2b01
+  languageName: node
+  linkType: hard
+
 "make-fetch-happen@npm:^10.0.3":
   version: 10.2.1
   resolution: "make-fetch-happen@npm:10.2.1"
@@ -3754,7 +3743,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.2.2, picomatch@npm:^2.3.1":
+"picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.3.1":
   version: 2.3.1
   resolution: "picomatch@npm:2.3.1"
   checksum: 050c865ce81119c4822c45d3c84f1ced46f93a0126febae20737bd05ca20589c564d6e9226977df859ed5e03dc73f02584a2b0faad36e896936238238b0446cf
@@ -4250,7 +4239,7 @@ __metadata:
     "@supabase/supabase-js": ^1.35.6
     "@sveltejs/adapter-netlify": 1.0.0-next.76
     "@sveltejs/adapter-static": 1.0.0-next.41
-    "@sveltejs/kit": 1.0.0-next.463
+    "@sveltejs/kit": 1.0.0-next.406
     "@tailwindcss/typography": ^0.5.2
     "@typescript-eslint/eslint-plugin": ^5.27.0
     "@typescript-eslint/parser": ^5.27.0
@@ -4449,12 +4438,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-hmr@npm:^0.14.12":
-  version: 0.14.12
-  resolution: "svelte-hmr@npm:0.14.12"
+"svelte-hmr@npm:^0.15.1":
+  version: 0.15.1
+  resolution: "svelte-hmr@npm:0.15.1"
   peerDependencies:
     svelte: ">=3.19.0"
-  checksum: ac5f91030007c709e92992e9a06cda59304fe99c428d163aeff11c005b4bb293c504f1d1aa4a173cf27bbe38eaf7544956299074402efa1abb5ef61573b3f408
+  checksum: af2e5c356ed6467d6567ce1b908bc077c9d08a89f3ffda81e63989c1c3f374a88b1b67453e86e3674320aa10e7cdf42a10dc551900997b627b4702db447f2bf3
   languageName: node
   linkType: hard
 
@@ -4797,6 +4786,18 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: f5bc85508622719d68171394195ce420776e0c6a111c047a3fb69d8611f7d91e3317fd24cdf3ff356b65e002bfec2f462f5def0aa68beabd19e4c3acd85c0a36
+  languageName: node
+  linkType: hard
+
+"vitefu@npm:^0.2.2":
+  version: 0.2.4
+  resolution: "vitefu@npm:0.2.4"
+  peerDependencies:
+    vite: ^3.0.0 || ^4.0.0
+  peerDependenciesMeta:
+    vite:
+      optional: true
+  checksum: 4add282ffec4f27388aa75df2cd7db9a674d51bf9471907441ca23ff5ac70fc9540344dbf3a53af0aa53685f1d7b8c756da5f9749afe91aac66c82a25ade7821
   languageName: node
   linkType: hard
 
