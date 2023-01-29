@@ -1,6 +1,6 @@
 <section class="cg-large-container mt-1 flex h-14 items-center justify-between pt-4 pb-2">
   <a href="/" class="relative flex h-full items-center"
-    ><img src="/images/creatorsgarten.svg" class="h-full" alt="" />
+    ><img src="/images/creatorsgarten.svg" class="h-full" alt="Creatorsgarten" />
     <!-- <h4 class="hidden md:block text-black pl-2 font-semibold text-xl">Creatorsgarten</h4> -->
   </a>
   <div class="flex gap-4">
