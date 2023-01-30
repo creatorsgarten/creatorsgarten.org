@@ -69,5 +69,9 @@ export const creators = [
   {
     name: 'Phumrapee Limpianchop',
     link: 'https://rayriffy.com'
+  },
+  {
+    name: 'Prasit Suphancho',
+    link: 'https://tech.duckfollow.co'
   }
 ];
