@@ -774,27 +774,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jridgewell/resolve-uri@npm:^3.0.3":
+"@jridgewell/resolve-uri@npm:3.1.0":
   version: 3.1.0
   resolution: "@jridgewell/resolve-uri@npm:3.1.0"
   checksum: b5ceaaf9a110fcb2780d1d8f8d4a0bfd216702f31c988d8042e5f8fbe353c55d9b0f55a1733afdc64806f8e79c485d2464680ac48a0d9fcadb9548ee6b81d267
   languageName: node
   linkType: hard
 
-"@jridgewell/sourcemap-codec@npm:^1.4.10, @jridgewell/sourcemap-codec@npm:^1.4.13":
+"@jridgewell/sourcemap-codec@npm:1.4.14, @jridgewell/sourcemap-codec@npm:^1.4.13, @jridgewell/sourcemap-codec@npm:^1.4.14":
   version: 1.4.14
   resolution: "@jridgewell/sourcemap-codec@npm:1.4.14"
   checksum: 61100637b6d173d3ba786a5dff019e1a74b1f394f323c1fee337ff390239f053b87266c7a948777f4b1ee68c01a8ad0ab61e5ff4abb5a012a0b091bec391ab97
   languageName: node
   linkType: hard
 
-"@jridgewell/trace-mapping@npm:^0.3.9":
-  version: 0.3.15
-  resolution: "@jridgewell/trace-mapping@npm:0.3.15"
+"@jridgewell/trace-mapping@npm:^0.3.17":
+  version: 0.3.17
+  resolution: "@jridgewell/trace-mapping@npm:0.3.17"
   dependencies:
-    "@jridgewell/resolve-uri": ^3.0.3
-    "@jridgewell/sourcemap-codec": ^1.4.10
-  checksum: 38917e9c2b014d469a9f51c016ed506acbe44dd16ec2f6f99b553ebf3764d22abadbf992f2367b6d2b3511f3eae8ed3a8963f6c1030093fda23efd35ecab2bae
+    "@jridgewell/resolve-uri": 3.1.0
+    "@jridgewell/sourcemap-codec": 1.4.14
+  checksum: 9d703b859cff5cd83b7308fd457a431387db5db96bd781a63bf48e183418dd9d3d44e76b9e4ae13237f6abeeb25d739ec9215c1d5bfdd08f66f750a50074a339
   languageName: node
   linkType: hard
 
@@ -1124,14 +1124,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/pug@npm:^2.0.4":
+"@types/pug@npm:^2.0.4, @types/pug@npm:^2.0.6":
   version: 2.0.6
   resolution: "@types/pug@npm:2.0.6"
   checksum: e8d09c3ddc7e6b87050a16d73694518f259a8ed74a0ab79b81b847baf89d92d44959ed68199966ac6f4a218c715c9bb3e4c86c8800d4868a4a674f4b21d2f01d
   languageName: node
   linkType: hard
 
-"@types/sass@npm:^1.16.0":
+"@types/sass@npm:^1.16.0, @types/sass@npm:^1.43.1":
   version: 1.43.1
   resolution: "@types/sass@npm:1.43.1"
   dependencies:
@@ -1807,7 +1807,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-indent@npm:^6.0.0":
+"detect-indent@npm:^6.0.0, detect-indent@npm:^6.1.0":
   version: 6.1.0
   resolution: "detect-indent@npm:6.1.0"
   checksum: ab953a73c72dbd4e8fc68e4ed4bfd92c97eb6c43734af3900add963fd3a9316f3bc0578b018b24198d4c31a358571eff5f0656e81a1f3b9ad5c547d58b2d093d
@@ -4076,7 +4076,7 @@ __metadata:
     prettier: ^2.7.1
     prettier-plugin-tailwindcss: ^0.2.0
     svelte: ^3.44.0
-    svelte-check: ^2.7.1
+    svelte-check: ^3.0.0
     svelte-preprocess: ^4.10.7
     tailwindcss: ^3.1.4
     tslib: ^2.3.1
@@ -4131,6 +4131,20 @@ __metadata:
   bin:
     sorcery: bin/index.js
   checksum: e23fc06336c6e47274bd5e23849f8a7a40071d06a6fe1105f2557eb8613563b4c867230fd5f7b143e86a9bf45f62279e39ce68545482821d7b51b185133f2bc9
+  languageName: node
+  linkType: hard
+
+"sorcery@npm:^0.11.0":
+  version: 0.11.0
+  resolution: "sorcery@npm:0.11.0"
+  dependencies:
+    "@jridgewell/sourcemap-codec": ^1.4.14
+    buffer-crc32: ^0.2.5
+    minimist: ^1.2.0
+    sander: ^0.5.0
+  bin:
+    sorcery: bin/sorcery
+  checksum: b79a4194f5ab7ee1d19d5cd2a683bd605762d5cbeeb238f46a71af357a179a6193d64a92ef2af1e05e4261cb3797be8694ad9b7ecfea9ca0d8f14d98f449dff5
   languageName: node
   linkType: hard
 
@@ -4241,23 +4255,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-check@npm:^2.7.1":
-  version: 2.9.0
-  resolution: "svelte-check@npm:2.9.0"
+"svelte-check@npm:^3.0.0":
+  version: 3.0.3
+  resolution: "svelte-check@npm:3.0.3"
   dependencies:
-    "@jridgewell/trace-mapping": ^0.3.9
+    "@jridgewell/trace-mapping": ^0.3.17
     chokidar: ^3.4.1
     fast-glob: ^3.2.7
     import-fresh: ^3.2.1
     picocolors: ^1.0.0
     sade: ^1.7.4
-    svelte-preprocess: ^4.0.0
-    typescript: "*"
+    svelte-preprocess: ^5.0.0
+    typescript: ^4.9.4
   peerDependencies:
-    svelte: ^3.24.0
+    svelte: ^3.55.0
   bin:
     svelte-check: bin/svelte-check
-  checksum: b224177e553d4d0ba1e5e2b438b2674a30530cde636849828757868555af36de902aa114db356f0e954e24d85da225441b5248e3e3b0090f8d757794bbcd610d
+  checksum: 5b215e8567852bb384ed309552638987fb9226e3452f2940ebe588ff9d1afc79e25e1bac0d1f95d24b6e91f3470797a52d630fd47c128ef2045270068f17d3d4
   languageName: node
   linkType: hard
 
@@ -4270,7 +4284,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-preprocess@npm:^4.0.0, svelte-preprocess@npm:^4.10.7":
+"svelte-preprocess@npm:^4.10.7":
   version: 4.10.7
   resolution: "svelte-preprocess@npm:4.10.7"
   dependencies:
@@ -4316,6 +4330,53 @@ __metadata:
     typescript:
       optional: true
   checksum: 51a0820c14bcc411ddf3b1cf4c772e73873626ed0b6c54dfca9e06bd6a6b22c9502436df3f1a4dab9eb3a404bba95002fd70cadea29a84fc36da3071309a8b91
+  languageName: node
+  linkType: hard
+
+"svelte-preprocess@npm:^5.0.0":
+  version: 5.0.1
+  resolution: "svelte-preprocess@npm:5.0.1"
+  dependencies:
+    "@types/pug": ^2.0.6
+    "@types/sass": ^1.43.1
+    detect-indent: ^6.1.0
+    magic-string: ^0.27.0
+    sorcery: ^0.11.0
+    strip-indent: ^3.0.0
+  peerDependencies:
+    "@babel/core": ^7.10.2
+    coffeescript: ^2.5.1
+    less: ^3.11.3 || ^4.0.0
+    postcss: ^7 || ^8
+    postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0
+    pug: ^3.0.0
+    sass: ^1.26.8
+    stylus: ^0.55.0
+    sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
+    svelte: ^3.23.0
+    typescript: ^3.9.5 || ^4.0.0
+  peerDependenciesMeta:
+    "@babel/core":
+      optional: true
+    coffeescript:
+      optional: true
+    less:
+      optional: true
+    postcss:
+      optional: true
+    postcss-load-config:
+      optional: true
+    pug:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    typescript:
+      optional: true
+  checksum: 80b317b25657a53d0343472560d13a3feb1b0e23cd15278cf491c802f027fca9313b17a652ce7a106263ce5e679bb0c3599daf4e7b9ab66fb794554ed6228d7d
   languageName: node
   linkType: hard
 
@@ -4488,7 +4549,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:*, typescript@npm:^4.7.2":
+"typescript@npm:^4.7.2":
   version: 4.8.2
   resolution: "typescript@npm:4.8.2"
   bin:
@@ -4498,13 +4559,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@*#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.2#~builtin<compat/typescript>":
+"typescript@npm:^4.9.4":
+  version: 4.9.4
+  resolution: "typescript@npm:4.9.4"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: e782fb9e0031cb258a80000f6c13530288c6d63f1177ed43f770533fdc15740d271554cdae86701c1dd2c83b082cea808b07e97fd68b38a172a83dbf9e0d0ef9
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.7.2#~builtin<compat/typescript>":
   version: 4.8.2
   resolution: "typescript@patch:typescript@npm%3A4.8.2#~builtin<compat/typescript>::version=4.8.2&hash=aae4e6"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 5cb0f02f414f5405f4b0e7ee1fd7fa9177b6a8783c9017b6cad85f56ce4c4f93e0e6f2ce37e863cb597d44227cd009474c9fbd85bf7a50004e5557426cb58079
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.9.4#~builtin<compat/typescript>":
+  version: 4.9.4
+  resolution: "typescript@patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 1caaea6cb7f813e64345190fddc4e6c924d0b698ab81189b503763c4a18f7f5501c69362979d36e19c042d89d936443e768a78b0675690b35eb663d19e0eae71
   languageName: node
   linkType: hard
 
