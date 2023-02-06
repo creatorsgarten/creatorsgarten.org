@@ -1,0 +1,36 @@
+---
+import Navbar from '$components/navbar.astro'
+
+import './global.css'
+
+export interface Props {
+  title: string;
+}
+
+const { title = 'Creatorsgarten' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/svg" href="/images/ring.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap&family=Inter:wght@400;500&family=Readex+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg" href="/images/ring.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Navbar />
+
+    <main>
+      <slot />
+    </main>
+
+    <div class="cg-large-container">
+      <footer class="flex justify-center py-8">© {new Date().getFullYear()} | Made with ♥ by Creatorsgarten</footer>
+    </div>
+  </body>
+</html>

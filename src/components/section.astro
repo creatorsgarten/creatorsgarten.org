@@ -1,0 +1,13 @@
+---
+export interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<div class="relative flex mt-10 py-2 items-center">
+  <div class="flex-grow border-t border-gray-600"></div>
+  <span class="flex-shrink text-xl mx-4 text-gray-600">{title}</span>
+  <div class="flex-grow border-t border-gray-600"></div>
+</div>
