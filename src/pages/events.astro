@@ -1,13 +1,8 @@
 ---
 import { Picture } from '@astrojs/image/components'
-
 import BaseLayout from '$layouts/base.astro';
 
-import { getCollection } from 'astro:content';
-
-const events = (await getCollection('event')).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+import { events } from '$constants/events'
 ---
 
 <BaseLayout title="Events">
@@ -20,14 +15,14 @@ const events = (await getCollection('event')).sort(
       </h2>
     </div>
     <section class="not-prose grid grid-cols-2 gap-2 md:grid-cols-3">
-      {events.map(event => (
+      {events.reverse().map(event => (
         <a rel="prefetch" href={`/wiki/Hacks/${event.slug}`}>
           <div
             class="aspect-square w-full border-2 border-black hover:scale-[1.003] hover:shadow-sm hover:transition-all"
           >
               <Picture
                 src={`/images/events/${event.slug}.png`}
-                alt={event.data.name}
+                alt={event.name}
                 aspectRatio={1}
                 decoding="async"
                 quality={85}

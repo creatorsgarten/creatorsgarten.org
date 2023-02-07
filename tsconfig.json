@@ -4,8 +4,12 @@
     "forceConsistentCasingInFileNames": false,
     "baseUrl": ".",
     "paths": {
+      "$types/*": ["src/@types/*"],
       "$components/*": ["src/components/*"],
-      "$layouts/*": ["src/layouts/*"]
+      "$constants/*": ["src/constants/*"],
+      "$layouts/*": ["src/layouts/*"],
+      "$plugins/*": ["src/plugins/*"],
+      "$services/*": ["src/services/*"]
     },
   }
 }

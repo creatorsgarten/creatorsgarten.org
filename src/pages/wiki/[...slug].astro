@@ -1,0 +1,78 @@
+---
+import BaseLayout from '$layouts/base.astro'
+import EventHeader from '$components/eventHeader.astro'
+
+import { renderMarkdown } from '@astrojs/markdown-remark'
+import matter from 'gray-matter'
+
+import { getIndexes } from '$services/wiki/getIndexes'
+import { getPage } from '$services/wiki/getPage'
+import { remarkPlugins } from '$plugins/remark.mjs'
+
+import type { GetStaticPaths } from 'astro'
+import type { PageData } from '$types/PageData'
+
+export interface Props {
+  name?: string
+  pageData: PageData
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  let indexes = await getIndexes()
+
+  // inject list all pages
+  indexes.pages['Special/AllPages'] = {}
+
+  return await Promise.all(Object.entries(indexes.pages).map(async ([key, value]) => {
+    const pageData = await getPage(key)
+
+    return {
+      params: {
+        slug: key,
+      },
+      props: {
+        ...value,
+        pageData: pageData
+      },
+    }
+  }))
+}
+
+// parse slug
+const { pageData } = Astro.props
+const enforcedSlug = Astro.params.slug as string
+const endOfSlug = enforcedSlug.split('/').reverse()[0]
+
+const pageContent = matter(pageData.content ?? '')
+
+// render frontmatter and basic metadata
+const frontmatter = pageContent.data
+const renderedContent = await renderMarkdown(pageContent.content ?? '', {
+  contentDir: new URL(import.meta.url),
+  remarkPlugins,
+})
+
+const pageTitle =
+  frontmatter.layout === 'hacks'
+    ? frontmatter.name
+    : Astro.props.name ?? endOfSlug
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="cg-container">
+    {
+      frontmatter.layout === 'hacks' ? (
+        <EventHeader
+          slug={endOfSlug}
+          name={pageTitle}
+          location={frontmatter.location}
+          date={frontmatter.date}
+          by={frontmatter.by}
+        />
+      ) : (
+        <h1 class="mt-16">{pageTitle}</h1>
+      )
+    }
+    <article class="prose mt-8 max-w-none" set:html={renderedContent.code} />
+  </div>
+</BaseLayout>

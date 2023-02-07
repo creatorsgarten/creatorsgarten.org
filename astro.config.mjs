@@ -6,7 +6,7 @@ import mdx from '@astrojs/mdx';
 import prefetch from '@astrojs/prefetch';
 import compress from 'astro-compress'
 
-import { headerPlugin } from './src/plugins/headerPlugin.mjs';
+import { remarkPlugins } from './src/plugins/remark.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,6 +16,11 @@ export default defineConfig({
     js: true,
   })],
   markdown: {
-    remarkPlugins: [headerPlugin]
+    remarkPlugins,
+  },
+  vite: {
+    ssr: {
+      external: ['prismjs', '@astrojs/markdown-remark']
+    }
   }
 });

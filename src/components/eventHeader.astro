@@ -1,0 +1,49 @@
+---
+import { Picture } from '@astrojs/image/components'
+
+export interface Props {
+  slug: string
+  name: string
+  location: string
+  date: string
+  site?: string
+  by: string[]
+}
+
+const { slug, name, location, date, site, by } = Astro.props
+---
+
+<section class="flex w-full flex-col md:mb-4 md:flex-row">
+  <div class="mr-10 w-full flex-shrink-0 border-2 border-black md:w-5/12 aspect-square">
+    <Picture
+      src={`/images/events/${slug}.png`}
+      alt={name}
+      aspectRatio={1}
+      decoding="async"
+      quality={85}
+      widths={[600]}
+      sizes=""
+      formats={['jpg', 'webp', 'avif']}
+      background="white"
+    />
+  </div>
+  <div class="mt-6 flex w-full flex-col justify-center md:mt-0">
+    <h1 class="pb-2 text-2xl md:w-11/12 md:text-4xl lg:text-3xl">
+      {name}
+    </h1>
+    <h4 class="font-normal">{location}</h4>
+    <h4 class="font-normal">
+      Date: {date}
+    </h4>
+    {
+      site && (
+        <h4 class="truncate font-normal">
+          Website: <a href={site}>{site}</a>
+        </h4>
+      )
+    }
+    <h4 class="font-normal">
+      By: {by.map(host => <span class="pr-1">[{host}]</span>)}
+    </h4>
+  </div>
+</section>
