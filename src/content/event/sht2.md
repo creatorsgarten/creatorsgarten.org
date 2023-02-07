@@ -19,7 +19,7 @@ This hackathon is [held all around the world](https://gist.github.com/cheeaun/c3
 
 # Write-ups
 
-- [“มาเล่างาน The Stupid Hackathon Thailand #2 ให้อ่านกันค่ะ” by Natnalin Sompaiboon, _#TEAMAPPMAN_](https://medium.com/teamappman/%E0%B8%A1%E0%B8%B2%E0%B9%80%E0%B8%A5%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99-the-stupid-hackathon-thailand-2-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%AD%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B9%88%E0%B8%B0-a6310bbe47e4)
+- [“มาเล่างาน The Stupid Hackathon Thailand #2 ให้อ่านกันค่ะ” by Natnalin Sompaiboon, _#TEAMAPPMAN_](https://medium.com/teamappman/มาเล่างาน-the-stupid-hackathon-thailand-2-ให้อ่านกันค่ะ-a6310bbe47e4)
 - [“The Stupid Hackathon Thailand 2 ที่มา Epic กว่าปีที่แล้ว” by Phumrapee Limpianchop, _Riffy Blog_](https://blog.rayriffy.com/review-the-stupid-hackathon-th-2/)
 
 # Live
