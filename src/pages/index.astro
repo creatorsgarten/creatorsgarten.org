@@ -5,7 +5,7 @@ import VideoCard from '$components/videoCard.astro';
 import ImageCard from '$components/imageCard.astro';
 ---
 
-<BaseLayout title="Welcome to Astro.">
+<BaseLayout>
 	<div class="cg-large-container flex flex-col gap-6 lg:gap-10 my-4">
 		<section class="grid gap-5">
 			<a
@@ -81,7 +81,7 @@ import ImageCard from '$components/imageCard.astro';
 			<div class="flex justify-between items-center">
 				<h1 class="font-medium text-gray-900">Latest Events</h1>
 				<a rel="prefetch" href="/events"
-					><h2 class="hidden md:block font-medium text-gray-900 hover:underline">See More -></h2></a
+					><h2 class="hidden md:block font-medium text-gray-900 hover:underline">See More -$gt;</h2></a
 				>
 				<!-- <Icon icon={ArrowRight} class="header font-white" /> -->
 			</div>
@@ -104,7 +104,7 @@ import ImageCard from '$components/imageCard.astro';
 			</div>
 			<a href="#" class="md:hidden mt-1 md:m-0"
 				><h2 class="w-full flex justify-end font-medium text-gray-900 hover:underline">
-					See More ->
+					See More -$gt;
 				</h2></a
 			>
 		</section>
