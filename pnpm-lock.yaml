@@ -5,7 +5,7 @@ specifiers:
   '@stablelib/base64': ^1.0.1
   '@supabase/supabase-js': ^2.0.0
   '@sveltejs/adapter-netlify': ^1.0.5
-  '@sveltejs/adapter-static': ^1.0.5
+  '@sveltejs/adapter-static': ^2.0.0
   '@sveltejs/kit': ^1.3.3
   '@tailwindcss/typography': ^0.5.2
   '@typescript-eslint/eslint-plugin': ^5.27.0
@@ -50,7 +50,7 @@ dependencies:
 devDependencies:
   '@playwright/test': 1.30.0
   '@sveltejs/adapter-netlify': 1.0.5_@sveltejs+kit@1.3.3
-  '@sveltejs/adapter-static': 1.0.5_@sveltejs+kit@1.3.3
+  '@sveltejs/adapter-static': 2.0.0_@sveltejs+kit@1.3.3
   '@sveltejs/kit': 1.3.3_svelte@3.48.0+vite@4.0.4
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.1.4
   '@typescript-eslint/eslint-plugin': 5.30.3_xuuykav7urhdozug7htlfgar3u
@@ -964,10 +964,10 @@ packages:
       set-cookie-parser: 2.5.1
     dev: true
 
-  /@sveltejs/adapter-static/1.0.5_@sveltejs+kit@1.3.3:
-    resolution: {integrity: sha512-W5jbgvy9sbYEHs27NQOSFEun+zQwdcL4kpk5qc2kSHl8cKsP5wfXuWDTDRmD1Co40aFcesi5Az5ZzdnPI8KCVg==}
+  /@sveltejs/adapter-static/2.0.0_@sveltejs+kit@1.3.3:
+    resolution: {integrity: sha512-M9F8EyCIdVcpZu0zvS7U7v+rc7elNNDUkMHLsOkJYlfQ9rDdif3fqteMqddcrq1lFPEGH1ErdTjpsXdb3k1e8w==}
     peerDependencies:
-      '@sveltejs/kit': ^1.0.0
+      '@sveltejs/kit': ^1.5.0
     dependencies:
       '@sveltejs/kit': 1.3.3_svelte@3.48.0+vite@4.0.4
     dev: true
