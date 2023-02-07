@@ -4,7 +4,7 @@ specifiers:
   '@playwright/test': ^1.30.0
   '@stablelib/base64': ^1.0.1
   '@supabase/supabase-js': ^2.0.0
-  '@sveltejs/adapter-netlify': ^1.0.5
+  '@sveltejs/adapter-netlify': ^2.0.0
   '@sveltejs/adapter-static': ^2.0.0
   '@sveltejs/kit': ^1.3.3
   '@tailwindcss/typography': ^0.5.2
@@ -49,7 +49,7 @@ dependencies:
 
 devDependencies:
   '@playwright/test': 1.30.0
-  '@sveltejs/adapter-netlify': 1.0.5_@sveltejs+kit@1.3.3
+  '@sveltejs/adapter-netlify': 2.0.1_@sveltejs+kit@1.3.3
   '@sveltejs/adapter-static': 2.0.0_@sveltejs+kit@1.3.3
   '@sveltejs/kit': 1.3.3_svelte@3.48.0+vite@4.0.4
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.1.4
@@ -953,10 +953,10 @@ packages:
       - supports-color
     dev: false
 
-  /@sveltejs/adapter-netlify/1.0.5_@sveltejs+kit@1.3.3:
-    resolution: {integrity: sha512-CQpSf2y29+DdaSELLWb4P5ewWSPUFRfJn2DwtiDZ+YOiIVhUk0caudFZoscH1GAP/sFrJekIMtawP542BjWA1g==}
+  /@sveltejs/adapter-netlify/2.0.1_@sveltejs+kit@1.3.3:
+    resolution: {integrity: sha512-v3LAvNUUgVCkqcTeQ7XtDMbGDJziJwKb8VO7Unu1cyyBxyHi+qeF/9n3lMXLXTg4NhdLOgiwFpYcktJPXtEyzQ==}
     peerDependencies:
-      '@sveltejs/kit': ^1.0.0
+      '@sveltejs/kit': ^1.5.0
     dependencies:
       '@iarna/toml': 2.2.5
       '@sveltejs/kit': 1.3.3_svelte@3.48.0+vite@4.0.4

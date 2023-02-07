@@ -1004,16 +1004,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/adapter-netlify@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "@sveltejs/adapter-netlify@npm:1.0.5"
+"@sveltejs/adapter-netlify@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "@sveltejs/adapter-netlify@npm:2.0.1"
   dependencies:
     "@iarna/toml": ^2.2.5
     esbuild: ^0.16.3
     set-cookie-parser: ^2.5.1
   peerDependencies:
-    "@sveltejs/kit": ^1.0.0
-  checksum: 2d7382b53d6f1347d916b299e3a3f0c80a908fcfd383f111e664fda9b31db102e8cb278eba341a72997e7a4cdcf860bc18cc4114b17ed3a7916f90960ce42815
+    "@sveltejs/kit": ^1.5.0
+  checksum: d0d6505089df2bc1541e3a07b355962b373cae836602c212291fb8796f911b374f1da28ceef30a4f5c899446ce815a46e989e9ba28e8f897d0e1dd90d5e477f2
   languageName: node
   linkType: hard
 
@@ -4053,7 +4053,7 @@ __metadata:
     "@playwright/test": ^1.30.0
     "@stablelib/base64": ^1.0.1
     "@supabase/supabase-js": ^2.0.0
-    "@sveltejs/adapter-netlify": ^1.0.5
+    "@sveltejs/adapter-netlify": ^2.0.0
     "@sveltejs/adapter-static": ^2.0.0
     "@sveltejs/kit": ^1.3.3
     "@tailwindcss/typography": ^0.5.2
