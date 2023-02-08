@@ -1,0 +1,27 @@
+---
+export interface Props {
+  img: string
+  text: string
+  link: string
+}
+
+const { img, text, link = '#' } = Astro.props
+---
+
+<a
+  href={link}
+  class="group relative z-10 flex flex-col border border-gray-900 bg-gray-100"
+>
+  <img
+    src={img}
+    alt=""
+    class="aspect-video object-cover brightness-[40%] transition-all group-hover:brightness-[50%]"
+  />
+  <div
+    class="absolute inset-0 flex w-full flex-col items-center justify-center p-4"
+  >
+    <h2 class="header text-center text-white group-hover:underline">
+      {text}
+    </h2>
+  </div>
+</a>

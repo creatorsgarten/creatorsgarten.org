@@ -1,0 +1,12 @@
+---
+export interface Props {
+  bold?: string
+  normal?: string
+}
+
+const { bold, normal } = Astro.props
+---
+
+{bold && <span class="font-medium">{bold}</span>}
+{bold && normal && '&nbsp;|&nbsp;'}
+{normal && <span>{normal}</span>}
