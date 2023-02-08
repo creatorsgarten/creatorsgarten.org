@@ -1,6 +1,5 @@
 ---
 layout: $layouts/content.astro
-title: Videos
 ---
 
 We have a YouTube channel at <https://youtube.com/@creatorsgarten>. They are for publishing talks VODs.

@@ -32,7 +32,7 @@ const lists: PageList[] = [
     {
       lists.map(list => (
         <li>
-          <a href={list.url}>{list.url.replace('/wiki/', '')}</a>{list.name && ` (${list.name})`}
+          <a rel="prefetch" href={list.url}>{list.url.replace('/wiki/', '')}</a>{list.name && ` (${list.name})`}
         </li>
       ))
     }
