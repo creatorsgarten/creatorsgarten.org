@@ -1,5 +1,7 @@
 # Who are we?
 
+[![Open in CodeSandbox](https://github.com/withastro/astro.new/raw/5d9710260d621c1ee980d198aaa1d95ebfe95871/src/icons/open-in-codesandbox.svg)](https://codesandbox.io/p/github/creatorsgarten/creatorsgarten.org)
+
 creatorsgarten = creators + garden
 
 We are a diverse group of people who are united by our love for creating things. We believe that through the lens of creation and technology, we can discover the fun and beauty in everything around us.
