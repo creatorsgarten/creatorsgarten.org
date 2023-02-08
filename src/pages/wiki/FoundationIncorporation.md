@@ -15,20 +15,20 @@ Readings and resources:
 
 Prerequisites
 
-- [x] __Name__
-- [ ] __Principal office__ along with document that permits the use of that space
-- [ ] __At least 3 people on the board__
-- [ ] __500,000 THB of cash__ (maybe reduced to 200,000 THB?)
-- [ ] __Regulations__
-- [ ] __An approved auditor?__
+- [x] **Name**
+- [ ] **Principal office** along with document that permits the use of that space
+- [ ] **At least 3 people on the board**
+- [ ] **500,000 THB of cash** (maybe reduced to 200,000 THB?)
+- [ ] **Regulations**
+- [ ] **An approved auditor?**
 
 Eligibility criteria in Thailand
 
-- [__Microsoft__](https://www.microsoft.com/en-us/nonprofits/eligibility?activetab=pivot1%3aprimaryr4)
-   - Organizations must be registered with or recognized by relevant authorities as: (1) tax exempt organizations; (2) public benefit organizations; (3) foundations or associations; or (4) foreign NGOs.
-- [__Google__](https://support.google.com/nonprofits/answer/3215869?ref_topic=3247288)
-   - Organizations must be currently registered with TechSoup Asia, TechSoup Global's regional arm.
-   - Organizations must be registered with or recognized by relevant authorities as: (1) tax exempt organizations; (2) public benefit organizations; (3) foundations or associations; or (4) foreign NGOs.
+- [**Microsoft**](https://www.microsoft.com/en-us/nonprofits/eligibility?activetab=pivot1%3aprimaryr4)
+  - Organizations must be registered with or recognized by relevant authorities as: (1) tax exempt organizations; (2) public benefit organizations; (3) foundations or associations; or (4) foreign NGOs.
+- [**Google**](https://support.google.com/nonprofits/answer/3215869?ref_topic=3247288)
+  - Organizations must be currently registered with TechSoup Asia, TechSoup Global's regional arm.
+  - Organizations must be registered with or recognized by relevant authorities as: (1) tax exempt organizations; (2) public benefit organizations; (3) foundations or associations; or (4) foreign NGOs.
 
 Discussions
 

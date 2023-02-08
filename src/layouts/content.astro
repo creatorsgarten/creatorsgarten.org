@@ -13,7 +13,7 @@ const { title } = Astro.props.frontmatter
 <BaseLayout title={title}>
   <div class="cg-container">
     <h1 class="mt-16">{title}</h1>
-    <article class="prose max-w-none mt-8">
+    <article class="prose mt-8 max-w-none">
       <slot />
     </article>
   </div>

@@ -24,23 +24,25 @@ const {
 
 <a
   href={link}
-  class="group grid grid-cols-3 xl:flex xl:flex-col gap-4 hover:scale-[1.001] hover:shadow-md transition-all border border-gray-600 bg-white"
+  class="group grid grid-cols-3 gap-4 border border-gray-600 bg-white transition-all hover:scale-[1.001] hover:shadow-md xl:flex xl:flex-col"
 >
-  <div class="aspect-square w-full xl:aspect-video flex justify-center items-center">
+  <div
+    class="flex aspect-square w-full items-center justify-center xl:aspect-video"
+  >
     <img
       src={img}
       alt=""
-      class="xl:aspect-video relative max-w-max h-full object-cover overflow-hidden border-r border-gray-600 xl:border-r-0 lg:border-b"
+      class="relative h-full max-w-max overflow-hidden border-r border-gray-600 object-cover lg:border-b xl:aspect-video xl:border-r-0"
     />
   </div>
   <div
-    class="col-span-2 py-3 xl:py-0 pr-5 xl:pl-3 xl:pb-4 flex flex-col justify-center lg:justify-between md:h-full"
+    class="col-span-2 flex flex-col justify-center py-3 pr-5 md:h-full lg:justify-between xl:py-0 xl:pl-3 xl:pb-4"
   >
-    <div class="flex flex-col gap-1 md:h-full justify-center md:justify-start">
+    <div class="flex flex-col justify-center gap-1 md:h-full md:justify-start">
       <h6 class="font-medium">{tag}</h6>
       <h3>{header}</h3>
     </div>
-    <p class="text-xs md:text-base flex mt-1 lg:mt-5">
+    <p class="mt-1 flex text-xs md:text-base lg:mt-5">
       <CardText {...{ bold, normal }} />
     </p>
   </div>

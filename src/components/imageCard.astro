@@ -5,22 +5,22 @@ export interface Props {
   link: string
 }
 
-const {
-  img, text, link = '#'
-} = Astro.props
+const { img, text, link = '#' } = Astro.props
 ---
 
 <a
   href={link}
-  class="group flex flex-col bg-gray-100 relative z-10 border border-gray-900"
+  class="group relative z-10 flex flex-col border border-gray-900 bg-gray-100"
 >
   <img
     src={img}
     alt=""
-    class="object-cover brightness-[40%] group-hover:brightness-[50%] aspect-video transition-all"
+    class="aspect-video object-cover brightness-[40%] transition-all group-hover:brightness-[50%]"
   />
-  <div class="flex justify-center items-center flex-col w-full absolute inset-0 p-4">
-    <h2 class="group-hover:underline text-center text-white header">
+  <div
+    class="absolute inset-0 flex w-full flex-col items-center justify-center p-4"
+  >
+    <h2 class="header text-center text-white group-hover:underline">
       {text}
     </h2>
   </div>

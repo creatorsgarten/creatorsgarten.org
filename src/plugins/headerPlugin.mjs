@@ -2,7 +2,9 @@
 export const headerPlugin = () => {
   return async markdownAST => {
     // get h1 header
-    const nodes = markdownAST.children.filter(o => o.type === 'heading' && o.depth === 1)
+    const nodes = markdownAST.children.filter(
+      o => o.type === 'heading' && o.depth === 1
+    )
 
     // override styles
     nodes.map(node => {

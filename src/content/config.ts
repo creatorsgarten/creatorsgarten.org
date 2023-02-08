@@ -1,8 +1,8 @@
-import { z, defineCollection } from 'astro:content';
-import { eventSchema } from './schemas';
+import { z, defineCollection } from 'astro:content'
+import { eventSchema } from './schemas'
 
 const eventCollection = defineCollection({
-  schema: eventSchema
+  schema: eventSchema,
 })
 
 export const collections = {

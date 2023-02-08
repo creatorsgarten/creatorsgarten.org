@@ -1,5 +1,5 @@
-import type { PlaywrightTestConfig } from '@playwright/test';
-import { devices } from '@playwright/test';
+import type { PlaywrightTestConfig } from '@playwright/test'
+import { devices } from '@playwright/test'
 
 /**
  * Read environment variables from file.
@@ -19,7 +19,7 @@ const config: PlaywrightTestConfig = {
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 5000
+    timeout: 5000,
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -41,7 +41,7 @@ const config: PlaywrightTestConfig = {
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: process.env.CI ? 'on' : 'on-first-retry',
     video: process.env.CI ? 'on' : 'off',
-    screenshot: process.env.CI ? 'on' : 'off'
+    screenshot: process.env.CI ? 'on' : 'off',
   },
 
   /* Configure projects for major browsers */
@@ -49,9 +49,9 @@ const config: PlaywrightTestConfig = {
     {
       name: 'chromium',
       use: {
-        ...devices['Desktop Chrome']
-      }
-    }
+        ...devices['Desktop Chrome'],
+      },
+    },
 
     // {
     //   name: 'firefox',
@@ -103,8 +103,8 @@ const config: PlaywrightTestConfig = {
   webServer: {
     command: 'pnpm preview',
     port: 3000,
-    reuseExistingServer: true
-  }
-};
+    reuseExistingServer: true,
+  },
+}
 
-export default config;
+export default config

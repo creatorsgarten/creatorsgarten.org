@@ -19,7 +19,7 @@ Frequently asked questions for [Code Golf Party #1](/wiki/Hacks/golf1)
 
 2. ไปที่แชนแนล `#bot-showdown` แล้วสั่งคำสั่ง `/eventpop` เพื่อเชื่อมแอคเคาท์ Discord กับบัตร Eventpop
 
-    <img width="382" alt="image" src="https://user-images.githubusercontent.com/193136/185778944-7d539c51-cd7b-427d-8ce7-91b16260557d.png">
+<img width="382" alt="image" src="https://user-images.githubusercontent.com/193136/185778944-7d539c51-cd7b-427d-8ce7-91b16260557d.png">
 
 3. หลังจากเชื่อมแอคเคาท์แล้ว จะได้ Role `CGP1-golfer` ใน Discord
 

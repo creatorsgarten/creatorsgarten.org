@@ -66,19 +66,19 @@ Event schedule:
 - (9:00) - Check-in + Coffee time
 - (10:00) - Registration
 - (10:30) - Opening sessions
-    - Introduction to Hacktoberfest
-    - How to start contributing
-    - Community projects showcase
+  - Introduction to Hacktoberfest
+  - How to start contributing
+  - Community projects showcase
 - (11:30) - Hack track begins with sharing track running in parallel:
-    - “Angular and its open sources tools” — Jame from Angular Developers Thailand
-    - “Why I love Ruby” [EN] — Tino from Bangkok.rb
-    - “Using Puzzle-Driven-Development to make your project more beginner friendly” [EN] — Thai from Taskworld
-    - “Centering things in CSS” — Jun from ThoughtWorks
+  - “Angular and its open sources tools” — Jame from Angular Developers Thailand
+  - “Why I love Ruby” [EN] — Tino from Bangkok.rb
+  - “Using Puzzle-Driven-Development to make your project more beginner friendly” [EN] — Thai from Taskworld
+  - “Centering things in CSS” — Jun from ThoughtWorks
 - (12:30) - Lunchtime
 - (13:30) - Hack track and sharing track continues:
-    - “Build DApps on Libra Blockchain” [TH] — KULAP
-    - “How to give a talk in English as a non-native speaker” [EN] — Georgi from Python Thailand
-    - Lightning talks
+  - “Build DApps on Libra Blockchain” [TH] — KULAP
+  - “How to give a talk in English as a non-native speaker” [EN] — Georgi from Python Thailand
+  - Lightning talks
 - (17:30) - Closing and afterparty onwards
 
 # Organizers notes
@@ -106,19 +106,19 @@ We are simply putting them in the same room so that we can do more together. Mor
 - **The workspace** can hold about 100 people. There are 10 tables.
 - **Event area**
 - **25 monitors**
-    - I might want to scatter some monitors around the work/event space. The goal is to make it easy for other people to see what you’re working on.
+  - I might want to scatter some monitors around the work/event space. The goal is to make it easy for other people to see what you’re working on.
 
 **Ways you can help**
 
 Here are some ways you can help to make this event more awesome!
 
 - Help us distribute tickets
-    - In many free events, a lot of event tickets run out in just a few seconds after opening, and that sucks. So I'm thinking about distributing a portion of tickets through various communities, so that people who missed the chance to get a ticket from the event page can grab a ticket from the developer group they are in. Also to increase the diversity of communities.
+  - In many free events, a lot of event tickets run out in just a few seconds after opening, and that sucks. So I'm thinking about distributing a portion of tickets through various communities, so that people who missed the chance to get a ticket from the event page can grab a ticket from the developer group they are in. Also to increase the diversity of communities.
 - Providing a short session/workshop
-    - Maybe you can talk briefly about what your community/organization does, and showcase some of your open source projects that are looking for contributors.
+  - Maybe you can talk briefly about what your community/organization does, and showcase some of your open source projects that are looking for contributors.
 - Providing mentoring (in general or about some topics)
-    - Helping out developers and beginners in the event with technical issues and help them create and submit their first pull request.
-    - Giving a lot of encouragement!
+  - Helping out developers and beginners in the event with technical issues and help them create and submit their first pull request.
+  - Giving a lot of encouragement!
 - Providing snacks/drinks/food
 - Help us run an after party
 - Another kind of contribution?

@@ -14,23 +14,27 @@ export const get: APIRoute = async () => {
       data: {
         // gartenLogo will provide a special logo for the banner (rare occation, might change)
         gartenLogo: null,
-        hacks: await Promise.all(events.map(async event => ({
-          id: event.slug,
-          name: event.data.name,
-          date: event.data.date.toISOString(),
-          banner: {
-            original: `https://creatorsgarten.org/images/events/${event.slug}.png`,
-            compressed: 'https://creatorsgarten.org' + await getImage({
-              src: `/images/events/${event.slug}.png`,
-              alt: '',
-              aspectRatio: 1,
-              width: 360,
-              quality: 85,
-              format: 'webp'
-            }).then(o => o.src),
-          }
-        })))
-      }
-    })
+        hacks: await Promise.all(
+          events.map(async event => ({
+            id: event.slug,
+            name: event.data.name,
+            date: event.data.date.toISOString(),
+            banner: {
+              original: `https://creatorsgarten.org/images/events/${event.slug}.png`,
+              compressed:
+                'https://creatorsgarten.org' +
+                (await getImage({
+                  src: `/images/events/${event.slug}.png`,
+                  alt: '',
+                  aspectRatio: 1,
+                  width: 360,
+                  quality: 85,
+                  format: 'webp',
+                }).then(o => o.src)),
+            },
+          }))
+        ),
+      },
+    }),
   }
 }

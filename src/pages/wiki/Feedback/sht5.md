@@ -18,7 +18,7 @@ title: 'Feedback: The Stupid Hackathon Thailand #5'
 
 - ครั้งนี้อาจจะมีปัญหาเรื่องเสียงบ้างทั้งในส่วนของ staff หรือ ผู้แข่งขันเอง คิดว่าควรมีการทดสอบระบบก่อนเริ่มงานจริงครับ
 - Personally that apart from the main event there is nothing to write about. Really dislike the extra 5 days added to the event, did not attend and it doesn't interested me. The voting process is nothing to write about since it is understandable that the prize is not as much as before.
-- According to he current situation, There's one thing that can't be solved is hacking & collaborating on-site krub, I knew that you've tried you best but it can't be solved krub. btw it's okay  and I love chit-chatting at 1-3AM on saturday night krub. ps.stay safe and I hope we'll be able to host this event on-site krub
+- According to he current situation, There's one thing that can't be solved is hacking & collaborating on-site krub, I knew that you've tried you best but it can't be solved krub. btw it's okay and I love chit-chatting at 1-3AM on saturday night krub. ps.stay safe and I hope we'll be able to host this event on-site krub
 - Nothing you guys done excellent!
 - ไม่รู้จักใครเลย พอเป็นออนไลน์ แล้วเกือบทุกกิจกรรมเป็นกิจกรรมทำคนเดียวที่มารวมตัวกันทำ จนถึงวันจัดทีมก็ยังไม่รู้ว่า user นี้คือใคร ชื่ออะไร ทำอะไรบ้าง แต่ต้องจัดทีมแล้ว
 - Management on communicate regarding the event, like sometime you can expect the voice chat to not go soundly regarding the internet or other factor, having a posting of an information on a channel should have been seen more and also sometime if the message are on active channel probably should try to pinned the important message so not to miss out.
@@ -26,7 +26,7 @@ title: 'Feedback: The Stupid Hackathon Thailand #5'
 **Is there anything we can try out next time? Any suggestions?**
 
 - ครั้งนี้เนื้อหางานค่อนบ้างอิ่มพอสมควรครับ มีไรให้ทำเยอะดี
-- Please don't pick out the attendee based on coding skills, maybe not so prominently that is hindered more than half of your allowances. 
+- Please don't pick out the attendee based on coding skills, maybe not so prominently that is hindered more than half of your allowances.
 - Free pizza and parking lot
 - อยากให้กำหนดการชัดกว่านี้ อย่างน้อยสักหนึ่งสัปดาห์ก่อนจัด อยากให้มีกิจกรรมที่ interactive กันตั้งแต่วันแรกๆ อย่างน้อยวันต่อมาที่ทำกิจกรรมเดี่ยวๆ อย่าง clash of code จะได้รู้ว่าใครเป็นใคร แล้วก็อยากให้คนเข้างานโค้ดเป็นอย่างน้อยสักภาษานึง อย่างน้อยรู้พวก control flow เบสิคๆ ของภาษาก็ได้ เพราะกิจกรรมก็เป็น programming เกือบหมด แต่มีคนไม่เขียนโปรแกรมเข้ามาด้วย audience คลุมเครือไปหน่อย
 - Since multiple submission are allow maybe a multiple category competition might worth a try, like conserving a General Submission, then maybe include a likely Design-Focus or Tech-Nerd category

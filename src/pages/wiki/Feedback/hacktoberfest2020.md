@@ -62,4 +62,4 @@ This event’s feedback is differently formatted because that was before we have
 **Is there anything else you'd like to share about the event?**
 
 - You make a new passion in making more open-source programme!
-- Everything's fine ! Good job everyone even if there’re lots of prob u still mange to make it through :) 
+- Everything's fine ! Good job everyone even if there’re lots of prob u still mange to make it through :)

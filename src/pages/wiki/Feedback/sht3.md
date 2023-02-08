@@ -16,10 +16,10 @@ title: 'Feedback: The Stupid Hackathon Thailand #3'
 
 **GOOD: What do you like about this hackathon?**
 
-- fun presentation 
+- fun presentation
 - Everything . I think it’s better than Hack#1
 - Snack
-- All 
+- All
 - ได้ลองมีโปรกาสทำอะไรใหม่ๆ แล้วก้ไม้เจอไอเดียแปลกๆ
 - บรรยากาศที่เป็นกันเองงานสนุกสนานมากๆครับ
 - Easy to access location, free style, good internet connection
@@ -29,7 +29,7 @@ title: 'Feedback: The Stupid Hackathon Thailand #3'
 - Good organization, Staff is friendly, Venue is good and its atmosphere suits this event well, Very good breakfast and "snacks", Overall atmosphere is good and entertaining (especially during pitch)
 - ของกินอร่อย
 - Everything
-- stupid idea 
+- stupid idea
 - Everything
 - O[en world
 - ชอบ Snack ครับ, ชอบความชิวของงานนี้, ชอบสังคม dev
@@ -47,15 +47,15 @@ title: 'Feedback: The Stupid Hackathon Thailand #3'
 
 **BAD: What do you dislike about this hackathon?**
 
-- unprepared organization, confusing information, lack of space for development 
+- unprepared organization, confusing information, lack of space for development
 - Have a few food around this place
 - Karaoke
 - How to sleep
 - เครียดนิดหน่อยที่ตัวเองทำไรไม่ค่อยได้
 - ไม่มีครับ
-- The prize randomization takes quite a long time 
+- The prize randomization takes quite a long time
 - พิซซ่าไม่พอค่าา
-- The space use to pitch is crowded 
+- The space use to pitch is crowded
 - It would be great if there is bathroom in hack place :P
 - No shower in venue (have to use Naplap's or Yunomori's instead), No staff present around 1AM
 - No
@@ -100,7 +100,7 @@ title: 'Feedback: The Stupid Hackathon Thailand #3'
 
 **say anything!!**
 
-- i hate it! 
+- i hate it!
 - Thanks a lot for fun and hacking
 - Segmentation fault
 - Love this hack
@@ -108,12 +108,12 @@ title: 'Feedback: The Stupid Hackathon Thailand #3'
 - สนุกมากชอบมากครับ
 - anything
 - อยากขโมยป้ายstupidhackathonกลับบ้าน ชอบธีมปีนี้ค่าา
-- Thx for holding this Hackathon 
+- Thx for holding this Hackathon
 - This place is great, fun, which motivate me a lot :D Thanks for the lovely event.
 - Thanks to P'Thai and staff team for this wonderful event!!!
 - Bonchon is the best
 - “Please rate your overall exp” - 10 is best right
-- stupid is not stupid forever 
+- stupid is not stupid forever
 - MORE FOOOOOOODDDDDDDDD
 - Hello stupid
 - ขอบคุณพี่ staff ทุกๆ คนที่จัดงานนี้นะครับ สนุกมากๆ ปั่นมากๆด้วย อยากให้จัดงานนี้อีกครับ
