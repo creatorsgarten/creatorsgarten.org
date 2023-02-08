@@ -1,0 +1,53 @@
+---
+import { Picture } from '@astrojs/image/components'
+
+import BaseLayout from '$layouts/base.astro'
+
+import { getCollection } from 'astro:content'
+
+const events = (await getCollection('event')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+)
+---
+
+<BaseLayout title="Events">
+  <div class="cg-container">
+    <div class="prose max-w-none">
+      <h1 class="mt-16">Past Events</h1>
+      <h2 class="mb-12">
+        Through workshops, meetups, hackathons, and much more, we bring people
+        together to work on new ideas, trying new things and working together
+        across disciplines.
+      </h2>
+    </div>
+    <section class="not-prose grid grid-cols-2 gap-2 md:grid-cols-3">
+      {
+        events.map(event => (
+          <a rel="prefetch" href={`/wiki/Hacks/${event.slug}`}>
+            <div class="aspect-square w-full border-2 border-black hover:scale-[1.003] hover:shadow-sm hover:transition-all">
+              <Picture
+                src={`/images/events/${event.slug}.png`}
+                alt={event.data.name}
+                aspectRatio={1}
+                decoding="async"
+                quality={85}
+                widths={[360]}
+                sizes=""
+                formats={['jpg', 'webp', 'avif']}
+                background="white"
+              />
+            </div>
+          </a>
+        ))
+      }
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    @apply text-3xl leading-tight lg:text-4xl;
+    font-family: 'Playfair Display', 'Inter', system-ui, -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', Roboto;
+  }
+</style>
