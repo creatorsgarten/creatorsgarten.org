@@ -1,3 +1,8 @@
+---
+layout: $layouts/content.astro
+title: BangkokOpenSourceProjects
+---
+
 ถ้ายังไม่รู้ว่าจะทำโปรเจคอะไรดี มีโปรเจคเหล่านี้ที่มาร่วมด้วยช่วยกันทำได้
 
 **Civic tech projects**
