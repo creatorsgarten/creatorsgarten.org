@@ -6,6 +6,8 @@ import mdx from '@astrojs/mdx'
 import prefetch from '@astrojs/prefetch'
 import compress from 'astro-compress'
 
+import externalLinks from 'remark-external-links'
+import sectionize from 'remark-sectionize'
 import { headerPlugin } from './src/plugins/headerPlugin.mjs'
 
 // https://astro.build/config
@@ -22,6 +24,6 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [headerPlugin],
+    remarkPlugins: [externalLinks, sectionize, headerPlugin],
   },
 })

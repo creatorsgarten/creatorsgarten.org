@@ -3,11 +3,11 @@ import BaseLayout from './base.astro'
 
 export interface Props {
   frontmatter: {
-    title: string
+    title?: string
   }
 }
 
-const { title } = Astro.props.frontmatter
+const { title = new URL(Astro.url).pathname.replace('/wiki/', '') } = Astro.props.frontmatter
 ---
 
 <BaseLayout title={title}>

@@ -26,15 +26,13 @@ const lists: PageList[] = [
 ]
 ---
 
-{JSON.stringify(pages)}
-
 <ContentLayout frontmatter={{ title: 'All Pages' }}>
   <p>All pages!</p>
   <ul>
     {
       lists.map(list => (
         <li>
-          <a href={list.url}>{list.url.replace('/wiki/', '')}</a> ({list.name})
+          <a href={list.url}>{list.url.replace('/wiki/', '')}</a>{list.name && ` (${list.name})`}
         </li>
       ))
     }
