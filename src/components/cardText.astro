@@ -8,5 +8,5 @@ const { bold, normal } = Astro.props
 ---
 
 {bold && <span class="font-medium">{bold}</span>}
-{bold && normal && '&nbsp;|&nbsp;'}
+{bold && normal && <span class="mx-1">|</span>}
 {normal && <span>{normal}</span>}
