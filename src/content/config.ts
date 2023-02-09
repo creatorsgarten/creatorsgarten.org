@@ -1,5 +1,5 @@
 import { z, defineCollection } from 'astro:content'
-import { eventSchema } from './schemas'
+import { event as eventSchema } from './schemas/_event'
 
 const eventCollection = defineCollection({
   schema: eventSchema,
