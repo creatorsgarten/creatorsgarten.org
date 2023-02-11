@@ -1,0 +1,4 @@
+https://creatorsgarten.com/* https://creatorsgarten.org/:splat 301!
+https://www.creatorsgarten.com/* https://creatorsgarten.org/:splat 301!
+
+/wiki/Hacks/*    /events/:splat    301
