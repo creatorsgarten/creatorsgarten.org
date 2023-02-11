@@ -1,0 +1,16 @@
+---
+const { name } = Astro.params
+import { getCollection } from 'astro:content'
+
+type Props = { slug: string }
+
+export async function getStaticPaths() {
+  const events = await getCollection('event')
+  return events.map(event => ({
+    params: { slug: event.slug },
+    props: { slug: event.slug },
+  }))
+}
+---
+
+<meta http-equiv="refresh" content={`0;url=/events/${Astro.props.slug}`} />
