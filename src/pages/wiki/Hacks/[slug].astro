@@ -1,6 +1,7 @@
 ---
 const { name } = Astro.params
 import { getCollection } from 'astro:content'
+import Redirect from '$layouts/redirect.astro'
 
 type Props = { slug: string }
 
@@ -13,4 +14,4 @@ export async function getStaticPaths() {
 }
 ---
 
-<meta http-equiv="refresh" content={`0;url=/events/${Astro.props.slug}`} />
+<Redirect frontmatter={{ to: `/events/${Astro.props.slug}` }} />
