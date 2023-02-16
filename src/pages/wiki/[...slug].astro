@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content'
+import WikiRedirect from '$layouts/wiki-redirect.astro'
+
+export async function getStaticPaths() {
+  // These paths have been moved to `wiki.creatorsgarten.org`.
+  // They are listed here to keep links active.
+  const paths = [
+    'About/EventIdeas',
+    'About/Feedback',
+    'About/GitHubOrg',
+    'About/Initiatives',
+    'About/Ring',
+    'About/techcal',
+    'About/Wiki',
+    'BangkokOpenSourceProjects',
+    'Data/StupidHackTH',
+    'Discord',
+    'FAQ/golf1',
+    'Feedback/golf1',
+    'Feedback/hacktoberfest2020',
+    'Feedback/sht2',
+    'Feedback/sht3',
+    'Feedback/sht4',
+    'Feedback/sht5',
+    'Feedback/sht6',
+    'Feedback/wind',
+    'FoundationIncorporation',
+    'HowToJoinRing',
+    'PrizePoolSystem',
+    'SelfIntroduction',
+    'Special/AllPages',
+    'Sponsoring/ShowdownSpace',
+    'Sponsorship/golf1',
+    'Videos',
+  ]
+  return paths.map(slug => ({ params: { slug } }))
+}
+---
+
+<WikiRedirect />

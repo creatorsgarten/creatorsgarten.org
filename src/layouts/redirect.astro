@@ -1,0 +1,18 @@
+---
+import BaseLayout from './base.astro'
+
+export interface Props {
+  frontmatter: {
+    to: string
+  }
+}
+
+const { to } = Astro.props.frontmatter
+---
+
+<BaseLayout title={'Redirect'}>
+  <div class="cg-container text-center pt-4">
+    <a href={to}>Please wait, you are being redirected...</a>
+    <meta http-equiv="refresh" content={`0;url=${to}`} />
+  </div>
+</BaseLayout>
