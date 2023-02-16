@@ -1,5 +1,6 @@
 ---
 layout: $layouts/content.astro
+title: Manifesto
 ---
 
 ## Who are we?

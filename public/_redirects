@@ -1,4 +1,13 @@
 https://creatorsgarten.com/* https://creatorsgarten.org/:splat 301!
 https://www.creatorsgarten.com/* https://creatorsgarten.org/:splat 301!
 
+/wiki/Manifesto  /manifesto        301!
 /wiki/Hacks/*    /events/:splat    301!
+
+/wiki/About/Wiki    https://wiki.creatorsgarten.org/wiki/MainPage    301!
+/wiki/About/*       https://wiki.creatorsgarten.org/wiki/:splat      301!
+/wiki/*             https://wiki.creatorsgarten.org/wiki/:splat      301!
+
+/discord https://garten.page.link/discord 302
+
+/wiki/Sponsoring/ShowdownSpace /wiki/Sponsorship/ShowdownSpace 301
