@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@astrojs/image': ^0.15.0
   '@astrojs/markdown-remark': ^2.0.1
-  '@astrojs/mdx': ^0.16.0
+  '@astrojs/mdx': ^0.17.0
   '@astrojs/prefetch': ^0.1.2
   '@astrojs/tailwind': ^3.0.1
   '@playwright/test': ^1.30.0
@@ -20,7 +20,7 @@ specifiers:
 dependencies:
   '@astrojs/image': 0.15.0_astro@2.0.6
   '@astrojs/markdown-remark': 2.0.1_astro@2.0.6
-  '@astrojs/mdx': 0.16.0_astro@2.0.6
+  '@astrojs/mdx': 0.17.0_astro@2.0.6
   '@astrojs/prefetch': 0.1.2
   '@astrojs/tailwind': 3.0.1_jiulpwjund37q6yckwlgwo54mu
   '@playwright/test': 1.30.0
@@ -115,14 +115,14 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/mdx/0.16.0_astro@2.0.6:
-    resolution: {integrity: sha512-HNk0FhNNthI7+pLmheJyPVU36dXE5l+9UwmmnrMV6COHNZIO2t+pnWnsushEDYZjpkYITDwnXKnQAtD8Mqj4xw==}
+  /@astrojs/mdx/0.17.0_astro@2.0.6:
+    resolution: {integrity: sha512-vy4m/mwzdfDK4jC9wraFLMVwx13eXBPC8r7nkO5s8YlcFX6IDcl2LKPurP3+/ibpTei9IPQLIZOufXRDO96SYg==}
     engines: {node: '>=16.12.0'}
     dependencies:
       '@astrojs/markdown-remark': 2.0.1_astro@2.0.6
       '@astrojs/prism': 2.0.0
-      '@mdx-js/mdx': 2.2.1
-      '@mdx-js/rollup': 2.2.1
+      '@mdx-js/mdx': 2.3.0
+      '@mdx-js/rollup': 2.3.0
       acorn: 8.8.2
       es-module-lexer: 0.10.5
       estree-util-visit: 1.2.1
@@ -686,8 +686,8 @@ packages:
     resolution: {integrity: sha512-4/RWEeXDO6bocPONheFe6gX/oQdP/bEpv0oL4HqjPP5DCenBSt0mHgahppY49N0CpsaqffdwPq+TlX9CYOq2Dw==}
     dev: false
 
-  /@mdx-js/mdx/2.2.1:
-    resolution: {integrity: sha512-hZ3ex7exYLJn6FfReq8yTvA6TE53uW9UHJQM9IlSauOuS55J9y8RtA7W+dzp6Yrzr00/U1sd7q+Wf61q6SfiTQ==}
+  /@mdx-js/mdx/2.3.0:
+    resolution: {integrity: sha512-jLuwRlz8DQfQNiUCJR50Y09CGPq3fLtmtUQfVrj79E0JWu3dvsVcxVIcfhR5h0iXu+/z++zDrYeiJqifRynJkA==}
     dependencies:
       '@types/estree-jsx': 1.0.0
       '@types/mdx': 2.0.3
@@ -710,12 +710,12 @@ packages:
       - supports-color
     dev: false
 
-  /@mdx-js/rollup/2.2.1:
-    resolution: {integrity: sha512-wpGeK9iO7gPEIyC/ZTiggLY/MkEWDj5IWSsjlpkefgjb5RbmUukXU6/D2rHA+VAopxigS3NlaIL2ctpYBi4fmg==}
+  /@mdx-js/rollup/2.3.0:
+    resolution: {integrity: sha512-wLvRfJS/M4UmdqTd+WoaySEE7q4BIejYf1xAHXYvtT1du/1Tl/z2450Gg2+Hu7fh05KwRRiehiTP9Yc/Dtn0fA==}
     peerDependencies:
       rollup: '>=2'
     dependencies:
-      '@mdx-js/mdx': 2.2.1
+      '@mdx-js/mdx': 2.3.0
       '@rollup/pluginutils': 5.0.2
       source-map: 0.7.4
       vfile: 5.3.6
