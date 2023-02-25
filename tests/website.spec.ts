@@ -28,7 +28,7 @@ test('Event page works', async ({ page }) => {
 
 test('Special/AllPages page works', async ({ page }) => {
   await page.goto('/wiki/Special/AllPages')
-  await expect(page.getByRole('listitem').getByText('Manifesto')).toBeVisible()
+  await expect(page.getByRole('listitem').getByText('MainPage')).toBeVisible()
 })
 
 test('Webring page works', async ({ page }) => {

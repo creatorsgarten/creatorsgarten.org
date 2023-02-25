@@ -6,6 +6,8 @@ specifiers:
   '@astrojs/mdx': ^0.17.0
   '@astrojs/prefetch': ^0.1.2
   '@astrojs/tailwind': ^3.0.1
+  '@iconify/icons-ic': ^1.2.13
+  '@iconify/icons-mdi': ^1.2.41
   '@playwright/test': ^1.30.0
   '@tailwindcss/typography': ^0.5.9
   astro: ^2.0.6
@@ -23,6 +25,8 @@ dependencies:
   '@astrojs/mdx': 0.17.0_astro@2.0.6
   '@astrojs/prefetch': 0.1.2
   '@astrojs/tailwind': 3.0.1_jiulpwjund37q6yckwlgwo54mu
+  '@iconify/icons-ic': 1.2.13
+  '@iconify/icons-mdi': 1.2.41
   '@playwright/test': 1.30.0
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
   astro: 2.0.6
@@ -636,6 +640,22 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@iconify/icons-ic/1.2.13:
+    resolution: {integrity: sha512-TphrhwOvgd7CTmUhz6jgXF+SPnMtvTm03bZsAYbny2kwq4zlkhr9e16YEyPGMvKhjtTqNooA3iZ9Wa+pZ8moXQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
+  /@iconify/icons-mdi/1.2.41:
+    resolution: {integrity: sha512-uQ6S+rvJBLtYJaT7As9fE8Nx3wh8bta+jslScIR7qDq97skHUOJnRQyA+FRczZQCoi5iQ2W5t3IWBNe6d0pxTw==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
+  /@iconify/types/2.0.0:
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
+    dev: false
 
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}

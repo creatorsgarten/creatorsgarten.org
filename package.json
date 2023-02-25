@@ -18,6 +18,8 @@
     "@astrojs/mdx": "^0.17.0",
     "@astrojs/prefetch": "^0.1.2",
     "@astrojs/tailwind": "^3.0.1",
+    "@iconify/icons-ic": "^1.2.13",
+    "@iconify/icons-mdi": "^1.2.41",
     "@playwright/test": "^1.30.0",
     "@tailwindcss/typography": "^0.5.9",
     "astro": "^2.0.6",
