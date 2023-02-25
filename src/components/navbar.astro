@@ -2,6 +2,10 @@
 import discordIcon from '@iconify/icons-ic/baseline-discord'
 import facebookIcon from '@iconify/icons-ic/baseline-facebook'
 import githubIcon from '@iconify/icons-mdi/github'
+
+const icon = (d: { default?: {body?: string}; body?: string }) => {
+  return JSON.stringify(d.body || d.default?.body)
+}
 ---
 
 <section
@@ -19,13 +23,13 @@ import githubIcon from '@iconify/icons-mdi/github'
     <a rel="prefetch" href="/ring">Ring</a>
     <a rel="prefetch" href="/manifesto">Manifesto</a>
     <a href="https://grtn.org/discord" title="Discord">
-      <iconify-icon inline icon={JSON.stringify(discordIcon)}></iconify-icon>
+      <iconify-icon inline icon={icon(discordIcon)}></iconify-icon>
     </a>
     <a href="https://grtn.org/fb" title="Facebook">
-      <iconify-icon inline icon={JSON.stringify(facebookIcon)}></iconify-icon>
+      <iconify-icon inline icon={icon(facebookIcon)}></iconify-icon>
     </a>
     <a href="https://grtn.org/gh" title="GitHub">
-      <iconify-icon inline icon={JSON.stringify(githubIcon)}></iconify-icon>
+      <iconify-icon inline icon={icon(githubIcon)}></iconify-icon>
     </a>
   </div>
 </section>
