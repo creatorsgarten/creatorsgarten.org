@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@astrojs/image': ^0.15.0
+  '@astrojs/image': ^0.16.0
   '@astrojs/markdown-remark': ^2.0.1
   '@astrojs/mdx': ^0.17.0
   '@astrojs/prefetch': ^0.1.2
@@ -20,7 +20,7 @@ specifiers:
   tailwindcss: ^3.0.24
 
 dependencies:
-  '@astrojs/image': 0.15.0_astro@2.0.6
+  '@astrojs/image': 0.16.0_astro@2.0.6
   '@astrojs/markdown-remark': 2.0.1_astro@2.0.6
   '@astrojs/mdx': 0.17.0_astro@2.0.6
   '@astrojs/prefetch': 0.1.2
@@ -60,10 +60,10 @@ packages:
     resolution: {integrity: sha512-77aacobLKcL98NmhK3OBS5EHIrX9gs1ckB/vGSIdkVZuB7u51V4jh05I6W0tSvG7/86tALv6QtHTRZ8rLhFTbQ==}
     dev: false
 
-  /@astrojs/image/0.15.0_astro@2.0.6:
-    resolution: {integrity: sha512-Dw47TNCF1dkX3gM1jEmtov4aLR/N5XNzTyToRv99OJZmAAY7J19DN+FUaCHYj3gsiF9N5FekhgOeKu1v4A5DgA==}
+  /@astrojs/image/0.16.0_astro@2.0.6:
+    resolution: {integrity: sha512-9nZSA6/3ucdj5/M774CX0qtPtNZVGJeH6uTL4/4rYJgOZTFfr5CEGNmY9MIyayIYvatvG3VXyRGInLKEo4bXsg==}
     peerDependencies:
-      astro: ^2.0.12
+      astro: ^2.1.0
       sharp: '>=0.31.0'
     peerDependenciesMeta:
       sharp:
