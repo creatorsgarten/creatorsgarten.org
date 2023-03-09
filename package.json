@@ -16,7 +16,7 @@
     "@astrojs/image": "^0.16.0",
     "@astrojs/markdown-remark": "^2.0.1",
     "@astrojs/mdx": "^0.17.0",
-    "@astrojs/prefetch": "^0.1.2",
+    "@astrojs/prefetch": "^0.2.0",
     "@astrojs/tailwind": "^3.0.1",
     "@iconify/icons-ic": "^1.2.13",
     "@iconify/icons-mdi": "^1.2.41",
