@@ -4,7 +4,7 @@ specifiers:
   '@astrojs/image': ^0.16.0
   '@astrojs/markdown-remark': ^2.0.1
   '@astrojs/mdx': ^0.17.0
-  '@astrojs/prefetch': ^0.1.2
+  '@astrojs/prefetch': ^0.2.0
   '@astrojs/tailwind': ^3.0.1
   '@iconify/icons-ic': ^1.2.13
   '@iconify/icons-mdi': ^1.2.41
@@ -23,7 +23,7 @@ dependencies:
   '@astrojs/image': 0.16.0_astro@2.0.6
   '@astrojs/markdown-remark': 2.0.1_astro@2.0.6
   '@astrojs/mdx': 0.17.0_astro@2.0.6
-  '@astrojs/prefetch': 0.1.2
+  '@astrojs/prefetch': 0.2.0
   '@astrojs/tailwind': 3.0.1_jiulpwjund37q6yckwlgwo54mu
   '@iconify/icons-ic': 1.2.13
   '@iconify/icons-mdi': 1.2.41
@@ -146,8 +146,8 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/prefetch/0.1.2:
-    resolution: {integrity: sha512-Plf1GLKDyvTHjEKVMH922wc1AmvlFYvEXrbdaMAlgJuoqTRXirP1CennildFHndTetH8swWMlVGwxdG57dN7cA==}
+  /@astrojs/prefetch/0.2.0:
+    resolution: {integrity: sha512-q68916tIId0tnRFphNL2OcORgoATnfVItaQAugz7wfIq4ghivNISG1scN86uAyF/md1N1YcKu6XPukT5f2lShQ==}
     dependencies:
       throttles: 1.0.1
     dev: false
