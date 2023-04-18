@@ -47,8 +47,8 @@ dependencies:
     specifier: ^9.0.1
     version: 9.0.1
   remark-sectionize:
-    specifier: ^1.1.1
-    version: 1.1.1
+    specifier: ^2.0.0
+    version: 2.0.0
   tailwindcss:
     specifier: ^3.0.24
     version: 3.2.4(postcss@8.4.21)
@@ -3551,11 +3551,11 @@ packages:
       unified: 10.1.2
     dev: false
 
-  /remark-sectionize@1.1.1:
-    resolution: {integrity: sha512-++GBmbsoeQrMBWn6jf3mj0bRq3DR8LnQPJo7u5faQ9JAJ5GeAu2uve8NoW+vgvhnuAv0GYS8hGb2+kqa+8mnpg==}
+  /remark-sectionize@2.0.0:
+    resolution: {integrity: sha512-B+sCNNQroXybxX5Gwu9xbkjFIgK6vHMwbgPM/CEzQTP2ODxUiBsQRBjoSC6XR+yPOkgHvXV83HWCNA8IZuvJKg==}
     dependencies:
-      unist-util-find-after: 2.0.4
-      unist-util-visit-parents: 2.1.2
+      unist-util-find-after: 4.0.1
+      unist-util-visit: 4.1.2
     dev: false
 
   /remark-smartypants@2.0.0:
@@ -4070,18 +4070,15 @@ packages:
       vfile: 5.3.6
     dev: false
 
-  /unist-util-find-after@2.0.4:
-    resolution: {integrity: sha512-zo0ShIr+E/aU9xSK7JC9Kb+WP9seTFCuqVYdo5+HJSjN009XMfhiA1FIExEKzdDP1UsgvKGleGlB/pSdTSqZww==}
+  /unist-util-find-after@4.0.1:
+    resolution: {integrity: sha512-QO/PuPMm2ERxC6vFXEPtmAutOopy5PknD+Oq64gGwxKtk4xwo9Z97t9Av1obPmGU0IyTa6EKYUfTrK2QJS3Ozw==}
     dependencies:
-      unist-util-is: 3.0.0
+      '@types/unist': 2.0.6
+      unist-util-is: 5.2.0
     dev: false
 
   /unist-util-generated@2.0.1:
     resolution: {integrity: sha512-qF72kLmPxAw0oN2fwpWIqbXAVyEqUzDHMsbtPvOudIlUzXYFIeQIuxXQCRCFh22B7cixvU0MG7m3MW8FTq/S+A==}
-    dev: false
-
-  /unist-util-is@3.0.0:
-    resolution: {integrity: sha512-sVZZX3+kspVNmLWBPAB6r+7D9ZgAFPNWm66f7YNb420RlQSbn+n8rG8dGZSkrER7ZIXGQYNm5pqC3v3HopH24A==}
     dev: false
 
   /unist-util-is@5.2.0:
@@ -4124,12 +4121,6 @@ packages:
     resolution: {integrity: sha512-+LWpMFqyUwLGpsQxpumsQ9o9DG2VGLFrpz+rpVXYIEdPy57GSy5HioC0g3bg/8WP9oCLlapQtklOzQ8uLS496Q==}
     dependencies:
       '@types/unist': 2.0.6
-    dev: false
-
-  /unist-util-visit-parents@2.1.2:
-    resolution: {integrity: sha512-DyN5vD4NE3aSeB+PXYNKxzGsfocxp6asDc2XXE3b0ekO2BaRUpBicbbUygfSvYfUz1IkmjFR1YF7dPklraMZ2g==}
-    dependencies:
-      unist-util-is: 3.0.0
     dev: false
 
   /unist-util-visit-parents@5.1.3:
