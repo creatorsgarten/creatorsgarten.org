@@ -1,0 +1,84 @@
+---
+import './revamp.css'
+
+export interface Props {
+  title?: string
+  class?: string
+}
+
+const { title } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/svg" href="/images/ring.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <link rel="icon" type="image/svg" href="/images/ring.svg" />
+    <title>{title ? `${title} | Creatorsgarten` : 'Creatorsgarten'}</title>
+  </head>
+  <body>
+    <nav class="px-6 py-8 flex justify-between">
+      <img src="/images/creatorsgarten.svg" class="h-12" />
+      <div class="flex space-x-4 items-center font-medium">
+        <ul class="shrink-0 flex bg-[#ededed] space-x-4 py-2 px-4 rounded-full">
+          <li>CRAFTS</li>
+          <li>CONTENT</li>
+          <li>PEOPLE</li>
+          <li>US</li>
+          <li>WIKI</li>
+        </ul>
+        <button class="shrink-0 text-white bg-[#1c1916] py-2 px-4 rounded-full">LOGIN</button>
+      </div>
+    </nav>
+
+    <main {...{ class: Astro.props.class }}>
+      <slot />
+    </main>
+
+    <footer class="bg-[#ededed] py-12 px-6 flex justify-between font-medium uppercase">
+      <section class="grid grid-cols-4 max-w-[60%] w-full">
+        <div>
+          <h1>Crafts</h1>
+          <ul class="font-normal pt-1">
+            <li>Events</li>
+            <li>Projects</li>
+          </ul>
+        </div>
+        <div>
+          <h1>Content</h1>
+          <ul class="font-normal pt-1">
+            <li>Video</li>
+            <li>Podcast</li>
+            <li>RSS feed</li>
+          </ul>
+        </div>
+        <div>
+          <h1>People</h1>
+          <ul class="font-normal pt-1">
+            <li>Us & Partners</li>
+            <li>Sponsors</li>
+            <li>Webring</li>
+          </ul>
+        </div>
+        <div>
+          <h1>Us</h1>
+          <ul class="font-normal pt-1">
+            <li>About</li>
+            <li>Contact</li>
+            <li>Legal</li>
+          </ul>
+        </div>
+      </section>
+      <section class="flex flex-col items-end justify-between">
+        <img src="/images/creatorsgarten.svg" class="h-10" />
+        <p class="text-right text-sm">MADE WITH THE ❤️ OF 🪄</p>
+      </section>
+    </footer>
+  </body>
+</html>
