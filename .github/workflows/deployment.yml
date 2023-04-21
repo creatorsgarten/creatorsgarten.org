@@ -3,6 +3,16 @@ name: Deployments
 on:
   push:
     branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -11,41 +21,37 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: node
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-      - uses: pnpm/action-setup@v2.2.4
-        id: pnpm-install
-        with:
-          version: 7
-          run_install: false
-      - uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            ~/.local/share/pnpm/store/v3
-          key: ${{ runner.OS }}-x86-node18-pnpm7-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.OS }}-x86-node18-pnpm7-${{ env.cache-name }}-
-            ${{ runner.OS }}-x86-node18-pnpm7-
-      - uses: actions/cache@v3
+          cache: pnpm
+      - name: install
+        run: pnpm -r i --frozen-lockfile
+      - name: astro-cache
+        uses: actions/cache@v3
         with:
           path: |
             dist/_astro
           # astro generated images should be stored in public/ for efficient caching
-          key: ${{ runner.OS }}-astro-cache-${{ hashFiles('public/**/*') }}
+          key: ${{ runner.OS }}-astro-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('public/**/*') }}
           restore-keys: |
-            ${{ runner.OS }}-astro-cache-${{ env.cache-name }}-
-            ${{ runner.OS }}-astro-cache-
-      - name: Install dependencies
-        run: pnpm -r i --shamefully-hoist --prefer-offline
-      - name: Build
+            ${{ runner.OS }}-astro-cache-${{ secrets.CACHE_HASH }}-${{ env.cache-name }}-
+            ${{ runner.OS }}-astro-cache-${{ secrets.CACHE_HASH }}-
+      - name: build
         run: pnpm build
-      - uses: actions/upload-pages-artifact@v1
+      - name: upload
+        uses: actions/upload-pages-artifact@v1
         with:
           path: dist
-      - uses: actions/deploy-pages@v2
+      - name: deploy
+        uses: actions/deploy-pages@v2
         id: deployment
-      - name: 'Post-deplotyment: Logging'
+      - name: 'logging'
         run: echo "Deployed at ${{ steps.deployment.outputs.page_url }}"
