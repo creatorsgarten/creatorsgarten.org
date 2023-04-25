@@ -35,10 +35,10 @@ dependencies:
     specifier: 0.5.9
     version: 0.5.9(tailwindcss@3.0.24)
   '@types/react':
-    specifier: ^18.0.21
+    specifier: ^18.0.38
     version: 18.0.38
   '@types/react-dom':
-    specifier: ^18.0.6
+    specifier: ^18.0.11
     version: 18.0.11
   astro:
     specifier: 2.0.6
@@ -46,6 +46,12 @@ dependencies:
   astro-compress:
     specifier: 1.1.29
     version: 1.1.29
+  react:
+    specifier: ^18.0.0
+    version: 18.2.0
+  react-dom:
+    specifier: ^18.0.0
+    version: 18.2.0(react@18.2.0)
   remark-external-links:
     specifier: 9.0.1
     version: 9.0.1

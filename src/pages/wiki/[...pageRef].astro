@@ -9,12 +9,11 @@ const octokit = new Octokit({
   timeZone: 'Asia/Bangkok',
 })
 
-const url =
-  'https://raw.githubusercontent.com/creatorsgarten/wiki/main/wiki/Asok.md'
-const raw = await fetch(url, { method: 'GET' })
-const md = await raw.text()
-
 const { pageRef } = Astro.params
+
+const markdownUrl = `https://raw.githubusercontent.com/creatorsgarten/wiki/main/wiki/${pageRef}.md`
+const raw = await fetch(markdownUrl, { method: 'GET' })
+const md = await raw.text()
 ---
 
 <WikiLayout

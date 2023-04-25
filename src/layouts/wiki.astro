@@ -22,7 +22,6 @@ export interface Props {
       by: string
     }
   }
-
 }
 
 const { title, contents, metadata, type = 'page' } = Astro.props
@@ -32,24 +31,26 @@ const { title, contents, metadata, type = 'page' } = Astro.props
   <h1 class="pt-6 pb-8 text-center text-5xl uppercase">{title}</h1>
   <div class="grid sm:grid-cols-3 xl:grid-cols-5 divide-x-2 border border-b-0">
     <div class="col-span-1 divide-y-2">
-      {type === 'event' && (
-        <>
-          <img src="/images/events/hacktoberfest2022.png" class="w-full aspect-square" />
-          <section class="p-6">
-            <h2 class="text-center pb-6 font-medium">EVENTS</h2>
-            <MetadataTable
-              data={[
-                ['LOCATION', 'LINK Collaboration Space'],
-                [
-                  'DATE',
-                  'FROM 14 July 2018\nTO 18 July 2018',
-                ],
-                ['HOST', '[STUPID HACKATHON]'],
-              ]}
+      {
+        type === 'event' && (
+          <>
+            <img
+              src="/images/events/hacktoberfest2022.png"
+              class="w-full aspect-square"
             />
-          </section>
-        </>
-      )}
+            <section class="p-6">
+              <h2 class="text-center pb-6 font-medium">EVENTS</h2>
+              <MetadataTable
+                data={[
+                  ['LOCATION', 'LINK Collaboration Space'],
+                  ['DATE', 'FROM 14 July 2018\nTO 18 July 2018'],
+                  ['HOST', '[STUPID HACKATHON]'],
+                ]}
+              />
+            </section>
+          </>
+        )
+      }
       <section class="p-6">
         <h2 class="text-center pb-6 font-medium">CONTENTS</h2>
         <ul>
@@ -60,8 +61,18 @@ const { title, contents, metadata, type = 'page' } = Astro.props
         <h2 class="text-center pb-6 font-medium">METADATA</h2>
         <MetadataTable
           data={[
-            ['CREATE', `${dayjs(metadata.created.at).format('D MMMM YYYY')} / @${metadata.created.by}`],
-            ['EDIT', `${dayjs(metadata.edited.at).format('D MMMM YYYY')} / @${metadata.edited.by}`],
+            [
+              'CREATE',
+              `${dayjs(metadata.created.at).format('D MMMM YYYY')} / @${
+                metadata.created.by
+              }`,
+            ],
+            [
+              'EDIT',
+              `${dayjs(metadata.edited.at).format('D MMMM YYYY')} / @${
+                metadata.edited.by
+              }`,
+            ],
           ]}
         />
       </section>
