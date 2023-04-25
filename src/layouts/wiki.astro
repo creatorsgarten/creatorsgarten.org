@@ -2,6 +2,25 @@
 import BaseLayout from './base.astro'
 
 import MetadataTable from '$components/metadataTable.astro'
+
+export interface Props {
+  title: string
+  contents: {
+    id: string
+    label: string
+  }[]
+  metadata: {
+    created: {
+      at: Date
+      by: string
+    }
+    edited: {
+      at: Date
+      by: string
+    }
+  }
+
+}
 ---
 
 <BaseLayout>
