@@ -1,16 +1,16 @@
 import { defineConfig } from 'astro/config'
-
 import node from '@astrojs/node'
-
 import tailwind from '@astrojs/tailwind'
 import image from '@astrojs/image'
 import mdx from '@astrojs/mdx'
 import prefetch from '@astrojs/prefetch'
 import compress from 'astro-compress'
-
 import externalLinks from 'remark-external-links'
 import sectionize from 'remark-sectionize'
 import { headerPlugin } from './src/plugins/headerPlugin.mjs'
+
+// https://astro.build/config
+import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
@@ -28,6 +28,7 @@ export default defineConfig({
       svg: false,
       js: true,
     }),
+    react(),
   ],
   markdown: {
     remarkPlugins: [externalLinks, sectionize, headerPlugin],

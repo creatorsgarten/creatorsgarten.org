@@ -17,13 +17,20 @@
     "@astrojs/markdown-remark": "2.0.1",
     "@astrojs/mdx": "0.17.0",
     "@astrojs/prefetch": "0.2.0",
+    "@astrojs/react": "^2.1.1",
     "@astrojs/tailwind": "3.0.1",
+    "@contentsgarten/markdown": "^1.0.0",
     "@iconify/icons-ic": "1.2.13",
     "@iconify/icons-mdi": "1.2.41",
+    "@octokit/rest": "^19.0.7",
     "@tailwindcss/typography": "0.5.9",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "astro": "2.0.6",
     "astro-compress": "1.1.29",
     "dayjs": "1.11.7",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "remark-external-links": "9.0.1",
     "remark-sectionize": "2.0.0",
     "tailwindcss": "3.0.24"
@@ -31,6 +38,7 @@
   "devDependencies": {
     "@astrojs/node": "5.1.1",
     "@playwright/test": "1.30.0",
+    "micromark-extension-directive": "^2.2.0",
     "prettier": "2.8.3",
     "prettier-plugin-astro": "0.8.0",
     "typescript": "5.0.4"

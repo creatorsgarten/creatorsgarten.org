@@ -7,10 +7,14 @@ const { data } = Astro.props
 ---
 
 <table>
-  {data.map(([key, value]) => (
-    <tr>
-      <td class="font-medium">{key}</td>
-      <td class="pl-4"><p>{value}</p></td>
-    </tr>
-  ))}
+  {
+    data.map(([key, value]) => (
+      <tr>
+        <td class="font-medium">{key}</td>
+        <td class="pl-4">
+          <p>{value}</p>
+        </td>
+      </tr>
+    ))
+  }
 </table>

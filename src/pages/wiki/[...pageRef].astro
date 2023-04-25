@@ -1,0 +1,40 @@
+---
+import { Octokit } from '@octokit/rest'
+import { Markdown } from '@contentsgarten/markdown'
+
+import WikiLayout from '$layouts/wiki.astro'
+
+const octokit = new Octokit({
+  auth: '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',
+  timeZone: 'Asia/Bangkok',
+})
+
+const url =
+  'https://raw.githubusercontent.com/creatorsgarten/wiki/main/wiki/Asok.md'
+const raw = await fetch(url, { method: 'GET' })
+const md = await raw.text()
+
+const { pageRef } = Astro.params
+---
+
+<WikiLayout
+  title={pageRef as string}
+  contents={[
+    {
+      id: 'a',
+      label: 'a',
+    },
+  ]}
+  metadata={{
+    created: {
+      at: new Date(),
+      by: 'owo',
+    },
+    edited: {
+      at: new Date(),
+      by: 'owo',
+    },
+  }}
+>
+  <Markdown text={md} />
+</WikiLayout>

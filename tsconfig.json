@@ -7,6 +7,8 @@
       "$components/*": ["src/components/*"],
       "$constants/*": ["src/constants/*"],
       "$layouts/*": ["src/layouts/*"]
-    }
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }
