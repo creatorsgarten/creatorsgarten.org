@@ -1,0 +1,60 @@
+---
+import BaseLayout from './base.astro'
+
+import MetadataTable from '$components/metadataTable.astro'
+---
+
+<BaseLayout>
+  <h1 class="pt-6 pb-8 text-center text-5xl uppercase">
+    Stupid Hackathon Thailand #2
+  </h1>
+  <div class="grid sm:grid-cols-3 xl:grid-cols-5 divide-x-2 border border-b-0">
+    <div class="col-span-1 divide-y-2">
+      <img src="/images/events/hacktoberfest2022.png" class="w-full aspect-square" />
+      <section class="p-6">
+        <h2 class="text-center pb-6 font-medium">EVENTS</h2>
+        <MetadataTable
+          data={[
+            ['LOCATION', 'LINK Collaboration Space'],
+            [
+              'DATE',
+              'FROM 14 July 2018\nTO 18 July 2018',
+            ],
+            ['HOST', '[STUPID HACKATHON]'],
+          ]}
+        />
+      </section>
+      <section class="p-6">
+        <h2 class="text-center pb-6 font-medium">CONTENTS</h2>
+      </section>
+      <section class="p-6">
+        <h2 class="text-center pb-6 font-medium">METADATA</h2>
+        <MetadataTable
+          data={[
+            ['CREATE', '1 January 2023 / @poom'],
+            ['EDIT', '3 March 2023 / @riffy'],
+          ]}
+        />
+      </section>
+      <section class="p-6">
+        <h2 class="text-center pb-6 font-medium">SHARE</h2>
+      </section>
+    </div>
+    <div class="col-span-1 md:col-span-2 xl:col-span-4 px-12 py-10">
+      <article class="prose max-w-6xl mx-auto text-[0.8en]">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic incidunt assumenda illo facilis dolor ut nisi ipsam, magnam beatae debitis sapiente vel quam? Sed fugiat dolores et incidunt, ducimus quo!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic incidunt assumenda illo facilis dolor ut nisi ipsam, magnam beatae debitis sapiente vel quam? Sed fugiat dolores et incidunt, ducimus quo!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic incidunt assumenda illo facilis dolor ut nisi ipsam, magnam beatae debitis sapiente vel quam? Sed fugiat dolores et incidunt, ducimus quo!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic incidunt assumenda illo facilis dolor ut nisi ipsam, magnam beatae debitis sapiente vel quam? Sed fugiat dolores et incidunt, ducimus quo!
+        </p>
+      </article>
+    </div>
+  </div>
+</BaseLayout>
