@@ -61,7 +61,7 @@ const { title, contents, metadata, type = 'page' } = Astro.props
         <MetadataTable
           data={[
             ['CREATE', `${dayjs(metadata.created.at).format('D MMMM YYYY')} / @${metadata.created.by}`],
-            ['EDIT', `${dayjs(metadata.edited.at).format('D MMMM YYYY')} / @${metadata.created.by}`],
+            ['EDIT', `${dayjs(metadata.edited.at).format('D MMMM YYYY')} / @${metadata.edited.by}`],
           ]}
         />
       </section>
