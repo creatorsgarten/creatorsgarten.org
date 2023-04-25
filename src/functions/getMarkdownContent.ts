@@ -1,17 +1,17 @@
 import { rehype } from 'rehype'
 import rehypeSlug from 'rehype-slug'
-import { renderMarkdown } from '@contentsgarten/markdown'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import type { Root, RootContent } from 'hast'
 
-import { getHeadingsFromElement  } from '../functions/getHeadingsFromTree'
+import { renderMarkdown } from '@contentsgarten/markdown'
 
-export const getMarkdownContent = async (
-  markdown: string
-) => {
+import { getHeadingsFromElement } from '../functions/getHeadingsFromTree'
+
+import type { Root } from 'hast'
+
+export const getMarkdownContent = async (markdown: string) => {
   const rendered = renderMarkdown(markdown)
 
-  let ids: { id: string, label: string }[] = []
+  let ids: { id: string; label: string }[] = []
 
   const modRendered = await rehype()
     .data('settings', { fragment: true })
@@ -34,6 +34,6 @@ export const getMarkdownContent = async (
 
   return {
     ids,
-    content: modRendered.toString(),
+    rendered: modRendered.toString(),
   }
 }

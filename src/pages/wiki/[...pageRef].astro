@@ -16,7 +16,7 @@ if (pageRef === undefined) {
 }
 
 const markdownResponse = await getMarkdownFromSlug(pageRef)
-const { ids, content } = await getMarkdownContent(
+const { ids, rendered } = await getMarkdownContent(
   markdownResponse.result.data.file.content
 )
 ---
@@ -31,5 +31,5 @@ const { ids, content } = await getMarkdownContent(
     },
   }}
 >
-  <Markdown text={content} />
+  <Markdown text={rendered} />
 </WikiLayout>

@@ -42,7 +42,6 @@
     "@playwright/test": "1.30.0",
     "@types/hast": "^2.3.4",
     "dayjs": "^1.11.7",
-    "hast": "^1.0.0",
     "micromark-extension-directive": "^2.2.0",
     "prettier": "2.8.3",
     "prettier-plugin-astro": "0.8.0",

@@ -28,8 +28,5 @@ export const getMarkdownFromSlug = async (
           revalidate: true,
         }),
       }
-    ).toString()}`,
-    {
-      method: 'GET',
-    }
+    ).toString()}`
   ).then(o => o.json())

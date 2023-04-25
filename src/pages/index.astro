@@ -6,13 +6,13 @@ import RevampBase from '$layouts/base.astro'
 <RevampBase class="max-w-7xl mx-auto space-y-12 [&>*]:px-6">
   <section class="text-center">
     <h2 class="font-medium">CONNECT / CRAFT / EXPLORE</h2>
-    <h1 class="text-6xl pt-2 pb-4 font-medium">
+    <h1 class="pt-2 pb-4 text-6xl font-medium">
       WE DEMOCRATIZE<br />CREATION FOR ALL
     </h1>
     <a>OUR MANIFESTO -&gt;</a>
   </section>
   <section class="grid grid-cols-2 gap-8">
-    <div class="w-full aspect-video bg-neutral-200 rounded-2xl"></div>
+    <div class="aspect-video w-full rounded-2xl bg-neutral-200"></div>
     <article class="flex flex-col justify-evenly">
       <h3>CREATORSGARTEN = GARDEN OF CREATORS</h3>
 
@@ -36,21 +36,21 @@ import RevampBase from '$layouts/base.astro'
   <section class="space-y-6">
     <h2 class="text-center text-4xl font-medium">PARTICIPATE</h2>
     <div
-      class="grid grid-cols-2 gap-8 font-medium text-3xl [&>*]:flex [&>*]:space-x-6"
+      class="[&>*]:flex [&>*]:space-x-6 grid grid-cols-2 gap-8 text-3xl font-medium"
     >
       <div>
-        <div class="w-1/2 bg-neutral-200 aspect-square"></div>
+        <div class="aspect-square w-1/2 bg-neutral-200"></div>
         <p>THE 7th STUPID HACKATHON THAILAND</p>
       </div>
       <div>
-        <div class="w-1/2 bg-neutral-200 aspect-square"></div>
+        <div class="aspect-square w-1/2 bg-neutral-200"></div>
         <p>CREATIVE CODING DAY</p>
       </div>
     </div>
     <div>
-      <h2 class="text-3xl font-medium py-4">RECURRING EVENTS</h2>
+      <h2 class="py-4 text-3xl font-medium">RECURRING EVENTS</h2>
       <div
-        class="grid grid-cols-3 gap-6 [&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl"
+        class="[&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl grid grid-cols-3 gap-6"
       >
         <div>
           <p class="font-medium leading-none">HACKTOBERFEST THAILAND</p>
@@ -70,7 +70,7 @@ import RevampBase from '$layouts/base.astro'
   </section>
   <section class="space-y-6">
     <h2 class="text-center text-4xl font-medium">OUR SPONSORS</h2>
-    <p class="text-center max-w-2xl mx-auto">
+    <p class="mx-auto max-w-2xl text-center">
       Building things to solve one's own problems should be a possibility for
       everyone, regardless of their age, economic status, education, or
       opportunities, without relying on governments or corporations.
@@ -78,9 +78,9 @@ import RevampBase from '$layouts/base.astro'
     <a class="mx-auto">MORE ON SPONSORSHIPS -&gt;</a>
     <div class="space-y-10">
       <div class="grid grid-cols-2 gap-10">
-        <div class="bg-gray-500 aspect-[894/441] rounded-3xl"></div>
+        <div class="aspect-[894/441] rounded-3xl bg-gray-500"></div>
         <div>
-          <img src="/images/sponsors/true.png" class="h-16 mb-4" />
+          <img src="/images/sponsors/true.png" class="mb-4 h-16" />
           <p>
             Building things to solve one's own problems should be a possibility
             for everyone, regardless of their age, economic status, education,
@@ -89,9 +89,9 @@ import RevampBase from '$layouts/base.astro'
         </div>
       </div>
       <div class="grid grid-cols-2 gap-10">
-        <div class="bg-gray-500 aspect-[894/441] rounded-3xl"></div>
+        <div class="aspect-[894/441] rounded-3xl bg-gray-500"></div>
         <div>
-          <img src="/images/sponsors/thaicom.png" class="h-16 mb-4" />
+          <img src="/images/sponsors/thaicom.png" class="mb-4 h-16" />
           <p>
             Building things to solve one's own problems should be a possibility
             for everyone, regardless of their age, economic status, education,
@@ -114,7 +114,7 @@ import RevampBase from '$layouts/base.astro'
           'persec',
           'dev-mountain',
         ].map(sponsor => (
-          <div class="bg-white px-14 py-8 flex justify-center items-center rounded-3xl">
+          <div class="flex items-center justify-center rounded-3xl bg-white px-14 py-8">
             <img
               src={`/images/sponsors/${sponsor}.png`}
               class="max-h-[100px]"

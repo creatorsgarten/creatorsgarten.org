@@ -25,17 +25,19 @@ const { title, contents, metadata, type = 'page' } = Astro.props
 
 <BaseLayout>
   <h1 class="pt-6 pb-8 text-center text-5xl uppercase">{title}</h1>
-  <div class="grid sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 divide-x-2 border border-b-0">
+  <div
+    class="grid divide-x-2 border border-b-0 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
+  >
     <div class="col-span-1 divide-y-2">
       {
         type === 'event' && (
           <>
             <img
               src="/images/events/hacktoberfest2022.png"
-              class="w-full aspect-square"
+              class="aspect-square w-full"
             />
             <section class="p-6">
-              <h2 class="text-center pb-6 font-medium">EVENTS</h2>
+              <h2 class="pb-6 text-center font-medium">EVENTS</h2>
               <MetadataTable
                 data={[
                   ['LOCATION', 'LINK Collaboration Space'],
@@ -47,18 +49,22 @@ const { title, contents, metadata, type = 'page' } = Astro.props
           </>
         )
       }
-      {contents.length > 0 && (
-        <section class="p-6">
-          <h2 class="text-center pb-6 font-medium">CONTENTS</h2>
-          <ul class="list-disc list-inside text-sm">
-            {contents.map(content => (
-              <li><a href={'#' + content.id}>{content.label}</a></li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {
+        contents.length > 0 && (
+          <section class="p-6">
+            <h2 class="pb-6 text-center font-medium">CONTENTS</h2>
+            <ul class="list-inside list-disc text-sm">
+              {contents.map(content => (
+                <li>
+                  <a href={'#' + content.id}>{content.label}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
       <section class="p-6">
-        <h2 class="text-center pb-6 font-medium">METADATA</h2>
+        <h2 class="pb-6 text-center font-medium">METADATA</h2>
         <MetadataTable
           data={[
             [
@@ -71,11 +77,13 @@ const { title, contents, metadata, type = 'page' } = Astro.props
         />
       </section>
       <section class="p-6">
-        <h2 class="text-center pb-6 font-medium">SHARE</h2>
+        <h2 class="pb-6 text-center font-medium">SHARE</h2>
       </section>
     </div>
-    <div class="col-span-1 sm:col-span-2 md:col-span-3 xl:col-span-4 px-12 py-10">
-      <article class="prose max-w-6xl mx-auto text-[0.8en] overflow-y-scroll">
+    <div
+      class="col-span-1 px-12 py-10 sm:col-span-2 md:col-span-3 xl:col-span-4"
+    >
+      <article class="text-[0.8en] prose mx-auto max-w-6xl overflow-y-scroll">
         <slot />
       </article>
     </div>
