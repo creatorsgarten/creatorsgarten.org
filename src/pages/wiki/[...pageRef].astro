@@ -4,7 +4,13 @@ import { Markdown } from '@contentsgarten/markdown'
 
 import WikiLayout from '$layouts/wiki.astro'
 
-const { pageRef } = Astro.params
+let { pageRef } = Astro.params
+
+console.log({ pageRef })
+
+// if root /wiki, then use /MainPage content
+if (pageRef === undefined)
+  pageRef = 'MainPage'
 
 const markdownUrl = `https://raw.githubusercontent.com/creatorsgarten/wiki/main/wiki/${pageRef}.md`
 const rawMarkdown = await fetch(markdownUrl, { method: 'GET' }).then(res =>
