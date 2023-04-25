@@ -1,4 +1,6 @@
 ---
+import dayjs from 'dayjs'
+
 import BaseLayout from './base.astro'
 
 import MetadataTable from '$components/metadataTable.astro'
@@ -21,12 +23,12 @@ export interface Props {
   }
 
 }
+
+const { title, contents, metadata } = Astro.props
 ---
 
 <BaseLayout>
-  <h1 class="pt-6 pb-8 text-center text-5xl uppercase">
-    Stupid Hackathon Thailand #2
-  </h1>
+  <h1 class="pt-6 pb-8 text-center text-5xl uppercase">{title}</h1>
   <div class="grid sm:grid-cols-3 xl:grid-cols-5 divide-x-2 border border-b-0">
     <div class="col-span-1 divide-y-2">
       <img src="/images/events/hacktoberfest2022.png" class="w-full aspect-square" />
@@ -45,13 +47,16 @@ export interface Props {
       </section>
       <section class="p-6">
         <h2 class="text-center pb-6 font-medium">CONTENTS</h2>
+        <ul>
+          <li>asd</li>
+        </ul>
       </section>
       <section class="p-6">
         <h2 class="text-center pb-6 font-medium">METADATA</h2>
         <MetadataTable
           data={[
-            ['CREATE', '1 January 2023 / @poom'],
-            ['EDIT', '3 March 2023 / @riffy'],
+            ['CREATE', `${dayjs(metadata.created.at).format('D MMMM YYYY')} / @${metadata.created.by}`],
+            ['EDIT', `${dayjs(metadata.edited.at).format('D MMMM YYYY')} / @${metadata.created.by}`],
           ]}
         />
       </section>
