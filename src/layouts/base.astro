@@ -1,10 +1,9 @@
 ---
-import Navbar from '$components/navbar.astro'
-
-import './global.css'
+import './base.css'
 
 export interface Props {
   title?: string
+  class?: string
 }
 
 const { title } = Astro.props
@@ -18,31 +17,68 @@ const { title } = Astro.props
     <link rel="shortcut icon" type="image/svg" href="/images/ring.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Readex+Pro:wght@300;400&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
     <link rel="icon" type="image/svg" href="/images/ring.svg" />
     <title>{title ? `${title} | Creatorsgarten` : 'Creatorsgarten'}</title>
-    <script
-      async
-      src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.2/dist/iconify-icon.min.js"
-      integrity="sha256-kwd+IKkvIXP95TLOfLvp/rHfnja1G+Ve+u1UR22A02k="
-      crossorigin="anonymous"
-    ></script>
   </head>
   <body>
-    <Navbar />
+    <nav class="px-6 py-8 flex justify-between">
+      <img src="/images/creatorsgarten.svg" class="h-12" />
+      <div class="flex space-x-4 items-center font-medium">
+        <ul class="shrink-0 flex bg-[#ededed] space-x-4 py-2 px-4 rounded-full">
+          <li>CRAFTS</li>
+          <li>CONTENT</li>
+          <li>PEOPLE</li>
+          <li>US</li>
+          <li>WIKI</li>
+        </ul>
+        <button class="shrink-0 text-white bg-[#1c1916] py-2 px-4 rounded-full">LOGIN</button>
+      </div>
+    </nav>
 
-    <main>
+    <main {...{ class: Astro.props.class }}>
       <slot />
     </main>
 
-    <div class="cg-large-container">
-      <footer class="flex justify-center py-8">
-        © {new Date().getFullYear()} | Made with ♥ by Creatorsgarten
-      </footer>
-    </div>
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3f4c5a7b957a49c3877150febe83307f"}'></script><!-- End Cloudflare Web Analytics -->
+    <footer class="bg-[#ededed] py-12 px-6 flex justify-between font-medium uppercase">
+      <section class="grid grid-cols-4 max-w-[60%] w-full">
+        <div>
+          <h1>Crafts</h1>
+          <ul class="font-normal pt-1">
+            <li>Events</li>
+            <li>Projects</li>
+          </ul>
+        </div>
+        <div>
+          <h1>Content</h1>
+          <ul class="font-normal pt-1">
+            <li>Video</li>
+            <li>Podcast</li>
+            <li>RSS feed</li>
+          </ul>
+        </div>
+        <div>
+          <h1>People</h1>
+          <ul class="font-normal pt-1">
+            <li>Us & Partners</li>
+            <li>Sponsors</li>
+            <li>Webring</li>
+          </ul>
+        </div>
+        <div>
+          <h1>Us</h1>
+          <ul class="font-normal pt-1">
+            <li>About</li>
+            <li>Contact</li>
+            <li>Legal</li>
+          </ul>
+        </div>
+      </section>
+      <section class="flex flex-col items-end justify-between">
+        <img src="/images/creatorsgarten.svg" class="h-10" />
+        <p class="text-right text-sm">MADE WITH THE ❤️ OF 🪄</p>
+      </section>
+    </footer>
   </body>
 </html>
