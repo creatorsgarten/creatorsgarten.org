@@ -1,22 +1,31 @@
 ---
-import WorkingGroup from "$components/workingGroup.astro";
-import RevampBase from "$layouts/base.astro";
-
+import WorkingGroup from '$components/workingGroup.astro'
+import RevampBase from '$layouts/base.astro'
 ---
 
 <RevampBase class="space-y-12 [&>*]:px-6">
   <section class="text-center">
     <h2 class="font-medium">CONNECT / CRAFT / EXPLORE</h2>
-    <h1 class="text-6xl pt-2 pb-4 font-medium">WE DEMOCRATIZE<br />CREATION FOR ALL</h1>
+    <h1 class="text-6xl pt-2 pb-4 font-medium">
+      WE DEMOCRATIZE<br />CREATION FOR ALL
+    </h1>
     <a>OUR MANIFESTO -&gt;</a>
   </section>
   <section class="grid grid-cols-2 gap-8">
-    <div class="w-full aspect-video bg-neutral-200 rounded-2xl" />
+    <div class="w-full aspect-video bg-neutral-200 rounded-2xl"></div>
     <article class="flex flex-col justify-evenly">
       <h3>CREATORSGARTEN = GARDEN OF CREATORS</h3>
 
-      <p>Building things to solve one's own problems should be a possibility for everyone, regardless of their age, economic status, education, or opportunities, without relying on governments or corporations.</p>
-      <p>Today, some developers and makers instinctively develop applications, tools, or hardware to solve their own problems when they arise. Thus, they learn effectively at maximum speed.</p>
+      <p>
+        Building things to solve one's own problems should be a possibility for
+        everyone, regardless of their age, economic status, education, or
+        opportunities, without relying on governments or corporations.
+      </p>
+      <p>
+        Today, some developers and makers instinctively develop applications,
+        tools, or hardware to solve their own problems when they arise. Thus,
+        they learn effectively at maximum speed.
+      </p>
 
       <a>SEE MORE -&gt;</a>
     </article>
@@ -26,19 +35,23 @@ import RevampBase from "$layouts/base.astro";
   </section>
   <section class="space-y-6">
     <h2 class="text-center text-4xl font-medium">PARTICIPATE</h2>
-    <div class="grid grid-cols-2 gap-8 font-medium text-3xl [&>*]:flex [&>*]:space-x-6">
+    <div
+      class="grid grid-cols-2 gap-8 font-medium text-3xl [&>*]:flex [&>*]:space-x-6"
+    >
       <div>
-        <div class="w-1/2 bg-neutral-200 aspect-square" />
+        <div class="w-1/2 bg-neutral-200 aspect-square"></div>
         <p>THE 7th STUPID HACKATHON THAILAND</p>
       </div>
       <div>
-        <div class="w-1/2 bg-neutral-200 aspect-square" />
+        <div class="w-1/2 bg-neutral-200 aspect-square"></div>
         <p>CREATIVE CODING DAY</p>
       </div>
     </div>
     <div>
       <h2 class="text-3xl font-medium py-4">RECURRING EVENTS</h2>
-      <div class="grid grid-cols-3 gap-6 [&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl">
+      <div
+        class="grid grid-cols-3 gap-6 [&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl"
+      >
         <div>
           <p class="font-medium leading-none">HACKTOBERFEST THAILAND</p>
           <p>OCTOBER</p>
@@ -57,21 +70,33 @@ import RevampBase from "$layouts/base.astro";
   </section>
   <section class="space-y-6">
     <h2 class="text-center text-4xl font-medium">OUR SPONSORS</h2>
-    <p class="text-center max-w-2xl mx-auto">Building things to solve one's own problems should be a possibility for everyone, regardless of their age, economic status, education, or opportunities, without relying on governments or corporations.</p>
+    <p class="text-center max-w-2xl mx-auto">
+      Building things to solve one's own problems should be a possibility for
+      everyone, regardless of their age, economic status, education, or
+      opportunities, without relying on governments or corporations.
+    </p>
     <a class="mx-auto">MORE ON SPONSORSHIPS -&gt;</a>
     <div class="space-y-10">
       <div class="grid grid-cols-2 gap-10">
-        <div class="bg-gray-500 aspect-[894/441] rounded-3xl" />
+        <div class="bg-gray-500 aspect-[894/441] rounded-3xl"></div>
         <div>
           <img src="/images/sponsors/true.png" class="h-16 mb-4" />
-          <p>Building things to solve one's own problems should be a possibility for everyone, regardless of their age, economic status, education, or opportunities, without relying on governments or corporations.</p>
+          <p>
+            Building things to solve one's own problems should be a possibility
+            for everyone, regardless of their age, economic status, education,
+            or opportunities, without relying on governments or corporations.
+          </p>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-10">
-        <div class="bg-gray-500 aspect-[894/441] rounded-3xl" />
+        <div class="bg-gray-500 aspect-[894/441] rounded-3xl"></div>
         <div>
           <img src="/images/sponsors/thaicom.png" class="h-16 mb-4" />
-          <p>Building things to solve one's own problems should be a possibility for everyone, regardless of their age, economic status, education, or opportunities, without relying on governments or corporations.</p>
+          <p>
+            Building things to solve one's own problems should be a possibility
+            for everyone, regardless of their age, economic status, education,
+            or opportunities, without relying on governments or corporations.
+          </p>
         </div>
       </div>
     </div>
@@ -79,20 +104,24 @@ import RevampBase from "$layouts/base.astro";
   <section>
     <h2 class="text-center text-4xl font-medium">CORPORATE SPONSORS</h2>
     <div class="grid grid-cols-4 gap-8">
-      {[
-        'xlab',
-        'prior',
-        'scb10x',
-        'cleverse',
-        'microsoft',
-        'persec',
-        'dev-mountain'
-      ].map(sponsor => (
-        <div class="bg-white px-14 py-8 flex justify-center items-center rounded-3xl">
-          <img src={`/images/sponsors/${sponsor}.png`} class="max-h-[100px]" />
-        </div>
-      ))}
-
+      {
+        [
+          'xlab',
+          'prior',
+          'scb10x',
+          'cleverse',
+          'microsoft',
+          'persec',
+          'dev-mountain',
+        ].map(sponsor => (
+          <div class="bg-white px-14 py-8 flex justify-center items-center rounded-3xl">
+            <img
+              src={`/images/sponsors/${sponsor}.png`}
+              class="max-h-[100px]"
+            />
+          </div>
+        ))
+      }
     </div>
   </section>
 </RevampBase>

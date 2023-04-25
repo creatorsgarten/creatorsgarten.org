@@ -17,7 +17,10 @@ const { title } = Astro.props
     <link rel="shortcut icon" type="image/svg" href="/images/ring.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="icon" type="image/svg" href="/images/ring.svg" />
     <title>{title ? `${title} | Creatorsgarten` : 'Creatorsgarten'}</title>
@@ -33,7 +36,9 @@ const { title } = Astro.props
           <li>US</li>
           <li>WIKI</li>
         </ul>
-        <button class="shrink-0 text-white bg-[#1c1916] py-2 px-4 rounded-full">LOGIN</button>
+        <button class="shrink-0 text-white bg-[#1c1916] py-2 px-4 rounded-full"
+          >LOGIN</button
+        >
       </div>
     </nav>
 
@@ -41,7 +46,9 @@ const { title } = Astro.props
       <slot />
     </main>
 
-    <footer class="bg-[#ededed] py-12 px-6 flex justify-between font-medium uppercase">
+    <footer
+      class="bg-[#ededed] py-12 px-6 flex justify-between font-medium uppercase"
+    >
       <section class="grid grid-cols-4 max-w-[60%] w-full">
         <div>
           <h1>Crafts</h1>

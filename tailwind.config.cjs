@@ -7,10 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          '"Work Sans"',
-          ...defaultConfig.theme.fontFamily.sans
-        ]
+        sans: ['"Work Sans"', ...defaultConfig.theme.fontFamily.sans],
       },
       animation: {
         loader: 'loader 0.6s infinite alternate',
