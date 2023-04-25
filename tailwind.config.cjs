@@ -21,11 +21,6 @@ module.exports = {
         },
       },
       typography: {
-        lg: {
-          css: {
-            lineHeight: '1.555555',
-          },
-        },
         DEFAULT: {
           css: {
             '--tw-prose-links': colors.sky[600],

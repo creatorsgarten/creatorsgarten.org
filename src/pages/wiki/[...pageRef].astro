@@ -15,15 +15,15 @@ if (pageRef === undefined) {
   throw new Error('not-found')
 }
 
-const [markdownResponse] = await Promise.all([getMarkdownFromSlug(pageRef)])
-const markdownContent = getMarkdownContent(
+const markdownResponse = await getMarkdownFromSlug(pageRef)
+const { ids, content } = await getMarkdownContent(
   markdownResponse.result.data.file.content
 )
 ---
 
 <WikiLayout
   title={pageRef as string}
-  contents={markdownContent}
+  contents={ids}
   metadata={{
     edited: {
       at: dayjs(markdownResponse.result.data.lastModified).toDate(),
@@ -31,5 +31,5 @@ const markdownContent = getMarkdownContent(
     },
   }}
 >
-  <Markdown text={markdownResponse.result.data.file.content} />
+  <Markdown text={content} />
 </WikiLayout>
