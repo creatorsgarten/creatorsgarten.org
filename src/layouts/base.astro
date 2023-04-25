@@ -1,4 +1,6 @@
 ---
+import UserAuthButton from '../components/userAuthButton.astro'
+
 import './base.css'
 
 export interface Props {
@@ -36,9 +38,7 @@ const { title } = Astro.props
           <li>US</li>
           <li>WIKI</li>
         </ul>
-        <button class="shrink-0 text-white bg-[#1c1916] py-2 px-4 rounded-full"
-          >LOGIN</button
-        >
+        <UserAuthButton />
       </div>
     </nav>
 

@@ -1,48 +1,35 @@
 ---
-import { Octokit } from '@octokit/rest'
-import { Markdown } from '@contentsgarten/markdown'
+import dayjs from 'dayjs'
 
 import WikiLayout from '$layouts/wiki.astro'
+import { Markdown } from '@contentsgarten/markdown'
+
+import { getMarkdownFromSlug } from '../../functions/getMarkdownFromSlug'
+import { getMarkdownContent } from '../../functions/getMarkdownContent'
 
 let { pageRef } = Astro.params
 
-console.log({ pageRef })
-
-// if root /wiki, then use /MainPage content
-if (pageRef === undefined)
+if (pageRef === undefined) {
   pageRef = 'MainPage'
+} else if (pageRef === 'MainPage') {
+  throw new Error('not-found')
+}
 
-const markdownUrl = `https://raw.githubusercontent.com/creatorsgarten/wiki/main/wiki/${pageRef}.md`
-const rawMarkdown = await fetch(markdownUrl, { method: 'GET' }).then(res =>
-  res.text()
+const [markdownResponse] = await Promise.all([getMarkdownFromSlug(pageRef)])
+const markdownContent = getMarkdownContent(
+  markdownResponse.result.data.file.content
 )
-const metadataUrl = `https://api.github.com/repos/creatorsgarten/wiki/commits?path=wiki/${pageRef}.md&per_page=1`
-const metadata = await fetch(metadataUrl, {
-  method: 'GET',
-  headers: { Authorization: 'Bearer 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' },
-}).then(res => res.json())
-// console.log(metadata[0])
 ---
 
 <WikiLayout
   title={pageRef as string}
-  contents={[
-    {
-      id: 'a',
-      label: 'a',
-    },
-  ]}
+  contents={markdownContent}
   metadata={{
-    created: {
-      at: new Date(),
-      by: 'owo',
-    },
     edited: {
-      at: new Date(),
-      by: 'owo',
+      at: dayjs(markdownResponse.result.data.lastModified).toDate(),
+      by: markdownResponse.result.data.lastModifiedBy.join(' '),
     },
   }}
 >
-  <p class="break-all">{JSON.stringify(metadata[0])}</p>
-  <Markdown text={rawMarkdown} />
+  <Markdown text={markdownResponse.result.data.file.content} />
 </WikiLayout>

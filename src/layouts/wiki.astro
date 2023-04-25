@@ -13,10 +13,6 @@ export interface Props {
     label: string
   }[]
   metadata: {
-    created: {
-      at: Date
-      by: string
-    }
     edited: {
       at: Date
       by: string
@@ -62,14 +58,8 @@ const { title, contents, metadata, type = 'page' } = Astro.props
         <MetadataTable
           data={[
             [
-              'CREATE',
-              `${dayjs(metadata.created.at).format('D MMMM YYYY')} / @${
-                metadata.created.by
-              }`,
-            ],
-            [
               'EDIT',
-              `${dayjs(metadata.edited.at).format('D MMMM YYYY')} / @${
+              `${dayjs(metadata.edited.at).format('D MMMM YYYY')} / ${
                 metadata.edited.by
               }`,
             ],

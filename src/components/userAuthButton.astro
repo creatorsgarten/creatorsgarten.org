@@ -1,0 +1,16 @@
+---
+const authenticationToken = Astro.request.headers.get('authToken')
+const authenticated = false
+---
+
+{
+  authenticated ? (
+    <button class="shrink-0 text-[#1c1916] bg-white py-2 px-4 rounded-full">
+      DASHBOARD
+    </button>
+  ) : (
+    <button class="shrink-0 text-white bg-[#1c1916] py-2 px-4 rounded-full">
+      LOGIN
+    </button>
+  )
+}
