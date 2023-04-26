@@ -23,10 +23,10 @@ FROM node:18-alpine as builder
 WORKDIR /app
 RUN npm i -g pnpm
 
-COPY src ./src
-COPY public ./public
 COPY package.json pnpm-lock.yaml* astro.config.mjs tailwind.config.cjs tsconfig.json ./
 COPY --from=deps /app/node_modules ./node_modules
+COPY public ./public
+COPY src ./src
 
 RUN pnpm build
 
@@ -40,7 +40,7 @@ COPY package.json pnpm-lock.yaml ./
 COPY --from=deps-prod /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 
-EXPOSE 3000
-ENV PORT 3000
+EXPOSE 8080
+ENV PORT 8080
 
 CMD ["./dist/server/entry.mjs"]
