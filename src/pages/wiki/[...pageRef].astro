@@ -28,12 +28,13 @@ const { rendered, lastModified, lastModifiedBy } = markdown
 ---
 
 <WikiLayout
+  type="page"
   title={pageRef as string}
   contents={rendered.headings}
   metadata={{
     edited: {
       at: dayjs(lastModified).toDate(),
-      by: (lastModifiedBy ?? []).map(o => '@' + o).join(' '),
+      by: (lastModifiedBy ?? ['System']).map(o => '@' + o).join(' '),
     },
   }}
 >

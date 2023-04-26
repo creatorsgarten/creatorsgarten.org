@@ -8,7 +8,7 @@ import MetadataTable from '$components/metadataTable.astro'
 export interface Props {
   title: string
   type?: 'page' | 'event'
-  event?: {
+  events?: {
     id: string
     location: string
     date: {
@@ -31,7 +31,7 @@ export interface Props {
 
 const stringifyDate = (input: Date) => dayjs(input).format('D MMMM YYYY')
 
-const { title, contents, event, metadata, type = 'page' } = Astro.props
+const { title, contents, events, metadata, type = 'page' } = Astro.props
 ---
 
 <BaseLayout>
@@ -41,34 +41,34 @@ const { title, contents, event, metadata, type = 'page' } = Astro.props
   >
     <div class="col-span-1 divide-y divide-[#ededed]">
       {
-        type === 'event' && event && (
-          <>
+        (type === 'event' && events) ? (
+          <Fragment>
             <img
-              src={`/images/events/${event.id}.png`}
+              src={`/images/events/${events.id}.png`}
               class="aspect-square w-full"
             />
             <section class="p-6">
               <h2 class="pb-6 text-center font-medium">EVENTS</h2>
               <MetadataTable
                 data={[
-                  ['LOCATION', event.location],
+                  ['LOCATION', events.location ?? ''],
                   [
                     'DATE',
                     [
-                      `${event.date.to ? 'FROM ' : ''}${stringifyDate(
-                        event.date.from
+                      `${events.date.to ? 'FROM ' : ''}${stringifyDate(
+                        events.date.from
                       )}`,
-                      ...(event.date.to
-                        ? [`TO ${stringifyDate(event.date.to)}`]
+                      ...(events.date.to
+                        ? [`TO ${stringifyDate(events.date.to)}`]
                         : []),
                     ],
                   ],
-                  ['HOST', event.hosts.map(o => `[${o}]`).join(' ')],
+                  ['HOST', (events.hosts ?? []).map(o => `[${o}]`).join(' ')],
                 ]}
               />
             </section>
-          </>
-        )
+          </Fragment>
+        ) : null
       }
       {
         contents.length > 0 && (

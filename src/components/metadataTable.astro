@@ -8,17 +8,19 @@ const { data } = Astro.props
 
 <table class="text-sm">
   {
-    data.map(([key, value]) => (
-      <tr>
-        <td class="font-medium">{key}</td>
-        <td class="pl-4">
-          {typeof value !== 'string' ? (
-            value.map(o => <p>{o}</p>)
-          ) : (
-            <p>{value}</p>
-          )}
-        </td>
-      </tr>
-    ))
+    data.map(([key, value]) => {
+      return (
+        <tr>
+          <td class="font-medium">{key}</td>
+          <td class="pl-4">
+            {typeof value === 'object' ? (
+              value.map(o => <p>{o}</p>)
+            ) : (
+              <p>{value}</p>
+            )}
+          </td>
+        </tr>
+      )
+    })
   }
 </table>
