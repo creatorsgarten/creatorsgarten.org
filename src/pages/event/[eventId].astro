@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import WikiLayout from '$layouts/wiki.astro'
 import ContentRenderer from '$components/contentRenderer.astro'
 
-import { getMarkdownFromSlug } from '../../functions/getMarkdownFromSlug'
+import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
 
 interface Frontmatter {
   name: string
@@ -17,10 +17,19 @@ interface Frontmatter {
 
 let { eventId } = Astro.params
 
-if (eventId === undefined) return Astro.redirect('/404')
+if (eventId === undefined) {
+  const { rewrite } = await import('$functions/rewrite')
+  return rewrite(404, `${Astro.url.origin}/404`)
+}
 
-const { frontMatter, rendered, lastModified, lastModifiedBy } =
-  await getMarkdownFromSlug<Frontmatter>(`Events/${eventId}`)
+const markdown = await getMarkdownFromSlug<Frontmatter>(`Events/${eventId}`)
+
+if (markdown === null) {
+  const { rewrite } = await import('$functions/rewrite')
+  return rewrite(404, `${Astro.url.origin}/404`)
+}
+
+const { rendered, lastModified, lastModifiedBy, frontMatter } = markdown
 ---
 
 <WikiLayout

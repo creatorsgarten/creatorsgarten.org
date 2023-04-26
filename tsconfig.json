@@ -6,6 +6,7 @@
     "paths": {
       "$components/*": ["src/components/*"],
       "$constants/*": ["src/constants/*"],
+      "$functions/*": ["src/functions/*"],
       "$layouts/*": ["src/layouts/*"]
     },
     "jsx": "react-jsx",

@@ -78,24 +78,29 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
       ).toString()}`
     ).then(o => o.json() as Promise<MarkdownResponse<Frontmatter>>)
 
-    const targetFileName = `${maxAge}.${maxAge + Date.now()}.${getHash([
-      JSON.stringify(fetchedMarkdownResponse),
-    ])}.json`
+    console.log(fetchedMarkdownResponse.result.data.title, fetchedMarkdownResponse.result.data.status)
+    if (fetchedMarkdownResponse.result.data.status === 200) {
+      const targetFileName = `${maxAge}.${maxAge + Date.now()}.${getHash([
+        JSON.stringify(fetchedMarkdownResponse),
+      ])}.json`
 
-    // any case of failure (maybe due to filesystem space ran out) can be ignored,
-    // but it need to make sure it properly cleaned up
-    try {
-      await fs.promises.mkdir(requestedDirectory, { recursive: true })
-      await fs.promises.writeFile(
-        path.join(requestedDirectory, targetFileName),
-        JSON.stringify(fetchedMarkdownResponse)
-      )
-    } catch (e) {
-      await fs.promises
-        .rm(path.join(requestedDirectory, targetFileName))
-        .catch(() => {})
+      // any case of failure (maybe due to filesystem space ran out) can be ignored,
+      // but it need to make sure it properly cleaned up
+      try {
+        await fs.promises.mkdir(requestedDirectory, { recursive: true })
+        await fs.promises.writeFile(
+          path.join(requestedDirectory, targetFileName),
+          JSON.stringify(fetchedMarkdownResponse)
+        )
+      } catch (e) {
+        await fs.promises
+          .rm(path.join(requestedDirectory, targetFileName))
+          .catch(() => {})
+      }
+
+      return fetchedMarkdownResponse.result.data
+    } else {
+      return null
     }
-
-    return fetchedMarkdownResponse.result.data
   }
 }

@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import WikiLayout from '$layouts/wiki.astro'
 import ContentRenderer from '$components/contentRenderer.astro'
 
-import { getMarkdownFromSlug } from '../../functions/getMarkdownFromSlug'
+import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
 
 let { pageRef } = Astro.params
 
@@ -15,9 +15,16 @@ else if (pageRef === 'MainPage')
 else if (pageRef.startsWith('Events/'))
   return Astro.redirect(`/event/${pageRef.replace('Events/', '')}`)
 
-const { rendered, lastModified, lastModifiedBy } = await getMarkdownFromSlug(
+const markdown = await getMarkdownFromSlug(
   pageRef
 )
+
+if (markdown === null) {
+  const { rewrite } = await import('$functions/rewrite')
+  return rewrite(404, `${Astro.url.origin}/404`)
+}
+
+const { rendered, lastModified, lastModifiedBy } = markdown
 ---
 
 <WikiLayout
