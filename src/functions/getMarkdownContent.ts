@@ -4,7 +4,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 import { renderMarkdown } from '@contentsgarten/markdown'
 
-import { getHeadingsFromElement } from '../functions/getHeadingsFromTree'
+import { getHeadingsFromElement } from './getHeadingsFromElement'
 
 import type { Root } from 'hast'
 
