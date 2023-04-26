@@ -1,0 +1,11 @@
+---
+import { Html } from '@contentsgarten/html'
+
+export interface Props {
+  content: string
+}
+---
+
+<Html
+  html={Astro.props.content}
+/>

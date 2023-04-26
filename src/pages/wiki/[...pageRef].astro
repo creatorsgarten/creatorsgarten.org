@@ -2,6 +2,7 @@
 import dayjs from 'dayjs'
 
 import WikiLayout from '$layouts/wiki.astro'
+import ContentRenderer from '$components/contentRenderer.astro'
 
 import { getMarkdownFromSlug } from '../../functions/getMarkdownFromSlug'
 
@@ -28,5 +29,5 @@ const { rendered, lastModified, lastModifiedBy } = await getMarkdownFromSlug(
     },
   }}
 >
-  <Fragment set:html={rendered.html} />
+  <ContentRenderer content={rendered.html} />
 </WikiLayout>

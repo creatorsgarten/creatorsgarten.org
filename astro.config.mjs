@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config'
 
 /* Adapter */
 import node from '@astrojs/node'
+import react from '@astrojs/react'
 
 /* Integrations */
 import tailwind from '@astrojs/tailwind'
@@ -24,5 +25,6 @@ export default defineConfig({
       svg: false,
       js: true,
     }),
+    react(),
   ],
 })
