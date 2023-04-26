@@ -8,16 +8,12 @@ import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
 
 let { pageRef } = Astro.params
 
-if (pageRef === undefined)
-  pageRef = 'MainPage'
-else if (pageRef === 'MainPage')
-  return Astro.redirect('/wiki')
+if (pageRef === undefined) pageRef = 'MainPage'
+else if (pageRef === 'MainPage') return Astro.redirect('/wiki')
 else if (pageRef.startsWith('Events/'))
   return Astro.redirect(`/event/${pageRef.replace('Events/', '')}`)
 
-const markdown = await getMarkdownFromSlug(
-  pageRef
-)
+const markdown = await getMarkdownFromSlug(pageRef)
 
 if (markdown === null) {
   const { rewrite } = await import('$functions/rewrite')

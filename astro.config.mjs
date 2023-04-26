@@ -15,10 +15,5 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone',
   }),
-  integrations: [
-    tailwind(),
-    image(),
-    prefetch(),
-    react(),
-  ],
+  integrations: [tailwind(), image(), prefetch(), react()],
 })

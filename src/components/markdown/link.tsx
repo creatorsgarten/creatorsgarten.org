@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 interface Props {
-  href: string;
+  href: string
   children: ReactNode
   className?: string
 }
@@ -9,6 +9,5 @@ interface Props {
 export const MarkdownLink = (props: Props) => {
   if (['http://', 'https://', '//'].some(o => props.href.startsWith(o)))
     return <a {...props} />
-  else
-    return <a rel="prefetch" {...props} />
+  else return <a rel="prefetch" {...props} />
 }

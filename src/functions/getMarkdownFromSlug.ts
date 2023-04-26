@@ -66,19 +66,16 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
     throw new Error('cache-miss')
   } catch (e) {
     const fetchedMarkdownResponse = await fetch(
-      `${contentApiBaseUrl}/api/contentsgarten/view?${new URLSearchParams(
-        {
-          input: JSON.stringify({
-            pageRef: slug,
-            withFile: true,
-            revalidate: true,
-            render: true,
-          }),
-        }
-      ).toString()}`
+      `${contentApiBaseUrl}/api/contentsgarten/view?${new URLSearchParams({
+        input: JSON.stringify({
+          pageRef: slug,
+          withFile: true,
+          revalidate: true,
+          render: true,
+        }),
+      }).toString()}`
     ).then(o => o.json() as Promise<MarkdownResponse<Frontmatter>>)
 
-    console.log(fetchedMarkdownResponse.result.data.title, fetchedMarkdownResponse.result.data.status)
     if (fetchedMarkdownResponse.result.data.status === 200) {
       const targetFileName = `${maxAge}.${maxAge + Date.now()}.${getHash([
         JSON.stringify(fetchedMarkdownResponse),

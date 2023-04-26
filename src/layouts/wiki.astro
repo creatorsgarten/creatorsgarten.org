@@ -41,7 +41,7 @@ const { title, contents, events, metadata, type = 'page' } = Astro.props
   >
     <div class="col-span-1 divide-y divide-[#ededed]">
       {
-        (type === 'event' && events) ? (
+        type === 'event' && events ? (
           <Fragment>
             <img
               src={`/images/events/${events.id}.png`}
