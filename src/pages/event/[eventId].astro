@@ -17,7 +17,7 @@ interface Frontmatter {
 
 let { eventId } = Astro.params
 
-if (eventId === undefined) throw new Error('not-found')
+if (eventId === undefined) return Astro.redirect('/404')
 
 const { frontMatter, rendered, lastModified, lastModifiedBy } =
   await getMarkdownFromSlug<Frontmatter>(`Events/${eventId}`)

@@ -31,7 +31,7 @@ export interface Props {
 
 const stringifyDate = (input: Date) => dayjs(input).format('D MMMM YYYY')
 
-const { title, contents, event, metadata, type = 'page', content } = Astro.props
+const { title, contents, event, metadata, type = 'page' } = Astro.props
 ---
 
 <BaseLayout>
@@ -102,9 +102,7 @@ const { title, contents, event, metadata, type = 'page', content } = Astro.props
     <div
       class="col-span-1 px-12 py-10 sm:col-span-2 md:col-span-3 xl:col-span-4"
     >
-      <article class="text-[0.8en] prose mx-auto max-w-6xl">
-        <slot />
-      </article>
+      <slot />
     </div>
   </div>
 </BaseLayout>
