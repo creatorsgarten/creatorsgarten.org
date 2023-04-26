@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 import { getHash } from './getHash'
+import { contentApiBaseUrl } from '$constants/contentApiBaseUrl'
 
 interface MarkdownResponse<Frontmatter = unknown> {
   result: {
@@ -64,8 +65,9 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
 
     throw new Error('cache-miss')
   } catch (e) {
+    console.log({ contentApiBaseUrl })
     const fetchedMarkdownResponse = await fetch(
-      `https://wiki.creatorsgarten.org/api/contentsgarten/view?${new URLSearchParams(
+      `${contentApiBaseUrl}/api/contentsgarten/view?${new URLSearchParams(
         {
           input: JSON.stringify({
             pageRef: slug,
