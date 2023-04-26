@@ -39,7 +39,6 @@ export const getMarkdownFromSlug = async (
       const [maxAgeString, expireAtString, etag, extension] = file.split('.')
       const filePath = path.join(requestedDirectory, file)
       const expireAt = Number(expireAtString)
-      const maxAge = Number(maxAgeString)
 
       if (expireAt < now) {
         await fs.promises.rm(filePath)
