@@ -50,7 +50,7 @@ jobs:
         with:
           project: ${{ secrets.DEPLOYS_NAME }}
           location: gke.cluster-rcf2
-          name: ${{ github.event.repository.name }}-runtime
+          name: creatorsgarten-org-runtime
           image: ghcr.io/${{ github.repository }}-runtime
           minReplicas: 1
           maxReplicas: 2
