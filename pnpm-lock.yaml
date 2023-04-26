@@ -43,6 +43,9 @@ dependencies:
   react-dom:
     specifier: ^18.0.0
     version: 18.2.0(react@18.2.0)
+  react-iconify-icon-wrapper:
+    specifier: ^0.0.3
+    version: 0.0.3(react@18.2.0)
   tailwindcss:
     specifier: 3.3.2
     version: 3.3.2
@@ -3117,6 +3120,14 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-iconify-icon-wrapper@0.0.3(react@18.2.0):
+    resolution: {integrity: sha512-rkMXxYJ6Hq5VaAIg5LJTwG5f52o89Tj7UQ+bkpTKR0AXpI96uLFvMv8KR09I3hq5IjHZsfdYoDP9xkQ/I4ECfA==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-property@2.0.0:
