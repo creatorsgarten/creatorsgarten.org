@@ -2,6 +2,7 @@
 import { Html } from '@contentsgarten/html'
 
 import { MarkdownLink } from './markdown/link'
+import { customComponents } from './markdown/customComponents'
 
 export interface Props {
   content: string
@@ -12,4 +13,5 @@ export interface Props {
   className="prose mx-auto max-w-6xl"
   html={Astro.props.content}
   renderLink={MarkdownLink}
+  customComponents={customComponents}
 />
