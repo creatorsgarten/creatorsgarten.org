@@ -3,6 +3,14 @@ name: Deployments
 on:
   push:
     branches: [main, refactor/revamp]
+  workflow_dispatch:
+
+permissions:
+  packages: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
 
 jobs:
   deploy:
