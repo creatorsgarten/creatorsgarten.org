@@ -26,9 +26,9 @@ const { title, contents, metadata, type = 'page' } = Astro.props
 <BaseLayout>
   <h1 class="pt-6 pb-8 text-center text-5xl uppercase">{title}</h1>
   <div
-    class="grid divide-x-2 border border-b-0 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
+    class="grid divide-x divide-[#ededed] border-[#ededed] border-t sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
   >
-    <div class="col-span-1 divide-y-2">
+    <div class="col-span-1 divide-y divide-[#ededed]">
       {
         type === 'event' && (
           <>
@@ -83,7 +83,7 @@ const { title, contents, metadata, type = 'page' } = Astro.props
     <div
       class="col-span-1 px-12 py-10 sm:col-span-2 md:col-span-3 xl:col-span-4"
     >
-      <article class="text-[0.8en] prose mx-auto max-w-6xl overflow-y-scroll">
+      <article class="text-[0.8en] prose mx-auto max-w-6xl">
         <slot />
       </article>
     </div>

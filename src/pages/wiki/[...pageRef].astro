@@ -5,7 +5,6 @@ import WikiLayout from '$layouts/wiki.astro'
 import { Markdown } from '@contentsgarten/markdown'
 
 import { getMarkdownFromSlug } from '../../functions/getMarkdownFromSlug'
-import { getMarkdownContent } from '../../functions/getMarkdownContent'
 
 let { pageRef } = Astro.params
 
@@ -15,21 +14,21 @@ if (pageRef === undefined) {
   throw new Error('not-found')
 }
 
-const markdownResponse = await getMarkdownFromSlug(pageRef)
-const { ids, rendered } = await getMarkdownContent(
-  markdownResponse.result.data.file.content
-)
+const {
+  raw,
+  processed
+} = await getMarkdownFromSlug(pageRef)
 ---
 
 <WikiLayout
   title={pageRef as string}
-  contents={ids}
+  contents={processed.ids}
   metadata={{
     edited: {
-      at: dayjs(markdownResponse.result.data.lastModified).toDate(),
-      by: markdownResponse.result.data.lastModifiedBy.join(' '),
+      at: dayjs(raw.result.data.lastModified).toDate(),
+      by: raw.result.data.lastModifiedBy.map(o => '@' + o).join(' '),
     },
   }}
 >
-  <Markdown text={rendered} />
+  <Markdown text={processed.rendered} />
 </WikiLayout>

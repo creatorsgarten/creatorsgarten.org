@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 import { getHash } from "./getHash"
+import { getMarkdownContent } from './getMarkdownContent'
 
 interface MarkdownResponse {
   result: {
@@ -14,6 +15,7 @@ interface MarkdownResponse {
         content: string
         revision: string
       }
+      content: string
       frontMatter: unknown
       lastModified: string // ISO timestamp
       lastModifiedBy: string[]
@@ -26,7 +28,7 @@ const maxAge = 60 * 1000
 
 export const getMarkdownFromSlug = async (
   slug: string
-): Promise<MarkdownResponse> => {
+) => {
   // get file hash
   const now = Date.now()
   const cacheKey = getHash(['wiki', slug])
@@ -46,9 +48,12 @@ export const getMarkdownFromSlug = async (
         const cachedMarkdownResponse = await fs.promises.readFile(
           path.join(requestedDirectory, file),
           'utf8'
-        )
+        ).then(o => JSON.parse(o) as MarkdownResponse)
 
-        return JSON.parse(cachedMarkdownResponse) as MarkdownResponse
+        return {
+          processed: await getMarkdownContent(cachedMarkdownResponse.result.data.file.content),
+          raw: cachedMarkdownResponse
+        }
       }
     }
 
@@ -82,7 +87,10 @@ export const getMarkdownFromSlug = async (
         .catch(() => {})
     }
 
-    return fetchedMarkdownResponse
+    return {
+      processed: await getMarkdownContent(fetchedMarkdownResponse.result.data.file.content),
+      raw: fetchedMarkdownResponse
+    }
   }
 }
 
