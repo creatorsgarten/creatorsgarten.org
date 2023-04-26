@@ -1,0 +1,52 @@
+---
+import dayjs from 'dayjs'
+
+import WikiLayout from '$layouts/wiki.astro'
+import { Markdown } from '@contentsgarten/markdown'
+
+import { getMarkdownFromSlug } from '../../functions/getMarkdownFromSlug'
+
+interface Frontmatter {
+  name: string
+  location: string
+  date: string
+  endDate?: string
+  site: string
+  hosts: string[]
+}
+
+let { eventId } = Astro.params
+
+if (eventId === undefined)
+  throw new Error('not-found')
+
+const {
+  raw,
+  processed
+} = await getMarkdownFromSlug<Frontmatter>(`Events/${eventId}`)
+
+const frontmatter = raw.result.data.frontMatter
+---
+
+<WikiLayout
+  title={eventId as string}
+  contents={processed.ids}
+  metadata={{
+    edited: {
+      at: dayjs(raw.result.data.lastModified).toDate(),
+      by: raw.result.data.lastModifiedBy.map(o => '@' + o).join(' '),
+    },
+  }}
+  type='event'
+  event={{
+    id: eventId!,
+    location: frontmatter.location,
+    date: {
+      from: dayjs().toDate(),
+      to: frontmatter.endDate ? dayjs().toDate() : undefined,
+    },
+    hosts: frontmatter.hosts,
+  }}
+>
+  <Markdown text={processed.rendered} />
+</WikiLayout>

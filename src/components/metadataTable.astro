@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  data: [string, string][]
+  data: [string, string | string[]][]
 }
 
 const { data } = Astro.props
@@ -12,7 +12,7 @@ const { data } = Astro.props
       <tr>
         <td class="font-medium">{key}</td>
         <td class="pl-4">
-          <p>{value}</p>
+          {typeof value !== 'string' ? value.map(o => <p>{o}</p>) : <p>{value}</p>}
         </td>
       </tr>
     ))

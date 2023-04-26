@@ -4,7 +4,7 @@ import path from 'path'
 import { getHash } from "./getHash"
 import { getMarkdownContent } from './getMarkdownContent'
 
-interface MarkdownResponse {
+interface MarkdownResponse<Frontmatter = unknown> {
   result: {
     data: {
       status: 200
@@ -16,7 +16,7 @@ interface MarkdownResponse {
         revision: string
       }
       content: string
-      frontMatter: unknown
+      frontMatter: Frontmatter
       lastModified: string // ISO timestamp
       lastModifiedBy: string[]
     }
@@ -26,7 +26,7 @@ interface MarkdownResponse {
 const cacheDirectory = path.join(process.cwd(), '.cache')
 const maxAge = 60 * 1000
 
-export const getMarkdownFromSlug = async (
+export const getMarkdownFromSlug = async <Frontmatter = unknown>(
   slug: string
 ) => {
   // get file hash
@@ -48,10 +48,10 @@ export const getMarkdownFromSlug = async (
         const cachedMarkdownResponse = await fs.promises.readFile(
           path.join(requestedDirectory, file),
           'utf8'
-        ).then(o => JSON.parse(o) as MarkdownResponse)
+        ).then(o => JSON.parse(o) as MarkdownResponse<Frontmatter>)
 
         return {
-          processed: await getMarkdownContent(cachedMarkdownResponse.result.data.file.content),
+          processed: await getMarkdownContent(cachedMarkdownResponse.result.data.content),
           raw: cachedMarkdownResponse
         }
       }
@@ -69,7 +69,7 @@ export const getMarkdownFromSlug = async (
           }),
         }
       ).toString()}`
-    ).then(o => o.json() as Promise<MarkdownResponse>)
+    ).then(o => o.json() as Promise<MarkdownResponse<Frontmatter>>)
 
     const targetFileName = `${maxAge}.${maxAge + Date.now()}.${getHash([JSON.stringify(fetchedMarkdownResponse)])}.json`
 
@@ -88,7 +88,7 @@ export const getMarkdownFromSlug = async (
     }
 
     return {
-      processed: await getMarkdownContent(fetchedMarkdownResponse.result.data.file.content),
+      processed: await getMarkdownContent(fetchedMarkdownResponse.result.data.content),
       raw: fetchedMarkdownResponse
     }
   }

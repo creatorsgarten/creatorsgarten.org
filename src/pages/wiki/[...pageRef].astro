@@ -10,7 +10,7 @@ let { pageRef } = Astro.params
 
 if (pageRef === undefined) {
   pageRef = 'MainPage'
-} else if (pageRef === 'MainPage') {
+} else if (pageRef === 'MainPage' || pageRef === 'Events/') {
   throw new Error('not-found')
 }
 

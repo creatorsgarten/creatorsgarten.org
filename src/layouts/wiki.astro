@@ -8,6 +8,15 @@ import MetadataTable from '$components/metadataTable.astro'
 export interface Props {
   title: string
   type?: 'page' | 'event'
+  event?: {
+    id: string
+    location: string
+    date: {
+      from: Date
+      to?: Date
+    }
+    hosts: string[]
+  }
   contents: {
     id: string
     label: string
@@ -20,7 +29,9 @@ export interface Props {
   }
 }
 
-const { title, contents, metadata, type = 'page' } = Astro.props
+const stringifyDate = (input: Date) => dayjs(input).format('D MMMM YYYY')
+
+const { title, contents, event, metadata, type = 'page' } = Astro.props
 ---
 
 <BaseLayout>
@@ -30,19 +41,19 @@ const { title, contents, metadata, type = 'page' } = Astro.props
   >
     <div class="col-span-1 divide-y divide-[#ededed]">
       {
-        type === 'event' && (
+        type === 'event' && event && (
           <>
             <img
-              src="/images/events/hacktoberfest2022.png"
+              src={`/images/events/${event.id}.png`}
               class="aspect-square w-full"
             />
             <section class="p-6">
               <h2 class="pb-6 text-center font-medium">EVENTS</h2>
               <MetadataTable
                 data={[
-                  ['LOCATION', 'LINK Collaboration Space'],
-                  ['DATE', 'FROM 14 July 2018\nTO 18 July 2018'],
-                  ['HOST', '[STUPID HACKATHON]'],
+                  ['LOCATION', event.location],
+                  ['DATE', [`${event.date.to ? 'FROM ': ''}${stringifyDate(event.date.from)}`, ...(event.date.to ? [`TO ${stringifyDate(event.date.to)}`] : [])]],
+                  ['HOST', event.hosts.map(o => `[${o}]`).join(' ')],
                 ]}
               />
             </section>
@@ -69,7 +80,7 @@ const { title, contents, metadata, type = 'page' } = Astro.props
           data={[
             [
               'EDIT',
-              `${dayjs(metadata.edited.at).format('D MMMM YYYY')} / ${
+              `${stringifyDate(metadata.edited.at)} / ${
                 metadata.edited.by
               }`,
             ],
