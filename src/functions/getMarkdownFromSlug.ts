@@ -49,16 +49,12 @@ export const getMarkdownFromSlug = async (
           'utf8'
         )
 
-        console.log('cache hit')
-
         return JSON.parse(cachedMarkdownResponse) as MarkdownResponse
       }
     }
 
     throw new Error('cache-miss')
   } catch (e) {
-    console.log('cache miss')
-
     const fetchedMarkdownResponse = await fetch(
       `https://wiki.creatorsgarten.org/api/contentsgarten/view?${new URLSearchParams(
         {
