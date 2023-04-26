@@ -52,7 +52,17 @@ const { title, contents, event, metadata, type = 'page' } = Astro.props
               <MetadataTable
                 data={[
                   ['LOCATION', event.location],
-                  ['DATE', [`${event.date.to ? 'FROM ': ''}${stringifyDate(event.date.from)}`, ...(event.date.to ? [`TO ${stringifyDate(event.date.to)}`] : [])]],
+                  [
+                    'DATE',
+                    [
+                      `${event.date.to ? 'FROM ' : ''}${stringifyDate(
+                        event.date.from
+                      )}`,
+                      ...(event.date.to
+                        ? [`TO ${stringifyDate(event.date.to)}`]
+                        : []),
+                    ],
+                  ],
                   ['HOST', event.hosts.map(o => `[${o}]`).join(' ')],
                 ]}
               />
@@ -80,9 +90,7 @@ const { title, contents, event, metadata, type = 'page' } = Astro.props
           data={[
             [
               'EDIT',
-              `${stringifyDate(metadata.edited.at)} / ${
-                metadata.edited.by
-              }`,
+              `${stringifyDate(metadata.edited.at)} / ${metadata.edited.by}`,
             ],
           ]}
         />

@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import { getHash } from "./getHash"
+import { getHash } from './getHash'
 import { getMarkdownContent } from './getMarkdownContent'
 
 interface MarkdownResponse<Frontmatter = unknown> {
@@ -45,14 +45,15 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
       if (expireAt < now) {
         await fs.promises.rm(filePath)
       } else {
-        const cachedMarkdownResponse = await fs.promises.readFile(
-          path.join(requestedDirectory, file),
-          'utf8'
-        ).then(o => JSON.parse(o) as MarkdownResponse<Frontmatter>)
+        const cachedMarkdownResponse = await fs.promises
+          .readFile(path.join(requestedDirectory, file), 'utf8')
+          .then(o => JSON.parse(o) as MarkdownResponse<Frontmatter>)
 
         return {
-          processed: await getMarkdownContent(cachedMarkdownResponse.result.data.content),
-          raw: cachedMarkdownResponse
+          processed: await getMarkdownContent(
+            cachedMarkdownResponse.result.data.content
+          ),
+          raw: cachedMarkdownResponse,
         }
       }
     }
@@ -71,7 +72,9 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
       ).toString()}`
     ).then(o => o.json() as Promise<MarkdownResponse<Frontmatter>>)
 
-    const targetFileName = `${maxAge}.${maxAge + Date.now()}.${getHash([JSON.stringify(fetchedMarkdownResponse)])}.json`
+    const targetFileName = `${maxAge}.${maxAge + Date.now()}.${getHash([
+      JSON.stringify(fetchedMarkdownResponse),
+    ])}.json`
 
     // any case of failure (maybe due to filesystem space ran out) can be ignored,
     // but it need to make sure it properly cleaned up
@@ -88,9 +91,10 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
     }
 
     return {
-      processed: await getMarkdownContent(fetchedMarkdownResponse.result.data.content),
-      raw: fetchedMarkdownResponse
+      processed: await getMarkdownContent(
+        fetchedMarkdownResponse.result.data.content
+      ),
+      raw: fetchedMarkdownResponse,
     }
   }
 }
-

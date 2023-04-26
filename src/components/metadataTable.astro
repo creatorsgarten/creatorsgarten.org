@@ -12,7 +12,11 @@ const { data } = Astro.props
       <tr>
         <td class="font-medium">{key}</td>
         <td class="pl-4">
-          {typeof value !== 'string' ? value.map(o => <p>{o}</p>) : <p>{value}</p>}
+          {typeof value !== 'string' ? (
+            value.map(o => <p>{o}</p>)
+          ) : (
+            <p>{value}</p>
+          )}
         </td>
       </tr>
     ))

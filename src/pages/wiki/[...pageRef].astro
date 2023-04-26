@@ -14,10 +14,7 @@ if (pageRef === undefined) {
   throw new Error('not-found')
 }
 
-const {
-  raw,
-  processed
-} = await getMarkdownFromSlug(pageRef)
+const { raw, processed } = await getMarkdownFromSlug(pageRef)
 ---
 
 <WikiLayout

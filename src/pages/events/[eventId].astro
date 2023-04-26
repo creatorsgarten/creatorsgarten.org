@@ -17,13 +17,11 @@ interface Frontmatter {
 
 let { eventId } = Astro.params
 
-if (eventId === undefined)
-  throw new Error('not-found')
+if (eventId === undefined) throw new Error('not-found')
 
-const {
-  raw,
-  processed
-} = await getMarkdownFromSlug<Frontmatter>(`Events/${eventId}`)
+const { raw, processed } = await getMarkdownFromSlug<Frontmatter>(
+  `Events/${eventId}`
+)
 
 const frontmatter = raw.result.data.frontMatter
 ---
@@ -37,7 +35,7 @@ const frontmatter = raw.result.data.frontMatter
       by: raw.result.data.lastModifiedBy.map(o => '@' + o).join(' '),
     },
   }}
-  type='event'
+  type="event"
   event={{
     id: eventId!,
     location: frontmatter.location,
