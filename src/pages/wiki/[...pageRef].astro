@@ -8,11 +8,12 @@ import { getMarkdownFromSlug } from '../../functions/getMarkdownFromSlug'
 
 let { pageRef } = Astro.params
 
-if (pageRef === undefined) {
+if (pageRef === undefined)
   pageRef = 'MainPage'
-} else if (pageRef === 'MainPage' || pageRef === 'Events/') {
-  return Astro.redirect('/404')
-}
+else if (pageRef === 'MainPage')
+  return Astro.redirect('/wiki')
+else if (pageRef.startsWith('Events/'))
+  return Astro.redirect(`/event/${pageRef.replace('Events/', '')}`)
 
 const { rendered, lastModified, lastModifiedBy } = await getMarkdownFromSlug(
   pageRef
@@ -25,7 +26,7 @@ const { rendered, lastModified, lastModifiedBy } = await getMarkdownFromSlug(
   metadata={{
     edited: {
       at: dayjs(lastModified).toDate(),
-      by: lastModifiedBy.map(o => '@' + o).join(' '),
+      by: (lastModifiedBy ?? []).map(o => '@' + o).join(' '),
     },
   }}
 >

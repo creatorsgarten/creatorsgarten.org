@@ -8,7 +8,6 @@ import react from '@astrojs/react'
 import tailwind from '@astrojs/tailwind'
 import image from '@astrojs/image'
 import prefetch from '@astrojs/prefetch'
-import compress from 'astro-compress'
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,11 +19,6 @@ export default defineConfig({
     tailwind(),
     image(),
     prefetch(),
-    compress({
-      img: false,
-      svg: false,
-      js: true,
-    }),
     react(),
   ],
 })

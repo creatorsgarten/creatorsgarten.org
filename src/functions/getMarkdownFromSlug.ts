@@ -65,7 +65,6 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
 
     throw new Error('cache-miss')
   } catch (e) {
-    console.log({ contentApiBaseUrl })
     const fetchedMarkdownResponse = await fetch(
       `${contentApiBaseUrl}/api/contentsgarten/view?${new URLSearchParams(
         {

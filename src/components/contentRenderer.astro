@@ -1,6 +1,8 @@
 ---
 import { Html } from '@contentsgarten/html'
 
+import { MarkdownLink } from './markdown/link'
+
 export interface Props {
   content: string
 }
@@ -9,4 +11,5 @@ export interface Props {
 <Html
   className="prose mx-auto max-w-6xl"
   html={Astro.props.content}
+  renderLink={MarkdownLink}
 />
