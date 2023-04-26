@@ -2,7 +2,6 @@
 import dayjs from 'dayjs'
 
 import WikiLayout from '$layouts/wiki.astro'
-import { Markdown } from '@contentsgarten/markdown'
 
 import { getMarkdownFromSlug } from '../../functions/getMarkdownFromSlug'
 
@@ -19,32 +18,29 @@ let { eventId } = Astro.params
 
 if (eventId === undefined) throw new Error('not-found')
 
-const { raw, processed } = await getMarkdownFromSlug<Frontmatter>(
-  `Events/${eventId}`
-)
-
-const frontmatter = raw.result.data.frontMatter
+const { frontMatter, rendered, lastModified, lastModifiedBy } =
+  await getMarkdownFromSlug<Frontmatter>(`Events/${eventId}`)
 ---
 
 <WikiLayout
   title={eventId as string}
-  contents={processed.ids}
+  contents={rendered.headings}
   metadata={{
     edited: {
-      at: dayjs(raw.result.data.lastModified).toDate(),
-      by: raw.result.data.lastModifiedBy.map(o => '@' + o).join(' '),
+      at: dayjs(lastModified).toDate(),
+      by: lastModifiedBy.map(o => '@' + o).join(' '),
     },
   }}
   type="event"
   event={{
     id: eventId!,
-    location: frontmatter.location,
+    location: frontMatter.location,
     date: {
-      from: dayjs().toDate(),
-      to: frontmatter.endDate ? dayjs().toDate() : undefined,
+      from: dayjs(frontMatter.date).toDate(),
+      to: frontMatter.endDate ? dayjs().toDate() : undefined,
     },
-    hosts: frontmatter.hosts,
+    hosts: frontMatter.hosts,
   }}
 >
-  <Markdown text={processed.rendered} />
+  <Fragment set:html={rendered.html} />
 </WikiLayout>

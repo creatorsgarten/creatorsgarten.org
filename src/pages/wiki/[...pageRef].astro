@@ -2,7 +2,6 @@
 import dayjs from 'dayjs'
 
 import WikiLayout from '$layouts/wiki.astro'
-import { Markdown } from '@contentsgarten/markdown'
 
 import { getMarkdownFromSlug } from '../../functions/getMarkdownFromSlug'
 
@@ -14,18 +13,20 @@ if (pageRef === undefined) {
   throw new Error('not-found')
 }
 
-const { raw, processed } = await getMarkdownFromSlug(pageRef)
+const { rendered, lastModified, lastModifiedBy } = await getMarkdownFromSlug(
+  pageRef
+)
 ---
 
 <WikiLayout
   title={pageRef as string}
-  contents={processed.ids}
+  contents={rendered.headings}
   metadata={{
     edited: {
-      at: dayjs(raw.result.data.lastModified).toDate(),
-      by: raw.result.data.lastModifiedBy.map(o => '@' + o).join(' '),
+      at: dayjs(lastModified).toDate(),
+      by: lastModifiedBy.map(o => '@' + o).join(' '),
     },
   }}
 >
-  <Markdown text={processed.rendered} />
+  <Fragment set:html={rendered.html} />
 </WikiLayout>

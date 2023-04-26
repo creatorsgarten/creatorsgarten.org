@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 
 import { getHash } from './getHash'
-import { getMarkdownContent } from './getMarkdownContent'
 
 interface MarkdownResponse<Frontmatter = unknown> {
   result: {
@@ -16,6 +15,16 @@ interface MarkdownResponse<Frontmatter = unknown> {
         revision: string
       }
       content: string
+      rendered: {
+        html: string
+        headings: [
+          {
+            id: string
+            label: string
+            rank: number
+          }
+        ]
+      }
       frontMatter: Frontmatter
       lastModified: string // ISO timestamp
       lastModifiedBy: string[]
@@ -49,12 +58,7 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
           .readFile(path.join(requestedDirectory, file), 'utf8')
           .then(o => JSON.parse(o) as MarkdownResponse<Frontmatter>)
 
-        return {
-          processed: await getMarkdownContent(
-            cachedMarkdownResponse.result.data.content
-          ),
-          raw: cachedMarkdownResponse,
-        }
+        return cachedMarkdownResponse.result.data
       }
     }
 
@@ -67,6 +71,7 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
             pageRef: slug,
             withFile: true,
             revalidate: true,
+            render: true,
           }),
         }
       ).toString()}`
@@ -90,11 +95,6 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
         .catch(() => {})
     }
 
-    return {
-      processed: await getMarkdownContent(
-        fetchedMarkdownResponse.result.data.content
-      ),
-      raw: fetchedMarkdownResponse,
-    }
+    return fetchedMarkdownResponse.result.data
   }
 }
