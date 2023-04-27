@@ -15,9 +15,8 @@ if (eventId === undefined) {
   return rewrite(404, `${Astro.url.origin}/404`)
 }
 
-const markdown = await getMarkdownFromSlug<EventFrontmatter>(
-  `Events/${eventId}`
-)
+const pageRef = `Events/${eventId}`
+const markdown = await getMarkdownFromSlug<EventFrontmatter>(pageRef)
 
 if (markdown === null) {
   const { rewrite } = await import('$functions/rewrite')
@@ -47,5 +46,5 @@ const { rendered, lastModified, lastModifiedBy, frontMatter } = markdown
     hosts: frontMatter.hosts,
   }}
 >
-  <ContentRenderer content={rendered!.html} />
+  <ContentRenderer content={rendered!.html} pageRef={pageRef} />
 </WikiLayout>
