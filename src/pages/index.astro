@@ -7,15 +7,15 @@ import BaseLayout from '$layouts/base.astro'
 <BaseLayout class="max-w-7xl mx-auto space-y-12 [&>*]:px-6">
   <section class="text-center">
     <h2 class="font-medium">CONNECT / CRAFT / EXPLORE</h2>
-    <h1 class="pt-2 pb-4 text-6xl font-medium">
+    <h1 class="pt-2 pb-4 text-4xl sm:text-6xl font-medium">
       WE DEMOCRATIZE<br />CREATION FOR ALL
     </h1>
-    <a>OUR MANIFESTO -&gt;</a>
+    <a>OUR MANIFESTO →</a>
   </section>
-  <section class="grid grid-cols-2 gap-8">
+  <section class="sm:grid grid-cols-2 gap-8">
     <div class="aspect-video w-full rounded-2xl bg-neutral-200"></div>
-    <article class="flex flex-col justify-evenly">
-      <h3>CREATORSGARTEN = GARDEN OF CREATORS</h3>
+    <article class="pt-6 sm:pt-0 space-y-4 sm:space-y-0 flex flex-col justify-evenly">
+      <h3 class="font-medium">CREATORSGARTEN = GARDEN OF CREATORS</h3>
 
       <p>
         Building things to solve one's own problems should be a possibility for
@@ -28,7 +28,7 @@ import BaseLayout from '$layouts/base.astro'
         they learn effectively at maximum speed.
       </p>
 
-      <a>SEE MORE -&gt;</a>
+      <a>SEE MORE →</a>
     </article>
   </section>
   <section>
@@ -39,7 +39,7 @@ import BaseLayout from '$layouts/base.astro'
     <div>
       <h2 class="py-4 text-3xl font-medium">RECURRING EVENTS</h2>
       <div
-        class="[&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl grid grid-cols-3 gap-6"
+        class="[&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
         <div>
           <p class="font-medium leading-none">HACKTOBERFEST THAILAND</p>
@@ -64,7 +64,7 @@ import BaseLayout from '$layouts/base.astro'
       everyone, regardless of their age, economic status, education, or
       opportunities, without relying on governments or corporations.
     </p>
-    <a class="mx-auto">MORE ON SPONSORSHIPS -&gt;</a>
+    <a class="mx-auto">MORE ON SPONSORSHIPS →</a>
     <div class="space-y-10">
       <div class="grid grid-cols-2 gap-10">
         <div class="aspect-[894/441] rounded-3xl bg-gray-500"></div>
@@ -90,9 +90,9 @@ import BaseLayout from '$layouts/base.astro'
       </div>
     </div>
   </section>
-  <section>
-    <h2 class="text-center text-4xl font-medium">CORPORATE SPONSORS</h2>
-    <div class="grid grid-cols-4 gap-8">
+  <section class="pb-12">
+    <h2 class="text-center text-4xl font-medium pb-8">CORPORATE SPONSORS</h2>
+    <div class="grid sm:grid-cols-3 lg:grid-cols-4 gap-8">
       {
         [
           'xlab',

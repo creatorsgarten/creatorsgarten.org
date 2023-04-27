@@ -4,28 +4,33 @@ import dayjs from 'dayjs'
 import BaseLayout from '$layouts/base.astro'
 
 import { getEvents } from '$functions/getEvents'
+import { stringifyDate } from '$functions/stringifyDate'
 
 const now = dayjs()
 const events = await getEvents()
 ---
 
 <BaseLayout class="max-w-7xl mx-auto space-y-12 [&>*]:px-6">
-  <section class="max-w-[70%]">
+  <section class="sm:max-w-[65%]">
     <h1 class="uppercase text-3xl font-medium">Upcoming Events</h1>
     <div class="mt-6">
       {
         events
           .filter(event => event!.date.isAfter(now))
           .map(event => (
-            <div class="flex space-x-4">
+            <div class="sm:flex sm:space-x-6 space-y-4 sm:space-y-0">
               <a href={`/event/${event!.id}`}>
                 <img
                   src={`/images/events/${event!.id}.png`}
-                  class="w-64 aspect-square shrink-0"
+                  class="w-full sm:w-64 aspect-square shrink-0"
                 />
               </a>
               <div>
                 <h2 class="text-3xl font-medium uppercase">{event!.name}</h2>
+                <p class="text-lg">{stringifyDate(event!.date)} @{event!.location}</p>
+                <div class="mt-4">
+                  <a href={event!.link} class="rounded-full bg-[#1c1916] py-2 px-4 text-white">TICKETS</a>
+                </div>
               </div>
             </div>
           ))
@@ -34,10 +39,26 @@ const events = await getEvents()
   </section>
   <section>
     <h1 class="uppercase text-3xl font-medium">[Highlight] Recurring Events</h1>
+    <div
+      class="[&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl grid sm:grid-cols-3 gap-6 pt-8"
+    >
+      <div>
+        <p class="font-medium leading-none">HACKTOBERFEST THAILAND</p>
+        <p>OCTOBER</p>
+      </div>
+      <div>
+        <p class="font-medium leading-none">STUPID HACKATHON</p>
+        <p>MID Q2 TO MID Q3</p>
+      </div>
+      <div>
+        <p class="font-medium leading-none">CREATIVE CODE</p>
+        <p>BIWEEKLY</p>
+      </div>
+    </div>
   </section>
-  <section>
+  <section class="pb-12">
     <h1 class="uppercase text-3xl font-medium">Past Events</h1>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-6">
       {
         events
           .filter(event => event!.date.isBefore(now))

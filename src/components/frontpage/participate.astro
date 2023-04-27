@@ -10,15 +10,15 @@ const upcomingEvents = events.filter(o => o.date.isAfter(dayjs())).slice(0, 2)
   upcomingEvents.length !== 0 && (
     <div>
       <h2 class="py-4 text-3xl font-medium">PARTICIPATE</h2>
-      <div class="grid grid-cols-2 gap-8 text-3xl font-medium">
+      <div class="grid sm:grid-cols-2 gap-8 text-3xl font-medium">
         {upcomingEvents.map(event => (
-          <div class="flex space-x-6">
+          <a class="flex space-x-6" href={`/event/${event.id}`}>
             <img
               src={`/images/events/${event.id}.png`}
-              class="aspect-square w-1/2"
+              class="shrink-0 aspect-square w-1/2"
             />
             <p class="uppercase">{event.name}</p>
-          </div>
+          </a>
         ))}
       </div>
     </div>

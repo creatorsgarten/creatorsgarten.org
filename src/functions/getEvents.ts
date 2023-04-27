@@ -9,6 +9,8 @@ interface Event {
   id: string;
   name: string;
   date: dayjs.Dayjs;
+  link: string
+  location: string
 }
 
 export const getEvents = async () => {
@@ -28,6 +30,8 @@ export const getEvents = async () => {
         id: event.pageRef.replace('Events/', ''),
         name: frontmatter.name,
         date: dayjs(frontmatter.date),
+        link: frontmatter.site,
+        location: frontmatter.location,
       }
     })
     .sort((a, b) => {

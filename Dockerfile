@@ -33,7 +33,7 @@ FROM gcr.io/distroless/nodejs18-debian11 as runner
 
 ENV NODE_ENV production
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json ./
 COPY --from=deps-prod /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 
