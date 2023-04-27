@@ -17,7 +17,7 @@ const maxAge = 60 * 1000
 
 export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
   slug: string
-): Promise<MarkdownResponse<Frontmatter> | null> => {
+): Promise<MarkdownResponse<Frontmatter>> => {
   // get file hash
   const now = Date.now()
   const cacheKey = getHash(['wiki', slug])

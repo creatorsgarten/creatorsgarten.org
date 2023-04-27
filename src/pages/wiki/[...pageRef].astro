@@ -1,6 +1,7 @@
 ---
 import dayjs from 'dayjs'
 
+import BaseLayout from '$layouts/base.astro'
 import WikiLayout from '$layouts/wiki.astro'
 import ContentRenderer from '$components/contentRenderer.astro'
 
@@ -14,25 +15,46 @@ else if (pageRef.startsWith('Events/'))
   return Astro.redirect(`/event/${pageRef.replace('Events/', '')}`)
 
 const markdown = await getMarkdownFromSlug(pageRef)
+const { status, targetPageRef, rendered, lastModified, lastModifiedBy } =
+  markdown
 
-if (markdown === null) {
-  const { rewrite } = await import('$functions/rewrite')
-  return rewrite(404, `${Astro.url.origin}/404`)
+if (
+  status === 301 &&
+  targetPageRef &&
+  Astro.url.searchParams.get('redirect') !== 'no'
+) {
+  Astro.response.status = 301
+  Astro.response.headers.set('Location', `/wiki/${targetPageRef}`)
+} else if (status === 404) {
+  Astro.response.status = 404
+} else if (status === 500) {
+  Astro.response.status = 500
 }
-
-const { rendered, lastModified, lastModifiedBy } = markdown
 ---
 
-<WikiLayout
-  type="page"
-  title={pageRef as string}
-  contents={rendered!.headings}
-  metadata={{
-    edited: {
-      at: dayjs(lastModified).toDate(),
-      by: (lastModifiedBy ?? ['System']).map(o => '@' + o).join(' '),
-    },
-  }}
->
-  <ContentRenderer content={rendered!.html} />
-</WikiLayout>
+{
+  status === 200 ? (
+    <WikiLayout
+      type="page"
+      title={pageRef as string}
+      contents={rendered!.headings}
+      metadata={{
+        edited: {
+          at: dayjs(lastModified).toDate(),
+          by: (lastModifiedBy ?? ['System']).map(o => '@' + o).join(' '),
+        },
+      }}
+    >
+      <ContentRenderer content={rendered!.html} />
+    </WikiLayout>
+  ) : (
+    <BaseLayout>
+      <div class="px-6 pb-10">
+        <div class="mx-auto max-w-6xl">
+          <h1 class="mb-8 text-3xl">{pageRef}</h1>
+        </div>
+        <ContentRenderer content={rendered!.html} />
+      </div>
+    </BaseLayout>
+  )
+}
