@@ -4,11 +4,8 @@ import UserAuthButton from '../components/userAuthButton.astro'
 import './base.css'
 
 export interface Props {
-  title?: string
   class?: string
 }
-
-const { title } = Astro.props
 ---
 
 <!DOCTYPE html>
@@ -20,7 +17,7 @@ const { title } = Astro.props
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Work+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <script
@@ -31,7 +28,6 @@ const { title } = Astro.props
     ></script>
 
     <link rel="icon" type="image/svg" href="/images/ring.svg" />
-    <title>{title ? `${title} | Creatorsgarten` : 'Creatorsgarten'}</title>
   </head>
   <body>
     <nav class="flex justify-between px-6 py-8">
