@@ -1,42 +1,25 @@
 ---
-import path from 'path'
 import dayjs from 'dayjs'
 
 import BaseLayout from '$layouts/base.astro'
 
 import { contentsgarten } from '$constants/contentsgarten'
-import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
 
 import type { EventFrontmatter } from '$types/EventFrontmatter'
 
-const eventIds = (await Astro.glob('../../public/images/events/*.png'))
-  .map(item => path.basename(item.default))
-  .map(item => item.replace('.png', ''))
-
-const events2 = await contentsgarten.search.query({
-  prefix: 'Events/'
-})
-
-console.log(events2)
-
 const events = (
-  await Promise.all(
-    eventIds.map(async eventId => {
-      const markdown = await getMarkdownFromSlug<EventFrontmatter>(
-        `Events/${eventId}`
-      )
-
-      if (markdown === null) return null
-
-      return {
-        id: eventId,
-        name: markdown.frontMatter.name,
-        date: dayjs(markdown.frontMatter.date),
-      }
-    })
-  )
-)
-  .filter(o => o !== null)
+  await contentsgarten.search.query({
+    prefix: 'Events/',
+  })
+).results
+  .map(event => {
+    const frontmatter = event.frontMatter as EventFrontmatter
+    return {
+      id: event.pageRef.replace('Events/', ''),
+      name: frontmatter.name,
+      date: dayjs(frontmatter.date),
+    }
+  })
   .sort((a, b) => {
     return b!.date.unix() - a!.date.unix()
   })
@@ -72,7 +55,7 @@ const now = dayjs()
   </section>
   <section>
     <h1 class="uppercase text-3xl font-medium">Past Events</h1>
-    <div class="grid grid-cols-4 gap-6 mt-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
       {
         events
           .filter(event => event!.date.isBefore(now))
