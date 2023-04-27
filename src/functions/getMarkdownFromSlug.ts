@@ -7,7 +7,8 @@ import { contentsgarten } from '$constants/contentsgarten'
 import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
 
 type TRPCResponse = ContentsgartenOutput['view']
-interface MarkdownResponse <T = Record<string, string>> extends Omit<TRPCResponse, 'frontMatter'> {
+interface MarkdownResponse<T = Record<string, string>>
+  extends Omit<TRPCResponse, 'frontMatter'> {
   frontMatter: T
 }
 
@@ -43,12 +44,12 @@ export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
 
     throw new Error('cache-miss')
   } catch (e) {
-    const fetchedMarkdownResponse = await contentsgarten.view.query({
+    const fetchedMarkdownResponse = (await contentsgarten.view.query({
       pageRef: slug,
       withFile: true,
       revalidate: true,
       render: true,
-    }) as MarkdownResponse<Frontmatter>
+    })) as MarkdownResponse<Frontmatter>
 
     if (fetchedMarkdownResponse.status === 200) {
       const targetFileName = `${maxAge}.${maxAge + Date.now()}.${getHash([
@@ -68,10 +69,7 @@ export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
           .rm(path.join(requestedDirectory, targetFileName))
           .catch(() => {})
       }
-
-      return fetchedMarkdownResponse
-    } else {
-      return null
     }
+    return fetchedMarkdownResponse
   }
 }
