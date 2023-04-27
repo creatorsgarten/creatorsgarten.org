@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 
 import BaseLayout from '$layouts/base.astro'
 
+import { contentsgarten } from '$constants/contentsgarten'
 import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
 
 import type { EventFrontmatter } from '$types/EventFrontmatter'
@@ -11,6 +12,12 @@ import type { EventFrontmatter } from '$types/EventFrontmatter'
 const eventIds = (await Astro.glob('../../public/images/events/*.png'))
   .map(item => path.basename(item.default))
   .map(item => item.replace('.png', ''))
+
+const events2 = await contentsgarten.search.query({
+  prefix: 'Events/'
+})
+
+console.log(events2)
 
 const events = (
   await Promise.all(

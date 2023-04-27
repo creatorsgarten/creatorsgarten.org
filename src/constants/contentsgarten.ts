@@ -7,7 +7,7 @@ import type { ContentsgartenRouter } from 'contentsgarten'
 export const contentsgarten = createTRPCProxyClient<ContentsgartenRouter>({
   links: [
     httpBatchLink({
-      url: `${contentApiBaseUrl}/contentsgarten`,
+      url: `${contentApiBaseUrl}/api/contentsgarten`,
     }),
   ],
 })

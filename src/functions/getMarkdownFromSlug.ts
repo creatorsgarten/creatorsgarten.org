@@ -4,10 +4,9 @@ import path from 'path'
 import { getHash } from './getHash'
 import { contentsgarten } from '$constants/contentsgarten'
 
-import type { inferRouterOutputs } from '@trpc/server'
-import type { ContentsgartenRouter } from 'contentsgarten'
+import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
 
-type TRPCResponse = inferRouterOutputs<ContentsgartenRouter>['view']
+type TRPCResponse = ContentsgartenOutput['view']
 interface MarkdownResponse <T = Record<string, string>> extends Omit<TRPCResponse, 'frontMatter'> {
   frontMatter: T
 }
