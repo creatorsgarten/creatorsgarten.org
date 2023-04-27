@@ -2,43 +2,22 @@ import fs from 'fs'
 import path from 'path'
 
 import { getHash } from './getHash'
-import { contentApiBaseUrl } from '$constants/contentApiBaseUrl'
+import { contentsgarten } from '$constants/contentsgarten'
 
-interface MarkdownResponse<Frontmatter = unknown> {
-  result: {
-    data: {
-      status: 200
-      pageRef: string
-      title: string
-      file: {
-        path: string
-        content: string
-        revision: string
-      }
-      content: string
-      rendered: {
-        html: string
-        headings: [
-          {
-            id: string
-            label: string
-            rank: number
-          }
-        ]
-      }
-      frontMatter: Frontmatter
-      lastModified: string // ISO timestamp
-      lastModifiedBy: string[]
-    }
-  }
+import type { inferRouterOutputs } from '@trpc/server'
+import type { ContentsgartenRouter } from 'contentsgarten'
+
+type TRPCResponse = inferRouterOutputs<ContentsgartenRouter>['view']
+interface MarkdownResponse <T = Record<string, string>> extends Omit<TRPCResponse, 'frontMatter'> {
+  frontMatter: T
 }
 
 const cacheDirectory = path.join(process.cwd(), '.cache')
 const maxAge = 60 * 1000
 
-export const getMarkdownFromSlug = async <Frontmatter = unknown>(
+export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
   slug: string
-) => {
+): Promise<MarkdownResponse<Frontmatter> | null> => {
   // get file hash
   const now = Date.now()
   const cacheKey = getHash(['wiki', slug])
@@ -59,24 +38,20 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
           .readFile(path.join(requestedDirectory, file), 'utf8')
           .then(o => JSON.parse(o) as MarkdownResponse<Frontmatter>)
 
-        return cachedMarkdownResponse.result.data
+        return cachedMarkdownResponse
       }
     }
 
     throw new Error('cache-miss')
   } catch (e) {
-    const fetchedMarkdownResponse = await fetch(
-      `${contentApiBaseUrl}/api/contentsgarten/view?${new URLSearchParams({
-        input: JSON.stringify({
-          pageRef: slug,
-          withFile: true,
-          revalidate: true,
-          render: true,
-        }),
-      }).toString()}`
-    ).then(o => o.json() as Promise<MarkdownResponse<Frontmatter>>)
+    const fetchedMarkdownResponse = await contentsgarten.view.query({
+      pageRef: slug,
+      withFile: true,
+      revalidate: true,
+      render: true,
+    }) as MarkdownResponse<Frontmatter>
 
-    if (fetchedMarkdownResponse.result.data.status === 200) {
+    if (fetchedMarkdownResponse.status === 200) {
       const targetFileName = `${maxAge}.${maxAge + Date.now()}.${getHash([
         JSON.stringify(fetchedMarkdownResponse),
       ])}.json`
@@ -95,7 +70,7 @@ export const getMarkdownFromSlug = async <Frontmatter = unknown>(
           .catch(() => {})
       }
 
-      return fetchedMarkdownResponse.result.data
+      return fetchedMarkdownResponse
     } else {
       return null
     }
