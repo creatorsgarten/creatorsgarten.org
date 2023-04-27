@@ -3,6 +3,39 @@ import { Html } from '@contentsgarten/html'
 
 import { MarkdownLink } from './markdown/link'
 import { customComponents } from './markdown/customComponents'
+import { getOembedInstance } from '$functions/getOembed'
+import { getIframe } from '$functions/getIframe'
+
+const { content } = Astro.props
+
+const codeBlockRegex = /(<code>.+<\/code>)/
+const getOembed = await getOembedInstance()
+const tranformedContent = await Promise.all(content.split(codeBlockRegex).map(async chunk => {
+  const matcher = chunk.match(/<code>(.+)<\/code>/)
+  if (matcher === null)
+    return chunk
+
+  try {
+    const matchedGroup = matcher[1].match(/^(\w+):(.+)/)
+    if (matchedGroup === null)
+      return chunk
+
+    const [provider, value] = [matchedGroup[1], matchedGroup[2]].map(o => o.trim())
+
+    switch (provider) {
+      case 'oembed':
+        return await getOembed(value)
+      case 'youtube':
+        return getIframe(`https://www.youtube.com/embed/${value}`)
+      default:
+        return chunk
+    }
+  } catch (e) {
+    return chunk
+  }
+}))
+
+console.log(tranformedContent)
 
 export interface Props {
   content: string
@@ -12,7 +45,7 @@ export interface Props {
 
 <Html
   className="prose mx-auto max-w-6xl"
-  html={Astro.props.content}
+  html={tranformedContent.join('')}
   renderLink={props => MarkdownLink(props, '/wiki/' + Astro.props.pageRef)}
   customComponents={customComponents}
 />

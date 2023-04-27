@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import BaseLayout from './base.astro'
 
 import MetadataTable from '$components/metadataTable.astro'
+import { Icon } from 'react-iconify-icon-wrapper'
 
 export interface Props {
   title: string
@@ -37,10 +38,10 @@ const { title, contents, events, metadata, type = 'page' } = Astro.props
 <BaseLayout>
   <h1 class="pt-6 pb-8 text-center text-5xl uppercase">{title}</h1>
   <div
-    class="grid divide-x divide-[#ededed] border-[#ededed] border-t sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
+    class="grid divide-x-2 divide-[#ededed] border-[#ededed] border-t-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
   >
     <div class="col-span-1">
-      <div class="sticky top-0 flex flex-col divide-y divide-[#ededed]">
+      <div class="sticky top-0 flex flex-col divide-y-2 divide-[#ededed] border-[#ededed] border-b-2 sm:border-none">
         {
           type === 'event' && events ? (
             <Fragment>
@@ -98,6 +99,23 @@ const { title, contents, events, metadata, type = 'page' } = Astro.props
         </section>
         <section class="p-6">
           <h2 class="pb-6 text-center font-medium">SHARE</h2>
+          <div class="flex justify-center space-x-2">
+            <a target="_blank" rel="noopener noreferrer" href={`https://twitter.com/intent/tweet?${new URLSearchParams({
+              url: Astro.url.toString(),
+              text: 'Check this',
+              via: 'Creatorsgarten'
+            }).toString()}`}>
+              <Icon icon='mdi:twitter' width={24} />
+            </a>
+            <a target="_blank" rel="noopener noreferrer" href={`https://www.facebook.com/dialog/share?${new URLSearchParams({
+              app_id: '2314627122104275',
+              href: Astro.url.toString(),
+              feature: 'share',
+              display: 'popup'
+            }).toString()}`}>
+              <Icon icon='mdi:facebook' width={24} />
+            </a>
+          </div>
         </section>
       </div>
     </div>

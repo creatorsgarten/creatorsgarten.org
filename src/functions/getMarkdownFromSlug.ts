@@ -1,8 +1,5 @@
-import fs from 'fs'
-import path from 'path'
-
-import { getHash } from './getHash'
 import { contentsgarten } from '$constants/contentsgarten'
+import { readFileSystem, writeFileSystem } from './fileSystem'
 
 import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
 
@@ -12,37 +9,18 @@ interface MarkdownResponse<T = Record<string, string>>
   frontMatter: T
 }
 
-const cacheDirectory = path.join(process.cwd(), '.cache')
-const maxAge = 60 * 1000
-
 export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
   slug: string
 ): Promise<MarkdownResponse<Frontmatter>> => {
-  // get file hash
-  const now = Date.now()
-  const cacheKey = getHash(['wiki', slug])
-  const requestedDirectory = path.join(cacheDirectory, cacheKey)
+  const cacheKey = ['wiki', slug]
 
   try {
-    const files = await fs.promises.readdir(requestedDirectory)
+    const cachedMarkdownResponse = await readFileSystem<MarkdownResponse<Frontmatter>>(cacheKey)
 
-    for (const file of files) {
-      const [maxAgeString, expireAtString, etag, extension] = file.split('.')
-      const filePath = path.join(requestedDirectory, file)
-      const expireAt = Number(expireAtString)
-
-      if (expireAt < now) {
-        await fs.promises.rm(filePath)
-      } else {
-        const cachedMarkdownResponse = await fs.promises
-          .readFile(path.join(requestedDirectory, file), 'utf8')
-          .then(o => JSON.parse(o) as MarkdownResponse<Frontmatter>)
-
-        return cachedMarkdownResponse
-      }
-    }
-
-    throw new Error('cache-miss')
+    if (cachedMarkdownResponse !== null)
+      return cachedMarkdownResponse.data
+    else
+      throw new Error('cache-miss')
   } catch (e) {
     const fetchedMarkdownResponse = (await contentsgarten.view.query({
       pageRef: slug,
@@ -51,25 +29,9 @@ export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
       render: true,
     })) as MarkdownResponse<Frontmatter>
 
-    if (fetchedMarkdownResponse.status === 200) {
-      const targetFileName = `${maxAge}.${maxAge + Date.now()}.${getHash([
-        JSON.stringify(fetchedMarkdownResponse),
-      ])}.json`
+    if (fetchedMarkdownResponse.status === 200)
+      await writeFileSystem(cacheKey, fetchedMarkdownResponse)
 
-      // any case of failure (maybe due to filesystem space ran out) can be ignored,
-      // but it need to make sure it properly cleaned up
-      try {
-        await fs.promises.mkdir(requestedDirectory, { recursive: true })
-        await fs.promises.writeFile(
-          path.join(requestedDirectory, targetFileName),
-          JSON.stringify(fetchedMarkdownResponse)
-        )
-      } catch (e) {
-        await fs.promises
-          .rm(path.join(requestedDirectory, targetFileName))
-          .catch(() => {})
-      }
-    }
     return fetchedMarkdownResponse
   }
 }
