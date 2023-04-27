@@ -8,6 +8,7 @@ import { Icon } from 'react-iconify-icon-wrapper'
 
 export interface Props {
   title: string
+  pageRef: string
   type?: 'page' | 'event'
   events?: {
     id: string
@@ -25,14 +26,21 @@ export interface Props {
   metadata: {
     edited: {
       at: Date
-      by: string
+      by: string[]
     }
   }
 }
 
 const stringifyDate = (input: Date) => dayjs(input).format('D MMMM YYYY')
 
-const { title, contents, events, metadata, type = 'page' } = Astro.props
+const {
+  title,
+  contents,
+  events,
+  metadata,
+  type = 'page',
+  pageRef,
+} = Astro.props
 ---
 
 <BaseLayout>
@@ -41,7 +49,9 @@ const { title, contents, events, metadata, type = 'page' } = Astro.props
     class="grid divide-x-2 divide-[#ededed] border-[#ededed] border-t-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
   >
     <div class="col-span-1">
-      <div class="sticky top-0 flex flex-col divide-y-2 divide-[#ededed] border-[#ededed] border-b-2 sm:border-none">
+      <div
+        class="sticky top-0 flex flex-col divide-y-2 divide-[#ededed] border-[#ededed] border-b-2 sm:border-none"
+      >
         {
           type === 'event' && events ? (
             <Fragment>
@@ -88,32 +98,60 @@ const { title, contents, events, metadata, type = 'page' } = Astro.props
         }
         <section class="p-6">
           <h2 class="pb-6 text-center font-medium">METADATA</h2>
-          <MetadataTable
-            data={[
-              [
-                'EDIT',
-                `${stringifyDate(metadata.edited.at)} / ${metadata.edited.by}`,
-              ],
-            ]}
-          />
+          <MetadataTable>
+            <Fragment slot="table">
+              <tr>
+                <td>EDIT</td>
+                <td
+                  ><span>{stringifyDate(metadata.edited.at)}</span> / <span
+                    class="space-x-1"
+                    >{
+                      metadata.edited.by.map(user => (
+                        <a href={`https://github.com/${user}`}>@{user}</a>
+                      ))
+                    }</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>HISTORY</td>
+                <td
+                  ><a
+                    href={`https://github.com/creatorsgarten/wiki/commits/main/wiki/${pageRef}.md`}
+                    >GitHub</a
+                  ></td
+                >
+              </tr>
+            </Fragment>
+          </MetadataTable>
         </section>
         <section class="p-6">
           <h2 class="pb-6 text-center font-medium">SHARE</h2>
           <div class="flex justify-center space-x-2">
-            <a target="_blank" rel="noopener noreferrer" href={`https://twitter.com/intent/tweet?${new URLSearchParams({
-              url: Astro.url.toString(),
-              text: 'Check this',
-              via: 'Creatorsgarten'
-            }).toString()}`}>
-              <Icon icon='mdi:twitter' width={24} />
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`https://twitter.com/intent/tweet?${new URLSearchParams({
+                url: Astro.url.toString(),
+                text: 'Check this',
+                via: 'Creatorsgarten',
+              }).toString()}`}
+            >
+              <Icon icon="mdi:twitter" width={24} />
             </a>
-            <a target="_blank" rel="noopener noreferrer" href={`https://www.facebook.com/dialog/share?${new URLSearchParams({
-              app_id: '2314627122104275',
-              href: Astro.url.toString(),
-              feature: 'share',
-              display: 'popup'
-            }).toString()}`}>
-              <Icon icon='mdi:facebook' width={24} />
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`https://www.facebook.com/dialog/share?${new URLSearchParams(
+                {
+                  app_id: '2314627122104275',
+                  href: Astro.url.toString(),
+                  feature: 'share',
+                  display: 'popup',
+                }
+              ).toString()}`}
+            >
+              <Icon icon="mdi:facebook" width={24} />
             </a>
           </div>
         </section>

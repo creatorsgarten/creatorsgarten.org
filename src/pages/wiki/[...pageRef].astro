@@ -44,11 +44,12 @@ if (
     <WikiLayout
       type="page"
       title={frontMatter.title || formatPageRef(pageRef as string)}
+      pageRef={pageRef}
       contents={rendered!.headings}
       metadata={{
         edited: {
           at: dayjs(lastModified).toDate(),
-          by: (lastModifiedBy ?? ['SYSTEM']).map(o => '@' + o).join(' '),
+          by: (lastModifiedBy ?? ['SYSTEM']),
         },
       }}
     >
