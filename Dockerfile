@@ -14,7 +14,7 @@ WORKDIR /app
 RUN npm i -g pnpm
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN pnpm -r i --frozen-lockfile --prod --shamefully-hoist
+RUN pnpm -r i --frozen-lockfile --prod
 
 # ? -------------------------
 
