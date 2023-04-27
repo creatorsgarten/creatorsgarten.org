@@ -6,12 +6,13 @@ import { customComponents } from './markdown/customComponents'
 
 export interface Props {
   content: string
+  pageRef: string
 }
 ---
 
 <Html
   className="prose mx-auto max-w-6xl"
   html={Astro.props.content}
-  renderLink={MarkdownLink}
+  renderLink={props => MarkdownLink(props, '/wiki/' + Astro.props.pageRef)}
   customComponents={customComponents}
 />

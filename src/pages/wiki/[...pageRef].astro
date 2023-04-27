@@ -6,6 +6,7 @@ import WikiLayout from '$layouts/wiki.astro'
 import ContentRenderer from '$components/contentRenderer.astro'
 
 import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
+import { formatPageRef } from '$functions/formatPageRef'
 
 let { pageRef } = Astro.params
 
@@ -15,8 +16,14 @@ else if (pageRef.startsWith('Events/'))
   return Astro.redirect(`/event/${pageRef.replace('Events/', '')}`)
 
 const markdown = await getMarkdownFromSlug(pageRef)
-const { status, targetPageRef, rendered, lastModified, lastModifiedBy } =
-  markdown
+const {
+  status,
+  targetPageRef,
+  rendered,
+  lastModified,
+  lastModifiedBy,
+  frontMatter,
+} = markdown
 
 if (
   status === 301 &&
@@ -36,7 +43,7 @@ if (
   status === 200 ? (
     <WikiLayout
       type="page"
-      title={pageRef as string}
+      title={frontMatter.title || formatPageRef(pageRef as string)}
       contents={rendered!.headings}
       metadata={{
         edited: {
@@ -45,7 +52,7 @@ if (
         },
       }}
     >
-      <ContentRenderer content={rendered!.html} />
+      <ContentRenderer content={rendered!.html} pageRef={pageRef} />
     </WikiLayout>
   ) : (
     <BaseLayout>
@@ -53,7 +60,7 @@ if (
         <div class="mx-auto max-w-6xl">
           <h1 class="mb-8 text-3xl">{pageRef}</h1>
         </div>
-        <ContentRenderer content={rendered!.html} />
+        <ContentRenderer content={rendered!.html} pageRef={pageRef} />
       </div>
     </BaseLayout>
   )
