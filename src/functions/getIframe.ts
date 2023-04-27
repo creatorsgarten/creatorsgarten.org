@@ -1,6 +1,6 @@
 export const getIframe = (url: string) => {
   return `
-    <div class="w-full aspect-[16/9]">
+    <div class="max-w-2xl mx-auto w-full aspect-[16/9]">
       <iframe
         src="${url}"
         class="w-full aspect-[16/9]"
