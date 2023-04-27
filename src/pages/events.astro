@@ -3,28 +3,10 @@ import dayjs from 'dayjs'
 
 import BaseLayout from '$layouts/base.astro'
 
-import { contentsgarten } from '$constants/contentsgarten'
-
-import type { EventFrontmatter } from '$types/EventFrontmatter'
-
-const events = (
-  await contentsgarten.search.query({
-    prefix: 'Events/',
-  })
-).results
-  .map(event => {
-    const frontmatter = event.frontMatter as EventFrontmatter
-    return {
-      id: event.pageRef.replace('Events/', ''),
-      name: frontmatter.name,
-      date: dayjs(frontmatter.date),
-    }
-  })
-  .sort((a, b) => {
-    return b!.date.unix() - a!.date.unix()
-  })
+import { getEvents } from '$functions/getEvents'
 
 const now = dayjs()
+const events = await getEvents()
 ---
 
 <BaseLayout class="max-w-7xl mx-auto space-y-12 [&>*]:px-6">
