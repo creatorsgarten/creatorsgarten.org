@@ -38,10 +38,10 @@ const { title, contents, events, metadata, type = 'page' } = Astro.props
 <BaseLayout>
   <h1 class="pt-6 pb-8 text-center text-5xl uppercase">{title}</h1>
   <div
-    class="grid divide-x divide-[#ededed] border-[#ededed] border-t sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
+    class="grid divide-x-2 divide-[#ededed] border-[#ededed] border-t-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
   >
     <div class="col-span-1">
-      <div class="sticky top-0 flex flex-col divide-y divide-[#ededed] border-b sm:border-none">
+      <div class="sticky top-0 flex flex-col divide-y-2 divide-[#ededed] border-[#ededed] border-b-2 sm:border-none">
         {
           type === 'event' && events ? (
             <Fragment>
