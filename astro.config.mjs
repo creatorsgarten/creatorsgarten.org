@@ -6,7 +6,6 @@ import react from '@astrojs/react'
 
 /* Integrations */
 import tailwind from '@astrojs/tailwind'
-import image from '@astrojs/image'
 import prefetch from '@astrojs/prefetch'
 
 // https://astro.build/config
@@ -15,5 +14,5 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone',
   }),
-  integrations: [tailwind(), image(), prefetch(), react()],
+  integrations: [tailwind(), prefetch(), react()],
 })

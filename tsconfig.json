@@ -4,6 +4,7 @@
     "forceConsistentCasingInFileNames": false,
     "baseUrl": ".",
     "paths": {
+      "$types/*": ["src/@types/*"],
       "$components/*": ["src/components/*"],
       "$constants/*": ["src/constants/*"],
       "$functions/*": ["src/functions/*"],

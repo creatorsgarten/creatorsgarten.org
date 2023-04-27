@@ -6,14 +6,7 @@ import ContentRenderer from '$components/contentRenderer.astro'
 
 import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
 
-interface Frontmatter {
-  name: string
-  location: string
-  date: string
-  endDate?: string
-  site: string
-  hosts: string[]
-}
+import type { EventFrontmatter } from '$types/EventFrontmatter'
 
 let { eventId } = Astro.params
 
@@ -22,7 +15,9 @@ if (eventId === undefined) {
   return rewrite(404, `${Astro.url.origin}/404`)
 }
 
-const markdown = await getMarkdownFromSlug<Frontmatter>(`Events/${eventId}`)
+const markdown = await getMarkdownFromSlug<EventFrontmatter>(
+  `Events/${eventId}`
+)
 
 if (markdown === null) {
   const { rewrite } = await import('$functions/rewrite')
@@ -33,7 +28,7 @@ const { rendered, lastModified, lastModifiedBy, frontMatter } = markdown
 ---
 
 <WikiLayout
-  title={eventId as string}
+  title={frontMatter.name as string}
   contents={rendered.headings}
   metadata={{
     edited: {

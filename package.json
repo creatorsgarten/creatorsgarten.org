@@ -13,7 +13,6 @@
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "dependencies": {
-    "@astrojs/image": "0.16.6",
     "@astrojs/node": "5.1.1",
     "@astrojs/prefetch": "0.2.1",
     "@astrojs/react": "^2.1.1",
