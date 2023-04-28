@@ -14,7 +14,12 @@ const upcomingEvents = events
 {
   upcomingEvents.length !== 0 && (
     <div>
-      <h2 class="py-4 text-3xl font-medium">PARTICIPATE</h2>
+      <div class="flex justify-between items-center">
+        <h2 class="py-4 text-3xl font-medium">UPCOMING</h2>
+        <a href="#" class="hidden md:block hover:text-sky-600">
+          MORE ON EVENTS →
+        </a>
+      </div>
       <div class="grid sm:grid-cols-2 gap-8 text-3xl font-medium">
         {upcomingEvents.map(event => (
           <EventPoster event={event!} />

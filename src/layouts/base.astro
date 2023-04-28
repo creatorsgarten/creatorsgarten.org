@@ -33,17 +33,25 @@ export interface Props {
     <link rel="icon" type="image/svg" href="/images/ring.svg" />
   </head>
   <body>
-    <nav class="flex justify-between px-6 py-8">
+    <nav class="flex justify-between px-6 pt-6 pb-8">
       <a href="/">
-        <img src="/images/creatorsgarten.svg" class="h-12" />
+        <img src="/images/creatorsgarten.svg" class="h-9" />
       </a>
-      <div class="hidden sm:flex items-center space-x-4 font-medium">
+      <div class="sm:hidden text-3xl">🍔</div>
+      <!-- TODO: Delete this -->
+      <div class="hidden sm:flex items-center space-x-4 font-medium text-sm">
         <ul class="flex shrink-0 space-x-4 rounded-full bg-[#ededed] py-2 px-4">
-          <li><a href="/events">CRAFTS</a></li>
-          <li>CONTENT</li>
-          <li><a href="/people">PEOPLE</a></li>
-          <li>US</li>
-          <li><a href="/wiki">WIKI</a></li>
+          <li class="hover:text-sky-600 transition-all">
+            <a href="/events">CRAFTS</a>
+          </li>
+          <li class="hover:text-sky-600 transition-all">CONTENT</li>
+          <li class="hover:text-sky-600 transition-all">
+            <a href="/people">PEOPLE</a>
+          </li>
+          <li class="hover:text-sky-600 transition-all">US</li>
+          <li class="hover:text-sky-600 transition-all">
+            <a href="/wiki">WIKI</a>
+          </li>
         </ul>
         <UserAuthButton />
       </div>
@@ -91,7 +99,7 @@ export interface Props {
           </div>
         </section>
         <section class="flex flex-col items-end justify-between pt-10 md:pt-0">
-          <img src="/images/creatorsgarten.svg" class="h-10" />
+          <img src="/images/creatorsgarten.svg" class="h-10 mb-4" />
           <p class="text-right text-sm">MADE WITH THE ❤️ OF 🪄</p>
         </section>
       </div>

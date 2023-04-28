@@ -7,7 +7,9 @@ const { data = [] } = Astro.props
 ---
 
 <table class="text-sm">
-  <tbody class="[&>tr>td:nth-child(1)]:font-medium [&>tr>td:nth-child(2)]:pl-4">
+  <tbody
+    class="[&>tr>td:nth-child(1)]:font-medium [&>tr>td:nth-child(2)]:pl-4 [&>tr>td]:py-1"
+  >
     {
       data.map(([key, value]) => {
         return (
@@ -24,6 +26,6 @@ const { data = [] } = Astro.props
         )
       })
     }
-    <slot name='table' />
+    <slot name="table" />
   </tbody>
 </table>

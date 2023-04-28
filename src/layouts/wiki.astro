@@ -44,7 +44,9 @@ const {
 ---
 
 <BaseLayout>
-  <h1 class="px-6 pb-8 text-center text-4xl sm:text-5xl uppercase break-words">{title}</h1>
+  <h1 class="px-6 pb-8 text-center text-4xl sm:text-5xl uppercase break-words">
+    {title}
+  </h1>
   <div
     class="grid divide-x-2 divide-[#ededed] border-[#ededed] border-t-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
   >
@@ -80,7 +82,17 @@ const {
                 >
                   <tr slot="table">
                     <td>LINK</td>
-                    <td><a href={events.link} class="break-all inline-flex items-center"><span class="mr-1">{new URL(events.link).host}</span><Icon icon="pixelarticons:external-link" /></a></td>
+                    <td>
+                      <a
+                        href={events.link}
+                        class="break-all inline-flex items-center"
+                      >
+                        <>
+                          <span class="mr-1">{new URL(events.link).host}</span>
+                          <Icon icon="pixelarticons:external-link" />
+                        </>
+                      </a>
+                    </td>
                   </tr>
                 </MetadataTable>
               </section>
@@ -90,11 +102,16 @@ const {
         {
           contents.length > 0 && (
             <section class="p-6">
-              <h2 class="pb-6 text-center font-medium">CONTENTS</h2>
+              <h2 class="pb-4 text-center font-medium">CONTENTS</h2>
               <ul class="list-inside list-disc text-sm">
                 {contents.map(content => (
-                  <li>
-                    <a href={'#' + content.id}>{content.label}</a>
+                  <li class="py-1">
+                    <a
+                      class="hover:text-sky-600 transition-all"
+                      href={'#' + content.id}
+                    >
+                      {content.label}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -102,10 +119,10 @@ const {
           )
         }
         <section class="p-6">
-          <h2 class="pb-6 text-center font-medium">METADATA</h2>
+          <h2 class="pb-4 text-center font-medium">METADATA</h2>
           <MetadataTable>
             <Fragment slot="table">
-              <tr>
+              <t>
                 <td>EDIT</td>
                 <td
                   ><span>{stringifyDate(metadata.edited.at)}</span> / <span
@@ -117,14 +134,16 @@ const {
                     }</span
                   >
                 </td>
-              </tr>
+              </t>
               <tr>
                 <td>HISTORY</td>
                 <td
                   ><a
                     href={`https://github.com/creatorsgarten/wiki/commits/main/wiki/${pageRef}.md`}
                     class="inline-flex items-center"
-                    ><span class="mr-1">GitHub</span><Icon icon="pixelarticons:external-link" /></a
+                    ><span class="mr-1">GitHub</span><Icon
+                      icon="pixelarticons:external-link"
+                    /></a
                   ></td
                 >
               </tr>
@@ -132,8 +151,8 @@ const {
           </MetadataTable>
         </section>
         <section class="p-6">
-          <h2 class="pb-6 text-center font-medium">SHARE</h2>
-          <div class="flex justify-center space-x-2">
+          <h2 class="pb-4 text-center font-medium">SHARE</h2>
+          <div class="flex justify-center space-x-4">
             <a
               target="_blank"
               rel="noopener noreferrer"
