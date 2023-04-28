@@ -9,7 +9,7 @@ import type { AstroGlobal } from 'astro'
 
 export const finalizeAuthentication = async (uid: number, Astro: AstroGlobal) => {
   // get mongo document
-  const userDoc = await mongo.db('creatorsgarten.org').collection('users').findOne({ uid })
+  const userDoc = await mongo.db('creatorsgarten-org').collection('users').findOne({ uid })
 
   if (userDoc === null)
     throw new Error('unsuccessful-authentication')

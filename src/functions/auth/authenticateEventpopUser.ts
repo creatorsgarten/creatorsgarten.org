@@ -36,20 +36,16 @@ export const authenticateEventpopUser = async (
 ) => {
   try {
     // authenticate user to eventpop
-    const authPayload = new FormData()
-    authPayload.append('client_id', import.meta.env.EVENTPOP_CLIENT_ID)
-    authPayload.append('client_secret', import.meta.env.EVENTPOP_CLIENT_SECRET)
-    authPayload.append('code', code)
-    authPayload.append(
-      'redirect_uri',
-      'https://dtinth.github.io/oauth_gateway/eventpop_callback.html'
-    )
-    authPayload.append('grant_type', 'authorization_code')
-
     console.log('/oauth/token')
     const authorization = await fetch('https://www.eventpop.me/oauth/token', {
       method: 'POST',
-      body: authPayload,
+      body: Object.entries({
+        client_id: import.meta.env.EVENTPOP_CLIENT_ID,
+        client_secret: import.meta.env.EVENTPOP_CLIENT_SECRET,
+        code: code,
+        redirect_uri: 'https://dtinth.github.io/oauth_gateway/eventpop_callback.html',
+        grant_type: 'authorization_code',
+      }).map(([key, value]) => `${key}=${value}`).join('&'),
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -71,7 +67,7 @@ export const authenticateEventpopUser = async (
 
     // sync with mongo
     await mongo
-      .db('creatorsgarten.org')
+      .db('creatorsgarten-org')
       .collection('users')
       .updateOne(
         { uid: user.id },

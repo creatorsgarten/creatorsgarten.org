@@ -43,6 +43,7 @@ try {
   switch (service) {
     case 'eventpop':
       await authenticateEventpopUser(code, Astro)
+      break
     case 'github':
       throw new Error('to-be-implemented')
   }
