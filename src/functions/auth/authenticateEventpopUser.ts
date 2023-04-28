@@ -40,8 +40,8 @@ export const authenticateEventpopUser = async (
     const authorization = await fetch('https://www.eventpop.me/oauth/token', {
       method: 'POST',
       body: Object.entries({
-        client_id: import.meta.env.EVENTPOP_CLIENT_ID,
-        client_secret: import.meta.env.EVENTPOP_CLIENT_SECRET,
+        client_id: import.meta.env.EVENTPOP_CLIENT_ID ?? process.env.EVENTPOP_CLIENT_ID,
+        client_secret: import.meta.env.EVENTPOP_CLIENT_SECRET ?? process.env.EVENTPOP_CLIENT_SECRET,
         code: code,
         redirect_uri: 'https://dtinth.github.io/oauth_gateway/eventpop_callback.html',
         grant_type: 'authorization_code',

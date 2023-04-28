@@ -7,7 +7,7 @@ export const getAuthenticatedUser = async (Astro: AstroGlobal): Promise<Authenti
   try {
     const token = Astro.cookies.get('authgarten')
 
-    const session = await Iron.unseal(token.value ?? '', import.meta.env.IRON_SECRET, Iron.defaults)
+    const session = await Iron.unseal(token.value ?? '', import.meta.env.IRON_SECRET ?? process.env.IRON_SECRET, Iron.defaults)
     const expiresAt = session.createdAt + session.maxAge * 1000
 
     // Validate the expiration date of the session

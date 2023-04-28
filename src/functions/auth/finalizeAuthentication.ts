@@ -31,7 +31,7 @@ export const finalizeAuthentication = async (uid: number, Astro: AstroGlobal) =>
       createdAt: Date.now(),
       maxAge: maxSessionAge,
     },
-    import.meta.env.IRON_SECRET,
+    import.meta.env.IRON_SECRET ?? process.env.IRON_SECRET,
     Iron.defaults
   )
 

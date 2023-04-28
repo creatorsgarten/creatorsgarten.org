@@ -29,7 +29,7 @@ RUN npx pnpm build
 
 # ? -------------------------
 
-FROM node:18-alpine as runner
+FROM gcr.io/distroless/nodejs18-debian11 as runner
 
 ENV NODE_ENV production
 
@@ -41,4 +41,4 @@ EXPOSE 8080
 ENV PORT 8080
 ENV HOST 0.0.0.0
 
-CMD ["node", "./dist/server/entry.mjs"]
+CMD ["./dist/server/entry.mjs"]

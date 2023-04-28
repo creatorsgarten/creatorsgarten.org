@@ -36,7 +36,7 @@ try {
   }
 
   // verify csrf that it comes from our platform
-  if (!new CSRF().verify(import.meta.env.CSRF_SECRET, csrfToken))
+  if (!new CSRF().verify(import.meta.env.CSRF_SECRET ?? process.env.CSRF_SECRET, csrfToken))
     throw new Error('csrf-verification-fail')
 
   // handle authtication from here
