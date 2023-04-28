@@ -5,10 +5,13 @@ import { contentsgarten } from '$constants/contentsgarten'
 
 export interface Props {
   pageRef: string
-  content: string
+  file: {
+    content?: string;
+    revision?: string;
+  }
 }
 
-const { pageRef, content } = Astro.props
+const { pageRef, file } = Astro.props
 
 const editable = Astro.cookies.get('authgarten').value
   ? await contentsgarten(Astro.cookies.get('authgarten').value)
@@ -52,7 +55,8 @@ const editable = Astro.cookies.get('authgarten').value
             <form method="post">
               {/* prettier-ignore */}
               <input type="hidden" name="pageRef" value={pageRef} />
-              <textarea name="content" rows={25} class="my-4 w-full border-2 rounded-md ring-0 p-2 overflow-x-scroll whitespace-nowrap text-sm font-mono">{content}</textarea>
+              <input type="hidden" name="revision" value={file!.revision} />
+              <textarea name="content" rows={25} class="my-4 w-full border-2 rounded-md ring-0 p-2 overflow-x-scroll whitespace-nowrap text-sm font-mono">{file!.content}</textarea>
               <button type="submit" class="rounded-xl px-4 py-2 bg-sky-400 text-white font-medium">SAVE</button>
             </form>
           </main>

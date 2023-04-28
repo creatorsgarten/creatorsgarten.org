@@ -21,7 +21,7 @@ export const purgeFileSystem = async (key: string[]) => {
   const requestedDirectory = path.join(cacheDirectory, hash)
 
   try {
-    fs.promises.rm(requestedDirectory, {
+    await fs.promises.rm(requestedDirectory, {
       recursive: true,
     })
   } catch (e) {}

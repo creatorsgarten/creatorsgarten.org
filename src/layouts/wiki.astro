@@ -23,7 +23,10 @@ export interface Props {
     hosts: string[]
     link: string
   }
-  markdown: string
+  file: {
+    content?: string;
+    revision?: string;
+  }
   contents: {
     id: string
     label: string
@@ -43,7 +46,7 @@ const {
   metadata,
   type = 'page',
   pageRef,
-  markdown,
+  file,
 } = Astro.props
 ---
 
@@ -154,7 +157,7 @@ const {
             </Fragment>
           </MetadataTable>
         </section>
-        <WikiModeration pageRef={pageRef} content={markdown} />
+        <WikiModeration pageRef={pageRef} file={file} />
         <section class="p-6">
           <h2 class="pb-4 text-center font-medium">SHARE</h2>
           <div class="flex justify-center space-x-4">

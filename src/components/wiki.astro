@@ -20,14 +20,22 @@ if (Astro.request.method === 'POST') {
   try {
     const data = await Astro.request.formData()
     const pageRef = data.get('pageRef')
+    const revision = data.get('revision')
     const content = data.get('content')
 
-    if (pageRef && content)
-      await updateWiki(pageRef.toString(), content.toString())
-  } catch(e) {}
+    if (pageRef && content && revision)
+      await updateWiki(
+        pageRef.toString(),
+        content.toString(),
+        revision.toString(),
+        Astro
+      )
+  } catch (e) {}
 }
 
-const markdown = await getMarkdownFromSlug<EventFrontmatter & { title: string }>(pageRef)
+const markdown = await getMarkdownFromSlug<
+  EventFrontmatter & { title: string }
+>(pageRef)
 const {
   status,
   targetPageRef,
@@ -35,7 +43,7 @@ const {
   lastModified,
   lastModifiedBy,
   frontMatter,
-  content
+  file,
 } = markdown
 
 if (
@@ -58,28 +66,35 @@ if (
       title={frontMatter.title || formatPageRef(pageRef as string)}
       pageRef={pageRef}
       contents={rendered!.headings}
-      markdown={content}
+      file={{
+        content: file?.content,
+        revision: file?.revision,
+      }}
       metadata={{
         edited: {
           at: dayjs(lastModified),
           by: lastModifiedBy ?? ['SYSTEM'],
         },
       }}
-      {...(pageRef.startsWith('Events/') ? {
-        type: 'event',
-        events: {
-          id: pageRef.replace('Events/', ''),
-          location: frontMatter.location,
-          date: {
-            from: dayjs(frontMatter.date),
-            to: frontMatter.endDate ? dayjs(frontMatter.endDate) : undefined,
-          },
-          hosts: frontMatter.hosts,
-          link: frontMatter.site,
-        }
-      } : {
-        type: 'page'
-      })}
+      {...(pageRef.startsWith('Events/')
+        ? {
+            type: 'event',
+            events: {
+              id: pageRef.replace('Events/', ''),
+              location: frontMatter.location,
+              date: {
+                from: dayjs(frontMatter.date),
+                to: frontMatter.endDate
+                  ? dayjs(frontMatter.endDate)
+                  : undefined,
+              },
+              hosts: frontMatter.hosts,
+              link: frontMatter.site,
+            },
+          }
+        : {
+            type: 'page',
+          })}
     >
       <ContentRenderer content={rendered!.html} pageRef={pageRef} />
     </WikiLayout>
