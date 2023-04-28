@@ -1,9 +1,20 @@
-import * as fs from 'fs'
-import * as path from 'path'
-
-import { getHash } from './getHash'
+import fs from 'fs'
+import path from 'path'
+import { createHash } from 'crypto'
 
 const cacheDirectory = path.join(process.cwd(), '.cache')
+
+const getHash = (items: (string | number | Buffer)[]) => {
+  const hash = createHash('sha256')
+  for (let item of items) {
+    if (typeof item === 'number') hash.update(String(item))
+    else {
+      hash.update(item)
+    }
+  }
+  // See https://en.wikipedia.org/wiki/Base64#Filenames
+  return hash.digest('base64').replace(/\//g, '-')
+}
 
 export const readFileSystem = async <T = unknown>(key: string[]) => {
   const hash = getHash(key)

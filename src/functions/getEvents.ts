@@ -5,7 +5,7 @@ import { contentsgarten } from "$constants/contentsgarten"
 import type { EventFrontmatter } from "$types/EventFrontmatter"
 import { readFileSystem, writeFileSystem } from "./fileSystem"
 
-interface Event {
+export interface Event {
   id: string;
   name: string;
   date: dayjs.Dayjs;
@@ -38,7 +38,11 @@ export const getEvents = async () => {
       return b!.date.unix() - a!.date.unix()
     })
 
-  await writeFileSystem(['events'], fetchedEvents)
+  await writeFileSystem(
+    ['events'],
+    fetchedEvents,
+    1000 * 60 * 15 // 15 minutes
+  )
 
   return fetchedEvents
 }

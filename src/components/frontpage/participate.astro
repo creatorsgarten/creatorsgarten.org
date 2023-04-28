@@ -1,5 +1,7 @@
 ---
 import dayjs from 'dayjs'
+
+import EventPoster from '$components/eventPoster.astro';
 import { getEvents } from '$functions/getEvents'
 
 const events = await getEvents()
@@ -12,13 +14,7 @@ const upcomingEvents = events.filter(o => o.date.isAfter(dayjs())).slice(0, 2)
       <h2 class="py-4 text-3xl font-medium">PARTICIPATE</h2>
       <div class="grid sm:grid-cols-2 gap-8 text-3xl font-medium">
         {upcomingEvents.map(event => (
-          <a class="flex space-x-6" href={`/event/${event.id}`}>
-            <img
-              src={`/images/events/${event.id}.png`}
-              class="shrink-0 aspect-square w-1/2"
-            />
-            <p class="uppercase">{event.name}</p>
-          </a>
+          <EventPoster event={event!} />
         ))}
       </div>
     </div>

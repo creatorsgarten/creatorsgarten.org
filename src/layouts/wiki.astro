@@ -80,7 +80,7 @@ const {
                 >
                   <tr slot="table">
                     <td>LINK</td>
-                    <td><a href={events.link} class="break-all">{new URL(events.link).host}</a></td>
+                    <td><a href={events.link} class="break-all inline-flex items-center"><span class="mr-1">{new URL(events.link).host}</span><Icon icon="pixelarticons:external-link" /></a></td>
                   </tr>
                 </MetadataTable>
               </section>
@@ -123,7 +123,8 @@ const {
                 <td
                   ><a
                     href={`https://github.com/creatorsgarten/wiki/commits/main/wiki/${pageRef}.md`}
-                    >GitHub</a
+                    class="inline-flex items-center"
+                    ><span class="mr-1">GitHub</span><Icon icon="pixelarticons:external-link" /></a
                   ></td
                 >
               </tr>

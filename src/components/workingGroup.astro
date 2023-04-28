@@ -1,4 +1,12 @@
-<div class="grid sm:grid-cols-3 gap-6 rounded-3xl bg-[#1C1916] p-4 text-white">
+---
+export interface Props {
+  theme?: 'light' | 'dark'
+}
+
+const isLight = (Astro.props.theme ?? 'dark') === 'light'
+---
+
+<div class={`grid sm:grid-cols-3 gap-6 rounded-3xl p-4 ${!isLight ? 'bg-[#1C1916] text-white' : 'bg-white text-[#1C1916]'}`}>
   <div class="aspect-[5/3] w-full">
     <span>Stupid Hackathon Thailand</span>
   </div>
@@ -14,11 +22,12 @@
   <div class="aspect-[5/3] w-full">
     <span>Creative Coding</span>
   </div>
-  <div class="aspect-[5/3]">
-    <h1 class="font-medium">Working Groups</h1>
+  <div class="aspect-[5/3] flex flex-col justify-evenly">
+    <h1 class="font-medium text-xl uppercase">Working Groups</h1>
     <p>
       regardless of their age, economic status, education, or opportunities,
       without relying on governments or corporations.
     </p>
+    <a>SEE MORE →</a>
   </div>
 </div>
