@@ -6,21 +6,31 @@ export interface Props {
 const isLight = (Astro.props.theme ?? 'dark') === 'light'
 ---
 
-<div class={`grid sm:grid-cols-3 gap-6 rounded-3xl p-4 ${!isLight ? 'bg-[#1C1916] text-white' : 'bg-white text-[#1C1916]'}`}>
-  <div class="aspect-[5/3] w-full">
-    <span>Stupid Hackathon Thailand</span>
+<div class={`grid sm:grid-cols-3 gap-8 p-8 rounded-3xl ${!isLight ? 'bg-[#1C1916] text-white' : 'bg-white text-[#1C1916]'}`}>
+  <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
+    <img src="/images/stupidhack-th.jpg" class="w-full h-full object-cover" />
+    <div class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg">
+      <span>Stupid Hackathon Thailand</span></div>
   </div>
-  <div class="aspect-[5/3] w-full">
-    <span>Showdown Space</span>
+  <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
+    <img src="/images/showdown-space.jpg" class="w-full h-full object-cover" />
+    <div class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg">
+      <span>Showdown Space</span></div>
   </div>
-  <div class="aspect-[5/3] w-full">
-    <span>Polaryz</span>
+  <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
+    <img src="/images/showdown-space.jpg" class="w-full h-full object-cover" />
+    <div class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg">
+      <span>Polaryz</span></div>
   </div>
-  <div class="aspect-[5/3] w-full">
-    <span>Bangkok Open Source Initiative</span>
+  <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
+    <img src="/images/bkkoss-initiative.jpg" class="w-full h-full object-cover" />
+    <div class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg">
+      <span>Bangkok Open Source Initiative</span></div>
   </div>
-  <div class="aspect-[5/3] w-full">
-    <span>Creative Coding</span>
+  <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
+    <img src="/images/showdown-space.jpg" class="w-full h-full object-cover" />
+    <div class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg">
+      <span>Creative Coding</span></div>
   </div>
   <div class="aspect-[5/3] flex flex-col justify-evenly">
     <h1 class="font-medium text-xl uppercase">Working Groups</h1>
