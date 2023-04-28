@@ -1,7 +1,9 @@
+import { finalizeAuthentication } from './finalizeAuthentication'
+
 import { mongo } from '$constants/mongo'
+import { eventpopClient } from '$constants/secrets/eventpopClient'
 
 import type { AstroGlobal } from 'astro'
-import { finalizeAuthentication } from './finalizeAuthentication'
 
 interface EventpopAuthorizationResponse {
   access_token: string
@@ -40,11 +42,8 @@ export const authenticateEventpopUser = async (
     const authorization = await fetch('https://www.eventpop.me/oauth/token', {
       method: 'POST',
       body: Object.entries({
-        client_id:
-          import.meta.env.EVENTPOP_CLIENT_ID ?? process.env.EVENTPOP_CLIENT_ID,
-        client_secret:
-          import.meta.env.EVENTPOP_CLIENT_SECRET ??
-          process.env.EVENTPOP_CLIENT_SECRET,
+        client_id: eventpopClient.id,
+        client_secret: eventpopClient.secret,
         code: code,
         redirect_uri:
           'https://dtinth.github.io/oauth_gateway/eventpop_callback.html',

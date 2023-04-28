@@ -1,5 +1,7 @@
 import { MongoClient } from 'mongodb'
 
+import { mongoAddress } from './secrets/mongoAddress'
+
 declare global {
   // allow global `var` declarations
   // eslint-disable-next-line no-var
@@ -8,8 +10,6 @@ declare global {
 
 console.log(import.meta.env)
 
-export const mongo =
-  global.mongo ||
-  new MongoClient(import.meta.env.MONGO_ADDRESS ?? process.env.MONGO_ADDRESS)
+export const mongo = global.mongo || new MongoClient(mongoAddress)
 
 if (!import.meta.env.PROD) global.mongo = mongo

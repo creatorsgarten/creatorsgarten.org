@@ -1,10 +1,11 @@
-import Iron from '@hapi/iron'
+import jwt from 'jsonwebtoken'
 
 import { mongo } from '$constants/mongo'
 import { maxSessionAge } from '$constants/maxSessionAge'
 
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import type { AstroGlobal } from 'astro'
+import { privateKey } from '$constants/secrets/privateKey'
 
 export const finalizeAuthentication = async (
   uid: number,
@@ -32,21 +33,21 @@ export const finalizeAuthentication = async (
     },
   }
 
-  const sealedToken = await Iron.seal(
-    {
-      ...payload,
-      createdAt: Date.now(),
-      maxAge: maxSessionAge,
-    },
-    import.meta.env.IRON_SECRET ?? process.env.IRON_SECRET,
-    Iron.defaults
-  )
+  try {
+    const sealedToken = jwt.sign(payload, privateKey, {
+      algorithm: 'RS256',
+      issuer: 'creatorsgarten',
+      expiresIn: maxSessionAge,
+    })
 
-  Astro.cookies.set('authgarten', sealedToken, {
-    maxAge: 60 * 60 * 12, // 12 hours
-    httpOnly: true,
-    secure: import.meta.env.PROD,
-    path: '/',
-    sameSite: 'lax',
-  })
+    Astro.cookies.set('authgarten', sealedToken, {
+      maxAge: 60 * 60 * 12, // 12 hours
+      httpOnly: true,
+      secure: import.meta.env.PROD,
+      path: '/',
+      sameSite: 'lax',
+    })
+  } catch (e) {
+    console.error(e)
+  }
 }

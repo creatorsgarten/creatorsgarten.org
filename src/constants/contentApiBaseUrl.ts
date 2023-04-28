@@ -1,2 +1,4 @@
 export const contentApiBaseUrl =
-  process.env.CONTENT_API_URL ?? 'https://wiki.creatorsgarten.org'
+  import.meta.env.CONTENT_API_URL ??
+  process.env.CONTENT_API_URL ??
+  'https://wiki.creatorsgarten.org'

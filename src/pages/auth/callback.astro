@@ -1,4 +1,5 @@
 ---
+import { csrfSecret } from '$constants/secrets/csrfSecret'
 import { authenticateEventpopUser } from '$functions/auth/authenticateEventpopUser'
 import CSRF from 'csrf'
 
@@ -38,7 +39,7 @@ try {
   // verify csrf that it comes from our platform
   if (
     !new CSRF().verify(
-      import.meta.env.CSRF_SECRET ?? process.env.CSRF_SECRET,
+      csrfSecret,
       csrfToken
     )
   )
@@ -57,7 +58,9 @@ try {
 }
 ---
 
-<!DOCTYPE html>
+{error !== null ? (
+  error
+) : (
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -76,3 +79,4 @@ try {
     <p>Authenticated! Redirecting...</p>
   </body>
 </html>
+)}
