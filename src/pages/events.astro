@@ -13,7 +13,7 @@ const events = await getEvents()
 <BaseLayout class="max-w-7xl mx-auto space-y-12 [&>*]:px-6">
   <section class="sm:max-w-4xl">
     <h1 class="uppercase text-3xl font-medium">Upcoming Events</h1>
-    <div class="mt-6">
+    <div class="mt-6 space-y-6">
       {
         events
           .filter(event => event.date.isAfter(now))
