@@ -1,12 +1,5 @@
 ---
-import dayjs from 'dayjs'
-
-import WikiLayout from '$layouts/wiki.astro'
-import ContentRenderer from '$components/contentRenderer.astro'
-
-import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
-
-import type { EventFrontmatter } from '$types/EventFrontmatter'
+import Wiki from '$components/wiki.astro'
 
 let { eventId } = Astro.params
 
@@ -14,39 +7,6 @@ if (eventId === undefined) {
   const { rewrite } = await import('$functions/rewrite')
   return rewrite(404, `${Astro.url.origin}/404`)
 }
-
-const pageRef = `Events/${eventId}`
-const markdown = await getMarkdownFromSlug<EventFrontmatter>(pageRef)
-
-if (markdown === null) {
-  const { rewrite } = await import('$functions/rewrite')
-  return rewrite(404, `${Astro.url.origin}/404`)
-}
-
-const { rendered, lastModified, lastModifiedBy, frontMatter } = markdown
 ---
 
-<WikiLayout
-  title={frontMatter.name as string}
-  pageRef={pageRef}
-  contents={rendered!.headings}
-  metadata={{
-    edited: {
-      at: dayjs(lastModified),
-      by: lastModifiedBy!,
-    },
-  }}
-  type="event"
-  events={{
-    id: eventId!,
-    location: frontMatter.location,
-    date: {
-      from: dayjs(frontMatter.date),
-      to: frontMatter.endDate ? dayjs(frontMatter.endDate) : undefined,
-    },
-    hosts: frontMatter.hosts,
-    link: frontMatter.site,
-  }}
->
-  <ContentRenderer content={rendered!.html} pageRef={pageRef} />
-</WikiLayout>
+<Wiki pageRef={`Events/${eventId}`} />

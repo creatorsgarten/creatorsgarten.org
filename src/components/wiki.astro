@@ -1,0 +1,96 @@
+---
+import dayjs from 'dayjs'
+
+import BaseLayout from '$layouts/base.astro'
+import WikiLayout from '$layouts/wiki.astro'
+import ContentRenderer from './contentRenderer.astro'
+
+import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
+import { formatPageRef } from '$functions/formatPageRef'
+import { updateWiki } from '$functions/updateWiki'
+import type { EventFrontmatter } from '$types/EventFrontmatter'
+
+export interface Props {
+  pageRef: string
+}
+
+let { pageRef } = Astro.props
+
+if (Astro.request.method === 'POST') {
+  try {
+    const data = await Astro.request.formData()
+    const pageRef = data.get('pageRef')
+    const content = data.get('content')
+
+    if (pageRef && content)
+      await updateWiki(pageRef.toString(), content.toString())
+  } catch(e) {}
+}
+
+const markdown = await getMarkdownFromSlug<EventFrontmatter & { title: string }>(pageRef)
+const {
+  status,
+  targetPageRef,
+  rendered,
+  lastModified,
+  lastModifiedBy,
+  frontMatter,
+  content
+} = markdown
+
+if (
+  status === 301 &&
+  targetPageRef &&
+  Astro.url.searchParams.get('redirect') !== 'no'
+) {
+  Astro.response.status = 301
+  Astro.response.headers.set('Location', `/wiki/${targetPageRef}`)
+} else if (status === 404) {
+  Astro.response.status = 404
+} else if (status === 500) {
+  Astro.response.status = 500
+}
+---
+
+{
+  status === 200 ? (
+    <WikiLayout
+      title={frontMatter.title || formatPageRef(pageRef as string)}
+      pageRef={pageRef}
+      contents={rendered!.headings}
+      markdown={content}
+      metadata={{
+        edited: {
+          at: dayjs(lastModified),
+          by: lastModifiedBy ?? ['SYSTEM'],
+        },
+      }}
+      {...(pageRef.startsWith('Events/') ? {
+        type: 'event',
+        events: {
+          id: pageRef.replace('Events/', ''),
+          location: frontMatter.location,
+          date: {
+            from: dayjs(frontMatter.date),
+            to: frontMatter.endDate ? dayjs(frontMatter.endDate) : undefined,
+          },
+          hosts: frontMatter.hosts,
+          link: frontMatter.site,
+        }
+      } : {
+        type: 'page'
+      })}
+    >
+      <ContentRenderer content={rendered!.html} pageRef={pageRef} />
+    </WikiLayout>
+  ) : (
+    <BaseLayout>
+      <div class="px-6 pb-10">
+        <div class="mx-auto max-w-6xl">
+          <h1 class="mb-8 text-3xl">{pageRef}</h1>
+        </div>
+        <ContentRenderer content={rendered!.html} pageRef={pageRef} />
+      </div>
+    </BaseLayout>
+  )
+}

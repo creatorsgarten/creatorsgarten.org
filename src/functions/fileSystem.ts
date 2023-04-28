@@ -16,6 +16,17 @@ const getHash = (items: (string | number | Buffer)[]) => {
   return hash.digest('base64').replace(/\//g, '-')
 }
 
+export const purgeFileSystem = async (key: string[]) => {
+  const hash = getHash(key)
+  const requestedDirectory = path.join(cacheDirectory, hash)
+
+  try {
+    fs.promises.rm(requestedDirectory, {
+      recursive: true,
+    })
+  } catch (e) {}
+}
+
 export const readFileSystem = async <T = unknown>(key: string[]) => {
   const hash = getHash(key)
   const requestedDirectory = path.join(cacheDirectory, hash)

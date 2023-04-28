@@ -1,12 +1,13 @@
 ---
 import type { Dayjs } from 'dayjs'
 
-import BaseLayout from './base.astro'
-import MetadataTable from '$components/metadataTable.astro'
 import { Icon } from 'react-iconify-icon-wrapper'
 
+import BaseLayout from './base.astro'
+import MetadataTable from '$components/metadataTable.astro'
+import WikiModeration from '$components/wikiModeration.astro'
+
 import { stringifyDate } from '$functions/stringifyDate'
-import { contentsgarten } from '$constants/contentsgarten'
 
 export interface Props {
   title: string
@@ -22,6 +23,7 @@ export interface Props {
     hosts: string[]
     link: string
   }
+  markdown: string
   contents: {
     id: string
     label: string
@@ -41,11 +43,8 @@ const {
   metadata,
   type = 'page',
   pageRef,
+  markdown,
 } = Astro.props
-
-const editable = await contentsgarten(Astro.cookies.get('authgarten').value).getEditPermission.query({
-  pageRef,
-})
 ---
 
 <BaseLayout>
@@ -155,10 +154,7 @@ const editable = await contentsgarten(Astro.cookies.get('authgarten').value).get
             </Fragment>
           </MetadataTable>
         </section>
-        <section class="p-6">
-          <h2 class="pb-4 text-center font-medium">EDIT</h2>
-          <textarea class="w-full h-48 text-xs font-mono p-4 rounded-xl">{JSON.stringify(editable)}</textarea>
-        </section>
+        <WikiModeration pageRef={pageRef} content={markdown} />
         <section class="p-6">
           <h2 class="pb-4 text-center font-medium">SHARE</h2>
           <div class="flex justify-center space-x-4">
@@ -192,7 +188,7 @@ const editable = await contentsgarten(Astro.cookies.get('authgarten').value).get
       </div>
     </div>
     <div
-      class="col-span-1 px-6 md:px-12 py-10 sm:col-span-2 md:col-span-3 xl:col-span-4 min-h-[calc(100vh-24rem)]"
+      class="col-span-1 px-6 md:px-12 py-10 sm:col-span-2 md:col-span-3 xl:col-span-4 min-h-[calc(100vh-24rem)] relative"
     >
       <slot />
     </div>
