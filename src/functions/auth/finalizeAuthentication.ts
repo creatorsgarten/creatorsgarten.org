@@ -1,5 +1,4 @@
 import Iron from '@hapi/iron'
-import { serialize } from 'cookie'
 
 import { mongo } from '$constants/mongo'
 import { maxSessionAge } from '$constants/maxSessionAge'
@@ -36,11 +35,11 @@ export const finalizeAuthentication = async (uid: number, Astro: AstroGlobal) =>
     Iron.defaults
   )
 
-  Astro.response.headers.set('Set-Cookie', serialize('authgarten', sealedToken, {
+  Astro.cookies.set('authgarten', sealedToken, {
     maxAge: 60 * 60 * 12, // 12 hours
     httpOnly: true,
     secure: import.meta.env.PROD,
     path: '/',
     sameSite: 'lax',
-  }))
+  })
 }

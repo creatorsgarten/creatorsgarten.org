@@ -1,10 +1,11 @@
 ---
-const authenticationToken = Astro.request.headers.get('authToken')
-const authenticated = false
+import { getAuthenticatedUser } from '$functions/auth/getAuthenticatedUser'
+
+const user = await getAuthenticatedUser(Astro)
 ---
 
 {
-  authenticated ? (
+  user !== null ? (
     <button class="shrink-0 rounded-full bg-white py-2 px-4 text-[#1c1916]">
       DASHBOARD
     </button>
