@@ -1,14 +1,14 @@
-import dayjs from "dayjs"
+import dayjs from 'dayjs'
 
-import { contentsgarten } from "$constants/contentsgarten"
+import { contentsgarten } from '$constants/contentsgarten'
 
-import type { EventFrontmatter } from "$types/EventFrontmatter"
-import { readFileSystem, writeFileSystem } from "./fileSystem"
+import type { EventFrontmatter } from '$types/EventFrontmatter'
+import { readFileSystem, writeFileSystem } from './fileSystem'
 
 export interface Event {
-  id: string;
-  name: string;
-  date: dayjs.Dayjs;
+  id: string
+  name: string
+  date: dayjs.Dayjs
   link: string
   location: string
 }

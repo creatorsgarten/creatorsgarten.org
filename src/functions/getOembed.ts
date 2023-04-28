@@ -18,7 +18,7 @@ const getProviders = async () => {
     ['oembed', 'providers'],
     fetchedProviders,
     1000 * 60 * 60 * 24 * 30 // 1 month
-    )
+  )
 
   return fetchedProviders
 }

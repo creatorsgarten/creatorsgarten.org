@@ -10,7 +10,10 @@ const user = await getAuthenticatedUser(Astro)
       DASHBOARD
     </button>
   ) : (
-    <a href="/auth/login" class="shrink-0 rounded-full bg-[#1c1916] py-2 px-4 text-white">
+    <a
+      href="/auth/login"
+      class="shrink-0 rounded-full bg-[#1c1916] py-2 px-4 text-white"
+    >
       LOGIN
     </a>
   )

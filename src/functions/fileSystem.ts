@@ -38,16 +38,19 @@ export const readFileSystem = async <T = unknown>(key: string[]) => {
 
         return {
           etag,
-          data: cachedMarkdownResponse
+          data: cachedMarkdownResponse,
         }
       }
     }
-  } catch (e) {
-  }
+  } catch (e) {}
   return null
 }
 
-export const writeFileSystem = async (key: string[], content: unknown, maxAge = 60 * 1000) => {
+export const writeFileSystem = async (
+  key: string[],
+  content: unknown,
+  maxAge = 60 * 1000
+) => {
   const stringifiedContent = JSON.stringify(content)
 
   const hash = getHash(key)

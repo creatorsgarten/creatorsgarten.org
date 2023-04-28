@@ -36,7 +36,12 @@ try {
   }
 
   // verify csrf that it comes from our platform
-  if (!new CSRF().verify(import.meta.env.CSRF_SECRET ?? process.env.CSRF_SECRET, csrfToken))
+  if (
+    !new CSRF().verify(
+      import.meta.env.CSRF_SECRET ?? process.env.CSRF_SECRET,
+      csrfToken
+    )
+  )
     throw new Error('csrf-verification-fail')
 
   // handle authtication from here
@@ -55,14 +60,15 @@ try {
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Refresh" content='1; url=/' />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Refresh" content="1; url=/" />
     <title>Authenticated</title>
     <style>
       p {
-        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
       }
     </style>
   </head>

@@ -10,30 +10,32 @@ const { content } = Astro.props
 
 const codeBlockRegex = /(<code>.+<\/code>)/
 const getOembed = await getOembedInstance()
-const tranformedContent = await Promise.all(content.split(codeBlockRegex).map(async chunk => {
-  const matcher = chunk.match(/<code>(.+)<\/code>/)
-  if (matcher === null)
-    return chunk
+const tranformedContent = await Promise.all(
+  content.split(codeBlockRegex).map(async chunk => {
+    const matcher = chunk.match(/<code>(.+)<\/code>/)
+    if (matcher === null) return chunk
 
-  try {
-    const matchedGroup = matcher[1].match(/^(\w+):(.+)/)
-    if (matchedGroup === null)
+    try {
+      const matchedGroup = matcher[1].match(/^(\w+):(.+)/)
+      if (matchedGroup === null) return chunk
+
+      const [provider, value] = [matchedGroup[1], matchedGroup[2]].map(o =>
+        o.trim()
+      )
+
+      switch (provider) {
+        case 'oembed':
+          return await getOembed(value)
+        case 'youtube':
+          return getIframe(`https://www.youtube.com/embed/${value}`)
+        default:
+          return chunk
+      }
+    } catch (e) {
       return chunk
-
-    const [provider, value] = [matchedGroup[1], matchedGroup[2]].map(o => o.trim())
-
-    switch (provider) {
-      case 'oembed':
-        return await getOembed(value)
-      case 'youtube':
-        return getIframe(`https://www.youtube.com/embed/${value}`)
-      default:
-        return chunk
     }
-  } catch (e) {
-    return chunk
-  }
-}))
+  })
+)
 
 export interface Props {
   content: string

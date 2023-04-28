@@ -6,12 +6,17 @@ import { maxSessionAge } from '$constants/maxSessionAge'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import type { AstroGlobal } from 'astro'
 
-export const finalizeAuthentication = async (uid: number, Astro: AstroGlobal) => {
+export const finalizeAuthentication = async (
+  uid: number,
+  Astro: AstroGlobal
+) => {
   // get mongo document
-  const userDoc = await mongo.db('creatorsgarten-org').collection('users').findOne({ uid })
+  const userDoc = await mongo
+    .db('creatorsgarten-org')
+    .collection('users')
+    .findOne({ uid })
 
-  if (userDoc === null)
-    throw new Error('unsuccessful-authentication')
+  if (userDoc === null) throw new Error('unsuccessful-authentication')
 
   const payload: AuthenticatedUser = {
     uid: userDoc.uid,
@@ -19,10 +24,12 @@ export const finalizeAuthentication = async (uid: number, Astro: AstroGlobal) =>
     avatar: userDoc.avatar,
     email: userDoc.email,
     connections: {
-      github: userDoc.connections?.github ? {
-        username: userDoc.connections.github.username
-      } : null
-    }
+      github: userDoc.connections?.github
+        ? {
+            username: userDoc.connections.github.username,
+          }
+        : null,
+    },
   }
 
   const sealedToken = await Iron.seal(
