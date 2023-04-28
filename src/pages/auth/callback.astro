@@ -1,14 +1,44 @@
 ---
-const state = String(Astro.url.searchParams.get('state')).replace(/^\w+!/, '')
+import CSRF from 'csrf'
+
+const state = Astro.url.searchParams.get('state')
 const code = Astro.url.searchParams.get('code')
 
-if (state === 'local' && import.meta.env.PROD) {
-  return Astro.redirect(
-    `http://localhost:3000/auth/callback?${new URLSearchParams({
-      code: code ?? '',
-      state: state ?? '',
-    }).toString()}`
-  )
+let error = ''
+
+try {
+  // decode authentication state
+  const stateMatcher = (state ?? '').match(/^(local3000|new)!(\w+)-(.+)$/)
+
+  if (stateMatcher === null) throw new Error('state-invalid')
+
+  const [, redirectHint, service, csrfToken] = stateMatcher
+
+  // if local state, then foward to localhost
+  if (redirectHint === 'local3000' && import.meta.env.PROD) {
+    return Astro.redirect(
+      `http://localhost:3000/auth/callback?${new URLSearchParams({
+        code: code ?? '',
+        state: state ?? '',
+      }).toString()}`
+    )
+  } else if (redirectHint !== 'new') {
+    throw new Error('redirect-hint-invalid')
+  }
+
+  // verify csrf that it comes from our platform
+  if (!new CSRF().verify(import.meta.env.CSRF_SECRET, csrfToken))
+    throw new Error('csrf-verification-fail')
+
+  // handle authtication from here
+  switch (service) {
+    case 'eventpop':
+      throw new Error('to-be-implemented')
+    case 'github':
+      throw new Error('to-be-implemented')
+  }
+} catch (e) {
+  error = (e as Error).message
 }
 ---
 

@@ -1,0 +1,15 @@
+version: '3.9'
+
+networks:
+  default:
+    name: creatorsgarten
+
+services:
+  mongodb:
+    container_name: mongogarten
+    image: mongo:6.0.5
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1nsecurep4ssw92do5otusem8
