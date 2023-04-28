@@ -12,10 +12,10 @@ const { event } = Astro.props
 ---
 
 <div class="sm:flex sm:space-x-6 space-y-4 sm:space-y-0">
-  <a href={`/event/${event.id}`}>
+  <a href={`/event/${event.id}`} class="shrink-0">
     <img
       src={`/images/events/${event.id}.png`}
-      class="w-full sm:w-64 aspect-square shrink-0"
+      class="w-full sm:w-64 aspect-square"
     />
   </a>
   <div>
