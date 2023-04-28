@@ -1,8 +1,15 @@
 ---
+import { authenticateEventpopUser } from '$functions/auth/authenticateEventpopUser'
 import CSRF from 'csrf'
 
-const code = Astro.url.searchParams.get('code')
-const state = Astro.url.searchParams.get('state')
+const code =
+  Astro.url.searchParams.get('code') ??
+  ((await Astro.request.formData()).get('code') as string) ??
+  ''
+const state =
+  Astro.url.searchParams.get('state') ??
+  ((await Astro.request.formData()).get('state') as string) ??
+  ''
 
 console.log(state)
 
@@ -24,7 +31,7 @@ try {
         state: state ?? '',
       }).toString()}`
     )
-  } else if (redirectHint !== 'new') {
+  } else if (redirectHint !== 'new' && import.meta.env.PROD) {
     throw new Error('redirect-hint-invalid')
   }
 
@@ -35,7 +42,7 @@ try {
   // handle authtication from here
   switch (service) {
     case 'eventpop':
-      throw new Error('to-be-implemented')
+      await authenticateEventpopUser(code, Astro)
     case 'github':
       throw new Error('to-be-implemented')
   }
