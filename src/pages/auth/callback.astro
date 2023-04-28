@@ -1,12 +1,14 @@
 ---
-const state = Astro.url.searchParams.get('state')
+const state = String(Astro.url.searchParams.get('state')).replace(/^\w+!/, '')
 const code = Astro.url.searchParams.get('code')
 
 if (state === 'local' && import.meta.env.PROD) {
-  return Astro.redirect(`http://localhost:3000/auth/callback?${new URLSearchParams({
-    code: code ?? '',
-    state: state ?? '',
-  }).toString()}`)
+  return Astro.redirect(
+    `http://localhost:3000/auth/callback?${new URLSearchParams({
+      code: code ?? '',
+      state: state ?? '',
+    }).toString()}`
+  )
 }
 ---
 
