@@ -48,6 +48,7 @@ export const finalizeAuthentication = async (
       sameSite: 'lax',
     })
   } catch (e) {
-    console.error(e)
+    console.log(e)
+    throw new Error('unable-to-sign')
   }
 }

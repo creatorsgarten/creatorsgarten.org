@@ -2,107 +2,83 @@
 import UserAuthButton from '../components/userAuthButton.astro'
 
 import './base.css'
+import Blank from './blank.astro'
 
 export interface Props {
   class?: string
 }
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<Blank>
+  <nav class="flex justify-between px-6 pt-6 pb-8">
+    <a href="/">
+      <img src="/images/creatorsgarten.svg" class="h-9" />
+    </a>
+    <div class="sm:hidden text-3xl">🍔</div>
+    <!-- TODO: Delete this -->
+    <div class="hidden sm:flex items-center space-x-4 font-medium text-sm">
+      <ul class="flex shrink-0 space-x-4 rounded-full bg-[#ededed] py-2 px-4">
+        <li class="hover:text-sky-600 transition-all">
+          <a href="/events">CRAFTS</a>
+        </li>
+        <li class="hover:text-sky-600 transition-all">CONTENT</li>
+        <li class="hover:text-sky-600 transition-all">
+          <a href="/people">PEOPLE</a>
+        </li>
+        <li class="hover:text-sky-600 transition-all">US</li>
+        <li class="hover:text-sky-600 transition-all">
+          <a href="/wiki">WIKI</a>
+        </li>
+      </ul>
+      <UserAuthButton />
+    </div>
+  </nav>
 
-    <slot name="head" />
+  <main {...{ class: ' ' + Astro.props.class }}>
+    <slot />
+  </main>
 
-    <link rel="shortcut icon" type="image/svg" href="/images/ring.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Work+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      async
-      src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.2/dist/iconify-icon.min.js"
-      integrity="sha256-kwd+IKkvIXP95TLOfLvp/rHfnja1G+Ve+u1UR22A02k="
-      crossorigin="anonymous"
-    ></script>
-
-    <link rel="icon" type="image/svg" href="/images/ring.svg" />
-  </head>
-  <body>
-    <nav class="flex justify-between px-6 pt-6 pb-8">
-      <a href="/">
-        <img src="/images/creatorsgarten.svg" class="h-9" />
-      </a>
-      <div class="sm:hidden text-3xl">🍔</div>
-      <!-- TODO: Delete this -->
-      <div class="hidden sm:flex items-center space-x-4 font-medium text-sm">
-        <ul class="flex shrink-0 space-x-4 rounded-full bg-[#ededed] py-2 px-4">
-          <li class="hover:text-sky-600 transition-all">
-            <a href="/events">CRAFTS</a>
-          </li>
-          <li class="hover:text-sky-600 transition-all">CONTENT</li>
-          <li class="hover:text-sky-600 transition-all">
-            <a href="/people">PEOPLE</a>
-          </li>
-          <li class="hover:text-sky-600 transition-all">US</li>
-          <li class="hover:text-sky-600 transition-all">
-            <a href="/wiki">WIKI</a>
-          </li>
-        </ul>
-        <UserAuthButton />
-      </div>
-    </nav>
-
-    <main {...{ class: ' ' + Astro.props.class }}>
-      <slot />
-    </main>
-
-    <footer class="bg-[#ededed] py-12 font-medium uppercase">
-      <div class="mx-auto max-w-7xl w-full md:flex justify-between px-8">
-        <section
-          class="grid w-full md:max-w-[60%] grid-cols-2 sm:grid-cols-4 gap-8"
-        >
-          <div>
-            <h1>Crafts</h1>
-            <ul class="pt-1 font-normal">
-              <li><a href="/events">Events</a></li>
-              <li>Projects</li>
-            </ul>
-          </div>
-          <div>
-            <h1>Content</h1>
-            <ul class="pt-1 font-normal">
-              <li>Video</li>
-              <li>Podcast</li>
-              <li>RSS feed</li>
-            </ul>
-          </div>
-          <div>
-            <h1>People</h1>
-            <ul class="pt-1 font-normal">
-              <li>Us & Partners</li>
-              <li>Sponsors</li>
-              <li>Webring</li>
-            </ul>
-          </div>
-          <div>
-            <h1>Us</h1>
-            <ul class="pt-1 font-normal">
-              <li>About</li>
-              <li>Contact</li>
-              <li>Legal</li>
-            </ul>
-          </div>
-        </section>
-        <section class="flex flex-col items-end justify-between pt-10 md:pt-0">
-          <img src="/images/creatorsgarten.svg" class="h-10 mb-4" />
-          <p class="text-right text-sm">MADE WITH THE ❤️ OF 🪄</p>
-        </section>
-      </div>
-    </footer>
-  </body>
-</html>
+  <footer class="bg-[#ededed] py-12 font-medium uppercase">
+    <div class="mx-auto max-w-7xl w-full md:flex justify-between px-8">
+      <section
+        class="grid w-full md:max-w-[60%] grid-cols-2 sm:grid-cols-4 gap-8"
+      >
+        <div>
+          <h1>Crafts</h1>
+          <ul class="pt-1 font-normal">
+            <li><a href="/events">Events</a></li>
+            <li>Projects</li>
+          </ul>
+        </div>
+        <div>
+          <h1>Content</h1>
+          <ul class="pt-1 font-normal">
+            <li>Video</li>
+            <li>Podcast</li>
+            <li>RSS feed</li>
+          </ul>
+        </div>
+        <div>
+          <h1>People</h1>
+          <ul class="pt-1 font-normal">
+            <li>Us & Partners</li>
+            <li>Sponsors</li>
+            <li>Webring</li>
+          </ul>
+        </div>
+        <div>
+          <h1>Us</h1>
+          <ul class="pt-1 font-normal">
+            <li>About</li>
+            <li>Contact</li>
+            <li>Legal</li>
+          </ul>
+        </div>
+      </section>
+      <section class="flex flex-col items-end justify-between pt-10 md:pt-0">
+        <img src="/images/creatorsgarten.svg" class="h-10 mb-4" />
+        <p class="text-right text-sm">MADE WITH THE ❤️ OF 🪄</p>
+      </section>
+    </div>
+  </footer>
+</Blank>

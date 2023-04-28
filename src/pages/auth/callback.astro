@@ -1,15 +1,17 @@
 ---
+import CSRF from 'csrf'
+import Blank from '$layouts/blank.astro'
+
 import { csrfSecret } from '$constants/secrets/csrfSecret'
 import { authenticateEventpopUser } from '$functions/auth/authenticateEventpopUser'
-import CSRF from 'csrf'
 
 const code =
   Astro.url.searchParams.get('code') ??
-  ((await Astro.request.formData()).get('code') as string) ??
+  ((await Astro.request.formData().catch(() => null))?.get('code') as string) ??
   ''
 const state =
   Astro.url.searchParams.get('state') ??
-  ((await Astro.request.formData()).get('state') as string) ??
+  ((await Astro.request.formData().catch(() => null))?.get('state') as string) ??
   ''
 
 console.log(state)
@@ -37,12 +39,7 @@ try {
   }
 
   // verify csrf that it comes from our platform
-  if (
-    !new CSRF().verify(
-      csrfSecret,
-      csrfToken
-    )
-  )
+  if (!new CSRF().verify(csrfSecret, csrfToken))
     throw new Error('csrf-verification-fail')
 
   // handle authtication from here
@@ -58,25 +55,27 @@ try {
 }
 ---
 
-{error !== null ? (
-  error
-) : (
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta http-equiv="Refresh" content="1; url=/" />
-    <title>Authenticated</title>
-    <style>
-      p {
-        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
-      }
-    </style>
-  </head>
-  <body>
-    <p>Authenticated! Redirecting...</p>
-  </body>
-</html>
-)}
+<Blank>
+  <main class="px-4 max-w-7xl mx-auto py-12">
+  {
+    error !== null ? (
+      <>
+        <Fragment slot="head">
+          <title>Unable to authenticate</title>
+        </Fragment>
+        <h1 class="text-4xl font-medium">Failed!</h1>
+        <p>{error}</p>
+      </>
+    ) : (
+      <>
+        <Fragment slot="head">
+          <meta http-equiv="Refresh" content="1; url=/" />
+          <title>Authenticated</title>
+        </Fragment>
+        <h1 class="text-4xl font-medium">Authenticated!</h1>
+        <p>Redirecting... <a href="/" class="underline">Click here</a> if nothing happends</p>
+      </>
+    )
+  }
+  </main>
+</Blank>
