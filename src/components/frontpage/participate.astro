@@ -1,11 +1,14 @@
 ---
 import dayjs from 'dayjs'
 
-import EventPoster from '$components/eventPoster.astro';
+import EventPoster from '$components/eventPoster.astro'
 import { getEvents } from '$functions/getEvents'
 
 const events = await getEvents()
-const upcomingEvents = events.filter(o => o.date.isAfter(dayjs())).slice(0, 2)
+const upcomingEvents = events
+  .filter(o => o.date.isAfter(dayjs()))
+  .slice(0, 2)
+  .reverse()
 ---
 
 {

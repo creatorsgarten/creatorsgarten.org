@@ -1,6 +1,13 @@
 ---
+const state = Astro.url.searchParams.get('state')
 const code = Astro.url.searchParams.get('code')
-console.log({ code })
+
+if (state === 'local' && import.meta.env.PROD) {
+  return Astro.redirect(`http://localhost:3000/auth/callback?${new URLSearchParams({
+    code: code ?? '',
+    state: state ?? '',
+  }).toString()}`)
+}
 ---
 
 <p>{code}</p>
