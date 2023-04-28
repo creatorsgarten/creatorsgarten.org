@@ -1,9 +1,9 @@
 import dayjs from 'dayjs'
 
 import { contentsgarten } from '$constants/contentsgarten'
+import { readFileSystem, writeFileSystem } from './fileSystem'
 
 import type { EventFrontmatter } from '$types/EventFrontmatter'
-import { readFileSystem, writeFileSystem } from './fileSystem'
 
 export interface Event {
   id: string
@@ -20,7 +20,7 @@ export const getEvents = async () => {
     return cachedEvents.data.map(o => ({ ...o, date: dayjs(o.date) }))
 
   const fetchedEvents: Event[] = (
-    await contentsgarten.search.query({
+    await contentsgarten().search.query({
       prefix: 'Events/',
     })
   ).results

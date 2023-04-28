@@ -2,10 +2,10 @@ import jwt from 'jsonwebtoken'
 
 import { mongo } from '$constants/mongo'
 import { maxSessionAge } from '$constants/maxSessionAge'
+import { privateKey } from '$constants/secrets/privateKey'
 
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import type { AstroGlobal } from 'astro'
-import { privateKey } from '$constants/secrets/privateKey'
 
 export const finalizeAuthentication = async (
   uid: number,
@@ -25,11 +25,7 @@ export const finalizeAuthentication = async (
     avatar: userDoc.avatar,
     email: userDoc.email,
     connections: {
-      github: userDoc.connections?.github
-        ? {
-            username: userDoc.connections.github.username,
-          }
-        : null,
+      github: userDoc.connections?.github ?? null,
     },
   }
 
@@ -38,6 +34,10 @@ export const finalizeAuthentication = async (
       algorithm: 'RS256',
       issuer: 'creatorsgarten',
       expiresIn: maxSessionAge,
+      header: {
+        alg: 'RS256',
+        kid: 'riffy1'
+      }
     })
 
     Astro.cookies.set('authgarten', sealedToken, {
@@ -48,7 +48,6 @@ export const finalizeAuthentication = async (
       sameSite: 'lax',
     })
   } catch (e) {
-    console.log(e)
     throw new Error('unable-to-sign')
   }
 }

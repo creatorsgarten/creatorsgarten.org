@@ -5,6 +5,7 @@ export interface AuthenticatedUser {
   email: string
   connections: {
     github: {
+      id: number
       username: string
     } | null
   }

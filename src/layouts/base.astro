@@ -1,8 +1,8 @@
 ---
-import UserAuthButton from '../components/userAuthButton.astro'
+import AuthButton from '../components/authButton.astro'
+import Blank from './blank.astro'
 
 import './base.css'
-import Blank from './blank.astro'
 
 export interface Props {
   class?: string
@@ -30,11 +30,11 @@ export interface Props {
           <a href="/wiki">WIKI</a>
         </li>
       </ul>
-      <UserAuthButton />
+      <AuthButton />
     </div>
   </nav>
 
-  <main {...{ class: ' ' + Astro.props.class }}>
+  <main {...{ class: ' ' + Astro.props.class ?? '' }}>
     <slot />
   </main>
 

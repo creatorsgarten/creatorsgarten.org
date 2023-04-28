@@ -6,6 +6,7 @@ import MetadataTable from '$components/metadataTable.astro'
 import { Icon } from 'react-iconify-icon-wrapper'
 
 import { stringifyDate } from '$functions/stringifyDate'
+import { contentsgarten } from '$constants/contentsgarten'
 
 export interface Props {
   title: string
@@ -41,6 +42,10 @@ const {
   type = 'page',
   pageRef,
 } = Astro.props
+
+const editable = await contentsgarten(Astro.cookies.get('authgarten').value).getEditPermission.query({
+  pageRef,
+})
 ---
 
 <BaseLayout>
@@ -149,6 +154,10 @@ const {
               </tr>
             </Fragment>
           </MetadataTable>
+        </section>
+        <section class="p-6">
+          <h2 class="pb-4 text-center font-medium">EDIT</h2>
+          <textarea class="w-full h-48 text-xs font-mono p-4 rounded-xl">{JSON.stringify(editable)}</textarea>
         </section>
         <section class="p-6">
           <h2 class="pb-4 text-center font-medium">SHARE</h2>

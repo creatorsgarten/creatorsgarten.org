@@ -1,0 +1,33 @@
+---
+import BaseLayout from '$layouts/base.astro'
+import { getAuthenticatedUser } from '$functions/auth/getAuthenticatedUser'
+
+const authenticatedUser = await getAuthenticatedUser(Astro)
+
+if (!authenticatedUser) return Astro.redirect('/')
+---
+
+<BaseLayout class="max-w-7xl mx-auto space-y-6 [&>*]:px-6">
+  <section class="max-w-lg mx-auto">
+    <div class="flex bg-[#1C1916] text-white rounded-2xl space-x-4">
+      <img src={authenticatedUser.avatar} class="w-24 h-24 rounded-2xl shrink-0" />
+      <div class="py-2 pr-2 flex flex-col justify-center">
+        <h1 class="font-medium text-lg">{authenticatedUser.name}</h1>
+        <p class="text-xs">{authenticatedUser.email}</p>
+      </div>
+    </div>
+  </section>
+  <section class="max-w-2xl mx-auto">
+    <div class="bg-white rounded-2xl py-6 px-8">
+      <h1 class="font-medium text-xl uppercase pb-2">Connections</h1>
+      <div class="flex justify-between items-center">
+        <div class="leading-none">
+          <p class="inline-flex items-center text-lg font-medium">GitHub</p>
+          <p class="text-sm -mt-2">{authenticatedUser.connections.github ? 'Connected with @' + authenticatedUser.connections.github.username : 'Not connected'}</p>
+        </div>
+        <a href="/auth/connect/github" class="uppercase">{authenticatedUser.connections.github ? 'Reconnect' : 'Connect'}</a>
+      </div>
+    </div>
+  </section>
+  <div class="pb-6" />
+</BaseLayout>

@@ -22,7 +22,7 @@ export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
     if (cachedMarkdownResponse !== null) return cachedMarkdownResponse.data
     else throw new Error('cache-miss')
   } catch (e) {
-    const fetchedMarkdownResponse = (await contentsgarten.view.query({
+    const fetchedMarkdownResponse = (await contentsgarten().view.query({
       pageRef: slug,
       withFile: true,
       revalidate: true,

@@ -4,19 +4,19 @@ import Blank from '$layouts/blank.astro'
 
 import { csrfSecret } from '$constants/secrets/csrfSecret'
 import { authenticateEventpopUser } from '$functions/auth/authenticateEventpopUser'
+import { authenticateGitHub } from '$functions/auth/authenticateGitHub'
 
 const code =
   Astro.url.searchParams.get('code') ??
-  ((await Astro.request.formData().catch(() => null))?.get('code') as string) ??
   ''
 const state =
   Astro.url.searchParams.get('state') ??
-  ((await Astro.request.formData().catch(() => null))?.get('state') as string) ??
   ''
 
 console.log(state)
 
 let error: string | null = null
+let service: string | null = null
 
 try {
   // decode authentication state
@@ -24,7 +24,8 @@ try {
 
   if (stateMatcher === null) throw new Error('state-invalid')
 
-  const [, redirectHint, service, csrfToken] = stateMatcher
+  const [, redirectHint, targetService, csrfToken] = stateMatcher
+  service = targetService
 
   // if local state, then foward to localhost
   if (redirectHint === 'localhost3000' && import.meta.env.PROD) {
@@ -42,20 +43,28 @@ try {
   if (!new CSRF().verify(csrfSecret, csrfToken))
     throw new Error('csrf-verification-fail')
 
+  console.log({ targetService })
+
   // handle authtication from here
-  switch (service) {
+  switch (targetService) {
     case 'eventpop':
       await authenticateEventpopUser(code, Astro)
       break
     case 'github':
-      throw new Error('to-be-implemented')
+      await authenticateGitHub(code, Astro)
+      break
   }
 } catch (e) {
   error = (e as Error).message
 }
----
 
+const redirectTo = service === 'github' ? '/dashboard' : '/'
+---
 <Blank>
+  <Fragment slot="head">
+    <title>Authgarten</title>
+    {error === null && <meta http-equiv="Refresh" content={'1; url=' + redirectTo} />}
+  </Fragment>
   <main class="px-4 max-w-7xl mx-auto py-12">
   {
     error !== null ? (
@@ -68,12 +77,8 @@ try {
       </>
     ) : (
       <>
-        <Fragment slot="head">
-          <meta http-equiv="Refresh" content="1; url=/" />
-          <title>Authenticated</title>
-        </Fragment>
         <h1 class="text-4xl font-medium">Authenticated!</h1>
-        <p>Redirecting... <a href="/" class="underline">Click here</a> if nothing happends</p>
+        <p>Redirecting... <a href={redirectTo} class="underline">Click here</a> if nothing happends</p>
       </>
     )
   }

@@ -6,9 +6,9 @@ const user = await getAuthenticatedUser(Astro)
 
 {
   user !== null ? (
-    <button class="shrink-0 rounded-full bg-white py-2 px-4 text-[#1c1916]">
+    <a href="/dashboard" class="shrink-0 rounded-full bg-white py-2 px-4 text-[#1c1916]">
       DASHBOARD
-    </button>
+    </a>
   ) : (
     <a
       href="/auth/login"

@@ -92,7 +92,6 @@ export const authenticateEventpopUser = async (
 
     return finalizeAuthentication(user.id, Astro)
   } catch (e) {
-    console.error(e)
     throw new Error('eventpop-varification-failed')
   }
 }
