@@ -1,10 +1,10 @@
 ---
 import CSRF from 'csrf'
 
-const state = Astro.url.searchParams.get('state')
 const code = Astro.url.searchParams.get('code')
+const state = Astro.url.searchParams.get('state')
 
-let error = ''
+let error: string | null = null
 
 try {
   // decode authentication state
@@ -42,4 +42,4 @@ try {
 }
 ---
 
-<p>{code}</p>
+<p>{error ?? code}</p>
