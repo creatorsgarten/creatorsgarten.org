@@ -29,7 +29,7 @@ RUN npx pnpm build
 
 # ? -------------------------
 
-FROM gcr.io/distroless/nodejs18-debian11 as runner
+FROM node:18-alpine as runner
 
 ENV NODE_ENV production
 
