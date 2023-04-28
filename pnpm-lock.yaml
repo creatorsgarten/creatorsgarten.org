@@ -10,9 +10,6 @@ dependencies:
   '@trpc/client':
     specifier: 10.16.0
     version: 10.16.0(@trpc/server@10.16.0)
-  cookie:
-    specifier: ^0.5.0
-    version: 0.5.0
   csrf:
     specifier: ^3.1.0
     version: 3.1.0
@@ -54,9 +51,6 @@ devDependencies:
   '@trpc/server':
     specifier: 10.16.0
     version: 10.16.0
-  '@types/cookie':
-    specifier: ^0.5.1
-    version: 0.5.1
   '@types/react':
     specifier: ^18.0.21
     version: 18.2.0
@@ -1352,10 +1346,6 @@ packages:
     resolution: {integrity: sha512-wJsiX1tosQ+J5+bY5LrSahHxr2wT+uME5UDwdN1kg4frt40euqA+wzECkmq4t5QbveHiJepfdThgQrPw6KiSlg==}
     dev: true
 
-  /@types/cookie@0.5.1:
-    resolution: {integrity: sha512-COUnqfB2+ckwXXSFInsFdOAWQzCCx+a5hq2ruyj+Vjund94RJQd4LG2u9hnvJrTgunKAaax7ancBYlDrNYxA0g==}
-    dev: true
-
   /@types/debug@4.1.7:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
     dependencies:
@@ -1942,6 +1932,7 @@ packages:
   /cookie@0.5.0:
     resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
