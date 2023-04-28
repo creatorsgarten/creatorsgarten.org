@@ -1,21 +1,26 @@
 ---
-import Participate from '$components/frontpage/participate.astro';
+import Participate from '$components/frontpage/participate.astro'
 import WorkingGroup from '$components/workingGroup.astro'
 import BaseLayout from '$layouts/base.astro'
 ---
 
-<BaseLayout class="max-w-7xl mx-auto space-y-12 [&>*]:px-6">
+<BaseLayout class="max-w-7xl mx-auto space-y-10 md:space-y-16 [&>*]:px-6">
   <section class="text-center">
     <h2 class="font-medium">CONNECT / CRAFT / EXPLORE</h2>
-    <h1 class="pt-2 pb-4 text-4xl sm:text-6xl font-medium">
+    <h1 class="py-4 text-4xl sm:text-6xl font-medium">
       WE DEMOCRATIZE<br />CREATION FOR ALL
     </h1>
-    <a>OUR MANIFESTO →</a>
+    <a href="#" class="hover:text-sky-600">OUR MANIFESTO →</a>
   </section>
   <section class="sm:grid grid-cols-2 gap-8">
-    <img src="/images/garten.jpg" class="aspect-video w-full rounded-2xl object-cover" />
-    <article class="pt-6 sm:pt-0 space-y-4 sm:space-y-0 flex flex-col justify-evenly">
-      <h3 class="font-medium">CREATORSGARTEN = GARDEN OF CREATORS</h3>
+    <img
+      src="/images/garten.jpg"
+      class="aspect-video w-full rounded-2xl object-cover"
+    />
+    <article
+      class="pt-6 sm:pt-0 space-y-4 sm:space-y-0 flex flex-col justify-evenly"
+    >
+      <h3 class="font-medium text-lg">CREATORSGARTEN = GARDEN OF CREATORS</h3>
 
       <p>
         Building things to solve one's own problems should be a possibility for
@@ -28,18 +33,18 @@ import BaseLayout from '$layouts/base.astro'
         they learn effectively at maximum speed.
       </p>
 
-      <a>SEE MORE →</a>
+      <a href="#" class="hover:text-sky-600">SEE MORE →</a>
     </article>
   </section>
-  <section>
+  <!-- <section>
     <h2 class="text-center text-4xl font-medium">OUR PROJECTS</h2>
-  </section>
-  <section class="space-y-6">
+  </section> -->
+  <section class="space-y-10">
     <Participate />
     <div>
       <h2 class="py-4 text-3xl font-medium">RECURRING EVENTS</h2>
       <div
-        class="[&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        class="[&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl transition-all grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
         <div>
           <p class="font-medium leading-none">HACKTOBERFEST THAILAND</p>
@@ -55,9 +60,11 @@ import BaseLayout from '$layouts/base.astro'
         </div>
       </div>
     </div>
+  </section>
+  <section>
     <WorkingGroup />
   </section>
-  <section class="space-y-6">
+  <section class="space-y-8">
     <h2 class="text-center text-4xl font-medium">OUR SPONSORS</h2>
     <p class="mx-auto max-w-2xl text-center">
       Building things to solve one's own problems should be a possibility for

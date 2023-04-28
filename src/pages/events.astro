@@ -11,20 +11,18 @@ const events = await getEvents()
 ---
 
 <BaseLayout class="max-w-7xl mx-auto space-y-12 [&>*]:px-6">
-  <section class="sm:max-w-4xl">
+  <section>
     <h1 class="uppercase text-3xl font-medium">Upcoming Events</h1>
-    <div class="mt-6 space-y-6">
+    <div class="mt-6 space-y-12 :space-y-6 lg:space-y-0 lg:grid lg:grid-cols-2">
       {
         events
           .filter(event => event.date.isAfter(now))
-          .map(event => (
-            <EventPoster event={event} />
-          ))
+          .map(event => <EventPoster event={event} />)
       }
     </div>
   </section>
   <section>
-    <h1 class="uppercase text-3xl font-medium">[Highlight] Recurring Events</h1>
+    <h1 class="uppercase text-3xl font-medium">Recurring Events</h1>
     <div
       class="[&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl grid sm:grid-cols-3 gap-6 pt-8"
     >
@@ -33,8 +31,8 @@ const events = await getEvents()
         <p>OCTOBER</p>
       </div>
       <div>
-        <p class="font-medium leading-none">STUPID HACKATHON</p>
-        <p>MID Q2 TO MID Q3</p>
+        <p class="font-medium leading-none">STUPID HACKATHON IN THAILAND</p>
+        <p>Late Q2 - Early Q3</p>
       </div>
       <div>
         <p class="font-medium leading-none">CREATIVE CODE</p>
@@ -44,7 +42,9 @@ const events = await getEvents()
   </section>
   <section class="pb-12">
     <h1 class="uppercase text-3xl font-medium">Past Events</h1>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-6">
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-6"
+    >
       {
         events
           .filter(event => event.date.isBefore(now))
