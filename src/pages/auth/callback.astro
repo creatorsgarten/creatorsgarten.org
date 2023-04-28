@@ -8,26 +8,26 @@ let error = ''
 
 try {
   // decode authentication state
-  const stateMatcher = (state ?? '').match(/^(\w+)-(.+)/)
+  const stateMatcher = (state ?? '').match(/^(local3000|new)!(\w+)-(.+)$/)
 
-  if (stateMatcher === null)
-    throw new Error('state-invalid')
-  
-  const [, service, csrfToken] = stateMatcher
+  if (stateMatcher === null) throw new Error('state-invalid')
+
+  const [, redirectHint, service, csrfToken] = stateMatcher
 
   // if local state, then foward to localhost
-  if (csrfToken === 'local' && import.meta.env.PROD) {
-    return Astro.redirect(`http://localhost:3000/auth/callback?${new URLSearchParams({
-      code: code ?? '',
-      state: state ?? '',
-    }).toString()}`)
+  if (redirectHint === 'local3000' && import.meta.env.PROD) {
+    return Astro.redirect(
+      `http://localhost:3000/auth/callback?${new URLSearchParams({
+        code: code ?? '',
+        state: state ?? '',
+      }).toString()}`
+    )
+  } else if (redirectHint !== 'new') {
+    throw new Error('redirect-hint-invalid')
   }
 
   // verify csrf that it comes from our platform
-  if (
-    !(csrfToken === 'local' && !import.meta.env.PROD) ||
-    !new CSRF().verify(import.meta.env.CSRF_SECRET, csrfToken)
-  )
+  if (!new CSRF().verify(import.meta.env.CSRF_SECRET, csrfToken))
     throw new Error('csrf-verification-fail')
 
   // handle authtication from here
