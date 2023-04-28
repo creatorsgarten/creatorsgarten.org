@@ -30,6 +30,7 @@ module.exports = {
             },
             h1: {
               fontWeight: 500,
+              marginTop: '3rem',
             },
             h2: {
               fontWeight: 500,
