@@ -59,7 +59,11 @@ const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageR
         rows={40}>{file?.content}</textarea
       >
       <div class="mt-2">
-        <button class="" type="submit" disabled={!editable}>SAVE</button>
+        <button
+          class="rounded-lg bg-[#1c1916] px-4 py-2 text-white"
+          type="submit"
+          disabled={!editable}>Save changes</button
+        >
       </div>
     </form>
   </div>
