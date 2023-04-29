@@ -6,7 +6,9 @@ export interface Props {
 }
 
 const { title } = Astro.props
+
 const builtTitle = title ? `${title} · Creatorsgarten` : 'Creatorsgarten'
+const builtImage = Astro.url.origin + "/images/og.jpg"
 ---
 
 <SEO
@@ -16,7 +18,12 @@ const builtTitle = title ? `${title} · Creatorsgarten` : 'Creatorsgarten'
     basic: {
       title: builtTitle,
       type: "website",
-      image: Astro.url.origin + "/images/og.jpg",
+      image: builtImage,
     }
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: builtTitle,
+    image: builtImage,
   }}
 />
