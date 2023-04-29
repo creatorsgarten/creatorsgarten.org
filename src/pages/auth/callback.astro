@@ -45,8 +45,6 @@ try {
   if (!new CSRF().verify(csrfSecret, csrfToken))
     throw new Error('csrf-verification-fail')
 
-  console.log({ targetService })
-
   // handle authtication from here
   switch (targetService) {
     case 'eventpop':

@@ -1,6 +1,7 @@
-import { OembedProvider } from '$types/OembedProvider'
-import { OembedResult } from '$types/OembedResult'
 import { readFileSystem, writeFileSystem } from './fileSystem'
+
+import type { OembedProvider } from '$types/OembedProvider'
+import type { OembedResult } from '$types/OembedResult'
 
 const getProviders = async () => {
   const cachedProviders = await readFileSystem<OembedProvider[]>([

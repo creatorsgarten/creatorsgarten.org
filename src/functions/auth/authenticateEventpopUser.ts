@@ -82,7 +82,6 @@ export const authenticateEventpopUser = async (
             name: user.full_name,
             avatar: user.avatar,
             email: user.email,
-            phone: user.phone,
           },
         },
         {
