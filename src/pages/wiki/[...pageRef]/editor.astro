@@ -17,11 +17,11 @@ if (Astro.request.method === 'POST') {
     const revision = data.get('revision')
     const content = data.get('content')
 
-    if (pageRef && content && revision) {
+    if (pageRef && content) {
       await updateWiki(
         pageRef.toString(),
         content.toString(),
-        revision.toString(),
+        (typeof revision === 'string' && revision) || undefined,
         Astro
       )
 

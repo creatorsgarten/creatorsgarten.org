@@ -1,10 +1,15 @@
-import { contentsgarten } from "$constants/contentsgarten"
+import { contentsgarten } from '$constants/contentsgarten'
 
-import { purgeFileSystem } from "./fileSystem"
+import { purgeFileSystem } from './fileSystem'
 
-import type { AstroGlobal } from "astro"
+import type { AstroGlobal } from 'astro'
 
-export const updateWiki = async (pageRef: string, content: string, oldRevision: string, Astro: AstroGlobal) => {
+export const updateWiki = async (
+  pageRef: string,
+  content: string,
+  oldRevision: string | undefined,
+  Astro: AstroGlobal
+) => {
   try {
     await contentsgarten(Astro.cookies.get('authgarten').value).save.mutate({
       pageRef,
