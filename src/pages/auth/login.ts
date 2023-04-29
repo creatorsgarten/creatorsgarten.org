@@ -5,7 +5,9 @@ import { eventpopClient } from '$constants/secrets/eventpopClient'
 
 import type { APIRoute } from 'astro'
 
-export const get: APIRoute = async ({ request, redirect }) => {
+export const get: APIRoute = async ({ request, redirect, params, url }) => {
+  const redirectDestination = url.searchParams.get('dest') ?? '/'
+
   const csrfInstance = new CSRF()
   const redirectHint =
     new URL(request.url).hostname === 'localhost' ? 'localhost3000' : 'new'
@@ -17,7 +19,7 @@ export const get: APIRoute = async ({ request, redirect }) => {
       redirect_uri:
         'https://dtinth.github.io/oauth_gateway/eventpop_callback.html',
       response_type: 'code',
-      state: `${redirectHint}!eventpop-${csrfToken}`,
+      state: `${redirectHint}!${redirectDestination}!eventpop-${csrfToken}`,
     }
   ).toString()}`
 

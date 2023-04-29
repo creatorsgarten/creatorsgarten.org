@@ -17,15 +17,17 @@ console.log(state)
 
 let error: string | null = null
 let service: string | null = null
+let redirectTo: string = '/'
 
 try {
   // decode authentication state
-  const stateMatcher = (state ?? '').match(/^(localhost3000|new)!(\w+)-(.+)$/)
+  const stateMatcher = (state ?? '').match(/^(localhost3000|new)!(.+)!(\w+)-(.+)$/)
 
   if (stateMatcher === null) throw new Error('state-invalid')
 
-  const [, redirectHint, targetService, csrfToken] = stateMatcher
+  const [, redirectHint, destination, targetService, csrfToken] = stateMatcher
   service = targetService
+  redirectTo = destination
 
   // if local state, then foward to localhost
   if (redirectHint === 'localhost3000' && import.meta.env.PROD) {
@@ -57,8 +59,6 @@ try {
 } catch (e) {
   error = (e as Error).message
 }
-
-const redirectTo = service === 'github' ? '/dashboard' : '/'
 ---
 <Blank>
   <Fragment slot="head">
