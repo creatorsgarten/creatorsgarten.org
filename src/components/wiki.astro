@@ -51,7 +51,7 @@ if (
   Astro.response.status = 500
 }
 
-const title = frontMatter.title || formatPageRef(pageRef as string)
+const title = frontMatter.title || frontMatter.name || formatPageRef(pageRef as string)
 const editable = !!file
 const editing = mode === 'editor' && editable ? file : null
 ---
