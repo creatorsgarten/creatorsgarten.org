@@ -16,6 +16,7 @@ import type { EventFrontmatter } from '$types/EventFrontmatter'
 import '@fontsource/inter/latin-400.css'
 import '@fontsource/inter/latin-500.css'
 import '@fontsource/inter/latin-700.css'
+import { Icon } from 'react-iconify-icon-wrapper'
 
 export interface Props {
   pageRef: string
@@ -51,17 +52,20 @@ if (
 }
 
 const title = frontMatter.title || formatPageRef(pageRef as string)
+const editable = !!file
+const editing = mode === 'editor' && editable ? file : null
 ---
 
 <Head title={mode === 'view' ? title + ' · Wiki' : 'Editor'} />
 
 {
-  status === 200 ? (
+  status === 200 || editing ? (
     <WikiLayout title={title}>
       <WikiSidebar
         slot="sidebar"
         pageRef={pageRef}
         contents={rendered!.headings}
+        editable={editable}
         metadata={{
           edited: {
             at: dayjs(lastModified),
@@ -88,10 +92,10 @@ const title = frontMatter.title || formatPageRef(pageRef as string)
               type: 'page',
             })}
       />
-      {mode === 'view' ? (
-        <ContentRenderer content={rendered!.html} pageRef={pageRef} />
+      {editing ? (
+        <WikiEditor pageRef={pageRef} file={editing} />
       ) : (
-        <WikiEditor pageRef={pageRef} file={file!} />
+        <ContentRenderer content={rendered!.html} pageRef={pageRef} />
       )}
     </WikiLayout>
   ) : (
@@ -99,8 +103,19 @@ const title = frontMatter.title || formatPageRef(pageRef as string)
       <div class="px-6 pb-10">
         <div class="mx-auto max-w-6xl">
           <h1 class="mb-8 text-3xl">{pageRef}</h1>
+          <ContentRenderer content={rendered!.html} pageRef={pageRef} />
+          {editable && (
+            <div class="mt-8 flex">
+              <a
+                href={`/wiki/${pageRef}/editor`}
+                class="inline-flex items-center space-x-2"
+              >
+                <span>Edit this page</span>
+                <Icon icon="pixelarticons:edit" />
+              </a>
+            </div>
+          )}
         </div>
-        <ContentRenderer content={rendered!.html} pageRef={pageRef} />
       </div>
     </BaseLayout>
   )

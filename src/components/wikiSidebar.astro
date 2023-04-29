@@ -29,9 +29,10 @@ export interface Props {
       by: string[]
     }
   }
+  editable?: boolean
 }
 
-const { type, events, contents, metadata, pageRef } = Astro.props
+const { type, events, contents, metadata, pageRef, editable } = Astro.props
 ---
 
 {
@@ -99,7 +100,7 @@ const { type, events, contents, metadata, pageRef } = Astro.props
   <h2 class="pb-4 text-center font-medium">METADATA</h2>
   <MetadataTable>
     <Fragment slot="table">
-      <t>
+      <tr>
         <td>EDIT</td>
         <td
           ><span>{stringifyDate(metadata.edited.at)}</span> / <span
@@ -111,36 +112,46 @@ const { type, events, contents, metadata, pageRef } = Astro.props
             }</span
           >
         </td>
-      </t>
-      <tr>
-        <td>HISTORY</td>
-        <td
-          ><a
-            href={`https://github.com/creatorsgarten/wiki/commits/main/wiki/${pageRef}.md`}
-            class="inline-flex items-center"
-            ><span class="mr-1">GitHub</span><Icon
-              icon="pixelarticons:external-link"
-            /></a
-          ></td
-        >
       </tr>
+      {
+        !!editable && (
+          <tr>
+            <td>HISTORY</td>
+            <td>
+              <a
+                href={`https://github.com/creatorsgarten/wiki/commits/main/wiki/${pageRef}.md`}
+                class="inline-flex items-center"
+              >
+                <>
+                  <span class="mr-1">GitHub</span>
+                  <Icon icon="pixelarticons:external-link" />
+                </>
+              </a>
+            </td>
+          </tr>
+        )
+      }
     </Fragment>
   </MetadataTable>
 </section>
-<section class="p-6">
-  <h2 class="pb-4 text-center font-medium">MODERATION</h2>
-  <div>
-    <div class="flex justify-center">
-      <a
-        href={`/wiki/${pageRef}/editor`}
-        class="inline-flex items-center space-x-2"
-      >
-        <span>Editor</span>
-        <Icon icon="pixelarticons:edit" />
-      </a>
-    </div>
-  </div>
-</section>
+{
+  !!editable && (
+    <section class="p-6">
+      <h2 class="pb-4 text-center font-medium">MODERATION</h2>
+      <div>
+        <div class="flex justify-center">
+          <a
+            href={`/wiki/${pageRef}/editor`}
+            class="inline-flex items-center space-x-2"
+          >
+            <span>Edit this page</span>
+            <Icon icon="pixelarticons:edit" />
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
 <section class="p-6">
   <h2 class="pb-4 text-center font-medium">SHARE</h2>
   <div class="flex justify-center space-x-4">
