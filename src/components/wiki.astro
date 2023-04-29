@@ -64,6 +64,7 @@ const editing = mode === 'editor' && editable ? file : null
         slot="sidebar"
         pageRef={pageRef}
         contents={rendered!.headings}
+        editable={editable}
         metadata={{
           edited: {
             at: dayjs(lastModified),

@@ -29,9 +29,10 @@ export interface Props {
       by: string[]
     }
   }
+  editable?: boolean
 }
 
-const { type, events, contents, metadata, pageRef } = Astro.props
+const { type, events, contents, metadata, pageRef, editable } = Astro.props
 ---
 
 {
@@ -127,20 +128,24 @@ const { type, events, contents, metadata, pageRef } = Astro.props
     </Fragment>
   </MetadataTable>
 </section>
-<section class="p-6">
-  <h2 class="pb-4 text-center font-medium">MODERATION</h2>
-  <div>
-    <div class="flex justify-center">
-      <a
-        href={`/wiki/${pageRef}/editor`}
-        class="inline-flex items-center space-x-2"
-      >
-        <span>Edit this page</span>
-        <Icon icon="pixelarticons:edit" />
-      </a>
-    </div>
-  </div>
-</section>
+{
+  !!editable && (
+    <section class="p-6">
+      <h2 class="pb-4 text-center font-medium">MODERATION</h2>
+      <div>
+        <div class="flex justify-center">
+          <a
+            href={`/wiki/${pageRef}/editor`}
+            class="inline-flex items-center space-x-2"
+          >
+            <span>Edit this page</span>
+            <Icon icon="pixelarticons:edit" />
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
 <section class="p-6">
   <h2 class="pb-4 text-center font-medium">SHARE</h2>
   <div class="flex justify-center space-x-4">
