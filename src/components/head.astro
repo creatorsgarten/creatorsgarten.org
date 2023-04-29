@@ -8,7 +8,7 @@ export interface Props {
 const { title } = Astro.props
 
 const builtTitle = title ? `${title} · Creatorsgarten` : 'Creatorsgarten'
-const builtImage = Astro.url.origin + "/images/og.jpg"
+const builtImage = Astro.url.origin + '/images/og.jpg'
 ---
 
 <SEO
@@ -17,9 +17,9 @@ const builtImage = Astro.url.origin + "/images/og.jpg"
   openGraph={{
     basic: {
       title: builtTitle,
-      type: "website",
+      type: 'website',
       image: builtImage,
-    }
+    },
   }}
   twitter={{
     card: 'summary_large_image',
