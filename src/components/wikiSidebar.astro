@@ -32,7 +32,6 @@ export interface Props {
 }
 
 const { type, events, contents, metadata, pageRef } = Astro.props
-
 ---
 
 {
@@ -64,10 +63,7 @@ const { type, events, contents, metadata, pageRef } = Astro.props
           <tr slot="table">
             <td>LINK</td>
             <td>
-              <a
-                href={events.link}
-                class="break-all inline-flex items-center"
-              >
+              <a href={events.link} class="inline-flex items-center break-all">
                 <>
                   <span class="mr-1">{new URL(events.link).host}</span>
                   <Icon icon="pixelarticons:external-link" />
@@ -88,7 +84,7 @@ const { type, events, contents, metadata, pageRef } = Astro.props
         {contents.map(content => (
           <li class="py-1">
             <a
-              class="hover:text-sky-600 transition-all"
+              class="transition-all hover:text-sky-600"
               href={'#' + content.id}
             >
               {content.label}
@@ -136,12 +132,12 @@ const { type, events, contents, metadata, pageRef } = Astro.props
   <div>
     <div class="flex justify-center">
       <a
-        href={`${Astro.url.pathname}/editor`}
+        href={`/wiki/${pageRef}/editor`}
         class="inline-flex items-center space-x-2"
       >
         <span>Editor</span>
         <Icon icon="pixelarticons:edit" />
-    </a>
+      </a>
     </div>
   </div>
 </section>
@@ -162,14 +158,12 @@ const { type, events, contents, metadata, pageRef } = Astro.props
     <a
       target="_blank"
       rel="noopener noreferrer"
-      href={`https://www.facebook.com/dialog/share?${new URLSearchParams(
-        {
-          app_id: '2314627122104275',
-          href: Astro.url.toString(),
-          feature: 'share',
-          display: 'popup',
-        }
-      ).toString()}`}
+      href={`https://www.facebook.com/dialog/share?${new URLSearchParams({
+        app_id: '2314627122104275',
+        href: Astro.url.toString(),
+        feature: 'share',
+        display: 'popup',
+      }).toString()}`}
     >
       <Icon icon="mdi:facebook" width={24} />
     </a>
