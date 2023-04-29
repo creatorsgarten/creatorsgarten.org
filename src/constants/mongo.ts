@@ -8,8 +8,6 @@ declare global {
   var mongo: MongoClient | undefined
 }
 
-console.log(import.meta.env)
-
 export const mongo = global.mongo || new MongoClient(mongoAddress)
 
 if (!import.meta.env.PROD) global.mongo = mongo
