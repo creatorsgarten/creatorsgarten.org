@@ -19,6 +19,8 @@ const editable = Astro.cookies.get('authgarten').value
       })
       .then(o => o.granted)
   : false
+
+const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageRef}.md`
 ---
 
 <div class="-mx-6 sm:mx-auto max-w-6xl">
@@ -26,14 +28,24 @@ const editable = Astro.cookies.get('authgarten').value
     <h1 class="mb-2 text-3xl">
       Editing <span class="font-medium">{pageRef}</span>
     </h1>
-    {editable ? (
-      <p>(The editor is quite janky, so please save your changes regularly!)</p>
-    ) : (
-      <p>
-        (Editor is locked to read-only mode because you don't have enough
-        permissions to edit the page)
-      </p>
-    )}
+    <div class="prose max-w-full">
+      {
+        editable ? (
+          <p>
+            (The editor is quite janky, so please save your changes regularly!)
+          </p>
+        ) : (
+          <p>
+            (Editor is locked to read-only mode because you don't have enough
+            permissions to edit the page. However,{' '}
+            <a href={gitHubUrl}>
+              you can propose changes to this file on GitHub.
+            </a>
+            )
+          </p>
+        )
+      }
+    </div>
     <form class="py-4" method="POST">
       <input type="hidden" name="pageRef" value={pageRef} />
       <input type="hidden" name="revision" value={file?.revision} />
