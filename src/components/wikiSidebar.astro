@@ -1,0 +1,177 @@
+---
+import MetadataTable from './metadataTable.astro'
+
+import { stringifyDate } from '$functions/stringifyDate'
+
+import type { Dayjs } from 'dayjs'
+import { Icon } from 'react-iconify-icon-wrapper'
+
+export interface Props {
+  type?: 'event' | 'page'
+  pageRef?: string
+  events?: {
+    id: string
+    location: string
+    date: {
+      from: Dayjs
+      to?: Dayjs
+    }
+    hosts: string[]
+    link: string
+  }
+  contents: {
+    id: string
+    label: string
+  }[]
+  metadata: {
+    edited: {
+      at: Dayjs
+      by: string[]
+    }
+  }
+}
+
+const { type, events, contents, metadata, pageRef } = Astro.props
+
+---
+
+{
+  type === 'event' && events ? (
+    <Fragment>
+      <img
+        src={`/images/events/${events.id}.png`}
+        class="aspect-square w-full"
+      />
+      <section class="p-6">
+        <h2 class="pb-6 text-center font-medium">EVENTS</h2>
+        <MetadataTable
+          data={[
+            ['LOCATION', events.location ?? ''],
+            [
+              'DATE',
+              [
+                `${events.date.to ? 'FROM ' : ''}${stringifyDate(
+                  events.date.from
+                )}`,
+                ...(events.date.to
+                  ? [`TO ${stringifyDate(events.date.to)}`]
+                  : []),
+              ],
+            ],
+            ['HOST', (events.hosts ?? []).map(o => `[${o}]`).join(' ')],
+          ]}
+        >
+          <tr slot="table">
+            <td>LINK</td>
+            <td>
+              <a
+                href={events.link}
+                class="break-all inline-flex items-center"
+              >
+                <>
+                  <span class="mr-1">{new URL(events.link).host}</span>
+                  <Icon icon="pixelarticons:external-link" />
+                </>
+              </a>
+            </td>
+          </tr>
+        </MetadataTable>
+      </section>
+    </Fragment>
+  ) : null
+}
+{
+  contents.length > 0 && (
+    <section class="p-6">
+      <h2 class="pb-4 text-center font-medium">CONTENTS</h2>
+      <ul class="list-inside list-disc text-sm">
+        {contents.map(content => (
+          <li class="py-1">
+            <a
+              class="hover:text-sky-600 transition-all"
+              href={'#' + content.id}
+            >
+              {content.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+<section class="p-6">
+  <h2 class="pb-4 text-center font-medium">METADATA</h2>
+  <MetadataTable>
+    <Fragment slot="table">
+      <t>
+        <td>EDIT</td>
+        <td
+          ><span>{stringifyDate(metadata.edited.at)}</span> / <span
+            class="space-x-1"
+            >{
+              metadata.edited.by.map(user => (
+                <a href={`https://github.com/${user}`}>@{user}</a>
+              ))
+            }</span
+          >
+        </td>
+      </t>
+      <tr>
+        <td>HISTORY</td>
+        <td
+          ><a
+            href={`https://github.com/creatorsgarten/wiki/commits/main/wiki/${pageRef}.md`}
+            class="inline-flex items-center"
+            ><span class="mr-1">GitHub</span><Icon
+              icon="pixelarticons:external-link"
+            /></a
+          ></td
+        >
+      </tr>
+    </Fragment>
+  </MetadataTable>
+</section>
+<section class="p-6">
+  <h2 class="pb-4 text-center font-medium">MODERATION</h2>
+  <div>
+    <div class="flex justify-center">
+      <a
+        href={`${Astro.url.pathname}/editor`}
+        class="inline-flex items-center space-x-2"
+      >
+        <span>Editor</span>
+        <Icon icon="pixelarticons:edit" />
+    </a>
+    </div>
+  </div>
+</section>
+<section class="p-6">
+  <h2 class="pb-4 text-center font-medium">SHARE</h2>
+  <div class="flex justify-center space-x-4">
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href={`https://twitter.com/intent/tweet?${new URLSearchParams({
+        url: Astro.url.toString(),
+        text: 'Check this',
+        via: 'Creatorsgarten',
+      }).toString()}`}
+    >
+      <Icon icon="mdi:twitter" width={24} />
+    </a>
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href={`https://www.facebook.com/dialog/share?${new URLSearchParams(
+        {
+          app_id: '2314627122104275',
+          href: Astro.url.toString(),
+          feature: 'share',
+          display: 'popup',
+        }
+      ).toString()}`}
+    >
+      <Icon icon="mdi:facebook" width={24} />
+    </a>
+  </div>
+</section>

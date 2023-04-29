@@ -1,0 +1,35 @@
+---
+import Wiki from '$components/wiki.astro'
+import { updateWiki } from '$functions/updateWiki'
+
+let { pageRef } = Astro.params
+
+if (pageRef === undefined) pageRef = 'MainPage'
+else if (pageRef === 'MainPage') return Astro.redirect('/wiki/editor')
+else if (pageRef.startsWith('Events/'))
+  return Astro.redirect(`/event/${pageRef.replace('Events/', '')}/editor`)
+
+if (Astro.request.method === 'POST') {
+  try {
+    const data = await Astro.request.formData()
+    const pageRef = data.get('pageRef')
+    const revision = data.get('revision')
+    const content = data.get('content')
+
+    if (pageRef && content && revision) {
+      await updateWiki(
+        pageRef.toString(),
+        content.toString(),
+        revision.toString(),
+        Astro
+      )
+
+      return Astro.redirect(`/wiki/${pageRef}`)
+    }
+  } catch (e) {
+    console.error(e)
+  }
+}
+---
+
+<Wiki mode='editor' pageRef={pageRef} />
