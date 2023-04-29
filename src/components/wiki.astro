@@ -50,7 +50,7 @@ if (
 const title = frontMatter.title || formatPageRef(pageRef as string)
 ---
 
-<Head title={mode === 'view' ? title : 'Editor'} />
+<Head title={mode === 'view' ? title + ' · Wiki' : 'Editor'} />
 
 {
   status === 200 ? (
