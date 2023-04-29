@@ -7,6 +7,9 @@ dependencies:
   '@trpc/client':
     specifier: 10.16.0
     version: 10.16.0(@trpc/server@10.16.0)
+  astro-seo:
+    specifier: ^0.7.2
+    version: 0.7.2
   csrf:
     specifier: ^3.1.0
     version: 3.1.0
@@ -1500,6 +1503,10 @@ packages:
   /array-iterate@2.0.1:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
     dev: true
+
+  /astro-seo@0.7.2:
+    resolution: {integrity: sha512-YnSqj4E6vbF7wRk3gcxOPHBjenhfgaINEJlTsnu4sovAyfyGEdQksbioYKoZ+vERRDaYvEricfSzC6fc9lieww==}
+    dev: false
 
   /astro@2.3.1:
     resolution: {integrity: sha512-At0ig9qAL9u2HfGV+LmaFFTPQQ904iB9wkefKo52LF3oEsXFmt7RVUN++gnKN0YIYvWjr4P8S9UtU7zyN1U5Fw==}

@@ -1,6 +1,7 @@
 ---
 import dayjs from 'dayjs'
 
+import { SEO } from "astro-seo"
 import BaseLayout from '$layouts/base.astro'
 import WikiLayout from '$layouts/wiki.astro'
 import ContentRenderer from './contentRenderer.astro'
@@ -11,6 +12,7 @@ import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
 import { formatPageRef } from '$functions/formatPageRef'
 
 import type { EventFrontmatter } from '$types/EventFrontmatter'
+import Head from './head.astro'
 
 export interface Props {
   pageRef: string
@@ -44,11 +46,15 @@ if (
 } else if (status === 500) {
   Astro.response.status = 500
 }
+
+const title = frontMatter.title || formatPageRef(pageRef as string)
 ---
+
+<Head title={mode === 'view' ? title : 'Editor'} />
 
 {
   status === 200 ? (
-    <WikiLayout title={frontMatter.title || formatPageRef(pageRef as string)}>
+    <WikiLayout title={title}>
       <WikiSidebar
         slot="sidebar"
         pageRef={pageRef}

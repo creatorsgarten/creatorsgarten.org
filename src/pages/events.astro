@@ -5,10 +5,13 @@ import BaseLayout from '$layouts/base.astro'
 import EventPoster from '$components/eventPoster.astro'
 
 import { getEvents } from '$functions/getEvents'
+import Head from '$components/head.astro'
 
 const now = dayjs()
 const events = await getEvents()
 ---
+
+<Head title="events" />
 
 <BaseLayout class="max-w-7xl mx-auto space-y-12 [&>*]:px-6">
   <section>

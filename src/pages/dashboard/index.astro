@@ -1,11 +1,14 @@
 ---
 import BaseLayout from '$layouts/base.astro'
 import { getAuthenticatedUser } from '$functions/auth/getAuthenticatedUser'
+import Head from '$components/head.astro';
 
 const authenticatedUser = await getAuthenticatedUser(Astro)
 
 if (!authenticatedUser) return Astro.redirect('/')
 ---
+
+<Head title="Dashboard" />
 
 <BaseLayout class="max-w-7xl mx-auto space-y-6 [&>*]:px-6">
   <section class="max-w-lg mx-auto">
