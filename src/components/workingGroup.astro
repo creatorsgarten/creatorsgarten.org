@@ -7,8 +7,8 @@ const isLight = (Astro.props.theme ?? 'dark') === 'light'
 ---
 
 <div
-  class={`grid sm:grid-cols-3 gap-6 md:gap-8 p-6 md:p-8 rounded-3xl ${
-    !isLight ? 'bg-[#1C1916] text-white' : 'bg-white text-[#1C1916]'
+  class={`grid sm:grid-cols-3 gap-6 md:gap-8 p-6 md:p-8 rounded-3xl text-white ${
+    !isLight ? 'bg-[#1C1916]' : 'bg-white'
   }`}
 >
   <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
@@ -54,7 +54,7 @@ const isLight = (Astro.props.theme ?? 'dark') === 'light'
       <span>Creative Coding</span>
     </div>
   </div>
-  <div class="aspect-[5/3] flex flex-col justify-evenly">
+  <div class={`aspect-[5/3] flex flex-col justify-evenly ${isLight ? 'text-[#1C1916]' : 'text-white'}`}>
     <h1 class="font-medium text-xl uppercase">Guilds</h1>
     <p>
       regardless of their age, economic status, education, or opportunities,
