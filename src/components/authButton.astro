@@ -1,7 +1,8 @@
 ---
 import { getAuthenticatedUser } from '$functions/auth/getAuthenticatedUser'
+import { getAuthTokenFromAstro } from '$functions/auth/getAuthTokenFromAstro'
 
-const user = await getAuthenticatedUser(Astro)
+const user = await getAuthenticatedUser(getAuthTokenFromAstro(Astro))
 ---
 
 {

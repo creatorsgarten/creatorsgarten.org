@@ -17,8 +17,11 @@ interface GitHubUserResponse {
   login: string
 }
 
-export const authenticateGitHub = async (code: string, Astro: AstroGlobal) => {
-  const currentAuthenticatedUser = await getAuthenticatedUser(Astro)
+export const authenticateGitHub = async (
+  code: string,
+  existingAuthToken?: string
+) => {
+  const currentAuthenticatedUser = await getAuthenticatedUser(existingAuthToken)
 
   if (currentAuthenticatedUser === null) throw new Error('not-authenticated')
 
@@ -77,7 +80,7 @@ export const authenticateGitHub = async (code: string, Astro: AstroGlobal) => {
         }
       )
 
-    return finalizeAuthentication(currentAuthenticatedUser.uid, Astro)
+    return finalizeAuthentication(currentAuthenticatedUser.uid)
   } catch (e) {
     throw new Error('github-varification-failed')
   }

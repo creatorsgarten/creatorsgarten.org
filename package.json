@@ -18,11 +18,13 @@
     "astro-seo": "^0.7.2",
     "csrf": "^3.1.0",
     "dayjs": "^1.11.7",
+    "jose": "^4.14.3",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-iconify-icon-wrapper": "^0.0.3"
+    "react-iconify-icon-wrapper": "^0.0.3",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@astrojs/node": "5.1.1",

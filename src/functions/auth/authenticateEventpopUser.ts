@@ -3,8 +3,6 @@ import { finalizeAuthentication } from './finalizeAuthentication'
 import { mongo } from '$constants/mongo'
 import { eventpopClient } from '$constants/secrets/eventpopClient'
 
-import type { AstroGlobal } from 'astro'
-
 interface EventpopAuthorizationResponse {
   access_token: string
   token_type: string
@@ -32,10 +30,7 @@ interface EventpopMeResponse {
   }
 }
 
-export const authenticateEventpopUser = async (
-  code: string,
-  Astro: AstroGlobal
-) => {
+export const authenticateEventpopUser = async (code: string) => {
   try {
     // authenticate user to eventpop
     console.log('/oauth/token')
@@ -89,8 +84,9 @@ export const authenticateEventpopUser = async (
         }
       )
 
-    return finalizeAuthentication(user.id, Astro)
+    return finalizeAuthentication(user.id)
   } catch (e) {
+    console.error(e)
     throw new Error('eventpop-varification-failed')
   }
 }
