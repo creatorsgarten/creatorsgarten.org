@@ -7,6 +7,9 @@ dependencies:
   '@trpc/client':
     specifier: 10.16.0
     version: 10.16.0(@trpc/server@10.16.0)
+  '@trpc/server':
+    specifier: 10.16.0
+    version: 10.16.0
   astro-seo:
     specifier: ^0.7.2
     version: 0.7.2
@@ -63,9 +66,6 @@ devDependencies:
   '@tailwindcss/typography':
     specifier: 0.5.9
     version: 0.5.9(tailwindcss@3.3.2)
-  '@trpc/server':
-    specifier: 10.16.0
-    version: 10.16.0
   '@types/jsonwebtoken':
     specifier: ^9.0.2
     version: 9.0.2
