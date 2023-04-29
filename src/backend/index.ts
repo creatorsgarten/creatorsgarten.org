@@ -1,5 +1,8 @@
-import { TRPCError, initTRPC } from '@trpc/server'
+import { initTRPC } from '@trpc/server'
 import { z } from 'zod'
+import { authenticateEventpopUser } from './auth/authenticateEventpopUser'
+import { authenticateGitHub } from './auth/authenticateGitHub'
+import { getAuthenticatedUser } from './auth/getAuthenticatedUser'
 
 interface BackendContext {
   authToken?: string
@@ -9,7 +12,12 @@ const t = initTRPC.context<BackendContext>().create()
 
 export const appRouter = t.router({
   about: t.procedure.query(() => 'creatorsgarten.org'),
+
   auth: t.router({
+    getAuthenticatedUser: t.procedure.query(({ ctx }) => {
+      return getAuthenticatedUser(ctx.authToken)
+    }),
+
     signInWithEventpopAuthorizationCode: t.procedure
       .input(
         z.object({
@@ -17,10 +25,17 @@ export const appRouter = t.router({
         })
       )
       .mutation(({ input }) => {
-        throw new TRPCError({
-          code: 'INTERNAL_SERVER_ERROR',
-          message: 'not implemented',
+        return authenticateEventpopUser(input.code)
+      }),
+
+    linkGitHubAccount: t.procedure
+      .input(
+        z.object({
+          code: z.string(),
         })
+      )
+      .mutation(({ input, ctx }) => {
+        return authenticateGitHub(input.code, ctx.authToken)
       }),
   }),
 })

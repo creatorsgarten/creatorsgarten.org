@@ -1,19 +1,22 @@
 ---
-import { getAuthenticatedUser } from '$functions/auth/getAuthenticatedUser'
-import { getAuthTokenFromAstro } from '$functions/auth/getAuthTokenFromAstro'
-
-const user = await getAuthenticatedUser(getAuthTokenFromAstro(Astro))
+import { getBackend } from '$functions/getBackend'
+const user = await getBackend(Astro).auth.getAuthenticatedUser.query()
 ---
 
 {
   user !== null ? (
-    <a href="/dashboard" class="inline-flex justify-center shrink-0 rounded-lg sm:rounded-full py-2 px-4 bg-white text-[#1c1916] w-full sm:w-auto">
+    <a
+      href="/dashboard"
+      class="inline-flex w-full shrink-0 justify-center rounded-lg bg-white px-4 py-2 text-[#1c1916] sm:w-auto sm:rounded-full"
+    >
       DASHBOARD
     </a>
   ) : (
     <a
-      href={`/auth/login?${new URLSearchParams({ dest: Astro.url.pathname }).toString()}`}
-      class="inline-flex justify-center shrink-0 rounded-lg sm:rounded-full py-2 px-4 bg-[#1c1916] text-white w-full sm:w-auto"
+      href={`/auth/login?${new URLSearchParams({
+        dest: Astro.url.pathname,
+      }).toString()}`}
+      class="inline-flex w-full shrink-0 justify-center rounded-lg bg-[#1c1916] px-4 py-2 text-white sm:w-auto sm:rounded-full"
     >
       LOGIN
     </a>

@@ -1,13 +1,11 @@
 ---
 import BaseLayout from '$layouts/base.astro'
-import { getAuthenticatedUser } from '$functions/auth/getAuthenticatedUser'
-import { getAuthTokenFromAstro } from '$functions/auth/getAuthTokenFromAstro'
 import Head from '$components/head.astro'
+import { getBackend } from '$functions/getBackend'
 
-const authenticatedUser = await getAuthenticatedUser(
-  getAuthTokenFromAstro(Astro)
-)
-
+const authenticatedUser = await getBackend(
+  Astro
+).auth.getAuthenticatedUser.query()
 if (!authenticatedUser) return Astro.redirect('/')
 ---
 

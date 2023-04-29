@@ -2,8 +2,6 @@ import { githubClient } from '$constants/secrets/githubClient'
 import { mongo } from '$constants/mongo'
 
 import { getAuthenticatedUser } from './getAuthenticatedUser'
-
-import type { AstroGlobal } from 'astro'
 import { finalizeAuthentication } from './finalizeAuthentication'
 
 interface GitHubTokenResponse {
