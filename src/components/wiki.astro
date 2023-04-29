@@ -51,12 +51,14 @@ if (
 }
 
 const title = frontMatter.title || formatPageRef(pageRef as string)
+const editable = !!file
+const editing = mode === 'editor' && editable ? file : null
 ---
 
 <Head title={mode === 'view' ? title + ' · Wiki' : 'Editor'} />
 
 {
-  status === 200 ? (
+  status === 200 || editing ? (
     <WikiLayout title={title}>
       <WikiSidebar
         slot="sidebar"
@@ -88,10 +90,10 @@ const title = frontMatter.title || formatPageRef(pageRef as string)
               type: 'page',
             })}
       />
-      {mode === 'view' ? (
-        <ContentRenderer content={rendered!.html} pageRef={pageRef} />
+      {editing ? (
+        <WikiEditor pageRef={pageRef} file={editing} />
       ) : (
-        <WikiEditor pageRef={pageRef} file={file!} />
+        <ContentRenderer content={rendered!.html} pageRef={pageRef} />
       )}
     </WikiLayout>
   ) : (
