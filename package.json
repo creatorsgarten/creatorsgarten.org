@@ -25,6 +25,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-iconify-icon-wrapper": "^0.0.3",
+    "sitemap": "^7.1.1",
     "zod": "^3.21.4"
   },
   "devDependencies": {
