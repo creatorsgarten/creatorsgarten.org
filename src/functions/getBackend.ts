@@ -28,7 +28,7 @@ export function getBackend(Astro: Pick<AstroGlobal, 'cookies'>) {
   return createTRPCProxyClient<AppRouter>({
     links: [
       import.meta.env.JWT_PRIVATE_KEY
-        ? localLink(appRouter, {})
+        ? localLink(appRouter, { authToken: token })
         : httpLink({
             url:
               import.meta.env.BACKEND_URL ||
