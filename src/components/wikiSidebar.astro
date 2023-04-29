@@ -65,7 +65,10 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
             <td>LINK</td>
             <td>
               {events.link && (
-                <a href={events.link} class="inline-flex items-center break-all">
+                <a
+                  href={events.link}
+                  class="inline-flex items-center break-all"
+                >
                   <>
                     <span class="mr-1">{new URL(events.link).host}</span>
                     <Icon icon="pixelarticons:external-link" />
