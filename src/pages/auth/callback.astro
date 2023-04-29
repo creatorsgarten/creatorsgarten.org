@@ -6,12 +6,8 @@ import { csrfSecret } from '$constants/secrets/csrfSecret'
 import { authenticateEventpopUser } from '$functions/auth/authenticateEventpopUser'
 import { authenticateGitHub } from '$functions/auth/authenticateGitHub'
 
-const code =
-  Astro.url.searchParams.get('code') ??
-  ''
-const state =
-  Astro.url.searchParams.get('state') ??
-  ''
+const code = Astro.url.searchParams.get('code') ?? ''
+const state = Astro.url.searchParams.get('state') ?? ''
 
 console.log(state)
 
@@ -21,7 +17,9 @@ let redirectTo: string = '/'
 
 try {
   // decode authentication state
-  const stateMatcher = (state ?? '').match(/^(localhost3000|new)!(.+)!(\w+)-(.+)$/)
+  const stateMatcher = (state ?? '').match(
+    /^(localhost3000|new)!(.+)!(\w+)-(.+)$/
+  )
 
   if (stateMatcher === null) throw new Error('state-invalid')
 
@@ -46,39 +44,60 @@ try {
     throw new Error('csrf-verification-fail')
 
   // handle authtication from here
-  switch (targetService) {
-    case 'eventpop':
-      await authenticateEventpopUser(code, Astro)
-      break
-    case 'github':
-      await authenticateGitHub(code, Astro)
-      break
-  }
+  const existingToken = Astro.cookies.get('authgarten').value
+  const result = await (() => {
+    switch (targetService) {
+      case 'eventpop':
+        return authenticateEventpopUser(code)
+      case 'github':
+        return authenticateGitHub(code, existingToken)
+    }
+    throw new Error('service-invalid')
+  })()
+
+  Astro.cookies.set('authgarten', result.idToken, {
+    maxAge: 60 * 60 * 12, // 12 hours
+    httpOnly: true,
+    secure: import.meta.env.PROD,
+    path: '/',
+    sameSite: 'lax',
+  })
 } catch (e) {
   error = (e as Error).message
 }
 ---
+
 <Blank>
   <Fragment slot="head">
     <title>Authgarten</title>
-    {error === null && <meta http-equiv="Refresh" content={'1; url=' + redirectTo} />}
+    {
+      error === null && (
+        <meta http-equiv="Refresh" content={'1; url=' + redirectTo} />
+      )
+    }
   </Fragment>
   <main class="px-4 max-w-7xl mx-auto py-12">
-  {
-    error !== null ? (
-      <>
-        <Fragment slot="head">
-          <title>Unable to authenticate</title>
-        </Fragment>
-        <h1 class="text-4xl font-medium">Failed!</h1>
-        <p>{error}</p>
-      </>
-    ) : (
-      <>
-        <h1 class="text-4xl font-medium">Authenticated!</h1>
-        <p>Redirecting... <a href={redirectTo} class="underline">Click here</a> if nothing happends</p>
-      </>
-    )
-  }
+    {
+      error !== null ? (
+        <>
+          <Fragment slot="head">
+            <title>Unable to authenticate</title>
+          </Fragment>
+          <h1 class="text-4xl font-medium">Failed!</h1>
+          <p>{error}</p>
+        </>
+      ) : (
+        <>
+          <h1 class="text-4xl font-medium">Authenticated!</h1>
+          <p>
+            Redirecting...{' '}
+            <a href={redirectTo} class="underline">
+              Click here
+            </a>{' '}
+            if nothing happends
+          </p>
+        </>
+      )
+    }
   </main>
 </Blank>

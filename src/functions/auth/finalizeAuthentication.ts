@@ -3,14 +3,9 @@ import jwt from 'jsonwebtoken'
 import { mongo } from '$constants/mongo'
 import { maxSessionAge } from '$constants/maxSessionAge'
 import { privateKey } from '$constants/secrets/privateKey'
-
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import type { AstroGlobal } from 'astro'
 
-export const finalizeAuthentication = async (
-  uid: number,
-  Astro: AstroGlobal
-) => {
+export const finalizeAuthentication = async (uid: number) => {
   // get mongo document
   const userDoc = await mongo
     .db('creatorsgarten-org')
@@ -20,6 +15,7 @@ export const finalizeAuthentication = async (
   if (userDoc === null) throw new Error('unsuccessful-authentication')
 
   const payload: AuthenticatedUser = {
+    sub: String(userDoc._id),
     uid: userDoc.uid,
     name: userDoc.name,
     avatar: userDoc.avatar,
@@ -30,23 +26,20 @@ export const finalizeAuthentication = async (
   }
 
   try {
-    const sealedToken = jwt.sign(payload, privateKey, {
+    const idToken = jwt.sign(payload, privateKey, {
       algorithm: 'RS256',
-      issuer: 'creatorsgarten',
+
+      // https://openid.net/specs/openid-connect-basic-1_0.html#IDToken
+      issuer: 'https://auth.creatorsgarten.org',
+      audience: 'https://auth.creatorsgarten.org',
       expiresIn: maxSessionAge,
+
       header: {
         alg: 'RS256',
-        kid: 'riffy1'
-      }
+        kid: 'riffy1',
+      },
     })
-
-    Astro.cookies.set('authgarten', sealedToken, {
-      maxAge: 60 * 60 * 12, // 12 hours
-      httpOnly: true,
-      secure: import.meta.env.PROD,
-      path: '/',
-      sameSite: 'lax',
-    })
+    return { idToken }
   } catch (e) {
     throw new Error('unable-to-sign')
   }

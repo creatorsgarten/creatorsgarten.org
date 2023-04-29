@@ -16,6 +16,9 @@ dependencies:
   dayjs:
     specifier: ^1.11.7
     version: 1.11.7
+  jose:
+    specifier: ^4.14.3
+    version: 4.14.3
   jsonwebtoken:
     specifier: ^9.0.0
     version: 9.0.0
@@ -2673,7 +2676,6 @@ packages:
 
   /jose@4.14.3:
     resolution: {integrity: sha512-YPM9Q+dmsna4CGWNn5+oHFsuXJdxvKAOVoNjpe2nje3odSoX5Xz4s71rP50vM8uUKJyQtMnEGPmbVCVR+G4W5g==}
-    dev: true
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
