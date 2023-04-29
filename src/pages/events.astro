@@ -54,8 +54,9 @@ const events = await getEvents()
           .map(event => (
             <a href={`/event/${event.id}`}>
               <img
-                src={`/images/events/${event!.id}.png`}
+                src={`/images/events/${event.id}.png`}
                 class="w-full aspect-square"
+                alt={event.name}
               />
             </a>
           ))
