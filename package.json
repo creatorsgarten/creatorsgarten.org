@@ -29,6 +29,8 @@
     "@astrojs/prefetch": "0.2.1",
     "@astrojs/react": "^2.1.1",
     "@astrojs/tailwind": "3.1.1",
+    "@fontsource/inter": "^4.5.15",
+    "@fontsource/work-sans": "^4.5.14",
     "@playwright/test": "1.32.3",
     "@tailwindcss/typography": "0.5.9",
     "@trpc/server": "10.16.0",

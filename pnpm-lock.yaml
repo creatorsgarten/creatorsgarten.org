@@ -45,6 +45,12 @@ devDependencies:
   '@astrojs/tailwind':
     specifier: 3.1.1
     version: 3.1.1(astro@2.3.1)(tailwindcss@3.3.2)
+  '@fontsource/inter':
+    specifier: ^4.5.15
+    version: 4.5.15
+  '@fontsource/work-sans':
+    specifier: ^4.5.14
+    version: 4.5.14
   '@playwright/test':
     specifier: 1.32.3
     version: 1.32.3
@@ -870,6 +876,14 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@fontsource/inter@4.5.15:
+    resolution: {integrity: sha512-FzleM9AxZQK2nqsTDtBiY0PMEVWvnKnuu2i09+p6DHvrHsuucoV2j0tmw+kAT3L4hvsLdAIDv6MdGehsPIdT+Q==}
+    dev: true
+
+  /@fontsource/work-sans@4.5.14:
+    resolution: {integrity: sha512-AFBSDBA3hnSCXHwb52qBOMEGqF5nfdbANp+y5/hbE1PMjYfFY0lUdtUwL5J7mRAdyn1NJwobJlhduHtlAyPzmA==}
+    dev: true
 
   /@ioredis/commands@1.2.0:
     resolution: {integrity: sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==}

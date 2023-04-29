@@ -1,10 +1,10 @@
 ---
 import dayjs from 'dayjs'
 
-import { SEO } from "astro-seo"
 import BaseLayout from '$layouts/base.astro'
 import WikiLayout from '$layouts/wiki.astro'
 import ContentRenderer from './contentRenderer.astro'
+import Head from './head.astro'
 import WikiSidebar from './wikiSidebar.astro'
 import WikiEditor from './wikiEditor.astro'
 
@@ -12,7 +12,10 @@ import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
 import { formatPageRef } from '$functions/formatPageRef'
 
 import type { EventFrontmatter } from '$types/EventFrontmatter'
-import Head from './head.astro'
+
+import '@fontsource/inter/latin-400.css'
+import '@fontsource/inter/latin-500.css'
+import '@fontsource/inter/latin-700.css'
 
 export interface Props {
   pageRef: string
