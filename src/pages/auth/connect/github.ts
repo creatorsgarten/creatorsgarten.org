@@ -16,7 +16,6 @@ export const get: APIRoute = async ({ request, redirect }) => {
       client_id: githubClient.id ?? '',
       redirect_uri:
         'https://new.creatorsgarten.org/auth/callback',
-      scope: 'read:user',
       state: `${redirectHint}!github-${csrfToken}`,
     }
   ).toString()}`
