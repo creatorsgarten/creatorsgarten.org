@@ -1,16 +1,6 @@
-import { initTRPC } from '@trpc/server'
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 import type { APIRoute } from 'astro'
-
-interface BackendContext {
-  authToken?: string
-}
-
-const t = initTRPC.context<BackendContext>().create()
-
-const appRouter = t.router({
-  about: t.procedure.query(() => 'creatorsgarten.org'),
-})
+import { appRouter } from 'src/backend'
 
 export const all: APIRoute = opts => {
   return fetchRequestHandler({
