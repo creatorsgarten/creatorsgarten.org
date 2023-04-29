@@ -10,14 +10,14 @@ export interface Props {
 ---
 
 <Blank>
-  <nav class="flex justify-between px-6 pt-6 pb-8">
+  <nav class="grid sm:flex grid-cols-2 justify-between px-6 pt-6 pb-8" x-data="{ o: false }">
     <a href="/">
       <img src="/images/creatorsgarten.svg" class="h-9" />
     </a>
-    <div class="sm:hidden text-3xl">🍔</div>
+    <button class="sm:hidden text-3xl ml-auto" x-on:click="o = ! o">🍔</button>
     <!-- TODO: Delete this -->
-    <div class="hidden sm:flex items-center space-x-4 font-medium text-sm">
-      <ul class="flex shrink-0 space-x-4 rounded-full bg-[#ededed] py-2 px-4">
+    <div class="col-span-2 sm:col-span-1 w-full pt-6 sm:p-0 sm:w-auto sm:flex items-center sm:space-x-4 font-medium text-sm ml-auto" x-bind:class="o ? 'block' : 'hidden'">
+      <ul class="grid grid-cols-2 gap-2 sm:flex shrink-0 sm:space-x-4 rounded-full sm:bg-[#ededed] py-2 px-4 mb-2 sm:mb-0">
         <li class="hover:text-sky-600 transition-all">
           <a href="/events">CRAFTS</a>
         </li>
