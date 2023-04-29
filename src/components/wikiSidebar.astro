@@ -64,12 +64,14 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
           <tr slot="table">
             <td>LINK</td>
             <td>
-              <a href={events.link} class="inline-flex items-center break-all">
-                <>
-                  <span class="mr-1">{new URL(events.link).host}</span>
-                  <Icon icon="pixelarticons:external-link" />
-                </>
-              </a>
+              {events.link && (
+                <a href={events.link} class="inline-flex items-center break-all">
+                  <>
+                    <span class="mr-1">{new URL(events.link).host}</span>
+                    <Icon icon="pixelarticons:external-link" />
+                  </>
+                </a>
+              )}
             </td>
           </tr>
         </MetadataTable>
