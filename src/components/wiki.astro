@@ -36,6 +36,7 @@ const {
   lastModifiedBy,
   frontMatter,
   file,
+  perf,
 } = markdown
 
 if (
@@ -115,3 +116,7 @@ const editing = mode === 'editor' && editable ? file : null
     </BaseLayout>
   )
 }
+
+<Fragment
+  set:html={'<!-- ' + (perf || []).join('\n').replace(/--/g, '—') + ' -->'}
+/>
