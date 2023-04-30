@@ -1,0 +1,91 @@
+---
+import { getOptimizedImageUrl } from '$functions/getOptimizedImageUrl'
+import type { OptimizedImageOption } from '$types/OptimizedImageOption'
+
+export interface Props extends Omit<astroHTML.JSX.ImgHTMLAttributes, 'width'> {
+  src: string
+  width:
+    | number
+    | {
+        max: number
+        sm?: number
+        md?: number
+        lg?: number
+        xl?: number
+        [key: number]: number
+      }
+  ratio: number
+  transform?: OptimizedImageOption
+}
+
+let { ratio, width, transform = {}, src, ...props } = Astro.props
+let sources: astroHTML.JSX.SourceHTMLAttributes[] = []
+
+const getBreakpointWidth = (key: string | number) => {
+  switch (key) {
+    case 'sm':
+      return 640
+    case 'md':
+      return 768
+    case 'lg':
+      return 1024
+    case 'xl':
+      return 1280
+    case 'max':
+      return 1536
+    default:
+      return key
+  }
+}
+
+const originalWidth = typeof width === 'number' ? width : width.default
+const originalHeight = Math.floor(originalWidth / ratio)
+
+// uses cloudflare image optimization on prod
+if (import.meta.env.PROD || true) {
+  const formats: OptimizedImageOption['format'][] = ['webp']
+
+  sources = formats.map(format => {
+    return {
+      srcset:
+        typeof width === 'number'
+          ? getOptimizedImageUrl(src, {
+              width,
+              height: Math.floor(width / ratio),
+              fit: 'crop',
+              format,
+              ...transform,
+            })
+          : Object.entries(width)
+              .map(
+                ([key, value]) =>
+                  [getBreakpointWidth(key), value] as [number, number]
+              )
+              .sort((a, b) => a[0] - b[0])
+              .map(
+                ([breakpoint, width]) =>
+                  `${getOptimizedImageUrl(src, {
+                    width,
+                    height: Math.floor(width / ratio),
+                    fit: 'crop',
+                    ...transform,
+                  })} ${breakpoint}w`
+              )
+              .join(', '),
+      type: `image/${format}`,
+    }
+  })
+
+  src = getOptimizedImageUrl(src, {
+    width: originalWidth,
+    height: originalHeight,
+    fit: 'crop',
+    ...transform,
+  })
+}
+---
+
+<picture>
+  {sources.map(o => <source {...o} />)}
+  <img src={src} width={originalWidth} height={originalHeight} {...props} />
+</picture>

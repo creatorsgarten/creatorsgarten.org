@@ -3,6 +3,7 @@ import Participate from '$components/frontpage/participate.astro'
 import Head from '$components/head.astro'
 import Guilds from '$components/guilds.astro'
 import BaseLayout from '$layouts/base.astro'
+import CFImage from '$components/CFImage.astro';
 ---
 
 <Head />
@@ -18,9 +19,11 @@ import BaseLayout from '$layouts/base.astro'
     >
   </section>
   <section class="sm:grid grid-cols-2 gap-8">
-    <img
+    <CFImage
       src="/images/garten.jpg"
-      class="aspect-video w-full rounded-2xl object-cover"
+      width={620}
+      ratio={16 / 9}
+      class="w-full rounded-2xl"
     />
     <article
       class="pt-6 sm:pt-0 space-y-4 sm:space-y-0 flex flex-col justify-evenly"

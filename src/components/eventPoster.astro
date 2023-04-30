@@ -1,5 +1,8 @@
 ---
 import { Icon } from 'react-iconify-icon-wrapper'
+
+import CFImage from './CFImage.astro'
+
 import { stringifyDate } from '$functions/stringifyDate'
 
 import type { Event } from '$functions/getEvents'
@@ -13,9 +16,14 @@ const { event } = Astro.props
 
 <div class="sm:flex sm:space-x-6 space-y-4 sm:space-y-0">
   <a href={`/event/${event.id}`} class="shrink-0">
-    <img
+    <CFImage
       src={`/images/events/${event.id}.png`}
-      class="w-full sm:w-64 aspect-square"
+      width={{
+        max: 600,
+        sm: 256
+      }}
+      ratio={1}
+      class="w-full sm:w-64"
     />
   </a>
   <div class="flex flex-col justify-between">

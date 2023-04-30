@@ -3,9 +3,10 @@ import dayjs from 'dayjs'
 
 import BaseLayout from '$layouts/base.astro'
 import EventPoster from '$components/eventPoster.astro'
+import Head from '$components/head.astro'
+import CFImage from '$components/CFImage.astro'
 
 import { getEvents } from '$functions/getEvents'
-import Head from '$components/head.astro'
 
 const now = dayjs()
 const events = await getEvents()
@@ -53,10 +54,12 @@ const events = await getEvents()
           .filter(event => event.date.isBefore(now))
           .map(event => (
             <a href={`/event/${event.id}`}>
-              <img
+              <CFImage
                 src={`/images/events/${event.id}.png`}
-                class="w-full aspect-square"
                 alt={event.name}
+                width={300}
+                ratio={1}
+                class="w-full"
               />
             </a>
           ))
