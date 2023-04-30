@@ -10,7 +10,9 @@ test('Homepage works', async ({ page }) => {
 test('Can go to events page', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('link', { name: 'More on Events' }).click()
-  await expect(page.getByRole('heading', { name: 'Upcoming Events' })).toBeVisible()
+  await expect(
+    page.getByRole('heading', { name: 'Upcoming Events' })
+  ).toBeVisible()
 })
 
 test('Events page can navigate into an event', async ({ page }) => {

@@ -15,7 +15,10 @@ interface Metadata {
 export const getOptimizedImageMetadata = async (
   url: string,
   options: OptimizedImageOption = {}
-) => fetch(getOptimizedImageUrl(url, {
-  ...options,
-  format: 'json'
-})).then(o => o.ok ? o.json() as Promise<Metadata> : null)
+) =>
+  fetch(
+    getOptimizedImageUrl(url, {
+      ...options,
+      format: 'json',
+    })
+  ).then(o => (o.ok ? (o.json() as Promise<Metadata>) : null))
