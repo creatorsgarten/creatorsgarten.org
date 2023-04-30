@@ -19,17 +19,28 @@ const { title } = Astro.props
       <div
         class="sticky top-0 flex flex-col gap-0.5 bg-[#ededed] border-[#ededed] border-b-2 sm:border-none"
       >
-        <slot name="sidebar" />
+        <slot name="sidebar-left" />
+        <div class="2xl:hidden">
+          <slot name="sidebar-left-less-than-3-columns" />
+        </div>
+        <div class="hidden md:block">
+          <slot name="sidebar-left-at-least-2-columns" />
+        </div>
       </div>
     </div>
     <div
-      class="col-span-1 px-6 md:px-12 py-10 min-h-[calc(100vh-24rem)] relative"
+      class="col-span-1 px-6 md:px-12 py-10 md:min-h-[calc(100vh-24rem)] relative"
     >
       <slot />
     </div>
     <div class="col-span-1 hidden 2xl:block">
       <div class="sticky top-0 flex flex-col gap-0.5 bg-[#ededed]">
         <slot name="sidebar-right" />
+      </div>
+    </div>
+    <div class="col-span-1 md:hidden">
+      <div class="flex flex-col gap-0.5 bg-[#ededed] pt-0.5">
+        <slot name="sidebar-bottom" />
       </div>
     </div>
   </div>

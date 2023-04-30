@@ -1,11 +1,7 @@
 ---
-import dayjs from 'dayjs'
-
 import BaseLayout from '$layouts/base.astro'
-import WikiLayout from '$layouts/wiki.astro'
 import ContentRenderer from './contentRenderer.astro'
 import Head from './head.astro'
-import WikiSidebar from './wikiSidebar.astro'
 import WikiEditor from './wikiEditor.astro'
 
 import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
@@ -15,12 +11,12 @@ import '@fontsource/inter/latin-400.css'
 import '@fontsource/inter/latin-500.css'
 import '@fontsource/inter/latin-700.css'
 import { Icon } from 'react-iconify-icon-wrapper'
-import WikiSidebarContentsSection from './wikiSidebarContentsSection.astro'
 import { parseFrontMatter } from '$functions/parseFrontMatter'
 import { fromZodError } from 'zod-validation-error'
 
 import type { z } from 'zod'
 import type { frontMatterSchema } from '$functions/parseFrontMatter'
+import WikiView from './wikiView.astro'
 
 export interface Props {
   pageRef: string
@@ -72,43 +68,15 @@ const editing = mode === 'editor' && editable ? file : null
 
 {
   status === 200 || editing ? (
-    <WikiLayout title={title}>
-      <WikiSidebar
-        slot="sidebar"
-        pageRef={pageRef}
-        contents={rendered!.headings}
-        editable={editable}
-        metadata={{
-          edited: {
-            at: dayjs(lastModified),
-            by: lastModifiedBy ?? ['SYSTEM'],
-          },
-        }}
-        {...(parsedFrontMatter?.event
-          ? {
-              type: 'event',
-              events: {
-                id: pageRef.replace('Events/', ''),
-                location: parsedFrontMatter.event.location,
-                date: {
-                  from: dayjs(parsedFrontMatter.event.date),
-                  to: parsedFrontMatter.event.endDate
-                    ? dayjs(parsedFrontMatter.event.endDate)
-                    : undefined,
-                },
-                hosts: parsedFrontMatter.event.hosts,
-                link: parsedFrontMatter.event.site,
-              },
-            }
-          : {
-              type: 'page',
-            })}
-      />
-
-      <div slot="sidebar-right">
-        <WikiSidebarContentsSection contents={rendered!.headings} />
-      </div>
-
+    <WikiView
+      pageRef={pageRef}
+      title={title}
+      rendered={rendered!}
+      parsedFrontMatter={parsedFrontMatter}
+      lastModified={lastModified}
+      lastModifiedBy={lastModifiedBy}
+      editable={editable}
+    >
       {editing ? (
         <WikiEditor pageRef={pageRef} file={editing} />
       ) : (
@@ -124,7 +92,7 @@ const editing = mode === 'editor' && editable ? file : null
           <ContentRenderer content={rendered!.html} pageRef={pageRef} />
         </Fragment>
       )}
-    </WikiLayout>
+    </WikiView>
   ) : (
     <BaseLayout>
       <div class="px-6 pb-10">
