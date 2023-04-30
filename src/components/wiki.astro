@@ -56,7 +56,7 @@ const editable = !!file
 const editing = mode === 'editor' && editable ? file : null
 ---
 
-<Head title={mode === 'view' ? title + ' · Wiki' : 'Editor'} />
+<Head title={mode === 'view' ? title : 'Editor'} />
 
 {
   status === 200 || editing ? (
