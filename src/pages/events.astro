@@ -7,9 +7,12 @@ import Head from '$components/head.astro'
 import CFImage from '$components/CFImage.astro'
 
 import { getEvents } from '$functions/getEvents'
+import { getWebsiteConfig } from '$functions/getWebsiteConfig'
 
 const now = dayjs()
 const events = await getEvents()
+
+const websiteConfig = await getWebsiteConfig()
 ---
 
 <Head title="Events" />
@@ -30,18 +33,14 @@ const events = await getEvents()
     <div
       class="[&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl grid sm:grid-cols-3 gap-6 pt-8"
     >
-      <div>
-        <p class="font-medium leading-none">HACKTOBERFEST THAILAND</p>
-        <p>OCTOBER</p>
-      </div>
-      <div>
-        <p class="font-medium leading-none">STUPID HACKATHON IN THAILAND</p>
-        <p>Late Q2 - Early Q3</p>
-      </div>
-      <div>
-        <p class="font-medium leading-none">CREATIVE CODE</p>
-        <p>BIWEEKLY</p>
-      </div>
+      {
+        websiteConfig?.events.recurring.map(event => (
+          <div>
+            <p class="font-medium uppercase leading-none">{event.name}</p>
+            <p class="uppercase">{event.schedule}</p>
+          </div>
+        ))
+      }
     </div>
   </section>
   <section class="pb-12">
