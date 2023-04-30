@@ -110,7 +110,7 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
         !!editable && (
           <tr>
             <td>HISTORY</td>
-            <td>
+            <td class="group">
               <a
                 href={`https://github.com/creatorsgarten/wiki/commits/main/wiki/${pageRef}.md`}
                 class="inline-flex items-center"
@@ -120,6 +120,14 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
                   <Icon icon="pixelarticons:external-link" />
                 </>
               </a>
+              <span class="space-x-1 pl-1 opacity-0 focus-within:opacity-100 group-hover:opacity-100">
+                <a
+                  href={`https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageRef}.md?plain=1`}
+                  title="View source"
+                >
+                  <Icon icon="octicon:file-code-16" inline />
+                </a>
+              </span>
             </td>
           </tr>
         )

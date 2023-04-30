@@ -18,6 +18,8 @@ import '@fontsource/inter/latin-500.css'
 import '@fontsource/inter/latin-700.css'
 import { Icon } from 'react-iconify-icon-wrapper'
 import WikiSidebarContentsSection from './wikiSidebarContentsSection.astro'
+import { parseFrontMatter } from '$functions/parseFrontMatter'
+import { fromZodError } from 'zod-validation-error'
 
 export interface Props {
   pageRef: string
@@ -52,8 +54,15 @@ if (
   Astro.response.status = 500
 }
 
+const frontMatterParsingResult = parseFrontMatter(frontMatter)
+const parsedFrontMatter = frontMatterParsingResult.success
+  ? frontMatterParsingResult.data
+  : undefined
+
 const title =
-  frontMatter.title || frontMatter.name || formatPageRef(pageRef as string)
+  frontMatter.title ||
+  parsedFrontMatter?.event?.name ||
+  formatPageRef(pageRef as string)
 const editable = !!file
 const editing = mode === 'editor' && editable ? file : null
 ---
@@ -74,20 +83,20 @@ const editing = mode === 'editor' && editable ? file : null
             by: lastModifiedBy ?? ['SYSTEM'],
           },
         }}
-        {...(pageRef.startsWith('Events/')
+        {...(parsedFrontMatter?.event
           ? {
               type: 'event',
               events: {
                 id: pageRef.replace('Events/', ''),
-                location: frontMatter.location,
+                location: parsedFrontMatter.event.location,
                 date: {
-                  from: dayjs(frontMatter.date),
-                  to: frontMatter.endDate
-                    ? dayjs(frontMatter.endDate)
+                  from: dayjs(parsedFrontMatter.event.date),
+                  to: parsedFrontMatter.event.endDate
+                    ? dayjs(parsedFrontMatter.event.endDate)
                     : undefined,
                 },
-                hosts: frontMatter.hosts,
-                link: frontMatter.site,
+                hosts: parsedFrontMatter.event.hosts,
+                link: parsedFrontMatter.event.site,
               },
             }
           : {
@@ -102,7 +111,17 @@ const editing = mode === 'editor' && editable ? file : null
       {editing ? (
         <WikiEditor pageRef={pageRef} file={editing} />
       ) : (
-        <ContentRenderer content={rendered!.html} pageRef={pageRef} />
+        <Fragment>
+          {!frontMatterParsingResult.success && (
+            <div class="relative mb-8 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700">
+              <strong class="mr-2 font-bold">Invalid front matter:</strong>
+              <span class="block sm:inline">
+                {fromZodError(frontMatterParsingResult.error)}
+              </span>
+            </div>
+          )}
+          <ContentRenderer content={rendered!.html} pageRef={pageRef} />
+        </Fragment>
       )}
     </WikiLayout>
   ) : (
