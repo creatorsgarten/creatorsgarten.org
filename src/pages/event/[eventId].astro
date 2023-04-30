@@ -2,11 +2,6 @@
 import Wiki from '$components/wiki.astro'
 
 let { eventId } = Astro.params
-
-if (eventId === undefined) {
-  const { rewrite } = await import('$functions/rewrite')
-  return rewrite(404, `${Astro.url.origin}/404`)
-}
 ---
 
 <Wiki pageRef={`Events/${eventId}`} />

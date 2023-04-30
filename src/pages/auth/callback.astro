@@ -11,7 +11,6 @@ const state = Astro.url.searchParams.get('state') ?? ''
 console.log(state)
 
 let error: string | null = null
-let service: string | null = null
 let redirectTo: string = '/'
 
 try {
@@ -23,7 +22,6 @@ try {
   if (stateMatcher === null) throw new Error('state-invalid')
 
   const [, redirectHint, destination, targetService, csrfToken] = stateMatcher
-  service = targetService
   redirectTo = destination
 
   // if local state, then foward to localhost
