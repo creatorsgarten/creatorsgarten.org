@@ -42,7 +42,8 @@ export const get: APIRoute = async () => {
         status: 200,
         headers: {
           'Content-Type': 'application/xml',
-          'Cache-Control': 'max-age=7200' // 2 hours
+          'Cache-Control': 'max-age=7200', // 2 hours
+          'CDN-Cache-Control': 'max-age=7200', // 2 hours
         },
       }
     )
