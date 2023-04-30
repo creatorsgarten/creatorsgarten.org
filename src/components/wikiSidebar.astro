@@ -138,25 +138,20 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
       }
     </Fragment>
   </MetadataTable>
-</section>
-{
-  !!editable && (
-    <section class="p-6">
-      <h2 class="pb-4 text-center font-medium">WIKI</h2>
-      <div>
-        <div class="flex justify-center">
-          <a
-            href={`/wiki/${pageRef}/editor`}
-            class="inline-flex items-center space-x-2"
-          >
-            <span>Edit this page</span>
-            <Icon icon="pixelarticons:edit" />
-          </a>
-        </div>
+  {
+    !!editable && (
+      <div class="flex justify-center pt-4">
+        <a
+          href={`/wiki/${pageRef}/editor`}
+          class="inline-flex items-center space-x-2"
+        >
+          <span>Edit this page</span>
+          <Icon icon="pixelarticons:edit" />
+        </a>
       </div>
-    </section>
-  )
-}
+    )
+  }
+</section>
 <section class="p-6">
   <h2 class="pb-4 text-center font-medium">SHARE</h2>
   <div class="flex justify-center space-x-4">
