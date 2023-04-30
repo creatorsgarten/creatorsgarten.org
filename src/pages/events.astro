@@ -24,6 +24,7 @@ const websiteConfig = await getWebsiteConfig()
       {
         events
           .filter(event => event.date.isAfter(now))
+          .reverse()
           .map(event => <EventPoster event={event} />)
       }
     </div>
