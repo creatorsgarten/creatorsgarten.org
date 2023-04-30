@@ -83,7 +83,13 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
     </Fragment>
   ) : null
 }
-{contents.length > 0 && <WikiSidebarContentsSection contents={contents} />}
+{
+  contents.length > 0 && (
+    <div class="2xl:hidden">
+      <WikiSidebarContentsSection contents={contents} />
+    </div>
+  )
+}
 <SidebarSection title="Metadata">
   <MetadataTable>
     <Fragment slot="table">

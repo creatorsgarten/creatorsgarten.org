@@ -17,6 +17,7 @@ import '@fontsource/inter/latin-400.css'
 import '@fontsource/inter/latin-500.css'
 import '@fontsource/inter/latin-700.css'
 import { Icon } from 'react-iconify-icon-wrapper'
+import WikiSidebarContentsSection from './wikiSidebarContentsSection.astro'
 
 export interface Props {
   pageRef: string
@@ -93,6 +94,11 @@ const editing = mode === 'editor' && editable ? file : null
               type: 'page',
             })}
       />
+
+      <div slot="sidebar-right">
+        <WikiSidebarContentsSection contents={rendered!.headings} />
+      </div>
+
       {editing ? (
         <WikiEditor pageRef={pageRef} file={editing} />
       ) : (
