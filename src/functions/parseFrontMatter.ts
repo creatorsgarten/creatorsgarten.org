@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-const frontMatterSchema = z.object({
+export const frontMatterSchema = z.object({
   event: z
     .object({
       name: z.string(),

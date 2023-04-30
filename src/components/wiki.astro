@@ -11,8 +11,6 @@ import WikiEditor from './wikiEditor.astro'
 import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
 import { formatPageRef } from '$functions/formatPageRef'
 
-import type { EventFrontmatter } from '$types/EventFrontmatter'
-
 import '@fontsource/inter/latin-400.css'
 import '@fontsource/inter/latin-500.css'
 import '@fontsource/inter/latin-700.css'
@@ -20,6 +18,9 @@ import { Icon } from 'react-iconify-icon-wrapper'
 import WikiSidebarContentsSection from './wikiSidebarContentsSection.astro'
 import { parseFrontMatter } from '$functions/parseFrontMatter'
 import { fromZodError } from 'zod-validation-error'
+
+import type { z } from 'zod'
+import type { frontMatterSchema } from '$functions/parseFrontMatter'
 
 export interface Props {
   pageRef: string
@@ -29,7 +30,7 @@ export interface Props {
 let { pageRef, mode = 'view' } = Astro.props
 
 const markdown = await getMarkdownFromSlug<
-  EventFrontmatter & { title: string }
+  z.infer<typeof frontMatterSchema>['event'] & { title: string }
 >(pageRef)
 const {
   status,
