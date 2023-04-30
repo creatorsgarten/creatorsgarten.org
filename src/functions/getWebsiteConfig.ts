@@ -12,7 +12,7 @@ export const getWebsiteConfig = async (): Promise<WebsiteConfig | null> => {
   const searchResults = (
     await contentsgarten().search.query({
       pageRef: 'WebsiteConfig',
-    } as any)
+    })
   ).results
 
   if (searchResults.length === 0) {

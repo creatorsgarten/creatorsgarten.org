@@ -21,10 +21,7 @@ export const getEvents = async () => {
   const fetchedEvents: Event[] = (
     await contentsgarten().search.query({
       prefix: 'Events/',
-      match: {
-        event:
-          true as any /* TODO: remove this hack after releasing new version */,
-      },
+      match: { event: true },
     })
   ).results
     .flatMap((page): Event[] => {
