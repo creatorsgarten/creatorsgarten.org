@@ -26,11 +26,12 @@ import CFImage from '$components/cfImage.astro';
       width={620}
       ratio={16 / 9}
       class="w-full rounded-2xl"
+      alt="bkkoss"
     />
     <article
       class="pt-6 sm:pt-0 space-y-4 sm:space-y-0 flex flex-col justify-evenly"
     >
-      <h3 class="font-medium text-lg">CREATORSGARTEN = GARDEN OF CREATORS</h3>
+      <h1 class="font-medium text-lg">CREATORSGARTEN = GARDEN OF CREATORS</h1>
 
       <p>
         Building things to solve one's own problems should be a possibility for
@@ -87,7 +88,7 @@ import CFImage from '$components/cfImage.astro';
       <div class="grid sm:grid-cols-2 gap-6 sm:gap-10">
         <div class="aspect-[894/441] rounded-3xl bg-gray-500"></div>
         <div>
-          <img src="/images/sponsors/true.png" class="mb-4 h-16" />
+          <img src="/images/sponsors/true.png" class="mb-4 h-16" alt='truecorp' />
           <p>
             Building things to solve one's own problems should be a possibility
             for everyone, regardless of their age, economic status, education,
@@ -98,7 +99,7 @@ import CFImage from '$components/cfImage.astro';
       <div class="grid sm:grid-cols-2 gap-6 sm:gap-10">
         <div class="aspect-[894/441] rounded-3xl bg-gray-500"></div>
         <div>
-          <img src="/images/sponsors/thaicom.png" class="mb-4 h-16" />
+          <img src="/images/sponsors/thaicom.png" class="mb-4 h-16" alt='thaicom' />
           <p>
             Building things to solve one's own problems should be a possibility
             for everyone, regardless of their age, economic status, education,
@@ -125,6 +126,7 @@ import CFImage from '$components/cfImage.astro';
             <img
               src={`/images/sponsors/${sponsor}.png`}
               class="max-h-[100px]"
+              alt={sponsor}
             />
           </div>
         ))

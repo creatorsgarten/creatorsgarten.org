@@ -1,59 +1,60 @@
 ---
+import CFImage from './cfImage.astro';
+
 export interface Props {
   theme?: 'light' | 'dark'
 }
 
 const isLight = (Astro.props.theme ?? 'dark') === 'light'
+
+const guilds = [
+  {
+    id: 'stupidhack-th',
+    name: 'Stupid Hackathon in Thailand',
+  },
+  {
+    id: 'showdown-space',
+    name: 'Showdown Space',
+  },
+  {
+    id: 'showdown-space',
+    name: 'Tech Club Circle',
+  },
+  {
+    id: 'bkkoss-initiative',
+    name: 'Bangkok Open Source Initiative',
+  },
+  {
+    id: 'showdown-space',
+    name: 'Creative Coding',
+  },
+]
 ---
 
 <div
-  class={`grid sm:grid-cols-3 gap-6 md:gap-8 p-6 md:p-8 rounded-3xl text-white ${
+  class={`grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 p-6 md:p-8 rounded-3xl text-white ${
     !isLight ? 'bg-[#1C1916]' : 'bg-white'
   }`}
 >
-  <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
-    <img src="/images/stupidhack-th.jpg" class="w-full h-full object-cover" />
-    <div
-      class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg"
-    >
-      <span>Stupid Hackathon in Thailand</span>
-    </div>
-  </div>
-  <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
-    <img src="/images/showdown-space.jpg" class="w-full h-full object-cover" />
-    <div
-      class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg"
-    >
-      <span>Showdown Space</span>
-    </div>
-  </div>
-  <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
-    <img src="/images/showdown-space.jpg" class="w-full h-full object-cover" />
-    <div
-      class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg"
-    >
-      <span>Tech Club Circle</span>
-    </div>
-  </div>
-  <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
-    <img
-      src="/images/bkkoss-initiative.jpg"
-      class="w-full h-full object-cover"
-    />
-    <div
-      class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg"
-    >
-      <span>Bangkok Open Source Initiative</span>
-    </div>
-  </div>
-  <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
-    <img src="/images/showdown-space.jpg" class="w-full h-full object-cover" />
-    <div
-      class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg"
-    >
-      <span>Creative Coding</span>
-    </div>
-  </div>
+  {
+    guilds.map(guild => (
+      <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
+        <CFImage
+          src={`/images/${guild.id}.jpg`}
+          class="w-full h-full object-cover"
+          alt={guild.name}
+          width={{
+            max: 400,
+            sm: 500,
+          }}
+          ratio={5 / 3}
+        />
+        <div class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg">
+          <span>{guild.name}</span>
+        </div>
+      </div>
+    ))
+  }
   <div
     class={`aspect-[5/3] flex flex-col justify-evenly ${
       isLight ? 'text-[#1C1916]' : 'text-white'
