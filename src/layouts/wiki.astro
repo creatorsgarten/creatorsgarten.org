@@ -13,11 +13,11 @@ const { title } = Astro.props
     {title}
   </h1>
   <div
-    class="grid divide-x-2 divide-[#ededed] border-[#ededed] border-t-2 grid-cols-1 lg:[grid-template-columns:minmax(288px,1fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]"
+    class="grid divide-x-2 divide-[#ededed] border-[#ededed] border-t-2 grid-cols-1 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]"
   >
     <div class="col-span-1">
       <div
-        class="sticky top-0 flex flex-col gap-0.5 bg-[#ededed] border-[#ededed] border-b-2 lg:border-none"
+        class="sticky top-0 flex flex-col gap-0.5 bg-[#ededed] border-[#ededed] border-b-2 sm:border-none"
       >
         <slot name="sidebar" />
       </div>
