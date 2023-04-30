@@ -17,7 +17,7 @@ const { title } = Astro.props
   >
     <div class="col-span-1">
       <div
-        class="sticky top-0 flex flex-col divide-y-2 divide-[#ededed] border-[#ededed] border-b-2 lg:border-none"
+        class="sticky top-0 flex flex-col gap-0.5 bg-[#ededed] border-[#ededed] border-b-2 lg:border-none"
       >
         <slot name="sidebar" />
       </div>
@@ -28,7 +28,7 @@ const { title } = Astro.props
       <slot />
     </div>
     <div class="col-span-1 hidden 2xl:block">
-      <div class="sticky top-0 flex flex-col divide-y-2 divide-[#ededed]">
+      <div class="sticky top-0 flex flex-col gap-0.5 bg-[#ededed]">
         <slot name="sidebar-right" />
       </div>
     </div>

@@ -1,3 +1,4 @@
 html {
-  background-color: #f8f8f8;
+  background-color: var(--page-bg);
+  --page-bg: #f8f8f8;
 }
