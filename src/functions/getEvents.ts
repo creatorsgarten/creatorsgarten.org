@@ -2,15 +2,14 @@ import dayjs from 'dayjs'
 
 import { contentsgarten } from '$constants/contentsgarten'
 import { readFileSystem, writeFileSystem } from './fileSystem'
-
-import type { EventFrontmatter } from '$types/EventFrontmatter'
+import { parseFrontMatter } from './parseFrontMatter'
 
 export interface Event {
   id: string
   name: string
   date: dayjs.Dayjs
-  link: string
-  location: string
+  link?: string
+  location?: string
 }
 
 export const getEvents = async () => {
@@ -21,18 +20,26 @@ export const getEvents = async () => {
 
   const fetchedEvents: Event[] = (
     await contentsgarten().search.query({
-      prefix: 'Events/',
+      match: {
+        event:
+          true as any /* TODO: remove this hack after releasing new version */,
+      },
     })
   ).results
-    .map(event => {
-      const frontmatter = event.frontMatter as EventFrontmatter
-      return {
-        id: event.pageRef.replace('Events/', ''),
-        name: frontmatter.name,
-        date: dayjs(frontmatter.date),
-        link: frontmatter.site,
-        location: frontmatter.location,
-      }
+    .flatMap((page): Event[] => {
+      const frontmatter = parseFrontMatter(page.frontMatter)
+      if (!frontmatter.success) return []
+      const { event } = frontmatter.data
+      if (!event) return []
+      return [
+        {
+          id: page.pageRef.replace('Events/', ''),
+          name: event.name,
+          date: dayjs(event.date),
+          link: event.site,
+          location: event.location,
+        },
+      ]
     })
     .sort((a, b) => {
       return b!.date.unix() - a!.date.unix()
