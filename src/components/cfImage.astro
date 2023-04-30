@@ -19,14 +19,7 @@ export interface Props extends Omit<astroHTML.JSX.ImgHTMLAttributes, 'width'> {
   transform?: OptimizedImageOption
 }
 
-let {
-  ratio,
-  width,
-  transform = {},
-  src,
-  class: className,
-  ...props
-} = Astro.props
+let { ratio, width, transform = {}, src, ...props } = Astro.props
 let sources: astroHTML.JSX.SourceHTMLAttributes[] = []
 
 const getBreakpointWidth = (key: string | number) => {
@@ -92,17 +85,21 @@ if (import.meta.env.PROD) {
     ...transform,
   })
 }
+
+const mergedProps: astroHTML.JSX.ImgHTMLAttributes = {
+  ...props,
+  loading: props.loading ?? 'lazy',
+  class: `object-cover ${props.class ?? ''}`,
+}
 ---
 
 <picture>
   {sources.map(o => <source {...o} />)}
   <img
     src={src}
-    loading="lazy"
     width={originalWidth}
     height={originalHeight}
-    class={`object-cover ${className ?? ''}`}
     style={`aspect-ratio:${originalWidth}/${originalHeight};`}
-    {...props}
+    {...mergedProps}
   />
 </picture>
