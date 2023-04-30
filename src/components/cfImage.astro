@@ -76,6 +76,7 @@ if (import.meta.env.PROD) {
                     width,
                     height: Math.floor(width / ratio),
                     fit: 'crop',
+                    format,
                     ...transform,
                   })} ${breakpoint}w`
               )
