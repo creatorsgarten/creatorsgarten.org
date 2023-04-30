@@ -38,7 +38,7 @@ const getBreakpointWidth = (key: string | number) => {
   }
 }
 
-const originalWidth = typeof width === 'number' ? width : width.default
+const originalWidth = typeof width === 'number' ? width : width.max
 const originalHeight = Math.floor(originalWidth / ratio)
 
 // uses cloudflare image optimization on prod
