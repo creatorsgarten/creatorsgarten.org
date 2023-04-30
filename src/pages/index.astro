@@ -21,6 +21,8 @@ import CFImage from '$components/cfImage.astro';
   <section class="sm:grid grid-cols-2 gap-8">
     <CFImage
       src="/images/garten.jpg"
+      fetchpriority="high"
+      loading='eager'
       width={620}
       ratio={16 / 9}
       class="w-full rounded-2xl"
