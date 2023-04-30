@@ -5,6 +5,7 @@ import { stringifyDate } from '$functions/stringifyDate'
 
 import type { Dayjs } from 'dayjs'
 import { Icon } from 'react-iconify-icon-wrapper'
+import SidebarSection from './sidebarSection.astro'
 
 export interface Props {
   type?: 'event' | 'page'
@@ -42,8 +43,7 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
         src={`/images/events/${events.id}.png`}
         class="aspect-square w-full"
       />
-      <section class="p-6">
-        <h2 class="pb-6 text-center font-medium">EVENTS</h2>
+      <SidebarSection title="Event">
         <MetadataTable
           data={[
             ['LOCATION', events.location ?? ''],
@@ -78,14 +78,13 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
             </td>
           </tr>
         </MetadataTable>
-      </section>
+      </SidebarSection>
     </Fragment>
   ) : null
 }
 {
   contents.length > 0 && (
-    <section class="p-6">
-      <h2 class="pb-4 text-center font-medium">CONTENTS</h2>
+    <SidebarSection title="Contents">
       <ul class="list-inside list-disc text-sm">
         {contents.map(content => (
           <li class="py-1">
@@ -98,11 +97,10 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
           </li>
         ))}
       </ul>
-    </section>
+    </SidebarSection>
   )
 }
-<section class="p-6">
-  <h2 class="pb-4 text-center font-medium">METADATA</h2>
+<SidebarSection title="Metadata">
   <MetadataTable>
     <Fragment slot="table">
       <tr>
@@ -151,9 +149,8 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
       </div>
     )
   }
-</section>
-<section class="p-6">
-  <h2 class="pb-4 text-center font-medium">SHARE</h2>
+</SidebarSection>
+<SidebarSection title="Share">
   <div class="flex justify-center space-x-4">
     <a
       target="_blank"
@@ -181,4 +178,4 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
       <Icon icon="mdi:facebook" width={24} />
     </a>
   </div>
-</section>
+</SidebarSection>
