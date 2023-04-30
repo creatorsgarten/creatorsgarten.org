@@ -6,6 +6,7 @@ import { stringifyDate } from '$functions/stringifyDate'
 import type { Dayjs } from 'dayjs'
 import { Icon } from 'react-iconify-icon-wrapper'
 import SidebarSection from './sidebarSection.astro'
+import WikiSidebarContentsSection from './wikiSidebarContentsSection.astro'
 
 export interface Props {
   type?: 'event' | 'page'
@@ -82,24 +83,7 @@ const { type, events, contents, metadata, pageRef, editable } = Astro.props
     </Fragment>
   ) : null
 }
-{
-  contents.length > 0 && (
-    <SidebarSection title="Contents">
-      <ul class="list-inside list-disc text-sm">
-        {contents.map(content => (
-          <li class="py-1">
-            <a
-              class="transition-all hover:text-sky-600"
-              href={'#' + content.id}
-            >
-              {content.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </SidebarSection>
-  )
-}
+{contents.length > 0 && <WikiSidebarContentsSection contents={contents} />}
 <SidebarSection title="Metadata">
   <MetadataTable>
     <Fragment slot="table">
