@@ -51,7 +51,7 @@ const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageR
       <input type="hidden" name="revision" value={file?.revision} />
       <textarea
         name="content"
-        class={`w-full p-4 font-mono text-sm rounded-xl ${
+        class={`w-full p-4 font-mono text-sm rounded-xl disabled:cursor-not-allowed ${
           editable ? 'whitespace-pre' : ''
         }`}
         disabled={!editable}
@@ -60,7 +60,7 @@ const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageR
       >
       <div class="mt-2">
         <button
-          class="rounded-lg bg-[#1c1916] px-4 py-2 text-white"
+          class="rounded-lg bg-[#1c1916] px-4 py-2 text-white disabled:bg-neutral-600 disabled:cursor-not-allowed"
           type="submit"
           disabled={!editable}>Save changes</button
         >
