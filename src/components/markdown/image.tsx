@@ -2,9 +2,7 @@ import { getOptimizedImageUrl } from '$functions/getOptimizedImageUrl'
 
 import type { ImgHTMLAttributes } from 'react'
 
-export const MarkdownImage = (
-  props: ImgHTMLAttributes<HTMLImageElement>
-) => {
+export const MarkdownImage = (props: ImgHTMLAttributes<HTMLImageElement>) => {
   const builtSrc = props.src ?? ''
 
   if (import.meta.env.PROD)
