@@ -76,7 +76,7 @@ export interface Props {
         <div>
           <h1>People</h1>
           <ul class="pt-1 font-normal">
-            <li>Us & Partners</li>
+            <li><a href="/people">Us & Partners</a></li>
             <li>Sponsors</li>
             <li><a href="/wiki/Ring">Webring</a></li>
           </ul>
@@ -85,19 +85,21 @@ export interface Props {
           <h1>Us</h1>
           <ul class="pt-1 font-normal">
             <li>About</li>
-            <li>Contact</li>
+            <li><a href="mailto:mail@creatorsgarten.org">Contact</a></li>
             <li>Legal</li>
           </ul>
         </div>
       </section>
       <section class="flex flex-col items-end pt-10 md:pt-0">
-        <img
-          src="/images/creatorsgarten.svg"
-          width={888}
-          height={398}
-          alt="garten"
-          class="h-10 mb-4 w-auto"
-        />
+        <a href="/" aria-label="back to home">
+          <img
+            src="/images/creatorsgarten.svg"
+            width={888}
+            height={398}
+            alt="garten"
+            class="h-10 mb-4 w-auto"
+          />
+        </a>
         <p class="text-right text-sm">MADE WITH THE ❤️ OF 🪄</p>
       </section>
     </div>
