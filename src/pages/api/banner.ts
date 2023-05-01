@@ -1,46 +1,35 @@
-// import { getCollection } from 'astro:content'
-// import { getImage } from '@astrojs/image'
+import { getEvents } from '$functions/getEvents'
+import { getOptimizedImageUrl } from '$functions/getOptimizedImageUrl'
 
 import type { APIRoute } from 'astro'
 
 export const get: APIRoute = async () => {
+  const events = await getEvents()
+
   return {
-    body: 'pong',
+    body: JSON.stringify({
+      message: 'ok',
+      data: {
+        // gartenLogo will provide a special logo for the banner (rare occation, might change)
+        gartenLogo: null,
+        hacks: await Promise.all(
+          events.map(async event => ({
+            id: event.id,
+            name: event.name,
+            date: event.date.toISOString(),
+            banner: {
+              original: `https://assets.creatorsgarten.org/events/${event.id}.png`,
+              compressed: getOptimizedImageUrl(
+                `https://assets.creatorsgarten.org/events/${event.id}.png`,
+                {
+                  width: 400,
+                  quality: 85,
+                }
+              ),
+            },
+          }))
+        ),
+      },
+    }),
   }
 }
-
-// export const get: APIRoute = async () => {
-//   const events = (await getCollection('event')).sort(
-//     (a, b) => b.data.date.getTime() - a.data.date.getTime()
-//   )
-
-//   return {
-//     body: JSON.stringify({
-//       message: 'ok',
-//       data: {
-//         // gartenLogo will provide a special logo for the banner (rare occation, might change)
-//         gartenLogo: null,
-//         hacks: await Promise.all(
-//           events.map(async event => ({
-//             id: event.slug,
-//             name: event.data.name,
-//             date: event.data.date.toISOString(),
-//             banner: {
-//               original: `https://creatorsgarten.org/images/events/${event.slug}.png`,
-//               compressed:
-//                 'https://creatorsgarten.org' +
-//                 (await getImage({
-//                   src: `/images/events/${event.slug}.png`,
-//                   alt: '',
-//                   aspectRatio: 1,
-//                   width: 360,
-//                   quality: 85,
-//                   format: 'webp',
-//                 }).then(o => o.src)),
-//             },
-//           }))
-//         ),
-//       },
-//     }),
-//   }
-// }
