@@ -5,6 +5,12 @@ import { MarkdownLink } from './markdown/link'
 import { customComponents } from './markdown/customComponents'
 import { getOembedInstance } from '$functions/getOembed'
 import { getIframe } from '$functions/getIframe'
+import { MarkdownImage } from './markdown/image'
+
+export interface Props {
+  content: string
+  pageRef: string
+}
 
 const { content } = Astro.props
 
@@ -36,16 +42,12 @@ const tranformedContent = await Promise.all(
     }
   })
 )
-
-export interface Props {
-  content: string
-  pageRef: string
-}
 ---
 
 <Html
   className="prose mx-auto max-w-6xl"
   html={tranformedContent.join('')}
   renderLink={props => MarkdownLink(props, '/wiki/' + Astro.props.pageRef)}
+  renderImage={props => MarkdownImage(props)}
   customComponents={customComponents}
 />

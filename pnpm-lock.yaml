@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@contentsgarten/html':
-    specifier: ^1.2.0
-    version: 1.2.0(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^1.3.0
+    version: 1.3.0(react-dom@18.2.0)(react@18.2.0)
   '@trpc/client':
     specifier: 10.16.0
     version: 10.16.0(@trpc/server@10.16.0)
@@ -663,6 +663,18 @@ packages:
       html-react-parser: 3.0.16(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: true
+
+  /@contentsgarten/html@1.3.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-5rrYavKflX9qMFMgNgRNAYnSKF9gghDfVlAHHCalFiL/OiSvo5H+GyTo7zm8a4I4LBdvivyJ4/M5hfOvIAmEBg==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      html-react-parser: 3.0.16(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /@contentsgarten/markdown@1.1.2(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-QIqaPQ8gkktK9CdN9sS4UAaZukNStbwnXVlFWMH5onASwsb/w3ps/ULF2uxdyRzzkPBTUAKRxq2ykkgqb/4bgQ==}
