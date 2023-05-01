@@ -10,6 +10,7 @@ export const frontMatterSchema = z.object({
       hosts: z.array(z.string()).default([]),
       site: z.string().optional(),
       eventpopId: z.coerce.number().optional(),
+      unlisted: z.boolean().optional(),
     })
     .optional(),
 

@@ -29,6 +29,7 @@ export const getEvents = async () => {
       if (!frontmatter.success) return []
       const { event } = frontmatter.data
       if (!event) return []
+      if (event.unlisted) return []
       return [
         {
           id: page.pageRef.replace('Events/', ''),
