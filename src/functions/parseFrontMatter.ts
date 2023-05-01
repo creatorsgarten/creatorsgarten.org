@@ -1,12 +1,19 @@
 import { z } from 'zod'
 
+const ISODate = z
+  .string()
+  .regex(
+    /^\d{4}-\d{2}-\d{2}$/,
+    'Date must be a string formatted like this: "YYYY-MM-DD". Note that in YAML, you must wrap the date in quotes.'
+  )
+
 export const frontMatterSchema = z.object({
   event: z
     .object({
       name: z.string(),
       location: z.string().optional(),
-      date: z.string(),
-      endDate: z.string().optional(),
+      date: ISODate,
+      endDate: ISODate.optional(),
       hosts: z.array(z.string()).default([]),
       site: z.string().optional(),
       eventpopId: z.coerce.number().optional(),
