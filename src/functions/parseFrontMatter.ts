@@ -12,6 +12,21 @@ export const frontMatterSchema = z.object({
       eventpopId: z.coerce.number().optional(),
     })
     .optional(),
+
+  sponsor: z
+    .object({
+      name: z.string(),
+      site: z.string().optional(),
+    })
+    .optional(),
+
+  venue: z
+    .object({
+      name: z.string(),
+      site: z.string().optional(),
+    })
+    .optional(),
+
   websiteConfig: z
     .object({
       featureFlags: z.object({
