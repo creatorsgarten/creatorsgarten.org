@@ -3,9 +3,10 @@ import { SEO } from 'astro-seo'
 
 export interface Props {
   title?: string
+  description?: string
 }
 
-const { title } = Astro.props
+const { title, description = "Creatorsgarten - Democratize creation for all" } = Astro.props
 
 const builtTitle = title ? `${title} · Creatorsgarten` : 'Creatorsgarten'
 const builtImage = Astro.url.origin + '/images/og.jpg'
@@ -14,7 +15,7 @@ const builtImage = Astro.url.origin + '/images/og.jpg'
 <SEO
   slot="head"
   title={builtTitle}
-  description="Creatorsgarten - Democratize creation for all"
+  description={description}
   openGraph={{
     basic: {
       title: builtTitle,

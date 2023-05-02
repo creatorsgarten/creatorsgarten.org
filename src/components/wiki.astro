@@ -10,6 +10,7 @@ import {
   getMarkdownFromSlug,
 } from '$functions/getMarkdownFromSlug'
 import { formatPageRef } from '$functions/formatPageRef'
+import { getWikiDescription } from '$functions/getWikiDescription'
 
 import '@fontsource/inter/latin-400.css'
 import '@fontsource/inter/latin-500.css'
@@ -20,7 +21,6 @@ import { fromZodError } from 'zod-validation-error'
 
 import type { z } from 'zod'
 import type { frontMatterSchema } from '$functions/parseFrontMatter'
-import WikiView from './wikiView.astro'
 
 export interface Props {
   pageRef: string
@@ -70,7 +70,10 @@ const editing = mode === 'editor' && editable ? file : null
 const contentHash = getContentHash(markdown)
 ---
 
-<Head title={mode === 'view' ? title : 'Editor'} />
+<Head
+  title={mode === 'view' ? title : 'Editor'}
+  description={getWikiDescription(rendered?.html)}
+/>
 
 {
   status === 200 || editing ? (
