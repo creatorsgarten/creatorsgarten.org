@@ -1,3 +1,4 @@
+import { websiteConfigSchema } from '$constants/websiteConfigSchema'
 import { z } from 'zod'
 
 const ISODate = z
@@ -35,21 +36,7 @@ export const frontMatterSchema = z.object({
     })
     .optional(),
 
-  websiteConfig: z
-    .object({
-      featureFlags: z.object({
-        example: z.boolean(),
-      }),
-      events: z.object({
-        recurring: z.array(
-          z.object({
-            name: z.string(),
-            schedule: z.string(),
-          })
-        ),
-      }),
-    })
-    .optional(),
+  websiteConfig: websiteConfigSchema.optional(),
 })
 
 // Make sure that all properties are optional.

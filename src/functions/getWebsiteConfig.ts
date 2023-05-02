@@ -1,4 +1,5 @@
 import { contentsgarten } from '$constants/contentsgarten'
+import { websiteConfigSchema } from '$constants/websiteConfigSchema'
 import { readFileSystem, writeFileSystem } from './fileSystem'
 import { FrontMatter, parseFrontMatter } from './parseFrontMatter'
 
@@ -7,7 +8,12 @@ export type WebsiteConfig = NonNullable<FrontMatter['websiteConfig']>
 export const getWebsiteConfig = async (): Promise<WebsiteConfig | null> => {
   const cachedConfig = await readFileSystem<WebsiteConfig>(['websiteConfig'])
 
-  if (cachedConfig !== null) return cachedConfig.data
+  if (cachedConfig !== null) {
+    const parsed = websiteConfigSchema.safeParse(cachedConfig.data)
+    if (parsed.success) {
+      return parsed.data
+    }
+  }
 
   const searchResults = (
     await contentsgarten().search.query({
@@ -34,7 +40,7 @@ export const getWebsiteConfig = async (): Promise<WebsiteConfig | null> => {
   await writeFileSystem(
     ['websiteConfig'],
     parsed.data.websiteConfig,
-    1000 * 60 * 15 // 15 minutes
+    1000 * 60 * 1 // 1 minute
   )
 
   return parsed.data.websiteConfig
