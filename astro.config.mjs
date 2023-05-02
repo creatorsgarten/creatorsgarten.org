@@ -11,7 +11,7 @@ import prefetch from '@astrojs/prefetch'
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  site: 'https://new.creatorsgarten.org',
+  site: 'https://creatorsgarten.org',
   adapter: node({
     mode: 'standalone',
   }),

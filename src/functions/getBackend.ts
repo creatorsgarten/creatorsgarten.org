@@ -13,7 +13,7 @@ export function getBackend(Astro: Pick<AstroGlobal, 'cookies'>) {
         : httpLink({
             url:
               import.meta.env.BACKEND_URL ||
-              'https://new.creatorsgarten.org/api/backend',
+              'https://creatorsgarten.org/api/backend',
             headers: token ? { authorization: `Bearer ${token}` } : {},
           }),
     ],

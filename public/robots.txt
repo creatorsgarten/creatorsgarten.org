@@ -2,4 +2,4 @@ User-agent: *
 
 Disallow: */editor
 
-Sitemap: https://new.creatorsgarten.org/sitemap.xml
+Sitemap: https://creatorsgarten.org/sitemap.xml

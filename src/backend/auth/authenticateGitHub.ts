@@ -34,7 +34,7 @@ export const authenticateGitHub = async (
           client_id: githubClient.id,
           client_secret: githubClient.secret,
           code: code,
-          redirect_uri: 'https://new.creatorsgarten.org/auth/callback',
+          redirect_uri: 'https://creatorsgarten.org/auth/callback',
         })
           .map(([key, value]) => `${key}=${value}`)
           .join('&'),

@@ -14,7 +14,7 @@ export const get: APIRoute = async ({ request, redirect }) => {
   const loginURI = `https://github.com/login/oauth/authorize?${new URLSearchParams(
     {
       client_id: githubClient.id ?? '',
-      redirect_uri: 'https://new.creatorsgarten.org/auth/callback',
+      redirect_uri: 'https://creatorsgarten.org/auth/callback',
       state: `${redirectHint}!/dashboard!github-${csrfToken}`,
     }
   ).toString()}`

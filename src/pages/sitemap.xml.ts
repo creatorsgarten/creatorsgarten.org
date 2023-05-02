@@ -14,7 +14,7 @@ interface Link {
 export const get: APIRoute = async () => {
   try {
     const stream = new SitemapStream({
-      hostname: 'https://new.creatorsgarten.org',
+      hostname: 'https://creatorsgarten.org',
     })
 
     const staticLinks = ['/', '/people', '/events']
