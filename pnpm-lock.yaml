@@ -10,18 +10,12 @@ dependencies:
   '@trpc/server':
     specifier: 10.16.0
     version: 10.16.0
-  astro-seo:
-    specifier: ^0.7.2
-    version: 0.7.2
   csrf:
     specifier: ^3.1.0
     version: 3.1.0
   dayjs:
     specifier: ^1.11.7
     version: 1.11.7
-  jose:
-    specifier: ^4.14.3
-    version: 4.14.3
   jsonwebtoken:
     specifier: ^9.0.0
     version: 9.0.0
@@ -84,6 +78,9 @@ devDependencies:
   astro:
     specifier: 2.3.1
     version: 2.3.1
+  astro-seo:
+    specifier: ^0.7.2
+    version: 0.7.2
   contentsgarten:
     specifier: ^1.8.0
     version: 1.8.0(react-dom@18.2.0)(react@18.2.0)
@@ -1553,7 +1550,7 @@ packages:
 
   /astro-seo@0.7.2:
     resolution: {integrity: sha512-YnSqj4E6vbF7wRk3gcxOPHBjenhfgaINEJlTsnu4sovAyfyGEdQksbioYKoZ+vERRDaYvEricfSzC6fc9lieww==}
-    dev: false
+    dev: true
 
   /astro@2.3.1:
     resolution: {integrity: sha512-At0ig9qAL9u2HfGV+LmaFFTPQQ904iB9wkefKo52LF3oEsXFmt7RVUN++gnKN0YIYvWjr4P8S9UtU7zyN1U5Fw==}
@@ -2717,6 +2714,7 @@ packages:
 
   /jose@4.14.3:
     resolution: {integrity: sha512-YPM9Q+dmsna4CGWNn5+oHFsuXJdxvKAOVoNjpe2nje3odSoX5Xz4s71rP50vM8uUKJyQtMnEGPmbVCVR+G4W5g==}
+    dev: true
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
