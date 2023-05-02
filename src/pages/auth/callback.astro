@@ -1,0 +1,100 @@
+---
+import CSRF from 'csrf'
+import Blank from '$layouts/blank.astro'
+
+import { csrfSecret } from '$constants/secrets/csrfSecret'
+import { getBackend } from '$functions/getBackend'
+
+const code = Astro.url.searchParams.get('code') ?? ''
+const state = Astro.url.searchParams.get('state') ?? ''
+
+console.log(state)
+
+let error: string | null = null
+let redirectTo: string = '/'
+
+try {
+  // decode authentication state
+  const stateMatcher = (state ?? '').match(
+    /^(localhost3000|new)!(.+)!(\w+)-(.+)$/
+  )
+
+  if (stateMatcher === null) throw new Error('state-invalid')
+
+  const [, redirectHint, destination, targetService, csrfToken] = stateMatcher
+  redirectTo = destination
+
+  // if local state, then foward to localhost
+  if (redirectHint === 'localhost3000' && import.meta.env.PROD) {
+    return Astro.redirect(
+      `http://localhost:3000/auth/callback?${new URLSearchParams({
+        code: code ?? '',
+        state: state ?? '',
+      }).toString()}`
+    )
+  } else if (redirectHint !== 'new' && import.meta.env.PROD) {
+    throw new Error('redirect-hint-invalid')
+  }
+
+  // verify csrf that it comes from our platform
+  if (!new CSRF().verify(csrfSecret, csrfToken))
+    throw new Error('csrf-verification-fail')
+
+  // handle authtication from here
+  const backend = getBackend(Astro)
+  const result = await (() => {
+    switch (targetService) {
+      case 'eventpop':
+        return backend.auth.signInWithEventpopAuthorizationCode.mutate({ code })
+      case 'github':
+        return backend.auth.linkGitHubAccount.mutate({ code })
+    }
+    throw new Error('service-invalid')
+  })()
+
+  Astro.cookies.set('authgarten', result.idToken, {
+    maxAge: 60 * 60 * 12, // 12 hours
+    httpOnly: true,
+    secure: import.meta.env.PROD,
+    path: '/',
+    sameSite: 'lax',
+  })
+} catch (e) {
+  error = (e as Error).message
+}
+---
+
+<Blank>
+  <Fragment slot="head">
+    <title>Authgarten</title>
+    {
+      error === null && (
+        <meta http-equiv="Refresh" content={'1; url=' + redirectTo} />
+      )
+    }
+  </Fragment>
+  <main class="px-4 max-w-7xl mx-auto py-12">
+    {
+      error !== null ? (
+        <>
+          <Fragment slot="head">
+            <title>Unable to authenticate</title>
+          </Fragment>
+          <h1 class="text-4xl font-medium">Failed!</h1>
+          <p>{error}</p>
+        </>
+      ) : (
+        <>
+          <h1 class="text-4xl font-medium">Authenticated!</h1>
+          <p>
+            Redirecting...{' '}
+            <a href={redirectTo} class="underline">
+              Click here
+            </a>{' '}
+            if nothing happends
+          </p>
+        </>
+      )
+    }
+  </main>
+</Blank>

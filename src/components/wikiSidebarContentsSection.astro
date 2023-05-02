@@ -1,0 +1,29 @@
+---
+import SidebarSection from './sidebarSection.astro'
+
+export interface Props {
+  contents: {
+    id: string
+    label: string
+  }[]
+}
+---
+
+{
+  Astro.props.contents.length > 0 && (
+    <SidebarSection title="Contents">
+      <ul class="list-inside list-disc text-sm">
+        {Astro.props.contents.map(content => (
+          <li class="py-1">
+            <a
+              class="transition-all hover:text-sky-600"
+              href={'#' + content.id}
+            >
+              {content.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </SidebarSection>
+  )
+}

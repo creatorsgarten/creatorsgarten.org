@@ -3,14 +3,16 @@ import { test, expect } from '@playwright/test'
 test('Homepage works', async ({ page }) => {
   await page.goto('/')
   await expect(
-    page.getByRole('heading', { name: 'Connecting creators, making things' })
+    page.getByRole('heading', { name: 'CONNECT / CRAFT / EXPLORE' })
   ).toBeVisible()
 })
 
 test('Can go to events page', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('link', { name: 'Events' }).click()
-  await expect(page.getByRole('heading', { name: 'Past Events' })).toBeVisible()
+  await page.getByRole('link', { name: 'More on Events' }).click()
+  await expect(
+    page.getByRole('heading', { name: 'Upcoming Events' })
+  ).toBeVisible()
 })
 
 test('Events page can navigate into an event', async ({ page }) => {
@@ -22,8 +24,8 @@ test('Events page can navigate into an event', async ({ page }) => {
 })
 
 test('Event page works', async ({ page }) => {
-  await page.goto('/wiki/Hacks/bkkjs17')
-  await expect(page.getByText('Schedule')).toBeVisible()
+  await page.goto('/event/bkkjs17')
+  await expect(page.getByRole('heading', { name: 'Schedule' })).toBeVisible()
 })
 
 test('Special/AllPages page works', async ({ page }) => {
@@ -31,9 +33,9 @@ test('Special/AllPages page works', async ({ page }) => {
   await expect(page.getByRole('listitem').getByText('MainPage')).toBeVisible()
 })
 
-test('Webring page works', async ({ page }) => {
-  await page.goto('/ring')
-  await expect(
-    page.getByRole('heading', { name: 'Us & Our Friends' })
-  ).toBeVisible()
-})
+// test('Webring page works', async ({ page }) => {
+//   await page.goto('/ring')
+//   await expect(
+//     page.getByRole('heading', { name: 'Us & Our Friends' })
+//   ).toBeVisible()
+// })

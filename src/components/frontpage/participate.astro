@@ -1,0 +1,30 @@
+---
+import dayjs from 'dayjs'
+
+import EventPoster from '$components/eventPoster.astro'
+import { getEvents } from '$functions/getEvents'
+
+const events = await getEvents()
+const upcomingEvents = events
+  .filter(o => o.date.isAfter(dayjs()))
+  .slice(0, 2)
+  .reverse()
+---
+
+{
+  upcomingEvents.length !== 0 && (
+    <div>
+      <div class="flex justify-between items-center">
+        <h2 class="py-4 text-3xl font-medium">UPCOMING</h2>
+        <a href="/events" class="hidden md:block hover:text-sky-600">
+          MORE ON EVENTS →
+        </a>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-8 text-3xl font-medium">
+        {upcomingEvents.map(event => (
+          <EventPoster event={event!} />
+        ))}
+      </div>
+    </div>
+  )
+}

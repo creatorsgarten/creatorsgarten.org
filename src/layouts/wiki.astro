@@ -1,0 +1,47 @@
+---
+import BaseLayout from './base.astro'
+
+export interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<BaseLayout>
+  <h1 class="px-6 pb-8 text-center text-4xl sm:text-5xl uppercase break-words">
+    {title}
+  </h1>
+  <div
+    class="grid divide-x-2 divide-[#ededed] border-[#ededed] border-t-2 grid-cols-1 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]"
+  >
+    <div class="col-span-1">
+      <div
+        class="sticky top-0 flex flex-col gap-0.5 bg-[#ededed] border-[#ededed] border-b-2 sm:border-none"
+      >
+        <slot name="sidebar-left" />
+        <div class="2xl:hidden flex flex-col gap-0.5">
+          <slot name="sidebar-left-less-than-3-columns" />
+        </div>
+        <div class="hidden md:flex flex-col gap-0.5">
+          <slot name="sidebar-left-at-least-2-columns" />
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-span-1 px-6 md:px-12 py-10 md:min-h-[calc(100vh-24rem)] relative"
+    >
+      <slot />
+    </div>
+    <div class="col-span-1 hidden 2xl:block">
+      <div class="sticky top-0 flex flex-col gap-0.5 bg-[#ededed]">
+        <slot name="sidebar-right" />
+      </div>
+    </div>
+    <div class="col-span-1 md:hidden">
+      <div class="flex flex-col gap-0.5 bg-[#ededed] pt-0.5">
+        <slot name="sidebar-bottom" />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

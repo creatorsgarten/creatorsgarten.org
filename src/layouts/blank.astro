@@ -1,0 +1,32 @@
+---
+import './blank.css'
+
+import '@fontsource/work-sans/latin-300.css'
+import '@fontsource/work-sans/latin-400.css'
+import '@fontsource/work-sans/latin-500.css'
+
+// https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Work+Sans:wght@300;400;500&display=swap
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="shortcut icon" type="image/svg" href="/images/ring.svg" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <slot name="head" />
+
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.2/dist/iconify-icon.min.js"
+      integrity="sha256-kwd+IKkvIXP95TLOfLvp/rHfnja1G+Ve+u1UR22A02k="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

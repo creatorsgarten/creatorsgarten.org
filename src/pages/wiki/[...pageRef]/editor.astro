@@ -1,0 +1,52 @@
+---
+import Wiki from '$components/wiki.astro'
+import { updateWiki } from '$functions/updateWiki'
+
+let { pageRef } = Astro.params
+if (pageRef === undefined) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found',
+  })
+}
+
+if (Astro.request.method === 'POST') {
+  const data = await Astro.request.formData()
+  const pageRef = data.get('pageRef')
+  const revision = data.get('revision')
+  const content = data.get('content')
+  try {
+    if (pageRef && content) {
+      await updateWiki(
+        pageRef.toString(),
+        content.toString(),
+        (typeof revision === 'string' && revision) || undefined,
+        Astro
+      )
+
+      return Astro.redirect(`/wiki/${pageRef}`)
+    }
+  } catch (e) {
+    console.error(e)
+    return new Response(
+      [
+        'ERROR: Unable to save the wiki page because of this error:',
+        String(e),
+        '',
+        'To avoid losing your work, please copy the content below and try again later:',
+        '-'.repeat(80),
+        content || '',
+      ].join('\n'),
+      {
+        status: 500,
+        statusText: 'Internal server error',
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+      }
+    )
+  }
+}
+---
+
+<Wiki mode="editor" pageRef={pageRef} />

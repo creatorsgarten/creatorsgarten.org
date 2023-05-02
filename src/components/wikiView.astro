@@ -1,0 +1,74 @@
+---
+import WikiLayout from '$layouts/wiki.astro'
+import WikiSidebarContentsSection from './wikiSidebarContentsSection.astro'
+import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
+import type { FrontMatter } from '$functions/parseFrontMatter'
+import WikiSidebarEventSection from './wikiSidebarEventSection.astro'
+import WikiSidebarMetadataSection, {
+  Props as MetadataProps,
+} from './wikiSidebarMetadataSection.astro'
+import dayjs from 'dayjs'
+import WikiSidebarShareSection from './wikiSidebarShareSection.astro'
+
+export interface Props {
+  pageRef: string
+  title: string
+  rendered: NonNullable<ContentsgartenOutput['view']['rendered']>
+  parsedFrontMatter?: FrontMatter
+  lastModified?: string
+  lastModifiedBy?: string[]
+  editable: boolean
+}
+
+const {
+  pageRef,
+  title,
+  rendered,
+  parsedFrontMatter,
+  lastModified,
+  lastModifiedBy,
+  editable,
+} = Astro.props
+
+const metadata: MetadataProps = {
+  edited: {
+    at: dayjs(lastModified),
+    by: lastModifiedBy ?? ['SYSTEM'],
+  },
+  editable,
+  pageRef,
+}
+
+const coverImage = parsedFrontMatter?.event
+  ? `https://assets.creatorsgarten.org/events/${pageRef.replace('Events/', '')}.png`
+  : undefined
+---
+
+<WikiLayout title={title}>
+  <Fragment slot="sidebar-left">
+    {!!coverImage && <img src={coverImage} class="aspect-square w-full" />}
+    {
+      !!parsedFrontMatter?.event && (
+        <WikiSidebarEventSection event={parsedFrontMatter.event} />
+      )
+    }
+  </Fragment>
+
+  <Fragment slot="sidebar-left-less-than-3-columns">
+    <WikiSidebarContentsSection contents={rendered.headings} />
+  </Fragment>
+  <Fragment slot="sidebar-right">
+    <WikiSidebarContentsSection contents={rendered.headings} />
+  </Fragment>
+
+  <Fragment slot="sidebar-left-at-least-2-columns">
+    <WikiSidebarMetadataSection {...metadata} />
+    <WikiSidebarShareSection />
+  </Fragment>
+  <Fragment slot="sidebar-bottom">
+    <WikiSidebarMetadataSection {...metadata} />
+    <WikiSidebarShareSection />
+  </Fragment>
+
+  <slot />
+</WikiLayout>

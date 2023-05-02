@@ -1,0 +1,122 @@
+---
+import BaseLayout from '$layouts/base.astro'
+import ContentRenderer from './contentRenderer.astro'
+import Head from './head.astro'
+import WikiEditor from './wikiEditor.astro'
+
+import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
+import { formatPageRef } from '$functions/formatPageRef'
+
+import '@fontsource/inter/latin-400.css'
+import '@fontsource/inter/latin-500.css'
+import '@fontsource/inter/latin-700.css'
+import { Icon } from 'react-iconify-icon-wrapper'
+import { parseFrontMatter } from '$functions/parseFrontMatter'
+import { fromZodError } from 'zod-validation-error'
+
+import type { z } from 'zod'
+import type { frontMatterSchema } from '$functions/parseFrontMatter'
+import WikiView from './wikiView.astro'
+
+export interface Props {
+  pageRef: string
+  mode?: 'view' | 'editor'
+}
+
+let { pageRef, mode = 'view' } = Astro.props
+
+const markdown = await getMarkdownFromSlug<
+  z.infer<typeof frontMatterSchema>['event'] & { title: string }
+>(pageRef)
+const {
+  status,
+  targetPageRef,
+  rendered,
+  lastModified,
+  lastModifiedBy,
+  frontMatter,
+  file,
+  perf,
+} = markdown
+
+if (
+  status === 301 &&
+  targetPageRef &&
+  Astro.url.searchParams.get('redirect') !== 'no'
+) {
+  Astro.response.status = 301
+  Astro.response.headers.set('Location', `/wiki/${targetPageRef}`)
+} else if (status === 404) {
+  Astro.response.status = 404
+} else if (status === 500) {
+  Astro.response.status = 500
+}
+
+const frontMatterParsingResult = parseFrontMatter(frontMatter)
+const parsedFrontMatter = frontMatterParsingResult.success
+  ? frontMatterParsingResult.data
+  : undefined
+
+const title =
+  frontMatter.title ||
+  parsedFrontMatter?.event?.name ||
+  formatPageRef(pageRef as string)
+const editable = !!file
+const editing = mode === 'editor' && editable ? file : null
+---
+
+<Head title={mode === 'view' ? title : 'Editor'} />
+
+{
+  status === 200 || editing ? (
+    <WikiView
+      pageRef={pageRef}
+      title={title}
+      rendered={rendered!}
+      parsedFrontMatter={parsedFrontMatter}
+      lastModified={lastModified}
+      lastModifiedBy={lastModifiedBy}
+      editable={editable}
+    >
+      {editing ? (
+        <WikiEditor pageRef={pageRef} file={editing} />
+      ) : (
+        <Fragment>
+          {!frontMatterParsingResult.success && (
+            <div class="relative mb-8 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700">
+              <strong class="mr-2 font-bold">Invalid front matter:</strong>
+              <span class="block sm:inline">
+                {fromZodError(frontMatterParsingResult.error)}
+              </span>
+            </div>
+          )}
+          <ContentRenderer content={rendered!.html} pageRef={pageRef} />
+        </Fragment>
+      )}
+    </WikiView>
+  ) : (
+    <BaseLayout>
+      <div class="px-6 pb-10">
+        <div class="mx-auto max-w-6xl">
+          <h1 class="mb-8 text-3xl">{pageRef}</h1>
+          <ContentRenderer content={rendered!.html} pageRef={pageRef} />
+          {editable && (
+            <div class="mt-8 flex">
+              <a
+                href={`/wiki/${pageRef}/editor`}
+                class="inline-flex items-center space-x-2"
+              >
+                <span>Edit this page</span>
+                <Icon icon="pixelarticons:edit" />
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </BaseLayout>
+  )
+}
+
+<Fragment
+  set:html={'<!-- ' + (perf || []).join('\n').replace(/--/g, '—') + ' -->'}
+/>

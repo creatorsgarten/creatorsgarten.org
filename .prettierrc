@@ -10,5 +10,12 @@
   "endOfLine": "lf",
   "plugins": ["prettier-plugin-astro"],
   "pluginSearchDirs": ["."],
-  "overrides": [{ "files": "*.astro", "options": { "parser": "astro" } }]
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ]
 }

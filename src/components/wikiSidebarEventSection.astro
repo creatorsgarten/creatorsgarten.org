@@ -1,0 +1,48 @@
+---
+import type { FrontMatter } from '$functions/parseFrontMatter'
+import dayjs from 'dayjs'
+import MetadataTable from './metadataTable.astro'
+import SidebarSection from './sidebarSection.astro'
+import { stringifyDate } from '$functions/stringifyDate'
+import { Icon } from 'react-iconify-icon-wrapper'
+
+export interface Props {
+  event: NonNullable<FrontMatter['event']>
+}
+
+const { event } = Astro.props
+const from = dayjs(event.date)
+const to = event.endDate ? dayjs(event.endDate) : undefined
+---
+
+<SidebarSection title="Event">
+  <MetadataTable
+    data={[
+      ['LOCATION', event.location ?? ''],
+      [
+        'DATE',
+        [
+          `${to ? 'FROM ' : ''}${stringifyDate(from)}`,
+          ...(to ? [`TO ${stringifyDate(to)}`] : []),
+        ],
+      ],
+      ['HOST', (event.hosts ?? []).map(o => `[${o}]`).join(' ')],
+    ]}
+  >
+    {
+      event.site && (
+        <tr slot="table">
+          <td>LINK</td>
+          <td>
+            <a href={event.site} class="inline-flex items-center break-all">
+              <>
+                <span class="mr-1">{new URL(event.site).host}</span>
+                <Icon icon="pixelarticons:external-link" />
+              </>
+            </a>
+          </td>
+        </tr>
+      )
+    }
+  </MetadataTable>
+</SidebarSection>

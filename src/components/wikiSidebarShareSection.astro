@@ -1,0 +1,34 @@
+---
+import { Icon } from 'react-iconify-icon-wrapper'
+import SidebarSection from './sidebarSection.astro'
+---
+
+<SidebarSection title="Share">
+  <div class="flex justify-center space-x-4">
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href={`https://twitter.com/intent/tweet?${new URLSearchParams({
+        url: Astro.url.toString(),
+        text: 'Check this',
+        via: 'Creatorsgarten',
+      }).toString()}`}
+      aria-label="Share to Twitter"
+    >
+      <Icon icon="mdi:twitter" width={24} />
+    </a>
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href={`https://www.facebook.com/dialog/share?${new URLSearchParams({
+        app_id: '2314627122104275',
+        href: Astro.url.toString(),
+        feature: 'share',
+        display: 'popup',
+      }).toString()}`}
+      aria-label="Share to Facebook"
+    >
+      <Icon icon="mdi:facebook" width={24} />
+    </a>
+  </div>
+</SidebarSection>

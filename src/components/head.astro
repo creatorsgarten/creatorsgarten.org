@@ -1,0 +1,30 @@
+---
+import { SEO } from 'astro-seo'
+
+export interface Props {
+  title?: string
+}
+
+const { title } = Astro.props
+
+const builtTitle = title ? `${title} · Creatorsgarten` : 'Creatorsgarten'
+const builtImage = Astro.url.origin + '/images/og.jpg'
+---
+
+<SEO
+  slot="head"
+  title={builtTitle}
+  description="Creatorsgarten - Democratize creation for all"
+  openGraph={{
+    basic: {
+      title: builtTitle,
+      type: 'website',
+      image: builtImage,
+    },
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: builtTitle,
+    image: builtImage,
+  }}
+/>

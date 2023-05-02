@@ -1,29 +1,19 @@
 import { defineConfig } from 'astro/config'
 
-import tailwind from '@astrojs/tailwind'
-import image from '@astrojs/image'
-import mdx from '@astrojs/mdx'
-import prefetch from '@astrojs/prefetch'
-import compress from 'astro-compress'
+/* Adapter */
+import node from '@astrojs/node'
+import react from '@astrojs/react'
 
-import externalLinks from 'remark-external-links'
-import sectionize from 'remark-sectionize'
-import { headerPlugin } from './src/plugins/headerPlugin.mjs'
+/* Integrations */
+import tailwind from '@astrojs/tailwind'
+import prefetch from '@astrojs/prefetch'
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    tailwind(),
-    image(),
-    mdx(),
-    prefetch(),
-    compress({
-      img: false,
-      svg: false,
-      js: true,
-    }),
-  ],
-  markdown: {
-    remarkPlugins: [externalLinks, sectionize, headerPlugin],
-  },
+  output: 'server',
+  site: 'https://new.creatorsgarten.org',
+  adapter: node({
+    mode: 'standalone',
+  }),
+  integrations: [tailwind(), prefetch(), react()],
 })

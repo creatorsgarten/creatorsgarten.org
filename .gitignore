@@ -21,3 +21,6 @@ pnpm-debug.log*
 .DS_Store
 .yarn
 playwright-report
+
+.cache
+test-results

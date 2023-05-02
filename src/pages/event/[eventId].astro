@@ -1,0 +1,7 @@
+---
+import Wiki from '$components/wiki.astro'
+
+let { eventId } = Astro.params
+---
+
+<Wiki pageRef={`Events/${eventId}`} />

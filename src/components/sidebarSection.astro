@@ -1,0 +1,10 @@
+---
+export interface Props {
+  title: string
+}
+---
+
+<section class="p-6 bg-[--page-bg]">
+  <h2 class="pb-4 text-center font-medium uppercase">{Astro.props.title}</h2>
+  <slot />
+</section>

@@ -1,53 +1,71 @@
 ---
-import { Picture } from '@astrojs/image/components'
+import dayjs from 'dayjs'
 
 import BaseLayout from '$layouts/base.astro'
+import EventPoster from '$components/eventPoster.astro'
+import Head from '$components/head.astro'
+import CFImage from '$components/cfImage.astro'
 
-import { getCollection } from 'astro:content'
+import { getEvents } from '$functions/getEvents'
+import { getWebsiteConfig } from '$functions/getWebsiteConfig'
 
-const events = (await getCollection('event')).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-)
+const now = dayjs()
+const events = await getEvents()
+
+const websiteConfig = await getWebsiteConfig()
 ---
 
-<BaseLayout title="Events">
-  <div class="cg-container">
-    <div class="prose max-w-none">
-      <h1 class="mt-16">Past Events</h1>
-      <h2 class="mb-12">
-        Through workshops, meetups, hackathons, and much more, we bring people
-        together to work on new ideas, trying new things and working together
-        across disciplines.
-      </h2>
-    </div>
-    <section class="not-prose grid grid-cols-2 gap-2 md:grid-cols-3">
+<Head title="Events" />
+
+<BaseLayout class="max-w-7xl mx-auto space-y-12 [&>*]:px-6">
+  <section>
+    <h1 class="uppercase text-3xl font-medium">Upcoming Events</h1>
+    <div
+      class="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-y-12"
+    >
       {
-        events.map(event => (
-          <a rel="prefetch" href={`/wiki/Hacks/${event.slug}`}>
-            <div class="aspect-square w-full border-2 border-black hover:scale-[1.003] hover:shadow-sm hover:transition-all">
-              <Picture
-                src={`/images/events/${event.slug}.png`}
-                alt={event.data.name}
-                aspectRatio={1}
-                decoding="async"
-                quality={85}
-                widths={[360]}
-                sizes=""
-                formats={['jpg', 'webp', 'avif']}
-                background="white"
-              />
-            </div>
-          </a>
+        events
+          .filter(event => event.date.isAfter(now))
+          .reverse()
+          .map(event => <EventPoster event={event} />)
+      }
+    </div>
+  </section>
+  <section>
+    <h1 class="uppercase text-3xl font-medium">Recurring Events</h1>
+    <div
+      class="[&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl grid sm:grid-cols-3 gap-6 pt-8"
+    >
+      {
+        websiteConfig?.events.recurring.map(event => (
+          <div>
+            <p class="font-medium uppercase leading-none">{event.name}</p>
+            <p class="uppercase">{event.schedule}</p>
+          </div>
         ))
       }
-    </section>
-  </div>
+    </div>
+  </section>
+  <section class="pb-12">
+    <h1 class="uppercase text-3xl font-medium">Past Events</h1>
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-6"
+    >
+      {
+        events
+          .filter(event => event.date.isBefore(now))
+          .map(event => (
+            <a href={`/event/${event.id}`}>
+              <CFImage
+                src={`https://assets.creatorsgarten.org/events/${event.id}.png`}
+                alt={event.name}
+                width={300}
+                ratio={1}
+                class="w-full"
+              />
+            </a>
+          ))
+      }
+    </div>
+  </section>
 </BaseLayout>
-
-<style>
-  h1 {
-    @apply text-3xl leading-tight lg:text-4xl;
-    font-family: 'Playfair Display', 'Inter', system-ui, -apple-system,
-      BlinkMacSystemFont, 'Segoe UI', Roboto;
-  }
-</style>

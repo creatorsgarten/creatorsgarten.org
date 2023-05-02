@@ -2,56 +2,62 @@ name: Deployments
 
 on:
   push:
-    branches: [main, master]
+    branches: [main, refactor/revamp]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  packages: write
 
 concurrency:
-  group: pages
+  group: deploy
   cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: pnpm
-        uses: pnpm/action-setup@v2
+      - name: buildx
+        uses: docker/setup-buildx-action@v2
+      - name: login
+        uses: docker/login-action@v2
         with:
-          version: 8
-      - name: node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: pnpm
-      - name: install
-        run: pnpm -r i --frozen-lockfile
-      - name: astro-cache
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: cache
         uses: actions/cache@v3
         with:
-          path: |
-            dist/_astro
-          # astro generated images should be stored in public/ for efficient caching
-          key: ${{ runner.OS }}-astro-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('public/**/*') }}
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-single-buildx-${{ github.sha }}
           restore-keys: |
-            ${{ runner.OS }}-astro-cache-${{ secrets.CACHE_HASH }}-${{ env.cache-name }}-
-            ${{ runner.OS }}-astro-cache-${{ secrets.CACHE_HASH }}-
+            ${{ runner.os }}-single-buildx
       - name: build
-        run: pnpm build
-      - name: upload
-        uses: actions/upload-pages-artifact@v1
+        uses: docker/build-push-action@v3
         with:
-          path: dist
-      - name: deploy
-        uses: actions/deploy-pages@v2
-        id: deployment
-      - name: 'logging'
-        run: echo "Deployed at ${{ steps.deployment.outputs.page_url }}"
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ghcr.io/${{ github.repository }}-runtime
+          cache-from: type=local,src=/tmp/.buildx-cache
+          # mode=max to cache multi-layer stage
+          # https://github.com/moby/buildkit#--export-cache-options
+          # https://github.com/docker/buildx#--cache-tonametypetypekeyvalue
+          cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
+      - name: publish
+        uses: deploys-app/deploys-action@v1
+        with:
+          project: ${{ secrets.DEPLOYS_NAME }}
+          location: gke.cluster-rcf2
+          name: creatorsgarten-org-runtime
+          image: ghcr.io/${{ github.repository }}-runtime
+          minReplicas: 1
+          maxReplicas: 2
+        env:
+          DEPLOYS_AUTH_USER: ${{ secrets.DEPLOYS_AUTH_USER }}
+          DEPLOYS_AUTH_PASS: ${{ secrets.DEPLOYS_AUTH_PASS }}
+      - name: cache-modding
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache

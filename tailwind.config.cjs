@@ -1,3 +1,4 @@
+const defaultConfig = require('tailwindcss/defaultConfig')
 const colors = require('tailwindcss/colors')
 
 /** @type {import('tailwindcss').Config} */
@@ -5,6 +6,9 @@ module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Work Sans"', ...defaultConfig.theme.fontFamily.sans],
+      },
       animation: {
         loader: 'loader 0.6s infinite alternate',
       },
@@ -17,11 +21,6 @@ module.exports = {
         },
       },
       typography: {
-        lg: {
-          css: {
-            lineHeight: '1.555555',
-          },
-        },
         DEFAULT: {
           css: {
             '--tw-prose-links': colors.sky[600],
@@ -31,6 +30,7 @@ module.exports = {
             },
             h1: {
               fontWeight: 500,
+              marginTop: '3rem',
             },
             h2: {
               fontWeight: 500,

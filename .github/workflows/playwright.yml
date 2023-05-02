@@ -24,6 +24,8 @@ jobs:
         run: pnpm -r i --frozen-lockfile
       - name: pre-playwright
         run: pnpm playwright install --with-deps
+      - name: env
+        run: cp .env.example .env
       - name: tests
         run: pnpm playwright test
       - name: upload

@@ -1,7 +1,0 @@
----
-import Redirect from './redirect.astro'
-
-const to = new URL(Astro.url).pathname.replace('/About/', '/')
----
-
-<Redirect frontmatter={{ to: `https://wiki.creatorsgarten.org${to}` }} />
