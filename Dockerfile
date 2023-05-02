@@ -1,17 +1,8 @@
-FROM node:18-alpine as deps
-
-WORKDIR /app
-
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN npx pnpm -r i --frozen-lockfile
-
-# ? -------------------------
-
 FROM node:18-alpine as deps-prod
 
 WORKDIR /app
 
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+COPY package.json pnpm-lock.yaml* ./
 RUN npx pnpm -r i --frozen-lockfile --prod
 
 # ? -------------------------
@@ -20,8 +11,10 @@ FROM node:18-alpine as builder
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml* astro.config.mjs tailwind.config.cjs tsconfig.json ./
-COPY --from=deps /app/node_modules ./node_modules
+COPY package.json pnpm-lock.yaml* ./
+RUN npx pnpm -r i --frozen-lockfile
+
+COPY astro.config.mjs tailwind.config.cjs tsconfig.json ./
 COPY public ./public
 COPY src ./src
 
@@ -29,16 +22,17 @@ RUN npx pnpm build
 
 # ? -------------------------
 
-FROM gcr.io/distroless/nodejs18-debian11 as runner
+FROM gcr.io/distroless/nodejs18-debian11:nonroot as runner
+
+USER nonroot
+EXPOSE 8080
 
 ENV NODE_ENV production
+ENV HOST 0.0.0.0
+ENV PORT 8080
 
 COPY package.json ./
-COPY --from=deps-prod /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
-
-EXPOSE 8080
-ENV PORT 8080
-ENV HOST 0.0.0.0
+COPY --chown=nonroot:nonroot --from=deps-prod /app/node_modules ./node_modules
+COPY --chown=nonroot:nonroot --from=builder /app/dist ./dist
 
 CMD ["./dist/server/entry.mjs"]
