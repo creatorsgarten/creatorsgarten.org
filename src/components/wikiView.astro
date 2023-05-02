@@ -40,7 +40,10 @@ const metadata: MetadataProps = {
 }
 
 const coverImage = parsedFrontMatter?.event
-  ? `https://assets.creatorsgarten.org/events/${pageRef.replace('Events/', '')}.png`
+  ? `https://assets.creatorsgarten.org/events/${pageRef.replace(
+      'Events/',
+      ''
+    )}.png`
   : undefined
 ---
 
