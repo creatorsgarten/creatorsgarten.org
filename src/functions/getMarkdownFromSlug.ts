@@ -1,5 +1,6 @@
 import { contentsgarten } from '$constants/contentsgarten'
 import { readFileSystem, writeFileSystem } from './fileSystem'
+import hasha from 'hasha'
 
 import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
 
@@ -25,7 +26,7 @@ export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
     const fetchedMarkdownResponse = (await contentsgarten().view.query({
       pageRef: slug,
       withFile: true,
-      revalidate: true,
+      revalidate: false,
       render: true,
     })) as MarkdownResponse<Frontmatter>
 
@@ -34,4 +35,12 @@ export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
 
     return fetchedMarkdownResponse
   }
+}
+
+export function getContentHash(
+  response: Pick<MarkdownResponse, 'content' | 'status'>
+) {
+  return [response.status, hasha(response.content, { algorithm: 'md5' })].join(
+    '.'
+  )
 }

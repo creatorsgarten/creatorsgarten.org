@@ -3,8 +3,12 @@ import BaseLayout from '$layouts/base.astro'
 import ContentRenderer from './contentRenderer.astro'
 import Head from './head.astro'
 import WikiEditor from './wikiEditor.astro'
+import WikiUpdateChecker from './wikiUpdateChecker'
 
-import { getMarkdownFromSlug } from '$functions/getMarkdownFromSlug'
+import {
+  getContentHash,
+  getMarkdownFromSlug,
+} from '$functions/getMarkdownFromSlug'
 import { formatPageRef } from '$functions/formatPageRef'
 
 import '@fontsource/inter/latin-400.css'
@@ -63,6 +67,7 @@ const title =
   formatPageRef(pageRef as string)
 const editable = !!file
 const editing = mode === 'editor' && editable ? file : null
+const contentHash = getContentHash(markdown)
 ---
 
 <Head title={mode === 'view' ? title : 'Editor'} />
@@ -91,6 +96,11 @@ const editing = mode === 'editor' && editable ? file : null
             </div>
           )}
           <ContentRenderer content={rendered!.html} pageRef={pageRef} />
+          <WikiUpdateChecker
+            initialContentHash={contentHash}
+            pageRef={pageRef}
+            client:load
+          />
         </Fragment>
       )}
     </WikiView>
