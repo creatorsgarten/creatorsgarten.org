@@ -52,8 +52,8 @@ dependencies:
 
 devDependencies:
   '@astrojs/node':
-    specifier: 5.1.1
-    version: 5.1.1(astro@2.3.1)
+    specifier: 5.1.2
+    version: 5.1.2(astro@2.3.1)
   '@astrojs/prefetch':
     specifier: 0.2.1
     version: 0.2.1
@@ -182,12 +182,12 @@ packages:
       - supports-color
     dev: true
 
-  /@astrojs/node@5.1.1(astro@2.3.1):
-    resolution: {integrity: sha512-wuuArAOIXSlTCy/82BwT2H1jgrB3ua6grgRTWmXZJ2/BeVwl27KAEuDIKjj6zDeszjLCgWjl/B+c2EkLaJjz5w==}
+  /@astrojs/node@5.1.2(astro@2.3.1):
+    resolution: {integrity: sha512-tDApFnU99O3KQXaRUmfwbkdxqgJhNvPDWou4CVBpybVm3xruigMfz5c+H9P2f4vRo0+sYTzof1L3Hzx9Rh9sQA==}
     peerDependencies:
-      astro: ^2.2.0
+      astro: ^2.3.3
     dependencies:
-      '@astrojs/webapi': 2.1.0
+      '@astrojs/webapi': 2.1.1
       astro: 2.3.1
       send: 0.18.0
       server-destroy: 1.0.1
@@ -263,6 +263,12 @@ packages:
     resolution: {integrity: sha512-sbF44s/uU33jAdefzKzXZaENPeXR0sR3ptLs+1xp9xf5zIBhedH2AfaFB5qTEv9q5udUVoKxubZGT3G1nWs6rA==}
     dependencies:
       undici: 5.20.0
+    dev: true
+
+  /@astrojs/webapi@2.1.1:
+    resolution: {integrity: sha512-mHZ7VgPNMeV3TYIw3SGHTKaJosBxA8bTzZ3QhNw509qvCJca4Lkjes8JywimuwTn+TMjEiv7ksNfwRluad3jqA==}
+    dependencies:
+      undici: 5.22.0
     dev: true
 
   /@babel/code-frame@7.18.6:
