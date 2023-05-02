@@ -2,10 +2,10 @@ import { z } from 'zod'
 
 const announcementSchema = z.object({
   message: z.string(),
-  link: z.string().optional(),
+  link: z.string().nullish(),
   enabled: z.boolean(),
-  start: z.coerce.date().optional(),
-  end: z.coerce.date().optional(),
+  start: z.coerce.date().nullish(),
+  end: z.coerce.date().nullish(),
 })
 
 export const websiteConfigSchema = z.object({
