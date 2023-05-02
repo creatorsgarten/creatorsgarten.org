@@ -9,6 +9,15 @@ const ISODate = z
   )
 
 export const frontMatterSchema = z.object({
+  image: z.string().url().optional(),
+  grtn: z
+    .string()
+    .regex(
+      /^[a-z0-9A-Z/_-]+$/,
+      'Short link may only contain letters, numbers, dashes, underscores, and slashes.'
+    )
+    .optional(),
+
   event: z
     .object({
       name: z.string(),

@@ -39,14 +39,17 @@ const metadata: MetadataProps = {
   },
   editable,
   pageRef,
+  grtn: parsedFrontMatter?.grtn,
 }
 
-const coverImage = parsedFrontMatter?.event
-  ? `https://assets.creatorsgarten.org/events/${pageRef.replace(
-      'Events/',
-      ''
-    )}.png`
-  : undefined
+const coverImage =
+  parsedFrontMatter?.image ??
+  (parsedFrontMatter?.event
+    ? `https://assets.creatorsgarten.org/events/${pageRef.replace(
+        'Events/',
+        ''
+      )}.png`
+    : undefined)
 ---
 
 <Layout title={title}>
@@ -76,4 +79,4 @@ const coverImage = parsedFrontMatter?.event
   </Fragment>
 
   <slot />
-</WikiLayout>
+</Layout>
