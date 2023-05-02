@@ -1,6 +1,7 @@
-import { queryClient } from '$constants/queryClient'
-import { QueryClientProvider, useQuery } from '@tanstack/react-query'
 import { Icon } from 'react-iconify-icon-wrapper'
+
+import { QueryClientProvider, useQuery } from '@tanstack/react-query'
+import { queryClient } from '$constants/queryClient'
 
 export interface WikiUpdateChecker {
   pageRef: string

@@ -1,10 +1,11 @@
 ---
+import { Icon } from 'react-iconify-icon-wrapper'
 import BaseLayout from '$layouts/base.astro'
 import ContentRenderer from './contentRenderer.astro'
 import Head from './head.astro'
-import WikiEditor from './wiki/wikiEditor.astro'
-import WikiUpdateChecker from './wiki/wikiUpdateChecker'
-import WikiView from './wiki/wikiView.astro'
+import WikiEditor from './wiki/editor.astro'
+import WikiUpdateChecker from './wiki/updateChecker'
+import WikiView from './wiki/view.astro'
 
 import {
   getContentHash,
@@ -12,16 +13,15 @@ import {
 } from '$functions/getMarkdownFromSlug'
 import { formatPageRef } from '$functions/formatPageRef'
 import { getWikiDescription } from '$functions/getWikiDescription'
-
-import '@fontsource/inter/latin-400.css'
-import '@fontsource/inter/latin-500.css'
-import '@fontsource/inter/latin-700.css'
-import { Icon } from 'react-iconify-icon-wrapper'
 import { parseFrontMatter } from '$functions/parseFrontMatter'
 import { fromZodError } from 'zod-validation-error'
 
 import type { z } from 'zod'
 import type { frontMatterSchema } from '$functions/parseFrontMatter'
+
+import '@fontsource/inter/latin-400.css'
+import '@fontsource/inter/latin-500.css'
+import '@fontsource/inter/latin-700.css'
 
 export interface Props {
   pageRef: string

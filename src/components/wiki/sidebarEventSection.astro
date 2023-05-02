@@ -1,10 +1,12 @@
 ---
-import type { FrontMatter } from '$functions/parseFrontMatter'
-import dayjs from 'dayjs'
+import { Icon } from 'react-iconify-icon-wrapper'
 import MetadataTable from './metadataTable.astro'
 import SidebarSection from './sidebarSection.astro'
+
+import dayjs from 'dayjs'
 import { stringifyDate } from '$functions/stringifyDate'
-import { Icon } from 'react-iconify-icon-wrapper'
+
+import type { FrontMatter } from '$functions/parseFrontMatter'
 
 export interface Props {
   event: NonNullable<FrontMatter['event']>

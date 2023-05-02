@@ -1,9 +1,11 @@
 ---
-import type { Dayjs } from 'dayjs'
+import { Icon } from 'react-iconify-icon-wrapper'
 import MetadataTable from './metadataTable.astro'
 import SidebarSection from './sidebarSection.astro'
+
 import { stringifyDate } from '$functions/stringifyDate'
-import { Icon } from 'react-iconify-icon-wrapper'
+
+import type { Dayjs } from 'dayjs'
 
 export interface Props {
   pageRef: string
