@@ -1,4 +1,4 @@
-FROM node:18-alpine as deps-prod
+FROM node:20-alpine as deps-prod
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN npx pnpm -r i --frozen-lockfile --prod
 
 # ? -------------------------
 
-FROM node:18-alpine as builder
+FROM node:20-alpine as builder
 
 WORKDIR /app
 
