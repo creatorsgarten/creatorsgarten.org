@@ -81,6 +81,7 @@ export const writeFileSystem = async (
       data: content,
     }
   } catch (e) {
+    console.log(`failed to write [${key.join(', ')}] to filesystem`)
     await fs.promises
       .rm(path.join(requestedDirectory, targetFileName))
       .catch(() => {})
