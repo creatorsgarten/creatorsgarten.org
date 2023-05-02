@@ -2,7 +2,7 @@ name: Deployments
 
 on:
   push:
-    branches: [main, refactor/revamp]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -10,7 +10,7 @@ permissions:
 
 concurrency:
   group: deploy
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
