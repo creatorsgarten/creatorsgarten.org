@@ -16,4 +16,21 @@ export default defineConfig({
     mode: 'standalone',
   }),
   integrations: [tailwind(), prefetch(), react()],
+  vite: {
+    build: {
+      rollupOptions: {
+        onwarn: ({ message, code, ids }) => {
+          if (
+            [
+              'Module level directives cause errors when bundled, "use client"',
+            ].some(o => message.includes(o)) ||
+            (code === 'CIRCULAR_DEPENDENCY' &&
+              ids.every(id => id.includes('node_modules/.pnpm')))
+          )
+            return
+          console.error(message)
+        },
+      },
+    },
+  },
 })
