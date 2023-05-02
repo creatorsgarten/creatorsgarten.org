@@ -1,6 +1,5 @@
 User-agent: *
 
-Disallow: /
 Disallow: */editor
 
 Sitemap: https://new.creatorsgarten.org/sitemap.xml
