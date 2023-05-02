@@ -4,8 +4,8 @@ import { createHash } from 'crypto'
 
 const cacheDirectory = path.join(process.cwd(), '.cache')
 
-const getHash = (items: (string | number | Buffer)[]) => {
-  const hash = createHash('sha256')
+export const getHash = (items: (string | number | Buffer)[], algorithm = 'sha256') => {
+  const hash = createHash(algorithm)
   for (let item of items) {
     if (typeof item === 'number') hash.update(String(item))
     else {

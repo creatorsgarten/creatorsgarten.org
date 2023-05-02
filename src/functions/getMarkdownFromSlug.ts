@@ -1,6 +1,5 @@
 import { contentsgarten } from '$constants/contentsgarten'
-import { readFileSystem, writeFileSystem } from './fileSystem'
-import hasha from 'hasha'
+import { getHash, readFileSystem, writeFileSystem } from './fileSystem'
 
 import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
 
@@ -40,7 +39,7 @@ export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
 export function getContentHash(
   response: Pick<MarkdownResponse, 'content' | 'status'>
 ) {
-  return [response.status, hasha(response.content, { algorithm: 'md5' })].join(
+  return [response.status, getHash([response.content], 'md5')].join(
     '.'
   )
 }
