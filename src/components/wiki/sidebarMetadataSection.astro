@@ -11,9 +11,10 @@ export interface Props {
   pageRef: string
   edited: { at: Dayjs; by: string[] }
   editable: boolean
+  grtn?: string
 }
 
-const { edited, editable, pageRef } = Astro.props
+const { edited, editable, pageRef, grtn } = Astro.props
 ---
 
 <SidebarSection title="Metadata">
@@ -53,6 +54,23 @@ const { edited, editable, pageRef } = Astro.props
                   <Icon icon="octicon:file-code-16" inline />
                 </a>
               </span>
+            </td>
+          </tr>
+        )
+      }
+      {
+        !!grtn && (
+          <tr>
+            <td>SHORTCUT</td>
+            <td class="group">
+              <a
+                href={`https://grtn.org/${grtn}`}
+                class="inline-flex items-center"
+                onclick="event.preventDefault(); navigator.clipboard.writeText(this.href);"
+              >
+                <span class="mr-1">grtn.org/{grtn}</span>
+                <Icon icon="pixelarticons:copy" />
+              </a>
             </td>
           </tr>
         )
