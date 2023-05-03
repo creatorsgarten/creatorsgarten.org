@@ -12,11 +12,11 @@ dependencies:
     specifier: ^4.29.5
     version: 4.29.5(react-dom@18.2.0)(react@18.2.0)
   '@trpc/client':
-    specifier: 10.23.0
-    version: 10.23.0(@trpc/server@10.23.0)
+    specifier: 10.23.1
+    version: 10.23.1(@trpc/server@10.23.1)
   '@trpc/server':
-    specifier: 10.23.0
-    version: 10.23.0
+    specifier: 10.23.1
+    version: 10.23.1
   csrf:
     specifier: ^3.1.0
     version: 3.1.0
@@ -54,7 +54,7 @@ dependencies:
 devDependencies:
   '@astrojs/node':
     specifier: 5.1.2
-    version: 5.1.2(astro@2.3.3)
+    version: 5.1.2(astro@2.3.4)
   '@astrojs/prefetch':
     specifier: 0.2.1
     version: 0.2.1
@@ -63,7 +63,7 @@ devDependencies:
     version: 2.1.2(@types/react-dom@18.2.1)(@types/react@18.2.0)(react-dom@18.2.0)(react@18.2.0)
   '@astrojs/tailwind':
     specifier: 3.1.2
-    version: 3.1.2(astro@2.3.3)(tailwindcss@3.3.2)
+    version: 3.1.2(astro@2.3.4)(tailwindcss@3.3.2)
   '@fontsource/inter':
     specifier: ^4.5.15
     version: 4.5.15
@@ -86,8 +86,8 @@ devDependencies:
     specifier: ^18.0.6
     version: 18.2.1
   astro:
-    specifier: 2.3.3
-    version: 2.3.3
+    specifier: 2.3.4
+    version: 2.3.4
   astro-seo:
     specifier: ^0.7.2
     version: 0.7.2
@@ -150,13 +150,13 @@ packages:
       vscode-uri: 3.0.7
     dev: true
 
-  /@astrojs/markdown-remark@2.1.4(astro@2.3.3):
+  /@astrojs/markdown-remark@2.1.4(astro@2.3.4):
     resolution: {integrity: sha512-z5diCcFo2xkBAJ11KySAIKpZZkULZmzUvWsZ2VWIOrR6QrEgEfVl5jTpgPSedx4m+xUPuemlUviOotGB7ItNsQ==}
     peerDependencies:
       astro: ^2.3.0
     dependencies:
       '@astrojs/prism': 2.1.1
-      astro: 2.3.3
+      astro: 2.3.4
       github-slugger: 1.5.0
       import-meta-resolve: 2.2.2
       rehype-raw: 6.1.1
@@ -173,13 +173,13 @@ packages:
       - supports-color
     dev: true
 
-  /@astrojs/node@5.1.2(astro@2.3.3):
+  /@astrojs/node@5.1.2(astro@2.3.4):
     resolution: {integrity: sha512-tDApFnU99O3KQXaRUmfwbkdxqgJhNvPDWou4CVBpybVm3xruigMfz5c+H9P2f4vRo0+sYTzof1L3Hzx9Rh9sQA==}
     peerDependencies:
       astro: ^2.3.3
     dependencies:
       '@astrojs/webapi': 2.1.1
-      astro: 2.3.3
+      astro: 2.3.4
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -218,14 +218,14 @@ packages:
       - supports-color
     dev: true
 
-  /@astrojs/tailwind@3.1.2(astro@2.3.3)(tailwindcss@3.3.2):
+  /@astrojs/tailwind@3.1.2(astro@2.3.4)(tailwindcss@3.3.2):
     resolution: {integrity: sha512-KyZ84WExLRU/TRIQm09ce+ND/0UG9AK9+7k/gjCbxuKScc/RieZ73oh4MkoEFrN/9OToMklvt+wmkAt3+u/ubQ==}
     peerDependencies:
       astro: ^2.3.3
       tailwindcss: ^3.0.24
     dependencies:
       '@proload/core': 0.3.3
-      astro: 2.3.3
+      astro: 2.3.4
       autoprefixer: 10.4.14(postcss@8.4.23)
       postcss: 8.4.23
       postcss-load-config: 4.0.1(postcss@8.4.23)
@@ -1119,16 +1119,16 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  /@trpc/client@10.23.0(@trpc/server@10.23.0):
-    resolution: {integrity: sha512-7hTh9OjVIx4Co3kUyIu94SjbUIuS2WKl3E5BMseYbNOHfeY5rqwkCsw0N5EHWszhIVttUMDE0oCf10tNhYEq1A==}
+  /@trpc/client@10.23.1(@trpc/server@10.23.1):
+    resolution: {integrity: sha512-0uEUU3oxULvEZpg2P2Qn1pkq3ATNRoWz4AfycWjmP4MN89GZYnwUReIeQQCHmP+mIElBcHwehOYyVkqs/T9o5w==}
     peerDependencies:
-      '@trpc/server': 10.23.0
+      '@trpc/server': 10.23.1
     dependencies:
-      '@trpc/server': 10.23.0
+      '@trpc/server': 10.23.1
     dev: false
 
-  /@trpc/server@10.23.0:
-    resolution: {integrity: sha512-0CPfGZK3v3gfAL8ylV5vDJVBQtPp47EB4Vgx6WItSXmwYQlLC39ZC3gkZ4I5cGpQKl4l3QrNNeUvIcse4hlMxA==}
+  /@trpc/server@10.23.1:
+    resolution: {integrity: sha512-sibJRHpcLkNScKC6e3pZS+lDHQIwB+aYjw2A2afQL2u1n5x0/sqHyIYhr3TnpbVRezt+swWRYIYAI2NjanI6sA==}
 
   /@types/aws-lambda@8.10.114:
     resolution: {integrity: sha512-M8WpEGfC9iQ6V2Ccq6nGIXoQgeVc6z0Ngk8yCOL5V/TYIxshvb0MWQYLFFTZDesL0zmsoBc4OBjG9DB/4rei6w==}
@@ -1372,19 +1372,19 @@ packages:
     resolution: {integrity: sha512-YnSqj4E6vbF7wRk3gcxOPHBjenhfgaINEJlTsnu4sovAyfyGEdQksbioYKoZ+vERRDaYvEricfSzC6fc9lieww==}
     dev: true
 
-  /astro@2.3.3:
-    resolution: {integrity: sha512-LH9e42VoK8QqHCbZcFAf0GGZs4WVjfq3kJ/hrYgwpPyf8e2uUym4W9+DzM6+vEn7kbUq8Ec0l63zQQl3eXqxZQ==}
+  /astro@2.3.4:
+    resolution: {integrity: sha512-bP3HC8ayCPxB8n+PoeacabsfWna0eu4itiUDJklfP3uuMCAPZN0j5LbyZREMH/0qErUOai75ctpeLoKwZixTSQ==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
     hasBin: true
     peerDependencies:
-      sharp: ^0.31.3
+      sharp: '>=0.31.0'
     peerDependenciesMeta:
       sharp:
         optional: true
     dependencies:
       '@astrojs/compiler': 1.4.0
       '@astrojs/language-server': 1.0.0
-      '@astrojs/markdown-remark': 2.1.4(astro@2.3.3)
+      '@astrojs/markdown-remark': 2.1.4(astro@2.3.4)
       '@astrojs/telemetry': 2.1.1
       '@astrojs/webapi': 2.1.1
       '@babel/core': 7.21.5
@@ -1732,7 +1732,7 @@ packages:
       '@contentsgarten/markdown': 1.1.3(react-dom@18.2.0)(react@18.2.0)
       '@keyv/redis': 2.5.7
       '@tanstack/query-core': 4.29.5
-      '@trpc/server': 10.23.0
+      '@trpc/server': 10.23.1
       axios: 1.4.0
       expiry-map: 2.0.0
       gray-matter: 4.0.3
@@ -1743,7 +1743,7 @@ packages:
       liquidjs: 10.7.1
       mongodb: 5.3.0
       octokit: 2.0.14
-      openapi-trpc: 0.1.2(@trpc/server@10.23.0)(zod@3.21.4)
+      openapi-trpc: 0.1.2(@trpc/server@10.23.1)(zod@3.21.4)
       p-memoize: 7.1.1
       zod: 3.21.4
     transitivePeerDependencies:
@@ -3332,13 +3332,13 @@ packages:
       is-wsl: 2.2.0
     dev: true
 
-  /openapi-trpc@0.1.2(@trpc/server@10.23.0)(zod@3.21.4):
+  /openapi-trpc@0.1.2(@trpc/server@10.23.1)(zod@3.21.4):
     resolution: {integrity: sha512-VceDRPNd0gzDpmoWPn48glKucev4bKo7uo6NZIr/mQWlYz/B/VafdR1/6xxGbgVNl6++FMQZ0lsSdIEWBZLSQw==}
     peerDependencies:
       '@trpc/server': ^10.11.1
       zod: ^3.20.6
     dependencies:
-      '@trpc/server': 10.23.0
+      '@trpc/server': 10.23.1
       openapi-types: 12.1.0
       zod: 3.21.4
       zod-to-json-schema: 3.21.0(zod@3.21.4)
