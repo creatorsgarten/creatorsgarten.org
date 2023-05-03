@@ -54,7 +54,7 @@ dependencies:
 devDependencies:
   '@astrojs/node':
     specifier: 5.1.2
-    version: 5.1.2(astro@2.3.3)
+    version: 5.1.2(astro@2.3.4)
   '@astrojs/prefetch':
     specifier: 0.2.1
     version: 0.2.1
@@ -63,7 +63,7 @@ devDependencies:
     version: 2.1.2(@types/react-dom@18.2.1)(@types/react@18.2.0)(react-dom@18.2.0)(react@18.2.0)
   '@astrojs/tailwind':
     specifier: 3.1.2
-    version: 3.1.2(astro@2.3.3)(tailwindcss@3.3.2)
+    version: 3.1.2(astro@2.3.4)(tailwindcss@3.3.2)
   '@fontsource/inter':
     specifier: ^4.5.15
     version: 4.5.15
@@ -86,8 +86,8 @@ devDependencies:
     specifier: ^18.0.6
     version: 18.2.1
   astro:
-    specifier: 2.3.3
-    version: 2.3.3
+    specifier: 2.3.4
+    version: 2.3.4
   astro-seo:
     specifier: ^0.7.2
     version: 0.7.2
@@ -150,13 +150,13 @@ packages:
       vscode-uri: 3.0.7
     dev: true
 
-  /@astrojs/markdown-remark@2.1.4(astro@2.3.3):
+  /@astrojs/markdown-remark@2.1.4(astro@2.3.4):
     resolution: {integrity: sha512-z5diCcFo2xkBAJ11KySAIKpZZkULZmzUvWsZ2VWIOrR6QrEgEfVl5jTpgPSedx4m+xUPuemlUviOotGB7ItNsQ==}
     peerDependencies:
       astro: ^2.3.0
     dependencies:
       '@astrojs/prism': 2.1.1
-      astro: 2.3.3
+      astro: 2.3.4
       github-slugger: 1.5.0
       import-meta-resolve: 2.2.2
       rehype-raw: 6.1.1
@@ -173,13 +173,13 @@ packages:
       - supports-color
     dev: true
 
-  /@astrojs/node@5.1.2(astro@2.3.3):
+  /@astrojs/node@5.1.2(astro@2.3.4):
     resolution: {integrity: sha512-tDApFnU99O3KQXaRUmfwbkdxqgJhNvPDWou4CVBpybVm3xruigMfz5c+H9P2f4vRo0+sYTzof1L3Hzx9Rh9sQA==}
     peerDependencies:
       astro: ^2.3.3
     dependencies:
       '@astrojs/webapi': 2.1.1
-      astro: 2.3.3
+      astro: 2.3.4
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -218,14 +218,14 @@ packages:
       - supports-color
     dev: true
 
-  /@astrojs/tailwind@3.1.2(astro@2.3.3)(tailwindcss@3.3.2):
+  /@astrojs/tailwind@3.1.2(astro@2.3.4)(tailwindcss@3.3.2):
     resolution: {integrity: sha512-KyZ84WExLRU/TRIQm09ce+ND/0UG9AK9+7k/gjCbxuKScc/RieZ73oh4MkoEFrN/9OToMklvt+wmkAt3+u/ubQ==}
     peerDependencies:
       astro: ^2.3.3
       tailwindcss: ^3.0.24
     dependencies:
       '@proload/core': 0.3.3
-      astro: 2.3.3
+      astro: 2.3.4
       autoprefixer: 10.4.14(postcss@8.4.23)
       postcss: 8.4.23
       postcss-load-config: 4.0.1(postcss@8.4.23)
@@ -1372,19 +1372,19 @@ packages:
     resolution: {integrity: sha512-YnSqj4E6vbF7wRk3gcxOPHBjenhfgaINEJlTsnu4sovAyfyGEdQksbioYKoZ+vERRDaYvEricfSzC6fc9lieww==}
     dev: true
 
-  /astro@2.3.3:
-    resolution: {integrity: sha512-LH9e42VoK8QqHCbZcFAf0GGZs4WVjfq3kJ/hrYgwpPyf8e2uUym4W9+DzM6+vEn7kbUq8Ec0l63zQQl3eXqxZQ==}
+  /astro@2.3.4:
+    resolution: {integrity: sha512-bP3HC8ayCPxB8n+PoeacabsfWna0eu4itiUDJklfP3uuMCAPZN0j5LbyZREMH/0qErUOai75ctpeLoKwZixTSQ==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
     hasBin: true
     peerDependencies:
-      sharp: ^0.31.3
+      sharp: '>=0.31.0'
     peerDependenciesMeta:
       sharp:
         optional: true
     dependencies:
       '@astrojs/compiler': 1.4.0
       '@astrojs/language-server': 1.0.0
-      '@astrojs/markdown-remark': 2.1.4(astro@2.3.3)
+      '@astrojs/markdown-remark': 2.1.4(astro@2.3.4)
       '@astrojs/telemetry': 2.1.1
       '@astrojs/webapi': 2.1.1
       '@babel/core': 7.21.5
