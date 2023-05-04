@@ -44,7 +44,19 @@ jobs:
           cache: pnpm
       - name: install
         run: pnpm -r i --frozen-lockfile
-      - name: pre-playwright
+      - name: playwright-version
+        run: |
+          PLAYWRIGHT_VERSION=$(pnpm ls @playwright/test | grep @playwright | sed 's/@playwright\/test //')
+          echo "Playwright's Version: $PLAYWRIGHT_VERSION"
+          echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
+      - name: playwright-cache
+        id: cache-playwright
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
+      - name: playwright-install
+        if: steps.cache-playwright.outputs.cache-hit != 'true'    
         run: pnpm playwright install --with-deps
       - name: env
         run: cp .env.example .env
