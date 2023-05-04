@@ -6,10 +6,7 @@ import { upcomingEventsFilter } from '$functions/upcomingEventsFilter'
 
 const events = await getEvents()
 
-const upcomingEvents = events
-  .filter(upcomingEventsFilter)
-  .slice(0, 2)
-  .reverse()
+const upcomingEvents = events.filter(upcomingEventsFilter).slice(0, 2).reverse()
 ---
 
 {

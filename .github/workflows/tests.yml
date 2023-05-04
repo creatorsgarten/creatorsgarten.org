@@ -56,7 +56,7 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
       - name: playwright-install
-        if: steps.cache-playwright.outputs.cache-hit != 'true'    
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
         run: pnpm playwright install --with-deps
       - name: env
         run: cp .env.example .env

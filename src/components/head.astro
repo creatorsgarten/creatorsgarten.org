@@ -6,9 +6,12 @@ export interface Props {
   description?: string
 }
 
-const { title, description = "Creatorsgarten - Democratize creation for all" } = Astro.props
+const { title, description = 'Creatorsgarten - Democratize creation for all' } =
+  Astro.props
 
-const builtTitle = title ? [title, 'Creatorsgarten'].join(' · ') : 'Creatorsgarten'
+const builtTitle = title
+  ? [title, 'Creatorsgarten'].join(' · ')
+  : 'Creatorsgarten'
 const builtImage = Astro.url.origin + '/images/og.jpg'
 ---
 

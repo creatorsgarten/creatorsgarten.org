@@ -9,6 +9,8 @@ import type { Event } from './getEvents'
 export const upcomingEventsFilter = (event: Event) => {
   const targetToCompare = event.endDate ?? event.date
 
-
-  return dayjs(targetToCompare).tz('Asia/Bangkok').endOf('day').isAfter(new Date())
+  return dayjs(targetToCompare)
+    .tz('Asia/Bangkok')
+    .endOf('day')
+    .isAfter(new Date())
 }
