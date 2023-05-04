@@ -8,6 +8,7 @@ export interface Event {
   id: string
   name: string
   date: dayjs.Dayjs
+  endDate: dayjs.Dayjs | null
   link?: string
   location?: string
 }
@@ -35,6 +36,7 @@ export const getEvents = async () => {
           id: page.pageRef.replace('Events/', ''),
           name: event.name,
           date: dayjs(event.date),
+          endDate: event.endDate ? dayjs(event.endDate) : null,
           link: event.site,
           location: event.location,
         },

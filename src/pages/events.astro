@@ -8,6 +8,7 @@ import CFImage from '$components/cfImage.astro'
 
 import { getEvents } from '$functions/getEvents'
 import { getWebsiteConfig } from '$functions/getWebsiteConfig'
+import { upcomingEventsFilter } from '$functions/upcomingEventsFilter'
 
 const now = dayjs()
 const events = await getEvents()
@@ -25,7 +26,7 @@ const websiteConfig = await getWebsiteConfig()
     >
       {
         events
-          .filter(event => event.date.isAfter(now))
+          .filter(upcomingEventsFilter)
           .reverse()
           .map(event => <EventPoster event={event} />)
       }
