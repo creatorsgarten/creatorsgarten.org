@@ -17,8 +17,6 @@ export const updateWiki = async (
       oldRevision,
     })
 
-    // await new Promise(r => setTimeout(r, 13000))
-
     await purgeFileSystem(['wiki', pageRef])
   } catch (e) {
     console.error(e)
