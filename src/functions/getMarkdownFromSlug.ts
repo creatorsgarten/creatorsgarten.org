@@ -37,7 +37,11 @@ export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
 }
 
 export function getContentHash(
-  response: Pick<MarkdownResponse, 'content' | 'status'>
+  response: Pick<MarkdownResponse, 'content' | 'status' | 'file'>
 ) {
-  return [response.status, getHash([response.content], 'md5')].join('.')
+  return [
+    response.status,
+    getHash([response.content], 'md5'),
+    response.file?.revision || 'no-revision',
+  ].join('.')
 }
