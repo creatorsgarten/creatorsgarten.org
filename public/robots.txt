@@ -1,6 +1,6 @@
 User-agent: *
 
-Disallow: /auth/callback
+Disallow: /auth
 Disallow: */editor
 
 Sitemap: https://creatorsgarten.org/sitemap.xml
