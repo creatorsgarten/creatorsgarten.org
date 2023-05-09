@@ -157,13 +157,14 @@ function Message(props: Message) {
   )
 }
 function getAvatarUrl(from: string) {
-  from = encodeURIComponent(from)
-
   // If starts with @, then it's a GitHub username
   if (from.startsWith('@')) {
-    return `https://github.com/${from.slice(1)}.png`
+    return `https://github.com/${encodeURIComponent(from.slice(1))}.png`
   }
 
   // Otherwise, use a placeholder avatar service
-  return `https://api.dicebear.com/6.x/pixel-art-neutral/svg?seed=${from}`
+  return (
+    `https://api.dicebear.com/6.x/pixel-art-neutral/svg?seed=` +
+    encodeURIComponent(from)
+  )
 }
