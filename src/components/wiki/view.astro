@@ -54,7 +54,7 @@ const coverImage =
 
 <Layout title={title}>
   <Fragment slot="sidebar-left">
-    {!!coverImage && <img src={coverImage} class="aspect-square w-full" />}
+    {!!coverImage && <img src={coverImage} class="aspect-square w-full" alt="cover image" />}
     {
       !!parsedFrontMatter?.event && (
         <SidebarEventSection event={parsedFrontMatter.event} />

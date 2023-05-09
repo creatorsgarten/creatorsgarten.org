@@ -133,6 +133,7 @@ function Message(props: Message) {
         <img
           src={getAvatarUrl(props.attributes.from)}
           className="mt-0.5 h-8 w-8 rounded-full"
+          alt={props.attributes.from}
         />
       </div>
       <div className="relative rounded border border-neutral-300 bg-white px-2 py-1">
