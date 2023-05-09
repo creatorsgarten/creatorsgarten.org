@@ -131,7 +131,7 @@ function Message(props: Message) {
     <div className="my-[1em] flex items-start gap-4">
       <div className="not-prose flex-none">
         <img
-          src={`https://github.com/${props.attributes.from}.png`}
+          src={getAvatarUrl(props.attributes.from)}
           className="mt-0.5 h-8 w-8 rounded-full"
         />
       </div>
@@ -155,4 +155,15 @@ function Message(props: Message) {
       </div>
     </div>
   )
+}
+function getAvatarUrl(from: string) {
+  from = encodeURIComponent(from)
+
+  // If starts with @, then it's a GitHub username
+  if (from.startsWith('@')) {
+    return `https://github.com/${from.slice(1)}.png`
+  }
+
+  // Otherwise, use a placeholder avatar service
+  return `https://api.dicebear.com/6.x/pixel-art-neutral/svg?seed=${from}`
 }
