@@ -8,3 +8,49 @@
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
     'Noto Color Emoji' !important;
 }
+
+.custom-block {
+  @apply rounded border overflow-hidden px-3 py-2 bg-[--custom-block-bg] border-[--custom-block-border] my-[1.25em];
+  --custom-block-bg: theme(colors.neutral.50);
+  --custom-block-title-bg: theme(colors.neutral.200);
+  --custom-block-title-text: theme(colors.neutral.500);
+  --custom-block-border: theme(colors.neutral.300);
+}
+.custom-block.info {
+  --custom-block-bg: theme(colors.sky.50);
+  --custom-block-title-bg: theme(colors.sky.200);
+  --custom-block-title-text: theme(colors.sky.600);
+  --custom-block-border: theme(colors.sky.300);
+}
+.custom-block.tip {
+  --custom-block-bg: theme(colors.purple.50);
+  --custom-block-title-bg: theme(colors.purple.200);
+  --custom-block-title-text: theme(colors.purple.600);
+  --custom-block-border: theme(colors.purple.300);
+}
+.custom-block.warning {
+  --custom-block-bg: theme(colors.amber.50);
+  --custom-block-title-bg: theme(colors.amber.200);
+  --custom-block-title-text: theme(colors.amber.600);
+  --custom-block-border: theme(colors.amber.300);
+}
+.custom-block.danger {
+  --custom-block-bg: theme(colors.red.50);
+  --custom-block-title-bg: theme(colors.red.200);
+  --custom-block-title-text: theme(colors.red.600);
+  --custom-block-border: theme(colors.red.300);
+}
+.custom-block > .custom-block-title {
+  @apply -mx-3 -mt-2 px-3 pt-2.5 mb-0 font-bold text-sm text-[--custom-block-title-text];
+}
+.custom-block > .custom-block-title + p {
+  @apply mt-0;
+}
+.custom-block > .custom-block-title ~ p:last-child {
+  @apply mb-0;
+}
+.font-casual {
+  font-family: 'RecursiveVariable', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-variation-settings: "CASL" 1, "CRSV" 1;
+}

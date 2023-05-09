@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { CurrentHrefContext } from './currentHrefContext'
 
 interface Props {
   href: string
@@ -6,20 +7,24 @@ interface Props {
   className?: string
 }
 
-export const MarkdownLink = (props: Props, currentHref: string) => {
+export const MarkdownLink = (props: Props) => {
   if (['http://', 'https://', '//'].some(o => props.href.startsWith(o)))
     return <a {...props} />
   else
     return (
-      <a
-        rel="prefetch"
-        {...props}
-        className={
-          (props.className || '') +
-          (currentHref === props.href
-            ? ' cursor-default font-bold text-inherit'
-            : '')
-        }
-      />
+      <CurrentHrefContext.Consumer>
+        {currentHref => (
+          <a
+            rel="prefetch"
+            {...props}
+            className={
+              (props.className || '') +
+              (currentHref === props.href
+                ? ' cursor-default font-bold text-inherit'
+                : '')
+            }
+          />
+        )}
+      </CurrentHrefContext.Consumer>
     )
 }

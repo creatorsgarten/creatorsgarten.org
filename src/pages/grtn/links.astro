@@ -1,0 +1,57 @@
+---
+import BaseLayout from '$layouts/base.astro'
+import { Icon } from 'react-iconify-icon-wrapper'
+
+const data = (await fetch('https://grtn.org/routes.json').then(r => {
+  if (!r.ok)
+    throw new Error(`Failed to fetch routes.json: ${r.status} ${r.statusText}`)
+  return r.json()
+})) as {
+  from: string
+  to: string
+  definition: string
+}[]
+
+data.sort((a, b) => a.from.localeCompare(b.from))
+---
+
+<BaseLayout>
+  <div class="px-6 pb-10">
+    <div class="mx-auto max-w-6xl">
+      <h1 class="mb-8 text-3xl">List of grtn.org short links</h1>
+      <div class="prose max-w-full">
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th>Short link</th>
+              <th>Destination</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              data.map(({ from, to, definition }) => (
+                <tr>
+                  <td class="group whitespace-nowrap">
+                    <strong>{from}</strong>
+                    <a
+                      class="opacity-0 group-focus-within:opacity-100 group-hover:opacity-100"
+                      href={definition + '/editor'}
+                    >
+                      <Icon icon="pixelarticons:edit" inline />
+                    </a>
+                  </td>
+                  <td class="w-full whitespace-nowrap">
+                    <div class="relative">
+                      <div class="absolute inset-0 truncate">{to}</div>
+                      &nbsp;
+                    </div>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

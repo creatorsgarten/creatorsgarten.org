@@ -4,6 +4,7 @@ import './blank.css'
 import '@fontsource/work-sans/latin-300.css'
 import '@fontsource/work-sans/latin-400.css'
 import '@fontsource/work-sans/latin-500.css'
+import '@fontsource/recursive/variable-full.css'
 
 const { pathname } = Astro.url
 const isNoIndex = pathname.endsWith('/editor') || pathname.startsWith('/auth')
@@ -18,9 +19,7 @@ const isNoIndex = pathname.endsWith('/editor') || pathname.startsWith('/auth')
     <link rel="shortcut icon" type="image/svg" href="/images/ring.svg" />
     <link rel="sitemap" href="/sitemap.xml" />
 
-    {isNoIndex && (
-      <meta name="robots" content="noindex" />
-    )}
+    {isNoIndex && <meta name="robots" content="noindex" />}
 
     <slot name="head" />
 

@@ -1,3 +1,5 @@
+import { Html } from '@contentsgarten/html'
+import { MarkdownLink } from './link'
 import { Icon as Iconify } from 'react-iconify-icon-wrapper'
 import type { MarkdownCustomComponents } from '@contentsgarten/html'
 import type { ReactNode } from 'react'
@@ -6,12 +8,14 @@ export const customComponents: MarkdownCustomComponents = {
   leafDirective: {
     RatingTally,
     GoogleMap,
+    Message,
   },
   textDirective: {
     Icon,
   },
   containerDirective: {
     Draft,
+    Message,
   },
 }
 
@@ -111,6 +115,44 @@ function Draft(props: Draft) {
         draft
       </div>
       {props.children}
+    </div>
+  )
+}
+
+interface Message {
+  label?: string
+  children?: ReactNode
+  attributes: {
+    from: string
+  }
+}
+function Message(props: Message) {
+  return (
+    <div className="my-[1em] flex items-start gap-4">
+      <div className="not-prose flex-none">
+        <img
+          src={`https://github.com/${props.attributes.from}.png`}
+          className="mt-0.5 h-8 w-8 rounded-full"
+        />
+      </div>
+      <div className="relative rounded border border-neutral-300 bg-white px-2 py-1">
+        {!!props.label && (
+          <Html
+            html={`${props.label}`}
+            renderLink={props => MarkdownLink(props)}
+            customComponents={customComponents}
+            className="inline"
+          />
+        )}{' '}
+        <span className="[&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+          {props.children}
+        </span>
+        <cite className="text-sm not-italic text-neutral-500">
+          —{props.attributes.from}
+        </cite>
+        <div className="absolute left-[-14px] top-[10px] h-[14px] w-[14px] border-[7px] border-transparent border-r-neutral-300"></div>
+        <div className="absolute left-[-12.586px] top-[10px] h-[14px] w-[14px] border-[7px] border-transparent border-r-white"></div>
+      </div>
     </div>
   )
 }
