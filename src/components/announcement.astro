@@ -1,0 +1,35 @@
+---
+import { Icon } from 'react-iconify-icon-wrapper'
+
+import { getWebsiteConfig } from '$functions/getWebsiteConfig'
+
+const websiteConfig = await getWebsiteConfig()
+const activeAnnouncement = (() => {
+  const announcements = websiteConfig?.announcements ?? {}
+  const preview = Astro.url.searchParams.get('previewAnnouncement')
+  if (preview) {
+    return announcements[preview]
+  }
+  return Object.values(announcements).find(announcement => {
+    if (!announcement.enabled) return false
+    if (announcement.start && new Date() < new Date(announcement.start)) {
+      return false
+    }
+    if (announcement.end && new Date() > new Date(announcement.end)) {
+      return false
+    }
+    return true
+  })
+})()
+---
+
+{
+  !!activeAnnouncement && (
+    <a
+      class="block bg-black px-6 py-4 text-white text-sm sm:text-base"
+      href={activeAnnouncement.link}
+    >
+      <Icon icon="mdi:megaphone" inline /> {activeAnnouncement.message}
+    </a>
+  )
+}

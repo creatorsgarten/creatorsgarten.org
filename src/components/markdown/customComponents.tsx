@@ -4,6 +4,9 @@ import { Icon as Iconify } from 'react-iconify-icon-wrapper'
 import type { MarkdownCustomComponents } from '@contentsgarten/html'
 import type { ReactNode } from 'react'
 
+import './customComponents.css'
+import '@fontsource/recursive/variable-full.css'
+
 export const customComponents: MarkdownCustomComponents = {
   leafDirective: {
     RatingTally,

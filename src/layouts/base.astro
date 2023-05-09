@@ -1,46 +1,18 @@
 ---
-import AuthButton from '../components/authButton.astro'
 import Blank from './blank.astro'
 
+import AuthButton from '../components/authButton.astro'
+import Announcement from '$components/announcement.astro'
+
 import './base.css'
-import { getWebsiteConfig } from '$functions/getWebsiteConfig'
-import { Icon } from 'react-iconify-icon-wrapper'
 
 export interface Props {
   class?: string
 }
-
-const websiteConfig = await getWebsiteConfig()
-const activeAnnouncement = (() => {
-  const announcements = websiteConfig?.announcements ?? {}
-  const preview = Astro.url.searchParams.get('previewAnnouncement')
-  if (preview) {
-    return announcements[preview]
-  }
-  return Object.values(announcements).find(announcement => {
-    if (!announcement.enabled) return false
-    if (announcement.start && new Date() < new Date(announcement.start)) {
-      return false
-    }
-    if (announcement.end && new Date() > new Date(announcement.end)) {
-      return false
-    }
-    return true
-  })
-})()
 ---
 
 <Blank>
-  {
-    !!activeAnnouncement && (
-      <a
-        class="block bg-black px-6 py-4 text-white text-sm sm:text-base"
-        href={activeAnnouncement.link}
-      >
-        <Icon icon="mdi:megaphone" inline /> {activeAnnouncement.message}
-      </a>
-    )
-  }
+  <Announcement />
   <nav class="grid sm:flex grid-cols-2 justify-between px-6 pt-6 pb-8">
     <a href="/" aria-label="back to home">
       <img
