@@ -1,6 +1,8 @@
 import { Html } from '@contentsgarten/html'
 import { MarkdownLink } from './link'
 import { Icon as Iconify } from 'react-iconify-icon-wrapper'
+import { MarkdownImage } from './image'
+
 import type { MarkdownCustomComponents } from '@contentsgarten/html'
 import type { ReactNode } from 'react'
 
@@ -133,8 +135,10 @@ function Message(props: Message) {
   return (
     <div className="my-[1em] flex items-start gap-4">
       <div className="not-prose flex-none">
-        <img
+        <MarkdownImage
           src={getAvatarUrl(props.attributes.from)}
+          width={32}
+          height={32}
           className="mt-0.5 h-8 w-8 rounded-full"
           alt={props.attributes.from}
         />
