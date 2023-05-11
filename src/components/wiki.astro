@@ -111,7 +111,7 @@ const contentHash = getContentHash(markdown)
   ) : (
     <BaseLayout>
       <div class="px-6 pb-10">
-        <div class="mx-auto max-w-6xl">
+        <div class="relative mx-auto max-w-6xl">
           <h1 class="mb-8 text-3xl">{pageRef}</h1>
           <ContentRenderer content={rendered!.html} pageRef={pageRef} />
           {editable && (
@@ -125,6 +125,11 @@ const contentHash = getContentHash(markdown)
               </a>
             </div>
           )}
+          <WikiUpdateChecker
+            initialContentHash={contentHash}
+            pageRef={pageRef}
+            client:idle
+          />
         </div>
       </div>
     </BaseLayout>
