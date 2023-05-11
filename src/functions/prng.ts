@@ -3,14 +3,11 @@ import { createHash, randomUUID } from 'crypto'
 
 const uidMap = new WeakMap<any, string>()
 
-export function prng(
-  astro: Pick<AstroGlobal, 'request'>,
-  key: string | string[]
-) {
-  let uid = uidMap.get(astro.request)
+export function prng(astro: Pick<AstroGlobal, 'url'>, key: string | string[]) {
+  let uid = astro.url.searchParams.get('seed') || uidMap.get(astro.url)
   if (!uid) {
     uid = randomUUID()
-    uidMap.set(astro.request, uid)
+    uidMap.set(astro.url, uid)
   }
   const h = createHash('md5')
   h.update(uid)
