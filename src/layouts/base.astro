@@ -6,23 +6,27 @@ import Announcement from '$components/announcement.astro'
 
 import './base.css'
 import { sample } from '$functions/sample'
+import { prng } from '$functions/prng'
 
-const headerColor = sample([
-  'sm:bg-red-300',
-  'sm:bg-orange-300',
-  'sm:bg-amber-300',
-  'sm:bg-yellow-300',
-  'sm:bg-lime-300',
-  'sm:bg-green-300',
-  'sm:bg-emerald-300',
-  'sm:bg-sky-300',
-  'sm:bg-blue-300',
-  'sm:bg-indigo-300',
-  'sm:bg-purple-300',
-  'sm:bg-fuchsia-300',
-  'sm:bg-pink-300',
-  'sm:bg-rose-300',
-])
+const headerColor = sample(
+  [
+    'sm:bg-red-300',
+    'sm:bg-orange-300',
+    'sm:bg-amber-300',
+    'sm:bg-yellow-300',
+    'sm:bg-lime-300',
+    'sm:bg-green-300',
+    'sm:bg-emerald-300',
+    'sm:bg-sky-300',
+    'sm:bg-blue-300',
+    'sm:bg-indigo-300',
+    'sm:bg-purple-300',
+    'sm:bg-fuchsia-300',
+    'sm:bg-pink-300',
+    'sm:bg-rose-300',
+  ],
+  prng(Astro, ['page', 1])
+)
 
 export interface Props {
   class?: string
