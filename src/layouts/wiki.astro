@@ -53,7 +53,7 @@ const to = [
     {title}
   </h1>
   <div
-    class={`grid divide-x-2 divide-black bg-white border-t-2 border-black grid-cols-1 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]`}
+    class={`grid md:divide-x-2 divide-black bg-white border-t-2 border-black grid-cols-1 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]`}
   >
     <div class={`col-span-1 bg-gradient-to-br ${from} ${to}`}>
       <div class="sticky top-0 flex flex-col sm:border-none md:pb-12">
@@ -67,7 +67,7 @@ const to = [
       </div>
     </div>
     <div
-      class="col-span-1 px-6 md:px-12 py-10 md:min-h-[calc(100vh-24rem)] relative"
+      class="col-span-1 px-5 md:px-12 pt-4 pb-6 md:min-h-[calc(100vh-24rem)] relative"
     >
       <slot />
     </div>

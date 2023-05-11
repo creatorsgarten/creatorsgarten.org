@@ -37,50 +37,7 @@ const websiteConfig = await getWebsiteConfig()
     <div class="[&>*]:p-8 [&>*]:rounded-xl grid sm:grid-cols-3 gap-6 pt-8">
       {
         websiteConfig?.events.recurring.map(event => (
-          <a
-            class={`border-2 border-black bg-gradient-to-br ${
-              [
-                'from-red-400',
-                'from-orange-400',
-                'from-amber-400',
-                'from-yellow-400',
-                'from-lime-400',
-                'from-green-400',
-                'from-emerald-400',
-                'from-teal-400',
-                'from-cyan-400',
-                'from-sky-400',
-                'from-blue-400',
-                'from-indigo-400',
-                'from-violet-400',
-                'from-purple-400',
-                'from-fuchsia-400',
-                'from-pink-400',
-                'from-rose-400',
-              ][Math.floor(Math.random() * 17)]
-            } ${
-              [
-                'to-red-400',
-                'to-orange-400',
-                'to-amber-400',
-                'to-yellow-400',
-                'to-lime-400',
-                'to-green-400',
-                'to-emerald-400',
-                'to-teal-400',
-                'to-cyan-400',
-                'to-sky-400',
-                'to-blue-400',
-                'to-indigo-400',
-                'to-violet-400',
-                'to-purple-400',
-                'to-fuchsia-400',
-                'to-pink-400',
-                'to-rose-400',
-              ][Math.floor(Math.random() * 17)]
-            }`}
-            href="/wiki/StupidHackTH"
-          >
+          <a class={`border-2 border-black bg-white`} href="/wiki/StupidHackTH">
             <p class="font-medium pb-1 text-xl uppercase leading-none">
               {event.name}
             </p>
