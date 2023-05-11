@@ -52,8 +52,8 @@ const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageR
       {/* prettier-ignore-start */}
       <textarea
         name="content"
-        class={`w-full p-4 font-mono text-sm rounded-xl disabled:cursor-not-allowed ${
-          editable ? 'whitespace-pre' : ''
+        class={`w-full p-4 font-mono text-sm rounded-xl disabled:cursor-not-allowed border-2 border-black ${
+          editable ? '' : ''
         }`}
         disabled={!editable}
         rows={40}>{file?.content}</textarea

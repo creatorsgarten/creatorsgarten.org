@@ -56,7 +56,7 @@ const to = [
     class={`grid divide-x-2 divide-black bg-white border-t-2 border-black grid-cols-1 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]`}
   >
     <div class={`col-span-1 bg-gradient-to-br ${from} ${to}`}>
-      <div class="sticky top-0 flex flex-col sm:border-none">
+      <div class="sticky top-0 flex flex-col sm:border-none md:pb-12">
         <slot name="sidebar-left" />
         <div class="hidden md:flex flex-col">
           <slot name="sidebar-left-at-least-2-columns" />

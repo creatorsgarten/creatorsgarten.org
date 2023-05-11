@@ -8,3 +8,15 @@
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
     'Noto Color Emoji' !important;
 }
+
+.edit,
+.prose a {
+  font-variation-settings: 'CASL' 1, 'CRSV' 1, 'slnt' -3;
+  @apply no-underline;
+}
+
+.edit:hover,
+.prose a:hover {
+  font-variation-settings: 'CASL' 1, 'CRSV' 1, 'slnt' -6;
+  @apply font-semibold;
+}

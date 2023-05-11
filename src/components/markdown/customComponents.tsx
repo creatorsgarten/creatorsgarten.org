@@ -57,7 +57,7 @@ function RatingTally(props: RatingTally) {
             <div key={k} className="flex flex-1 flex-col text-center">
               <div className="text-slate-600">{v}</div>
               <div className="px-[10%]">
-                <div className="bg-sky-600" style={{ height }} />
+                <div className="bg-blue-500" style={{ height }} />
               </div>
               <div className="border-t border-slate-400">{k}</div>
             </div>
@@ -139,7 +139,7 @@ function Message(props: Message) {
           src={getAvatarUrl(props.attributes.from)}
           width={32}
           height={32}
-          className="mt-0.5 h-8 w-8 rounded-full"
+          className="mt-0.5 h-8 w-8 rounded-full border border-neutral-300"
           alt={props.attributes.from}
         />
       </div>

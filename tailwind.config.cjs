@@ -23,8 +23,9 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
-            '--tw-prose-links': colors.sky[600],
+            '--tw-prose-links': colors.blue[500],
             a: {
+              fontFamily: 'RecursiveVariable',
               textDecoration: 'none',
               fontWeight: 'inherit',
             },
