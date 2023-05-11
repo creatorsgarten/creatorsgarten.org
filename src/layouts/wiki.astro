@@ -9,25 +9,7 @@ export interface Props {
 
 const { title } = Astro.props
 
-const from = sample(
-  [
-    'from-red-100',
-    'from-orange-100',
-    'from-amber-100',
-    'from-yellow-100',
-    'from-lime-100',
-    'from-green-100',
-    'from-emerald-100',
-    'from-sky-100',
-    'from-blue-100',
-    'from-indigo-100',
-    'from-purple-100',
-    'from-fuchsia-100',
-    'from-pink-100',
-    'from-rose-100',
-  ],
-  prng(Astro, ['page', 1])
-)
+const from = 'from-[--accent-100]'
 
 const to = sample(
   [

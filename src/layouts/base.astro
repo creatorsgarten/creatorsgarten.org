@@ -8,26 +8,6 @@ import './base.css'
 import { sample } from '$functions/sample'
 import { prng } from '$functions/prng'
 
-const headerColor = sample(
-  [
-    'sm:bg-red-300',
-    'sm:bg-orange-300',
-    'sm:bg-amber-300',
-    'sm:bg-yellow-300',
-    'sm:bg-lime-300',
-    'sm:bg-green-300',
-    'sm:bg-emerald-300',
-    'sm:bg-sky-300',
-    'sm:bg-blue-300',
-    'sm:bg-indigo-300',
-    'sm:bg-purple-300',
-    'sm:bg-fuchsia-300',
-    'sm:bg-pink-300',
-    'sm:bg-rose-300',
-  ],
-  prng(Astro, ['page', 1])
-)
-
 export interface Props {
   class?: string
 }
@@ -56,7 +36,7 @@ export interface Props {
       class="hidden col-span-2 sm:col-span-1 w-full pt-6 sm:p-0 sm:w-auto sm:flex items-center sm:space-x-4 font-medium text-sm ml-auto"
     >
       <ul
-        class={`grid grid-cols-2 text-lg md:text-sm gap-2 sm:flex shrink-0 sm:space-x-2 rounded-full ${headerColor} md:border-2 border-black py-2 px-4 mb-2 sm:mb-0`}
+        class={`grid grid-cols-2 text-lg md:text-sm gap-2 sm:flex shrink-0 sm:space-x-2 rounded-full sm:bg-[--accent-300] md:border-2 border-black py-2 px-4 mb-2 sm:mb-0`}
       >
         <li>
           <a href="/events">EVENTS</a>
