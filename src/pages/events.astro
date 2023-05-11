@@ -38,25 +38,45 @@ const websiteConfig = await getWebsiteConfig()
       {
         websiteConfig?.events.recurring.map(event => (
           <a
-            class={`border-2 border-black ${
+            class={`border-2 border-black bg-gradient-to-br ${
               [
-                'bg-red-400',
-                'bg-orange-400',
-                'bg-amber-400',
-                'bg-yellow-400',
-                'bg-lime-400',
-                'bg-green-400',
-                'bg-emerald-400',
-                'bg-teal-400',
-                'bg-cyan-400',
-                'bg-sky-400',
-                'bg-blue-400',
-                'bg-indigo-400',
-                'bg-violet-400',
-                'bg-purple-400',
-                'bg-fuchsia-400',
-                'bg-pink-400',
-                'bg-rose-400',
+                'from-red-400',
+                'from-orange-400',
+                'from-amber-400',
+                'from-yellow-400',
+                'from-lime-400',
+                'from-green-400',
+                'from-emerald-400',
+                'from-teal-400',
+                'from-cyan-400',
+                'from-sky-400',
+                'from-blue-400',
+                'from-indigo-400',
+                'from-violet-400',
+                'from-purple-400',
+                'from-fuchsia-400',
+                'from-pink-400',
+                'from-rose-400',
+              ][Math.floor(Math.random() * 17)]
+            } ${
+              [
+                'to-red-400',
+                'to-orange-400',
+                'to-amber-400',
+                'to-yellow-400',
+                'to-lime-400',
+                'to-green-400',
+                'to-emerald-400',
+                'to-teal-400',
+                'to-cyan-400',
+                'to-sky-400',
+                'to-blue-400',
+                'to-indigo-400',
+                'to-violet-400',
+                'to-purple-400',
+                'to-fuchsia-400',
+                'to-pink-400',
+                'to-rose-400',
               ][Math.floor(Math.random() * 17)]
             }`}
             href="/wiki/StupidHackTH"
