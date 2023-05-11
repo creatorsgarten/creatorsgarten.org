@@ -11,7 +11,7 @@ export interface Props {
   Astro.props.contents.length > 0 && (
     <section class={`p-6 border-b-2 border-black 2xl:bg-white`}>
       <h2 class="pb-4 text-center font-medium uppercase">Contents</h2>
-      <ul class="list-inside list-disc">
+      <ul class="list-inside list-disc text-sm">
         {Astro.props.contents.map(content => (
           <li class="py-1">
             <a
