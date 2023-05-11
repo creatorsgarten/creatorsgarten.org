@@ -1,3 +1,3 @@
-export function sample<T>(a: readonly T[]): T {
-  return a[Math.floor(Math.random() * a.length)]
+export function sample<T>(a: readonly T[], rand = Math.random()): T {
+  return a[Math.floor(rand * a.length)]
 }
