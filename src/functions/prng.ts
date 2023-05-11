@@ -10,7 +10,7 @@ export function prng(
   let uid = uidMap.get(astro.request)
   if (!uid) {
     uid = randomUUID()
-    uidMap.set(astro, uid)
+    uidMap.set(astro.request, uid)
   }
   const h = createHash('md5')
   h.update(uid)
