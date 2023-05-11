@@ -38,9 +38,7 @@ const websiteConfig = await getWebsiteConfig()
       {
         websiteConfig?.events.recurring.map(event => (
           <a class={`border-2 border-black bg-white`} href="/wiki/StupidHackTH">
-            <p class="font-medium pb-1 text-xl uppercase leading-none">
-              {event.name}
-            </p>
+            <p class="font-medium uppercase leading-none">{event.name}</p>
             <p class="uppercase">{event.schedule}</p>
           </a>
         ))

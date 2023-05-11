@@ -4,19 +4,22 @@ import Head from '$components/head.astro'
 import Guilds from '$components/guilds.astro'
 import BaseLayout from '$layouts/base.astro'
 import CFImage from '$components/cfImage.astro'
+import { getWebsiteConfig } from '$functions/getWebsiteConfig'
+
+const websiteConfig = await getWebsiteConfig()
 ---
 
 <Head />
 
 <BaseLayout class="max-w-7xl mx-auto space-y-10 md:space-y-16 [&>*]:px-6">
   <section class="text-center">
-    <h2 class="font-medium">CONNECT / CRAFT / EXPLORE</h2>
+    <!-- <h2 class="font-medium">CONNECT / CRAFT / EXPLORE</h2> -->
     <h1 class="py-4 text-4xl sm:text-6xl font-medium">
       CONNECTING CREATORS,<br />MAKING THINGS.
     </h1>
-    <a href="/wiki/DemocratizeCreationForAll" class="text-sky-600"
+    <!-- <a href="/wiki/DemocratizeCreationForAll" class="text-sky-600"
       >OUR MANIFESTO →</a
-    >
+    > -->
   </section>
   <section class="sm:grid grid-cols-2 gap-8">
     <CFImage
@@ -43,8 +46,8 @@ import CFImage from '$components/cfImage.astro'
         tools, or hardware to solve their own problems when they arise. Thus,
         they learn effectively at maximum speed.
       </p>
-      <a href="/wiki/DemocratizeCreationForAll" class="text-sky-600"
-        >SEE MORE →</a
+      <a href="/wiki/DemocratizeCreationForAll" class="text-blue-500"
+        >MANIFESTO →</a
       >
     </article>
   </section>
@@ -53,23 +56,20 @@ import CFImage from '$components/cfImage.astro'
   </section> -->
   <section class="space-y-10">
     <Participate />
-    <div>
-      <h2 class="py-4 text-3xl font-medium">RECURRING EVENTS</h2>
-      <div
-        class="[&>*]:bg-white [&>*]:p-8 [&>*]:rounded-xl transition-all grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        <div>
-          <p class="font-medium leading-none">HACKTOBERFEST THAILAND</p>
-          <p>OCTOBER</p>
-        </div>
-        <div>
-          <p class="font-medium leading-none">STUPID HACKATHON</p>
-          <p>MID Q2 TO MID Q3</p>
-        </div>
-        <div>
-          <p class="font-medium leading-none">CREATIVE CODE</p>
-          <p>BIWEEKLY</p>
-        </div>
+    <div class="pt-4">
+      <h2 class="text-3xl font-medium">SERIES</h2>
+      <div class="[&>*]:p-8 [&>*]:rounded-xl grid sm:grid-cols-3 gap-6 pt-4">
+        {
+          websiteConfig?.events.recurring.map(event => (
+            <a
+              class={`border-2 border-black bg-white`}
+              href="/wiki/StupidHackTH"
+            >
+              <p class="font-medium uppercase leading-none">{event.name}</p>
+              <p class="uppercase">{event.schedule}</p>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
