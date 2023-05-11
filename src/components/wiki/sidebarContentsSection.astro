@@ -1,17 +1,56 @@
 ---
-import SidebarSection from './sidebarSection.astro'
-
 export interface Props {
   contents: {
     id: string
     label: string
   }[]
 }
+
+const from = [
+  'from-red-50',
+  'from-orange-50',
+  'from-amber-50',
+  'from-yellow-50',
+  'from-lime-50',
+  'from-green-50',
+  'from-emerald-50',
+  'from-teal-50',
+  'from-cyan-50',
+  'from-sky-50',
+  'from-blue-50',
+  'from-indigo-50',
+  'from-violet-50',
+  'from-purple-50',
+  'from-fuchsia-50',
+  'from-pink-50',
+  'from-rose-50',
+][Math.floor(Math.random() * 17)]
+
+const to = [
+  'to-red-50',
+  'to-orange-50',
+  'to-amber-50',
+  'to-yellow-50',
+  'to-lime-50',
+  'to-green-50',
+  'to-emerald-50',
+  'to-teal-50',
+  'to-cyan-50',
+  'to-sky-50',
+  'to-blue-50',
+  'to-indigo-50',
+  'to-violet-50',
+  'to-purple-50',
+  'to-fuchsia-50',
+  'to-pink-50',
+  'to-rose-50',
+][Math.floor(Math.random() * 17)]
 ---
 
 {
   Astro.props.contents.length > 0 && (
-    <SidebarSection title="Contents">
+    <section class={`p-6 bg-gradient-to-br ${from} ${to}`}>
+      <h2 class="pb-4 text-center font-medium uppercase">Contents</h2>
       <ul class="list-inside list-disc text-sm">
         {Astro.props.contents.map(content => (
           <li class="py-1">
@@ -24,6 +63,24 @@ export interface Props {
           </li>
         ))}
       </ul>
-    </SidebarSection>
+    </section>
   )
 }
+
+<style>
+  .mesh {
+    background: fixed;
+    background-color: rgb(252, 165, 165);
+    background-image: radial-gradient(
+        at 79% 79%,
+
+        rgb(236, 254, 255) 0,
+
+        transparent 59%
+      ),
+      radial-gradient(at 22% 84%, rgb(254, 249, 195) 0, transparent 47%),
+      radial-gradient(at 55% 48%, rgb(136, 19, 55) 0, transparent 47%),
+      radial-gradient(at 81% 52%, rgb(7, 89, 133) 0, transparent 52%),
+      radial-gradient(at 19% 2%, rgb(147, 197, 253) 0, transparent 35%);
+  }
+</style>

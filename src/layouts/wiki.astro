@@ -13,18 +13,18 @@ const { title } = Astro.props
     {title}
   </h1>
   <div
-    class="grid divide-x-2 divide-[#ededed] border-[#ededed] border-t-2 grid-cols-1 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]"
+    class="grid divide-x-2 divide-[#ededed] bg-white border-[#ededed] border-t-2 grid-cols-1 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]"
   >
-    <div class="col-span-1">
+    <div class="col-span-1 bg-[#f8f8f8]">
       <div
-        class="sticky top-0 flex flex-col gap-0.5 bg-[#ededed] border-[#ededed] border-b-2 sm:border-none"
+        class="sticky top-0 flex flex-col border-[#ededed] sm:border-none divide-y-2"
       >
         <slot name="sidebar-left" />
-        <div class="2xl:hidden flex flex-col gap-0.5">
-          <slot name="sidebar-left-less-than-3-columns" />
-        </div>
-        <div class="hidden md:flex flex-col gap-0.5">
+        <div class="hidden md:flex flex-col divide-y-2">
           <slot name="sidebar-left-at-least-2-columns" />
+        </div>
+        <div class="hidden md:flex 2xl:hidden flex-col divide-y-2">
+          <slot name="sidebar-left-less-than-3-columns" />
         </div>
       </div>
     </div>
@@ -33,13 +33,13 @@ const { title } = Astro.props
     >
       <slot />
     </div>
-    <div class="col-span-1 hidden 2xl:block">
-      <div class="sticky top-0 flex flex-col gap-0.5 bg-[#ededed]">
+    <div class="col-span-1 hidden 2xl:block bg-[#f8f8f8]">
+      <div class="sticky top-0 flex flex-col divide-y-2">
         <slot name="sidebar-right" />
       </div>
     </div>
-    <div class="col-span-1 md:hidden">
-      <div class="flex flex-col gap-0.5 bg-[#ededed] pt-0.5">
+    <div class="col-span-1 md:hidden border-y-2">
+      <div class="flex flex-col pt-0.5 divide-y-2">
         <slot name="sidebar-bottom" />
       </div>
     </div>

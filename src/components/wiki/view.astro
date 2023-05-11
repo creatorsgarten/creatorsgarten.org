@@ -54,7 +54,11 @@ const coverImage =
 
 <Layout title={title}>
   <Fragment slot="sidebar-left">
-    {!!coverImage && <img src={coverImage} class="aspect-square w-full" alt="cover image" />}
+    {
+      !!coverImage && (
+        <img src={coverImage} class="aspect-square w-full" alt="cover image" />
+      )
+    }
     {
       !!parsedFrontMatter?.event && (
         <SidebarEventSection event={parsedFrontMatter.event} />
@@ -63,16 +67,19 @@ const coverImage =
   </Fragment>
 
   <Fragment slot="sidebar-left-less-than-3-columns">
-    <SidebarContentsSection contents={rendered.headings} />
-  </Fragment>
-  <Fragment slot="sidebar-right">
-    <SidebarContentsSection contents={rendered.headings} />
-  </Fragment>
-
-  <Fragment slot="sidebar-left-at-least-2-columns">
     <SidebarMetadataSection {...metadata} />
     <SidebarShareSection />
   </Fragment>
+
+  <Fragment slot="sidebar-left-at-least-2-columns">
+    <SidebarContentsSection contents={rendered.headings} />
+  </Fragment>
+
+  <Fragment slot="sidebar-right">
+    <SidebarMetadataSection {...metadata} />
+    <SidebarShareSection />
+  </Fragment>
+
   <Fragment slot="sidebar-bottom">
     <SidebarMetadataSection {...metadata} />
     <SidebarShareSection />
