@@ -6,6 +6,46 @@ export interface Props {
 }
 
 const { title } = Astro.props
+
+const from = [
+  'from-red-100',
+  'from-orange-100',
+  'from-amber-100',
+  'from-yellow-100',
+  'from-lime-100',
+  'from-green-100',
+  'from-emerald-100',
+  'from-teal-100',
+  'from-cyan-100',
+  'from-sky-100',
+  'from-blue-100',
+  'from-indigo-100',
+  'from-violet-100',
+  'from-purple-100',
+  'from-fuchsia-100',
+  'from-pink-100',
+  'from-rose-100',
+][Math.floor(Math.random() * 17)]
+
+const to = [
+  'to-red-100',
+  'to-orange-100',
+  'to-amber-100',
+  'to-yellow-100',
+  'to-lime-100',
+  'to-green-100',
+  'to-emerald-100',
+  'to-teal-100',
+  'to-cyan-100',
+  'to-sky-100',
+  'to-blue-100',
+  'to-indigo-100',
+  'to-violet-100',
+  'to-purple-100',
+  'to-fuchsia-100',
+  'to-pink-100',
+  'to-rose-100',
+][Math.floor(Math.random() * 17)]
 ---
 
 <BaseLayout>
@@ -13,9 +53,9 @@ const { title } = Astro.props
     {title}
   </h1>
   <div
-    class="grid divide-x-2 bg-white border-t-2 grid-cols-1 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]"
+    class={`grid divide-x-2 divide-black bg-white border-t-2 border-black grid-cols-1 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]`}
   >
-    <div class="col-span-1">
+    <div class={`col-span-1 bg-gradient-to-br ${from} ${to}`}>
       <div class="sticky top-0 flex flex-col sm:border-none">
         <slot name="sidebar-left" />
         <div class="hidden md:flex flex-col">
@@ -27,16 +67,16 @@ const { title } = Astro.props
       </div>
     </div>
     <div
-      class="col-span-1 px-6 md:px-12 py-10 md:min-h-[calc(100vh-24rem)] relative border-b-2"
+      class="col-span-1 px-6 md:px-12 py-10 md:min-h-[calc(100vh-24rem)] relative"
     >
       <slot />
     </div>
-    <div class="col-span-1 hidden 2xl:block">
+    <div class={`col-span-1 hidden 2xl:block bg-gradient-to-br ${from} ${to}`}>
       <div class="sticky top-0 flex flex-col">
         <slot name="sidebar-right" />
       </div>
     </div>
-    <div class="col-span-1 md:hidden border-y-2">
+    <div class="col-span-1 md:hidden border-t-2 md:border-y-2">
       <div class="flex flex-col pt-0.5">
         <slot name="sidebar-bottom" />
       </div>

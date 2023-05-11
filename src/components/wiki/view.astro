@@ -56,7 +56,11 @@ const coverImage =
   <Fragment slot="sidebar-left">
     {
       !!coverImage && (
-        <img src={coverImage} class="aspect-square w-full" alt="cover image" />
+        <img
+          src={coverImage}
+          class="aspect-square w-full border-b-2 border-black"
+          alt="cover image"
+        />
       )
     }
     {

@@ -5,57 +5,17 @@ export interface Props {
     label: string
   }[]
 }
-
-const from = [
-  'from-red-100',
-  'from-orange-100',
-  'from-amber-100',
-  'from-yellow-100',
-  'from-lime-100',
-  'from-green-100',
-  'from-emerald-100',
-  'from-teal-100',
-  'from-cyan-100',
-  'from-sky-100',
-  'from-blue-100',
-  'from-indigo-100',
-  'from-violet-100',
-  'from-purple-100',
-  'from-fuchsia-100',
-  'from-pink-100',
-  'from-rose-100',
-][Math.floor(Math.random() * 17)]
-
-const to = [
-  'to-red-100',
-  'to-orange-100',
-  'to-amber-100',
-  'to-yellow-100',
-  'to-lime-100',
-  'to-green-100',
-  'to-emerald-100',
-  'to-teal-100',
-  'to-cyan-100',
-  'to-sky-100',
-  'to-blue-100',
-  'to-indigo-100',
-  'to-violet-100',
-  'to-purple-100',
-  'to-fuchsia-100',
-  'to-pink-100',
-  'to-rose-100',
-][Math.floor(Math.random() * 17)]
 ---
 
 {
   Astro.props.contents.length > 0 && (
-    <section class={`p-6 bg-gradient-to-br ${from} ${to} border-b-2`}>
+    <section class={`p-6 border-b-2 border-black 2xl:bg-white`}>
       <h2 class="pb-4 text-center font-medium uppercase">Contents</h2>
       <ul class="list-inside list-disc text-sm">
         {Astro.props.contents.map(content => (
           <li class="py-1">
             <a
-              class="transition-all hover:text-sky-600"
+              class="transition-all hover:font-semibold uppercase"
               href={'#' + content.id}
             >
               {content.label}
