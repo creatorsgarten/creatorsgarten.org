@@ -32,9 +32,14 @@ module.exports = {
             h1: {
               fontWeight: 500,
               marginTop: '3rem',
+              marginBottom: '0.5em',
             },
             h2: {
               fontWeight: 500,
+              marginBottom: '0.67em',
+            },
+            'h1+h2': {
+              marginTop: '1em',
             },
             details: {
               backgroundColor: colors.gray[50],
