@@ -9,9 +9,9 @@ export interface Props {
 
 const { title } = Astro.props
 
-const from = 'from-[--accent-100]'
+const to = 'from-[--accent-100]'
 
-const to = sample(
+const from = sample(
   [
     'to-red-100',
     'to-orange-100',
@@ -39,7 +39,7 @@ const to = sample(
   <div
     class={`grid md:divide-x-2 divide-black bg-white border-t-2 border-black grid-cols-1 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]`}
   >
-    <div class={`col-span-1 bg-gradient-to-br ${from} ${to}`}>
+    <div class={`col-span-1 bg-gradient-to-tr ${from} ${to}`}>
       <div class="sticky top-0 flex flex-col sm:border-none md:pb-12">
         <slot name="sidebar-left" />
         <div class="hidden md:flex flex-col">
@@ -51,16 +51,18 @@ const to = sample(
       </div>
     </div>
     <div
-      class="col-span-1 px-5 md:px-12 pt-4 md:py-10 pb-6 md:min-h-[calc(100vh-24rem)] relative"
+      class="col-span-1 px-5 md:px-12 py-8 md:py-10 md:min-h-[calc(100vh-24rem)] relative"
     >
       <slot />
     </div>
-    <div class={`col-span-1 hidden 2xl:block bg-gradient-to-br ${from} ${to}`}>
+    <div class={`col-span-1 hidden 2xl:block bg-gradient-to-tr ${from} ${to}`}>
       <div class="sticky top-0 flex flex-col">
         <slot name="sidebar-right" />
       </div>
     </div>
-    <div class="col-span-1 md:hidden border-t-2 md:border-y-2">
+    <div
+      class={`col-span-1 md:hidden border-t-2 md:border-y-2  bg-gradient-to-tr ${from} ${to}`}
+    >
       <div class="flex flex-col pt-0.5">
         <slot name="sidebar-bottom" />
       </div>

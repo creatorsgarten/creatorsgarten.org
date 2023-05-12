@@ -1,9 +1,13 @@
 ---
 import { Icon } from 'react-iconify-icon-wrapper'
 import SidebarSection from './sidebarSection.astro'
+
+export interface Props {
+  noBottomBorder?: boolean
+}
 ---
 
-<SidebarSection title="Share">
+<SidebarSection title="Share" noBottomBorder={Astro.props.noBottomBorder}>
   <div class="flex justify-center space-x-4">
     <a
       target="_blank"
