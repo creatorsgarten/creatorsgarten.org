@@ -4,15 +4,19 @@ import { SEO } from 'astro-seo'
 export interface Props {
   title?: string
   description?: string
+  ogImage?: string
 }
 
-const { title, description = 'Creatorsgarten - Democratize creation for all' } =
-  Astro.props
+const {
+  title,
+  description = 'Creatorsgarten - Democratize creation for all',
+  ogImage,
+} = Astro.props
 
 const builtTitle = title
   ? [title, 'Creatorsgarten'].join(' · ')
   : 'Creatorsgarten'
-const builtImage = Astro.url.origin + '/images/og.jpg'
+const builtImage = ogImage || Astro.url.origin + '/images/og.jpg'
 ---
 
 <SEO
