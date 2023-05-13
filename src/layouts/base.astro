@@ -5,56 +5,73 @@ import AuthButton from '../components/authButton.astro'
 import Announcement from '$components/announcement.astro'
 
 import './base.css'
-import { sample } from '$functions/sample'
-import { prng } from '$functions/prng'
+import { getFeatureFlags } from '$functions/getFeatureFlags'
 
 export interface Props {
   class?: string
 }
+
+const featureFlags = getFeatureFlags(Astro)
 ---
 
 <Blank>
-  <Announcement />
-  <nav class="grid sm:flex grid-cols-2 justify-between px-6 pt-6 pb-8">
-    <a href="/" aria-label="back to home">
-      <img
-        src="/images/creatorsgarten.svg"
-        width={888}
-        height={398}
-        class="w-auto h-9"
-        alt="garten"
-      />
-    </a>
-    <button
-      class="sm:hidden text-3xl ml-auto"
-      onclick="let m=document.getElementById('nav-menu');m.classList.toggle('block');m.classList.toggle('hidden');"
-      >🍔</button
-    >
-    <!-- TODO: Delete this -->
-    <div
-      id="nav-menu"
-      class="hidden col-span-2 sm:col-span-1 w-full pt-6 sm:p-0 sm:w-auto sm:flex items-center sm:space-x-4 font-medium text-sm ml-auto"
-    >
-      <ul
-        class={`grid grid-cols-2 text-base list-disc md:list-none md:text-sm gap-2 sm:flex shrink-0 sm:space-x-2 rounded-full sm:bg-[--accent-300] md:border-2 border-black py-2 px-4 mb-2 sm:mb-0`}
-      >
-        <li>
-          <a href="/events">EVENTS</a>
-        </li>
-        <li>
-          <a href="/wiki/Guilds">PEOPLE</a>
-        </li>
-        <li>
-          <a href="/wiki/SelfIntroduction">US</a>
-        </li>
-        <li>
-          <a href="/wiki">WIKI</a>
-        </li>
-      </ul>
-      <AuthButton />
-    </div>
-  </nav>
-
+  {featureFlags.isEnabled('og:image')
+    ? <Fragment>
+        <div class="h-[285px] bg-[--accent-300] border-b-2 border-black mb-8 flex items-center justify-center">
+          <img
+            src="/images/creatorsgarten.svg"
+            width={888}
+            height={398}
+            class="w-auto h-[200px]"
+            alt="garten"
+          />
+        </div>
+      </Fragment>
+    : (
+      <Fragment>
+        <Announcement />
+        <nav class="grid sm:flex grid-cols-2 justify-between px-6 pt-6 pb-8">
+          <a href="/" aria-label="back to home">
+            <img
+              src="/images/creatorsgarten.svg"
+              width={888}
+              height={398}
+              class="w-auto h-9"
+              alt="garten"
+            />
+          </a>
+          <button
+            class="sm:hidden text-3xl ml-auto"
+            onclick="let m=document.getElementById('nav-menu');m.classList.toggle('block');m.classList.toggle('hidden');"
+            >🍔</button
+          >
+          <!-- TODO: Delete this -->
+          <div
+            id="nav-menu"
+            class="hidden col-span-2 sm:col-span-1 w-full pt-6 sm:p-0 sm:w-auto sm:flex items-center sm:space-x-4 font-medium text-sm ml-auto"
+          >
+            <ul
+              class={`grid grid-cols-2 text-base list-disc md:list-none md:text-sm gap-2 sm:flex shrink-0 sm:space-x-2 rounded-full sm:bg-[--accent-300] md:border-2 border-black py-2 px-4 mb-2 sm:mb-0`}
+            >
+              <li>
+                <a href="/events">EVENTS</a>
+              </li>
+              <li>
+                <a href="/wiki/Guilds">PEOPLE</a>
+              </li>
+              <li>
+                <a href="/wiki/SelfIntroduction">US</a>
+              </li>
+              <li>
+                <a href="/wiki">WIKI</a>
+              </li>
+            </ul>
+            <AuthButton />
+          </div>
+        </nav>
+      </Fragment>
+    )
+  }
   <main {...{ class: ' ' + Astro.props.class ?? '' }}>
     <slot />
   </main>

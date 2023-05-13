@@ -2,7 +2,7 @@ import type { AstroGlobal } from 'astro'
 import type { FrontMatter } from './parseFrontMatter'
 import type { WebsiteConfig } from '$constants/websiteConfigSchema'
 
-const queryOnlyFeatureFlags = ['staging'] as const
+const queryOnlyFeatureFlags = ['staging', 'og:image'] as const
 const queryOnlyFeatureFlagSet = new Set<string>(queryOnlyFeatureFlags)
 
 type FeatureFlagKeyFromConfig = keyof NonNullable<
