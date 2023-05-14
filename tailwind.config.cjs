@@ -37,6 +37,9 @@ module.exports = {
               textDecoration: 'none',
               fontWeight: 'inherit',
             },
+            code: {
+              fontVariationSettings: '"CASL" 0, "CRSV" 0, "slnt" 0, "MONO" 1'
+            },
             h1: {
               fontWeight: 500,
               marginTop: '3rem',
