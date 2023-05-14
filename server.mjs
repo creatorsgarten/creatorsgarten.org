@@ -18,4 +18,4 @@ await app
   .register(fastifyMiddie)
 app.use(ssrHandler)
 
-app.listen({ port: +process.env.PORT || 3000 })
+app.listen({ port: +process.env.PORT || 3000, host: '0.0.0.0' })
