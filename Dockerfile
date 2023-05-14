@@ -34,5 +34,6 @@ ENV PORT 8080
 COPY package.json ./
 COPY --chown=nonroot:nonroot --from=deps-prod /app/node_modules ./node_modules
 COPY --chown=nonroot:nonroot --from=builder /app/dist ./dist
+COPY server.mjs ./
 
-CMD ["./dist/server/entry.mjs"]
+CMD ["./server.mjs"]

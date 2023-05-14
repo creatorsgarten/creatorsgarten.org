@@ -13,7 +13,7 @@ export default defineConfig({
   output: 'server',
   site: 'https://creatorsgarten.org',
   adapter: node({
-    mode: 'standalone',
+    mode: 'middleware',
   }),
   integrations: [tailwind(), prefetch(), react()],
   vite: {
