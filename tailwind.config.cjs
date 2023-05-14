@@ -8,6 +8,14 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['"Work Sans"', ...defaultConfig.theme.fontFamily.sans],
+        casual: [
+          ['RecursiveVariable', ...defaultConfig.theme.fontFamily.sans],
+          { fontVariationSettings: '"CASL" 1, "CRSV" 1, "slnt" 0, "MONO" 0' },
+        ],
+        mono: [
+          ['RecursiveVariable', ...defaultConfig.theme.fontFamily.mono],
+          { fontVariationSettings: '"CASL" 0, "CRSV" 0, "slnt" 0, "MONO" 1' },
+        ],
       },
       animation: {
         loader: 'loader 0.6s infinite alternate',
