@@ -32,11 +32,11 @@ module.exports = {
         DEFAULT: {
           css: {
             '--tw-prose-links': colors.blue[500],
-            // a: {
-            //   fontFamily: 'RecursiveVariable',
-            //   textDecoration: 'none',
-            //   fontWeight: 'inherit',
-            // },
+            a: {
+              fontFamily: 'RecursiveVariable',
+              textDecoration: 'none',
+              fontWeight: 'inherit',
+            },
             // Remove Comments for ความกระตุกจิตกระชากใจ
             code: {
               fontVariationSettings: '"CASL" 0, "CRSV" 0, "slnt" 0, "MONO" 1',
