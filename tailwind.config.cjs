@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Work Sans"', ...defaultConfig.theme.fontFamily.sans],
+        sans: ['Work Sans', ...defaultConfig.theme.fontFamily.sans],
         casual: [
           ['RecursiveVariable', ...defaultConfig.theme.fontFamily.sans],
           { fontVariationSettings: '"CASL" 1, "CRSV" 1, "slnt" 0, "MONO" 0' },

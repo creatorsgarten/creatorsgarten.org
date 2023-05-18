@@ -143,7 +143,7 @@ function Message(props: Message) {
           alt={props.attributes.from}
         />
       </div>
-      <div className="relative rounded  bg-white px-2 py-1">
+      <div className="relative rounded border bg-white px-2 py-1">
         {!!props.label && (
           <Html
             html={`${props.label}`}
