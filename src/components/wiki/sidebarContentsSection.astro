@@ -3,14 +3,15 @@ export interface Props {
   contents: {
     id: string
     label: string
+    bg: string
   }[]
 }
 ---
 
 {
   Astro.props.contents.length > 0 && (
-    <section class={`p-6 border-b-2 border-black 2xl:bg-white`}>
-      <h2 class="pb-4 text-center font-medium uppercase">Contents</h2>
+    <section class={`p-6 bg-white rounded-xl mb-6`}>
+      <p class="pb-4 text-xl font-medium text-center uppercase">Contents</p>
       <ul class="list-inside list-disc text-sm">
         {Astro.props.contents.map(content => (
           <li class="py-1">

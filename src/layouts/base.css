@@ -15,8 +15,8 @@
   @apply no-underline;
 }
 
-.edit:hover,
+/* .edit:hover,
 .prose a:hover {
   font-variation-settings: 'CASL' 1, 'CRSV' 1, 'slnt' -6, 'MONO' 0;
   @apply font-semibold;
-}
+} */

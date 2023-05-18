@@ -14,11 +14,11 @@ if (!authenticatedUser) return Astro.redirect('/')
 <BaseLayout class="max-w-7xl mx-auto space-y-6 [&>*]:px-6">
   <section class="max-w-lg mx-auto">
     <div
-      class="flex border-2 bg-green-400 border-black rounded-2xl p-4 space-x-4"
+      class="flex  bg-green-400  rounded-2xl p-4 space-x-4"
     >
       <img
         src={authenticatedUser.avatar}
-        class="w-24 h-24 rounded-full shrink-0 border-2 border-black"
+        class="w-24 h-24 rounded-full shrink-0  "
       />
       <div class="py-2 pr-2 flex flex-col justify-center">
         <h1 class="font-medium text-lg">{authenticatedUser.name}</h1>
@@ -27,7 +27,7 @@ if (!authenticatedUser) return Astro.redirect('/')
     </div>
   </section>
   <section class="max-w-2xl mx-auto">
-    <div class="bg-white rounded-2xl py-6 px-8 border-2 border-black">
+    <div class="bg-white rounded-2xl py-6 px-8  ">
       <h1 class="font-medium text-xl uppercase pb-4 text-center">
         Connections
       </h1>
@@ -45,7 +45,7 @@ if (!authenticatedUser) return Astro.redirect('/')
         </div>
         <a
           href="/auth/connect/github"
-          class="uppercase py-2 px-4 border-2 border-black rounded-lg bg-indigo-400"
+          class="uppercase py-2 px-4   rounded-lg bg-indigo-400"
           >{authenticatedUser.connections.github ? 'Reconnect' : 'Connect'}</a
         >
       </div>

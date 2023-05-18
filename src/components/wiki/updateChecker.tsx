@@ -38,7 +38,7 @@ function WikiUpdateCheckerImpl(props: WikiUpdateChecker) {
 function UpdatesAvailable() {
   return (
     <button
-      className="absolute right-3 top-3 rounded border border-neutral-300 px-2 py-1 text-neutral-500 hover:border-neutral-400"
+      className="absolute right-3 top-3 rounded px-2 py-1 text-neutral-500 hover:border-neutral-400"
       onClick={() => location.reload()}
     >
       <Icon icon="eva:refresh-outline" inline />

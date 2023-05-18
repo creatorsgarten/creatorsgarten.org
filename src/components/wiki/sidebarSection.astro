@@ -6,11 +6,9 @@ export interface Props {
 ---
 
 <section
-  class={`p-6 ${
-    Astro.props.noBottomBorder ?? 'border-b-2'
-  } border-black md:bg-white`}
+  class={`p-6 mb-6 rounded-xl md:bg-white`}
 >
-  <h2 class="pb-4 text-center font-medium uppercase">
+  <h2 class="pb-4 text-center text-xl font-medium uppercase">
     {Astro.props.title}
   </h2>
   <slot />

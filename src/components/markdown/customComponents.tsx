@@ -139,11 +139,11 @@ function Message(props: Message) {
           src={getAvatarUrl(props.attributes.from)}
           width={32}
           height={32}
-          className="mt-0.5 h-8 w-8 rounded-full border border-neutral-300"
+          className="mt-0.5 h-8 w-8 rounded-full"
           alt={props.attributes.from}
         />
       </div>
-      <div className="relative rounded border border-neutral-300 bg-white px-2 py-1">
+      <div className="relative rounded  bg-white px-2 py-1">
         {!!props.label && (
           <Html
             html={`${props.label}`}
