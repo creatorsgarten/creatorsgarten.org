@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('Homepage works', async ({ page }) => {
   await page.goto('/')
   await expect(
-    page.getByRole('heading', { name: 'CONNECT / CRAFT / EXPLORE' })
+    page.getByRole('heading', { name: 'CONNECTING CREATORS,\nMAKING THINGS.' })
   ).toBeVisible()
 })
 
