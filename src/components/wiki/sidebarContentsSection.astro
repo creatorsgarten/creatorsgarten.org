@@ -10,7 +10,7 @@ export interface Props {
 
 {
   Astro.props.contents.length > 0 && (
-    <section class={`p-6 bg-white rounded-xl mb-6`}>
+    <section class={`p-6 bg-white border border-neutral-300 rounded-xl mb-6`}>
       <p class="pb-4 text-xl font-medium text-center uppercase">Contents</p>
       <ul class="list-inside list-disc text-sm">
         {Astro.props.contents.map(content => (
