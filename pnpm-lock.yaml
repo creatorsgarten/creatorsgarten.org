@@ -77,8 +77,8 @@ devDependencies:
     specifier: ^4.5.15
     version: 4.5.15
   '@fontsource/recursive':
-    specifier: ^4.5.13
-    version: 4.5.13
+    specifier: ^5.0.0
+    version: 5.0.0
   '@fontsource/work-sans':
     specifier: ^4.5.14
     version: 4.5.14
@@ -790,8 +790,8 @@ packages:
     resolution: {integrity: sha512-FzleM9AxZQK2nqsTDtBiY0PMEVWvnKnuu2i09+p6DHvrHsuucoV2j0tmw+kAT3L4hvsLdAIDv6MdGehsPIdT+Q==}
     dev: true
 
-  /@fontsource/recursive@4.5.13:
-    resolution: {integrity: sha512-d40oYxlkac4rrDo/4GkdvkUopyc7WzAlX0vAuUzKVqh7X1qZlSteckvQWdPnjEFMG599JiwKXJK7qXLvgvwdYg==}
+  /@fontsource/recursive@5.0.0:
+    resolution: {integrity: sha512-bofpk+seqpHVhJo7xHLco7yh57ziZn7TJADsjxsWeBFgMT21c37xeMH0puhWxLfAGIBdHcDNUmflDXt8qaKFaQ==}
     dev: true
 
   /@fontsource/work-sans@4.5.14:
