@@ -21,22 +21,24 @@ const websiteConfig = await getWebsiteConfig()
       >OUR MANIFESTO →</a
     >
 
-    <section class="w-full pt-6 md:pt-10 md:mt-4 p-4 lg:p-6 flex flex-col gap-6 justify-center items-center">
-    <div class="w-full md:w-4/5">
-      <CFImage
-        src="/images/marshmallow.jpg"
-        fetchpriority="high"
-        loading="eager"
-        width={620}
-        ratio={16 / 9}
-        class="w-full rounded-2xl"
-        alt="bkkoss"
-      />
-      <h3 class="pt-5">MARSHMALLOW CAMPFIRE, APRIL 2022</h3>
-    </div>
-  </section>
-    
-  <!-- </section>
+    <section
+      class="w-full pt-6 md:pt-10 md:mt-4 p-4 lg:p-6 flex flex-col gap-6 justify-center items-center"
+    >
+      <div class="w-full md:w-4/5">
+        <CFImage
+          src="/images/marshmallow.jpg"
+          fetchpriority="high"
+          loading="eager"
+          width={2048}
+          ratio={16 / 9}
+          class="w-full rounded-2xl"
+          alt="bkkoss"
+        />
+        <h3 class="pt-5">MARSHMALLOW CAMPFIRE, APRIL 2022</h3>
+      </div>
+    </section>
+
+    <!-- </section>
   <section class="sm:grid grid-cols-2 gap-8">
     <CFImage
       src="/images/garten.jpg"
@@ -70,7 +72,7 @@ const websiteConfig = await getWebsiteConfig()
   <!-- <section>
     <h2 class="text-center text-4xl font-medium">OUR PROJECTS</h2>
   </section> -->
-  <!-- <section class="space-y-10">
+    <!-- <section class="space-y-10">
     <Participate />
     <div class="pt-4">
       <h2 class="text-3xl font-medium">SERIES</h2>
@@ -92,7 +94,7 @@ const websiteConfig = await getWebsiteConfig()
   <section class="mb-6">
     <Guilds />
   </section> -->
-  <!-- <section class="space-y-8">
+    <!-- <section class="space-y-8">
     <h2 class="text-center text-4xl font-medium">OUR SPONSORS</h2>
     <p class="mx-auto max-w-2xl text-center">
       Building things to solve one's own problems should be a possibility for
@@ -135,7 +137,7 @@ const websiteConfig = await getWebsiteConfig()
       </div>
     </div>
   </section> -->
-  <!-- <section>
+    <!-- <section>
     <h2 class="text-center text-4xl font-medium pb-8">CORPORATE SPONSORS</h2>
     <div class="grid sm:grid-cols-3 lg:grid-cols-4 gap-8">
       {
@@ -159,5 +161,6 @@ const websiteConfig = await getWebsiteConfig()
       }
     </div>
   </section> -->
-  <div class="pt-8"></div>
+    <div class="pt-8"></div>
+  </section>
 </BaseLayout>
