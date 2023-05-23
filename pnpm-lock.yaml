@@ -80,8 +80,8 @@ devDependencies:
     specifier: ^4.5.13
     version: 4.5.13
   '@fontsource/work-sans':
-    specifier: ^4.5.14
-    version: 4.5.14
+    specifier: ^5.0.0
+    version: 5.0.0
   '@playwright/test':
     specifier: 1.33.0
     version: 1.33.0
@@ -794,8 +794,8 @@ packages:
     resolution: {integrity: sha512-d40oYxlkac4rrDo/4GkdvkUopyc7WzAlX0vAuUzKVqh7X1qZlSteckvQWdPnjEFMG599JiwKXJK7qXLvgvwdYg==}
     dev: true
 
-  /@fontsource/work-sans@4.5.14:
-    resolution: {integrity: sha512-AFBSDBA3hnSCXHwb52qBOMEGqF5nfdbANp+y5/hbE1PMjYfFY0lUdtUwL5J7mRAdyn1NJwobJlhduHtlAyPzmA==}
+  /@fontsource/work-sans@5.0.0:
+    resolution: {integrity: sha512-kX4T/CSVq6eKMp5uBUYO1IjmIILEseQg7hLxFXMeEOzoe76QS9F1tiPrD/zY5ezlV5SDIvlS1TZ0f1/YIZWBVQ==}
     dev: true
 
   /@ioredis/commands@1.2.0:

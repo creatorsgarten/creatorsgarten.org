@@ -39,7 +39,7 @@
     "@astrojs/tailwind": "3.1.2",
     "@fontsource/inter": "^4.5.15",
     "@fontsource/recursive": "^4.5.13",
-    "@fontsource/work-sans": "^4.5.14",
+    "@fontsource/work-sans": "^5.0.0",
     "@playwright/test": "1.33.0",
     "@tailwindcss/typography": "0.5.9",
     "@types/hast": "^2.3.4",
