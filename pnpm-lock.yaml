@@ -74,8 +74,8 @@ devDependencies:
     specifier: 3.1.2
     version: 3.1.2(astro@2.4.5)(tailwindcss@3.3.2)
   '@fontsource/inter':
-    specifier: ^4.5.15
-    version: 4.5.15
+    specifier: ^5.0.0
+    version: 5.0.0
   '@fontsource/recursive':
     specifier: ^4.5.13
     version: 4.5.13
@@ -786,8 +786,8 @@ packages:
       readable-stream: 4.4.0
     dev: false
 
-  /@fontsource/inter@4.5.15:
-    resolution: {integrity: sha512-FzleM9AxZQK2nqsTDtBiY0PMEVWvnKnuu2i09+p6DHvrHsuucoV2j0tmw+kAT3L4hvsLdAIDv6MdGehsPIdT+Q==}
+  /@fontsource/inter@5.0.0:
+    resolution: {integrity: sha512-yhNfm2hV+5u7PQDSGYraJ6g1nbaVuWJFiE9fo1r0Tg2xthveZsYFOUltLRLCASo3DIkTkPgf1WX8Wpxfm3IEUQ==}
     dev: true
 
   /@fontsource/recursive@4.5.13:
