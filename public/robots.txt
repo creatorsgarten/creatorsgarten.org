@@ -1,6 +1,7 @@
 User-agent: *
 
 Disallow: /auth
+Disallow: /dashboard
 Disallow: */editor
 
 Sitemap: https://creatorsgarten.org/sitemap.xml
