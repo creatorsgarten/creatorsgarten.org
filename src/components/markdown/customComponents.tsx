@@ -7,7 +7,7 @@ import type { MarkdownCustomComponents } from '@contentsgarten/html'
 import type { ReactNode } from 'react'
 
 import './customComponents.css'
-import '@fontsource/recursive/variable-full.css'
+import '@fontsource-variable/recursive'
 
 export const customComponents: MarkdownCustomComponents = {
   leafDirective: {

@@ -7,13 +7,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Work Sans', ...defaultConfig.theme.fontFamily.sans],
+        sans: ['"Work Sans Variable"', ...defaultConfig.theme.fontFamily.sans],
         casual: [
-          ['RecursiveVariable', ...defaultConfig.theme.fontFamily.sans],
+          ['"Recursive Variable"', ...defaultConfig.theme.fontFamily.sans],
           { fontVariationSettings: '"CASL" 1, "CRSV" 1, "slnt" 0, "MONO" 0' },
         ],
         mono: [
-          ['RecursiveVariable', ...defaultConfig.theme.fontFamily.mono],
+          ['"Recursive Variable"', ...defaultConfig.theme.fontFamily.mono],
           { fontVariationSettings: '"CASL" 0, "CRSV" 0, "slnt" 0, "MONO" 1' },
         ],
       },
@@ -33,7 +33,7 @@ module.exports = {
           css: {
             '--tw-prose-links': colors.blue[500],
             a: {
-              fontFamily: 'RecursiveVariable',
+              fontFamily: '"Recursive Variable"',
               textDecoration: 'none',
               fontWeight: 'inherit',
             },
