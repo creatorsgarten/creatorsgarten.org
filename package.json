@@ -40,7 +40,7 @@
     "@fontsource/inter": "^4.5.15",
     "@fontsource/recursive": "^4.5.13",
     "@fontsource/work-sans": "^4.5.14",
-    "@playwright/test": "1.33.0",
+    "@playwright/test": "1.34.3",
     "@tailwindcss/typography": "0.5.9",
     "@types/hast": "^2.3.4",
     "@types/jsonwebtoken": "^9.0.2",
