@@ -14,24 +14,25 @@ const now = dayjs()
 const events = await getEvents()
 
 const websiteConfig = await getWebsiteConfig()
+
+const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
 ---
 
 <Head title="Events" />
 
 <BaseLayout class="max-w-7xl mx-auto space-y-12 [&>*]:px-6">
-  <section>
-    <h1 class="uppercase text-3xl font-medium">Upcoming Events</h1>
-    <div
-      class="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-y-12"
-    >
-      {
-        events
-          .filter(upcomingEventsFilter)
-          .reverse()
-          .map(event => <EventPoster event={event} />)
-      }
-    </div>
-  </section>
+  {
+    upcomingEvents.length !== 0 && (
+      <section>
+        <h1 class="uppercase text-3xl font-medium">Upcoming Events</h1>
+        <div class="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-y-12">
+          {upcomingEvents.map(event => (
+            <EventPoster event={event} />
+          ))}
+        </div>
+      </section>
+    )
+  }
   <section>
     <h1 class="uppercase text-3xl font-medium">Series</h1>
     <div class="[&>*]:p-8 [&>*]:rounded-xl grid sm:grid-cols-3 gap-6 pt-8">
