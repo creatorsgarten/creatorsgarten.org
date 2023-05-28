@@ -9,7 +9,7 @@ test('Homepage works', async ({ page }) => {
 
 test('Can go to events page', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('link', { name: 'More on Events' }).click()
+  await page.locator('#nav-menu > ul > li:nth-child(1) > a').click()
   await expect(
     page.getByRole('heading', { name: 'Upcoming Events' })
   ).toBeVisible()
