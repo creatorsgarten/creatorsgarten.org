@@ -5,6 +5,10 @@ export const get: APIRoute = async Astro => {
   const base = Astro.url.origin
 
   return {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
     body: JSON.stringify({
       id_token_signing_alg_values_supported: ['RS256'],
       issuer: `${base}`,
