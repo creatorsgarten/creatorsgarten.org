@@ -30,8 +30,8 @@ export const finalizeAuthentication = async (uid: number) => {
       algorithm: 'RS256',
 
       // https://openid.net/specs/openid-connect-basic-1_0.html#IDToken
-      issuer: 'https://auth.creatorsgarten.org',
-      audience: 'https://auth.creatorsgarten.org',
+      issuer: 'https://creatorsgarten.org',
+      audience: 'https://creatorsgarten.org',
       expiresIn: maxSessionAge,
 
       header: {
