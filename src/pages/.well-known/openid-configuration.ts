@@ -11,7 +11,7 @@ export const get: APIRoute = async Astro => {
     },
     body: JSON.stringify({
       id_token_signing_alg_values_supported: ['RS256'],
-      issuer: `${base}`,
+      issuer: 'https://creatorsgarten.org',
       jwks_uri: `${base}/.well-known/jwks`,
       authorization_endpoint: `${base}/auth/authorize`,
       response_types_supported: ['id_token'],
