@@ -3,6 +3,9 @@ import { z } from 'zod'
 import { authenticateEventpopUser } from './auth/authenticateEventpopUser'
 import { authenticateGitHub } from './auth/authenticateGitHub'
 import { getAuthenticatedUser } from './auth/getAuthenticatedUser'
+import { privateKey } from '$constants/secrets/privateKey'
+import { createPrivateKey, createPublicKey } from 'crypto'
+import { exportJWK } from 'jose'
 
 interface BackendContext {
   authToken?: string
@@ -37,6 +40,12 @@ export const appRouter = t.router({
       .mutation(({ input, ctx }) => {
         return authenticateGitHub(input.code, ctx.authToken)
       }),
+
+    getPublicKeys: t.procedure.query(async () => {
+      const privateKeyObj = createPrivateKey(privateKey)
+      const publicKeyObj = createPublicKey(privateKeyObj)
+      return [{ ...(await exportJWK(publicKeyObj)), kid: 'riffy1' }]
+    }),
   }),
 })
 
