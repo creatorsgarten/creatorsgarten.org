@@ -115,7 +115,7 @@ devDependencies:
     version: 0.7.2
   contentsgarten:
     specifier: ^2.0.1
-    version: 2.0.1(typescript@5.0.4)
+    version: 2.0.1(typescript@5.1.3)
   prettier:
     specifier: 2.8.8
     version: 2.8.8
@@ -126,8 +126,8 @@ devDependencies:
     specifier: 3.3.2
     version: 3.3.2
   typescript:
-    specifier: 5.0.4
-    version: 5.0.4
+    specifier: 5.1.3
+    version: 5.1.3
 
 packages:
 
@@ -1560,7 +1560,7 @@ packages:
       strip-ansi: 7.0.1
       supports-esm: 1.0.0
       tsconfig-resolver: 3.0.1
-      typescript: 5.0.4
+      typescript: 5.1.3
       unist-util-visit: 4.1.2
       vfile: 5.3.7
       vite: 4.3.8
@@ -1902,7 +1902,7 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /contentsgarten@2.0.1(typescript@5.0.4):
+  /contentsgarten@2.0.1(typescript@5.1.3):
     resolution: {integrity: sha512-rFFcVK/Jbh5yPq8/et8OY1BtwA1NIUvvXInbhyQYxKdIt/ZsiMrsWkcweH3kRo/HRc1xwaeOz8K62BnrPw7yGQ==}
     dependencies:
       '@contentsgarten/markdown': 2.0.0
@@ -1920,7 +1920,7 @@ packages:
       mongodb: 5.5.0
       octokit: 2.0.14
       openapi-trpc: 0.1.2(@trpc/server@10.28.2)(zod@3.21.4)
-      p-memoize: 7.1.1(typescript@5.0.4)
+      p-memoize: 7.1.1(typescript@5.1.3)
       zod: 3.21.4
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
@@ -3762,12 +3762,12 @@ packages:
       p-limit: 3.1.0
     dev: true
 
-  /p-memoize@7.1.1(typescript@5.0.4):
+  /p-memoize@7.1.1(typescript@5.1.3):
     resolution: {integrity: sha512-DZ/bONJILHkQ721hSr/E9wMz5Am/OTJ9P6LhLFo2Tu+jL8044tgc9LwHO8g4PiaYePnlVVRAJcKmgy8J9MVFrA==}
     engines: {node: '>=14.16'}
     dependencies:
       mimic-fn: 4.0.0
-      type-fest: 3.10.0(typescript@5.0.4)
+      type-fest: 3.10.0(typescript@5.1.3)
     transitivePeerDependencies:
       - typescript
     dev: true
@@ -4785,18 +4785,18 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  /type-fest@3.10.0(typescript@5.0.4):
+  /type-fest@3.10.0(typescript@5.1.3):
     resolution: {integrity: sha512-hmAPf1datm+gt3c2mvu0sJyhFy6lTkIGf0GzyaZWxRLnabQfPUqg6tF95RPg6sLxKI7nFLGdFxBcf2/7+GXI+A==}
     engines: {node: '>=14.16'}
     peerDependencies:
       typescript: '>=4.7.0'
     dependencies:
-      typescript: 5.0.4
+      typescript: 5.1.3
     dev: true
 
-  /typescript@5.0.4:
-    resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
-    engines: {node: '>=12.20'}
+  /typescript@5.1.3:
+    resolution: {integrity: sha512-XH627E9vkeqhlZFQuL+UsyAXEnibT0kWR2FWONlr4sTjvxyJYnyefgrkyECLzM5NenmKzRAy2rR/OlYLA1HkZw==}
+    engines: {node: '>=14.17'}
     hasBin: true
     dev: true
 
