@@ -10,6 +10,7 @@ export interface Event {
   date: dayjs.Dayjs
   endDate: dayjs.Dayjs | null
   link?: string
+  image?: string
   location?: string
 }
 
@@ -26,9 +27,10 @@ export const getEvents = async () => {
     })
   ).results
     .flatMap((page): Event[] => {
+      console.log(page)
       const frontmatter = parseFrontMatter(page.frontMatter)
       if (!frontmatter.success) return []
-      const { event } = frontmatter.data
+      const { event, image } = frontmatter.data
       if (!event) return []
       if (event.unlisted) return []
       return [
@@ -38,6 +40,7 @@ export const getEvents = async () => {
           date: dayjs(event.date),
           endDate: event.endDate ? dayjs(event.endDate) : null,
           link: event.site,
+          image,
           location: event.location,
         },
       ]
