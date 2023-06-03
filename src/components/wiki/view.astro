@@ -1,5 +1,6 @@
 ---
 import Layout from '$layouts/wiki.astro'
+import CFImage from '$components/cfImage.astro'
 import SidebarContentsSection from './sidebarContentsSection.astro'
 import SidebarEventSection from './sidebarEventSection.astro'
 import SidebarShareSection from './sidebarShareSection.astro'
@@ -56,11 +57,21 @@ const coverImage =
   <Fragment slot="sidebar-left">
     {
       !!coverImage && (
-        <img
-          src={coverImage}
-          class="aspect-square rounded-xl mb-6 mx-6 md:mx-0 border border-neutral-300"
-          alt="cover image"
-        />
+        <div class="mb-6 mx-6 md:mx-0">
+          <CFImage
+            src={coverImage}
+            class="aspect-square rounded-xl w-full border border-neutral-300"
+            alt="cover image"
+            width={{
+              max: 360,
+            }}
+            ratio={1}
+            fetchpriority="high"
+            transform={{
+              quality: 85,
+            }}
+          />
+        </div>
       )
     }
     {
