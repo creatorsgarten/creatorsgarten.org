@@ -47,7 +47,7 @@
     "@types/jsonwebtoken": "^9.0.2",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
-    "astro": "2.5.7",
+    "astro": "2.6.1",
     "astro-seo": "^0.7.2",
     "contentsgarten": "^2.0.1",
     "prettier": "2.8.8",
