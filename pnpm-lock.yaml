@@ -69,8 +69,8 @@ dependencies:
 
 devDependencies:
   '@astrojs/node':
-    specifier: 5.1.4
-    version: 5.1.4(astro@2.5.7)
+    specifier: 5.2.0
+    version: 5.2.0(astro@2.5.7)
   '@astrojs/prefetch':
     specifier: 0.2.3
     version: 0.2.3
@@ -190,12 +190,12 @@ packages:
       - supports-color
     dev: true
 
-  /@astrojs/node@5.1.4(astro@2.5.7):
-    resolution: {integrity: sha512-/YfI6UsWz/ibzSR7YrXkXhsalP2A9VybY8Y40k8jr2bHh4kHGIQnMPx2372g0ZlNnTt5yv7lYD65XzSAYztWhA==}
+  /@astrojs/node@5.2.0(astro@2.5.7):
+    resolution: {integrity: sha512-WWrQuxvdrD2Jd9np8vpS8/zCNEm0JnGv+oaojXzbfW36R8/09L827t/acYxLuguLufiV3U16QAqEwpS8VFS9TA==}
     peerDependencies:
-      astro: ^2.5.0
+      astro: ^2.6.0
     dependencies:
-      '@astrojs/webapi': 2.1.1
+      '@astrojs/webapi': 2.2.0
       astro: 2.5.7
       send: 0.18.0
       server-destroy: 1.0.1
@@ -265,12 +265,6 @@ packages:
       which-pm-runs: 1.1.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@astrojs/webapi@2.1.1:
-    resolution: {integrity: sha512-mHZ7VgPNMeV3TYIw3SGHTKaJosBxA8bTzZ3QhNw509qvCJca4Lkjes8JywimuwTn+TMjEiv7ksNfwRluad3jqA==}
-    dependencies:
-      undici: 5.22.1
     dev: true
 
   /@astrojs/webapi@2.2.0:
