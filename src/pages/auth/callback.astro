@@ -8,8 +8,6 @@ import { getBackend } from '$functions/getBackend'
 const code = Astro.url.searchParams.get('code') ?? ''
 const state = Astro.url.searchParams.get('state') ?? ''
 
-console.log(state)
-
 let error: string | null = null
 let redirectTo: string = '/'
 

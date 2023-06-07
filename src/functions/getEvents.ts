@@ -27,7 +27,6 @@ export const getEvents = async () => {
     })
   ).results
     .flatMap((page): Event[] => {
-      console.log(page)
       const frontmatter = parseFrontMatter(page.frontMatter)
       if (!frontmatter.success) return []
       const { event, image } = frontmatter.data
