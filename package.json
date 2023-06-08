@@ -41,7 +41,7 @@
     "@fontsource-variable/inter": "^5.0.1",
     "@fontsource-variable/recursive": "^5.0.1",
     "@fontsource-variable/work-sans": "^5.0.1",
-    "@playwright/test": "1.34.3",
+    "@playwright/test": "1.35.0",
     "@tailwindcss/typography": "0.5.9",
     "@types/hast": "^2.3.4",
     "@types/jsonwebtoken": "^9.0.2",
