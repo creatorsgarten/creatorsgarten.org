@@ -2,11 +2,12 @@ import { defineConfig } from 'astro/config'
 
 /* Adapter */
 import node from '@astrojs/node'
-import react from '@astrojs/react'
 
 /* Integrations */
-import tailwind from '@astrojs/tailwind'
 import prefetch from '@astrojs/prefetch'
+import react from '@astrojs/react'
+import svelte from '@astrojs/svelte'
+import tailwind from '@astrojs/tailwind'
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,7 +16,7 @@ export default defineConfig({
   adapter: node({
     mode: 'middleware',
   }),
-  integrations: [tailwind(), prefetch(), react()],
+  integrations: [tailwind(), prefetch(), react(), svelte()],
   vite: {
     build: {
       rollupOptions: {

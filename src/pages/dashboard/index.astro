@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '$layouts/base.astro'
+
 import Head from '$components/head.astro'
+import Garden0 from '$components/gardenZero/section.astro'
+
 import { getBackend } from '$functions/getBackend'
-import { Icon } from 'react-iconify-icon-wrapper'
 
 const authenticatedUser = await getBackend(
   Astro
@@ -29,32 +31,7 @@ if (!authenticatedUser) return Astro.redirect('/')
       </div>
     </div>
   </section>
-  <section class="max-w-sm md:max-w-2xl mx-auto">
-    <div
-      class="bg-gradient-to-b from-[#73A790] from-5% to-[#2E6459] w-full aspect-square md:aspect-auto rounded-2xl flex flex-col justify-between text-white p-6 leading-none border border-neutral-500"
-    >
-      <div class="text-2xl">
-        <h1 class="font-medium">GARDEN ZERO</h1>
-        <h1 class="-mt-2">access card</h1>
-        <img src="/images/g0-org.png" class="h-6 w-auto mt-2" />
-      </div>
-      <div>
-        <div class="text-2xl mb-3 uppercase md:mt-10">
-          <div class="md:flex">
-            <h1 class="font-medium">{authenticatedUser.name.split(' ')[0]}</h1>
-            <h1 class="-mt-1 mb-2 md:my-0 md:ml-3 truncate">
-              {authenticatedUser.name.split(' ').slice(1).join(' ')}
-            </h1>
-          </div>
-          <div class="w-6 h-[0.1rem] bg-white md:mt-1"></div>
-        </div>
-        <div class="flex justify-between items-center text-base">
-          <h1>{authenticatedUser.uid}</h1>
-          <h1 class="font-medium text-base">GENERATE QR →</h1>
-        </div>
-      </div>
-    </div>
-  </section>
+  <Garden0 user={authenticatedUser} />
   <section class="max-w-2xl mx-auto">
     <div class="bg-white rounded-2xl py-6 px-8 border border-neutral-300">
       <h1 class="font-medium text-xl uppercase pb-4 text-center">
