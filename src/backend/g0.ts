@@ -30,7 +30,7 @@ export async function checkAccess(user: AuthenticatedUser | null) {
       'pavitpim40',
       'jabont',
       'ibsfb',
-      'saltyaom'
+      'saltyaom',
     ].includes(user.connections.github?.username.toLowerCase() ?? ''),
     reason: 'TODO',
   }
@@ -56,6 +56,7 @@ export async function createAccessQrCode(user: AuthenticatedUser | null) {
     .collection('gardenAccesses')
     .insertOne({
       uid: user.uid,
+      accessKey: null,
       createdAt: new Date(),
     })
 
@@ -79,6 +80,18 @@ export async function createAccessQrCode(user: AuthenticatedUser | null) {
         } ${await o.text()}`
       )
   })
+
+  await mongo
+    .db('creatorsgarten-org')
+    .collection('gardenAccesses')
+    .updateOne(
+      { _id: accessDoc.insertedId },
+      {
+        $set: {
+          accessKey: gardenZeroResponse.accessKey,
+        },
+      }
+    )
 
   return gardenZeroResponse
 }
