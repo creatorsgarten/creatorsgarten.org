@@ -2,6 +2,7 @@
   import Spinner from './spinner.svelte'
 
   import type { AuthenticatedUser } from '$types/AuthenticatedUser'
+  import BackSide from './backSide.svelte'
 
   export let user: AuthenticatedUser
 
@@ -12,6 +13,7 @@
 
   let loading = false
   let accessCard: AccessCard | null = null
+  // let accessCard: AccessCard | null = { accessKey: 'grtn-lSLHAm3SfP63Lns', expiresAt: new Date(new Date().valueOf() + (1000*60*5)) }
 
   const onClick = async () => {
     loading = true
@@ -21,8 +23,6 @@
         if (o.ok) return o.json()
         else throw o
       })
-
-      console.log(cardResponse)
 
       accessCard = {
         accessKey: cardResponse.accessKey,
@@ -45,36 +45,28 @@
       on:click={onClick}
     >
       <div class="text-2xl w-full">
-        <h1 class="font-medium">GARDEN ZERO</h1>
-        <h1 class="-mt-2">access card</h1>
+        <p class="font-medium">GARDEN ZERO</p>
+        <p class="-mt-2">access card</p>
         <img src="/images/g0-org.png" class="h-6 w-auto mt-2" alt="" />
       </div>
       <div class="w-full">
         <div class="text-2xl mb-3 uppercase md:mt-10">
           <div class="md:flex">
             <h1 class="font-medium">{user.name.split(' ')[0]}</h1>
-            <h1 class="-mt-1 mb-2 md:my-0 md:ml-3 truncate">
+            <h2 class="-mt-1 mb-2 md:my-0 md:ml-3 truncate">
               {user.name.split(' ').slice(1).join(' ')}
-            </h1>
+            </h2>
           </div>
           <div class="w-6 h-[0.1rem] bg-white md:mt-1" />
         </div>
         <div class="flex justify-between items-center text-base">
-          <h1>{user.uid}</h1>
-          <h1 class="font-medium text-base">GENERATE QR →</h1>
+          <p>{user.uid}</p>
+          <p class="font-medium text-base">GENERATE QR →</p>
         </div>
       </div>
     </button>
   {:else}
-    <div class="absolute inset-4">
-      <img
-        alt=""
-        class="h-full w-auto rounded-2xl"
-        src={`/api/qr?${new URLSearchParams({
-          value: accessCard.accessKey,
-        })}`}
-      />
-    </div>
+    <BackSide user={user} accessCard={accessCard} />
   {/if}
   <div
     class={`absolute z-50 bg-black/40 top-0 bottom-0 right-0 left-0 transition duration-300 flex justify-center items-center pointer-events-none ${
