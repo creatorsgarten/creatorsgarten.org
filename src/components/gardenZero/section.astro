@@ -1,4 +1,5 @@
 ---
+import { getBackend } from '$functions/getBackend';
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import AccessCard from './accessCard.svelte';
 
@@ -10,12 +11,10 @@ const { user } = Astro.props
 
 // determine that user should be able to see access card or not
 // hard-code for now, will build conditions later
-let authorized = await [320513, 474987, 112753, 451728].some(
-  o => user.uid === o
-)
+let { granted } = await getBackend(Astro).g0.checkAccess.query()
 ---
 
-{authorized && (
+{granted && (
   <section class="max-w-sm md:max-w-2xl mx-auto">
     <AccessCard client:idle {...{ user }} />
   </section>

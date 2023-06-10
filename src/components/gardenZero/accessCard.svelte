@@ -1,12 +1,13 @@
 <script lang="ts">
-  import type { AuthenticatedUser } from '$types/AuthenticatedUser'
   import Spinner from './spinner.svelte'
+
+  import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 
   export let user: AuthenticatedUser
 
   interface AccessCard {
-    cardNo: string
-    expireAt: Date
+    accessKey: string
+    expiresAt: Date
   }
 
   let loading = false
@@ -21,9 +22,11 @@
         else throw o
       })
 
+      console.log(cardResponse)
+
       accessCard = {
-        cardNo: cardResponse.cardNo,
-        expireAt: new Date(cardResponse.expireAt),
+        accessKey: cardResponse.accessKey,
+        expiresAt: new Date(cardResponse.expiresAt),
       }
     } catch (e) {
       console.error(e)
@@ -37,7 +40,10 @@
   class="bg-gradient-to-b from-[#73A790] from-5% to-[#2E6459] w-full md:h-64 aspect-square md:aspect-auto rounded-2xl text-white leading-none border border-neutral-500 relative overflow-hidden"
 >
   {#if accessCard === null}
-    <button class="flex flex-col justify-between text-left absolute inset-6 w-auto h-auto" on:click={onClick}>
+    <button
+      class="flex flex-col justify-between text-left absolute inset-6 w-auto h-auto"
+      on:click={onClick}
+    >
       <div class="text-2xl w-full">
         <h1 class="font-medium">GARDEN ZERO</h1>
         <h1 class="-mt-2">access card</h1>
@@ -59,7 +65,17 @@
         </div>
       </div>
     </button>
-  {:else}{/if}
+  {:else}
+    <div class="absolute inset-4">
+      <img
+        alt=""
+        class="h-full w-auto rounded-2xl"
+        src={`/api/qr?${new URLSearchParams({
+          value: accessCard.accessKey,
+        })}`}
+      />
+    </div>
+  {/if}
   <div
     class={`absolute z-50 bg-black/40 top-0 bottom-0 right-0 left-0 transition duration-300 flex justify-center items-center pointer-events-none ${
       loading ? 'opacity-100' : 'opacity-0'
