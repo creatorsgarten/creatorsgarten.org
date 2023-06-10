@@ -17,7 +17,21 @@ export async function checkAccess(user: AuthenticatedUser | null) {
     return { granted: false, reason: 'You are not logged in.' }
   }
   return {
-    granted: [320513, 474987, 112753, 451728].some(o => user.uid === o),
+    granted: [
+      'rayriffy',
+      'dtinth',
+      'heypoom',
+      'chayapatr',
+      'leomotors',
+      'chunrapeepat',
+      'narze',
+      'betich',
+      'amiphaphadha',
+      'pavitpim40',
+      'jabont',
+      'ibsfb',
+      'saltyaom'
+    ].includes(user.connections.github?.username.toLowerCase() ?? ''),
     reason: 'TODO',
   }
 }
