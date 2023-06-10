@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import { mongo } from '$constants/mongo'
 import { maxSessionAge } from '$constants/maxSessionAge'
 import { privateKey } from '$constants/secrets/privateKey'
+
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 
 export const finalizeAuthentication = async (uid: number) => {
@@ -20,6 +21,7 @@ export const finalizeAuthentication = async (uid: number) => {
     name: userDoc.name,
     avatar: userDoc.avatar,
     email: userDoc.email,
+    events: userDoc.events ?? [],
     connections: {
       github: userDoc.connections?.github ?? null,
     },

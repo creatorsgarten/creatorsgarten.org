@@ -3,6 +3,9 @@ import { finalizeAuthentication } from './finalizeAuthentication'
 import { mongo } from '$constants/mongo'
 import { eventpopClient } from '$constants/secrets/eventpopClient'
 
+import { getEventpopUser } from '$functions/getEventpopUser'
+import { getEventpopUserTickets } from '$functions/getEventpopUserTickets'
+
 interface EventpopAuthorizationResponse {
   access_token: string
   token_type: string
@@ -12,29 +15,11 @@ interface EventpopAuthorizationResponse {
   created_at: number
 }
 
-interface EventpopMeResponse {
-  user: {
-    id: number
-    full_name: string
-    email: string
-    avatar: string
-    avatars: {
-      original: string
-      medium: string
-      thumb: string
-      tiny: string
-    }
-    birthday: string
-    gender: string
-    phone: string
-  }
-}
-
 export const authenticateEventpopUser = async (code: string) => {
   try {
     // authenticate user to eventpop
     console.log('/oauth/token')
-    const authorization = await fetch('https://www.eventpop.me/oauth/token', {
+    const { access_token } = await fetch('https://www.eventpop.me/oauth/token', {
       method: 'POST',
       body: Object.entries({
         client_id: eventpopClient.id,
@@ -54,16 +39,13 @@ export const authenticateEventpopUser = async (code: string) => {
       else throw o
     })
 
-    // check who it is
-    console.log('/me')
-    const { user } = await fetch(
-      `https://eventpop.me/api/public/me?${new URLSearchParams({
-        access_token: authorization.access_token,
-      }).toString()}`
-    ).then(o => {
-      if (o.ok) return o.json() as Promise<EventpopMeResponse>
-      else throw o
-    })
+    const [user, tickets] = await Promise.all([
+      // check who it is
+      getEventpopUser(access_token),
+      // check event tickets
+      getEventpopUserTickets(access_token)
+    ])
+    // console.log(access_token)
 
     // sync with mongo
     await mongo
@@ -77,6 +59,7 @@ export const authenticateEventpopUser = async (code: string) => {
             name: user.full_name,
             avatar: user.avatar,
             email: user.email,
+            events: tickets.map(t => t.event_id),
           },
         },
         {
