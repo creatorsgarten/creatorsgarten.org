@@ -8,7 +8,6 @@ import { createPrivateKey, createPublicKey } from 'crypto'
 import { exportJWK } from 'jose'
 import { checkAccess, createAccessQrCode } from './g0'
 
-
 interface BackendContext {
   authToken?: string
 }
@@ -51,16 +50,15 @@ export const appRouter = t.router({
   }),
 
   g0: t.router({
-    createAccessQrCode: t.procedure
-      .mutation(async ({ ctx }) => {
-        const user = await getAuthenticatedUser(ctx.authToken)
-        return createAccessQrCode(user)
-      }),
-      checkAccess: t.procedure.query(async ({ ctx }) => {
-        const user = await getAuthenticatedUser(ctx.authToken)
-        return checkAccess(user)
-      })
-  })
+    createAccessQrCode: t.procedure.mutation(async ({ ctx }) => {
+      const user = await getAuthenticatedUser(ctx.authToken)
+      return createAccessQrCode(user)
+    }),
+    checkAccess: t.procedure.query(async ({ ctx }) => {
+      const user = await getAuthenticatedUser(ctx.authToken)
+      return checkAccess(user)
+    }),
+  }),
 })
 
 export type AppRouter = typeof appRouter
