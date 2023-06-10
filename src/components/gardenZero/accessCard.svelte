@@ -34,10 +34,10 @@
 </script>
 
 <div
-  class="bg-gradient-to-b from-[#73A790] from-5% to-[#2E6459] w-full md:h-64 aspect-square md:aspect-auto rounded-2xl text-white p-6 leading-none border border-neutral-500 relative overflow-hidden"
+  class="bg-gradient-to-b from-[#73A790] from-5% to-[#2E6459] w-full md:h-64 aspect-square md:aspect-auto rounded-2xl text-white leading-none border border-neutral-500 relative overflow-hidden"
 >
   {#if accessCard === null}
-    <button class="flex flex-col justify-between text-left h-full w-full" on:click={onClick}>
+    <button class="flex flex-col justify-between text-left absolute inset-6 w-auto h-auto" on:click={onClick}>
       <div class="text-2xl w-full">
         <h1 class="font-medium">GARDEN ZERO</h1>
         <h1 class="-mt-2">access card</h1>
