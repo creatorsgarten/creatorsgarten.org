@@ -7,6 +7,7 @@ const search = Astro.url.search || ''
 
 if (pageRef === undefined) pageRef = 'MainPage'
 else if (pageRef === 'MainPage') return Astro.redirect('/wiki' + search)
+else if (pageRef === 'Ring') return Astro.redirect('/ring' + search)
 else if (pageRef.startsWith('Events/'))
   return Astro.redirect(`/event/${pageRef.replace('Events/', '')}${search}`)
 ---
