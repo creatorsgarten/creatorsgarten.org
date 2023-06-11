@@ -60,7 +60,7 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
           .map(event => (
             <a href={`/event/${event.id}`}>
               <CFImage
-                src={`https://assets.creatorsgarten.org/events/${event.id}.png`}
+                src={event.image}
                 alt={event.name}
                 width={300}
                 ratio={1}

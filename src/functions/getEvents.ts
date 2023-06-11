@@ -9,8 +9,8 @@ export interface Event {
   name: string
   date: dayjs.Dayjs
   endDate: dayjs.Dayjs | null
+  image: string
   link?: string
-  image?: string
   location?: string
   eventpopId?: number
 }
@@ -33,14 +33,17 @@ export const getEvents = async () => {
       const { event, image } = frontmatter.data
       if (!event) return []
       if (event.unlisted) return []
+
+      const id = page.pageRef.replace('Events/', '')
+
       return [
         {
-          id: page.pageRef.replace('Events/', ''),
+          id,
           name: event.name,
           date: dayjs(event.date),
           endDate: event.endDate ? dayjs(event.endDate) : null,
           link: event.site,
-          image,
+          image: image ?? `https://assets.creatorsgarten.org/events/${id}.png`,
           location: event.location,
           eventpopId: event.eventpopId,
         },
