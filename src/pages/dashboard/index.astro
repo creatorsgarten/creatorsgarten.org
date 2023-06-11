@@ -5,11 +5,8 @@ import Head from '$components/head.astro'
 import Garden0 from '$components/dashboard/gardenZero/section.astro'
 import JoinedEvents from '$components/dashboard/joinedEvents.astro'
 
-import { getBackend } from '$functions/getBackend'
+const authenticatedUser = Astro.locals.user
 
-const authenticatedUser = await getBackend(
-  Astro
-).auth.getAuthenticatedUser.query()
 if (!authenticatedUser) return Astro.redirect('/')
 ---
 

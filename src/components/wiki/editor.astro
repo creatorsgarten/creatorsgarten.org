@@ -32,7 +32,12 @@ const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageR
       {
         editable ? (
           <p>
-            (The editor is quite janky, so please save your changes regularly!)
+            (The editor is quite janky, so please save your changes regularly!
+            Despite that,{' '}
+            <a href={gitHubUrl}>
+              you can propose changes to this file on GitHub.
+            </a>
+            )
           </p>
         ) : (
           <p>
