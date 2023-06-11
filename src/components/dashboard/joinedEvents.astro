@@ -1,4 +1,6 @@
 ---
+import dayjs from 'dayjs'
+
 import CFImage from '$components/cfImage.astro'
 import { getEvents } from '$functions/getEvents'
 
@@ -33,7 +35,11 @@ const selectedEvents = eventIds
             width={300}
             ratio={1}
             alt="cover"
-            class="h-full w-auto grayscale"
+            class={`h-full w-auto ${
+              dayjs(event.data.endDate ?? event.data.date).isAfter(dayjs())
+                ? ''
+                : 'grayscale'
+            }`}
           />
         </div>
         <div class="px-4 py-2 flex flex-col justify-between w-full">
