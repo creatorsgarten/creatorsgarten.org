@@ -50,7 +50,7 @@ const accentColor2 = sample(
 ---
 
 <!DOCTYPE html>
-<html lang="en" class={accentColor + " " + accentColor2}>
+<html lang="en" class={accentColor + ' ' + accentColor2}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -66,15 +66,13 @@ const accentColor2 = sample(
       async
       src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.2/dist/iconify-icon.min.js"
       integrity="sha256-kwd+IKkvIXP95TLOfLvp/rHfnja1G+Ve+u1UR22A02k="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
   </head>
   <body>
     <slot />
     <script
       defer
       src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "3f4c5a7b957a49c3877150febe83307f"}'
-    ></script>
+      data-cf-beacon='{"token": "3f4c5a7b957a49c3877150febe83307f"}'></script>
   </body>
 </html>

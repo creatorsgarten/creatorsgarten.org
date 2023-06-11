@@ -19,22 +19,25 @@ export const authenticateEventpopUser = async (code: string) => {
   try {
     // authenticate user to eventpop
     console.log('/oauth/token')
-    const { access_token } = await fetch('https://www.eventpop.me/oauth/token', {
-      method: 'POST',
-      body: Object.entries({
-        client_id: eventpopClient.id,
-        client_secret: eventpopClient.secret,
-        code: code,
-        redirect_uri:
-          'https://dtinth.github.io/oauth_gateway/eventpop_callback.html',
-        grant_type: 'authorization_code',
-      })
-        .map(([key, value]) => `${key}=${value}`)
-        .join('&'),
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }).then(o => {
+    const { access_token } = await fetch(
+      'https://www.eventpop.me/oauth/token',
+      {
+        method: 'POST',
+        body: Object.entries({
+          client_id: eventpopClient.id,
+          client_secret: eventpopClient.secret,
+          code: code,
+          redirect_uri:
+            'https://dtinth.github.io/oauth_gateway/eventpop_callback.html',
+          grant_type: 'authorization_code',
+        })
+          .map(([key, value]) => `${key}=${value}`)
+          .join('&'),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    ).then(o => {
       if (o.ok) return o.json() as Promise<EventpopAuthorizationResponse>
       else throw o
     })
@@ -43,7 +46,7 @@ export const authenticateEventpopUser = async (code: string) => {
       // check who it is
       getEventpopUser(access_token),
       // check event tickets
-      getEventpopUserTickets(access_token)
+      getEventpopUserTickets(access_token),
     ])
     // console.log(access_token)
 

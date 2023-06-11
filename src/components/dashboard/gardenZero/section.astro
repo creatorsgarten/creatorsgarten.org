@@ -1,7 +1,7 @@
 ---
-import { getBackend } from '$functions/getBackend';
+import { getBackend } from '$functions/getBackend'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import AccessCard from './accessCard.svelte';
+import AccessCard from './accessCard.svelte'
 
 export interface Props {
   user: AuthenticatedUser
@@ -14,8 +14,10 @@ const { user } = Astro.props
 let { granted } = await getBackend(Astro).g0.checkAccess.query()
 ---
 
-{granted && (
-  <section class="max-w-sm md:max-w-2xl mx-auto">
-    <AccessCard client:idle {...{ user }} />
-  </section>
-)}
+{
+  granted && (
+    <section class="max-w-sm md:max-w-2xl mx-auto">
+      <AccessCard client:idle {...{ user }} />
+    </section>
+  )
+}
