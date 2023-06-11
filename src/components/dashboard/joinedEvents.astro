@@ -44,7 +44,12 @@ const selectedEvents = eventIds
         </div>
         <div class="px-4 py-2 flex flex-col justify-between w-full">
           <h1 class="line-clamp-2 font-medium text-white">{event.data.name}</h1>
-          <p class="text-gray-200 text-xs text-right">Ref: {event.code}</p>
+          <p class="text-gray-200 text-xs text-right inline-flex justify-end items-center">
+            Ref:{' '}
+            <span class="bg-gray-200 rounded px-0.5 ml-1 hover:bg-transparent transition">
+              {event.code}
+            </span>
+          </p>
         </div>
       </div>
     ))
