@@ -2,7 +2,8 @@
 import BaseLayout from '$layouts/base.astro'
 
 import Head from '$components/head.astro'
-import Garden0 from '$components/gardenZero/section.astro'
+import Garden0 from '$components/dashboard/gardenZero/section.astro'
+import JoinedEvents from '$components/dashboard/joinedEvents.astro'
 
 import { getBackend } from '$functions/getBackend'
 
@@ -32,6 +33,7 @@ if (!authenticatedUser) return Astro.redirect('/')
     </div>
   </section>
   <Garden0 user={authenticatedUser} />
+  <JoinedEvents eventIds={authenticatedUser.events} />
   <section class="max-w-2xl mx-auto">
     <div class="bg-white rounded-2xl py-6 px-8 border border-neutral-300">
       <h1 class="font-medium text-xl uppercase pb-4 text-center">

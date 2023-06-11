@@ -12,6 +12,7 @@ export interface Event {
   link?: string
   image?: string
   location?: string
+  eventpopId?: number
 }
 
 export const getEvents = async () => {
@@ -41,6 +42,7 @@ export const getEvents = async () => {
           link: event.site,
           image,
           location: event.location,
+          eventpopId: event.eventpopId,
         },
       ]
     })

@@ -1,0 +1,31 @@
+---
+import { getEvents } from '$functions/getEvents'
+
+import type { Event } from '$functions/getEvents'
+
+export interface Props {
+  eventIds: {
+    id: number
+    code: string
+  }[]
+}
+
+const { eventIds } = Astro.props
+
+const events = await getEvents()
+const selectedEvents = eventIds
+  .map(({ id, code }) => ({
+    data: events.find(event => event.eventpopId === id) as Event,
+    code,
+  }))
+  .filter(o => o.data !== undefined)
+  .sort((a, b) => a.data.date.unix() - b.data.date.unix())
+---
+
+<section class="max-w-2xl mx-auto">
+  {selectedEvents.map(event => (
+    <div>
+      <h1>{event.data.name}</h1>
+    </div>
+  ))}
+</section>

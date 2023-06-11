@@ -8,7 +8,10 @@ export interface AuthenticatedUser {
   name: string
   avatar: string
   email: string
-  events: number[]
+  events: {
+    id: number
+    code: string
+  }[]
   connections: {
     github: {
       id: number
