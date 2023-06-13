@@ -14,7 +14,7 @@ export const notify = async (
   time: Date
 ) => {
   await Promise.allSettled([
-    fetch(import.meta.env.NOTIFY_DISCORD, {
+    fetch(import.meta.env.NOTIFY_DISCORD || process.env.NOTIFY_DISCORD, {
       method: 'POST',
       headers: {
         'Accepts': 'application/json',
