@@ -32,8 +32,6 @@ if (!authenticatedUser) return Astro.redirect('/')
       </div>
     </div>
   </section>
-  <Garden0 user={authenticatedUser} />
-  <JoinedEvents eventIds={authenticatedUser.events} />
   <section class="max-w-2xl mx-auto">
     <div class="bg-white rounded-2xl py-6 px-8 border border-neutral-300">
       <h1 class="font-medium text-xl uppercase pb-4 text-center">
@@ -59,8 +57,14 @@ if (!authenticatedUser) return Astro.redirect('/')
       </div>
     </div>
   </section>
-  <section class="pt-8 pb-2 flex justify-center">
-    <a href="/auth/logout" class="text-red-600 font-semibold">Sign out</a>
+  <Garden0 user={authenticatedUser} />
+  <JoinedEvents eventIds={authenticatedUser.events} />
+  <section class="pt-4 flex justify-center">
+    <a
+      href="/auth/logout"
+      class="text-white uppercase order px-3 py-2 rounded-md bg-rose-700"
+      >Sign out</a
+    >
   </section>
   <div class="pb-6"></div>
 </BaseLayout>

@@ -25,10 +25,10 @@ const selectedEvents = eventIds
   .sort((a, b) => b.data.date.unix() - a.data.date.unix())
 ---
 
-<section class="max-w-2xl mx-auto grid md:grid-cols-2 gap-4">
+<div class="max-w-2xl mx-auto grid md:grid-cols-2 gap-4">
   {
     selectedEvents.map(event => (
-      <div class="bg-gradient-to-br from-neutral-800 to-neutral-700 flex h-24 rounded-md overflow-hidden">
+      <div class="bg-gradient-to-br from-neutral-700 to-neutral-800 flex h-24 rounded-md overflow-hidden">
         <div class="h-full aspect-square shrink-0">
           <CFImage
             src={event.data.image}
@@ -54,4 +54,4 @@ const selectedEvents = eventIds
       </div>
     ))
   }
-</section>
+</div>
