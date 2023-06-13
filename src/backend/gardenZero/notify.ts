@@ -13,11 +13,11 @@ export const notify = async (
   door: string,
   time: Date
 ) => {
-  await Promise.allSettled([
+  await Promise.all([
     fetch(import.meta.env.NOTIFY_DISCORD || process.env.NOTIFY_DISCORD, {
       method: 'POST',
       headers: {
-        'Accepts': 'application/json',
+        Accepts: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -38,6 +38,8 @@ export const notify = async (
         ],
         attachments: [],
       }),
-    })
+    }).then(o => {
+      if (!o.ok) throw new Error('cannot-notify-discord')
+    }),
   ])
 }
