@@ -1,7 +1,7 @@
 import { TRPCError } from '@trpc/server'
 import { GoogleAuth } from 'google-auth-library'
 import { z } from 'zod'
-import { groupBy, pick } from 'lodash'
+import _ from 'lodash'
 
 import { mongo } from '$constants/mongo'
 import { g0Hostname } from '$constants/secrets/g0Hostname'
@@ -197,7 +197,7 @@ export async function pullLogs() {
 
   // group entry by accessKeys (case multiple doors)
   await Promise.allSettled(
-    Object.entries(groupBy(pullResponse, o => o.accessKey)).map(
+    Object.entries(_.groupBy(pullResponse, o => o.accessKey)).map(
       async ([accessKey, entries]) => {
         // find access object by access key
         let accessDoc = (await mongo
@@ -244,7 +244,7 @@ export async function pullLogs() {
           .updateOne(
             { _id: accessDoc._id },
             {
-              $set: pick(accessDoc, ['usedAt', 'notifiedAt']),
+              $set: _.pick(accessDoc, ['usedAt', 'notifiedAt']),
             }
           )
           .catch(e => console.error(e))
