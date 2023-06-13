@@ -31,6 +31,7 @@ export async function checkAccess(user: AuthenticatedUser | null) {
       'jabont',
       'ibsfb',
       'saltyaom',
+      'panj',
     ].includes(user.connections.github?.username.toLowerCase() ?? ''),
     reason: 'TODO',
   }
