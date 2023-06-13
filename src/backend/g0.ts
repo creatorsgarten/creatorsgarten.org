@@ -84,11 +84,12 @@ export async function createAccessQrCode(user: AuthenticatedUser | null) {
         Authorization: 'Bearer dummy',
       },
       body: JSON.stringify({
-        userId: user.uid,
+        userId: userDoc!._id,
         prefix: prefixedName,
         accessId: String(accessDoc.insertedId),
       }),
     }).then(async o => {
+      console.log(await o.text())
       if (o.ok) return GardenZeroResponse.parse(await o.json())
       else
         throw new Error(
