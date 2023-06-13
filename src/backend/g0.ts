@@ -4,6 +4,18 @@ import { g0Hostname } from '$constants/secrets/g0Hostname'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
+import { GoogleAuth } from 'google-auth-library'
+
+/**
+ * @param {string} audience
+ */
+async function getServiceAccountIdToken(audience: string) {
+  const auth = new GoogleAuth()
+  const client = await auth.getClient()
+  if (!('fetchIdToken' in client)) throw new Error('No fetchIdToken')
+  const token = await client.fetchIdToken(audience)
+  return token
+}
 
 const GardenZeroResponse = z.object({
   accessKey: z.string(),
@@ -76,20 +88,22 @@ export async function createAccessQrCode(user: AuthenticatedUser | null) {
       : user.uid.toString()
 
   try {
+    const idToken = await getServiceAccountIdToken(
+      'https://github.com/creatorsgarten/garden-gate'
+    )
     const gardenZeroResponse = await fetch(g0Hostname + '/access/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: 'Bearer dummy',
+        Authorization: 'Bearer ' + idToken,
       },
       body: JSON.stringify({
-        userId: userDoc!._id,
+        userId: String(userDoc!._id),
         prefix: prefixedName,
         accessId: String(accessDoc.insertedId),
       }),
     }).then(async o => {
-      console.log(await o.text())
       if (o.ok) return GardenZeroResponse.parse(await o.json())
       else
         throw new Error(
