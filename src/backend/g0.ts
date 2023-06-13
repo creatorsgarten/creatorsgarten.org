@@ -78,7 +78,11 @@ export async function createAccessQrCode(user: AuthenticatedUser | null) {
     .insertOne({
       user: userDoc!._id,
       accessKey: null,
-      createdAt: new Date(),
+      requestedAt: new Date(),
+      createdAt: null,
+      expiresAt: null,
+      usedAt: null,
+      notifiedAt: null,
     })
 
   const userFirstName = user.name.split(' ')[0]
@@ -121,6 +125,8 @@ export async function createAccessQrCode(user: AuthenticatedUser | null) {
         {
           $set: {
             accessKey: gardenZeroResponse.accessKey,
+            createdAt: new Date(gardenZeroResponse.createdAt),
+            expiresAt: new Date(gardenZeroResponse.expiresAt),
           },
         }
       )

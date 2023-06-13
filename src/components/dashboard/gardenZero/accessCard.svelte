@@ -20,7 +20,7 @@
     loading = true
 
     try {
-      const cardResponse = await fetch('/api/g0').then(o => {
+      const cardResponse = await fetch('/api/gardenGate/access').then(o => {
         if (o.ok) return o.json()
         else throw o
       })
