@@ -59,6 +59,9 @@ export async function createAccessQrCode(user: AuthenticatedUser | null) {
       accessKey: null,
       createdAt: new Date(),
     })
+  
+  const userFirstName = user.name.split(' ')[0]
+  const prefixedName = userFirstName.match(/^[A-Za-z0-9]+$/) !== null ? userFirstName.slice(0, 6) : user.uid.toString()
 
   const gardenZeroResponse = await fetch(g0Hostname + '/access/generate', {
     method: 'POST',
@@ -68,8 +71,9 @@ export async function createAccessQrCode(user: AuthenticatedUser | null) {
       Authorization: 'Bearer dummy',
     },
     body: JSON.stringify({
+      userId: user.uid,
+      prefix: prefixedName,
       accessId: String(accessDoc.insertedId),
-      // userId: user.uid,
     }),
   }).then(async o => {
     if (o.ok) return GardenZeroResponse.parse(await o.json())
