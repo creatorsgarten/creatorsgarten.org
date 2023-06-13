@@ -6,7 +6,7 @@ import { getAuthenticatedUser } from './auth/getAuthenticatedUser'
 import { privateKey } from '$constants/secrets/privateKey'
 import { createPrivateKey, createPublicKey } from 'crypto'
 import { exportJWK } from 'jose'
-import { checkAccess, createAccessQrCode } from './g0'
+import { checkAccess, createAccessQrCode, pullLogs } from './g0'
 
 interface BackendContext {
   authToken?: string
@@ -58,6 +58,10 @@ export const appRouter = t.router({
       const user = await getAuthenticatedUser(ctx.authToken)
       return checkAccess(user)
     }),
+    pullLogs: t.procedure.query(async ({ ctx }) => {
+      await getAuthenticatedUser(ctx.authToken)
+      return pullLogs()
+    })
   }),
 })
 
