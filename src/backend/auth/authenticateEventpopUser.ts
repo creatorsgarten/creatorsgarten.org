@@ -62,6 +62,7 @@ export const authenticateEventpopUser = async (code: string) => {
             name: user.full_name,
             avatar: user.avatar,
             email: user.email,
+            accessedAt: new Date(),
             events: tickets.map(t => ({
               id: t.event_id,
               code: t.reference_code,
