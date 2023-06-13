@@ -51,51 +51,66 @@ export async function createAccessQrCode(user: AuthenticatedUser | null) {
     })
   }
 
+  // get user object
+  const userDoc = await mongo
+    .db('creatorsgarten-org')
+    .collection('users')
+    .findOne({
+      uid: user.uid,
+    })
+
   const accessDoc = await mongo
     .db('creatorsgarten-org')
     .collection('gardenAccesses')
     .insertOne({
-      uid: user.uid,
+      user: userDoc!._id,
       accessKey: null,
       createdAt: new Date(),
     })
-  
+
   const userFirstName = user.name.split(' ')[0]
-  const prefixedName = userFirstName.match(/^[A-Za-z0-9]+$/) !== null ? userFirstName.slice(0, 6) : user.uid.toString()
+  const prefixedName =
+    userFirstName.match(/^[A-Za-z0-9]+$/) !== null
+      ? userFirstName.slice(0, 6)
+      : user.uid.toString()
 
-  const gardenZeroResponse = await fetch(g0Hostname + '/access/generate', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: 'Bearer dummy',
-    },
-    body: JSON.stringify({
-      userId: user.uid,
-      prefix: prefixedName,
-      accessId: String(accessDoc.insertedId),
-    }),
-  }).then(async o => {
-    if (o.ok) return GardenZeroResponse.parse(await o.json())
-    else
-      throw new Error(
-        `Unable to generate access: ${o.status} ${
-          o.statusText
-        } ${await o.text()}`
+  try {
+    const gardenZeroResponse = await fetch(g0Hostname + '/access/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: 'Bearer dummy',
+      },
+      body: JSON.stringify({
+        userId: user.uid,
+        prefix: prefixedName,
+        accessId: String(accessDoc.insertedId),
+      }),
+    }).then(async o => {
+      if (o.ok) return GardenZeroResponse.parse(await o.json())
+      else
+        throw new Error(
+          `Unable to generate access: ${o.status} ${
+            o.statusText
+          } ${await o.text()}`
+        )
+    })
+
+    await mongo
+      .db('creatorsgarten-org')
+      .collection('gardenAccesses')
+      .updateOne(
+        { _id: accessDoc.insertedId },
+        {
+          $set: {
+            accessKey: gardenZeroResponse.accessKey,
+          },
+        }
       )
-  })
 
-  await mongo
-    .db('creatorsgarten-org')
-    .collection('gardenAccesses')
-    .updateOne(
-      { _id: accessDoc.insertedId },
-      {
-        $set: {
-          accessKey: gardenZeroResponse.accessKey,
-        },
-      }
-    )
-
-  return gardenZeroResponse
+    return gardenZeroResponse
+  } catch (e) {
+    throw new Error('server-offline')
+  }
 }

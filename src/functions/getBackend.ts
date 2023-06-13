@@ -6,6 +6,7 @@ import { localLink } from './localLink'
 
 export function getBackend(Astro: Pick<AstroGlobal, 'cookies'>) {
   const token = getAuthTokenFromAstro(Astro)
+
   return createTRPCProxyClient<AppRouter>({
     links: [
       import.meta.env.JWT_PRIVATE_KEY
