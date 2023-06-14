@@ -11,7 +11,7 @@ const { user } = Astro.props
 
 // determine that user should be able to see access card or not
 // hard-code for now, will build conditions later
-let { granted } = await getBackend(Astro).g0.checkAccess.query()
+let { granted } = await getBackend(Astro).gardenGate.checkAccess.query()
 ---
 
 {

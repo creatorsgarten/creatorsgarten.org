@@ -63,14 +63,14 @@ export const readFileSystem = async <T = unknown>(key: string[]) => {
 export const writeFileSystem = async (
   key: string[],
   content: unknown,
-  maxAge = 60 * 1000
+  maxAgeInMs = 60 * 1000
 ) => {
   const stringifiedContent = JSON.stringify(content)
 
   const hash = getHash(key)
   const etag = getHash([stringifiedContent])
   const requestedDirectory = path.join(cacheDirectory, hash)
-  const targetFileName = `${maxAge}.${maxAge + Date.now()}.${etag}.json`
+  const targetFileName = `${maxAgeInMs}.${maxAgeInMs + Date.now()}.${etag}.json`
 
   try {
     await fs.promises.mkdir(requestedDirectory, { recursive: true })

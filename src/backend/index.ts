@@ -1,12 +1,17 @@
-import { initTRPC, TRPCError } from '@trpc/server'
+import { initTRPC } from '@trpc/server'
 import { z } from 'zod'
+import { exportJWK } from 'jose'
+import { createPrivateKey, createPublicKey } from 'crypto'
+
+import { privateKey } from '$constants/secrets/privateKey'
+
 import { authenticateEventpopUser } from './auth/authenticateEventpopUser'
 import { authenticateGitHub } from './auth/authenticateGitHub'
 import { getAuthenticatedUser } from './auth/getAuthenticatedUser'
-import { privateKey } from '$constants/secrets/privateKey'
-import { createPrivateKey, createPublicKey } from 'crypto'
-import { exportJWK } from 'jose'
-import { checkAccess, createAccessQrCode, pullLogs } from './g0'
+
+import { createAccessQrCode } from './gardenGate/createAccessQrCode'
+import { checkAccess } from './gardenGate/checkAccess'
+import { pullLogs } from './gardenGate/pullLogs'
 
 interface BackendContext {
   authToken?: string
@@ -49,7 +54,7 @@ export const appRouter = t.router({
     }),
   }),
 
-  g0: t.router({
+  gardenGate: t.router({
     createAccessQrCode: t.procedure.mutation(async ({ ctx }) => {
       const user = await getAuthenticatedUser(ctx.authToken)
       return createAccessQrCode(user)
