@@ -23,7 +23,18 @@ export const checkAccess = async (user: AuthenticatedUser | null) => {
       }
     )) as Pick<User, '_id' | 'roles'>
 
-  return [Role.CoreOfCore, Role.GardenZero].some(role =>
+  let granted = [Role.CoreOfCore, Role.GardenZero].some(role =>
     (partialUserDoc.roles ?? []).some(userRole => userRole === role)
   )
+
+  if (granted) {
+    return {
+      granted: true,
+    }
+  } else {
+    return {
+      granted: false,
+      reason: 'insufficient roles'
+    }
+  }
 }
