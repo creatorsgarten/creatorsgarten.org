@@ -1,6 +1,6 @@
 import { createTRPCProxyClient, httpLink } from '@trpc/client'
 
-import { contentApiBaseUrl } from './contentApiBaseUrl'
+import { contentApiBaseUrl } from './secrets/contentApiBaseUrl'
 
 import type { ContentsgartenRouter } from 'contentsgarten'
 

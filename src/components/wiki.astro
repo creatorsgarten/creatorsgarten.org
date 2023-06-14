@@ -10,9 +10,9 @@ import WikiView from './wiki/view.astro'
 import {
   getContentHash,
   getMarkdownFromSlug,
-} from '$functions/getMarkdownFromSlug'
-import { formatPageRef } from '$functions/formatPageRef'
-import { getWikiDescription } from '$functions/getWikiDescription'
+} from '$functions/wiki/getMarkdownFromSlug'
+import { formatPageRef } from '$functions/wiki/formatPageRef'
+import { getWikiDescription } from '$functions/wiki/getWikiDescription'
 import { parseFrontMatter } from '$functions/parseFrontMatter'
 import { fromZodError } from 'zod-validation-error'
 

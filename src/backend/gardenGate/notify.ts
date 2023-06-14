@@ -2,6 +2,8 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 
+import { notifyDiscord } from '$constants/secrets/notifyDiscord'
+
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import type { WithId } from 'mongodb'
 
@@ -14,7 +16,7 @@ export const notify = async (
   time: Date
 ) => {
   await Promise.all([
-    fetch(import.meta.env.NOTIFY_DISCORD || process.env.NOTIFY_DISCORD, {
+    fetch(notifyDiscord, {
       method: 'POST',
       headers: {
         Accepts: 'application/json',

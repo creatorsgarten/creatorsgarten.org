@@ -3,7 +3,7 @@ import { contentsgarten } from '$constants/contentsgarten'
 import {
   getContentHash,
   getMarkdownFromSlug,
-} from '$functions/getMarkdownFromSlug'
+} from '$functions/wiki/getMarkdownFromSlug'
 import { purgeFileSystem } from '$functions/fileSystem'
 import { LRUCache } from 'lru-cache'
 

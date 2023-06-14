@@ -1,6 +1,6 @@
 import { contentsgarten } from '$constants/contentsgarten'
 
-import { purgeFileSystem } from './fileSystem'
+import { purgeFileSystem } from '../fileSystem'
 
 import type { AstroGlobal } from 'astro'
 

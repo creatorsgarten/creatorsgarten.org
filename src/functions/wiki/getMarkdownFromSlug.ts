@@ -1,5 +1,5 @@
 import { contentsgarten } from '$constants/contentsgarten'
-import { getHash, readFileSystem, writeFileSystem } from './fileSystem'
+import { getHash, readFileSystem, writeFileSystem } from '../fileSystem'
 
 import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
 
