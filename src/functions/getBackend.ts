@@ -3,13 +3,14 @@ import type { AstroGlobal } from 'astro'
 import { getAuthTokenFromAstro } from './auth/getAuthTokenFromAstro'
 import { AppRouter, appRouter } from 'src/backend'
 import { localLink } from './localLink'
+import { privateKey } from '$constants/secrets/privateKey'
 
 export function getBackend(Astro: Pick<AstroGlobal, 'cookies'>) {
   const token = getAuthTokenFromAstro(Astro)
 
   return createTRPCProxyClient<AppRouter>({
     links: [
-      import.meta.env.JWT_PRIVATE_KEY
+      privateKey
         ? localLink(appRouter, { authToken: token })
         : httpLink({
             url:
