@@ -9,7 +9,8 @@ import { checkAccess } from './checkAccess'
 import { getServiceAccountIdToken } from './getServiceAccountIdToken'
 
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import type { EntryLog } from '$types/EntryLog'
+import type { GardenAccess } from '$types/mongo/GardenAccess'
+import type { User } from '$types/mongo/User'
 
 const GardenZeroResponse = z.object({
   accessKey: z.string(),
@@ -39,20 +40,20 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
     .collection('users')
     .findOne({
       uid: user.uid,
-    })
+    })! as User
 
   const accessDoc = await mongo
     .db('creatorsgarten-org')
     .collection('gardenAccesses')
     .insertOne({
-      user: userDoc!._id,
+      user: userDoc._id,
       accessKey: null,
       requestedAt: new Date(),
       createdAt: null,
       expiresAt: null,
       usedAt: {},
       notifiedAt: {},
-    } satisfies EntryLog)
+    } satisfies Omit<GardenAccess, '_id'>)
 
   const userFirstName = user.name.split(' ')[0]
   const prefixedName =
@@ -72,7 +73,7 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
         Authorization: 'Bearer ' + idToken,
       },
       body: JSON.stringify({
-        userId: String(userDoc!._id),
+        userId: String(userDoc._id),
         prefix: prefixedName,
         accessId: String(accessDoc.insertedId),
       }),
@@ -96,7 +97,7 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
             accessKey: gardenZeroResponse.accessKey,
             createdAt: new Date(gardenZeroResponse.createdAt),
             expiresAt: new Date(gardenZeroResponse.expiresAt),
-          } satisfies Partial<EntryLog>,
+          } satisfies Partial<GardenAccess>,
         }
       )
 

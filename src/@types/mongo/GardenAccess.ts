@@ -1,6 +1,6 @@
-import type { ObjectId } from 'mongodb'
+import type { ObjectId, WithId } from 'mongodb'
 
-export interface EntryLog {
+export type GardenAccess =  WithId<{
   user: ObjectId
   accessKey: string | null
   requestedAt: Date
@@ -8,4 +8,4 @@ export interface EntryLog {
   expiresAt: Date | null
   usedAt: Record<string, Date>
   notifiedAt: Record<string, Date>
-}
+}>

@@ -41,9 +41,9 @@
   class="bg-gradient-to-b from-[#73A790] from-5% to-[#2E6459] w-full md:h-64 aspect-square md:aspect-auto rounded-2xl text-white leading-none border border-neutral-500 relative overflow-hidden"
 >
   {#if accessCard === null}
-    <FrontSide user={user} on:click={onClick} />
+    <FrontSide {user} on:click={onClick} />
   {:else}
-    <BackSide user={user} accessCard={accessCard} />
+    <BackSide {user} {accessCard} />
   {/if}
   <div
     class={`absolute z-50 bg-black/40 top-0 bottom-0 right-0 left-0 transition duration-300 flex justify-center items-center pointer-events-none ${

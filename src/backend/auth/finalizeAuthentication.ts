@@ -4,6 +4,7 @@ import { mongo } from '$constants/mongo'
 import { maxSessionAge } from '$constants/maxSessionAge'
 import { privateKey } from '$constants/secrets/privateKey'
 
+import type { User } from '$types/mongo/User'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 
 export const finalizeAuthentication = async (uid: number) => {
@@ -11,7 +12,7 @@ export const finalizeAuthentication = async (uid: number) => {
   const userDoc = await mongo
     .db('creatorsgarten-org')
     .collection('users')
-    .findOne({ uid })
+    .findOne({ uid }) as User | null
 
   if (userDoc === null) throw new Error('unsuccessful-authentication')
 

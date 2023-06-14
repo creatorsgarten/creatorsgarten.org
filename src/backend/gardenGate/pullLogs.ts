@@ -7,7 +7,7 @@ import { getServiceAccountIdToken } from './getServiceAccountIdToken'
 import { notify } from './notify'
 
 import type { WithId } from 'mongodb'
-import type { EntryLog } from '$types/EntryLog'
+import type { GardenAccess } from '$types/mongo/GardenAccess'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 
 interface PullResponse {
@@ -63,7 +63,7 @@ export const pullLogs = async () => {
           .collection('gardenAccesses')
           .findOne({
             accessKey: accessKey,
-          })) as WithId<EntryLog>
+          })) as WithId<GardenAccess>
         let userDoc = (await mongo
           .db('creatorsgarten-org')
           .collection('users')

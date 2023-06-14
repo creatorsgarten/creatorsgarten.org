@@ -4,6 +4,8 @@ import { mongo } from '$constants/mongo'
 import { getAuthenticatedUser } from './getAuthenticatedUser'
 import { finalizeAuthentication } from './finalizeAuthentication'
 
+import type { User } from '$types/mongo/User'
+
 interface GitHubTokenResponse {
   access_token: string
   scope: string
@@ -74,7 +76,7 @@ export const authenticateGitHub = async (
                 username: user.login,
               },
             },
-          },
+          } satisfies Partial<User>,
         }
       )
 

@@ -5,6 +5,7 @@ import { eventpopClient } from '$constants/secrets/eventpopClient'
 
 import { getEventpopUser } from 'src/backend/auth/getEventpopUser'
 import { getEventpopUserTickets } from 'src/backend/auth/getEventpopUserTickets'
+import type { User } from '$types/mongo/User'
 
 interface EventpopAuthorizationResponse {
   access_token: string
@@ -67,7 +68,7 @@ export const authenticateEventpopUser = async (code: string) => {
               id: t.event_id,
               code: t.reference_code,
             })),
-          },
+          } satisfies Partial<User>,
         },
         {
           upsert: true,
