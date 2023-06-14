@@ -66,7 +66,7 @@ export const appRouter = t.router({
     pullLogs: t.procedure.query(async ({ ctx }) => {
       await getAuthenticatedUser(ctx.authToken)
       return pullLogs()
-    })
+    }),
   }),
 })
 

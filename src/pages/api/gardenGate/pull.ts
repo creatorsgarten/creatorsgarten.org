@@ -6,6 +6,6 @@ export const get: APIRoute = async ctx => {
   await getBackend(ctx).gardenGate.pullLogs.query()
 
   return {
-    body: 'ok'
+    body: 'ok',
   }
 }

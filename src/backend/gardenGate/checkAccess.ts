@@ -1,4 +1,4 @@
-import type { AuthenticatedUser } from "$types/AuthenticatedUser"
+import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 
 export const checkAccess = async (user: AuthenticatedUser | null) => {
   if (!user) {

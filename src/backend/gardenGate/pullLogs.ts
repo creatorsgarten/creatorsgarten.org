@@ -1,14 +1,14 @@
 import _ from 'lodash'
 
-import { g0Hostname } from "$constants/secrets/g0Hostname"
+import { g0Hostname } from '$constants/secrets/g0Hostname'
 import { mongo } from '$constants/mongo'
 
-import { getServiceAccountIdToken } from "./getServiceAccountIdToken"
+import { getServiceAccountIdToken } from './getServiceAccountIdToken'
 import { notify } from './notify'
 
-import type { WithId } from "mongodb"
-import type { EntryLog } from "$types/EntryLog"
-import type { AuthenticatedUser } from "$types/AuthenticatedUser"
+import type { WithId } from 'mongodb'
+import type { EntryLog } from '$types/EntryLog'
+import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 
 interface PullResponse {
   entries: {
