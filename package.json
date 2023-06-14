@@ -55,7 +55,7 @@
     "@types/qrcode": "^1.5.0",
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.2.4",
-    "astro": "2.6.3",
+    "astro": "2.6.4",
     "astro-seo": "^0.7.4",
     "contentsgarten": "^2.0.1",
     "prettier": "2.8.8",
