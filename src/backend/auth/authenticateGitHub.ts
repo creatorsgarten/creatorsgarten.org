@@ -1,5 +1,5 @@
 import { githubClient } from '$constants/secrets/githubClient'
-import { mongo } from '$constants/mongo'
+import { collections } from '$constants/mongo'
 
 import { getAuthenticatedUser } from './getAuthenticatedUser'
 import { finalizeAuthentication } from './finalizeAuthentication'
@@ -63,22 +63,19 @@ export const authenticateGitHub = async (
     })
 
     // sync with mongo
-    await mongo
-      .db('creatorsgarten-org')
-      .collection('users')
-      .updateOne(
-        { uid: currentAuthenticatedUser.uid },
-        {
-          $set: {
-            connections: {
-              github: {
-                id: user.id,
-                username: user.login,
-              },
+    await collections.users.updateOne(
+      { uid: currentAuthenticatedUser.uid },
+      {
+        $set: {
+          connections: {
+            github: {
+              id: user.id,
+              username: user.login,
             },
-          } satisfies Partial<User>,
-        }
-      )
+          },
+        } satisfies Partial<User>,
+      }
+    )
 
     return finalizeAuthentication(currentAuthenticatedUser.uid)
   } catch (e) {

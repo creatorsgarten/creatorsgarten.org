@@ -1,18 +1,14 @@
 import jwt from 'jsonwebtoken'
 
-import { mongo } from '$constants/mongo'
+import { collections } from '$constants/mongo'
 import { maxSessionAge } from '$constants/maxSessionAge'
 import { privateKey } from '$constants/secrets/privateKey'
 
-import type { User } from '$types/mongo/User'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 
 export const finalizeAuthentication = async (uid: number) => {
   // get mongo document
-  const userDoc = (await mongo
-    .db('creatorsgarten-org')
-    .collection('users')
-    .findOne({ uid })) as User | null
+  const userDoc = await collections.users.findOne({ uid })
 
   if (userDoc === null) throw new Error('unsuccessful-authentication')
 

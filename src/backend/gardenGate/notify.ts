@@ -4,17 +4,12 @@ import timezone from 'dayjs/plugin/timezone'
 
 import { notifyDiscord } from '$constants/secrets/notifyDiscord'
 
-import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import type { WithId } from 'mongodb'
+import type { User } from '$types/mongo/User'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
-export const notify = async (
-  user: WithId<AuthenticatedUser>,
-  door: string,
-  time: Date
-) => {
+export const notify = async (user: User, door: string, time: Date) => {
   await Promise.all([
     fetch(notifyDiscord, {
       method: 'POST',

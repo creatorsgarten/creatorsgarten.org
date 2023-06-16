@@ -2,15 +2,13 @@ import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import _ from 'lodash'
 
-import { mongo } from '$constants/mongo'
+import { collections } from '$constants/mongo'
 import { g0Hostname } from '$constants/secrets/g0Hostname'
 
 import { checkAccess } from './checkAccess'
 import { getServiceAccountIdToken } from './getServiceAccountIdToken'
 
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import type { GardenAccess } from '$types/mongo/GardenAccess'
-import type { User } from '$types/mongo/User'
 
 const GardenZeroResponse = z.object({
   accessKey: z.string(),
@@ -34,26 +32,23 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
     })
   }
 
-  // get user object
-  const userDoc = await mongo
-    .db('creatorsgarten-org')
-    .collection('users')
-    .findOne({
-      uid: user.uid,
-    })! as User
+  const userDoc = await collections.users.findOne({ uid: user.uid })
+  if (!userDoc) {
+    throw new TRPCError({
+      code: 'INTERNAL_SERVER_ERROR',
+      message: 'User not found in database. This should not happen.',
+    })
+  }
 
-  const accessDoc = await mongo
-    .db('creatorsgarten-org')
-    .collection('gardenAccesses')
-    .insertOne({
-      user: userDoc._id,
-      accessKey: null,
-      requestedAt: new Date(),
-      createdAt: null,
-      expiresAt: null,
-      usedAt: {},
-      notifiedAt: {},
-    } satisfies Omit<GardenAccess, '_id'>)
+  const accessDoc = await collections.gardenAccesses.insertOne({
+    user: userDoc._id,
+    accessKey: null,
+    requestedAt: new Date(),
+    createdAt: null,
+    expiresAt: null,
+    usedAt: {},
+    notifiedAt: {},
+  })
 
   const userFirstName = user.name.split(' ')[0]
   const prefixedName =
@@ -87,19 +82,16 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
         )
     })
 
-    await mongo
-      .db('creatorsgarten-org')
-      .collection('gardenAccesses')
-      .updateOne(
-        { _id: accessDoc.insertedId },
-        {
-          $set: {
-            accessKey: gardenZeroResponse.accessKey,
-            createdAt: new Date(gardenZeroResponse.createdAt),
-            expiresAt: new Date(gardenZeroResponse.expiresAt),
-          } satisfies Partial<GardenAccess>,
-        }
-      )
+    await collections.gardenAccesses.updateOne(
+      { _id: accessDoc.insertedId },
+      {
+        $set: {
+          accessKey: gardenZeroResponse.accessKey,
+          createdAt: new Date(gardenZeroResponse.createdAt),
+          expiresAt: new Date(gardenZeroResponse.expiresAt),
+        },
+      }
+    )
 
     return gardenZeroResponse
   } catch (e) {

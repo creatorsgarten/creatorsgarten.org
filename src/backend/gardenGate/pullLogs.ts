@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 import { g0Hostname } from '$constants/secrets/g0Hostname'
-import { mongo } from '$constants/mongo'
+import { collections, mongo } from '$constants/mongo'
 
 import { getServiceAccountIdToken } from './getServiceAccountIdToken'
 import { notify } from './notify'
@@ -58,24 +58,19 @@ export const pullLogs = async () => {
     Object.entries(_.groupBy(pullResponse, o => o.accessKey)).map(
       async ([accessKey, entries]) => {
         // find access object by access key
-        let accessDoc = (await mongo
-          .db('creatorsgarten-org')
-          .collection('gardenAccesses')
-          .findOne({
-            accessKey: accessKey,
-          })) as WithId<GardenAccess>
-        let userDoc = (await mongo
-          .db('creatorsgarten-org')
-          .collection('users')
-          .findOne({
-            _id: accessDoc.user,
-          })) as WithId<AuthenticatedUser>
+        const accessDoc = await collections.gardenAccesses.findOne({
+          accessKey: accessKey,
+        })
+        if (!accessDoc) return
 
-        if (accessDoc === null || userDoc === null) return
+        const userDoc = await collections.users.findOne({
+          _id: accessDoc.user,
+        })
+        if (!userDoc) return
 
         // mongo will transformed into null
-        if (accessDoc.usedAt === null) accessDoc.usedAt = {}
-        if (accessDoc.notifiedAt === null) accessDoc.notifiedAt = {}
+        accessDoc.usedAt ??= {}
+        accessDoc.notifiedAt ??= {}
 
         // update log of when it has been used
         for (const entry of entries) {
@@ -96,14 +91,10 @@ export const pullLogs = async () => {
             })
         )
 
-        await mongo
-          .db('creatorsgarten-org')
-          .collection('gardenAccesses')
+        await collections.gardenAccesses
           .updateOne(
             { _id: accessDoc._id },
-            {
-              $set: _.pick(accessDoc, ['usedAt', 'notifiedAt']),
-            }
+            { $set: _.pick(accessDoc, ['usedAt', 'notifiedAt']) }
           )
           .catch(e => console.error(e))
       }

@@ -1,6 +1,6 @@
-import type { ObjectId, WithId } from 'mongodb'
+import type { ObjectId } from 'mongodb'
 
-export type GardenAccess =  WithId<{
+export type GardenAccess = {
   user: ObjectId
   accessKey: string | null
   requestedAt: Date
@@ -8,4 +8,4 @@ export type GardenAccess =  WithId<{
   expiresAt: Date | null
   usedAt: Record<string, Date>
   notifiedAt: Record<string, Date>
-}>
+}

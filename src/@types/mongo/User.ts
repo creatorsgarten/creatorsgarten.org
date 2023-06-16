@@ -1,7 +1,6 @@
-import type { WithId } from 'mongodb'
 import type { Role } from '$types/Role'
 
-export type User = WithId<{
+export interface User {
   /** Eventpop user ID */
   uid: number
   name: string
@@ -20,4 +19,4 @@ export type User = WithId<{
     } | null
   }
   accessedAt: Date
-}>
+}

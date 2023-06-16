@@ -1,6 +1,6 @@
 import { finalizeAuthentication } from './finalizeAuthentication'
 
-import { mongo } from '$constants/mongo'
+import { collections } from '$constants/mongo'
 import { eventpopClient } from '$constants/secrets/eventpopClient'
 
 import { getEventpopUser } from 'src/backend/auth/getEventpopUser'
@@ -52,29 +52,26 @@ export const authenticateEventpopUser = async (code: string) => {
     // console.log(access_token)
 
     // sync with mongo
-    await mongo
-      .db('creatorsgarten-org')
-      .collection('users')
-      .updateOne(
-        { uid: user.id },
-        {
-          $set: {
-            uid: user.id,
-            name: user.full_name,
-            avatar: user.avatar,
-            email: user.email,
-            accessedAt: new Date(),
-            events: tickets.map(t => ({
-              id: t.event_id,
-              ticketId: t.id,
-              code: t.reference_code,
-            })),
-          } satisfies Partial<User>,
-        },
-        {
-          upsert: true,
-        }
-      )
+    await collections.users.updateOne(
+      { uid: user.id },
+      {
+        $set: {
+          uid: user.id,
+          name: user.full_name,
+          avatar: user.avatar,
+          email: user.email,
+          accessedAt: new Date(),
+          events: tickets.map(t => ({
+            id: t.event_id,
+            ticketId: t.id,
+            code: t.reference_code,
+          })),
+        } satisfies Partial<User>,
+      },
+      {
+        upsert: true,
+      }
+    )
 
     return finalizeAuthentication(user.id)
   } catch (e) {

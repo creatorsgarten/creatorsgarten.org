@@ -1,6 +1,8 @@
 import { MongoClient } from 'mongodb'
 
 import { mongoAddress } from './secrets/mongoAddress'
+import type { GardenAccess } from '$types/mongo/GardenAccess'
+import type { User } from '$types/mongo/User'
 
 const globalMongo = global as unknown as {
   mongo?: MongoClient
@@ -9,3 +11,13 @@ const globalMongo = global as unknown as {
 export const mongo = globalMongo.mongo || new MongoClient(mongoAddress)
 
 if (!import.meta.env.PROD) globalMongo.mongo = mongo
+
+// We can call `.db` and `.collection` as much as we like.
+// Until we actually make a query, it won’t connect to the database.
+
+const db = mongo.db('creatorsgarten-org')
+
+export const collections = {
+  users: db.collection<User>('users'),
+  gardenAccesses: db.collection<GardenAccess>('gardenAccesses'),
+}
