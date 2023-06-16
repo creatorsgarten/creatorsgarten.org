@@ -60,6 +60,10 @@ try {
 } catch (e) {
   error = (e as Error).message
 }
+
+if (redirectTo === '/') {
+  redirectTo = '/dashboard'
+}
 ---
 
 <Blank>
