@@ -12,6 +12,7 @@ import { getAuthenticatedUser } from './auth/getAuthenticatedUser'
 import { createAccessQrCode } from './gardenGate/createAccessQrCode'
 import { checkAccess } from './gardenGate/checkAccess'
 import { pullLogs } from './gardenGate/pullLogs'
+import { getJoinedEvents } from './events/getJoinedEvents'
 
 interface BackendContext {
   authToken?: string
@@ -51,6 +52,13 @@ export const appRouter = t.router({
       const privateKeyObj = createPrivateKey(privateKey)
       const publicKeyObj = createPublicKey(privateKeyObj)
       return [{ ...(await exportJWK(publicKeyObj)), kid: 'riffy1' }]
+    }),
+  }),
+
+  events: t.router({
+    getJoinedEvents: t.procedure.query(async ({ ctx }) => {
+      const user = await getAuthenticatedUser(ctx.authToken)
+      return getJoinedEvents(user)
     }),
   }),
 

@@ -9,10 +9,10 @@ import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 
 export const finalizeAuthentication = async (uid: number) => {
   // get mongo document
-  const userDoc = await mongo
+  const userDoc = (await mongo
     .db('creatorsgarten-org')
     .collection('users')
-    .findOne({ uid }) as User | null
+    .findOne({ uid })) as User | null
 
   if (userDoc === null) throw new Error('unsuccessful-authentication')
 
@@ -22,7 +22,6 @@ export const finalizeAuthentication = async (uid: number) => {
     name: userDoc.name,
     avatar: userDoc.avatar,
     email: userDoc.email,
-    events: userDoc.events ?? [],
     connections: {
       github: userDoc.connections?.github ?? null,
     },

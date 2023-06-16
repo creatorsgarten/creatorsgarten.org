@@ -9,6 +9,7 @@ import type { Event } from '$functions/getEvents'
 export interface Props {
   eventIds: {
     id: number
+    ticketId: number
     code: string
   }[]
 }
@@ -17,9 +18,10 @@ const { eventIds } = Astro.props
 
 const events = await getEvents()
 const selectedEvents = eventIds
-  .map(({ id, code }) => ({
+  .map(({ id, code, ticketId }) => ({
     data: events.find(event => event.eventpopId === id) as Event,
     code,
+    ticketId,
   }))
   .filter(o => o.data !== undefined)
   .sort((a, b) => b.data.date.unix() - a.data.date.unix())
@@ -28,30 +30,36 @@ const selectedEvents = eventIds
 <div class="max-w-2xl mx-auto grid md:grid-cols-2 gap-4">
   {
     selectedEvents.map(event => (
-      <div class="bg-gradient-to-br from-neutral-700 to-neutral-800 flex h-24 rounded-md overflow-hidden">
-        <div class="h-full aspect-square shrink-0">
-          <CFImage
-            src={event.data.image}
-            width={300}
-            ratio={1}
-            alt="cover"
-            class={`h-full w-auto ${
-              dayjs(event.data.endDate ?? event.data.date).isAfter(dayjs())
-                ? ''
-                : 'grayscale'
-            }`}
-          />
+      <a
+        href={`https://www.eventpop.me/tickets/${event.ticketId}#:~:text=E%2dTicket`}
+      >
+        <div class="flex h-24 overflow-hidden rounded-md bg-gradient-to-br from-neutral-700 to-neutral-800">
+          <div class="aspect-square h-full shrink-0">
+            <CFImage
+              src={event.data.image}
+              width={300}
+              ratio={1}
+              alt="cover"
+              class={`h-full w-auto ${
+                dayjs(event.data.endDate ?? event.data.date).isAfter(dayjs())
+                  ? ''
+                  : 'grayscale'
+              }`}
+            />
+          </div>
+          <div class="flex w-full flex-col justify-between px-4 py-2">
+            <h1 class="line-clamp-2 font-medium text-white">
+              {event.data.name}
+            </h1>
+            <p class="inline-flex items-center justify-end text-right text-xs text-gray-200">
+              Ref:{' '}
+              <span class="ml-1 rounded bg-gray-200 px-0.5 transition hover:bg-transparent">
+                {event.code}
+              </span>
+            </p>
+          </div>
         </div>
-        <div class="px-4 py-2 flex flex-col justify-between w-full">
-          <h1 class="line-clamp-2 font-medium text-white">{event.data.name}</h1>
-          <p class="text-gray-200 text-xs text-right inline-flex justify-end items-center">
-            Ref:{' '}
-            <span class="bg-gray-200 rounded px-0.5 ml-1 hover:bg-transparent transition">
-              {event.code}
-            </span>
-          </p>
-        </div>
-      </div>
+      </a>
     ))
   }
 </div>

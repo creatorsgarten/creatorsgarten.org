@@ -11,6 +11,8 @@ const authenticatedUser = await getBackend(
   Astro
 ).auth.getAuthenticatedUser.query()
 if (!authenticatedUser) return Astro.redirect('/')
+
+const joinedEvents = await getBackend(Astro).events.getJoinedEvents.query()
 ---
 
 <Head title="Dashboard" />
@@ -58,7 +60,7 @@ if (!authenticatedUser) return Astro.redirect('/')
     </div>
   </section>
   <Garden0 user={authenticatedUser} />
-  <JoinedEvents eventIds={authenticatedUser.events} />
+  <JoinedEvents eventIds={joinedEvents} />
   <section class="pt-4 flex justify-center">
     <a
       href="/auth/logout"
