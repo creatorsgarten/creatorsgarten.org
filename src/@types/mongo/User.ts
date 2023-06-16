@@ -10,6 +10,7 @@ export type User = WithId<{
   roles?: Role[]
   events: {
     id: number
+    ticketId: number
     code: string
   }[]
   connections: {

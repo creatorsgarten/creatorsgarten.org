@@ -66,6 +66,7 @@ export const authenticateEventpopUser = async (code: string) => {
             accessedAt: new Date(),
             events: tickets.map(t => ({
               id: t.event_id,
+              ticketId: t.id,
               code: t.reference_code,
             })),
           } satisfies Partial<User>,
