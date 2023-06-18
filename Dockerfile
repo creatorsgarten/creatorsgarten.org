@@ -22,7 +22,10 @@ RUN npx pnpm build
 
 # ? -------------------------
 
-FROM gcr.io/distroless/nodejs18-debian11:nonroot as runner
+# Use -dev variant for debugging with bash attatched
+# https://edu.chainguard.dev/chainguard/chainguard-images/reference/node/image_specs/
+
+FROM cgr.dev/chainguard/node:18 AS runner
 
 USER nonroot
 EXPOSE 8080
