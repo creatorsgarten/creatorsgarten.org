@@ -25,7 +25,7 @@ RUN npx pnpm build
 # Use -dev variant for debugging with bash attatched
 # https://edu.chainguard.dev/chainguard/chainguard-images/reference/node/image_specs/
 
-FROM cgr.dev/chainguard/node:18 AS runner
+FROM cgr.dev/chainguard/node:20- AS runner
 
 USER nonroot
 EXPOSE 8080
