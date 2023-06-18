@@ -6,10 +6,6 @@ import { collections, mongo } from '$constants/mongo'
 import { getServiceAccountIdToken } from './getServiceAccountIdToken'
 import { notify } from './notify'
 
-import type { WithId } from 'mongodb'
-import type { GardenAccess } from '$types/mongo/GardenAccess'
-import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-
 interface PullResponse {
   entries: {
     door: string
