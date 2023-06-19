@@ -1,4 +1,4 @@
-FROM node:18-alpine as deps-prod
+FROM cgr.dev/chainguard/node:18 as deps-prod
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN npx pnpm -r i --frozen-lockfile --prod
 
 # ? -------------------------
 
-FROM node:18-alpine as builder
+FROM cgr.dev/chainguard/node:18 as builder
 
 WORKDIR /app
 
