@@ -10,9 +10,11 @@ export interface AuthenticatedUser {
   email: string
 
   connections: {
-    github: {
-      id: number
-      username: string
-    } | null
+    github: GitHubConnection
   }
 }
+
+export type GitHubConnection = {
+  id: number
+  username: string
+} | null
