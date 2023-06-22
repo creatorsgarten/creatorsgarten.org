@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb'
+
 import { githubClient } from '$constants/secrets/githubClient'
 import { collections } from '$constants/mongo'
 
@@ -64,11 +66,12 @@ export const authenticateGitHub = async (
 
     // make sure that this account does not connected to another account
     const existingUser = await collections.users.findOne({
+      _id: { $ne: new ObjectId(currentAuthenticatedUser.sub) },
       'connections.github.id': user.id,
     })
     if (existingUser !== null)
       throw new Error(
-        'This connection has been already connected to another account.'
+        'This connection has been connected to another account.'
       )
 
     // sync with mongo
@@ -89,6 +92,7 @@ export const authenticateGitHub = async (
 
     return finalizeAuthentication(currentAuthenticatedUser.uid)
   } catch (e) {
-    throw new Error('Unable to verify authenticy of this connection.')
+    if (e instanceof Error) throw e
+    else throw new Error('Unable to verify authenticity of this connection.')
   }
 }
