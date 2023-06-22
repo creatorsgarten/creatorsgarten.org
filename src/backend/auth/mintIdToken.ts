@@ -2,7 +2,11 @@ import jwt from 'jsonwebtoken'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import { privateKey } from '$constants/secrets/privateKey'
 
-export interface AuthgartenOidcIdentity {
+/**
+ * Data contained in ID token returned by Authgarten OIDC provider.
+ * https://github.com/creatorsgarten/creatorsgarten.org/blob/main/src/backend/auth/mintIdToken.ts
+ */
+export interface AuthgartenOidcClaims {
   /** Unique user ID (24 characters hexadecimal) */
   sub: string
 
@@ -28,7 +32,7 @@ export interface AuthgartenOidcIdentity {
 }
 
 export function mintIdToken(user: AuthenticatedUser, audience: string): any {
-  const id: AuthgartenOidcIdentity = {
+  const id: AuthgartenOidcClaims = {
     sub: String(user.sub),
     name: user.name,
     picture: user.avatar,
