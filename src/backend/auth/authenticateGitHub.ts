@@ -62,6 +62,15 @@ export const authenticateGitHub = async (
       else throw o
     })
 
+    // make sure that this account does not connected to another account
+    const existingUser = await collections.users.findOne({
+      'connections.github.id': user.id,
+    })
+
+    if (existingUser !== null) {
+      throw new Error('This account has been already connected to another account.')
+    }
+
     // sync with mongo
     await collections.users.updateOne(
       { uid: currentAuthenticatedUser.uid },
@@ -79,6 +88,6 @@ export const authenticateGitHub = async (
 
     return finalizeAuthentication(currentAuthenticatedUser.uid)
   } catch (e) {
-    throw new Error('github-varification-failed')
+    throw new Error('Unable to verify authenticy of this connection.')
   }
 }
