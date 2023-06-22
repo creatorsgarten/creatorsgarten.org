@@ -45,11 +45,15 @@ export interface AuthgartenOidcClaims {
     /** Reference code */
     refCode: string
   }[]
+
+  /** The nonce value, per https://openid.net/specs/openid-connect-core-1_0.html#IDToken */
+  nonce?: string
 }
 
 export async function mintIdToken(
   user: AuthenticatedUser,
   audience: string,
+  nonce: string | undefined,
   scopes: string[]
 ): Promise<{ idToken: string; claims: AuthgartenOidcClaims }> {
   const claims: AuthgartenOidcClaims = {
@@ -60,7 +64,9 @@ export async function mintIdToken(
       eventpop: { id: user.uid },
       github: user.connections.github ?? undefined,
     },
+    nonce,
   }
+
   if (scopes.includes('email')) {
     claims.email = user.email
   }

@@ -34,6 +34,7 @@ export const appRouter = t.router({
       .input(
         z.object({
           audience: z.string(),
+          nonce: z.string().optional(),
           scopes: z.array(z.string()),
         })
       )
@@ -45,7 +46,7 @@ export const appRouter = t.router({
             message: 'User is not authenticated',
           })
         }
-        return mintIdToken(user, input.audience, input.scopes)
+        return mintIdToken(user, input.audience, input.nonce, input.scopes)
       }),
 
     signInWithEventpopAuthorizationCode: t.procedure

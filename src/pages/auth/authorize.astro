@@ -32,10 +32,12 @@ if (client) {
 
 const state = Astro.url.searchParams.get('state') ?? ''
 const scope = Astro.url.searchParams.get('scope') ?? ''
+const nonce = Astro.url.searchParams.get('nonce') ?? undefined
 const scopes = scope.split(' ').filter(Boolean)
 const idTokenInfo = await getBackend(Astro).auth.mintIdToken.mutate({
   audience: clientId,
   scopes,
+  nonce,
 })
 
 const redirectTo = new URL(redirectUri)
