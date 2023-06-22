@@ -32,7 +32,7 @@ export interface AuthgartenOidcClaims {
 }
 
 export function mintIdToken(user: AuthenticatedUser, audience: string): any {
-  const id: AuthgartenOidcClaims = {
+  const claims: AuthgartenOidcClaims = {
     sub: String(user.sub),
     name: user.name,
     picture: user.avatar,
@@ -41,7 +41,7 @@ export function mintIdToken(user: AuthenticatedUser, audience: string): any {
       github: user.connections.github ?? undefined,
     },
   }
-  const idToken = jwt.sign(id, privateKey, {
+  const idToken = jwt.sign(claims, privateKey, {
     algorithm: 'RS256',
 
     // https://openid.net/specs/openid-connect-basic-1_0.html#IDToken
@@ -54,5 +54,5 @@ export function mintIdToken(user: AuthenticatedUser, audience: string): any {
       kid: 'riffy1',
     },
   })
-  return { idToken }
+  return { idToken, claims }
 }

@@ -1,8 +1,9 @@
 ---
 import Head from '$components/head.astro'
 import { getBackend } from '$functions/getBackend'
-import { oauthClients } from '$constants/oauth'
+import { OAuthClientConfig, oauthClients } from '$constants/oauth'
 import { errorPage } from '$functions/errorPage'
+import { IdTokenInspector } from '$components/IdTokenInspector'
 import Blank from '$layouts/blank.astro'
 
 const authenticatedUser = await getBackend(
@@ -16,15 +17,18 @@ if (!authenticatedUser) {
   return Astro.redirect(url)
 }
 
+let trustedClient: OAuthClientConfig | undefined
+let untrustedReason = 'The provided client_id is not recognized'
+
 const clientId = Astro.url.searchParams.get('client_id') ?? ''
 const client = oauthClients.find(c => c.clientId === clientId)
-if (!client) {
-  return errorPage(400, 'Bad Request', 'Unrecognized client ID')
-}
-
 const redirectUri = Astro.url.searchParams.get('redirect_uri') ?? ''
-if (!client.redirectUris.includes(redirectUri)) {
-  return errorPage(400, 'Bad Request', 'Unrecognized redirect URI')
+if (client) {
+  if (client.redirectUris.includes(redirectUri)) {
+    trustedClient = client
+  } else {
+    untrustedReason = 'The provided redirect_uri is not recognized'
+  }
 }
 
 const state = Astro.url.searchParams.get('state') ?? ''
@@ -42,16 +46,51 @@ redirectTo.searchParams.set('state', state)
 <Blank>
   <Fragment slot="head">
     <title>Authgarten</title>
-    <meta http-equiv="Refresh" content={'1; url=' + redirectTo} />
+    {
+      !!trustedClient && (
+        <meta http-equiv="Refresh" content={'1; url=' + redirectTo} />
+      )
+    }
   </Fragment>
   <main class="px-4 max-w-7xl mx-auto py-12">
-    <h1 class="text-4xl font-medium">Redirecting…</h1>
-    <p>
-      Redirecting you to <strong>{client.name}</strong>…
-    </p>
-    <p>
-      <a href={redirectTo} class="underline">Click here</a>{' '}
-      if nothing happens
-    </p>
+    {
+      trustedClient ? (
+        <>
+          <h1 class="mb-4 text-4xl font-medium">Redirecting…</h1>
+          <p>
+            Redirecting you to <strong>{trustedClient.name}</strong>…
+          </p>
+          <p>
+            <a href={redirectTo} class="underline">
+              Click here
+            </a>{' '}
+            if nothing happens
+          </p>
+        </>
+      ) : (
+        <>
+          <h1 class="mb-4 text-4xl font-medium">Data access request</h1>
+          <p class="mb-3">
+            A third-party application at <strong>{redirectTo.origin}</strong>{' '}
+            would like to access information in your Creatorsgarten account.
+          </p>
+          <p class="mb-3">The following information will be shared:</p>
+          <div class="mb-3">
+            <IdTokenInspector claims={idTokenInfo.claims} />
+          </div>
+          <p class="mb-3">
+            If you trust this application, click the button below to send the
+            information:
+          </p>
+          <a
+            href={redirectTo}
+            class="inline-flex w-full shrink-0 justify-center rounded-lg bg-[#1c1916] px-4 py-2 text-white sm:w-auto sm:rounded-full"
+          >
+            Send information and continue
+          </a>
+          <div class="hidden">Untrusted reason: {untrustedReason}</div>
+        </>
+      )
+    }
   </main>
 </Blank>

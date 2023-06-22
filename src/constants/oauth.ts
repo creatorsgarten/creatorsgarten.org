@@ -9,7 +9,7 @@ export const oauthClients: OAuthClientConfig[] = [
   },
 ]
 
-interface OAuthClientConfig {
+export interface OAuthClientConfig {
   /** Client ID */
   clientId: string
 
