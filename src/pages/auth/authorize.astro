@@ -4,6 +4,7 @@ import { getBackend } from '$functions/getBackend'
 import { OAuthClientConfig, oauthClients } from '$constants/oauth'
 import { IdTokenInspector } from '$components/idTokenInspector'
 import Blank from '$layouts/blank.astro'
+import { errorPage } from '$functions/errorPage'
 
 const authenticatedUser = await getBackend(
   Astro
