@@ -70,9 +70,7 @@ export const authenticateGitHub = async (
       'connections.github.id': user.id,
     })
     if (existingUser !== null)
-      throw new Error(
-        'This connection has been connected to another account.'
-      )
+      throw new Error('This connection has been connected to another account.')
 
     // sync with mongo
     await collections.users.updateOne(

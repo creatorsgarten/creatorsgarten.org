@@ -76,9 +76,7 @@ export const authenticateDiscord = async (
       'connections.discord.id': user.id,
     })
     if (existingUser !== null)
-      throw new Error(
-        'This connection has been connected to another account.'
-      )
+      throw new Error('This connection has been connected to another account.')
 
     // sync with mongo
     await collections.users.updateOne(
