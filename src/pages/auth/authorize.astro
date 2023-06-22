@@ -39,6 +39,14 @@ const idTokenInfo = await getBackend(Astro).auth.mintIdToken.mutate({
 const redirectTo = new URL(redirectUri)
 redirectTo.searchParams.set('id_token', idTokenInfo.idToken)
 redirectTo.searchParams.set('state', state)
+
+if (redirectTo.protocol !== 'https:' && redirectTo.protocol !== 'http:') {
+  return errorPage(
+    400,
+    'Bad Request',
+    'Invalid redirect_uri - only http and https are supported'
+  )
+}
 ---
 
 <Head title="Authgarten" />
