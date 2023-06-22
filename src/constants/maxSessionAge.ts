@@ -1,1 +1,1 @@
-export const maxSessionAge = 60 * 60 * 24 * 1 // 1 day
+export const maxSessionAge = 60 * 60 * 12 // 12 hours
