@@ -31,8 +31,11 @@ if (client) {
 }
 
 const state = Astro.url.searchParams.get('state') ?? ''
+const scope = Astro.url.searchParams.get('scope') ?? ''
+const scopes = scope.split(' ').filter(Boolean)
 const idTokenInfo = await getBackend(Astro).auth.mintIdToken.mutate({
   audience: 'https://github.com/dtinth/authgarten-example',
+  scopes,
 })
 
 const redirectTo = new URL(redirectUri)
