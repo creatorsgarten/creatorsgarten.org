@@ -1,0 +1,57 @@
+---
+import Head from '$components/head.astro'
+import { getBackend } from '$functions/getBackend'
+import { oauthClients } from '$constants/oauth'
+import { errorPage } from '$functions/errorPage'
+import Blank from '$layouts/blank.astro'
+
+const authenticatedUser = await getBackend(
+  Astro
+).auth.getAuthenticatedUser.query()
+
+if (!authenticatedUser) {
+  const url = `/auth/login?${new URLSearchParams({
+    dest: Astro.url.pathname + Astro.url.search,
+  })}`
+  return Astro.redirect(url)
+}
+
+const clientId = Astro.url.searchParams.get('client_id') ?? ''
+const client = oauthClients.find(c => c.clientId === clientId)
+if (!client) {
+  return errorPage(400, 'Bad Request', 'Unrecognized client ID')
+}
+
+const redirectUri = Astro.url.searchParams.get('redirect_uri') ?? ''
+if (!client.redirectUris.includes(redirectUri)) {
+  return errorPage(400, 'Bad Request', 'Unrecognized redirect URI')
+}
+
+const state = Astro.url.searchParams.get('state') ?? ''
+const idTokenInfo = await getBackend(Astro).auth.mintIdToken.mutate({
+  audience: 'https://github.com/dtinth/authgarten-example',
+})
+
+const redirectTo = new URL(redirectUri)
+redirectTo.searchParams.set('id_token', idTokenInfo.idToken)
+redirectTo.searchParams.set('state', state)
+---
+
+<Head title="Authgarten" />
+
+<Blank>
+  <Fragment slot="head">
+    <title>Authgarten</title>
+    <meta http-equiv="Refresh" content={'1; url=' + redirectTo} />
+  </Fragment>
+  <main class="px-4 max-w-7xl mx-auto py-12">
+    <h1 class="text-4xl font-medium">Redirecting…</h1>
+    <p>
+      Redirecting you to <strong>{client.name}</strong>…
+    </p>
+    <p>
+      <a href={redirectTo} class="underline">Click here</a>{' '}
+      if nothing happens
+    </p>
+  </main>
+</Blank>

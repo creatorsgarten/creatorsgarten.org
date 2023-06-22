@@ -1,4 +1,4 @@
-import { initTRPC } from '@trpc/server'
+import { TRPCError, initTRPC } from '@trpc/server'
 import { z } from 'zod'
 import { exportJWK } from 'jose'
 import { createPrivateKey, createPublicKey } from 'crypto'
@@ -13,6 +13,7 @@ import { createAccessQrCode } from './gardenGate/createAccessQrCode'
 import { checkAccess } from './gardenGate/checkAccess'
 import { pullLogs } from './gardenGate/pullLogs'
 import { getJoinedEvents } from './events/getJoinedEvents'
+import { mintIdToken } from './auth/mintIdToken'
 
 interface BackendContext {
   authToken?: string
@@ -27,6 +28,23 @@ export const appRouter = t.router({
     getAuthenticatedUser: t.procedure.query(({ ctx }) => {
       return getAuthenticatedUser(ctx.authToken)
     }),
+
+    mintIdToken: t.procedure
+      .input(
+        z.object({
+          audience: z.string(),
+        })
+      )
+      .mutation(async ({ ctx, input }) => {
+        const user = await getAuthenticatedUser(ctx.authToken)
+        if (!user) {
+          throw new TRPCError({
+            code: 'UNAUTHORIZED',
+            message: 'User is not authenticated',
+          })
+        }
+        return mintIdToken(user, input.audience)
+      }),
 
     signInWithEventpopAuthorizationCode: t.procedure
       .input(
