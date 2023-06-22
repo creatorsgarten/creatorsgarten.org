@@ -16,6 +16,6 @@ interface OAuthClientConfig {
   /** Application name */
   name: string
 
-  /** Allowed redirect URLs */
+  /** Allowed redirect URIs */
   redirectUris: string[]
 }
