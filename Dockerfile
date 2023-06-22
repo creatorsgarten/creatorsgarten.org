@@ -31,6 +31,7 @@ EXPOSE 8080
 
 ENV NODE_ENV production
 ENV PORT 8080
+ENV TZ="Asia/Bangkok"
 
 COPY package.json ./
 COPY --from=deps-prod /app/node_modules ./node_modules
