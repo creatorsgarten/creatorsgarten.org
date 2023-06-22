@@ -7,6 +7,7 @@ import { privateKey } from '$constants/secrets/privateKey'
 
 import { authenticateEventpopUser } from './auth/authenticateEventpopUser'
 import { authenticateGitHub } from './auth/authenticateGitHub'
+import { authenticateDiscord } from './auth/authenticateDiscord'
 import { getAuthenticatedUser } from './auth/getAuthenticatedUser'
 
 import { createAccessQrCode } from './gardenGate/createAccessQrCode'
@@ -64,6 +65,16 @@ export const appRouter = t.router({
       )
       .mutation(({ input, ctx }) => {
         return authenticateGitHub(input.code, ctx.authToken)
+      }),
+
+    linkDiscordAccount: t.procedure
+      .input(
+        z.object({
+          code: z.string(),
+        })
+      )
+      .mutation(({ input, ctx }) => {
+        return authenticateDiscord(input.code, ctx.authToken)
       }),
 
     getPublicKeys: t.procedure.query(async () => {

@@ -46,6 +46,8 @@ try {
         return backend.auth.signInWithEventpopAuthorizationCode.mutate({ code })
       case 'github':
         return backend.auth.linkGitHubAccount.mutate({ code })
+      case 'discord':
+        return backend.auth.linkDiscordAccount.mutate({ code })
     }
     throw new Error('service-invalid')
   })()

@@ -5,19 +5,25 @@ import { getAuthenticatedUser } from './getAuthenticatedUser'
 import { finalizeAuthentication } from './finalizeAuthentication'
 
 import type { User } from '$types/mongo/User'
+import { discordClient } from '$constants/secrets/discordClient'
 
-interface GitHubTokenResponse {
+interface DiscordTokenResponse {
   access_token: string
+  expires_in: number
+  refresh_token: string
   scope: string
   token_type: string
 }
 
-interface GitHubUserResponse {
+interface DiscordMeResponse {
   id: number
-  login: string
+  username: string
+  global_name: string
+  avatar: string
+  banner: string
 }
 
-export const authenticateGitHub = async (
+export const authenticateDiscord = async (
   code: string,
   existingAuthToken?: string
 ) => {
@@ -26,17 +32,18 @@ export const authenticateGitHub = async (
   if (currentAuthenticatedUser === null) throw new Error('not-authenticated')
 
   try {
-    // authenticate user to github
-    console.log('[github] token')
+    // obtain access token
+    console.log('[discord] token')
     const authorization = await fetch(
-      'https://github.com/login/oauth/access_token',
+      'https://discord.com/api/v10/oauth2/token',
       {
         method: 'POST',
         body: Object.entries({
-          client_id: githubClient.id,
-          client_secret: githubClient.secret,
+          client_id: discordClient.id,
+          client_secret: discordClient.secret,
           code: code,
           redirect_uri: 'https://creatorsgarten.org/auth/callback',
+          grant_type: 'authorization_code',
         })
           .map(([key, value]) => `${key}=${value}`)
           .join('&'),
@@ -46,25 +53,25 @@ export const authenticateGitHub = async (
         },
       }
     ).then(o => {
-      if (o.ok) return o.json() as Promise<GitHubTokenResponse>
+      if (o.ok) return o.json() as Promise<DiscordTokenResponse>
       else throw o
     })
 
-    // get github user information
-    console.log('[github] user')
-    const user = await fetch('https://api.github.com/user', {
+    // get user information
+    console.log('[discord] ne')
+    const user = await fetch('https://discord.com/api/v10/users/@me', {
       headers: {
-        Accept: 'application/vnd.github+json',
+        Accept: 'application/json',
         Authorization: `Bearer ${authorization.access_token}`,
       },
     }).then(o => {
-      if (o.ok) return o.json() as Promise<GitHubUserResponse>
+      if (o.ok) return o.json() as Promise<DiscordMeResponse>
       else throw o
     })
 
     // make sure that this account does not connected to another account
     const existingUser = await collections.users.findOne({
-      'connections.github.id': user.id,
+      'connections.discord.id': user.id,
     })
     if (existingUser !== null)
       throw new Error(
@@ -78,9 +85,9 @@ export const authenticateGitHub = async (
         $set: {
           connections: {
             ...currentAuthenticatedUser.connections,
-            github: {
+            discord: {
               id: user.id,
-              username: user.login,
+              username: user.username,
             },
           },
         } satisfies Partial<User>,

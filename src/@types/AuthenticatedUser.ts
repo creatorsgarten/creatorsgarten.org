@@ -1,3 +1,6 @@
+import type { DiscordConnection } from "./mongo/User/DiscordConnection"
+import type { GitHubConnection } from "./mongo/User/GitHubConnection"
+
 export interface AuthenticatedUser {
   /** ID in the database */
   sub: string
@@ -11,10 +14,6 @@ export interface AuthenticatedUser {
 
   connections: {
     github: GitHubConnection
+    discord: DiscordConnection
   }
 }
-
-export type GitHubConnection = {
-  id: number
-  username: string
-} | null

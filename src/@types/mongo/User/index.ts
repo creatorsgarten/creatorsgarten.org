@@ -1,5 +1,8 @@
 import type { Role } from '$types/Role'
 
+import type { DiscordConnection } from './DiscordConnection'
+import type { GitHubConnection } from './GitHubConnection'
+
 export interface User {
   /** Eventpop user ID */
   uid: number
@@ -13,10 +16,8 @@ export interface User {
     code: string
   }[]
   connections: {
-    github: {
-      id: number
-      username: string
-    } | null
+    github?: GitHubConnection
+    discord?: DiscordConnection
   }
   accessedAt: Date
 }
