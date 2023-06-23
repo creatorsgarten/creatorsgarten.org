@@ -43,6 +43,15 @@ export interface AuthgartenOidcClaims {
     /** Reference code */
     refCode: string
 
+    /** Ticket holder’s first name */
+    firstName: string
+
+    /** Ticket holder’s last name */
+    lastName: string
+
+    /** Ticket holder’s email address */
+    email: string
+
     /** Ticket type */
     ticketType: {
       /** Ticket type ID */
@@ -95,6 +104,9 @@ export async function mintIdToken(
         ticketId: event.ticketId,
         refCode: event.code,
         ticketType: event.ticketType,
+        firstName: event.firstName,
+        lastName: event.lastName,
+        email: event.email,
       }))
   }
 
