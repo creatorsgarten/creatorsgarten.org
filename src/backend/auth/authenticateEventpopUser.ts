@@ -65,8 +65,15 @@ export const authenticateEventpopUser = async (code: string) => {
             id: t.event_id,
             ticketId: t.id,
             code: t.reference_code,
+            firstName: t.firstname,
+            lastName: t.lastname,
+            email: t.email,
+            ticketType: {
+              name: t.ticket_type.name,
+              id: t.ticket_type.id,
+            },
           })),
-        } satisfies Partial<User>,
+        },
       },
       {
         upsert: true,

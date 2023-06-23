@@ -7,6 +7,14 @@ interface EventpopTicket {
   phone: string
   email: string
   reference_code: string
+  ticket_type: {
+    id: number
+    name: string
+    /** @example '฿0.00' */
+    price: string
+    price_satangs: number
+    kind: 'free' | 'paid'
+  }
 }
 
 interface EventpopTicketsResponse {

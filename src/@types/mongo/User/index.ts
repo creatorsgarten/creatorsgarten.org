@@ -1,6 +1,7 @@
 import type { Role } from '$types/Role'
 
 import type { DiscordConnection } from './DiscordConnection'
+import type { EventTicket } from './EventTicket'
 import type { GitHubConnection } from './GitHubConnection'
 
 export interface User {
@@ -10,11 +11,7 @@ export interface User {
   avatar: string
   email: string
   roles?: Role[]
-  events: {
-    id: number
-    ticketId: number
-    code: string
-  }[]
+  events: EventTicket[]
   connections: {
     github?: GitHubConnection
     discord?: DiscordConnection
