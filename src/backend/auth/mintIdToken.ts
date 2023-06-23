@@ -44,6 +44,14 @@ export interface AuthgartenOidcClaims {
 
     /** Reference code */
     refCode: string
+
+    /** Ticket type */
+    ticketType: {
+      /** Ticket type ID */
+      id: number
+      /** Ticket type name */
+      name: string
+    }
   }[]
 
   /** The nonce value, per https://openid.net/specs/openid-connect-core-1_0.html#IDToken */
@@ -87,6 +95,7 @@ export async function mintIdToken(
         eventId: event.id,
         ticketId: event.ticketId,
         refCode: event.code,
+        ticketType: event.ticketType,
       }))
   }
 
