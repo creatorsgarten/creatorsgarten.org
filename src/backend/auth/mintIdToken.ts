@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import { privateKey } from '$constants/secrets/privateKey'
 import { getJoinedEvents } from '../events/getJoinedEvents'
+import type { GitHubConnection } from '$types/mongo/User/GitHubConnection'
+import type { DiscordConnection } from '$types/mongo/User/DiscordConnection'
 
 /**
  * Data contained in ID token returned by Authgarten OIDC provider.
@@ -22,16 +24,12 @@ export interface AuthgartenOidcClaims {
 
   /** Connections */
   connections: {
-    github?: {
-      /** GitHub user ID */
-      id: number
-      /** Username */
-      username: string
-    }
     eventpop: {
       /** Eventpop user ID */
       id: number
     }
+    github?: GitHubConnection
+    discord?: DiscordConnection
   }
 
   /** Associated Eventpop tickets */
@@ -70,7 +68,8 @@ export async function mintIdToken(
     picture: user.avatar,
     connections: {
       eventpop: { id: user.uid },
-      github: user.connections.github ?? undefined,
+      github: user.connections.github,
+      discord: user.connections.discord,
     },
     nonce,
   }
