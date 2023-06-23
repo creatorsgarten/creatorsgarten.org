@@ -4,13 +4,19 @@
   "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@8.6.3",
+  "lint-staged": {
+    "*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}": [
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write --plugin-search-dir=. ."
+    "format": "prettier --write --plugin-search-dir=. .",
+    "prepare": "test -d node_modules/husky && husky install || echo \"husky is not installed\""
   },
   "dependencies": {
     "@astrojs/svelte": "^3.0.0",
@@ -58,10 +64,14 @@
     "astro": "2.7.0",
     "astro-seo": "^0.7.4",
     "contentsgarten": "^2.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "prettier": "2.8.8",
     "prettier-plugin-astro": "0.10.0",
+    "prettier-plugin-svelte": "^2.10.1",
     "tailwindcss": "3.3.2",
-    "typescript": "5.1.3"
+    "typescript": "5.1.3",
+    "zx": "^7.2.2"
   },
   "pnpm": {
     "overrides": {
