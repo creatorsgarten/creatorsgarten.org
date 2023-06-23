@@ -11,19 +11,17 @@
   export let user: AuthenticatedUser
   export let accessCard: AccessCard
 
-  let expireInMinute = 5
-  let expireInSeconds = 0
+  const getTimeDiffInSeconds = (date: Date) =>
+    Math.floor((date.valueOf() - new Date().valueOf()) / 1000)
+
+  let diffInSeconds = getTimeDiffInSeconds(accessCard.expiresAt)
+  $: expireInMinute = Math.floor(diffInSeconds / 60)
+  $: expireInSeconds = diffInSeconds - expireInMinute * 60
 
   onMount(() => {
     const interval = setInterval(() => {
-      let diffInSeconds = Math.floor(
-        (accessCard.expiresAt.valueOf() - new Date().valueOf()) / 1000
-      )
-
-      if (diffInSeconds < 0) diffInSeconds = 0
-
-      expireInMinute = Math.floor(diffInSeconds / 60)
-      expireInSeconds = diffInSeconds - expireInMinute * 60
+      const newDiff = getTimeDiffInSeconds(accessCard.expiresAt)
+      diffInSeconds = newDiff < 0 ? 0 : newDiff
     }, 1000)
 
     return () => clearInterval(interval)
