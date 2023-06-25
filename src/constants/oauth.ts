@@ -13,6 +13,13 @@ export const oauthClients: OAuthClientConfig[] = [
       'https://wallet.7th.stupid.hackathon.in.th/api/auth/callback/creatorsgarten',
     ],
   },
+  {
+    clientId: 'https://github.com/StupidHackTH/sht7-vote',
+    name: 'vote.7th.stupid.hackathon.in.th',
+    redirectUris: [
+      'https://vote.7th.stupid.hackathon.in.th/api/auth/callback/creatorsgarten',
+    ],
+  },
 ]
 
 export interface OAuthClientConfig {
