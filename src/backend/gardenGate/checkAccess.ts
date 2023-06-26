@@ -18,8 +18,8 @@ export const checkAccess = async (user: AuthenticatedUser | null) => {
     return { granted: false, reason: 'User not found in database.' }
   }
 
-  let granted = [Role.CoreOfCore, Role.GardenZero].some(role =>
-    (partialUserDoc.roles ?? []).some(userRole => userRole === role)
+  let granted = (partialUserDoc.roles ?? []).some(
+    role => role === Role.GardenZero
   )
 
   if (granted) {
