@@ -17,6 +17,7 @@ export const websiteConfigSchema = z.object({
       z.object({
         name: z.string(),
         schedule: z.string(),
+        url: z.string(),
       })
     ),
   }),
