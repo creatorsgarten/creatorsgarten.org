@@ -9,6 +9,7 @@ const announcementSchema = z.object({
 })
 
 export const websiteConfigSchema = z.object({
+  announcements: z.record(announcementSchema),
   featureFlags: z.object({
     example: z.boolean(),
   }),
@@ -21,7 +22,15 @@ export const websiteConfigSchema = z.object({
       })
     ),
   }),
-  announcements: z.record(announcementSchema),
+  integrations: z.object({
+    services: z.array(
+      z.object({
+        name: z.string(),
+        description: z.string(),
+        url: z.string(),
+      })
+    ),
+  }),
 })
 
 export type WebsiteConfig = z.infer<typeof websiteConfigSchema>

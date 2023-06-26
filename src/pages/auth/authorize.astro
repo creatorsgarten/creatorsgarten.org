@@ -1,10 +1,13 @@
 ---
 import Head from '$components/head.astro'
 import { getBackend } from '$functions/getBackend'
-import { OAuthClientConfig, oauthClients } from '$constants/oauth'
+import {
+  OAuthClientConfig,
+  isSensitiveScope,
+  oauthClients,
+} from '$constants/oauth'
 import { IdTokenInspector } from '$components/idTokenInspector'
 import Blank from '$layouts/blank.astro'
-import { errorPage } from '$functions/errorPage'
 
 const authenticatedUser = await getBackend(
   Astro
@@ -21,20 +24,34 @@ let trustedClient: OAuthClientConfig | undefined
 let untrustedReason = 'The provided client_id is not recognized'
 
 const clientId = Astro.url.searchParams.get('client_id') ?? ''
+const state = Astro.url.searchParams.get('state') ?? ''
+const scope = Astro.url.searchParams.get('scope') ?? ''
+const scopes = scope.split(' ').filter(Boolean)
 const client = oauthClients.find(c => c.clientId === clientId)
 const redirectUri = Astro.url.searchParams.get('redirect_uri') ?? ''
 if (client) {
   if (client.redirectUris.includes(redirectUri)) {
-    trustedClient = client
+    const unallowedSensitiveScopes: string[] = []
+    for (const scopeName of scopes) {
+      if (
+        isSensitiveScope(scopeName) &&
+        !(client.allowedScopes ?? ([] as string[])).includes(scopeName)
+      ) {
+        unallowedSensitiveScopes.push(scopeName)
+      }
+    }
+    if (unallowedSensitiveScopes.length) {
+      trustedClient = client
+    } else {
+      const list = unallowedSensitiveScopes.map(s => `"${s}"`).join(', ')
+      untrustedReason = `The application requested access to sensitive scopes (${list}) that it is not allowed to access`
+    }
   } else {
     untrustedReason = 'The provided redirect_uri is not recognized'
   }
 }
 
-const state = Astro.url.searchParams.get('state') ?? ''
-const scope = Astro.url.searchParams.get('scope') ?? ''
 const nonce = Astro.url.searchParams.get('nonce') ?? undefined
-const scopes = scope.split(' ').filter(Boolean)
 const idTokenInfo = await getBackend(Astro).auth.mintIdToken.mutate({
   audience: clientId,
   scopes,

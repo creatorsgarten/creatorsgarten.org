@@ -19,6 +19,13 @@ export const oauthClients: OAuthClientConfig[] = [
     redirectUris: [
       'https://vote.7th.stupid.hackathon.in.th/api/auth/callback/creatorsgarten',
     ],
+    allowedScopes: ['openid', 'https://eventpop.me/e/15113'],
+  },
+  {
+    clientId: 'https://db.creatorsgarten.org',
+    name: 'NocoDB',
+    redirectUris: ['https://nocogarten.vercel.app/api/auth/callback'],
+    allowedScopes: ['email'],
   },
 ]
 
@@ -31,4 +38,19 @@ export interface OAuthClientConfig {
 
   /** Allowed redirect URIs */
   redirectUris: string[]
+
+  /** Allowed scopes */
+  allowedScopes?: OAuthScope[]
+}
+
+export type OAuthScope = 'openid' | 'email' | `https://eventpop.me/e/${string}`
+
+export function isSensitiveScope(scope: string) {
+  if (scope === 'email') {
+    return true
+  }
+  if (scope.startsWith('https://eventpop.me/e/')) {
+    return true
+  }
+  return false
 }

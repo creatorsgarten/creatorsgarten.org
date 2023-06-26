@@ -4,8 +4,8 @@ import BaseLayout from '$layouts/base.astro'
 import Head from '$components/head.astro'
 import Garden0 from '$components/dashboard/gardenZero/section.astro'
 import JoinedEvents from '$components/dashboard/joinedEvents.astro'
+import IntegratedServices from '$components/dashboard/integratedServices.astro'
 import { Connections } from '$components/connections'
-
 import { getBackend } from '$functions/getBackend'
 
 const authenticatedUser = await getBackend(
@@ -38,6 +38,7 @@ const joinedEvents = await getBackend(Astro).events.getJoinedEvents.query()
   <Connections user={authenticatedUser} />
   <Garden0 user={authenticatedUser} />
   <JoinedEvents eventIds={joinedEvents} />
+  <IntegratedServices />
   <section class="pt-4 flex justify-center">
     <a
       href="/auth/logout"
