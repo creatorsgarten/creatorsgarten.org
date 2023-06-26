@@ -40,7 +40,7 @@ if (client) {
         unallowedSensitiveScopes.push(scopeName)
       }
     }
-    if (unallowedSensitiveScopes.length) {
+    if (unallowedSensitiveScopes.length === 0) {
       trustedClient = client
     } else {
       const list = unallowedSensitiveScopes.map(s => `"${s}"`).join(', ')
