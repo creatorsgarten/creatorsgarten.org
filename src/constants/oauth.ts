@@ -19,12 +19,12 @@ export const oauthClients: OAuthClientConfig[] = [
     redirectUris: [
       'https://vote.7th.stupid.hackathon.in.th/api/auth/callback/creatorsgarten',
     ],
-    allowedScopes: ['openid', 'https://eventpop.me/e/15113'],
+    allowedScopes: ['email', 'https://eventpop.me/e/15113'],
   },
   {
     clientId: 'https://db.creatorsgarten.org',
     name: 'NocoDB',
-    redirectUris: ['https://nocogarten.vercel.app/api/auth/callback'],
+    redirectUris: ['https://db.creatorsgarten.org/sso/callback.html'],
     allowedScopes: ['email'],
   },
 ]
