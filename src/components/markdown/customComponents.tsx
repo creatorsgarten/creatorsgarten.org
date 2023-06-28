@@ -7,7 +7,7 @@ import type { MarkdownCustomComponents } from '@contentsgarten/html'
 import type { ReactNode } from 'react'
 
 import './customComponents.css'
-import '@fontsource-variable/recursive'
+import '@fontsource-variable/recursive/full.css'
 
 export const customComponents: MarkdownCustomComponents = {
   leafDirective: {
@@ -115,7 +115,7 @@ interface Draft {
 }
 function Draft(props: Draft) {
   return (
-    <div className="font-casual relative my-3 rounded border border-dashed border-slate-400 px-2 pt-5 text-slate-700">
+    <div className="relative my-3 rounded border border-dashed border-slate-400 px-2 pt-5 font-casual text-slate-700">
       <div className="absolute left-0 top-0 rounded-br border-b border-r border-dashed border-slate-400 px-2 py-1 text-xs">
         draft
       </div>

@@ -1,5 +1,6 @@
 ---
 import { contentsgarten } from '$constants/contentsgarten'
+import EditorTextarea from './editorTextarea.svelte'
 
 export interface Props {
   pageRef: string
@@ -49,16 +50,11 @@ const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageR
     <form class="py-4" method="POST">
       <input type="hidden" name="pageRef" value={pageRef} />
       <input type="hidden" name="revision" value={file?.revision} />
-      {/* prettier-ignore-start */}
-      <textarea
-        name="content"
-        class={`w-full p-4 font-mono text-sm rounded-xl disabled:cursor-not-allowed border-2 border-black ${
-          editable ? '' : ''
-        }`}
-        disabled={!editable}
-        rows={40}>{file?.content}</textarea
-      >
-      {/* prettier-ignore-end */}
+      <EditorTextarea
+        client:load
+        editable={editable}
+        defaultValue={file?.content}
+      />
       <div class="mt-2">
         <button
           class="rounded-lg bg-[#1c1916] px-4 py-2 text-white disabled:bg-neutral-600 disabled:cursor-not-allowed"

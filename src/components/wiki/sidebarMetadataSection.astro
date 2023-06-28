@@ -66,7 +66,9 @@ const { edited, editable, pageRef, grtn } = Astro.props
               <a
                 href={`https://grtn.org/${grtn}`}
                 class="inline-flex items-center"
-                onclick="event.preventDefault(); navigator.clipboard.writeText(this.href);"
+                onclick="
+                event.preventDefault(); navigator.clipboard.writeText(this.href);
+                "
               >
                 <span class="mr-1">grtn.org/{grtn}</span>
                 <Icon icon="pixelarticons:copy" />
@@ -82,6 +84,7 @@ const { edited, editable, pageRef, grtn } = Astro.props
       <div class="flex justify-center pt-4">
         <a
           href={`/wiki/${pageRef}/editor`}
+          data-js="wiki-edit-link"
           class="inline-flex items-center space-x-2"
         >
           <span class="edit">Edit this page</span>

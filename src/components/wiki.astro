@@ -6,6 +6,7 @@ import Head from './head.astro'
 import WikiEditor from './wiki/editor.astro'
 import WikiUpdateChecker from './wiki/updateChecker'
 import WikiView from './wiki/view.astro'
+import WikiViewShortcuts from './wiki/viewShortcuts.svelte'
 
 import {
   getContentHash,
@@ -104,6 +105,9 @@ const contentHash = getContentHash(markdown)
             pageRef={pageRef}
             client:idle
           />
+          {!!file ? (
+            <WikiViewShortcuts path={file.path} client:only="svelte" />
+          ) : null}
         </Fragment>
       )}
     </WikiView>
@@ -117,6 +121,7 @@ const contentHash = getContentHash(markdown)
             <div class="mt-8 flex">
               <a
                 href={`/wiki/${pageRef}/editor`}
+                data-js="wiki-edit-link"
                 class="inline-flex items-center space-x-2"
               >
                 <span class="edit">Edit this page</span>
@@ -129,6 +134,9 @@ const contentHash = getContentHash(markdown)
             pageRef={pageRef}
             client:idle
           />
+          {!!file ? (
+            <WikiViewShortcuts path={file.path} client:only="svelte" />
+          ) : null}
         </div>
       </div>
     </BaseLayout>
