@@ -18,7 +18,7 @@ jobs:
           should_push: false
           excluded_paths: 'dist,node_modules'
       - name: artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: diagramgarten
           path: "downloads"
