@@ -15,6 +15,7 @@ jobs:
         with:
           output_file: diagram.svg
           artifact_name: diagramgarten
+          should_push: false
           excluded_paths: 'dist,node_modules'
       - name: artifact
         uses: actions/download-artifact@v2
