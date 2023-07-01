@@ -28,7 +28,9 @@ export const checkOAuthAudit = async (
     clientId: input.clientId,
     redirectUri: input.redirectUri,
     user: new ObjectId(user.sub),
-    scopes: { $all: input.scopes },
+    scopes: {
+      $all: input.scopes.map(scope => ({ $elemMatch: { $eq: scope } })),
+    },
   })
 
   // TODO: revoke audit if authorized older than 3 months
@@ -57,7 +59,9 @@ export const recordOAuthAudit = async (
       clientId: input.clientId,
       redirectUri: input.redirectUri,
       user: new ObjectId(user.sub),
-      scopes: { $all: input.scopes },
+      scopes: {
+        $all: input.scopes.map(scope => ({ $elemMatch: { $eq: scope } })),
+      },
     },
     {
       $set: {
