@@ -1,8 +1,10 @@
 import { MongoClient } from 'mongodb'
 
 import { mongoAddress } from './secrets/mongoAddress'
+
 import type { GardenAccess } from '$types/mongo/GardenAccess'
 import type { User } from '$types/mongo/User'
+import type { OAuthAudit } from '$types/mongo/OAuthAudit'
 
 const globalMongo = global as unknown as {
   mongo?: MongoClient
@@ -20,4 +22,5 @@ const db = mongo.db('creatorsgarten-org')
 export const collections = {
   users: db.collection<User>('users'),
   gardenAccesses: db.collection<GardenAccess>('gardenAccesses'),
+  oAuthAudits: db.collection<OAuthAudit>('oAuthAudits'),
 }

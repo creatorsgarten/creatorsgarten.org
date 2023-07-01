@@ -1,5 +1,4 @@
 ---
-import Head from '$components/head.astro'
 import { getBackend } from '$functions/getBackend'
 import {
   OAuthClientConfig,
@@ -8,11 +7,14 @@ import {
 } from '$constants/oauth'
 import { IdTokenInspector } from '$components/idTokenInspector'
 import Blank from '$layouts/blank.astro'
+import { errorPage } from '$functions/errorPage'
 
+// check if user is authenticated
 const authenticatedUser = await getBackend(
   Astro
 ).auth.getAuthenticatedUser.query()
 
+// if not, redirect to login page
 if (!authenticatedUser) {
   const url = `/auth/login?${new URLSearchParams({
     dest: Astro.url.pathname + Astro.url.search,
@@ -23,12 +25,17 @@ if (!authenticatedUser) {
 let trustedClient: OAuthClientConfig | undefined
 let untrustedReason = 'The provided client_id is not recognized'
 
+// parse raw request
 const clientId = Astro.url.searchParams.get('client_id') ?? ''
 const state = Astro.url.searchParams.get('state') ?? ''
-const scope = Astro.url.searchParams.get('scope') ?? ''
-const scopes = scope.split(' ').filter(Boolean)
-const client = oauthClients.find(c => c.clientId === clientId)
+const scopes = (Astro.url.searchParams.get('scope') ?? '')
+  .split(' ')
+  .filter(Boolean)
 const redirectUri = Astro.url.searchParams.get('redirect_uri') ?? ''
+
+// check if client is trusted (trust client will redirect to client without asking user)
+const client = oauthClients.find(c => c.clientId === clientId)
+
 if (client) {
   if (client.redirectUris.includes(redirectUri)) {
     const unallowedSensitiveScopes: string[] = []
@@ -58,6 +65,7 @@ const idTokenInfo = await getBackend(Astro).auth.mintIdToken.mutate({
   nonce,
 })
 
+// build final redirect uri
 const redirectTo = new URL(redirectUri)
 const responseMode = Astro.url.searchParams.get('response_mode') ?? 'query'
 const updateResponse = (f: (searchParams: URLSearchParams) => void) => {
@@ -81,58 +89,56 @@ if (redirectTo.protocol !== 'https:' && redirectTo.protocol !== 'http:') {
     'Invalid redirect_uri - only http and https are supported'
   )
 }
----
 
-<Head title="Authgarten" />
+// check if user has authorized this client before
+const hasAuthorized = await getBackend(Astro).auth.checkOAuthAudit.query({
+  clientId,
+  redirectUri,
+  scopes,
+})
+
+// if trusted client or authorized to oauth before, then redirect
+if (
+  trustedClient !== undefined ||
+  hasAuthorized ||
+  Astro.request.method === 'POST'
+) {
+  if (!hasAuthorized)
+    await getBackend(Astro).auth.recordOAuthAudit.mutate({
+      clientId,
+      redirectUri,
+      scopes,
+    })
+  return Astro.redirect(redirectTo.toString())
+}
+---
 
 <Blank>
   <Fragment slot="head">
     <title>Authgarten</title>
-    {
-      !!trustedClient && (
-        <meta http-equiv="Refresh" content={'1; url=' + redirectTo} />
-      )
-    }
   </Fragment>
   <main class="px-4 max-w-7xl mx-auto py-12">
-    {
-      trustedClient ? (
-        <>
-          <h1 class="mb-4 text-4xl font-medium">Redirecting…</h1>
-          <p>
-            Redirecting you to <strong>{trustedClient.name}</strong>…
-          </p>
-          <p>
-            <a href={redirectTo} class="underline">
-              Click here
-            </a>{' '}
-            if nothing happens
-          </p>
-        </>
-      ) : (
-        <>
-          <h1 class="mb-4 text-4xl font-medium">Data access request</h1>
-          <p class="mb-3">
-            A third-party application at <strong>{redirectTo.origin}</strong>{' '}
-            would like to access information in your Creatorsgarten account.
-          </p>
-          <p class="mb-3">The following information will be shared:</p>
-          <div class="mb-3">
-            <IdTokenInspector claims={idTokenInfo.claims} />
-          </div>
-          <p class="mb-3">
-            If you trust this application, click the button below to send the
-            information:
-          </p>
-          <a
-            href={redirectTo}
-            class="inline-flex w-full shrink-0 justify-center rounded-lg bg-[#1c1916] px-4 py-2 text-white sm:w-auto sm:rounded-full"
-          >
-            Send information and continue
-          </a>
-          <div class="hidden">Untrusted reason: {untrustedReason}</div>
-        </>
-      )
-    }
+    <h1 class="mb-4 text-4xl font-medium">Data access request</h1>
+    <p class="mb-3">
+      A third-party application at <strong>{redirectTo.origin}</strong>{' '}
+      would like to access information in your Creatorsgarten account.
+    </p>
+    <p class="mb-3">The following information will be shared:</p>
+    <div class="mb-3">
+      <IdTokenInspector claims={idTokenInfo.claims} />
+    </div>
+    <p class="mb-3">
+      If you trust this application, click the button below to send the
+      information:
+    </p>
+    <form method="post">
+      <button
+        type="submit"
+        class="inline-flex w-full shrink-0 justify-center rounded-lg bg-[#1c1916] px-4 py-2 text-white sm:w-auto sm:rounded-full"
+      >
+        Send information and continue
+      </button>
+    </form>
+    <div class="hidden">Untrusted reason: {untrustedReason}</div>
   </main>
 </Blank>

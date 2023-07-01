@@ -15,6 +15,11 @@ import { checkAccess } from './gardenGate/checkAccess'
 import { pullLogs } from './gardenGate/pullLogs'
 import { getJoinedEvents } from './events/getJoinedEvents'
 import { mintIdToken } from './auth/mintIdToken'
+import {
+  auditInputSchema,
+  checkOAuthAudit,
+  recordOAuthAudit,
+} from './auth/oAuthAudit'
 
 interface BackendContext {
   authToken?: string
@@ -29,6 +34,16 @@ export const appRouter = t.router({
     getAuthenticatedUser: t.procedure.query(({ ctx }) => {
       return getAuthenticatedUser(ctx.authToken)
     }),
+
+    checkOAuthAudit: t.procedure
+      .input(auditInputSchema)
+      .query(async ({ ctx, input }) => checkOAuthAudit(ctx.authToken, input)),
+
+    recordOAuthAudit: t.procedure
+      .input(auditInputSchema)
+      .mutation(async ({ ctx, input }) =>
+        recordOAuthAudit(ctx.authToken, input)
+      ),
 
     mintIdToken: t.procedure
       .input(
