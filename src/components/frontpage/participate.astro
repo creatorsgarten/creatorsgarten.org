@@ -12,13 +12,13 @@ const upcomingEvents = events.filter(upcomingEventsFilter).slice(0, 2).reverse()
 {
   upcomingEvents.length !== 0 && (
     <div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <h2 class="py-4 text-3xl font-medium">UPCOMING</h2>
-        <a href="/events" class="hidden md:block text-blue-500">
+        <a href="/events" class="hidden text-blue-500 md:block">
           MORE ON EVENTS →
         </a>
       </div>
-      <div class="grid sm:grid-cols-2 gap-8 text-3xl font-medium">
+      <div class="grid gap-8 text-3xl font-medium sm:grid-cols-2">
         {upcomingEvents.map(event => (
           <EventPoster event={event!} />
         ))}

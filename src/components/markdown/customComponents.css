@@ -1,5 +1,5 @@
 .custom-block {
-  @apply rounded border border-2 overflow-hidden px-3 py-2 bg-[--custom-block-bg] border-[--custom-block-border] my-[1.25em];
+  @apply my-[1.25em] overflow-hidden rounded border border-2 border-[--custom-block-border] bg-[--custom-block-bg] px-3 py-2;
   --custom-block-bg: theme(colors.neutral.100);
   --custom-block-title-bg: theme(colors.neutral.200);
   --custom-block-title-text: theme(colors.neutral.500);
@@ -30,7 +30,7 @@
   --custom-block-border: theme(colors.red.600);
 }
 .custom-block > .custom-block-title {
-  @apply -mx-3 -mt-2 px-3 pt-2.5 mb-0 font-bold text-sm text-[--custom-block-title-text];
+  @apply -mx-3 -mt-2 mb-0 px-3 pt-2.5 text-sm font-bold text-[--custom-block-title-text];
 }
 .custom-block > .custom-block-title + p {
   @apply mt-0;

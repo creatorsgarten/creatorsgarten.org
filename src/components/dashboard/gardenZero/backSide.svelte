@@ -36,7 +36,7 @@
       value: accessCard.accessKey,
     })}`}
   />
-  <div class="hidden md:flex flex-col justify-between text-right">
+  <div class="hidden flex-col justify-between text-right md:flex">
     <div>
       <p class="text-base">{user.uid}</p>
       <div class="text-2xl">

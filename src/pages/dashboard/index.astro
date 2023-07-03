@@ -18,17 +18,17 @@ const joinedEvents = await getBackend(Astro).events.getJoinedEvents.query()
 
 <Head title="Dashboard" />
 
-<BaseLayout class="max-w-7xl mx-auto space-y-6 [&>*]:px-6">
-  <section class="max-w-lg mx-auto">
+<BaseLayout class="mx-auto max-w-7xl space-y-6 [&>*]:px-6">
+  <section class="mx-auto max-w-lg">
     <div
-      class="flex bg-white border border-neutral-300 rounded-2xl p-4 space-x-4"
+      class="flex space-x-4 rounded-2xl border border-neutral-300 bg-white p-4"
     >
       <img
         src={authenticatedUser.avatar}
-        class="w-24 h-24 rounded-full shrink-0"
+        class="h-24 w-24 shrink-0 rounded-full"
       />
-      <div class="py-2 pr-2 flex flex-col justify-center">
-        <h1 class="font-medium text-lg leading-tight mb-1 md:mb-0">
+      <div class="flex flex-col justify-center py-2 pr-2">
+        <h1 class="mb-1 text-lg font-medium leading-tight md:mb-0">
           {authenticatedUser.name}
         </h1>
         <p>{authenticatedUser.email}</p>
@@ -39,10 +39,10 @@ const joinedEvents = await getBackend(Astro).events.getJoinedEvents.query()
   <Garden0 user={authenticatedUser} />
   <JoinedEvents eventIds={joinedEvents} />
   <IntegratedServices />
-  <section class="pt-4 flex justify-center">
+  <section class="flex justify-center pt-4">
     <a
       href="/auth/logout"
-      class="text-white uppercase order px-3 py-2 rounded-md bg-rose-700"
+      class="order rounded-md bg-rose-700 px-3 py-2 uppercase text-white"
       >Sign out</a
     >
   </section>

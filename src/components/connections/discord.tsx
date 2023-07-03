@@ -10,10 +10,10 @@ export const Discord: FunctionComponent<Props> = props => {
   const { connection } = props
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex items-center justify-between">
       <div className="leading-none">
         <p className="inline-flex items-center text-lg font-medium">Discord</p>
-        <p className="text-sm -mt-1">
+        <p className="-mt-1 text-sm">
           {connection
             ? 'Connected with @' + connection.username
             : 'Not connected'}
@@ -21,7 +21,7 @@ export const Discord: FunctionComponent<Props> = props => {
       </div>
       <a
         href="/auth/connect/discord"
-        className="uppercase py-2 px-4 rounded-lg bg-neutral-700 text-white"
+        className="rounded-lg bg-neutral-700 px-4 py-2 uppercase text-white"
       >
         {connection ? 'Reconnect' : 'Connect'}
       </a>

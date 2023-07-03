@@ -20,12 +20,12 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
 
 <Head title="Events" />
 
-<BaseLayout class="max-w-7xl mx-auto space-y-12 [&>*]:px-6">
+<BaseLayout class="mx-auto max-w-7xl space-y-12 [&>*]:px-6">
   {
     upcomingEvents.length !== 0 && (
       <section>
-        <h1 class="uppercase text-3xl font-medium">Upcoming Events</h1>
-        <div class="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-y-12">
+        <h1 class="text-3xl font-medium uppercase">Upcoming Events</h1>
+        <div class="mt-6 space-y-12 lg:grid lg:grid-cols-2 lg:gap-y-12 lg:space-y-0">
           {upcomingEvents.map(event => (
             <EventPoster event={event} />
           ))}
@@ -34,11 +34,11 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
     )
   }
   <section>
-    <h1 class="uppercase text-3xl font-medium">Series</h1>
-    <div class="[&>*]:p-8 [&>*]:rounded-xl grid sm:grid-cols-3 gap-6 pt-8">
+    <h1 class="text-3xl font-medium uppercase">Series</h1>
+    <div class="grid gap-6 pt-8 sm:grid-cols-3 [&>*]:rounded-xl [&>*]:p-8">
       {
         websiteConfig?.events.recurring.map(event => (
-          <a class={`bg-white border border-neutral-300`} href={event.url}>
+          <a class={`border border-neutral-300 bg-white`} href={event.url}>
             <p class="font-medium uppercase leading-none">{event.name}</p>
             <p class="uppercase">{event.schedule}</p>
           </a>
@@ -47,9 +47,9 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
     </div>
   </section>
   <section class="pb-12">
-    <h1 class="uppercase text-3xl font-medium">Past Events</h1>
+    <h1 class="text-3xl font-medium uppercase">Past Events</h1>
     <div
-      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-6"
+      class="mt-6 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4"
     >
       {
         events

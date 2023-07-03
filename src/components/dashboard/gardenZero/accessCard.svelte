@@ -38,7 +38,7 @@
 </script>
 
 <div
-  class="bg-gradient-to-b from-[#73A790] from-5% to-[#2E6459] w-full md:h-64 aspect-square md:aspect-auto rounded-2xl text-white leading-none border border-neutral-500 relative overflow-hidden"
+  class="relative aspect-square w-full overflow-hidden rounded-2xl border border-neutral-500 bg-gradient-to-b from-[#73A790] from-5% to-[#2E6459] leading-none text-white md:aspect-auto md:h-64"
 >
   {#if accessCard === null}
     <FrontSide {user} on:click={onClick} />
@@ -46,7 +46,7 @@
     <BackSide {user} {accessCard} />
   {/if}
   <div
-    class={`absolute z-50 bg-black/40 top-0 bottom-0 right-0 left-0 transition duration-300 flex justify-center items-center pointer-events-none ${
+    class={`pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-black/40 transition duration-300 ${
       loading ? 'opacity-100' : 'opacity-0'
     }`}
   >

@@ -17,7 +17,7 @@ let { granted } = await getBackend(Astro).gardenGate.checkAccess.query()
 
 {
   granted && (
-    <section class="max-w-sm md:max-w-2xl mx-auto">
+    <section class="mx-auto max-w-sm md:max-w-2xl">
       <AccessCard client:idle {...{ user }} />
     </section>
   )

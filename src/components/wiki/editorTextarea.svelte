@@ -24,7 +24,7 @@
   name="content"
   class={`w-full p-4 ${
     $EditorSettings.font === 'mono' ? 'font-mono' : 'font-prose'
-  } text-sm rounded-xl disabled:cursor-not-allowed border-2 border-black ${
+  } rounded-xl border-2 border-black text-sm disabled:cursor-not-allowed ${
     editable ? '' : ''
   }`}
   disabled={!editable}

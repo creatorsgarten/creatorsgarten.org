@@ -38,10 +38,10 @@ const guilds = [
 >
   {
     guilds.map(guild => (
-      <div class="aspect-[5/3] rounded-2xl w-full relative overflow-hidden">
+      <div class="relative aspect-[5/3] w-full overflow-hidden rounded-2xl">
         <CFImage
           src={`/images/${guild.id}.jpg`}
-          class="w-full h-full object-cover"
+          class="h-full w-full object-cover"
           alt={guild.name}
           width={{
             max: 400,
@@ -49,7 +49,7 @@ const guilds = [
           }}
           ratio={5 / 3}
         />
-        <div class="absolute top-0 bottom-0 left-0 right-0 bg-black/40 uppercase flex justify-center items-center text-center text-lg">
+        <div class="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-black/40 text-center text-lg uppercase">
           <span>{guild.name}</span>
         </div>
       </div>
@@ -60,7 +60,7 @@ const guilds = [
       isLight ? 'text-[#1C1916]' : 'text-white'
     }`}
   >
-    <h1 class="font-medium text-xl uppercase">Guilds</h1>
+    <h1 class="text-xl font-medium uppercase">Guilds</h1>
     <p>
       regardless of their age, economic status, education, or opportunities,
       without relying on governments or corporations.

@@ -12,9 +12,9 @@ export const Connections: FunctionComponent<Props> = props => {
   const { connections } = props.user
 
   return (
-    <section className="max-w-2xl mx-auto">
-      <div className="bg-white rounded-2xl py-6 px-8 border border-neutral-300">
-        <h1 className="font-medium text-xl uppercase pb-4 text-center">
+    <section className="mx-auto max-w-2xl">
+      <div className="rounded-2xl border border-neutral-300 bg-white px-8 py-6">
+        <h1 className="pb-4 text-center text-xl font-medium uppercase">
           Connections
         </h1>
         <div className="space-y-4">

@@ -21,4 +21,4 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: diagramgarten
-          path: "downloads"
+          path: 'downloads'
