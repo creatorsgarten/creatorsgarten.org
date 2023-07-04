@@ -72,15 +72,22 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
         prefix: prefixedName,
         accessId: String(accessDoc.insertedId),
       }),
-    }).then(async o => {
-      if (o.ok) return GardenZeroResponse.parse(await o.json())
-      else
-        throw new Error(
-          `Unable to generate access: ${o.status} ${
-            o.statusText
-          } ${await o.text()}`
-        )
     })
+      .then(async o => {
+        if (o.ok) return GardenZeroResponse.parse(await o.json())
+        else
+          throw new Error(
+            `Unable to generate access: ${o.status} ${
+              o.statusText
+            } ${await o.text()}`
+          )
+      })
+      .catch(async e => {
+        await collections.gardenAccesses.deleteOne({
+          _id: accessDoc.insertedId,
+        })
+        throw e
+      })
 
     await collections.gardenAccesses.updateOne(
       { _id: accessDoc.insertedId },
