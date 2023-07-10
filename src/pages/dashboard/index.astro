@@ -46,5 +46,10 @@ const joinedEvents = await getBackend(Astro).events.getJoinedEvents.query()
       >Sign out</a
     >
   </section>
-  <div class="pb-6"></div>
+  <div class="pb-8 text-center text-black/50">
+    Your user ID is <a
+      href={`javascript:void navigator.clipboard.writeText('${authenticatedUser.sub}')`}
+      >{authenticatedUser.sub}</a
+    >
+  </div>
 </BaseLayout>
