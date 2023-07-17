@@ -102,6 +102,16 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
 
     return gardenZeroResponse
   } catch (e) {
-    throw new Error('server-offline')
+    if (e instanceof TRPCError) throw e
+    else if (e instanceof Error)
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: e.message ?? '',
+      })
+    else
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: 'server-offline',
+      })
   }
 }
