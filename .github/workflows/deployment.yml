@@ -26,38 +26,24 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: cache
-        uses: actions/cache@v3
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-single-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-single-buildx
       - name: build
         uses: docker/build-push-action@v4
         with:
           context: .
           file: Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}-runtime
-          cache-from: type=local,src=/tmp/.buildx-cache
-          # mode=max to cache multi-layer stage
-          # https://github.com/moby/buildkit#--export-cache-options
-          # https://github.com/docker/buildx#--cache-tonametypetypekeyvalue
-          cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
+          tags: ghcr.io/${{ github.repository }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       - name: publish
         uses: deploys-app/deploys-action@v1
         with:
           project: ${{ secrets.DEPLOYS_NAME }}
           location: gke.cluster-rcf2
-          name: creatorsgarten-org-runtime
-          image: ghcr.io/${{ github.repository }}-runtime
+          name: creatorsgarten
+          image: ghcr.io/${{ github.repository }}
           minReplicas: 1
           maxReplicas: 2
         env:
           DEPLOYS_AUTH_USER: ${{ secrets.DEPLOYS_AUTH_USER }}
           DEPLOYS_AUTH_PASS: ${{ secrets.DEPLOYS_AUTH_PASS }}
-      - name: cache-modding
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
