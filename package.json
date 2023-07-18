@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@8.6.7",
+  "packageManager": "pnpm@8.6.9",
   "lint-staged": {
     "*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}": [
       "prettier --write"
@@ -61,7 +61,7 @@
     "@types/qrcode": "^1.5.0",
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.2.4",
-    "astro": "2.8.3",
+    "astro": "2.8.4",
     "astro-seo": "^0.7.4",
     "contentsgarten": "^2.0.1",
     "dotenv": "^16.1.4",
