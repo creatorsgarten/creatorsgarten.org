@@ -61,7 +61,7 @@
     "@types/qrcode": "^1.5.0",
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.2.4",
-    "astro": "2.8.4",
+    "astro": "2.8.5",
     "astro-seo": "^0.7.4",
     "contentsgarten": "^2.0.1",
     "dotenv": "^16.1.4",
