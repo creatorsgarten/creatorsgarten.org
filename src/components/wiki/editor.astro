@@ -14,12 +14,15 @@ export interface Props {
 const { pageRef, file } = Astro.props
 
 const editable = Astro.cookies.get('authgarten').value
-  ? await contentsgarten(Astro.cookies.get('authgarten').value)
-      .getEditPermission.query({
-        pageRef,
-      })
-      .then(o => o.granted)
-  : false
+  ? await contentsgarten(
+      Astro.cookies.get('authgarten').value
+    ).getEditPermission.query({
+      pageRef,
+    })
+  : {
+      granted: false,
+      reason: "You're not logged in",
+    }
 
 const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageRef}.md`
 ---
@@ -31,7 +34,7 @@ const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageR
     </h1>
     <div class="prose max-w-full">
       {
-        editable ? (
+        editable.granted ? (
           <p>
             (The editor is quite janky, so please save your changes regularly!)
           </p>
@@ -43,6 +46,9 @@ const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageR
               you can propose changes to this file on GitHub.
             </a>
             )
+            <span class="hidden" id="reason">
+              {editable.reason}
+            </span>
           </p>
         )
       }
@@ -52,14 +58,14 @@ const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageR
       <input type="hidden" name="revision" value={file?.revision} />
       <EditorTextarea
         client:load
-        editable={editable}
+        editable={editable.granted}
         defaultValue={file?.content}
       />
       <div class="mt-2">
         <button
           class="rounded-lg bg-[#1c1916] px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-neutral-600"
           type="submit"
-          disabled={!editable}>Save changes</button
+          disabled={!editable.granted}>Save changes</button
         >
       </div>
     </form>
