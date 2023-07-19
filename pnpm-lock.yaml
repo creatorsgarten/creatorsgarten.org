@@ -156,11 +156,11 @@ devDependencies:
     specifier: 0.11.0
     version: 0.11.0
   prettier-plugin-svelte:
-    specifier: ^2.10.1
-    version: 2.10.1(prettier@3.0.0)(svelte@4.0.0)
+    specifier: ^3.0.0
+    version: 3.0.0(prettier@3.0.0)(svelte@4.0.0)
   prettier-plugin-tailwindcss:
     specifier: ^0.4.0
-    version: 0.4.0(prettier-plugin-astro@0.11.0)(prettier-plugin-svelte@2.10.1)(prettier@3.0.0)
+    version: 0.4.0(prettier-plugin-astro@0.11.0)(prettier-plugin-svelte@3.0.0)(prettier@3.0.0)
   svelte:
     specifier: ^4.0.0
     version: 4.0.0
@@ -4616,17 +4616,17 @@ packages:
       synckit: 0.8.5
     dev: true
 
-  /prettier-plugin-svelte@2.10.1(prettier@3.0.0)(svelte@4.0.0):
-    resolution: {integrity: sha512-Wlq7Z5v2ueCubWo0TZzKc9XHcm7TDxqcuzRuGd0gcENfzfT4JZ9yDlCbEgxWgiPmLHkBjfOtpAWkcT28MCDpUQ==}
+  /prettier-plugin-svelte@3.0.0(prettier@3.0.0)(svelte@4.0.0):
+    resolution: {integrity: sha512-l3RQcPty2UBCoRh3yb9c5XCAmxkrc4BptAnbd5acO1gmSJtChOWkiEjnOvh7hvmtT4V80S8gXCOKAq8RNeIzSw==}
     peerDependencies:
-      prettier: ^1.16.4 || ^2.0.0
+      prettier: ^3.0.0
       svelte: ^3.2.0 || ^4.0.0-next.0
     dependencies:
       prettier: 3.0.0
       svelte: 4.0.0
     dev: true
 
-  /prettier-plugin-tailwindcss@0.4.0(prettier-plugin-astro@0.11.0)(prettier-plugin-svelte@2.10.1)(prettier@3.0.0):
+  /prettier-plugin-tailwindcss@0.4.0(prettier-plugin-astro@0.11.0)(prettier-plugin-svelte@3.0.0)(prettier@3.0.0):
     resolution: {integrity: sha512-Rna0sDPETA0KNhMHlN8wxKNgfSa8mTl2hPPAGxnbv6tUcHT6J4RQmQ8TLXyhB7Dm5Von4iHloBxTyClYM6wT0A==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
@@ -4680,7 +4680,7 @@ packages:
     dependencies:
       prettier: 3.0.0
       prettier-plugin-astro: 0.11.0
-      prettier-plugin-svelte: 2.10.1(prettier@3.0.0)(svelte@4.0.0)
+      prettier-plugin-svelte: 3.0.0(prettier@3.0.0)(svelte@4.0.0)
     dev: true
 
   /prettier@2.8.8:
