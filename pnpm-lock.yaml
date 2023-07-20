@@ -25,11 +25,11 @@ dependencies:
     specifier: ^4.29.12
     version: 4.29.12(react-dom@18.2.0)(react@18.2.0)
   '@trpc/client':
-    specifier: 10.34.1
-    version: 10.34.1(@trpc/server@10.34.1)
+    specifier: 10.35.0
+    version: 10.35.0(@trpc/server@10.35.0)
   '@trpc/server':
-    specifier: 10.34.1
-    version: 10.34.1
+    specifier: 10.35.0
+    version: 10.35.0
   csrf:
     specifier: ^3.1.0
     version: 3.1.0
@@ -1306,16 +1306,16 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  /@trpc/client@10.34.1(@trpc/server@10.34.1):
-    resolution: {integrity: sha512-i1V+mv4RPLm/JM6g19NIt6UWw2LMtFdvgQq9J0oPYPpVDsqxXecCCMGJXjG0G5suNjyRwfjMMHbR9QGh2xTzYA==}
+  /@trpc/client@10.35.0(@trpc/server@10.35.0):
+    resolution: {integrity: sha512-FyVNQGLLsNourpYq7bojvvvpM63woCPL9c+lJo9x1Yheop5fng2GEyiVcVjCmBNk5tVARHjG9bTG1UeNF5t8OQ==}
     peerDependencies:
-      '@trpc/server': 10.34.1
+      '@trpc/server': 10.35.0
     dependencies:
-      '@trpc/server': 10.34.1
+      '@trpc/server': 10.35.0
     dev: false
 
-  /@trpc/server@10.34.1:
-    resolution: {integrity: sha512-56q2FSSz+AHSv5tQ5K0Z2B7ava1Qh38BRNkFp797WIiRKIJRWAyKAxrBp0WzrSA0olQn8lZVi0rLLvRvXXZFgQ==}
+  /@trpc/server@10.35.0:
+    resolution: {integrity: sha512-UntbE9gG+kB2nEwuJ0hw7AmQuRWw67voKaVBPBA7Ow6+aGZc00gva7015Ey5BT7Qf1wq7xJMLUdgw4QiVU+VpQ==}
 
   /@types/aws-lambda@8.10.115:
     resolution: {integrity: sha512-kCZuFXKLV3y8NjSoaD5+qKTpRWvPz3uh3W/u1uwlw3Mg+MtaStg1NWgjAwUXo/VJDb6n6KF1ljykFNlNwEJ53Q==}
@@ -2148,7 +2148,7 @@ packages:
       '@contentsgarten/markdown': 2.0.0
       '@keyv/redis': 2.5.8
       '@tanstack/query-core': 4.29.7
-      '@trpc/server': 10.34.1
+      '@trpc/server': 10.35.0
       axios: 1.4.0
       expiry-map: 2.0.0
       gray-matter: 4.0.3
@@ -2159,7 +2159,7 @@ packages:
       liquidjs: 10.7.1
       mongodb: 5.6.0
       octokit: 2.0.14
-      openapi-trpc: 0.1.2(@trpc/server@10.34.1)(zod@3.21.4)
+      openapi-trpc: 0.1.2(@trpc/server@10.35.0)(zod@3.21.4)
       p-memoize: 7.1.1(typescript@5.1.6)
       zod: 3.21.4
     transitivePeerDependencies:
@@ -4280,13 +4280,13 @@ packages:
       is-wsl: 2.2.0
     dev: true
 
-  /openapi-trpc@0.1.2(@trpc/server@10.34.1)(zod@3.21.4):
+  /openapi-trpc@0.1.2(@trpc/server@10.35.0)(zod@3.21.4):
     resolution: {integrity: sha512-VceDRPNd0gzDpmoWPn48glKucev4bKo7uo6NZIr/mQWlYz/B/VafdR1/6xxGbgVNl6++FMQZ0lsSdIEWBZLSQw==}
     peerDependencies:
       '@trpc/server': ^10.11.1
       zod: ^3.20.6
     dependencies:
-      '@trpc/server': 10.34.1
+      '@trpc/server': 10.35.0
       openapi-types: 12.1.0
       zod: 3.21.4
       zod-to-json-schema: 3.21.1(zod@3.21.4)
