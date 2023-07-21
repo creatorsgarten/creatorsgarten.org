@@ -10,7 +10,17 @@ import type { AstroGlobal } from 'astro'
 
 export function getBackend(Astro: Pick<AstroGlobal, 'cookies'>) {
   const token = Astro.cookies.get('authgarten').value
+  return createProxyClient(token)
+}
 
+export function getApiBackend(Astro: Pick<AstroGlobal, 'request'>) {
+  const token = Astro.request.headers
+    .get('authorization')
+    ?.replace(/^Bearer /, '')
+  return createProxyClient(token)
+}
+
+function createProxyClient(token: string | undefined) {
   return createTRPCProxyClient<AppRouter>({
     links: [
       privateKey
