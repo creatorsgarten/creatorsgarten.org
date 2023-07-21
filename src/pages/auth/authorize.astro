@@ -67,6 +67,7 @@ const idTokenInfo = await getBackend(Astro).auth.mintIdToken.mutate({
 
 // build final redirect uri
 const redirectTo = new URL(redirectUri)
+const responseType = Astro.url.searchParams.get('response_type') ?? 'id_token'
 const responseMode = Astro.url.searchParams.get('response_mode') ?? 'query'
 const updateResponse = (f: (searchParams: URLSearchParams) => void) => {
   if (responseMode === 'hash') {
@@ -80,6 +81,18 @@ const updateResponse = (f: (searchParams: URLSearchParams) => void) => {
 updateResponse(searchParams => {
   searchParams.set('id_token', idTokenInfo.idToken)
   searchParams.set('state', state)
+  if (responseType === 'code') {
+    searchParams.set(
+      'code',
+      JSON.stringify({
+        access_token: idTokenInfo.idToken,
+        token_type: 'Bearer',
+        expires_in: 3600,
+        scope: scopes.join(' '),
+        id_token: idTokenInfo.idToken,
+      })
+    )
+  }
 })
 
 if (redirectTo.protocol !== 'https:' && redirectTo.protocol !== 'http:') {
