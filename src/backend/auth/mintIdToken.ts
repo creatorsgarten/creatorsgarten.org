@@ -74,7 +74,9 @@ export async function mintIdToken(
   const claims: AuthgartenOidcClaims = {
     sub: String(user.sub),
     name: user.name,
-    picture: user.avatar,
+    picture: user.avatar?.includes('://')
+      ? user.avatar
+      : 'https://api.dicebear.com/6.x/thumbs/svg?seed=' + user.sub,
     connections: {
       eventpop: { id: user.uid },
       github: user.connections.github,
