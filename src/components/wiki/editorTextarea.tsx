@@ -1,4 +1,3 @@
-import 'regenerator-runtime'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { EditorSettings } from './editorSettings'
 import { useStore } from '@nanostores/react'
