@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { EditorSettings } from './editorSettings'
 import { useStore } from '@nanostores/react'
 import { clsx } from 'clsx'
-import { UpgradedEditor } from './UpgradedEditor'
+import { DumbTextarea } from './DumbTextarea'
 
 interface EditorTextarea {
   editable: boolean
@@ -11,9 +11,10 @@ interface EditorTextarea {
 }
 
 export function EditorTextarea({ editable, defaultValue }: EditorTextarea) {
-  const [upgraded, setUpgraded] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const [advanced, setAdvanced] = useState(false)
   useEffect(() => {
-    setUpgraded(true)
+    setMounted(true)
   }, [])
 
   const { font } = useStore(EditorSettings)
@@ -25,7 +26,7 @@ export function EditorTextarea({ editable, defaultValue }: EditorTextarea) {
 
   return (
     <>
-      <div className={clsx('mb-2 flex gap-2', upgraded ? '' : 'invisible')}>
+      <div className={clsx('mb-2 flex gap-3', mounted ? '' : 'invisible')}>
         <label>
           <input
             type="checkbox"
@@ -34,58 +35,60 @@ export function EditorTextarea({ editable, defaultValue }: EditorTextarea) {
           />{' '}
           Use monospace font
         </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={advanced}
+            onChange={e => setAdvanced(e.target.checked)}
+          />{' '}
+          Disable rich text editor
+        </label>
       </div>
 
-      <EditorView editable={editable} defaultValue={defaultValue} />
+      <EditorView
+        editable={editable}
+        defaultValue={defaultValue}
+        forceDumb={advanced}
+      />
     </>
   )
 }
 
-export interface EditorView {
+interface EditorView {
   editable: boolean
+  forceDumb: boolean
   defaultValue: string
 }
 
-export function EditorView(props: EditorView) {
-  const [upgraded, setUpgraded] = useState(false)
+function EditorView(props: EditorView) {
+  const [UpgradedEditor, setUpgraded] = useState<
+    typeof import('./UpgradedEditor').UpgradedEditor | undefined
+  >()
+
   useEffect(() => {
-    setUpgraded(true)
+    import('./UpgradedEditor').then(module => {
+      setUpgraded(() => module.UpgradedEditor)
+    })
   }, [])
 
-  const { editable, defaultValue } = props
+  const { editable, defaultValue, forceDumb } = props
 
-  if (upgraded && editable) {
-    return <UpgradedEditor defaultValue={defaultValue} />
-  }
+  const upgradedEditor = useMemo(() => {
+    return UpgradedEditor ? (
+      <UpgradedEditor defaultValue={defaultValue} />
+    ) : null
+  }, [UpgradedEditor, defaultValue])
 
-  return (
-    <DumbTextarea
-      name="content"
-      rows={40}
-      disabled={!editable}
-      defaultValue={defaultValue}
-    />
-  )
-}
+  const dumbEditor = useMemo(() => {
+    return (
+      <DumbTextarea
+        name="content"
+        rows={40}
+        disabled={!editable}
+        defaultValue={defaultValue}
+      />
+    )
+  }, [editable, defaultValue])
 
-export interface DumbTextarea {
-  name?: string
-  rows?: number
-  disabled?: boolean
-  defaultValue?: string
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-  value?: string
-}
-
-export function DumbTextarea(props: DumbTextarea) {
-  const { font } = useStore(EditorSettings)
-  return (
-    <textarea
-      className={`w-full p-4 ${
-        font === 'mono' ? 'font-mono' : 'font-prose'
-      } rounded-xl border-2 border-black text-sm disabled:cursor-not-allowed`}
-      rows={40}
-      {...props}
-    />
-  )
+  return (editable && !forceDumb && upgradedEditor) || dumbEditor
 }
