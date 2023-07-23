@@ -18,7 +18,7 @@ export function EditorTextarea(props: EditorTextarea) {
   const ref = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
   const [initData, setInitData] = useState<EditorInitData>(() => ({
-    forcePlain: false,
+    forcePlain: true,
     defaultValue: props.defaultValue,
   }))
 
@@ -61,7 +61,7 @@ export function EditorTextarea(props: EditorTextarea) {
               setForcePlain(e.target.checked)
             }}
           />{' '}
-          Disable rich text editor
+          Use plain text editor
         </label>
       </div>
 

@@ -19,7 +19,7 @@ export function UpgradedEditor(props: UpgradedEditor) {
       sections
         .map(section => {
           const text = values.current[section.id] ?? section.text
-          return section.mode === 'plain'
+          return section.mode === 'rich' || section.id === 'frontmatter'
             ? text
             : `<!-- wysiwyg-ignore-start -->\n\n${text}\n\n<!-- wysiwyg-ignore-end -->`
         })
@@ -161,11 +161,11 @@ function split(text: string): Section[] {
       .map((text, i): Section => {
         return {
           id: `body${i}`,
-          text: text,
+          text: text.trim(),
           mode: i % 2 === 0 ? 'rich' : 'plain',
         }
       })
-      .filter(section => section.text.trim() !== '')
+      .filter(section => section.text !== '')
   )
   return output
 }
