@@ -1,15 +1,21 @@
+import 'regenerator-runtime'
+import { useEffect, useMemo, useState } from 'react'
 import { EditorSettings } from './editorSettings'
 import { useStore } from '@nanostores/react'
+import { clsx } from 'clsx'
+import { UpgradedEditor } from './UpgradedEditor'
 
-interface EditorTextareaProps {
+interface EditorTextarea {
   editable: boolean
   defaultValue: string
 }
 
-export function EditorTextarea({
-  editable,
-  defaultValue,
-}: EditorTextareaProps) {
+export function EditorTextarea({ editable, defaultValue }: EditorTextarea) {
+  const [upgraded, setUpgraded] = useState(false)
+  useEffect(() => {
+    setUpgraded(true)
+  }, [])
+
   const { font } = useStore(EditorSettings)
 
   function updateFont(e: React.ChangeEvent<HTMLInputElement>) {
@@ -19,7 +25,7 @@ export function EditorTextarea({
 
   return (
     <>
-      <div className="mb-2 flex gap-2">
+      <div className={clsx('mb-2 flex gap-2', upgraded ? '' : 'invisible')}>
         <label>
           <input
             type="checkbox"
@@ -30,17 +36,56 @@ export function EditorTextarea({
         </label>
       </div>
 
-      <textarea
-        name="content"
-        className={`w-full p-4 ${
-          font === 'mono' ? 'font-mono' : 'font-prose'
-        } rounded-xl border-2 border-black text-sm disabled:cursor-not-allowed ${
-          editable ? '' : ''
-        }`}
-        disabled={!editable}
-        rows={40}
-        defaultValue={defaultValue}
-      />
+      <EditorView editable={editable} defaultValue={defaultValue} />
     </>
+  )
+}
+
+export interface EditorView {
+  editable: boolean
+  defaultValue: string
+}
+
+export function EditorView(props: EditorView) {
+  const [upgraded, setUpgraded] = useState(false)
+  useEffect(() => {
+    setUpgraded(true)
+  }, [])
+
+  const { editable, defaultValue } = props
+
+  if (upgraded && editable) {
+    return <UpgradedEditor defaultValue={defaultValue} />
+  }
+
+  return (
+    <DumbTextarea
+      name="content"
+      rows={40}
+      disabled={!editable}
+      defaultValue={defaultValue}
+    />
+  )
+}
+
+export interface DumbTextarea {
+  name?: string
+  rows?: number
+  disabled?: boolean
+  defaultValue?: string
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+  value?: string
+}
+
+export function DumbTextarea(props: DumbTextarea) {
+  const { font } = useStore(EditorSettings)
+  return (
+    <textarea
+      className={`w-full p-4 ${
+        font === 'mono' ? 'font-mono' : 'font-prose'
+      } rounded-xl border-2 border-black text-sm disabled:cursor-not-allowed`}
+      rows={40}
+      {...props}
+    />
   )
 }
