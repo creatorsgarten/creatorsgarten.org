@@ -1,18 +1,36 @@
 import 'regenerator-runtime'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { EditorSettings } from './editorSettings'
 import { useStore } from '@nanostores/react'
 import { clsx } from 'clsx'
-import { DumbTextarea } from './DumbTextarea'
+import { PlainTextarea } from './PlainTextarea'
 
 interface EditorTextarea {
   editable: boolean
   defaultValue: string
 }
+interface EditorInitData {
+  forcePlain: boolean
+  defaultValue: string
+}
 
-export function EditorTextarea({ editable, defaultValue }: EditorTextarea) {
+export function EditorTextarea(props: EditorTextarea) {
+  const ref = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
-  const [advanced, setAdvanced] = useState(false)
+  const [initData, setInitData] = useState<EditorInitData>(() => ({
+    forcePlain: false,
+    defaultValue: props.defaultValue,
+  }))
+
+  const setForcePlain = (forcePlain: boolean) => {
+    const content =
+      ref.current?.querySelector<HTMLInputElement>('[name="content"]')
+    setInitData({
+      defaultValue: content?.value ?? props.defaultValue,
+      forcePlain,
+    })
+  }
+
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -38,25 +56,29 @@ export function EditorTextarea({ editable, defaultValue }: EditorTextarea) {
         <label>
           <input
             type="checkbox"
-            checked={advanced}
-            onChange={e => setAdvanced(e.target.checked)}
+            checked={initData.forcePlain}
+            onChange={e => {
+              setForcePlain(e.target.checked)
+            }}
           />{' '}
           Disable rich text editor
         </label>
       </div>
 
-      <EditorView
-        editable={editable}
-        defaultValue={defaultValue}
-        forceDumb={advanced}
-      />
+      <div ref={ref}>
+        <EditorView
+          editable={props.editable}
+          defaultValue={initData.defaultValue}
+          forcePlain={initData.forcePlain}
+        />
+      </div>
     </>
   )
 }
 
 interface EditorView {
   editable: boolean
-  forceDumb: boolean
+  forcePlain: boolean
   defaultValue: string
 }
 
@@ -71,7 +93,7 @@ function EditorView(props: EditorView) {
     })
   }, [])
 
-  const { editable, defaultValue, forceDumb } = props
+  const { editable, defaultValue, forcePlain: forceDumb } = props
 
   const upgradedEditor = useMemo(() => {
     return UpgradedEditor ? (
@@ -81,7 +103,7 @@ function EditorView(props: EditorView) {
 
   const dumbEditor = useMemo(() => {
     return (
-      <DumbTextarea
+      <PlainTextarea
         name="content"
         rows={40}
         disabled={!editable}

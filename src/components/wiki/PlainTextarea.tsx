@@ -1,7 +1,7 @@
 import { EditorSettings } from './editorSettings'
 import { useStore } from '@nanostores/react'
 
-export interface DumbTextarea {
+export interface PlainTextarea {
   name?: string
   rows?: number
   disabled?: boolean
@@ -10,7 +10,7 @@ export interface DumbTextarea {
   value?: string
 }
 
-export function DumbTextarea(props: DumbTextarea) {
+export function PlainTextarea(props: PlainTextarea) {
   const { font } = useStore(EditorSettings)
   return (
     <textarea

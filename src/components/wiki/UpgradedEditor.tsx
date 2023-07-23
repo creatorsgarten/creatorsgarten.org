@@ -1,55 +1,77 @@
 import { TypistEditor, RichTextKit, Editor } from '@doist/typist'
 import { useRef, useState } from 'react'
-import { DumbTextarea } from './DumbTextarea'
+import { PlainTextarea } from './PlainTextarea'
 import type { TypistEditorRef } from '@doist/typist'
 import { Icon } from 'react-iconify-icon-wrapper'
-
-// Split the text at <!-- wysiwym-start --> and <!-- wysiwym-end -->
-// and create a section for each part.
-interface Section {
-  id: number
-  text: string
-  mode: 'dumb' | 'rich'
-}
-
-function split(text: string): Section[] {
-  return text
-    .split(/<!--\s*wysiwym-start\s*-->([\s\S]*)<!--\s*wysiwym-end\s*-->/)
-    .map((text, i) => {
-      return {
-        id: i,
-        text: text,
-        mode: i % 2 === 0 ? 'dumb' : 'rich',
-      }
-    })
-}
+import { ReadableAtom, atom } from 'nanostores'
+import { useStore } from '@nanostores/react'
 
 export interface UpgradedEditor {
   defaultValue: string
 }
 export function UpgradedEditor(props: UpgradedEditor) {
+  const [contentAtom] = useState(atom(props.defaultValue))
   const sections = split(props.defaultValue)
+  const values = useRef<Record<string, string>>({})
+  const onUpdateSection = (id: string, text: string) => {
+    values.current[id] = text
+    contentAtom.set(
+      sections
+        .map(section => {
+          const text = values.current[section.id] ?? section.text
+          return section.mode === 'plain'
+            ? text
+            : `<!-- wysiwyg-ignore-start -->\n\n${text}\n\n<!-- wysiwyg-ignore-end -->`
+        })
+        .join('\n\n')
+    )
+  }
   return (
     <div className="flex flex-col gap-4">
-      {sections.map(section => {
-        if (section.mode === 'dumb') {
-          return (
-            <DumbTextarea
-              key={section.id}
-              defaultValue={section.text}
-              rows={section.text.split('\n').length + 3}
-            />
-          )
-        } else {
-          return <RichTextEditor key={section.id} defaultValue={section.text} />
-        }
-      })}
+      <HiddenContentInput atom={contentAtom} />
+      {sections.map(section => (
+        <EditorSection
+          key={section.id}
+          section={section}
+          onChange={text => onUpdateSection(section.id, text)}
+        />
+      ))}
     </div>
   )
 }
 
+export interface HiddenContentInput {
+  atom: ReadableAtom<string>
+}
+export function HiddenContentInput(props: HiddenContentInput) {
+  const value = useStore(props.atom)
+  return <input type="hidden" value={value} name="content" />
+}
+
+interface EditorSection {
+  section: Section
+  onChange: (text: string) => void
+}
+function EditorSection(props: EditorSection) {
+  const { section } = props
+  if (section.mode === 'plain') {
+    return (
+      <PlainTextarea
+        defaultValue={section.text}
+        rows={section.text.split('\n').length + 3}
+        onChange={e => props.onChange(e.target.value)}
+      />
+    )
+  } else {
+    return (
+      <RichTextEditor defaultValue={section.text} onChange={props.onChange} />
+    )
+  }
+}
+
 interface RichTextEditor {
   defaultValue: string
+  onChange: (text: string) => void
 }
 function RichTextEditor(props: RichTextEditor) {
   const typistEditorRef = useRef<TypistEditorRef>(null)
@@ -57,6 +79,11 @@ function RichTextEditor(props: RichTextEditor) {
     const editor = typistEditorRef.current?.getEditor()
     if (editor) {
       action(editor as any)
+    }
+  }
+  const handleUpdate = () => {
+    if (typistEditorRef.current) {
+      props.onChange(typistEditorRef.current.getMarkdown())
     }
   }
 
@@ -82,6 +109,7 @@ function RichTextEditor(props: RichTextEditor) {
         extensions={[RichTextKit]}
         className="prose mx-auto max-w-6xl [&>.ProseMirror]:p-4"
         ref={typistEditorRef}
+        onUpdate={handleUpdate}
       />
     </div>
   )
@@ -106,4 +134,38 @@ export function RichToolbar(props: RichToolbar) {
       ))}
     </div>
   )
+}
+
+interface Section {
+  id: string
+  text: string
+  mode: 'plain' | 'rich'
+}
+
+const frontMatterRegExp = /^\s*---\s*\n([\s\S]*?)\n\s*---\s*\n/
+function split(text: string): Section[] {
+  const output: Section[] = []
+  text = text.replace(frontMatterRegExp, a => {
+    output.push({
+      id: 'frontmatter',
+      text: a,
+      mode: 'plain',
+    })
+    return ''
+  })
+  output.push(
+    ...text
+      .split(
+        /<!--\s*wysiwyg-ignore-start\s*-->([\s\S]*?)<!--\s*wysiwyg-ignore-end\s*-->/
+      )
+      .map((text, i): Section => {
+        return {
+          id: `body${i}`,
+          text: text,
+          mode: i % 2 === 0 ? 'rich' : 'plain',
+        }
+      })
+      .filter(section => section.text.trim() !== '')
+  )
+  return output
 }
