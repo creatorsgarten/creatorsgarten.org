@@ -96,8 +96,8 @@ dependencies:
 
 devDependencies:
   '@astrojs/node':
-    specifier: 5.3.0
-    version: 5.3.0(astro@2.9.6)
+    specifier: 5.3.1
+    version: 5.3.1(astro@2.9.6)
   '@astrojs/prefetch':
     specifier: 0.3.0
     version: 0.3.0
@@ -254,10 +254,10 @@ packages:
       - supports-color
     dev: true
 
-  /@astrojs/node@5.3.0(astro@2.9.6):
-    resolution: {integrity: sha512-q7gJEPSZzC4FIRNmq3ks6mw0Jby4irXTfRhbOPOS4HRmbu4FDANnRqnZBOGe96cfBQTgDC3/FhQccDQtx+n4pg==}
+  /@astrojs/node@5.3.1(astro@2.9.6):
+    resolution: {integrity: sha512-SxO7bkZYrI5HsiL8OKu9DcK3SC6HHHOTZR6ctk+EVEIjEKXw6XkqEwhIls2qtvugLliV1h5tdnPprYtwBmW/7w==}
     peerDependencies:
-      astro: ^2.7.0
+      astro: ^2.9.7
     dependencies:
       '@astrojs/webapi': 2.2.0
       astro: 2.9.6
