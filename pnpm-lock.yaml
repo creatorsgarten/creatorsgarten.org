@@ -165,14 +165,14 @@ devDependencies:
     specifier: 3.0.2
     version: 3.0.2
   prettier-plugin-astro:
-    specifier: 0.11.0
-    version: 0.11.0
+    specifier: 0.11.1
+    version: 0.11.1
   prettier-plugin-svelte:
     specifier: ^3.0.0
     version: 3.0.0(prettier@3.0.2)(svelte@4.0.0)
   prettier-plugin-tailwindcss:
     specifier: ^0.5.0
-    version: 0.5.0(prettier-plugin-astro@0.11.0)(prettier-plugin-svelte@3.0.0)(prettier@3.0.2)
+    version: 0.5.0(prettier-plugin-astro@0.11.1)(prettier-plugin-svelte@3.0.0)(prettier@3.0.2)
   svelte:
     specifier: ^4.0.0
     version: 4.0.0
@@ -199,10 +199,6 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
-
-  /@astrojs/compiler@1.5.6:
-    resolution: {integrity: sha512-gtcpm20y4EUUQNc7evn+ffSJLTlrZRKfBS6kT7r1aB9u+AAeP2BZIiyuSdgXJUS679pCV4sqbM80u8Iek575lg==}
-    dev: true
 
   /@astrojs/compiler@1.8.0:
     resolution: {integrity: sha512-E0TI/uyO8n+IPSZ4Fvl9Lne8JKEasR6ZMGvE2G096oTWOXSsPAhRs2LomV3z+/VRepo2h+t/SdVo54wox4eJwA==}
@@ -5411,11 +5407,11 @@ packages:
       which-pm: 2.0.0
     dev: true
 
-  /prettier-plugin-astro@0.11.0:
-    resolution: {integrity: sha512-rl2hJ4Kty/aEfGjk3i4JS+bpng9MjgvwqLRNzeb9NqYhqKoWNwOR39cIJXFjU1vR3zYOPnwWNRMelKb0orunYA==}
-    engines: {node: ^14.15.0 || >=16.0.0, pnpm: '>=7.14.0'}
+  /prettier-plugin-astro@0.11.1:
+    resolution: {integrity: sha512-28sf624jQz9uP4hkQiRPRVuG1/4XJpnS6DfoXPgeDAeQ+eQ1o21bpioUbxze57y2EN+BCHeEw6x3a1MhM08Liw==}
+    engines: {node: ^14.15.0 || >=16.0.0}
     dependencies:
-      '@astrojs/compiler': 1.5.6
+      '@astrojs/compiler': 1.8.0
       prettier: 3.0.2
       sass-formatter: 0.7.6
     dev: true
@@ -5440,7 +5436,7 @@ packages:
       svelte: 4.0.0
     dev: true
 
-  /prettier-plugin-tailwindcss@0.5.0(prettier-plugin-astro@0.11.0)(prettier-plugin-svelte@3.0.0)(prettier@3.0.2):
+  /prettier-plugin-tailwindcss@0.5.0(prettier-plugin-astro@0.11.1)(prettier-plugin-svelte@3.0.0)(prettier@3.0.2):
     resolution: {integrity: sha512-EpP/Hg/D/LzjKJ+gYiSnsqk+PkrHSFQAuRHx/sj3O4r2kH0iJAOrKeKmI1X4Fm96M1BY+tO0KiV+/Y03MYbArg==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
@@ -5493,7 +5489,7 @@ packages:
         optional: true
     dependencies:
       prettier: 3.0.2
-      prettier-plugin-astro: 0.11.0
+      prettier-plugin-astro: 0.11.1
       prettier-plugin-svelte: 3.0.0(prettier@3.0.2)(svelte@4.0.0)
     dev: true
 
