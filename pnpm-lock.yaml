@@ -106,7 +106,7 @@ devDependencies:
     version: 2.2.1(@types/react-dom@18.2.4)(@types/react@18.2.11)(react-dom@18.2.0)(react@18.2.0)
   '@astrojs/svelte':
     specifier: ^3.0.0
-    version: 3.0.0(astro@2.10.14)(svelte@4.0.0)(typescript@5.1.6)(vite@4.4.6)
+    version: 3.0.0(astro@2.10.14)(svelte@4.0.0)(typescript@5.2.2)(vite@4.4.6)
   '@astrojs/tailwind':
     specifier: 4.0.0
     version: 4.0.0(astro@2.10.14)(tailwindcss@3.3.3)
@@ -151,7 +151,7 @@ devDependencies:
     version: 0.7.4
   contentsgarten:
     specifier: ^2.0.1
-    version: 2.0.1(typescript@5.1.6)
+    version: 2.0.1(typescript@5.2.2)
   dotenv:
     specifier: ^16.1.4
     version: 16.1.4
@@ -180,8 +180,8 @@ devDependencies:
     specifier: 3.3.3
     version: 3.3.3
   typescript:
-    specifier: 5.1.6
-    version: 5.1.6
+    specifier: 5.2.2
+    version: 5.2.2
   zx:
     specifier: ^7.2.2
     version: 7.2.2
@@ -295,7 +295,7 @@ packages:
       - supports-color
     dev: true
 
-  /@astrojs/svelte@3.0.0(astro@2.10.14)(svelte@4.0.0)(typescript@5.1.6)(vite@4.4.6):
+  /@astrojs/svelte@3.0.0(astro@2.10.14)(svelte@4.0.0)(typescript@5.2.2)(vite@4.4.6):
     resolution: {integrity: sha512-LIrcZGybBHtiY84Sjls4q63oQu04k1cCfsXO8OzjOdzz7jOy6wyGamhZWpg8Cu5m5hiL0hrm4wzgAaI7Kxh1NA==}
     engines: {node: '>=16.12.0'}
     peerDependencies:
@@ -305,7 +305,7 @@ packages:
       '@sveltejs/vite-plugin-svelte': 2.4.1(svelte@4.0.0)(vite@4.4.6)
       astro: 2.10.14
       svelte: 4.0.0
-      svelte2tsx: 0.6.15(svelte@4.0.0)(typescript@5.1.6)
+      svelte2tsx: 0.6.15(svelte@4.0.0)(typescript@5.2.2)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -2477,7 +2477,7 @@ packages:
       kleur: 4.1.5
       magic-string: 0.30.2
       mime: 3.0.0
-      network-information-types: 0.1.1(typescript@5.1.6)
+      network-information-types: 0.1.1(typescript@5.2.2)
       ora: 6.3.1
       p-limit: 4.0.0
       path-to-regexp: 6.2.1
@@ -2490,7 +2490,7 @@ packages:
       string-width: 5.1.2
       strip-ansi: 7.1.0
       tsconfig-resolver: 3.0.1
-      typescript: 5.1.6
+      typescript: 5.2.2
       unist-util-visit: 4.1.2
       vfile: 5.3.7
       vite: 4.4.6
@@ -2896,7 +2896,7 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /contentsgarten@2.0.1(typescript@5.1.6):
+  /contentsgarten@2.0.1(typescript@5.2.2):
     resolution: {integrity: sha512-rFFcVK/Jbh5yPq8/et8OY1BtwA1NIUvvXInbhyQYxKdIt/ZsiMrsWkcweH3kRo/HRc1xwaeOz8K62BnrPw7yGQ==}
     dependencies:
       '@contentsgarten/markdown': 2.0.0
@@ -2914,7 +2914,7 @@ packages:
       mongodb: 5.6.0
       octokit: 2.0.14
       openapi-trpc: 0.1.2(@trpc/server@10.37.1)(zod@3.21.4)
-      p-memoize: 7.1.1(typescript@5.1.6)
+      p-memoize: 7.1.1(typescript@5.2.2)
       zod: 3.21.4
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
@@ -4939,12 +4939,12 @@ packages:
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     dev: false
 
-  /network-information-types@0.1.1(typescript@5.1.6):
+  /network-information-types@0.1.1(typescript@5.2.2):
     resolution: {integrity: sha512-mLXNafJYOkiJB6IlF727YWssTRpXitR+tKSLyA5VAdBi3SOvLf5gtizHgxf241YHPWocnAO/fAhVrB/68tPHDw==}
     peerDependencies:
       typescript: '>= 3.0.0'
     dependencies:
-      typescript: 5.1.6
+      typescript: 5.2.2
     dev: true
 
   /nlcst-to-string@3.1.1:
@@ -5163,12 +5163,12 @@ packages:
     dependencies:
       p-limit: 3.1.0
 
-  /p-memoize@7.1.1(typescript@5.1.6):
+  /p-memoize@7.1.1(typescript@5.2.2):
     resolution: {integrity: sha512-DZ/bONJILHkQ721hSr/E9wMz5Am/OTJ9P6LhLFo2Tu+jL8044tgc9LwHO8g4PiaYePnlVVRAJcKmgy8J9MVFrA==}
     engines: {node: '>=14.16'}
     dependencies:
       mimic-fn: 4.0.0
-      type-fest: 3.10.0(typescript@5.1.6)
+      type-fest: 3.10.0(typescript@5.2.2)
     transitivePeerDependencies:
       - typescript
     dev: true
@@ -6418,7 +6418,7 @@ packages:
       svelte: 4.0.0
     dev: true
 
-  /svelte2tsx@0.6.15(svelte@4.0.0)(typescript@5.1.6):
+  /svelte2tsx@0.6.15(svelte@4.0.0)(typescript@5.2.2):
     resolution: {integrity: sha512-+j6RmA3g5pPs1DHa/rdzJjjhZuCfWx0IbNPaR99A2bvOSPPY6BlVkBGU0urI+DGcWHhYEG28Flo942KqlAkpEQ==}
     peerDependencies:
       svelte: ^3.55 || ^4.0
@@ -6427,7 +6427,7 @@ packages:
       dedent-js: 1.0.1
       pascal-case: 3.1.2
       svelte: 4.0.0
-      typescript: 5.1.6
+      typescript: 5.2.2
     dev: true
 
   /svelte@4.0.0:
@@ -6611,17 +6611,17 @@ packages:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
 
-  /type-fest@3.10.0(typescript@5.1.6):
+  /type-fest@3.10.0(typescript@5.2.2):
     resolution: {integrity: sha512-hmAPf1datm+gt3c2mvu0sJyhFy6lTkIGf0GzyaZWxRLnabQfPUqg6tF95RPg6sLxKI7nFLGdFxBcf2/7+GXI+A==}
     engines: {node: '>=14.16'}
     peerDependencies:
       typescript: '>=4.7.0'
     dependencies:
-      typescript: 5.1.6
+      typescript: 5.2.2
     dev: true
 
-  /typescript@5.1.6:
-    resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==}
+  /typescript@5.2.2:
+    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
