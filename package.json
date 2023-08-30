@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@astrojs/node": "5.3.6",
-    "@astrojs/prefetch": "0.3.0",
+    "@astrojs/prefetch": "0.4.0",
     "@astrojs/react": "^2.2.1",
     "@astrojs/svelte": "^3.0.0",
     "@astrojs/tailwind": "4.0.0",
