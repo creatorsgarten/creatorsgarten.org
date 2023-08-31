@@ -11,7 +11,7 @@ export const updateWiki = async (
   Astro: AstroGlobal
 ) => {
   try {
-    await contentsgarten(Astro.cookies.get('authgarten').value).save.mutate({
+    await contentsgarten(Astro.cookies.get('authgarten')?.value).save.mutate({
       pageRef,
       newContent: content,
       oldRevision,

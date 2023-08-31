@@ -1,9 +1,9 @@
-import { TypistEditor, RichTextKit, Editor } from '@doist/typist'
+import { TypistEditor, RichTextKit, type Editor } from '@doist/typist'
 import { useRef, useState } from 'react'
 import { PlainTextarea } from './PlainTextarea'
 import type { TypistEditorRef } from '@doist/typist'
 import { Icon } from 'react-iconify-icon-wrapper'
-import { ReadableAtom, atom } from 'nanostores'
+import { type ReadableAtom, atom } from 'nanostores'
 import { useStore } from '@nanostores/react'
 
 export interface UpgradedEditor {

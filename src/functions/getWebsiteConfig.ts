@@ -1,7 +1,7 @@
 import { contentsgarten } from '$constants/contentsgarten'
 import { websiteConfigSchema } from '$constants/websiteConfigSchema'
 import { readFileSystem, writeFileSystem } from './fileSystem'
-import { FrontMatter, parseFrontMatter } from './parseFrontMatter'
+import { type FrontMatter, parseFrontMatter } from './parseFrontMatter'
 
 export type WebsiteConfig = NonNullable<FrontMatter['websiteConfig']>
 

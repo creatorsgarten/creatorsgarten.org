@@ -1,6 +1,6 @@
 import { createTRPCProxyClient, httpLink } from '@trpc/client'
 
-import { AppRouter, appRouter } from 'src/backend'
+import { type AppRouter, appRouter } from 'src/backend'
 import { localLink } from './localLink'
 
 import { privateKey } from '$constants/secrets/privateKey'
@@ -9,7 +9,7 @@ import { backendUrl } from '$constants/secrets/backendUrl'
 import type { AstroGlobal } from 'astro'
 
 export function getBackend(Astro: Pick<AstroGlobal, 'cookies'>) {
-  const token = Astro.cookies.get('authgarten').value
+  const token = Astro.cookies.get('authgarten')?.value
   return createProxyClient(token)
 }
 
