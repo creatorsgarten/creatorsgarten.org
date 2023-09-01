@@ -13,7 +13,7 @@ export interface Props {
 
 const { pageRef, file } = Astro.props
 
-const editable = Astro.cookies.get('authgarten').value
+const editable = Astro.cookies.get('authgarten')?.value
   ? await contentsgarten(
       Astro.cookies.get('authgarten')?.value
     ).getEditPermission.query({
