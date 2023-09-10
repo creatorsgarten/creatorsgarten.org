@@ -8,7 +8,9 @@ export const getAuthenticatedUser = async (
   token?: string
 ): Promise<AuthenticatedUser | null> => {
   try {
-    const session = jwt.verify(token ?? '', privateKey) as AuthenticatedUser
+    if (!token) return null
+
+    const session = jwt.verify(token, privateKey) as AuthenticatedUser
     return session
   } catch (e) {
     return null

@@ -3,7 +3,6 @@ import CSRF from 'csrf'
 import Blank from '$layouts/blank.astro'
 
 import { csrfSecret } from '$constants/secrets/csrfSecret'
-import { getBackend } from '$functions/getBackend'
 
 const code = Astro.url.searchParams.get('code') ?? ''
 const state = Astro.url.searchParams.get('state') ?? ''
@@ -39,15 +38,16 @@ try {
     throw new Error('csrf-verification-fail')
 
   // handle authtication from here
-  const backend = getBackend(Astro)
   const result = await (() => {
     switch (targetService) {
       case 'eventpop':
-        return backend.auth.signInWithEventpopAuthorizationCode.mutate({ code })
+        return Astro.locals.backend.auth.signInWithEventpopAuthorizationCode.mutate(
+          { code }
+        )
       case 'github':
-        return backend.auth.linkGitHubAccount.mutate({ code })
+        return Astro.locals.backend.auth.linkGitHubAccount.mutate({ code })
       case 'discord':
-        return backend.auth.linkDiscordAccount.mutate({ code })
+        return Astro.locals.backend.auth.linkDiscordAccount.mutate({ code })
     }
     throw new Error('service-invalid')
   })()

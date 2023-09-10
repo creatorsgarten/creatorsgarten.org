@@ -8,8 +8,8 @@ import { backendUrl } from '$constants/secrets/backendUrl'
 
 import type { AstroGlobal } from 'astro'
 
-export function getBackend(Astro: Pick<AstroGlobal, 'cookies'>) {
-  const token = Astro.cookies.get('authgarten')?.value
+export function getBackend(cookies: AstroGlobal['cookies']) {
+  const token = cookies.get('authgarten')?.value
   return createProxyClient(token)
 }
 

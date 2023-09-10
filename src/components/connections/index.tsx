@@ -5,11 +5,11 @@ import type { FunctionComponent } from 'react'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 
 interface Props {
-  user: AuthenticatedUser
+  connections: AuthenticatedUser['connections']
 }
 
 export const Connections: FunctionComponent<Props> = props => {
-  const { connections } = props.user
+  const { connections } = props
 
   return (
     <section className="mx-auto max-w-2xl">
