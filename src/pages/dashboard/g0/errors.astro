@@ -1,0 +1,46 @@
+---
+import BaseLayout from '$layouts/base.astro'
+
+import { g0Hostname } from '$constants/secrets/g0Hostname'
+import { getServiceAccountIdToken } from 'src/backend/gardenGate/getServiceAccountIdToken'
+import { getBackend } from '$functions/getBackend'
+
+interface Log {
+  _id: string
+  time: string
+  message: string
+}
+
+let { granted } = await getBackend(Astro).gardenGate.checkAccess.query()
+
+if (!granted)
+  return new Response(undefined, {
+    status: 403,
+  })
+
+const idToken = await getServiceAccountIdToken(
+  'https://github.com/creatorsgarten/garden-gate'
+)
+const gardenZeroResponse: Log[] = await fetch(g0Hostname + '/error-log', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    Authorization: 'Bearer ' + idToken,
+  },
+}).then(o => {
+  if (o.ok) return o.json()
+  else throw new Error('Error fetching error log')
+})
+---
+
+<BaseLayout class="mx-auto max-w-7xl space-y-6 [&>*]:px-6">
+  {
+    gardenZeroResponse.map(log => (
+      <div class="space-y-4 rounded-xl bg-red-100 p-4 text-red-700">
+        <p class="font-semibold">{log.time}</p>
+        <pre class="break-all text-sm">{log.message}</pre>
+      </div>
+    ))
+  }
+</BaseLayout>
