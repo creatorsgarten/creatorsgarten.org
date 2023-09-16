@@ -3,7 +3,6 @@ import BaseLayout from '$layouts/base.astro'
 
 import { g0Hostname } from '$constants/secrets/g0Hostname'
 import { getServiceAccountIdToken } from 'src/backend/gardenGate/getServiceAccountIdToken'
-import { getBackend } from '$functions/getBackend'
 
 interface Log {
   _id: string
@@ -11,7 +10,7 @@ interface Log {
   message: string
 }
 
-let { granted } = await getBackend(Astro).gardenGate.checkAccess.query()
+let { granted } = await Astro.locals.backend.gardenGate.checkAccess.query()
 
 if (!granted)
   return new Response(undefined, {
