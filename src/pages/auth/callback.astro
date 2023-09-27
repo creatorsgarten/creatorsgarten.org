@@ -3,7 +3,6 @@ import CSRF from 'csrf'
 import Blank from '$layouts/blank.astro'
 
 import { csrfSecret } from '$constants/secrets/csrfSecret'
-import { getBackend } from '$functions/getBackend'
 
 const code = Astro.url.searchParams.get('code') ?? ''
 const state = Astro.url.searchParams.get('state') ?? ''
@@ -14,7 +13,7 @@ let redirectTo: string = '/'
 try {
   // decode authentication state
   const stateMatcher = (state ?? '').match(
-    /^(localhost3000|new)!(.+)!(\w+)-(.+)$/
+    /^(localhost\d{4}|new)!(.+)!(\w+)-(.+)$/
   )
 
   if (stateMatcher === null) throw new Error('state-invalid')
@@ -23,9 +22,10 @@ try {
   redirectTo = destination
 
   // if local state, then foward to localhost
-  if (redirectHint === 'localhost3000' && import.meta.env.PROD) {
+  const hintMatcher = redirectHint.match(/^localhost(\d{4})$/)
+  if (hintMatcher && import.meta.env.PROD) {
     return Astro.redirect(
-      `http://localhost:3000/auth/callback?${new URLSearchParams({
+      `http://localhost:${hintMatcher[1]}/auth/callback?${new URLSearchParams({
         code: code ?? '',
         state: state ?? '',
       }).toString()}`
@@ -39,15 +39,16 @@ try {
     throw new Error('csrf-verification-fail')
 
   // handle authtication from here
-  const backend = getBackend(Astro)
   const result = await (() => {
     switch (targetService) {
       case 'eventpop':
-        return backend.auth.signInWithEventpopAuthorizationCode.mutate({ code })
+        return Astro.locals.backend.auth.signInWithEventpopAuthorizationCode.mutate(
+          { code }
+        )
       case 'github':
-        return backend.auth.linkGitHubAccount.mutate({ code })
+        return Astro.locals.backend.auth.linkGitHubAccount.mutate({ code })
       case 'discord':
-        return backend.auth.linkDiscordAccount.mutate({ code })
+        return Astro.locals.backend.auth.linkDiscordAccount.mutate({ code })
     }
     throw new Error('service-invalid')
   })()

@@ -1,18 +1,11 @@
 ---
-import { getBackend } from '$functions/getBackend'
 import AccessCard from './accessCard.svelte'
 
-import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-
-export interface Props {
-  user: AuthenticatedUser
-}
-
-const { user } = Astro.props
+const { user } = Astro.locals
 
 // determine that user should be able to see access card or not
 // hard-code for now, will build conditions later
-let { granted } = await getBackend(Astro).gardenGate.checkAccess.query()
+let { granted } = await Astro.locals.backend.gardenGate.checkAccess.query()
 ---
 
 {

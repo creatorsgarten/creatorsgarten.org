@@ -5,7 +5,6 @@ import { eventpopClient } from '$constants/secrets/eventpopClient'
 
 import { getEventpopUser } from 'src/backend/auth/getEventpopUser'
 import { getEventpopUserTickets } from 'src/backend/auth/getEventpopUserTickets'
-import type { User } from '$types/mongo/User'
 
 interface EventpopAuthorizationResponse {
   access_token: string

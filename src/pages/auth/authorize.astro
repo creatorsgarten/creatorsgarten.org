@@ -1,20 +1,13 @@
 ---
-import { getBackend } from '$functions/getBackend'
-import {
-  OAuthClientConfig,
-  isSensitiveScope,
-  oauthClients,
-} from '$constants/oauth'
+import { isSensitiveScope, oauthClients } from '$constants/oauth'
 import { IdTokenInspector } from '$components/idTokenInspector'
+import { errorPage } from '$functions/errorPage'
 import Blank from '$layouts/blank.astro'
 
-// check if user is authenticated
-const authenticatedUser = await getBackend(
-  Astro
-).auth.getAuthenticatedUser.query()
+import type { OAuthClientConfig } from '$constants/oauth'
 
 // if not, redirect to login page
-if (!authenticatedUser) {
+if (!Astro.locals.user) {
   const url = `/auth/login?${new URLSearchParams({
     dest: Astro.url.pathname + Astro.url.search,
   })}`
@@ -58,7 +51,7 @@ if (client) {
 }
 
 const nonce = Astro.url.searchParams.get('nonce') ?? undefined
-const idTokenInfo = await getBackend(Astro).auth.mintIdToken.mutate({
+const idTokenInfo = await Astro.locals.backend.auth.mintIdToken.mutate({
   audience: clientId,
   scopes,
   nonce,
@@ -103,7 +96,7 @@ if (redirectTo.protocol !== 'https:' && redirectTo.protocol !== 'http:') {
 }
 
 // check if user has authorized this client before
-const hasAuthorized = await getBackend(Astro).auth.checkOAuthAudit.query({
+const hasAuthorized = await Astro.locals.backend.auth.checkOAuthAudit.query({
   clientId,
   redirectUri,
   scopes,
@@ -116,7 +109,7 @@ if (
   Astro.request.method === 'POST'
 ) {
   if (!hasAuthorized)
-    await getBackend(Astro).auth.recordOAuthAudit.mutate({
+    await Astro.locals.backend.auth.recordOAuthAudit.mutate({
       clientId,
       redirectUri,
       scopes,
@@ -133,7 +126,7 @@ if (
     <h1 class="mb-4 text-4xl font-medium">Data access request</h1>
     <p class="mb-3">
       A third-party application at <strong>{redirectTo.origin}</strong>{' '}
-      would like to access information in your Creatorsgarten account.
+       would like to access information in your Creatorsgarten account.
     </p>
     <p class="mb-3">The following information will be shared:</p>
     <div class="mb-3">

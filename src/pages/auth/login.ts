@@ -5,12 +5,12 @@ import { eventpopClient } from '$constants/secrets/eventpopClient'
 
 import type { APIRoute } from 'astro'
 
-export const get: APIRoute = async ({ request, redirect, params, url }) => {
+export const get: APIRoute = async ({ request, redirect, url }) => {
   const redirectDestination = url.searchParams.get('dest') ?? '/'
 
   const csrfInstance = new CSRF()
   const redirectHint =
-    new URL(request.url).hostname === 'localhost' ? 'localhost3000' : 'new'
+    url.hostname === 'localhost' ? `localhost${url.port}` : 'new'
   const csrfToken = csrfInstance.create(csrfSecret ?? 'demodash')
 
   const loginURI = `https://www.eventpop.me/oauth/authorize?${new URLSearchParams(

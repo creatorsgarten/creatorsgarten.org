@@ -1,11 +1,9 @@
-import { getBackend } from '$functions/getBackend'
-
 import type { APIRoute } from 'astro'
 
-export const get: APIRoute = async Astro => {
+export const get: APIRoute = async ({ locals }) => {
   return {
     body: JSON.stringify(
-      await getBackend(Astro).gardenGate.createAccessQrCode.mutate()
+      await locals.backend.gardenGate.createAccessQrCode.mutate()
     ),
   }
 }

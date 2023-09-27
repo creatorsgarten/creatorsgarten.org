@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 import { g0Hostname } from '$constants/secrets/g0Hostname'
-import { collections, mongo } from '$constants/mongo'
+import { collections } from '$constants/mongo'
 
 import { getServiceAccountIdToken } from './getServiceAccountIdToken'
 import { notify } from './notify'
