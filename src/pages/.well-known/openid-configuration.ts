@@ -8,7 +8,7 @@ export const get: APIRoute = async Astro => {
     issuer: 'https://creatorsgarten.org',
     jwks_uri: `${base}/.well-known/jwks`,
     authorization_endpoint: `${base}/auth/authorize`,
-    response_types_supported: ['id_token'],
+    response_types_supported: ['id_token', 'code'],
     subject_types_supported: ['public', 'pairwise'],
   })
   return new Response(body, {
