@@ -114,8 +114,8 @@ devDependencies:
     specifier: ^4.0.0
     version: 4.0.0(astro@3.2.3)(svelte@4.2.0)(typescript@5.2.2)(vite@4.4.9)
   '@astrojs/tailwind':
-    specifier: 5.0.1
-    version: 5.0.1(astro@3.2.3)(tailwindcss@3.3.3)
+    specifier: 5.0.2
+    version: 5.0.2(astro@3.2.3)(tailwindcss@3.3.3)
   '@fontsource-variable/inter':
     specifier: ^5.0.8
     version: 5.0.8
@@ -367,10 +367,10 @@ packages:
       - vite
     dev: true
 
-  /@astrojs/tailwind@5.0.1(astro@3.2.3)(tailwindcss@3.3.3):
-    resolution: {integrity: sha512-HzguDH+q1v8NhZIu245UtXfz5tuy4IAd/TND92z5vyftYtGdjDLdBeHhMH4Wd91/0sIPPNRz9NUfToprI636YQ==}
+  /@astrojs/tailwind@5.0.2(astro@3.2.3)(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-oXqeqmBlkQmsltrsU9nEWeXOtrZIAHW8dcmX7BCdrjzPnU6dPwWzAwhddNQ9ihKiWwsLnlbwQZIo2CDigcZlIA==}
     peerDependencies:
-      astro: ^3.2.3
+      astro: ^3.2.4
       tailwindcss: ^3.0.24
     dependencies:
       astro: 3.2.3
