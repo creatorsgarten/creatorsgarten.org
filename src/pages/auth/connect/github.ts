@@ -5,7 +5,7 @@ import { githubClient } from '$constants/secrets/githubClient'
 
 import type { APIRoute } from 'astro'
 
-export const get: APIRoute = async ({ request, redirect }) => {
+export const GET: APIRoute = async ({ request, redirect }) => {
   const csrfInstance = new CSRF()
   const redirectHint =
     new URL(request.url).hostname === 'localhost' ? 'localhost3000' : 'new'

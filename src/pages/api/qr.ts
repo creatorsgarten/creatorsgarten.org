@@ -2,7 +2,7 @@ import { toBuffer } from 'qrcode'
 
 import type { APIRoute } from 'astro'
 
-export const get: APIRoute = async ctx => {
+export const GET: APIRoute = async ctx => {
   return new Response(
     await toBuffer(
       ctx.url.searchParams.get('value') ?? 'https://youtu.be/dQw4w9WgXcQ',

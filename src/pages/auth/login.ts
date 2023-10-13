@@ -5,7 +5,7 @@ import { eventpopClient } from '$constants/secrets/eventpopClient'
 
 import type { APIRoute } from 'astro'
 
-export const get: APIRoute = async ({ request, redirect, url }) => {
+export const GET: APIRoute = async ({ request, redirect, url }) => {
   const redirectDestination = url.searchParams.get('dest') ?? '/'
 
   const csrfInstance = new CSRF()

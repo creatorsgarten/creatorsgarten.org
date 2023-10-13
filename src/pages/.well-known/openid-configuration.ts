@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro'
 import { getBackend } from '$functions/getBackend'
 
-export const get: APIRoute = async Astro => {
+export const GET: APIRoute = async Astro => {
   const base = Astro.url.origin
   const body = JSON.stringify({
     id_token_signing_alg_values_supported: ['RS256'],

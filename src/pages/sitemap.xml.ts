@@ -11,7 +11,7 @@ interface Link {
   priority: number
 }
 
-export const get: APIRoute = async () => {
+export const GET: APIRoute = async () => {
   try {
     const stream = new SitemapStream({
       hostname: 'https://creatorsgarten.org',

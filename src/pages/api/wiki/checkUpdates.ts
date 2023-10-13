@@ -26,7 +26,7 @@ const updates = new LRUCache({
   },
 })
 
-export const get: APIRoute = async opts => {
+export const GET: APIRoute = async opts => {
   const pageRef = String(opts.url.searchParams.get('pageRef'))
   const data = await updates.fetch(pageRef)
   return new Response(JSON.stringify({ result: { data } }), {

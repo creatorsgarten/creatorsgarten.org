@@ -2,7 +2,7 @@ import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 import type { APIRoute } from 'astro'
 import { appRouter } from 'src/backend'
 
-export const all: APIRoute = opts => {
+export const ALL: APIRoute = opts => {
   return fetchRequestHandler({
     endpoint: '/api/backend',
     req: opts.request,
