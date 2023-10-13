@@ -1,12 +1,10 @@
 import type { APIRoute } from 'astro'
-import { getBackend } from '$functions/getBackend'
 
-export const GET: APIRoute = async Astro => {
-  const backend = getBackend(Astro)
+export const GET: APIRoute = async ({ locals }) => {
   const body = JSON.stringify({
-    keys: await backend.auth.getPublicKeys.query(),
+    keys: await locals.backend.auth.getPublicKeys.query(),
   })
-  return new Request(body, {
+  return new Response(body, {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',

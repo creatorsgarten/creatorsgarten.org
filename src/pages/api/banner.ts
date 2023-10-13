@@ -6,8 +6,8 @@ import type { APIRoute } from 'astro'
 export const GET: APIRoute = async () => {
   const events = await getEvents()
 
-  return {
-    body: JSON.stringify({
+  return new Response(
+    JSON.stringify({
       message: 'ok',
       data: {
         // gartenLogo will provide a special logo for the banner (rare occation, might change)
@@ -34,5 +34,10 @@ export const GET: APIRoute = async () => {
         ),
       },
     }),
-  }
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
 }
