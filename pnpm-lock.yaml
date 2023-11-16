@@ -102,8 +102,8 @@ devDependencies:
     specifier: ^0.3.0
     version: 0.3.0(prettier-plugin-astro@0.12.2)(prettier@3.1.0)(typescript@5.2.2)
   '@astrojs/node':
-    specifier: 6.0.3
-    version: 6.0.3(astro@3.5.4)
+    specifier: 6.0.4
+    version: 6.0.4(astro@3.5.4)
   '@astrojs/prefetch':
     specifier: 0.4.1
     version: 0.4.1
@@ -300,10 +300,10 @@ packages:
       - supports-color
     dev: true
 
-  /@astrojs/node@6.0.3(astro@3.5.4):
-    resolution: {integrity: sha512-3isB8ETX3WabAh8pY1HMnbt4e8HV9noVP4X52SlF+GycIt7YOXsUSzditjROZkrZOSfWhzsTaHh7EqbdVXqzrw==}
+  /@astrojs/node@6.0.4(astro@3.5.4):
+    resolution: {integrity: sha512-h0E7eMHPgL2p76AHkNiYsI5+hMoeA0bFpBUEcJ9Zbwg52rNE/qHRcCHEFw+VFiY1scHIMz5ZWf4ZzI53k1uofg==}
     peerDependencies:
-      astro: ^3.2.3
+      astro: ^3.0.0
     dependencies:
       astro: 3.5.4(typescript@5.2.2)
       send: 0.18.0
