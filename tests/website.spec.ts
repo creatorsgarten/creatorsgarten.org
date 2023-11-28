@@ -2,14 +2,12 @@ import { test, expect } from '@playwright/test'
 
 test('Homepage works', async ({ page }) => {
   await page.goto('/')
-  await expect(
-    page.getByRole('heading', { name: 'CONNECTING CREATORS,' })
-  ).toBeVisible()
+  await expect(page.getByText('community of creators')).toBeVisible()
 })
 
 test('Can go to events page', async ({ page }) => {
   await page.goto('/')
-  await page.locator('#nav-menu > ul > li:nth-child(1) > a').click()
+  await page.getByText('See More →').click()
   await expect(page.getByRole('heading', { name: 'Past Events' })).toBeVisible()
 })
 
