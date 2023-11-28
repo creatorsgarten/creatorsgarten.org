@@ -15,9 +15,8 @@ export const getMarkdownFromSlug = async <Frontmatter = Record<string, string>>(
   const cacheKey = ['wiki', slug]
 
   try {
-    const cachedMarkdownResponse = await readFileSystem<
-      MarkdownResponse<Frontmatter>
-    >(cacheKey)
+    const cachedMarkdownResponse =
+      await readFileSystem<MarkdownResponse<Frontmatter>>(cacheKey)
 
     if (cachedMarkdownResponse !== null) return cachedMarkdownResponse.data
     else throw new Error('cache-miss')
