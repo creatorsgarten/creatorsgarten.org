@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions'
+
 import { prng } from '$functions/prng'
 import { sample } from '$functions/sample'
 import './blank.css'
@@ -69,6 +71,7 @@ const accentColor2 = sample(
 
     <slot name="head" />
 
+    <ViewTransitions />
     <script
       async
       src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.2/dist/iconify-icon.min.js"

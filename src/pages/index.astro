@@ -6,10 +6,8 @@ import EventPoster from '$components/eventPoster.astro'
 import { upcomingEventsFilter } from '$functions/upcomingEventsFilter'
 
 import { getEvents } from '$functions/getEvents'
-import { getWebsiteConfig } from '$functions/getWebsiteConfig'
 
 const events = await getEvents()
-const websiteConfig = await getWebsiteConfig()
 const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
 
 const series = [

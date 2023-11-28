@@ -14,7 +14,8 @@ const { title } = Astro.props
     class="sticky top-0 z-20 mx-4 -mt-6 flex items-center justify-between overflow-hidden whitespace-nowrap break-words border-b border-ck/50 bg-white py-3 text-2xl md:mx-8 lg:py-4 xl:text-3xl"
   >
     <h1 class="overflow-hidden text-ellipsis">
-      Wiki → <span class="font-medium">{title}</span>
+      Wiki → <span class="font-medium" transition:name="wiki:name">{title}</span
+      >
     </h1>
     <div class="hidden gap-2 lg:flex">
       <a
