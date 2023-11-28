@@ -1,17 +1,56 @@
+@font-face {
+  font-family: 'Basier Circle';
+  src: url('/fonts/basier-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: regular;
+}
+
+@font-face {
+  font-family: 'Basier Circle';
+  src: url('/fonts/basier-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: regular;
+}
+
 .word-spread {
   word-spacing: 100vw;
 }
 
 .prose {
-  font-family: 'Inter Variable', ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+  font-family:
+    'Basier Circle',
+    'Sarabun',
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
     'Noto Color Emoji' !important;
+}
+
+.prose > h1 {
+  font-family: 'Basier Circle', 'Anuphan', sans-serif;
+}
+
+.prose > h2 {
+  font-family: 'Basier Circle', 'Anuphan', sans-serif;
 }
 
 .edit,
 .prose a {
-  font-variation-settings: 'CASL' 1, 'CRSV' 1, 'slnt' -3, 'MONO' 0;
+  font-variation-settings:
+    'CASL' 1,
+    'CRSV' 1,
+    'slnt' -3,
+    'MONO' 0;
   @apply no-underline;
 }
 

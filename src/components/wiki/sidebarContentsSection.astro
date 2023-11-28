@@ -10,16 +10,16 @@ export interface Props {
 
 {
   Astro.props.contents.length > 0 && (
-    <section class={`mb-6 rounded-xl border border-neutral-300 bg-white p-6`}>
-      <p class="pb-4 text-center text-xl font-medium uppercase">Contents</p>
-      <ul class="list-inside list-disc text-sm">
+    <section class={`mb-6 bg-neutral-100 p-6`}>
+      <p class="pb-4 text-2xl font-medium">Contents</p>
+      <ul class="gap-1 text-sm">
         {Astro.props.contents.map(content => (
-          <li class="py-1">
+          <li class="py-[0.35rem] pr-4">
             <a
-              class="uppercase transition-all hover:font-semibold"
+              class="transition-all hover:font-semibold"
               href={'#' + content.id}
             >
-              {content.label}
+              > {content.label}
             </a>
           </li>
         ))}

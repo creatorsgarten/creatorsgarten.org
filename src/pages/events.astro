@@ -14,18 +14,18 @@ const now = dayjs()
 const events = await getEvents()
 
 const websiteConfig = await getWebsiteConfig()
-
 const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
+// const upcomingEvents = events.filter(x => x.name.length < 18)
 ---
 
 <Head title="Events" />
 
-<BaseLayout class="mx-auto max-w-7xl space-y-12 [&>*]:px-6">
+<BaseLayout class="mx-4 space-y-12 md:mx-8">
   {
     upcomingEvents.length !== 0 && (
       <section>
         <h1 class="text-3xl font-medium uppercase">Upcoming Events</h1>
-        <div class="mt-6 space-y-12 lg:grid lg:grid-cols-2 lg:gap-y-12 lg:space-y-0">
+        <div class="space-y-6 pt-8 md:grid-cols-2 lg:grid lg:gap-y-12 lg:space-y-0">
           {upcomingEvents.map(event => (
             <EventPoster event={event} />
           ))}
@@ -35,12 +35,14 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
   }
   <section>
     <h1 class="text-3xl font-medium uppercase">Series</h1>
-    <div class="grid gap-6 pt-8 sm:grid-cols-3 [&>*]:rounded-xl [&>*]:p-8">
+    <div class="grid gap-4 pt-8 sm:grid-cols-3 [&>*]:p-6 [&>*]:lg:p-8">
       {
         websiteConfig?.events.recurring.map(event => (
-          <a class={`border border-neutral-300 bg-white`} href={event.url}>
-            <p class="font-medium uppercase leading-none">{event.name}</p>
-            <p class="uppercase">{event.schedule}</p>
+          <a class={` bg-neutral-100 hover:bg-neutral-200`} href={event.url}>
+            <p class="text-lg font-medium leading-snug lg:text-xl">
+              {event.name}
+            </p>
+            <p class="mt-1 text-sm uppercase">{event.schedule}</p>
           </a>
         ))
       }
@@ -48,9 +50,7 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
   </section>
   <section class="pb-12">
     <h1 class="text-3xl font-medium uppercase">Past Events</h1>
-    <div
-      class="mt-6 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4"
-    >
+    <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
       {
         events
           .filter(event => event.date.isBefore(now))

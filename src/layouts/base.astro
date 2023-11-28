@@ -18,7 +18,7 @@ const featureFlags = getFeatureFlags(Astro)
   {
     featureFlags.isEnabled('og:image') ? (
       <Fragment>
-        <div class="mb-8 flex h-[285px] items-center justify-center bg-[--accent-300]">
+        <div class="mb-8 flex h-[285px] items-center justify-center">
           <img
             src="/images/creatorsgarten.svg"
             width={888}
@@ -31,37 +31,36 @@ const featureFlags = getFeatureFlags(Astro)
     ) : (
       <Fragment>
         <Announcement />
-        <nav class="grid grid-cols-2 justify-between px-6 pb-8 pt-6 sm:flex">
-          <a href="/" aria-label="back to home">
-            <img
-              src="/images/creatorsgarten.svg"
-              width={888}
-              height={398}
-              class="h-9 w-auto"
-              alt="garten"
-            />
-          </a>
-          <button
-            class="ml-auto text-3xl sm:hidden"
-            onclick="let m=document.getElementById('nav-menu');m.classList.toggle('block');m.classList.toggle('hidden');"
-          >
-            🍔
-          </button>
+        <nav class="flex flex-col justify-between px-4 pb-8 pt-6 text-lg sm:flex-row sm:flex-row lg:px-8">
+          <div class="flex w-full justify-between">
+            <a href="/" aria-label="back to home" class="flex items-center">
+              <img
+                src="/images/icons/solid.svg"
+                width={888}
+                height={398}
+                class="h-[1.8rem] w-auto"
+                alt="garten"
+              />
+            </a>
+            <button
+              class="ml-auto text-3xl sm:hidden"
+              onclick="let m=document.getElementById('nav-menu');m.classList.toggle('block');m.classList.toggle('hidden');"
+            >
+              🍔
+            </button>
+          </div>
           <div
             id="nav-menu"
-            class="col-span-2 ml-auto hidden w-full items-center pt-6 text-sm font-medium sm:col-span-1 sm:flex sm:w-auto sm:space-x-4 sm:p-0"
+            class="ml-auto hidden w-full items-center pt-6 text-sm font-medium sm:col-span-1 sm:flex sm:w-auto sm:space-x-1 sm:p-0"
           >
             <ul
-              class={`md: mb-2  grid shrink-0 list-disc grid-cols-2 gap-2 rounded-full px-4 py-2 text-base sm:mb-0 sm:flex  sm:space-x-2 sm:bg-[#e6e6e6] md:list-none md:text-sm`}
+              class={`mb-2 flex shrink-0 justify-between gap-2 px-3 py-1 text-lg sm:mb-0 sm:flex sm:space-x-2 md:list-none md:text-base`}
             >
               <li>
-                <a href="/events">EVENTS</a>
-              </li>
-              <li>
-                <a href="/wiki/Guilds">PEOPLE</a>
-              </li>
-              <li>
                 <a href="/wiki/SelfIntroduction">US</a>
+              </li>
+              <li>
+                <a href="/events">EVENTS</a>
               </li>
               <li>
                 <a href="/wiki">WIKI</a>
@@ -77,7 +76,7 @@ const featureFlags = getFeatureFlags(Astro)
     <slot />
   </main>
 
-  <footer class="bg-[#e6e6e6] py-12 font-medium uppercase">
+  <!-- <footer class="bg-[#e6e6e6] py-12 font-medium uppercase">
     <div class="mx-auto w-full max-w-7xl justify-between px-8 md:flex">
       <section
         class="grid w-full grid-cols-2 gap-8 sm:grid-cols-4 md:max-w-[60%]"
@@ -126,6 +125,19 @@ const featureFlags = getFeatureFlags(Astro)
         </a>
         <p class="text-right text-sm">MADE WITH THE ❤️ OF 🪄</p>
       </section>
+    </div>
+  </footer> -->
+  <footer
+    class="mt-16 flex h-40 items-end justify-between bg-ck p-4 text-white lg:p-8 lg:text-lg"
+  >
+    <div>Crafted by 👩‍💻 🧑‍🎨 🧙 🦹‍♀️ & more.</div>
+    <div>
+      <img
+        src="/images/creatorsgarten.svg"
+        alt=""
+        class="h-8 lg:h-12"
+        style="filter: invert(1);"
+      />
     </div>
   </footer>
 </Blank>

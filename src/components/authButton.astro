@@ -1,9 +1,6 @@
 {
   Astro.locals.user !== null ? (
-    <a
-      href="/dashboard"
-      class="inline-flex w-full shrink-0 justify-center rounded-lg bg-[#1c1916] px-4 py-2 text-white sm:w-auto sm:rounded-full"
-    >
+    <a href="/dashboard" class="button">
       DASHBOARD
     </a>
   ) : (
@@ -11,9 +8,15 @@
       href={`/auth/login?${new URLSearchParams({
         dest: Astro.url.pathname,
       }).toString()}`}
-      class="inline-flex w-full shrink-0 justify-center rounded-lg bg-[#1c1916] px-4 py-2 text-white sm:w-auto sm:rounded-full"
+      class="button"
     >
       LOGIN
     </a>
   )
 }
+
+<style>
+  .button {
+    @apply inline-flex w-full shrink-0 justify-center rounded-lg bg-[#1c1916] px-3 py-1 text-base font-normal text-white sm:w-auto sm:rounded-full md:text-sm;
+  }
+</style>

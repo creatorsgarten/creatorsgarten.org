@@ -57,10 +57,10 @@ const coverImage =
   <Fragment slot="sidebar-left">
     {
       !!coverImage && (
-        <div class="mx-6 mb-6 md:mx-0">
+        <div class="mb-6 md:mx-0">
           <CFImage
             src={coverImage}
-            class="aspect-square w-full rounded-xl border border-neutral-300"
+            class="aspect-square w-full"
             alt="cover image"
             width={{
               max: 360,
@@ -83,7 +83,7 @@ const coverImage =
 
   <Fragment slot="sidebar-left-less-than-3-columns">
     <SidebarMetadataSection {...metadata} />
-    <SidebarShareSection />
+    <!-- <SidebarShareSection /> -->
   </Fragment>
 
   <Fragment slot="sidebar-left-at-least-2-columns">
@@ -92,12 +92,12 @@ const coverImage =
 
   <Fragment slot="sidebar-right">
     <SidebarMetadataSection {...metadata} />
-    <SidebarShareSection />
+    <!-- <SidebarShareSection /> -->
   </Fragment>
 
   <Fragment slot="sidebar-bottom">
     <SidebarMetadataSection {...metadata} />
-    <SidebarShareSection noBottomBorder />
+    <!-- <SidebarShareSection noBottomBorder /> -->
   </Fragment>
 
   <slot />

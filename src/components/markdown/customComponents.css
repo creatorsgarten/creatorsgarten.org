@@ -1,5 +1,5 @@
 .custom-block {
-  @apply my-[1.25em] overflow-hidden rounded border border-2 border-[--custom-block-border] bg-[--custom-block-bg] px-3 py-2;
+  @apply my-[1.25em] overflow-hidden bg-[--custom-block-bg] px-3 py-2;
   --custom-block-bg: theme(colors.neutral.100);
   --custom-block-title-bg: theme(colors.neutral.200);
   --custom-block-title-text: theme(colors.neutral.500);

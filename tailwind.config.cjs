@@ -6,9 +6,27 @@ module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      colors: {
+        cg: '#449388',
+        cy: '#E1AD6A',
+        cb: '#3C7ADF',
+        cp: '#CE90B8',
+        co: '#DF5D2F',
+        ck: '#1C1916',
+        cw: '#EDE5DA',
+        cbr: '#635548',
+      },
       fontFamily: {
-        sans: ['"Work Sans Variable"', ...defaultConfig.theme.fontFamily.sans],
-        prose: ['"Inter Variable"', ...defaultConfig.theme.fontFamily.sans],
+        sans: [
+          'Basier Circle',
+          'Anuphan',
+          ...defaultConfig.theme.fontFamily.sans,
+        ],
+        prose: [
+          'Basier Circle',
+          'Anuphan',
+          ...defaultConfig.theme.fontFamily.sans,
+        ],
         casual: [
           ['"Recursive Variable"', ...defaultConfig.theme.fontFamily.sans],
           { fontVariationSettings: '"CASL" 1, "CRSV" 1, "slnt" 0, "MONO" 0' },
@@ -34,7 +52,6 @@ module.exports = {
           css: {
             '--tw-prose-links': colors.blue[500],
             a: {
-              fontFamily: '"Recursive Variable"',
               textDecoration: 'none',
               fontWeight: 'inherit',
             },
@@ -65,6 +82,9 @@ module.exports = {
               margin: '-0.5rem -0.5rem 0',
               padding: '0.5rem',
               cursor: 'pointer',
+            },
+            strong: {
+              fontWeight: 500,
             },
           },
         },

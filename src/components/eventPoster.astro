@@ -14,7 +14,7 @@ export interface Props {
 const { event } = Astro.props
 ---
 
-<div class="space-y-4 sm:flex sm:space-x-6 sm:space-y-0">
+<div class="flex space-x-4 space-y-0 sm:space-x-6">
   <a href={`/event/${event.id}`} class="shrink-0" aria-label={event.name}>
     <CFImage
       src={event.image}
@@ -24,22 +24,24 @@ const { event } = Astro.props
       }}
       ratio={1}
       alt={event.name}
-      class="w-full sm:w-64"
+      class="w-32 sm:w-64"
     />
   </a>
   <div class="flex flex-col justify-between">
     <div>
       <a href={`/event/${event.id}`}
-        ><h2 class="pb-1 text-3xl font-medium uppercase">{event.name}</h2></a
+        ><h2 class="text-xl sm:text-3xl md:pb-1 lg:text-4xl">
+          {event.name}
+        </h2></a
       >
-      <p class="text-lg">
+      <p class="md:text-lg">
         {stringifyDate(event.date)} / {event.location}
       </p>
     </div>
     <div class="mt-4">
       <a
         href={event.link}
-        class="inline-flex items-center rounded-full bg-[#1c1916] px-4 py-2 text-base text-white"
+        class="inline-flex items-center rounded-full bg-[#1c1916] px-3 py-1 text-sm text-white md:px-4 md:py-2 md:text-base"
         ><span class="mr-2">TICKETS</span><Icon
           icon="pixelarticons:external-link"
         /></a
