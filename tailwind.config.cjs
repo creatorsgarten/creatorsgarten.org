@@ -51,10 +51,6 @@ module.exports = {
         DEFAULT: {
           css: {
             '--tw-prose-links': colors.blue[500],
-            a: {
-              textDecoration: 'none',
-              fontWeight: 'inherit',
-            },
             // Remove Comments for ความกระตุกจิตกระชากใจ
             code: {
               fontVariationSettings: '"CASL" 0, "CRSV" 0, "slnt" 0, "MONO" 1',
@@ -85,6 +81,22 @@ module.exports = {
             },
             strong: {
               fontWeight: 500,
+            },
+            table: {
+              fontSize: '0.95rem',
+            },
+            li: {
+              fontSize: '1rem',
+            },
+            a: {
+              textDecoration: 'none',
+              fontWeight: 'inherit',
+            },
+            p: {
+              fontSize: '1rem',
+            },
+            '.lead > p': {
+              fontSize: '1.15rem',
             },
           },
         },

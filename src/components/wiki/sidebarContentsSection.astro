@@ -15,9 +15,9 @@ export interface Props {
       transition:name="wiki:section:contents"
     >
       <p class="pb-4 text-2xl font-medium">Contents</p>
-      <ul class="gap-1 text-sm">
+      <ul class="text-base">
         {Astro.props.contents.map(content => (
-          <li class="py-[0.35rem] pr-4">
+          <li class="py-[0.3rem] pr-4">
             <a
               class="transition-all hover:font-semibold"
               href={'#' + content.id}
