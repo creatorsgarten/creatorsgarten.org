@@ -114,8 +114,8 @@ devDependencies:
     specifier: ^4.0.0
     version: 4.0.0(astro@3.6.4)(svelte@4.2.0)(typescript@5.3.2)(vite@4.4.9)
   '@astrojs/tailwind':
-    specifier: 5.0.2
-    version: 5.0.2(astro@3.6.4)(tailwindcss@3.3.6)
+    specifier: 5.0.3
+    version: 5.0.3(astro@3.6.4)(tailwindcss@3.3.6)
   '@fontsource-variable/inter':
     specifier: ^5.0.8
     version: 5.0.8
@@ -363,16 +363,16 @@ packages:
       - vite
     dev: true
 
-  /@astrojs/tailwind@5.0.2(astro@3.6.4)(tailwindcss@3.3.6):
-    resolution: {integrity: sha512-oXqeqmBlkQmsltrsU9nEWeXOtrZIAHW8dcmX7BCdrjzPnU6dPwWzAwhddNQ9ihKiWwsLnlbwQZIo2CDigcZlIA==}
+  /@astrojs/tailwind@5.0.3(astro@3.6.4)(tailwindcss@3.3.6):
+    resolution: {integrity: sha512-p+uFa1PNuV8RxhGkPUFgVq8CUbmS3xr0u5k1An2xKECLotRh7vsrGcPUijHvYOt42URohcg8rIq0CxNoVMhReg==}
     peerDependencies:
-      astro: ^3.2.4
+      astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
       astro: 3.6.4(typescript@5.3.2)
       autoprefixer: 10.4.15(postcss@8.4.29)
       postcss: 8.4.29
-      postcss-load-config: 4.0.1(postcss@8.4.29)
+      postcss-load-config: 4.0.2(postcss@8.4.29)
       tailwindcss: 3.3.6
     transitivePeerDependencies:
       - ts-node
@@ -4413,6 +4413,11 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /lilconfig@3.0.0:
+    resolution: {integrity: sha512-K2U4W2Ff5ibV7j7ydLr+zLAkIg5JJ4lPn1Ltsdt+Tz/IjQ8buJ55pZAxoP34lqIiwtF9iAvtLv3JGv7CAyAg+g==}
+    engines: {node: '>=14'}
+    dev: true
+
   /lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
@@ -5688,6 +5693,23 @@ packages:
       lilconfig: 2.1.0
       postcss: 8.4.29
       yaml: 2.3.2
+    dev: true
+
+  /postcss-load-config@4.0.2(postcss@8.4.29):
+    resolution: {integrity: sha512-bSVhyJGL00wMVoPUzAVAnbEoWyqRxkjv64tUl427SKnPrENtq6hJwUojroMz2VB+Q1edmi4IfrAPpami5VVgMQ==}
+    engines: {node: '>= 14'}
+    peerDependencies:
+      postcss: '>=8.0.9'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      postcss:
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      lilconfig: 3.0.0
+      postcss: 8.4.29
+      yaml: 2.3.4
     dev: true
 
   /postcss-nested@6.0.1(postcss@8.4.29):
@@ -7627,6 +7649,11 @@ packages:
 
   /yaml@2.3.2:
     resolution: {integrity: sha512-N/lyzTPaJasoDmfV7YTrYCI0G/3ivm/9wdG0aHuheKowWQwGTsK0Eoiw6utmzAnI6pkJa0DUVygvp3spqqEKXg==}
+    engines: {node: '>= 14'}
+    dev: true
+
+  /yaml@2.3.4:
+    resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
     engines: {node: '>= 14'}
     dev: true
 
