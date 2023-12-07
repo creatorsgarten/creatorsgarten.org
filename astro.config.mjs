@@ -10,6 +10,8 @@ import react from '@astrojs/react'
 import svelte from '@astrojs/svelte'
 import tailwind from '@astrojs/tailwind'
 
+import sentry from '@sentry/astro'
+
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
@@ -17,7 +19,19 @@ export default defineConfig({
   adapter: node({
     mode: 'middleware',
   }),
-  integrations: [tailwind(), prefetch(), react(), svelte()],
+  integrations: [
+    tailwind(),
+    prefetch(),
+    react(),
+    svelte(),
+    sentry({
+      dsn: 'https://df2948d525ea90ca0a620e1b6d6c083e@o4506355720323072.ingest.sentry.io/4506355722354688',
+      sourceMapsUploadOptions: {
+        project: 'website',
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+      },
+    }),
+  ],
   vite: {
     build: {
       rollupOptions: {
