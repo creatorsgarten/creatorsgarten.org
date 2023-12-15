@@ -32,7 +32,7 @@ dependencies:
     version: 0.7.1(nanostores@0.9.3)(react@18.2.0)
   '@sentry/astro':
     specifier: ^7.86.0
-    version: 7.86.0(astro@4.0.5)
+    version: 7.86.0(astro@4.0.6)
   '@tanstack/react-query':
     specifier: ^5.0.0
     version: 5.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -106,7 +106,7 @@ devDependencies:
     version: 0.3.0(prettier-plugin-astro@0.12.2)(prettier@3.1.1)(typescript@5.3.3)
   '@astrojs/node':
     specifier: 7.0.1
-    version: 7.0.1(astro@4.0.5)
+    version: 7.0.1(astro@4.0.6)
   '@astrojs/prefetch':
     specifier: 0.4.1
     version: 0.4.1
@@ -115,10 +115,10 @@ devDependencies:
     version: 3.0.0(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
   '@astrojs/svelte':
     specifier: ^5.0.0
-    version: 5.0.0(astro@4.0.5)(svelte@4.2.0)(typescript@5.3.3)
+    version: 5.0.0(astro@4.0.6)(svelte@4.2.0)(typescript@5.3.3)
   '@astrojs/tailwind':
     specifier: 5.0.3
-    version: 5.0.3(astro@4.0.5)(tailwindcss@3.3.6)
+    version: 5.0.3(astro@4.0.6)(tailwindcss@3.3.6)
   '@fontsource-variable/inter':
     specifier: ^5.0.8
     version: 5.0.8
@@ -153,8 +153,8 @@ devDependencies:
     specifier: ^18.2.7
     version: 18.2.7
   astro:
-    specifier: 4.0.5
-    version: 4.0.5(typescript@5.3.3)
+    specifier: 4.0.6
+    version: 4.0.6(typescript@5.3.3)
   astro-seo:
     specifier: ^0.8.0
     version: 0.8.0
@@ -234,8 +234,8 @@ packages:
     resolution: {integrity: sha512-pxYRAaRdMS6XUll8lbFM+Lr0DI1HKIDT+VpiC+S+9di5H/nmm3znZOgdMlLiMxADot+56eps+M1BvtKfQremXA==}
     dev: true
 
-  /@astrojs/compiler@2.3.2:
-    resolution: {integrity: sha512-jkY7bCVxl27KeZsSxIZ+pqACe+g8VQUdTiSJRj/sXYdIaZlW3ZMq4qF2M17P/oDt3LBq0zLNwQr4Cb7fSpRGxQ==}
+  /@astrojs/compiler@2.3.4:
+    resolution: {integrity: sha512-33/YtWoBCE0cBUNy1kh78FCDXBoBANX87ShgATlAHECYbG2+buNTAgq4Xgz4t5NgnEHPN21GIBC2Mvvwisoutw==}
 
   /@astrojs/internal-helpers@0.2.0:
     resolution: {integrity: sha512-NQ4ppp1CM0HNkKbJNM4saVSfmUYzGlRalF6wx7F6T/MYHYSWGuojY89/oFTy4t8VlOGUCUijlsVNNeziWaUo5g==}
@@ -300,12 +300,12 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@astrojs/node@7.0.1(astro@4.0.5):
+  /@astrojs/node@7.0.1(astro@4.0.6):
     resolution: {integrity: sha512-jzO5q1t/cwDZQHcPG0CakjPY0SC44kbGgDDoh4UurvzZcCDYQKLz6zzJVqzUiOtDhfSwVrgHoiKo2tNbXASlRQ==}
     peerDependencies:
       astro: ^4.0.0
     dependencies:
-      astro: 4.0.5(typescript@5.3.3)
+      astro: 4.0.6(typescript@5.3.3)
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -345,7 +345,7 @@ packages:
       - vite
     dev: true
 
-  /@astrojs/svelte@5.0.0(astro@4.0.5)(svelte@4.2.0)(typescript@5.3.3):
+  /@astrojs/svelte@5.0.0(astro@4.0.6)(svelte@4.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-v8AZU9hSP4JuESDv5pev8S4eZQXulIoS/gBJbhAEBWfkANptsc7CP/qjWk83KWidNXX8hfVLI4VNlShWo3ADRw==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -353,7 +353,7 @@ packages:
       svelte: ^4.0.0 || ^5.0.0-next.1
     dependencies:
       '@sveltejs/vite-plugin-svelte': 3.0.1(svelte@4.2.0)
-      astro: 4.0.5(typescript@5.3.3)
+      astro: 4.0.6(typescript@5.3.3)
       svelte: 4.2.0
       svelte2tsx: 0.6.27(svelte@4.2.0)(typescript@5.3.3)
     transitivePeerDependencies:
@@ -362,13 +362,13 @@ packages:
       - vite
     dev: true
 
-  /@astrojs/tailwind@5.0.3(astro@4.0.5)(tailwindcss@3.3.6):
+  /@astrojs/tailwind@5.0.3(astro@4.0.6)(tailwindcss@3.3.6):
     resolution: {integrity: sha512-p+uFa1PNuV8RxhGkPUFgVq8CUbmS3xr0u5k1An2xKECLotRh7vsrGcPUijHvYOt42URohcg8rIq0CxNoVMhReg==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.0.5(typescript@5.3.3)
+      astro: 4.0.6(typescript@5.3.3)
       autoprefixer: 10.4.15(postcss@8.4.29)
       postcss: 8.4.29
       postcss-load-config: 4.0.2(postcss@8.4.29)
@@ -1618,7 +1618,7 @@ packages:
       '@sentry/utils': 7.86.0
     dev: false
 
-  /@sentry/astro@7.86.0(astro@4.0.5):
+  /@sentry/astro@7.86.0(astro@4.0.6):
     resolution: {integrity: sha512-1eNjdHshxktLFJljtlw6rIzmGCbKfIRm3WEEBrhxUqIZ3ojS04Oa+sNRSfVy/0r34J4uX7gQD80pVi5if3oprQ==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -1630,7 +1630,7 @@ packages:
       '@sentry/types': 7.86.0
       '@sentry/utils': 7.86.0
       '@sentry/vite-plugin': 2.10.2
-      astro: 4.0.5(typescript@5.3.3)
+      astro: 4.0.6(typescript@5.3.3)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -2615,12 +2615,12 @@ packages:
     resolution: {integrity: sha512-7gq6lhibCM8FuzZIJlbLLWP5EJ9KL2/4XqeFrAg9O6ZK2xMFxJ5ubKf+a0VJwwTu8W8Xr421CmpiXu6Hq7n/7Q==}
     dev: true
 
-  /astro@4.0.5(typescript@5.3.3):
-    resolution: {integrity: sha512-OTiTEiXYdXTkVJXNNKIWdYG1z2wpTST+92Qcldm36x91Pe4fKpLxeuRloy5cW175oHi8lvXytgG3Gl3VBP18RQ==}
+  /astro@4.0.6(typescript@5.3.3):
+    resolution: {integrity: sha512-P7CfFqWKzkJozzF6IoOC6qoI2ONndV8P3ULhGDgMiXPL7xVkWI5haTBSpyrcjBx643tVXspIRsSV/v+Cx+CjGw==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
-      '@astrojs/compiler': 2.3.2
+      '@astrojs/compiler': 2.3.4
       '@astrojs/internal-helpers': 0.2.1
       '@astrojs/markdown-remark': 4.0.1
       '@astrojs/telemetry': 3.0.4
