@@ -118,7 +118,7 @@ devDependencies:
     version: 5.0.0(astro@4.0.6)(svelte@4.2.0)(typescript@5.3.3)
   '@astrojs/tailwind':
     specifier: 5.0.3
-    version: 5.0.3(astro@4.0.6)(tailwindcss@3.3.7)
+    version: 5.0.3(astro@4.0.6)(tailwindcss@3.4.0)
   '@fontsource-variable/inter':
     specifier: ^5.0.8
     version: 5.0.8
@@ -133,7 +133,7 @@ devDependencies:
     version: 1.40.1
   '@tailwindcss/typography':
     specifier: 0.5.10
-    version: 0.5.10(tailwindcss@3.3.7)
+    version: 0.5.10(tailwindcss@3.4.0)
   '@types/hast':
     specifier: ^3.0.0
     version: 3.0.0
@@ -186,8 +186,8 @@ devDependencies:
     specifier: ^4.2.0
     version: 4.2.0
   tailwindcss:
-    specifier: 3.3.7
-    version: 3.3.7
+    specifier: 3.4.0
+    version: 3.4.0
   typescript:
     specifier: 5.3.3
     version: 5.3.3
@@ -362,7 +362,7 @@ packages:
       - vite
     dev: true
 
-  /@astrojs/tailwind@5.0.3(astro@4.0.6)(tailwindcss@3.3.7):
+  /@astrojs/tailwind@5.0.3(astro@4.0.6)(tailwindcss@3.4.0):
     resolution: {integrity: sha512-p+uFa1PNuV8RxhGkPUFgVq8CUbmS3xr0u5k1An2xKECLotRh7vsrGcPUijHvYOt42URohcg8rIq0CxNoVMhReg==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
@@ -372,7 +372,7 @@ packages:
       autoprefixer: 10.4.15(postcss@8.4.29)
       postcss: 8.4.29
       postcss-load-config: 4.0.2(postcss@8.4.29)
-      tailwindcss: 3.3.7
+      tailwindcss: 3.4.0
     transitivePeerDependencies:
       - ts-node
     dev: true
@@ -1838,7 +1838,7 @@ packages:
       - supports-color
     dev: true
 
-  /@tailwindcss/typography@0.5.10(tailwindcss@3.3.7):
+  /@tailwindcss/typography@0.5.10(tailwindcss@3.4.0):
     resolution: {integrity: sha512-Pe8BuPJQJd3FfRnm6H0ulKIGoMEQS+Vq01R6M5aCrFB/ccR/shT+0kXLjouGC1gFLm9hopTFN+DMP0pfwRWzPw==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
@@ -1847,7 +1847,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.3.7
+      tailwindcss: 3.4.0
     dev: true
 
   /@tanstack/query-core@4.29.7:
@@ -7369,8 +7369,8 @@ packages:
       periscopic: 3.1.0
     dev: true
 
-  /tailwindcss@3.3.7:
-    resolution: {integrity: sha512-pjgQxDZPvyS/nG3ZYkyCvsbONJl7GdOejfm24iMt2ElYQQw8Jc4p0m8RdMp7mznPD0kUhfzwV3zAwa80qI0zmQ==}
+  /tailwindcss@3.4.0:
+    resolution: {integrity: sha512-VigzymniH77knD1dryXbyxR+ePHihHociZbXnLZHUyzf2MMs2ZVqlUrZ3FvpXP8pno9JzmILt1sZPD19M3IxtA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
