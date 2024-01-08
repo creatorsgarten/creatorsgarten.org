@@ -51,7 +51,7 @@
     "zod-validation-error": "^2.0.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.3.0",
+    "@astrojs/check": "^0.4.0",
     "@astrojs/node": "7.0.4",
     "@astrojs/prefetch": "0.4.1",
     "@astrojs/react": "^3.0.0",
