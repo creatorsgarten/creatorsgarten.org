@@ -52,9 +52,9 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
 
   const userFirstName = user.name.split(' ')[0]
   const prefixedName =
-    userFirstName.match(/^[A-Za-z0-9]+$/) !== null
+    userFirstName.match(/^[A-Za-z]+$/) !== null
       ? userFirstName.slice(0, 6)
-      : user.email.replace(/@.+/, '').replace(/[^a-zA-Z0-9]/g, '') +
+      : user.email.replace(/@.+/, '').replace(/[^a-zA-Z]/g, '') +
         user.uid.toString()
 
   try {
