@@ -54,7 +54,8 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
   const prefixedName =
     userFirstName.match(/^[A-Za-z0-9]+$/) !== null
       ? userFirstName.slice(0, 6)
-      : user.uid.toString()
+      : user.email.replace(/@.+/, '').replace(/[^a-zA-Z0-9]/g, '') +
+        user.uid.toString()
 
   try {
     const idToken = await getServiceAccountIdToken(
@@ -69,7 +70,7 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
       },
       body: JSON.stringify({
         userId: String(userDoc._id),
-        prefix: prefixedName,
+        prefix: prefixedName.slice(0, 9),
         accessId: String(accessDoc.insertedId),
       }),
     })
