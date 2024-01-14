@@ -10,6 +10,10 @@ export const checkAccess = async (user: AuthenticatedUser | null) => {
     return { granted: false, reason: 'You are not logged in.' }
   }
 
+  if (Date.now() < Date.parse('2024-01-14T23:59:59.999Z')) {
+    return { granted: true }
+  }
+
   const partialUserDoc = await collections.users.findOne(
     { _id: new ObjectId(user.sub) },
     { projection: { roles: 1 } }
