@@ -32,7 +32,7 @@ dependencies:
     version: 0.7.1(nanostores@0.9.3)(react@18.2.0)
   '@sentry/astro':
     specifier: ^7.86.0
-    version: 7.86.0(astro@4.2.0)
+    version: 7.86.0(astro@4.2.1)
   '@tanstack/react-query':
     specifier: ^5.0.0
     version: 5.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -106,7 +106,7 @@ devDependencies:
     version: 0.4.0(prettier-plugin-astro@0.12.3)(prettier@3.2.4)(typescript@5.3.3)
   '@astrojs/node':
     specifier: 8.0.0
-    version: 8.0.0(astro@4.2.0)
+    version: 8.0.0(astro@4.2.1)
   '@astrojs/prefetch':
     specifier: 0.4.1
     version: 0.4.1
@@ -115,10 +115,10 @@ devDependencies:
     version: 3.0.0(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
   '@astrojs/svelte':
     specifier: ^5.0.0
-    version: 5.0.0(astro@4.2.0)(svelte@4.2.0)(typescript@5.3.3)
+    version: 5.0.0(astro@4.2.1)(svelte@4.2.0)(typescript@5.3.3)
   '@astrojs/tailwind':
     specifier: 5.1.0
-    version: 5.1.0(astro@4.2.0)(tailwindcss@3.4.1)
+    version: 5.1.0(astro@4.2.1)(tailwindcss@3.4.1)
   '@fontsource-variable/inter':
     specifier: ^5.0.8
     version: 5.0.8
@@ -153,8 +153,8 @@ devDependencies:
     specifier: ^18.2.7
     version: 18.2.7
   astro:
-    specifier: 4.2.0
-    version: 4.2.0(typescript@5.3.3)
+    specifier: 4.2.1
+    version: 4.2.1(typescript@5.3.3)
   astro-seo:
     specifier: ^0.8.0
     version: 0.8.0
@@ -296,12 +296,12 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@astrojs/node@8.0.0(astro@4.2.0):
+  /@astrojs/node@8.0.0(astro@4.2.1):
     resolution: {integrity: sha512-qgLN2k0/GPHRNRYyXNMxx7bGR2DBNsVMWBv/S4w/q5LtsHNc+y2lhGsuk0Cz4xxvuORqXkJARjloDvtlpYwYzQ==}
     peerDependencies:
       astro: ^4.2.0
     dependencies:
-      astro: 4.2.0(typescript@5.3.3)
+      astro: 4.2.1(typescript@5.3.3)
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -341,7 +341,7 @@ packages:
       - vite
     dev: true
 
-  /@astrojs/svelte@5.0.0(astro@4.2.0)(svelte@4.2.0)(typescript@5.3.3):
+  /@astrojs/svelte@5.0.0(astro@4.2.1)(svelte@4.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-v8AZU9hSP4JuESDv5pev8S4eZQXulIoS/gBJbhAEBWfkANptsc7CP/qjWk83KWidNXX8hfVLI4VNlShWo3ADRw==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -349,7 +349,7 @@ packages:
       svelte: ^4.0.0 || ^5.0.0-next.1
     dependencies:
       '@sveltejs/vite-plugin-svelte': 3.0.1(svelte@4.2.0)
-      astro: 4.2.0(typescript@5.3.3)
+      astro: 4.2.1(typescript@5.3.3)
       svelte: 4.2.0
       svelte2tsx: 0.6.27(svelte@4.2.0)(typescript@5.3.3)
     transitivePeerDependencies:
@@ -358,13 +358,13 @@ packages:
       - vite
     dev: true
 
-  /@astrojs/tailwind@5.1.0(astro@4.2.0)(tailwindcss@3.4.1):
+  /@astrojs/tailwind@5.1.0(astro@4.2.1)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.2.0(typescript@5.3.3)
+      astro: 4.2.1(typescript@5.3.3)
       autoprefixer: 10.4.15(postcss@8.4.32)
       postcss: 8.4.32
       postcss-load-config: 4.0.2(postcss@8.4.32)
@@ -1614,7 +1614,7 @@ packages:
       '@sentry/utils': 7.86.0
     dev: false
 
-  /@sentry/astro@7.86.0(astro@4.2.0):
+  /@sentry/astro@7.86.0(astro@4.2.1):
     resolution: {integrity: sha512-1eNjdHshxktLFJljtlw6rIzmGCbKfIRm3WEEBrhxUqIZ3ojS04Oa+sNRSfVy/0r34J4uX7gQD80pVi5if3oprQ==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -1626,7 +1626,7 @@ packages:
       '@sentry/types': 7.86.0
       '@sentry/utils': 7.86.0
       '@sentry/vite-plugin': 2.10.2
-      astro: 4.2.0(typescript@5.3.3)
+      astro: 4.2.1(typescript@5.3.3)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -2609,8 +2609,8 @@ packages:
     resolution: {integrity: sha512-7gq6lhibCM8FuzZIJlbLLWP5EJ9KL2/4XqeFrAg9O6ZK2xMFxJ5ubKf+a0VJwwTu8W8Xr421CmpiXu6Hq7n/7Q==}
     dev: true
 
-  /astro@4.2.0(typescript@5.3.3):
-    resolution: {integrity: sha512-zx6Po3h5+VEkG1vwowaXC2T42317Gbs4d5lflkEYzUUseEQn8HMtqTwlbIoFCfyYTc4Kvo+4zEgbGsPjsybiaw==}
+  /astro@4.2.1(typescript@5.3.3):
+    resolution: {integrity: sha512-TcrveW2/lohmljrbTUgcDxajEdF1yK+zBvb7SXroloGix/d4jkegO6GANFgvyy0zprMyajW7qgJEFyhWUX86Vw==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
