@@ -159,8 +159,14 @@ const stories = [
     {
       stories.map(x => (
         <a href={x.link} class="group relative">
-          <img
+          <CFImage
             src={x.img}
+            alt={x.name}
+            width={{
+              max: 600,
+              md: 800,
+            }}
+            ratio={16 / 9}
             class="aspect-video w-full bg-neutral-200 object-cover"
           />
           <div
