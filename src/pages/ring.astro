@@ -1,5 +1,13 @@
 ---
 import Wiki from '$components/wiki.astro'
+import {
+  getWikiPage,
+  modifyResponseForWikiPage,
+} from '$functions/wiki/getWikiPage'
+
+const pageRef = `Ring`
+const wikiPage = await getWikiPage(pageRef)
+modifyResponseForWikiPage(wikiPage, Astro)
 ---
 
-<Wiki pageRef="Ring" />
+<Wiki pageRef={pageRef} wikiPage={wikiPage} />

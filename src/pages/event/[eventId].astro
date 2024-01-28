@@ -1,7 +1,14 @@
 ---
 import Wiki from '$components/wiki.astro'
+import {
+  getWikiPage,
+  modifyResponseForWikiPage,
+} from '$functions/wiki/getWikiPage'
 
 let { eventId } = Astro.params
+const pageRef = `Events/${eventId}`
+const wikiPage = await getWikiPage(pageRef)
+modifyResponseForWikiPage(wikiPage, Astro)
 ---
 
-<Wiki pageRef={`Events/${eventId}`} />
+<Wiki pageRef={pageRef} wikiPage={wikiPage} />

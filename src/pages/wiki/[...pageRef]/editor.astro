@@ -1,5 +1,6 @@
 ---
 import Wiki from '$components/wiki.astro'
+import { getWikiPage } from '$functions/wiki/getWikiPage'
 import { updateWiki } from '$functions/wiki/updateWiki'
 
 let { pageRef } = Astro.params
@@ -47,6 +48,8 @@ if (Astro.request.method === 'POST') {
     )
   }
 }
+
+const wikiPage = await getWikiPage(pageRef)
 ---
 
-<Wiki mode="editor" pageRef={pageRef} />
+<Wiki mode="editor" pageRef={pageRef} wikiPage={wikiPage} />

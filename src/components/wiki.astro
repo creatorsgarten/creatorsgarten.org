@@ -17,44 +17,26 @@ import { getWikiDescription } from '$functions/wiki/getWikiDescription'
 import { parseFrontMatter } from '$functions/parseFrontMatter'
 import { fromZodError } from 'zod-validation-error'
 
-import type { z } from 'zod'
-import type { frontMatterSchema } from '$functions/parseFrontMatter'
-
 import '@fontsource-variable/inter'
+import type { WikiPage } from '$functions/wiki/getWikiPage'
 
 export interface Props {
   pageRef: string
   mode?: 'view' | 'editor'
+  wikiPage: WikiPage
 }
 
-let { pageRef, mode = 'view' } = Astro.props
+let { pageRef, mode = 'view', wikiPage } = Astro.props
 
-const markdown = await getMarkdownFromSlug<
-  z.infer<typeof frontMatterSchema>['event'] & { title: string }
->(pageRef)
 const {
   status,
-  targetPageRef,
   rendered,
   lastModified,
   lastModifiedBy,
   frontMatter,
   file,
   perf,
-} = markdown
-
-if (
-  status === 301 &&
-  targetPageRef &&
-  Astro.url.searchParams.get('redirect') !== 'no'
-) {
-  Astro.response.status = 301
-  Astro.response.headers.set('Location', `/wiki/${targetPageRef}`)
-} else if (status === 404) {
-  Astro.response.status = 404
-} else if (status === 500) {
-  Astro.response.status = 500
-}
+} = wikiPage
 
 const frontMatterParsingResult = parseFrontMatter(frontMatter)
 const parsedFrontMatter = frontMatterParsingResult.success
@@ -67,7 +49,7 @@ const title =
   formatPageRef(pageRef as string)
 const editable = !!file
 const editing = mode === 'editor' && editable ? file : null
-const contentHash = getContentHash(markdown)
+const contentHash = getContentHash(wikiPage)
 ---
 
 <Head

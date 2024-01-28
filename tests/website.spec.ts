@@ -29,9 +29,21 @@ test('Special/AllPages page works', async ({ page }) => {
   await expect(page.getByRole('listitem').getByText('MainPage')).toBeVisible()
 })
 
-// test('Webring page works', async ({ page }) => {
-//   await page.goto('/ring')
-//   await expect(
-//     page.getByRole('heading', { name: 'Us & Our Friends' })
-//   ).toBeVisible()
-// })
+test('Webring page works', async ({ page }) => {
+  await page.goto('/ring')
+  await expect(
+    page.getByRole('heading', { name: 'Us & Our Friends' })
+  ).toBeVisible()
+})
+
+test('Wiki works', async ({ page }) => {
+  await page.goto('/wiki')
+  await expect(page.getByRole('heading', { name: 'Tech Stack' })).toBeVisible()
+})
+
+test('Wiki can display pages that doesn’t exist yet', async ({ page }) => {
+  await page.goto('/wiki/ThisPageDefinitelyDoesntExist')
+  await expect(
+    page.getByText('This page currently does not exist')
+  ).toBeVisible()
+})
