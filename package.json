@@ -24,7 +24,7 @@
     "@fastify/middie": "^8.3.0",
     "@fastify/static": "^7.0.0",
     "@nanostores/logger": "^0.2.3",
-    "@nanostores/persistent": "^0.9.1",
+    "@nanostores/persistent": "^0.10.0",
     "@nanostores/react": "^0.7.1",
     "@sentry/astro": "^7.86.0",
     "@tanstack/react-query": "^5.0.0",
