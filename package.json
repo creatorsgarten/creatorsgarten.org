@@ -41,7 +41,7 @@
     "lru-cache": "^10.0.1",
     "mem": "^9.0.2",
     "mongodb": "^6.0.0",
-    "nanostores": "^0.9.3",
+    "nanostores": "^0.10.0",
     "qrcode": "^1.5.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
