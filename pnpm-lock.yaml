@@ -121,13 +121,13 @@ devDependencies:
     version: 5.1.0(astro@4.4.5)(tailwindcss@3.4.1)
   '@fontsource-variable/inter':
     specifier: ^5.0.8
-    version: 5.0.8
+    version: 5.0.16
   '@fontsource-variable/recursive':
     specifier: ^5.0.8
-    version: 5.0.8
+    version: 5.0.16
   '@fontsource-variable/work-sans':
     specifier: ^5.0.9
-    version: 5.0.9
+    version: 5.0.17
   '@playwright/test':
     specifier: 1.41.2
     version: 1.41.2
@@ -997,16 +997,16 @@ packages:
       p-limit: 3.1.0
     dev: false
 
-  /@fontsource-variable/inter@5.0.8:
-    resolution: {integrity: sha512-WkYfFNccmEIeL2fNg0mYeLWqOoB7xD8MFxFRc4IwbSP2o8ZaBt36v5aW4by4MyrgGRMNk7uNi5LbvYKq6clPjw==}
+  /@fontsource-variable/inter@5.0.16:
+    resolution: {integrity: sha512-k+BUNqksTL+AN+o+OV7ILeiE9B5M5X+/jA7LWvCwjbV9ovXTqZyKRhA/x7uYv/ml8WQ0XNLBM7cRFIx4jW0/hg==}
     dev: true
 
-  /@fontsource-variable/recursive@5.0.8:
-    resolution: {integrity: sha512-6CPUJM3M4+fHtuH5Rbm/uUmWzbOAP2W/DValZSD5w+1avG9VmbAit2m0FSfOGc4DZzhRx1rCBR4HuQReiysVqA==}
+  /@fontsource-variable/recursive@5.0.16:
+    resolution: {integrity: sha512-+Yn6w5wh4f7cVKWRRmkoVNIqhUAwptMN+fmKwaefmPN3X76k2lEdG/rnbVHREOirnlI4T837OVBGAKmvVUA5kg==}
     dev: true
 
-  /@fontsource-variable/work-sans@5.0.9:
-    resolution: {integrity: sha512-aGK91wJIc7HPQ1hT5vAfGui0OajlaDc/ZCU5xvugr6ITXlyudM5qVfpjGEMpe4ACACRGeC5bKYFYZlX4pW9gzA==}
+  /@fontsource-variable/work-sans@5.0.17:
+    resolution: {integrity: sha512-5aZGlBgqWhFympHYv35OP8Slz3y90jUQhYoeIQDvanfkoP/mwj+6rDomerN6qvYWQxjReE+bPZhiuceJLXrgIQ==}
     dev: true
 
   /@ioredis/commands@1.2.0:
