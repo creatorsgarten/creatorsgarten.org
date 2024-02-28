@@ -50,7 +50,7 @@ dependencies:
     version: 3.1.0
   dayjs:
     specifier: ^1.11.9
-    version: 1.11.9
+    version: 1.11.10
   fastify:
     specifier: ^4.22.1
     version: 4.22.1
@@ -3136,8 +3136,8 @@ packages:
     engines: {node: '>= 12'}
     dev: true
 
-  /dayjs@1.11.9:
-    resolution: {integrity: sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==}
+  /dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
     dev: false
 
   /debug@2.6.9:
