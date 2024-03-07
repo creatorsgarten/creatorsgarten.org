@@ -32,7 +32,7 @@ dependencies:
     version: 0.7.2(nanostores@0.10.0)(react@18.2.0)
   '@sentry/astro':
     specifier: ^7.86.0
-    version: 7.105.0(astro@4.4.13)
+    version: 7.105.0(astro@4.4.14)
   '@tanstack/react-query':
     specifier: ^5.0.0
     version: 5.25.0(react@18.2.0)
@@ -106,7 +106,7 @@ devDependencies:
     version: 0.5.6(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.4.2)
   '@astrojs/node':
     specifier: 8.2.3
-    version: 8.2.3(astro@4.4.13)
+    version: 8.2.3(astro@4.4.14)
   '@astrojs/prefetch':
     specifier: 0.4.1
     version: 0.4.1
@@ -115,10 +115,10 @@ devDependencies:
     version: 3.0.10(@types/react-dom@18.2.21)(@types/react@18.2.64)(react-dom@18.2.0)(react@18.2.0)(vite@5.1.5)
   '@astrojs/svelte':
     specifier: ^5.0.0
-    version: 5.2.0(astro@4.4.13)(svelte@4.2.12)(typescript@5.4.2)(vite@5.1.5)
+    version: 5.2.0(astro@4.4.14)(svelte@4.2.12)(typescript@5.4.2)(vite@5.1.5)
   '@astrojs/tailwind':
     specifier: 5.1.0
-    version: 5.1.0(astro@4.4.13)(tailwindcss@3.4.1)
+    version: 5.1.0(astro@4.4.14)(tailwindcss@3.4.1)
   '@fontsource-variable/inter':
     specifier: ^5.0.8
     version: 5.0.17
@@ -153,8 +153,8 @@ devDependencies:
     specifier: ^18.2.7
     version: 18.2.21
   astro:
-    specifier: 4.4.13
-    version: 4.4.13(typescript@5.4.2)
+    specifier: 4.4.14
+    version: 4.4.14(typescript@5.4.2)
   astro-seo:
     specifier: ^0.8.0
     version: 0.8.3(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.4.2)
@@ -298,12 +298,12 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@astrojs/node@8.2.3(astro@4.4.13):
+  /@astrojs/node@8.2.3(astro@4.4.14):
     resolution: {integrity: sha512-VQQy7QIv4X+5dlKCEchYIxMFryS+BwDOFGNzeRmHe1/P819TlNup9/M8XqnWW4aZPxV7P6CoDeFxX6HuT/kOmQ==}
     peerDependencies:
       astro: ^4.2.0
     dependencies:
-      astro: 4.4.13(typescript@5.4.2)
+      astro: 4.4.14(typescript@5.4.2)
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -342,7 +342,7 @@ packages:
       - vite
     dev: true
 
-  /@astrojs/svelte@5.2.0(astro@4.4.13)(svelte@4.2.12)(typescript@5.4.2)(vite@5.1.5):
+  /@astrojs/svelte@5.2.0(astro@4.4.14)(svelte@4.2.12)(typescript@5.4.2)(vite@5.1.5):
     resolution: {integrity: sha512-GmwbXks2WMkmAfl0rlPM/2gA1RtmZzjGV2mOceV3g7QNyjIsSYBPKrlEnSFnuR+YMvlAtWdbMFBsb3gtGxnTTg==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -351,7 +351,7 @@ packages:
       typescript: ^5.3.3
     dependencies:
       '@sveltejs/vite-plugin-svelte': 3.0.2(svelte@4.2.12)(vite@5.1.5)
-      astro: 4.4.13(typescript@5.4.2)
+      astro: 4.4.14(typescript@5.4.2)
       svelte: 4.2.12
       svelte2tsx: 0.6.27(svelte@4.2.12)(typescript@5.4.2)
       typescript: 5.4.2
@@ -360,13 +360,13 @@ packages:
       - vite
     dev: true
 
-  /@astrojs/tailwind@5.1.0(astro@4.4.13)(tailwindcss@3.4.1):
+  /@astrojs/tailwind@5.1.0(astro@4.4.14)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.4.13(typescript@5.4.2)
+      astro: 4.4.14(typescript@5.4.2)
       autoprefixer: 10.4.15(postcss@8.4.32)
       postcss: 8.4.32
       postcss-load-config: 4.0.2(postcss@8.4.32)
@@ -1589,7 +1589,7 @@ packages:
       '@sentry/utils': 7.105.0
     dev: false
 
-  /@sentry/astro@7.105.0(astro@4.4.13):
+  /@sentry/astro@7.105.0(astro@4.4.14):
     resolution: {integrity: sha512-mHpvO4OZKRkUX+iv+nLgLi++b0/QtkBws+zdVygjUXCkR4rLUnMnJu6Eq0KKEUEdb+i1yb6ny1HGXqH6qLxdrA==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -1601,7 +1601,7 @@ packages:
       '@sentry/types': 7.105.0
       '@sentry/utils': 7.105.0
       '@sentry/vite-plugin': 2.14.2
-      astro: 4.4.13(typescript@5.4.2)
+      astro: 4.4.14(typescript@5.4.2)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -2591,8 +2591,8 @@ packages:
       - typescript
     dev: true
 
-  /astro@4.4.13(typescript@5.4.2):
-    resolution: {integrity: sha512-kx2k2DJd9Os15zJBo8fK01/2F7/4wH6sAKmlBHlkGHIFm6CKSSzWCK/IWQ0DybNWtthK9A3HDZ4VYWv0BJDOBg==}
+  /astro@4.4.14(typescript@5.4.2):
+    resolution: {integrity: sha512-b8l8NyUP38sWDkCSx9PKTX8aISIXhEGCnsx5FugOTyMisYeeY2hwyaiUpL11WvNJafq28RY0RMO+HWBR6te6fA==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -2810,10 +2810,10 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001524
-      electron-to-chromium: 1.4.505
-      node-releases: 2.0.13
-      update-browserslist-db: 1.0.11(browserslist@4.21.10)
+      caniuse-lite: 1.0.30001589
+      electron-to-chromium: 1.4.681
+      node-releases: 2.0.14
+      update-browserslist-db: 1.0.13(browserslist@4.21.10)
     dev: true
 
   /browserslist@4.23.0:
@@ -3352,10 +3352,6 @@ packages:
 
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
-    dev: true
-
-  /electron-to-chromium@1.4.505:
-    resolution: {integrity: sha512-0A50eL5BCCKdxig2SsCXhpuztnB9PfUgRMojj5tMvt8O54lbwz3t6wNgnpiTRosw5QjlJB7ixhVyeg8daLQwSQ==}
     dev: true
 
   /electron-to-chromium@1.4.681:
@@ -5278,10 +5274,6 @@ packages:
       formdata-polyfill: 4.0.10
     dev: true
 
-  /node-releases@2.0.13:
-    resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
-    dev: true
-
   /node-releases@2.0.14:
     resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
 
@@ -7148,8 +7140,8 @@ packages:
       webpack-virtual-modules: 0.5.0
     dev: false
 
-  /update-browserslist-db@1.0.11(browserslist@4.21.10):
-    resolution: {integrity: sha512-dCwEFf0/oT85M1fHBg4F0jtLwJrutGoHSQXCh7u4o2t1drG+c0a9Flnqww6XUKSfQMPpJBRjU8d4RXB09qtvaA==}
+  /update-browserslist-db@1.0.13(browserslist@4.21.10):
+    resolution: {integrity: sha512-xebP81SNcPuNpPP3uzeW1NYXxI3rxyJzF3pD6sH4jE7o/IX+WtSpwnVU+qIsDPyk0d3hmFQ7mjqc6AtV604hbg==}
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
