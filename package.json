@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.5.0",
-    "@astrojs/node": "8.2.3",
+    "@astrojs/node": "8.2.4",
     "@astrojs/prefetch": "0.4.1",
     "@astrojs/react": "^3.0.0",
     "@astrojs/svelte": "^5.0.0",
