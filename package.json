@@ -39,7 +39,7 @@
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "lru-cache": "^10.0.1",
-    "mem": "^9.0.2",
+    "mem": "^10.0.0",
     "mongodb": "^6.0.0",
     "nanostores": "^0.10.0",
     "qrcode": "^1.5.3",
