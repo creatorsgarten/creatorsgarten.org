@@ -1,0 +1,20 @@
+{
+	"/": [],
+	"/api/banner": [
+		"src/routes/api/banner/+server.ts"
+	],
+	"/events": [],
+	"/ideas": [
+		"src/routes/ideas/+page.server.ts"
+	],
+	"/ideas/[number]": [
+		"src/routes/ideas/[number]/+page.server.ts"
+	],
+	"/manifesto": [
+		"src/routes/manifesto/+server.ts"
+	],
+	"/ring": [],
+	"/wiki/[...slug]": [
+		"src/routes/wiki/[...slug]/+page.server.ts"
+	]
+}
