@@ -14,7 +14,7 @@ dependencies:
     version: 1.3.0(react-dom@18.2.0)(react@18.2.0)
   '@doist/typist':
     specifier: ^5.0.0
-    version: 5.0.0(@react-hookz/web@24.0.4)(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.1.3)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.33.1)(react-dom@18.2.0)(react@18.2.0)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.0)(rehype@13.0.1)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.0)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.4)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0)
+    version: 5.0.0(@react-hookz/web@24.0.4)(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.1.3)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.33.2)(react-dom@18.2.0)(react@18.2.0)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.0)(rehype@13.0.1)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.0)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.4)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0)
   '@fastify/middie':
     specifier: ^8.3.0
     version: 8.3.0
@@ -32,7 +32,7 @@ dependencies:
     version: 0.7.2(nanostores@0.10.0)(react@18.2.0)
   '@sentry/astro':
     specifier: ^7.86.0
-    version: 7.107.0(astro@4.5.8)
+    version: 7.108.0(astro@4.5.8)
   '@tanstack/react-query':
     specifier: ^5.0.0
     version: 5.28.6(react@18.2.0)
@@ -432,6 +432,7 @@ packages:
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/core@7.24.3:
     resolution: {integrity: sha512-5FcvN1JHw2sHJChotgx8Ek0lyuh4kCKelgMTTqhYJJtloNvUfpAFMeNQUtdlIaktwrSV9LtCdqwk48wL2wBacQ==}
@@ -524,6 +525,7 @@ packages:
       '@babel/helper-simple-access': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
       '@babel/helper-validator-identifier': 7.22.20
+    dev: true
 
   /@babel/helper-module-transforms@7.23.3(@babel/core@7.24.3):
     resolution: {integrity: sha512-7bBs4ED9OmswdfDzpz4MpWgSrV7FXlc3zIagvLFjS5H+Mk7Snr21vQ6QwrsoCGMfNC4e4LQPdoULEt4ykz0SRQ==}
@@ -575,6 +577,7 @@ packages:
       '@babel/types': 7.24.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/helpers@7.24.1:
     resolution: {integrity: sha512-BpU09QqEe6ZCHuIHFphEFgvNSrubve1FtyMton26ekZ85gRGi6LrTF7zArARp2YvyFxloeiRmtSCq5sjh1WqIg==}
@@ -726,7 +729,7 @@ packages:
       '@wooorm/starry-night': 2.0.0
     dev: true
 
-  /@doist/typist@5.0.0(@react-hookz/web@24.0.4)(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.1.3)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.33.1)(react-dom@18.2.0)(react@18.2.0)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.0)(rehype@13.0.1)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.0)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.4)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0):
+  /@doist/typist@5.0.0(@react-hookz/web@24.0.4)(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.1.3)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.33.2)(react-dom@18.2.0)(react@18.2.0)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.0)(rehype@13.0.1)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.0)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.4)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0):
     resolution: {integrity: sha512-8h6V5JQypRg/UT1mPuhS5j2zF1Ovnu3VsDxPt6+fhVVZD/kF6upDzGcY6eex91sgGa5HOl67/YOjAIhjPdgv2A==}
     engines: {node: ^16.0.0 || ^18.0.0 || ^20.0.0 || ^21.0.0, npm: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0}
     peerDependencies:
@@ -796,7 +799,7 @@ packages:
       mdast-util-gfm-strikethrough: 2.0.0
       micromark-extension-gfm-autolink-literal: 2.0.0
       micromark-extension-gfm-strikethrough: 2.0.0
-      prosemirror-codemark: 0.4.2(prosemirror-inputrules@1.4.0)(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.33.1)
+      prosemirror-codemark: 0.4.2(prosemirror-inputrules@1.4.0)(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.33.2)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       rehype: 13.0.1
@@ -1922,76 +1925,76 @@ packages:
     dev: true
     optional: true
 
-  /@sentry-internal/feedback@7.107.0:
-    resolution: {integrity: sha512-okF0B9AJHrpkwNMxNs/Lffw3N5ZNbGwz4uvCfyOfnMxc7E2VfDM18QzUvTBRvNr3bA9wl+InJ+EMG3aZhyPunA==}
+  /@sentry-internal/feedback@7.108.0:
+    resolution: {integrity: sha512-8JcgZEnk1uWrXJhsd3iRvFtEiVeaWOEhN0NZwhwQXHfvODqep6JtrkY1yCIyxbpA37aZmrPc2JhyotRERGfUjg==}
     engines: {node: '>=12'}
     dependencies:
-      '@sentry/core': 7.107.0
-      '@sentry/types': 7.107.0
-      '@sentry/utils': 7.107.0
+      '@sentry/core': 7.108.0
+      '@sentry/types': 7.108.0
+      '@sentry/utils': 7.108.0
     dev: false
 
-  /@sentry-internal/replay-canvas@7.107.0:
-    resolution: {integrity: sha512-dmDL9g3QDfo7axBOsVnpiKdJ/DXrdeuRv1AqsLgwzJKvItsv0ZizX0u+rj5b1UoxcwbXRMxJ0hit5a1yt3t/ow==}
+  /@sentry-internal/replay-canvas@7.108.0:
+    resolution: {integrity: sha512-R5tvjGqWUV5vSk0N1eBgVW7wIADinrkfDEBZ9FyKP2mXHBobsyNGt30heJDEqYmVqluRqjU2NuIRapsnnrpGnA==}
     engines: {node: '>=12'}
     dependencies:
-      '@sentry/core': 7.107.0
-      '@sentry/replay': 7.107.0
-      '@sentry/types': 7.107.0
-      '@sentry/utils': 7.107.0
+      '@sentry/core': 7.108.0
+      '@sentry/replay': 7.108.0
+      '@sentry/types': 7.108.0
+      '@sentry/utils': 7.108.0
     dev: false
 
-  /@sentry-internal/tracing@7.107.0:
-    resolution: {integrity: sha512-le9wM8+OHBbq7m/8P7JUJ1UhSPIty+Z/HmRXc5Z64ODZcOwFV6TmDpYx729IXDdz36XUKmeI+BeM7yQdTTZPfQ==}
+  /@sentry-internal/tracing@7.108.0:
+    resolution: {integrity: sha512-zuK5XsTsb+U+hgn3SPetYDAogrXsM16U/LLoMW7+TlC6UjlHGYQvmX3o+M2vntejoU1QZS8m1bCAZSMWEypAEw==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/core': 7.107.0
-      '@sentry/types': 7.107.0
-      '@sentry/utils': 7.107.0
+      '@sentry/core': 7.108.0
+      '@sentry/types': 7.108.0
+      '@sentry/utils': 7.108.0
     dev: false
 
-  /@sentry/astro@7.107.0(astro@4.5.8):
-    resolution: {integrity: sha512-co93GYKQ0CYbm+ibZ0fih/OAojYYNtaTvsaAzz9mySXWWMGcU6oNASM+r3IfaFNH4sIgVxeNuCVvSIwYCnsnSA==}
+  /@sentry/astro@7.108.0(astro@4.5.8):
+    resolution: {integrity: sha512-TFyIT26ctyOeWpK5VLmTnTNUJ7mO+FvHTeqkklNBr/JEJeVFvuWM0YtD93wWxm0pr5jh6vGdcukGXQXVdLNp+A==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       astro: '>=3.x || >=4.0.0-beta'
     dependencies:
-      '@sentry/browser': 7.107.0
-      '@sentry/core': 7.107.0
-      '@sentry/node': 7.107.0
-      '@sentry/types': 7.107.0
-      '@sentry/utils': 7.107.0
-      '@sentry/vite-plugin': 2.15.0
+      '@sentry/browser': 7.108.0
+      '@sentry/core': 7.108.0
+      '@sentry/node': 7.108.0
+      '@sentry/types': 7.108.0
+      '@sentry/utils': 7.108.0
+      '@sentry/vite-plugin': 2.16.0
       astro: 4.5.8(typescript@5.4.3)
     transitivePeerDependencies:
       - encoding
       - supports-color
     dev: false
 
-  /@sentry/babel-plugin-component-annotate@2.15.0:
-    resolution: {integrity: sha512-4AaRN2E1iqOPlceDE5ae4thnq717reEQkqOslSWpJf7FmJ+oDrp2bWQhO82xcW8ZBBMbtkOGw2wmrScq5TnMxw==}
+  /@sentry/babel-plugin-component-annotate@2.16.0:
+    resolution: {integrity: sha512-+uy1qPkA5MSNgJ0L9ur/vNTydfdHwHnBX2RQ+0thsvkqf90fU788YjkkXwUiBBNuqNyI69JiOW6frixAWy7oUg==}
     engines: {node: '>= 14'}
     dev: false
 
-  /@sentry/browser@7.107.0:
-    resolution: {integrity: sha512-KnqaQDhxv6w9dJ+mYLsNwPeGZfgbpM3vaismBNyJCKLgWn2V75kxkSq+bDX8LQT/13AyK7iFp317L6P8EuNa3g==}
+  /@sentry/browser@7.108.0:
+    resolution: {integrity: sha512-FNpzsdTvGvdHJMUelqEouUXMZU7jC+dpN7CdT6IoHVVFEkoAgrjMVUhXZoQ/dmCkdKWHmFSQhJ8Fm6V+e9Aq0A==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry-internal/feedback': 7.107.0
-      '@sentry-internal/replay-canvas': 7.107.0
-      '@sentry-internal/tracing': 7.107.0
-      '@sentry/core': 7.107.0
-      '@sentry/replay': 7.107.0
-      '@sentry/types': 7.107.0
-      '@sentry/utils': 7.107.0
+      '@sentry-internal/feedback': 7.108.0
+      '@sentry-internal/replay-canvas': 7.108.0
+      '@sentry-internal/tracing': 7.108.0
+      '@sentry/core': 7.108.0
+      '@sentry/replay': 7.108.0
+      '@sentry/types': 7.108.0
+      '@sentry/utils': 7.108.0
     dev: false
 
-  /@sentry/bundler-plugin-core@2.15.0:
-    resolution: {integrity: sha512-K6tEmo6ilUdR5uEQZ4P1uaXCvRoAeq5JsJAg7lRv0JSG5XG67jhoHu+mrpiDMB93FxbTgCQkPCT87Z0Bmqpmew==}
+  /@sentry/bundler-plugin-core@2.16.0:
+    resolution: {integrity: sha512-dhgIZsIR3L9KnE2OO5JJm6hPtStAjEPYKQsZzxRr69uVhd9xAvfXeXr0afKVNVEcIDksas6yMgHqwQ2wOXFIAg==}
     engines: {node: '>= 14'}
     dependencies:
-      '@babel/core': 7.24.0
-      '@sentry/babel-plugin-component-annotate': 2.15.0
+      '@babel/core': 7.24.3
+      '@sentry/babel-plugin-component-annotate': 2.16.0
       '@sentry/cli': 2.30.2
       dotenv: 16.4.5
       find-up: 5.0.0
@@ -2089,51 +2092,51 @@ packages:
       - supports-color
     dev: false
 
-  /@sentry/core@7.107.0:
-    resolution: {integrity: sha512-C7ogye6+KPyBi8NVL0P8Rxx3Ur7Td8ufnjxosVy678lqY+dcYPk/HONROrzUFYW5fMKWL4/KYnwP+x9uHnkDmw==}
+  /@sentry/core@7.108.0:
+    resolution: {integrity: sha512-I/VNZCFgLASxHZaD0EtxZRM34WG9w2gozqgrKGNMzAymwmQ3K9g/1qmBy4e6iS3YRptb7J5UhQkZQHrcwBbjWQ==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.107.0
-      '@sentry/utils': 7.107.0
+      '@sentry/types': 7.108.0
+      '@sentry/utils': 7.108.0
     dev: false
 
-  /@sentry/node@7.107.0:
-    resolution: {integrity: sha512-UZXkG7uThT2YyPW8AOSKRXp1LbVcBHufa4r1XAwBukA2FKO6HHJPjMUgY6DYVQ6k+BmA56CNfVjYrdLbyjBYYA==}
+  /@sentry/node@7.108.0:
+    resolution: {integrity: sha512-pMxc9txnDDkU4Z8k2Uw/DPSLPehNtWV3mjJ3+my0AMORGYrXLkJI93tddlE5z/7k+GEJdj1HsOLgxUN0OU+HGA==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry-internal/tracing': 7.107.0
-      '@sentry/core': 7.107.0
-      '@sentry/types': 7.107.0
-      '@sentry/utils': 7.107.0
+      '@sentry-internal/tracing': 7.108.0
+      '@sentry/core': 7.108.0
+      '@sentry/types': 7.108.0
+      '@sentry/utils': 7.108.0
     dev: false
 
-  /@sentry/replay@7.107.0:
-    resolution: {integrity: sha512-BNJDEVaEwr/YnV22qnyVA1almx/3p615m3+KaF8lPo7YleYgJGSJv1auH64j1G8INkrJ0J0wFBujb1EFjMYkxA==}
+  /@sentry/replay@7.108.0:
+    resolution: {integrity: sha512-jo8fDOzcZJclP1+4n9jUtVxTlBFT9hXwxhAMrhrt70FV/nfmCtYQMD3bzIj79nwbhUtFP6pN39JH1o7Xqt1hxQ==}
     engines: {node: '>=12'}
     dependencies:
-      '@sentry-internal/tracing': 7.107.0
-      '@sentry/core': 7.107.0
-      '@sentry/types': 7.107.0
-      '@sentry/utils': 7.107.0
+      '@sentry-internal/tracing': 7.108.0
+      '@sentry/core': 7.108.0
+      '@sentry/types': 7.108.0
+      '@sentry/utils': 7.108.0
     dev: false
 
-  /@sentry/types@7.107.0:
-    resolution: {integrity: sha512-H7qcPjPSUWHE/Zf5bR1EE24G0pGVuJgrSx8Tvvl5nKEepswMYlbXHRVSDN0gTk/E5Z7cqf+hUBOpkQgZyps77w==}
+  /@sentry/types@7.108.0:
+    resolution: {integrity: sha512-bKtHITmBN3kqtqE5eVvL8mY8znM05vEodENwRpcm6TSrrBjC2RnwNWVwGstYDdHpNfFuKwC8mLY9bgMJcENo8g==}
     engines: {node: '>=8'}
     dev: false
 
-  /@sentry/utils@7.107.0:
-    resolution: {integrity: sha512-C6PbN5gHh73MRHohnReeQ60N8rrLYa9LciHue3Ru2290eSThg4CzsPnx4SzkGpkSeVlhhptKtKZ+hp/ha3iVuw==}
+  /@sentry/utils@7.108.0:
+    resolution: {integrity: sha512-a45yEFD5qtgZaIFRAcFkG8C8lnDzn6t4LfLXuV4OafGAy/3ZAN3XN8wDnrruHkiUezSSANGsLg3bXaLW/JLvJw==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.107.0
+      '@sentry/types': 7.108.0
     dev: false
 
-  /@sentry/vite-plugin@2.15.0:
-    resolution: {integrity: sha512-Q1ML+6p0xBLEbk6pHnZoLs7gQctXrsyI/zzhEQsR/uyPIZIkrwSLcnZ6iCjSz570SvK9H0UVgp1bdLJK/Mpb7Q==}
+  /@sentry/vite-plugin@2.16.0:
+    resolution: {integrity: sha512-/7rFTpasql9fJ1KbruF0yDESKV/ojvOP9pL/qqwUffvA9iy9Bvw3kYzzyzd1YsiCiVBgftoCsFTKPcvL3A4rwQ==}
     engines: {node: '>= 14'}
     dependencies:
-      '@sentry/bundler-plugin-core': 2.15.0
+      '@sentry/bundler-plugin-core': 2.16.0
       unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
@@ -6224,7 +6227,7 @@ packages:
       prosemirror-transform: 1.8.0
     dev: false
 
-  /prosemirror-codemark@0.4.2(prosemirror-inputrules@1.4.0)(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.33.1):
+  /prosemirror-codemark@0.4.2(prosemirror-inputrules@1.4.0)(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.33.2):
     resolution: {integrity: sha512-4n+PnGQToa/vTjn0OiivUvE8/moLtguUAfry8UA4Q8p47MhqT2Qpf2zBLustX5Upi4mSp3z1ZYBqLLovZC6abA==}
     peerDependencies:
       prosemirror-inputrules: ^1.2.0
@@ -6235,7 +6238,7 @@ packages:
       prosemirror-inputrules: 1.4.0
       prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
-      prosemirror-view: 1.33.1
+      prosemirror-view: 1.33.2
     dev: false
 
   /prosemirror-collab@1.3.1:
@@ -6368,6 +6371,14 @@ packages:
 
   /prosemirror-view@1.33.1:
     resolution: {integrity: sha512-62qkYgSJIkwIMMCpuGuPzc52DiK1Iod6TWoIMxP4ja6BTD4yO8kCUL64PZ/WhH/dJ9fW0CDO39FhH1EMyhUFEg==}
+    dependencies:
+      prosemirror-model: 1.19.4
+      prosemirror-state: 1.4.3
+      prosemirror-transform: 1.8.0
+    dev: false
+
+  /prosemirror-view@1.33.2:
+    resolution: {integrity: sha512-HYMowWXC4pPaTbOxdb8ewMlA/QyttZ9QWJmfzLOzoU5y3sNFqllbhGZ3xsYdnQWi9+iLY55TUDNP+dlqF+VWTw==}
     dependencies:
       prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
