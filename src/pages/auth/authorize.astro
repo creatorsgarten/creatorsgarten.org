@@ -62,7 +62,9 @@ const redirectTo = new URL(redirectUri)
 const responseType = Astro.url.searchParams.get('response_type') ?? 'id_token'
 const responseMode = Astro.url.searchParams.get('response_mode') ?? 'query'
 const updateResponse = (f: (searchParams: URLSearchParams) => void) => {
-  if (responseMode === 'hash') {
+  // The non-standard `response_mode` value `hash` is for compatibility.
+  // Please use `fragment` going forward!
+  if (responseMode === 'fragment' || responseMode === 'hash') {
     const searchParams = new URLSearchParams()
     f(searchParams)
     redirectTo.hash = '#' + searchParams.toString()
