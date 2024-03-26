@@ -10,10 +10,6 @@ import '@fontsource-variable/work-sans'
 const { pathname } = Astro.url
 const isNoIndex = pathname.endsWith('/editor') || pathname.startsWith('/auth')
 
-export interface Props {
-  disableViewTransitions?: boolean
-}
-
 const accentColor = sample(
   [
     '[--accent-300:theme(colors.red.300)] [--accent-100:theme(colors.red.100)]',
@@ -74,7 +70,8 @@ const accentColor2 = sample(
     {isNoIndex && <meta name="robots" content="noindex" />}
 
     <slot name="head" />
-    {Astro.props.disableViewTransitions ? null : <ViewTransitions />}
+
+    <ViewTransitions />
     <script
       async
       src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.2/dist/iconify-icon.min.js"
