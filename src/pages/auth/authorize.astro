@@ -1,6 +1,6 @@
 ---
-import { isSensitiveScope, oauthClients } from '$constants/oauth'
 import { IdTokenInspector } from '$components/idTokenInspector'
+import { isSensitiveScope, oauthClients } from '$constants/oauth'
 import { errorPage } from '$functions/errorPage'
 import Blank from '$layouts/blank.astro'
 
@@ -128,7 +128,7 @@ if (
     <h1 class="mb-4 text-4xl font-medium">Data access request</h1>
     <p class="mb-3">
       A third-party application at <strong>{redirectTo.origin}</strong>{' '}
-       would like to access information in your Creatorsgarten account.
+      would like to access information in your Creatorsgarten account.
     </p>
     <p class="mb-3">The following information will be shared:</p>
     <div class="mb-3">
@@ -138,7 +138,7 @@ if (
       If you trust this application, click the button below to send the
       information:
     </p>
-    <form method="post">
+    <form method="post" data-astro-reload>
       <button
         type="submit"
         class="inline-flex w-full shrink-0 justify-center rounded-lg bg-[#1c1916] px-4 py-2 text-white sm:w-auto sm:rounded-full"
