@@ -97,10 +97,12 @@ export async function getWikiPageViewModel(input: {
   } else if (status === 404) {
     responseActions.push(response => {
       response.status = 404
+      response.headers.set('X-Astro-Reroute', 'no')
     })
   } else if (status === 500) {
     responseActions.push(response => {
       response.status = 500
+      response.headers.set('X-Astro-Reroute', 'no')
     })
   }
 
