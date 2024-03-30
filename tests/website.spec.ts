@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 
 test('Homepage works', async ({ page }) => {
   await page.goto('/')
@@ -27,6 +27,11 @@ test('Event page works', async ({ page }) => {
 test('Special/AllPages page works', async ({ page }) => {
   await page.goto('/wiki/Special/AllPages')
   await expect(page.getByRole('listitem').getByText('MainPage')).toBeVisible()
+})
+
+test('Nonexistent page works', async ({ page }) => {
+  await page.goto('/wiki/Nonexistent')
+  await expect(page.getByRole('link', { name: 'Edit this page' })).toBeVisible()
 })
 
 // test('Webring page works', async ({ page }) => {
