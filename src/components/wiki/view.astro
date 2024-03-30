@@ -1,9 +1,8 @@
 ---
-import Layout from '$layouts/wiki.astro'
 import CFImage from '$components/cfImage.astro'
+import Layout from '$layouts/wiki.astro'
 import SidebarContentsSection from './sidebarContentsSection.astro'
 import SidebarEventSection from './sidebarEventSection.astro'
-import SidebarShareSection from './sidebarShareSection.astro'
 import SidebarMetadataSection, {
   type Props as MetadataProps,
 } from './sidebarMetadataSection.astro'
@@ -16,7 +15,7 @@ import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
 export interface Props {
   pageRef: string
   title: string
-  rendered: NonNullable<ContentsgartenOutput['view']['rendered']>
+  headings: NonNullable<ContentsgartenOutput['view']['rendered']>['headings']
   parsedFrontMatter?: FrontMatter
   lastModified?: string
   lastModifiedBy?: string[]
@@ -26,7 +25,7 @@ export interface Props {
 const {
   pageRef,
   title,
-  rendered,
+  headings,
   parsedFrontMatter,
   lastModified,
   lastModifiedBy,
@@ -87,7 +86,7 @@ const coverImage =
   </Fragment>
 
   <Fragment slot="sidebar-left-at-least-2-columns">
-    <SidebarContentsSection contents={rendered.headings} />
+    <SidebarContentsSection contents={headings} />
   </Fragment>
 
   <Fragment slot="sidebar-right">
