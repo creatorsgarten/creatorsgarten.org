@@ -1,5 +1,13 @@
 ---
 import Wiki from '$components/wiki.astro'
+import { getWikiPageViewModel } from '$functions/wiki/getWikiPageViewModel'
+
+const viewModel = await getWikiPageViewModel({
+  pageRef: 'Ring',
+  mode: 'view',
+  searchParams: Astro.url.searchParams,
+})
+viewModel.respond(Astro.response)
 ---
 
-<Wiki pageRef="Ring" />
+<Wiki viewModel={viewModel} />

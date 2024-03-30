@@ -1,5 +1,6 @@
 ---
 import Wiki from '$components/wiki.astro'
+import { getWikiPageViewModel } from '$functions/wiki/getWikiPageViewModel'
 
 let { pageRef } = Astro.params
 
@@ -10,6 +11,13 @@ else if (pageRef === 'MainPage') return Astro.redirect('/wiki' + search)
 else if (pageRef === 'Ring') return Astro.redirect('/ring' + search)
 else if (pageRef.startsWith('Events/'))
   return Astro.redirect(`/event/${pageRef.replace('Events/', '')}${search}`)
+
+const viewModel = await getWikiPageViewModel({
+  pageRef,
+  mode: 'view',
+  searchParams: Astro.url.searchParams,
+})
+viewModel.respond(Astro.response)
 ---
 
-<Wiki pageRef={pageRef} />
+<Wiki viewModel={viewModel} />

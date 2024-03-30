@@ -1,6 +1,8 @@
 ---
-import { Icon } from 'react-iconify-icon-wrapper'
+import type { WikiPageViewModel } from '$functions/wiki/getWikiPageViewModel'
 import BaseLayout from '$layouts/base.astro'
+import '@fontsource-variable/inter'
+import { Icon } from 'react-iconify-icon-wrapper'
 import ContentRenderer from './contentRenderer.astro'
 import Head from './head.astro'
 import WikiEditor from './wiki/editor.astro'
@@ -8,105 +10,48 @@ import WikiUpdateChecker from './wiki/updateChecker'
 import WikiView from './wiki/view.astro'
 import WikiViewShortcuts from './wiki/viewShortcuts.svelte'
 
-import {
-  getContentHash,
-  getMarkdownFromSlug,
-} from '$functions/wiki/getMarkdownFromSlug'
-import { formatPageRef } from '$functions/wiki/formatPageRef'
-import { getWikiDescription } from '$functions/wiki/getWikiDescription'
-import { parseFrontMatter } from '$functions/parseFrontMatter'
-import { fromZodError } from 'zod-validation-error'
-
-import type { z } from 'zod'
-import type { frontMatterSchema } from '$functions/parseFrontMatter'
-
-import '@fontsource-variable/inter'
-
 export interface Props {
-  pageRef: string
-  mode?: 'view' | 'editor'
+  viewModel: WikiPageViewModel
 }
 
-let { pageRef, mode = 'view' } = Astro.props
-
-const markdown = await getMarkdownFromSlug<
-  z.infer<typeof frontMatterSchema>['event'] & { title: string }
->(pageRef)
-const {
-  status,
-  targetPageRef,
-  rendered,
-  lastModified,
-  lastModifiedBy,
-  frontMatter,
-  file,
-  perf,
-} = markdown
-
-if (
-  status === 301 &&
-  targetPageRef &&
-  Astro.url.searchParams.get('redirect') !== 'no'
-) {
-  Astro.response.status = 301
-  Astro.response.headers.set('Location', `/wiki/${targetPageRef}`)
-} else if (status === 404) {
-  Astro.response.status = 404
-} else if (status === 500) {
-  Astro.response.status = 500
-}
-
-const frontMatterParsingResult = parseFrontMatter(frontMatter)
-const parsedFrontMatter = frontMatterParsingResult.success
-  ? frontMatterParsingResult.data
-  : undefined
-
-const title =
-  frontMatter.title ||
-  parsedFrontMatter?.event?.name ||
-  formatPageRef(pageRef as string)
-const editable = !!file
-const editing = mode === 'editor' && editable ? file : null
-const contentHash = getContentHash(markdown)
+const { head, body, perf } = Astro.props.viewModel
 ---
 
 <Head
-  title={mode === 'view' ? title : 'Editor'}
-  description={getWikiDescription(rendered?.html)}
-  ogImage={`https://screenshot.source.in.th/image/_/creatorsgarten-new-wiki/${pageRef}`}
+  title={head.title}
+  description={head.description}
+  ogImage={head.ogImage}
 />
 
 {
-  status === 200 || editing ? (
+  body.mode === 'editor' || body.mode === 'view' ? (
     <WikiView
-      pageRef={pageRef}
-      title={title}
-      rendered={rendered!}
-      parsedFrontMatter={parsedFrontMatter}
-      lastModified={lastModified}
-      lastModifiedBy={lastModifiedBy}
-      editable={editable}
+      pageRef={body.pageRef}
+      title={body.title}
+      headings={body.headings}
+      parsedFrontMatter={body.parsedFrontMatter}
+      lastModified={body.lastModified}
+      lastModifiedBy={body.lastModifiedBy}
+      editable={body.editable}
     >
-      {editing ? (
-        <WikiEditor pageRef={pageRef} file={editing} />
+      {body.mode === 'editor' ? (
+        <WikiEditor pageRef={body.pageRef} file={body.file} />
       ) : (
         <Fragment>
-          {!frontMatterParsingResult.success && (
+          {body.validationError ? (
             <div class="relative mb-8 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700">
               <strong class="mr-2 font-bold">Invalid front matter:</strong>
-              <span class="block sm:inline">
-                {fromZodError(frontMatterParsingResult.error)}
-              </span>
+              <span class="block sm:inline">{body.validationError}</span>
             </div>
-          )}
-          <ContentRenderer content={rendered!.html} pageRef={pageRef} />
+          ) : null}
+          <ContentRenderer content={body.html} pageRef={body.pageRef} />
           <WikiUpdateChecker
-            initialContentHash={contentHash}
-            pageRef={pageRef}
+            initialContentHash={body.contentHash}
+            pageRef={body.pageRef}
             client:idle
           />
-          {!!file ? (
-            <WikiViewShortcuts path={file.path} client:only="svelte" />
+          {body.filePath ? (
+            <WikiViewShortcuts path={body.filePath} client:only="svelte" />
           ) : null}
         </Fragment>
       )}
@@ -115,12 +60,12 @@ const contentHash = getContentHash(markdown)
     <BaseLayout>
       <div class="px-6 pb-10">
         <div class="relative mx-auto max-w-6xl">
-          <h1 class="mb-8 text-3xl">{pageRef}</h1>
-          <ContentRenderer content={rendered!.html} pageRef={pageRef} />
-          {editable && (
+          <h1 class="mb-8 text-3xl">{body.pageRef}</h1>
+          <ContentRenderer content={body.html} pageRef={body.pageRef} />
+          {body.editable && (
             <div class="mt-8 flex">
               <a
-                href={`/wiki/${pageRef}/editor`}
+                href={`/wiki/${body.pageRef}/editor`}
                 data-js="wiki-edit-link"
                 class="inline-flex items-center space-x-2"
               >
@@ -130,12 +75,12 @@ const contentHash = getContentHash(markdown)
             </div>
           )}
           <WikiUpdateChecker
-            initialContentHash={contentHash}
-            pageRef={pageRef}
+            initialContentHash={body.contentHash}
+            pageRef={body.pageRef}
             client:idle
           />
-          {!!file ? (
-            <WikiViewShortcuts path={file.path} client:only="svelte" />
+          {body.filePath ? (
+            <WikiViewShortcuts path={body.filePath} client:only="svelte" />
           ) : null}
         </div>
       </div>
