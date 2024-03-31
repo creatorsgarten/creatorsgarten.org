@@ -25,3 +25,4 @@ playwright-report
 .cache
 test-results
 .data
+.svelte-kit
