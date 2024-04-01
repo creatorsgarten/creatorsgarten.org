@@ -23,13 +23,13 @@ dependencies:
     version: 7.0.2
   '@nanostores/logger':
     specifier: ^0.2.3
-    version: 0.2.4(nanostores@0.10.0)
+    version: 0.2.4(nanostores@0.10.1)
   '@nanostores/persistent':
     specifier: ^0.10.0
-    version: 0.10.1(nanostores@0.10.0)
+    version: 0.10.1(nanostores@0.10.1)
   '@nanostores/react':
     specifier: ^0.7.1
-    version: 0.7.2(nanostores@0.10.0)(react@18.2.0)
+    version: 0.7.2(nanostores@0.10.1)(react@18.2.0)
   '@sentry/astro':
     specifier: ^7.86.0
     version: 7.109.0(astro@4.5.12)
@@ -77,7 +77,7 @@ dependencies:
     version: 6.5.0
   nanostores:
     specifier: ^0.10.0
-    version: 0.10.0
+    version: 0.10.1
   qrcode:
     specifier: ^1.5.3
     version: 1.5.3
@@ -1360,32 +1360,32 @@ packages:
     dependencies:
       sparse-bitfield: 3.0.3
 
-  /@nanostores/logger@0.2.4(nanostores@0.10.0):
+  /@nanostores/logger@0.2.4(nanostores@0.10.1):
     resolution: {integrity: sha512-yFRp/R67DVLBDE0QqhnZr9wF1CtdiugOyioom2At3Gnui4LgDbqiizhnvnZIhN+bcpffZtpo0C1p8PK3E4JELg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       nanostores: '>=0.9.2'
     dependencies:
-      nanostores: 0.10.0
+      nanostores: 0.10.1
     dev: false
 
-  /@nanostores/persistent@0.10.1(nanostores@0.10.0):
+  /@nanostores/persistent@0.10.1(nanostores@0.10.1):
     resolution: {integrity: sha512-BMYj47ONmkrPkHfomimtBAwtDNNjO57lw0uk7jB35GHVwixmqWtlK6DVAAbioqwJn9WEaWSB/9Ss5ukBG0NHlQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       nanostores: ^0.9.0 || ^0.10.0
     dependencies:
-      nanostores: 0.10.0
+      nanostores: 0.10.1
     dev: false
 
-  /@nanostores/react@0.7.2(nanostores@0.10.0)(react@18.2.0):
+  /@nanostores/react@0.7.2(nanostores@0.10.1)(react@18.2.0):
     resolution: {integrity: sha512-e3OhHJFv3NMSFYDgREdlAQqkyBTHJM91s31kOZ4OvZwJKdFk5BLk0MLbh51EOGUz9QGX2aCHfy1RvweSi7fgwA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       nanostores: ^0.9.0 || ^0.10.0
       react: 18.2.0
     dependencies:
-      nanostores: 0.10.0
+      nanostores: 0.10.1
       react: 18.2.0
     dev: false
 
@@ -5570,8 +5570,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  /nanostores@0.10.0:
-    resolution: {integrity: sha512-Poy5+9wFXOD0jAstn4kv9n686U2BFw48z/W8lms8cS8lcbRz7BU20JxZ3e/kkKQVfRrkm4yLWCUA6GQINdvJCQ==}
+  /nanostores@0.10.1:
+    resolution: {integrity: sha512-ehojEKwlu5sLAPbPV2um5ihjU/xW4I/yA7qdv0NFmG32fSmLUgYvUmNT1bcobDA5X/fcUqa4t8YbZgN5qARINQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     dev: false
 
