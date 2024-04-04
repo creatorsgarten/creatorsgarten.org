@@ -20,7 +20,7 @@ dependencies:
     version: 8.3.0
   '@fastify/static':
     specifier: ^7.0.0
-    version: 7.0.2
+    version: 7.0.3
   '@nanostores/logger':
     specifier: ^0.2.3
     version: 0.2.4(nanostores@0.10.2)
@@ -1163,8 +1163,8 @@ packages:
       mime: 3.0.0
     dev: false
 
-  /@fastify/static@7.0.2:
-    resolution: {integrity: sha512-5opbHpZj29EGVBNgELW6gDkueiFWxjLsLVQQCgKencJctq0aqk3vBlkO97z5It4zaSAb3FXOeAxm7KP2tL/hQA==}
+  /@fastify/static@7.0.3:
+    resolution: {integrity: sha512-2tmTdF+uFCykasutaO6k4/wOt7eXyi7m3dGuCPo5micXzv0qt6ttb/nWnDYL/BlXjYGfp1JI4a1gyluTIylvQA==}
     dependencies:
       '@fastify/accept-negotiator': 1.1.0
       '@fastify/send': 2.1.0
