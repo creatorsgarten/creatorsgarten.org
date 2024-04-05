@@ -22,8 +22,8 @@ dependencies:
     specifier: ^7.0.0
     version: 7.0.3
   '@nanostores/logger':
-    specifier: ^0.2.3
-    version: 0.2.4(nanostores@0.10.2)
+    specifier: ^0.3.0
+    version: 0.3.0(nanostores@0.10.2)
   '@nanostores/persistent':
     specifier: ^0.10.0
     version: 0.10.1(nanostores@0.10.2)
@@ -1268,11 +1268,11 @@ packages:
     dependencies:
       sparse-bitfield: 3.0.3
 
-  /@nanostores/logger@0.2.4(nanostores@0.10.2):
-    resolution: {integrity: sha512-yFRp/R67DVLBDE0QqhnZr9wF1CtdiugOyioom2At3Gnui4LgDbqiizhnvnZIhN+bcpffZtpo0C1p8PK3E4JELg==}
+  /@nanostores/logger@0.3.0(nanostores@0.10.2):
+    resolution: {integrity: sha512-4h56UQaB2rEuAOKm/XtrOwg7TE4s54LudqyhlJqgfFI6X+pKwNTqScZWQxoPyprV9ovSBLHGyHb4NipFn+NW9w==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
-      nanostores: '>=0.9.2'
+      nanostores: '>=0.10.2'
     dependencies:
       nanostores: 0.10.2
     dev: false
