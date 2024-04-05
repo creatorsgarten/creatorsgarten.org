@@ -60,7 +60,7 @@
     "@fontsource-variable/inter": "^5.0.8",
     "@fontsource-variable/recursive": "^5.0.8",
     "@fontsource-variable/work-sans": "^5.0.9",
-    "@playwright/test": "1.42.1",
+    "@playwright/test": "1.43.0",
     "@tailwindcss/typography": "0.5.12",
     "@types/hast": "^3.0.0",
     "@types/jsonwebtoken": "^9.0.2",
