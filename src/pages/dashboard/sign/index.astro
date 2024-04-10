@@ -1,0 +1,86 @@
+---
+import Head from '$components/head.astro'
+import BaseLayout from '$layouts/base.astro'
+import { createHash, createHmac } from 'crypto'
+import { ObjectId } from 'mongodb'
+import { Icon } from 'react-iconify-icon-wrapper'
+
+const { user } = Astro.locals
+if (!user) return Astro.redirect('/')
+
+const generateSignature = (msg: string) => {
+  const key = process.env.SIGN_KEY_01
+  if (!key) {
+    throw new Error('SIGN_KEY_01 is not set')
+  }
+  const prefix = [
+    'grtn',
+    'v1',
+    createHash('sha256').update(msg).digest('hex').slice(0, 24),
+    user.sub,
+    new ObjectId().toString(),
+  ].join('_')
+  const signature = createHmac('sha256', key).update(prefix).digest('hex').slice(0, 24)
+  return `${prefix}_${signature}`
+}
+
+const signMessage = Astro.url.searchParams.get('signMessage') || ''
+const signature = signMessage ? generateSignature(signMessage) : ''
+---
+
+<Head title="Sign a Message" />
+
+<BaseLayout class="mx-auto max-w-7xl space-y-6 [&>*]:px-6">
+  <div class="-mx-6 max-w-6xl sm:mx-auto">
+    <div class="px-6 pb-10">
+      <h1 class="mb-4 text-3xl font-medium">
+        Sign message
+      </h1>
+
+      <form method="get">
+        <div class="flex gap-3 flex-col">
+          <div class="flex gap-3">
+            <label class="w-24 text-neutral-600">User</label>
+            <div class="flex-1">
+              <input type="text" class="w-full" value={`${user.sub} (${user.name})`} readonly />
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <label class="w-24 text-neutral-600" for="signMessage">Message</label>
+            <div class="flex-1">
+              <input type="text" name="signMessage" class={"w-full " + (signature ? '' : 'border rounded border-neutral-400')} value={signMessage} id="signMessage" readonly={!!signature} />
+            </div>
+          </div>
+          {!!signature && (
+            <div class="flex gap-3">
+              <label class="w-24 text-neutral-600" for="signature">Signature</label>
+              <div class="flex-1">
+                <input type="text" class={"w-full border rounded border-green-400"} value={signature} id="signature" readonly />
+              </div>
+            </div>
+          )}
+          <div class="flex gap-3 items-baseline">
+            <div class="w-24"></div>
+            {signature ? (
+              <button
+                type="button"
+                class="rounded-lg bg-[#1c1916] px-4 py-2 text-white"
+                onclick={`navigator.clipboard.writeText('${signature}').then(r => this.querySelector('iconify-icon').setAttribute('icon', 'pixelarticons:check'))`}
+              >
+                <Icon icon="pixelarticons:copy" inline />
+                Copy signature
+              </button>
+            ) : (
+              <button
+                type="submit"
+                class="rounded-lg bg-[#1c1916] px-4 py-2 text-white"
+              >
+                Sign message
+              </button>
+            )}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</BaseLayout>

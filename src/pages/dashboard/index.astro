@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '$layouts/base.astro'
 
-import Head from '$components/head.astro'
-import Garden0 from '$components/dashboard/gardenZero/section.astro'
-import JoinedEvents from '$components/dashboard/joinedEvents.astro'
-import IntegratedServices from '$components/dashboard/integratedServices.astro'
 import { Connections } from '$components/connections'
+import Garden0 from '$components/dashboard/gardenZero/section.astro'
+import IntegratedServices from '$components/dashboard/integratedServices.astro'
+import JoinedEvents from '$components/dashboard/joinedEvents.astro'
+import UserCard from '$components/dashboard/userCard.astro'
+import Head from '$components/head.astro'
 
 const { backend, user } = Astro.locals
 if (!user) return Astro.redirect('/')
@@ -16,19 +17,7 @@ const joinedEvents = await backend.events.getJoinedEvents.query()
 <Head title="Dashboard" />
 
 <BaseLayout class="mx-auto max-w-7xl space-y-6 [&>*]:px-6">
-  <section class="mx-auto max-w-lg">
-    <div
-      class="flex space-x-4 rounded-2xl border border-neutral-300 bg-white p-4"
-    >
-      <img src={user.avatar} class="h-24 w-24 shrink-0 rounded-full" />
-      <div class="flex flex-col justify-center py-2 pr-2">
-        <h1 class="mb-1 text-lg font-medium leading-tight md:mb-0">
-          {user.name}
-        </h1>
-        <p>{user.email}</p>
-      </div>
-    </div>
-  </section>
+  <UserCard user={user} />
   <Connections connections={user.connections} />
   <Garden0 />
   <JoinedEvents eventIds={joinedEvents} />

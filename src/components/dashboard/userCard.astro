@@ -1,0 +1,23 @@
+---
+import type { AuthenticatedUser } from '$types/AuthenticatedUser'
+
+export type Props = {
+  user: AuthenticatedUser
+}
+
+const { user } = Astro.props
+---
+
+<section class="mx-auto max-w-lg">
+  <div
+    class="flex space-x-4 rounded-2xl border border-neutral-300 bg-white p-4"
+  >
+    <img src={user.avatar} class="h-24 w-24 shrink-0 rounded-full" />
+    <div class="flex flex-col justify-center py-2 pr-2">
+      <h1 class="mb-1 text-lg font-medium leading-tight md:mb-0">
+        {user.name}
+      </h1>
+      <p>{user.email}</p>
+    </div>
+  </div>
+</section>
