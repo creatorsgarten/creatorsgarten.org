@@ -6,7 +6,9 @@ import { ObjectId } from 'mongodb'
 import { Icon } from 'react-iconify-icon-wrapper'
 
 const { user } = Astro.locals
-if (!user) return Astro.redirect('/')
+if (!user) {
+  return Astro.redirect('/auth/login?dest=' + encodeURIComponent(Astro.url.pathname + Astro.url.search))
+}
 
 const generateSignature = (msg: string) => {
   const key = process.env.SIGN_KEY_01
