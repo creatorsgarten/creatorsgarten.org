@@ -8,6 +8,10 @@ const ISODate = z
     'Date must be a string formatted like this: "YYYY-MM-DD". Note that in YAML, you must wrap the date in quotes.'
   )
 
+const VariadicString = z
+  .optional(z.union([z.string(), z.array(z.string())]))
+  .transform(value => (value ? (Array.isArray(value) ? value : [value]) : []))
+
 export const frontMatterSchema = z.object({
   image: z.string().url().optional(),
   grtn: z
@@ -28,6 +32,36 @@ export const frontMatterSchema = z.object({
       site: z.string().optional(),
       eventpopId: z.coerce.number().optional(),
       unlisted: z.boolean().optional(),
+    })
+    .optional(),
+
+  // ---
+  // person:
+  //   name: Panithi Makthiengtrong
+  //   intro: 🎹💻🍺😻
+  //   nickname: Thee
+  //   nicknameTh: ธี
+  //   github: betich
+  //   instagram: ttthhheeeeeeeee
+  //   x: betichhh
+  //   facebook: panithi.makthiengtrong
+  //   linkedin: panithi-makthiengtrong-80365a205
+  //   youtube: '@betich8740'
+  //   site: https://betich.me
+  // ---
+  person: z
+    .object({
+      name: z.string(),
+      intro: z.string(),
+      nickname: z.string(),
+      nicknameTh: z.string(),
+      github: VariadicString,
+      instagram: VariadicString,
+      x: VariadicString,
+      facebook: VariadicString,
+      linkedin: VariadicString,
+      youtube: VariadicString,
+      site: VariadicString,
     })
     .optional(),
 

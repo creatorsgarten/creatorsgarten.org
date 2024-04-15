@@ -1,0 +1,106 @@
+---
+import MetadataTable from './metadataTable.astro'
+import SidebarSection from './sidebarSection.astro'
+
+import type { FrontMatter } from '$functions/parseFrontMatter'
+
+export interface Props {
+  person: NonNullable<FrontMatter['person']>
+}
+
+const { person } = Astro.props
+
+interface SocialLink {
+  name: string
+  links: Link[]
+}
+
+interface Link {
+  name: string
+  url: string
+}
+
+const socialLinks: SocialLink[] = []
+
+const addSocialLink = (
+  name: string,
+  ids: string[],
+  getUrl: (id: string) => string,
+  getText = (id: string) => id
+) => {
+  if (ids.length) {
+    socialLinks.push({
+      name,
+      links: ids.map(id => ({
+        name: getText(id),
+        url: getUrl(id),
+      })),
+    })
+  }
+}
+
+addSocialLink(
+  'GitHub',
+  person.github,
+  id => `https://github.com/${id}`,
+  id => `@${id}`
+)
+addSocialLink(
+  'Facebook',
+  person.facebook,
+  id => `https://www.facebook.com/${id}`,
+  id => (id.match(/^\d+$/) ? 'Facebook Profile' : `@${id}`)
+)
+addSocialLink(
+  'Instagram',
+  person.instagram,
+  id => `https://www.instagram.com/${id}`,
+  id => `@${id}`
+)
+addSocialLink(
+  'X',
+  person.x,
+  id => `https://twitter.com/${id}`,
+  id => `@${id}`
+)
+addSocialLink(
+  'LinkedIn',
+  person.linkedin,
+  id => `https://www.linkedin.com/in/${id}`,
+  id => `/in/${id}`
+)
+addSocialLink(
+  'YouTube',
+  person.youtube,
+  id => `https://www.youtube.com/@${id}`,
+  id => `@${id}`
+)
+---
+
+<SidebarSection title={person.name}>
+  <div class="mb-3">
+    {person.intro}
+  </div>
+  <MetadataTable
+    data={[['NICKNAME', `${person.nickname} - ${person.nicknameTh}`]]}
+  >
+    <Fragment slot="table">
+      {
+        socialLinks.map(({ name, links }) => (
+          <tr>
+            <td>{name.toLocaleUpperCase()}</td>
+            <td>
+              <ul>
+                {links.map(({ name, url }) => (
+                  <li>
+                    <a href={url}>{name}</a>
+                  </li>
+                ))}
+              </ul>
+            </td>
+          </tr>
+        ))
+      }
+    </Fragment>
+  </MetadataTable>
+</SidebarSection>

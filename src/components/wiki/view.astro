@@ -11,6 +11,7 @@ import dayjs from 'dayjs'
 
 import type { FrontMatter } from '$functions/parseFrontMatter'
 import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
+import SidebarPersonSection from './sidebarPersonSection.astro'
 
 export interface Props {
   pageRef: string
@@ -76,6 +77,11 @@ const coverImage =
     {
       !!parsedFrontMatter?.event && (
         <SidebarEventSection event={parsedFrontMatter.event} />
+      )
+    }
+    {
+      !!parsedFrontMatter?.person && (
+        <SidebarPersonSection person={parsedFrontMatter.person} />
       )
     }
   </Fragment>
