@@ -8,6 +8,7 @@ export const GET: APIRoute = async ({ url }) => {
     jwks_uri: `${base}/.well-known/jwks`,
     authorization_endpoint: `${base}/auth/authorize`,
     token_endpoint: `${base}/auth/token`,
+    userinfo_endpoint: `${base}/auth/userinfo`,
     response_types_supported: ['id_token', 'code'],
     subject_types_supported: ['public', 'pairwise'],
   })
