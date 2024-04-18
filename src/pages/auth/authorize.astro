@@ -73,7 +73,6 @@ const updateResponse = (f: (searchParams: URLSearchParams) => void) => {
   }
 }
 updateResponse(searchParams => {
-  searchParams.set('id_token', idTokenInfo.idToken)
   searchParams.set('state', state)
   if (responseType === 'code') {
     searchParams.set(
@@ -86,6 +85,8 @@ updateResponse(searchParams => {
         id_token: idTokenInfo.idToken,
       })
     )
+  } else {
+    searchParams.set('id_token', idTokenInfo.idToken)
   }
 })
 
