@@ -7,6 +7,7 @@ export const GET: APIRoute = async ({ url }) => {
     issuer: 'https://creatorsgarten.org',
     jwks_uri: `${base}/.well-known/jwks`,
     authorization_endpoint: `${base}/auth/authorize`,
+    token_endpoint: `${base}/auth/token`,
     response_types_supported: ['id_token', 'code'],
     subject_types_supported: ['public', 'pairwise'],
   })
