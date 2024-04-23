@@ -95,10 +95,10 @@ dependencies:
     version: 7.1.1
   zod:
     specifier: ^3.22.2
-    version: 3.23.3
+    version: 3.23.4
   zod-validation-error:
     specifier: ^3.0.0
-    version: 3.1.0(zod@3.23.3)
+    version: 3.1.0(zod@3.23.4)
 
 devDependencies:
   '@astrojs/check':
@@ -2926,8 +2926,8 @@ packages:
       vitefu: 0.2.5(vite@5.2.9)
       which-pm: 2.1.1
       yargs-parser: 21.1.1
-      zod: 3.23.3
-      zod-to-json-schema: 3.22.4(zod@3.23.3)
+      zod: 3.23.4
+      zod-to-json-schema: 3.22.4(zod@3.23.4)
     optionalDependencies:
       sharp: 0.32.6
     transitivePeerDependencies:
@@ -3351,9 +3351,9 @@ packages:
       liquidjs: 10.7.1
       mongodb: 5.9.2
       octokit: 2.0.14
-      openapi-trpc: 0.1.2(@trpc/server@10.45.2)(zod@3.23.3)
+      openapi-trpc: 0.1.2(@trpc/server@10.45.2)(zod@3.23.4)
       p-memoize: 7.1.1(typescript@5.4.5)
-      zod: 3.23.3
+      zod: 3.23.4
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
       - '@mongodb-js/zstd'
@@ -5540,7 +5540,7 @@ packages:
     dependencies:
       mimic-fn: 4.0.0
 
-  /openapi-trpc@0.1.2(@trpc/server@10.45.2)(zod@3.23.3):
+  /openapi-trpc@0.1.2(@trpc/server@10.45.2)(zod@3.23.4):
     resolution: {integrity: sha512-VceDRPNd0gzDpmoWPn48glKucev4bKo7uo6NZIr/mQWlYz/B/VafdR1/6xxGbgVNl6++FMQZ0lsSdIEWBZLSQw==}
     peerDependencies:
       '@trpc/server': ^10.11.1
@@ -5548,8 +5548,8 @@ packages:
     dependencies:
       '@trpc/server': 10.45.2
       openapi-types: 12.1.0
-      zod: 3.23.3
-      zod-to-json-schema: 3.22.4(zod@3.23.3)
+      zod: 3.23.4
+      zod-to-json-schema: 3.22.4(zod@3.23.4)
     dev: true
 
   /openapi-types@12.1.0:
@@ -7850,24 +7850,24 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
 
-  /zod-to-json-schema@3.22.4(zod@3.23.3):
+  /zod-to-json-schema@3.22.4(zod@3.23.4):
     resolution: {integrity: sha512-2Ed5dJ+n/O3cU383xSY28cuVi0BCQhF8nYqWU5paEpl7fVdqdAmiLdqLyfblbNdfOFwFfi/mqU4O1pwc60iBhQ==}
     peerDependencies:
       zod: ^3.22.4
     dependencies:
-      zod: 3.23.3
+      zod: 3.23.4
 
-  /zod-validation-error@3.1.0(zod@3.23.3):
+  /zod-validation-error@3.1.0(zod@3.23.4):
     resolution: {integrity: sha512-zujS6HqJjMZCsvjfbnRs7WI3PXN39ovTcY1n8a+KTm4kOH0ZXYsNiJkH1odZf4xZKMkBDL7M2rmQ913FCS1p9w==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       zod: ^3.18.0
     dependencies:
-      zod: 3.23.3
+      zod: 3.23.4
     dev: false
 
-  /zod@3.23.3:
-    resolution: {integrity: sha512-tPvq1B/2Yu/dh2uAIH2/BhUlUeLIUvAjr6dpL/75I0pCYefHgjhXk1o1Kob3kTU8C7yU1j396jFHlsVWFi9ogg==}
+  /zod@3.23.4:
+    resolution: {integrity: sha512-/AtWOKbBgjzEYYQRNfoGKHObgfAZag6qUJX1VbHo2PRBgS+wfWagEY2mizjfyAPcGesrJOcx/wcl0L9WnVrHFw==}
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
