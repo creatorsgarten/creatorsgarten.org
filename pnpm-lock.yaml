@@ -5,16 +5,16 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  react: 18.3.0
-  react-dom: 18.3.0
+  react: 18.3.1
+  react-dom: 18.3.1
 
 dependencies:
   '@contentsgarten/html':
     specifier: ^1.3.0
-    version: 1.3.0(react-dom@18.3.0)(react@18.3.0)
+    version: 1.3.0(react-dom@18.3.1)(react@18.3.1)
   '@doist/typist':
     specifier: ^6.0.0
-    version: 6.0.2(@react-hookz/web@24.0.4)(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.1.3)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.20.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.5)(react-dom@18.3.0)(react@18.3.0)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.0)(rehype@13.0.1)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.0)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.4)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0)
+    version: 6.0.2(@react-hookz/web@24.0.4)(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.1.3)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.20.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.5)(react-dom@18.3.1)(react@18.3.1)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.0)(rehype@13.0.1)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.0)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.4)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0)
   '@fastify/middie':
     specifier: ^8.3.0
     version: 8.3.0
@@ -29,13 +29,13 @@ dependencies:
     version: 0.10.1(nanostores@0.10.3)
   '@nanostores/react':
     specifier: ^0.7.1
-    version: 0.7.2(nanostores@0.10.3)(react@18.3.0)
+    version: 0.7.2(nanostores@0.10.3)(react@18.3.1)
   '@sentry/astro':
     specifier: ^7.86.0
     version: 7.112.2(astro@4.7.0)
   '@tanstack/react-query':
     specifier: ^5.0.0
-    version: 5.32.0(react@18.3.0)
+    version: 5.32.0(react@18.3.1)
   '@trpc/client':
     specifier: 10.45.2
     version: 10.45.2(@trpc/server@10.45.2)
@@ -82,14 +82,14 @@ dependencies:
     specifier: ^1.5.3
     version: 1.5.3
   react:
-    specifier: 18.3.0
-    version: 18.3.0
+    specifier: 18.3.1
+    version: 18.3.1
   react-dom:
-    specifier: 18.3.0
-    version: 18.3.0(react@18.3.0)
+    specifier: 18.3.1
+    version: 18.3.1(react@18.3.1)
   react-iconify-icon-wrapper:
     specifier: ^0.0.3
-    version: 0.0.3(react@18.3.0)
+    version: 0.0.3(react@18.3.1)
   sitemap:
     specifier: ^7.1.1
     version: 7.1.1
@@ -112,7 +112,7 @@ devDependencies:
     version: 0.4.1
   '@astrojs/react':
     specifier: ^3.0.0
-    version: 3.3.1(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0)(react@18.3.0)(vite@5.2.10)
+    version: 3.3.1(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.3.1)(react@18.3.1)(vite@5.2.10)
   '@astrojs/svelte':
     specifier: ^5.0.0
     version: 5.4.0(astro@4.7.0)(svelte@4.2.15)(typescript@5.4.5)(vite@5.2.10)
@@ -148,7 +148,7 @@ devDependencies:
     version: 1.5.5
   '@types/react':
     specifier: ^18.2.21
-    version: 18.3.0
+    version: 18.3.1
   '@types/react-dom':
     specifier: ^18.2.7
     version: 18.3.0
@@ -318,20 +318,20 @@ packages:
     dependencies:
       prismjs: 1.29.0
 
-  /@astrojs/react@3.3.1(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0)(react@18.3.0)(vite@5.2.10):
+  /@astrojs/react@3.3.1(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.3.1)(react@18.3.1)(vite@5.2.10):
     resolution: {integrity: sha512-dwN6B+C0hQ1jpeQ5EckICpqv76t6RxEslldCP0UQ/ospolNk8GjqL11X/xQSbftiQvGWRMT0Tj5f0Xk17k5qJQ==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
     peerDependencies:
       '@types/react': ^17.0.50 || ^18.0.21
       '@types/react-dom': ^17.0.17 || ^18.0.6
-      react: 18.3.0
-      react-dom: 18.3.0
+      react: 18.3.1
+      react-dom: 18.3.1
     dependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
       '@types/react-dom': 18.3.0
       '@vitejs/plugin-react': 4.2.1(vite@5.2.10)
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
       ultrahtml: 1.5.3
     transitivePeerDependencies:
       - supports-color
@@ -608,15 +608,15 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
 
-  /@contentsgarten/html@1.3.0(react-dom@18.3.0)(react@18.3.0):
+  /@contentsgarten/html@1.3.0(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-5rrYavKflX9qMFMgNgRNAYnSKF9gghDfVlAHHCalFiL/OiSvo5H+GyTo7zm8a4I4LBdvivyJ4/M5hfOvIAmEBg==}
     peerDependencies:
-      react: 18.3.0
-      react-dom: 18.3.0
+      react: 18.3.1
+      react-dom: 18.3.1
     dependencies:
-      html-react-parser: 3.0.16(react@18.3.0)
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      html-react-parser: 3.0.16(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
     dev: false
 
   /@contentsgarten/markdown@2.0.0:
@@ -625,7 +625,7 @@ packages:
       '@wooorm/starry-night': 2.0.0
     dev: true
 
-  /@doist/typist@6.0.2(@react-hookz/web@24.0.4)(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.1.3)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.20.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.5)(react-dom@18.3.0)(react@18.3.0)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.0)(rehype@13.0.1)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.0)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.4)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0):
+  /@doist/typist@6.0.2(@react-hookz/web@24.0.4)(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.1.3)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.20.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.5)(react-dom@18.3.1)(react@18.3.1)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.0)(rehype@13.0.1)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.0)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.4)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0):
     resolution: {integrity: sha512-eWw0knUkKJJ5qTEH96vumepz9I40jqXm12koxUIVrptNCUO/0A8WrLJpoNhdnCRpw7a5rwbzcoN4AWhHYK5z7w==}
     engines: {node: ^16.0.0 || ^18.0.0 || ^20.0.0 || ^21.0.0, npm: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0}
     peerDependencies:
@@ -638,8 +638,8 @@ packages:
       mdast-util-gfm-strikethrough: ^2.0.0
       micromark-extension-gfm-autolink-literal: ^2.0.0
       micromark-extension-gfm-strikethrough: ^2.0.0
-      react: 18.3.0
-      react-dom: 18.3.0
+      react: 18.3.1
+      react-dom: 18.3.1
       rehype: ^13.0.0
       rehype-minify-whitespace: ^6.0.0
       rehype-raw: ^7.0.0
@@ -655,7 +655,7 @@ packages:
       unist-util-remove: ^4.0.0
       unist-util-visit: ^5.0.0
     dependencies:
-      '@react-hookz/web': 24.0.4(react-dom@18.3.0)(react@18.3.0)
+      '@react-hookz/web': 24.0.4(react-dom@18.3.1)(react@18.3.1)
       '@tiptap/core': 2.3.0(@tiptap/pm@2.3.0)
       '@tiptap/extension-blockquote': 2.3.0(@tiptap/core@2.3.0)
       '@tiptap/extension-bold': 2.3.0(@tiptap/core@2.3.0)
@@ -685,7 +685,7 @@ packages:
       '@tiptap/extension-text-style': 2.3.0(@tiptap/core@2.3.0)
       '@tiptap/extension-typography': 2.3.0(@tiptap/core@2.3.0)
       '@tiptap/pm': 2.3.0
-      '@tiptap/react': 2.3.0(@tiptap/core@2.3.0)(@tiptap/pm@2.3.0)(react-dom@18.3.0)(react@18.3.0)
+      '@tiptap/react': 2.3.0(@tiptap/core@2.3.0)(@tiptap/pm@2.3.0)(react-dom@18.3.1)(react@18.3.1)
       '@tiptap/suggestion': 2.3.0(@tiptap/core@2.3.0)(@tiptap/pm@2.3.0)
       emoji-regex: 10.3.0
       hast-util-is-element: 3.0.0
@@ -696,8 +696,8 @@ packages:
       micromark-extension-gfm-autolink-literal: 2.0.0
       micromark-extension-gfm-strikethrough: 2.0.0
       prosemirror-codemark: 0.4.2(prosemirror-inputrules@1.4.0)(prosemirror-model@1.20.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.5)
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
       rehype: 13.0.1
       rehype-minify-whitespace: 6.0.0
       rehype-raw: 7.0.0
@@ -1249,15 +1249,15 @@ packages:
       nanostores: 0.10.3
     dev: false
 
-  /@nanostores/react@0.7.2(nanostores@0.10.3)(react@18.3.0):
+  /@nanostores/react@0.7.2(nanostores@0.10.3)(react@18.3.1):
     resolution: {integrity: sha512-e3OhHJFv3NMSFYDgREdlAQqkyBTHJM91s31kOZ4OvZwJKdFk5BLk0MLbh51EOGUz9QGX2aCHfy1RvweSi7fgwA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       nanostores: ^0.9.0 || ^0.10.0
-      react: 18.3.0
+      react: 18.3.1
     dependencies:
       nanostores: 0.10.3
-      react: 18.3.0
+      react: 18.3.1
     dev: false
 
   /@nodelib/fs.scandir@2.1.5:
@@ -1554,20 +1554,20 @@ packages:
     resolution: {integrity: sha512-N56fTrAPUDz/R423pag+n6TXWbvlBZDtTehaGFjK0InmN+V2OFWLE/WmORhmn6Ce7dlwH5+tQN1LJFw3ngTJVg==}
     dev: false
 
-  /@react-hookz/web@24.0.4(react-dom@18.3.0)(react@18.3.0):
+  /@react-hookz/web@24.0.4(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-DcIM6JiZklDyHF6CRD1FTXzuggAkQ+3Ncq2Wln7Kdih8GV6ZIeN9JfS6ZaQxpQUxan8/4n0J2V/R7nMeiSrb2Q==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       js-cookie: ^3.0.5
-      react: 18.3.0
-      react-dom: 18.3.0
+      react: 18.3.1
+      react-dom: 18.3.1
     peerDependenciesMeta:
       js-cookie:
         optional: true
     dependencies:
       '@react-hookz/deep-equal': 1.0.4
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
     dev: false
 
   /@remirror/core-constants@2.0.2:
@@ -1975,13 +1975,13 @@ packages:
     resolution: {integrity: sha512-Z3flEgCat55DRXU5UMwYU1U+DgFZKA3iufyOKs+II7iRAo0uXkeU7PH5e6sOH1CGEag0IpKmZxlUFpCg6roSKw==}
     dev: false
 
-  /@tanstack/react-query@5.32.0(react@18.3.0):
+  /@tanstack/react-query@5.32.0(react@18.3.1):
     resolution: {integrity: sha512-+E3UudQtarnx9A6xhpgMZapyF+aJfNBGFMgI459FnduEZqT/9KhOWnMOneZahLRt52yzskSA0AuOyLkXHK0yBA==}
     peerDependencies:
-      react: 18.3.0
+      react: 18.3.1
     dependencies:
       '@tanstack/query-core': 5.32.0
-      react: 18.3.0
+      react: 18.3.1
     dev: false
 
   /@tiptap/core@2.3.0(@tiptap/pm@2.3.0):
@@ -2272,20 +2272,20 @@ packages:
       prosemirror-view: 1.33.4
     dev: false
 
-  /@tiptap/react@2.3.0(@tiptap/core@2.3.0)(@tiptap/pm@2.3.0)(react-dom@18.3.0)(react@18.3.0):
+  /@tiptap/react@2.3.0(@tiptap/core@2.3.0)(@tiptap/pm@2.3.0)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-ThgFJQTWYKRClTV2Zg0wBRqfy0EGz3U4NOey7jwncUjSjx5+o9nXbfQAYWDKQFfWyE+wnrBTYfddEP9pHNX5cQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
       '@tiptap/pm': ^2.0.0
-      react: 18.3.0
-      react-dom: 18.3.0
+      react: 18.3.1
+      react-dom: 18.3.1
     dependencies:
       '@tiptap/core': 2.3.0(@tiptap/pm@2.3.0)
       '@tiptap/extension-bubble-menu': 2.3.0(@tiptap/core@2.3.0)(@tiptap/pm@2.3.0)
       '@tiptap/extension-floating-menu': 2.3.0(@tiptap/core@2.3.0)(@tiptap/pm@2.3.0)
       '@tiptap/pm': 2.3.0
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
     dev: false
 
   /@tiptap/suggestion@2.3.0(@tiptap/core@2.3.0)(@tiptap/pm@2.3.0):
@@ -2434,11 +2434,11 @@ packages:
   /@types/react-dom@18.3.0:
     resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
     dependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
     dev: true
 
-  /@types/react@18.3.0:
-    resolution: {integrity: sha512-DiUcKjzE6soLyln8NNZmyhcQjVv+WsUIFSqetMN0p8927OztKT4VTfFTqsbAi5oAGIcgOmOajlfBqyptDDjZRw==}
+  /@types/react@18.3.1:
+    resolution: {integrity: sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==}
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
@@ -3991,14 +3991,14 @@ packages:
   /html-escaper@3.0.3:
     resolution: {integrity: sha512-RuMffC89BOWQoY0WKGpIhn5gX3iI54O6nRA0yC124NYVtzjmFWBIiFd8M0x+ZdX0P9R4lADg1mgP8C7PxGOWuQ==}
 
-  /html-react-parser@3.0.16(react@18.3.0):
+  /html-react-parser@3.0.16(react@18.3.1):
     resolution: {integrity: sha512-ysQZtRFPcg+McVb4B05oNWSnqM14zagpvTgGcI5e1/BvCl38YwzWzKibrbBmXeemg70olN1bAoeixo7o06G5Eg==}
     peerDependencies:
-      react: 18.3.0
+      react: 18.3.1
     dependencies:
       domhandler: 5.0.3
       html-dom-parser: 3.1.7
-      react: 18.3.0
+      react: 18.3.1
       react-property: 2.0.0
       style-to-js: 1.1.3
     dev: false
@@ -5951,21 +5951,21 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /react-dom@18.3.0(react@18.3.0):
-    resolution: {integrity: sha512-zaKdLBftQJnvb7FtDIpZtsAIb2MZU087RM8bRDZU8LVCCFYjPTsDZJNFUWPcVz3HFSN1n/caxi0ca4B/aaVQGQ==}
+  /react-dom@18.3.1(react@18.3.1):
+    resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
-      react: 18.3.0
+      react: 18.3.1
     dependencies:
       loose-envify: 1.4.0
-      react: 18.3.0
-      scheduler: 0.23.1
+      react: 18.3.1
+      scheduler: 0.23.2
 
-  /react-iconify-icon-wrapper@0.0.3(react@18.3.0):
+  /react-iconify-icon-wrapper@0.0.3(react@18.3.1):
     resolution: {integrity: sha512-rkMXxYJ6Hq5VaAIg5LJTwG5f52o89Tj7UQ+bkpTKR0AXpI96uLFvMv8KR09I3hq5IjHZsfdYoDP9xkQ/I4ECfA==}
     peerDependencies:
-      react: 18.3.0
+      react: 18.3.1
     dependencies:
-      react: 18.3.0
+      react: 18.3.1
     dev: false
 
   /react-property@2.0.0:
@@ -5977,8 +5977,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /react@18.3.0:
-    resolution: {integrity: sha512-RPutkJftSAldDibyrjuku7q11d3oy6wKOyPe5K1HA/HwwrXcEqBdHsLypkC2FFYjP7bPUa6gbzSBhw4sY2JcDg==}
+  /react@18.3.1:
+    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
@@ -6277,8 +6277,8 @@ packages:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
     dev: false
 
-  /scheduler@0.23.1:
-    resolution: {integrity: sha512-5GKS5JGfiah1O38Vfa9srZE4s3wdHbwjlCrvIookrg2FO9aIwKLOJXuJQFlEfNcVSOXuaL2hzDeY20uVXcUtrw==}
+  /scheduler@0.23.2:
+    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
     dependencies:
       loose-envify: 1.4.0
 
