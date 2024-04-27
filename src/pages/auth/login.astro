@@ -1,0 +1,71 @@
+---
+import CSRF from 'csrf'
+
+import { QrSignIn } from '$components/auth/qrSignIn'
+import { csrfSecret } from '$constants/secrets/csrfSecret'
+import { eventpopClient } from '$constants/secrets/eventpopClient'
+import Blank from '$layouts/blank.astro'
+import type { AstroGlobal } from 'astro'
+
+const generateLoginUri = async ({ redirect, url }: AstroGlobal) => {
+  const redirectDestination = url.searchParams.get('dest') ?? '/'
+
+  const csrfInstance = new CSRF()
+  const redirectHint =
+    url.hostname === 'localhost' ? `localhost${url.port}` : 'new'
+  const csrfToken = csrfInstance.create(csrfSecret ?? 'demodash')
+
+  const loginURI = `https://www.eventpop.me/oauth/authorize?${new URLSearchParams(
+    {
+      client_id: eventpopClient.id ?? '',
+      redirect_uri:
+        'https://dtinth.github.io/oauth_gateway/eventpop_callback.html',
+      response_type: 'code',
+      state: `${redirectHint}!${redirectDestination}!eventpop-${csrfToken}`,
+    }
+  ).toString()}`
+
+  return loginURI
+}
+
+const loginUri = await generateLoginUri(Astro)
+---
+
+<Blank>
+  <Fragment slot="head">
+    <title>Authgarten</title>
+  </Fragment>
+  <main class="mx-auto max-w-7xl px-4 py-12">
+    <div class="flex gap-4 items-center mb-6">
+      <img
+        src="/images/icons/solid.svg"
+        width={888}
+        height={398}
+        class="h-[1.8rem] w-auto"
+        alt="garten"
+      />
+      <h1 class="text-4xl font-medium">Sign in</h1>
+    </div>
+    <div class="flex gap-6">
+      <div class="flex-1 flex flex-col gap-4 bg-white rounded-xl border-2 border-neutral-200 p-4">
+        <div class="text-neutral-500">
+          Sign in with your Eventpop account by clicking the button below.
+        </div>
+        <a
+          href={loginUri}
+          class="block px-6 py-3 bg-[#260176] text-white rounded-md text-xl text-center my-auto"
+        >
+          Sign in with Eventpop
+        </a>
+      </div>
+      <div class="flex-1 w-[24rem] hidden md:flex bg-white rounded-xl border-2 border-neutral-200 p-4 flex-col gap-4">
+        <div class="text-neutral-500">
+          …or use your mobile phone to scan the QR code below to sign in.
+        </div>
+        <div>
+          <QrSignIn client:load />
+        </div>
+      </div>
+    </div>
+  </main>
+</Blank>

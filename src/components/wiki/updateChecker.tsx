@@ -1,7 +1,7 @@
 import { Icon } from 'react-iconify-icon-wrapper'
 
-import { QueryClientProvider, useQuery } from '@tanstack/react-query'
-import { queryClient } from '$constants/queryClient'
+import { QueryClientContextProvider } from '$constants/queryClient'
+import { useQuery } from '@tanstack/react-query'
 
 export interface WikiUpdateChecker {
   pageRef: string
@@ -10,9 +10,9 @@ export interface WikiUpdateChecker {
 
 export default function WikiUpdateChecker(props: WikiUpdateChecker) {
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientContextProvider>
       <WikiUpdateCheckerImpl {...props} />
-    </QueryClientProvider>
+    </QueryClientContextProvider>
   )
 }
 
