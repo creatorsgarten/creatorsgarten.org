@@ -22,7 +22,7 @@ RUN pnpm build
 
 # ? -------------------------
 
-FROM gcr.io/distroless/nodejs18-debian11:nonroot as runner
+FROM gcr.io/distroless/nodejs20-debian12:nonroot as runner
 
 USER nonroot
 EXPOSE 8080
