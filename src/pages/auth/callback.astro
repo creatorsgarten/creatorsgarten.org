@@ -1,6 +1,6 @@
 ---
-import CSRF from 'csrf'
 import Blank from '$layouts/blank.astro'
+import CSRF from 'csrf'
 
 import { csrfSecret } from '$constants/secrets/csrfSecret'
 
@@ -42,9 +42,16 @@ try {
   const result = await (() => {
     switch (targetService) {
       case 'eventpop':
-        return Astro.locals.backend.auth.signInWithEventpopAuthorizationCode.mutate(
-          { code }
-        )
+        if (code.startsWith('grtn_') && code.includes('|')) {
+          const [signature, deviceId] = code.split('|')
+          return Astro.locals.backend.auth.signInWithDeviceAuthorizationSignature.mutate(
+            { signature, deviceId }
+          )
+        } else {
+          return Astro.locals.backend.auth.signInWithEventpopAuthorizationCode.mutate(
+            { code }
+          )
+        }
       case 'github':
         return Astro.locals.backend.auth.linkGitHubAccount.mutate({ code })
       case 'discord':

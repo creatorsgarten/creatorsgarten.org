@@ -2,9 +2,10 @@ import { MongoClient } from 'mongodb'
 
 import { mongoAddress } from './secrets/mongoAddress'
 
+import type { DeviceAuthorization } from '$types/mongo/DeviceAuthorization'
 import type { GardenAccess } from '$types/mongo/GardenAccess'
-import type { User } from '$types/mongo/User'
 import type { OAuthAudit } from '$types/mongo/OAuthAudit'
+import type { User } from '$types/mongo/User'
 
 const globalMongo = global as unknown as {
   mongo?: MongoClient
@@ -23,4 +24,7 @@ export const collections = {
   users: db.collection<User>('users'),
   gardenAccesses: db.collection<GardenAccess>('gardenAccesses'),
   oAuthAudits: db.collection<OAuthAudit>('oAuthAudits'),
+  deviceAuthorizations: db.collection<DeviceAuthorization>(
+    'deviceAuthorizations'
+  ),
 }
