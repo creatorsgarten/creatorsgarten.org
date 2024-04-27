@@ -2,15 +2,17 @@ import { QueryClientContextProvider } from '$constants/queryClient'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef } from 'react'
 
-export function QrSignIn() {
+export interface QrSignIn {
+  state: string
+}
+export function QrSignIn(props: QrSignIn) {
   return (
     <QueryClientContextProvider>
-      <QrSignInView />
+      <QrSignInView {...props} />
     </QueryClientContextProvider>
   )
 }
-
-function QrSignInView() {
+function QrSignInView(props: QrSignIn) {
   const { data } = useQuery({
     queryKey: ['qrSignIn'],
     refetchOnWindowFocus: false,
@@ -36,7 +38,7 @@ function QrSignInView() {
       if (result.found) {
         console.log('Device authorized.')
         clearInterval(interval)
-        inputRef.current!.value = result.signature
+        inputRef.current!.value = result.signature + '|' + deviceId
         formRef.current!.submit()
       }
     }, 5000)
@@ -58,19 +60,12 @@ function QrSignInView() {
         )}
         <form
           ref={formRef}
-          action="/auth/mobileCallback"
-          method="POST"
+          action="/auth/callback"
+          method="GET"
           data-astro-reload
         >
-          {!!deviceId && (
-            <input type="hidden" name="deviceId" value={deviceId} />
-          )}
-          <input
-            ref={inputRef}
-            type="hidden"
-            name="signature"
-            defaultValue=""
-          />
+          <input type="hidden" name="state" value={props.state} />
+          <input ref={inputRef} type="hidden" name="code" defaultValue="" />
         </form>
       </div>
       <div className="mt-2 text-sm text-neutral-600">

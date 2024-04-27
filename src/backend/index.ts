@@ -10,6 +10,7 @@ import { authenticateEventpopUser } from './auth/authenticateEventpopUser'
 import { authenticateGitHub } from './auth/authenticateGitHub'
 import { getAuthenticatedUser } from './auth/getAuthenticatedUser'
 
+import { authenticateDeviceAuthorizationSignature } from './auth/authenticateDeviceAuthorizationSignature'
 import { mintIdToken } from './auth/mintIdToken'
 import {
   auditInputSchema,
@@ -76,6 +77,20 @@ export const appRouter = t.router({
       )
       .mutation(({ input }) => {
         return authenticateEventpopUser(input.code)
+      }),
+
+    signInWithDeviceAuthorizationSignature: t.procedure
+      .input(
+        z.object({
+          deviceId: z.string(),
+          signature: z.string(),
+        })
+      )
+      .mutation(({ input }) => {
+        return authenticateDeviceAuthorizationSignature(
+          input.deviceId,
+          input.signature
+        )
       }),
 
     linkGitHubAccount: t.procedure
