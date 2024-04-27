@@ -5,11 +5,9 @@ import { defineConfig } from 'astro/config'
 import node from '@astrojs/node'
 
 /* Integrations */
-import prefetch from '@astrojs/prefetch'
 import react from '@astrojs/react'
 import svelte from '@astrojs/svelte'
 import tailwind from '@astrojs/tailwind'
-
 import sentry from '@sentry/astro'
 
 // https://astro.build/config
@@ -19,9 +17,9 @@ export default defineConfig({
   adapter: node({
     mode: 'middleware',
   }),
+  prefetch: true,
   integrations: [
     tailwind(),
-    prefetch(),
     react(),
     svelte(),
     sentry({

@@ -1,8 +1,8 @@
 import { defineMiddleware } from 'astro/middleware'
-import mem from 'mem'
+import memoize from 'memoize'
 
 export const userMiddleware = defineMiddleware(async ({ locals }, next) => {
-  locals.user = await mem(
+  locals.user = await memoize(
     () => locals.backend.auth.getAuthenticatedUser.query(),
     {
       maxAge: 1000 * 60 * 15, // 15 minutes
