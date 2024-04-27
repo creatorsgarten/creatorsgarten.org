@@ -171,11 +171,11 @@ export const appRouter = t.router({
     getDeviceAuthorization: t.procedure
       .input(
         z.object({
-          deviceId: z.string(),
+          deviceIdBasis: z.string(),
         })
       )
       .query(async ({ input }) => {
-        return getDeviceAuthorization(input.deviceId)
+        return getDeviceAuthorization(input.deviceIdBasis)
       }),
   }),
 

@@ -26,6 +26,13 @@ export async function authenticateDeviceAuthorizationSignature(
     })
   }
 
+  if (Date.parse(result.timestamp) < Date.now() - 15 * 60e3) {
+    throw new TRPCError({
+      code: 'UNAUTHORIZED',
+      message: 'Signature is expired',
+    })
+  }
+
   const userId = result.userId
   const user = await collections.users.findOne({ _id: new ObjectId(userId) })
   if (!user) {

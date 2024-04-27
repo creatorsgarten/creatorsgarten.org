@@ -1,4 +1,5 @@
 import { QueryClientContextProvider } from '$constants/queryClient'
+import { sha256 } from '$functions/sha256'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef } from 'react'
 
@@ -17,19 +18,21 @@ function QrSignInView(props: QrSignIn) {
     queryKey: ['qrSignIn'],
     refetchOnWindowFocus: false,
     queryFn: async () => {
-      const deviceId = crypto.randomUUID()
+      const deviceIdBasis = crypto.randomUUID()
+      const deviceId = await sha256(deviceIdBasis)
       const url = `${location.origin}/auth/mobile?deviceId=${deviceId}`
       console.log(url)
-      return { url, deviceId }
+      return { url, deviceId, deviceIdBasis }
     },
   })
   const deviceId = data?.deviceId
+  const deviceIdBasis = data?.deviceIdBasis
   const formRef = useRef<HTMLFormElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
-    if (!deviceId) return
+    if (!deviceIdBasis) return
     const interval = setInterval(async () => {
-      const response = await fetch(`/api/deviceAuthorizations/${deviceId}`)
+      const response = await fetch(`/api/deviceAuthorizations/${deviceIdBasis}`)
       if (!response.ok) {
         console.error('Unable to get device authorization', response.statusText)
         return
@@ -43,7 +46,7 @@ function QrSignInView(props: QrSignIn) {
       }
     }, 5000)
     return () => clearInterval(interval)
-  }, [deviceId])
+  }, [deviceIdBasis, deviceId])
   return (
     <div className="flex flex-col items-center">
       <div className="relative h-[192px] w-[192px] border border-neutral-300">
