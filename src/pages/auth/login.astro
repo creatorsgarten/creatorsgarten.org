@@ -4,6 +4,8 @@ import CSRF from 'csrf'
 import { QrSignIn } from '$components/auth/qrSignIn'
 import { csrfSecret } from '$constants/secrets/csrfSecret'
 import { eventpopClient } from '$constants/secrets/eventpopClient'
+import { getFeatureFlags } from '$functions/getFeatureFlags'
+import { getWebsiteConfig } from '$functions/getWebsiteConfig'
 import Blank from '$layouts/blank.astro'
 import type { AstroGlobal } from 'astro'
 
@@ -26,10 +28,16 @@ const generateLoginUri = async ({ redirect, url }: AstroGlobal) => {
     }
   ).toString()}`
 
-  return { loginUri, csrfToken, state }
+  return { loginUri, state }
 }
 
-const { loginUri, csrfToken, state } = await generateLoginUri(Astro)
+const { loginUri, state } = await generateLoginUri(Astro)
+const websiteConfig = await getWebsiteConfig()
+const featureFlags = getFeatureFlags(Astro, websiteConfig)
+
+if (!featureFlags.isEnabled('deviceAuthorization')) {
+  return Astro.redirect(loginUri, 307)
+}
 ---
 
 <Blank>

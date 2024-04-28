@@ -11,7 +11,13 @@ const announcementSchema = z.object({
 export const websiteConfigSchema = z.object({
   announcements: z.record(announcementSchema),
   featureFlags: z.object({
-    example: z.boolean(),
+    deviceAuthorization: z
+      .boolean()
+      .describe(
+        'Allow people to use their mobile device to sign another device in. This adds another step to the sign-in process, so only enable this when needed.'
+      )
+      .default(false),
+    example: z.boolean().default(false),
   }),
   events: z.object({
     recurring: z.array(
