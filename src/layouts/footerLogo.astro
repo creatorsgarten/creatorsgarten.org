@@ -1,0 +1,19 @@
+<script>
+  const uwu = typeof window !== 'undefined' && new URL(window.location.href).searchParams.get('uwu') === 'true';
+
+  if (uwu) {
+    (document.getElementById('footerLogo') as HTMLImageElement).src = '/images/uwugarten.png';
+    (document.getElementById('footerLogo') as HTMLImageElement).class = "h-16 lg:h-24 shrink-0";
+    (document.getElementById('footerLogo') as HTMLImageElement).removeAttribute('style')
+
+  }
+</script>
+
+<img
+  id="footerLogo"
+  src="/images/creatorsgarten.svg"
+  alt=""
+  loading="lazy"
+  class="h-8 lg:h-12 shrink-0"
+  style="filter: invert(1);"
+/>
