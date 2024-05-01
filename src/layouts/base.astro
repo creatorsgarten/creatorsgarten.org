@@ -3,6 +3,7 @@ import Blank from './blank.astro'
 
 import AuthButton from '../components/authButton.astro'
 import Announcement from '$components/announcement.astro'
+import FooterLogo from './footerLogo.svelte'
 
 import './base.css'
 import { getFeatureFlags } from '$functions/getFeatureFlags'
@@ -128,17 +129,9 @@ const featureFlags = getFeatureFlags(Astro)
     </div>
   </footer> -->
   <footer
-    class="mt-16 flex h-40 items-end justify-between bg-ck p-4 text-white lg:p-8 lg:text-lg"
+    class="mt-16 flex flex-col-reverse sm:flex-row h-40 items-start sm:items-end justify-start sm:justify-between bg-ck p-4 text-white lg:p-8 lg:text-lg"
   >
-    <div>Crafted by 👩‍💻 🧑‍🎨 🧙 🦹‍♀️ & more.</div>
-    <div>
-      <img
-        src="/images/creatorsgarten.svg"
-        alt=""
-        loading="lazy"
-        class="h-8 lg:h-12"
-        style="filter: invert(1);"
-      />
-    </div>
+    <div class="mt-4 sm:mt-0">Crafted by 👩‍💻 🧑‍🎨 🧙 🦹‍♀️ & more.</div>
+    <FooterLogo client:idle />
   </footer>
 </Blank>
