@@ -1,4 +1,6 @@
 ---
+import Tweet from 'astro-tweet'
+
 import Head from '$components/head.astro'
 import BaseLayout from '$layouts/base.astro'
 import CFImage from '$components/cfImage.astro'
@@ -252,25 +254,7 @@ const stories = [
   <section
     class="flex flex-col items-center gap-8 overflow-x-auto pt-8 md:flex-row"
   >
-    <blockquote class="twitter-tweet">
-      <p lang="en" dir="ltr">
-        <a href="https://twitter.com/creatorsgarten?ref_src=twsrc%5Etfw"
-          >@creatorsgarten</a
-        > Organized a functional programming meetup today. It was very well done!
-        If anyone happens to be in Thailand do look out for developer centric events
-        by them. Highly recommended <a
-          href="https://twitter.com/hashtag/developer?src=hash&ref_src=twsrc%5Etfw"
-          >#developer</a
-        >
-        <a
-          href="https://twitter.com/hashtag/meetups?src=hash&ref_src=twsrc%5Etfw"
-          >#meetups</a
-        >
-      </p>&mdash; Zack Siri (@zacksiri) <a
-        href="https://twitter.com/zacksiri/status/1659598202293866497?ref_src=twsrc%5Etfw"
-        >May 19, 2023</a
-      >
-    </blockquote>
+    <Tweet id="1659598202293866497" />
     <div
       class="no-scrollbar hidden items-center justify-start gap-6 overflow-x-auto md:flex"
     >
@@ -279,7 +263,7 @@ const stories = [
           width="560"
           height="315"
           src="https://www.youtube.com/embed/N09H1Rbuf9g?si=Ki1f3zMVpsfmCDko"
-          title="YouTube video player"
+          title="The โง่ Hackathon ครั้งที่ 7 แห่งประเทศ Thailand"
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
@@ -288,8 +272,8 @@ const stories = [
         <iframe
           width="560"
           height="315"
-          src="https://www.youtube.com/embed/nQa3foXwzGE?si=yHX-fD-wgvDwbta4"
-          title="YouTube video player"
+          src="https://www.youtube.com/embed/Wuxt4HiZtB4?si=bHghMucy6Rbsl2vL"
+          title="A Journey into Next-Gen CSS-in-JS Innovations"
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
@@ -298,8 +282,8 @@ const stories = [
         <iframe
           width="560"
           height="315"
-          src="https://www.youtube.com/embed/GR2tKv93BDY?si=B3ej_MfCRztz3P0n"
-          title="YouTube video player"
+          src="https://www.youtube.com/embed/i58lEAFqDlw?si=rkHlAlEvzEbRLaRM"
+          title="Using GitHub as a database for rich content and video processing"
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
@@ -307,56 +291,51 @@ const stories = [
     </div>
   </section>
 
-  <!-- <section class="pt-8">
-    <div class="grid grid-cols-2 gap-3 md:grid-cols-4 lg:gap-6">
-      <div
-        class="flex aspect-square w-full flex-col justify-between bg-gradient-to-br from-neutral-100 to-neutral-300 p-4 pr-8"
-      >
-        <h4 class="text-2xl xl:text-3xl">✍️ Cluster wiki</h4>
-        <p class="text-sm lg:text-lg">
-          Markdown-based wiki engine, supercharged by liquid
-        </p>
-      </div>
-      <div
-        class="from-co to-cy flex aspect-square w-full flex-col justify-between bg-gradient-to-br p-4 pr-8 text-white"
-      >
-        <h4 class="text-2xl xl:text-3xl">🔥 Bonfires</h4>
-        <p class="text-sm lg:text-lg">Toolkit for the art of gatherings</p>
-      </div>
-      <div
-        class="from-cb to-ck flex aspect-square w-full flex-col justify-between bg-gradient-to-br p-4 pr-8 text-white"
-      >
-        <h4 class="text-2xl xl:text-3xl">📅 techcal.dev</h4>
-        <div>
-          <p class="text-sm lg:text-lg">
-            All-in-one calendar for Tech events in your town
-          </p>
-        </div>
-      </div>
+  <!--<section class="pt-8">-->
+  <!--  <div class="grid grid-cols-2 gap-3 md:grid-cols-4 lg:gap-6">-->
+  <!--    <div-->
+  <!--      class="flex aspect-square w-full flex-col justify-between bg-gradient-to-br from-neutral-100 to-neutral-300 p-4 pr-8"-->
+  <!--    >-->
+  <!--      <h4 class="text-2xl xl:text-3xl">✍️ Cluster wiki</h4>-->
+  <!--      <p class="text-sm lg:text-lg">-->
+  <!--        Markdown-based wiki engine, supercharged by liquid-->
+  <!--      </p>-->
+  <!--    </div>-->
+  <!--    <div-->
+  <!--      class="from-co to-cy flex aspect-square w-full flex-col justify-between bg-gradient-to-br p-4 pr-8 text-white"-->
+  <!--    >-->
+  <!--      <h4 class="text-2xl xl:text-3xl">🔥 Bonfires</h4>-->
+  <!--      <p class="text-sm lg:text-lg">Toolkit for the art of gatherings</p>-->
+  <!--    </div>-->
+  <!--    <div-->
+  <!--      class="from-cb to-ck flex aspect-square w-full flex-col justify-between bg-gradient-to-br p-4 pr-8 text-white"-->
+  <!--    >-->
+  <!--      <h4 class="text-2xl xl:text-3xl">📅 techcal.dev</h4>-->
+  <!--      <div>-->
+  <!--        <p class="text-sm lg:text-lg">-->
+  <!--          All-in-one calendar for Tech events in your town-->
+  <!--        </p>-->
+  <!--      </div>-->
+  <!--    </div>-->
 
-      <div class="mx-4 flex w-4/5 flex-col gap-1 lg:gap-3">
-        <div class="text-2xl xl:text-4xl">Crafts</div>
-        <p class="text-sm lg:text-lg">
-          Projects crafted and maintained by people of Creatorsgarten. Both
-          on-going and in the making.
-        </p>
-        <div class="mt-1 flex lg:mt-4">
-          <div
-            class="bg-cb rounded-full px-3 py-1 text-sm text-white lg:text-base"
-          >
-            See More ->
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
+  <!--    <div class="mx-4 flex w-4/5 flex-col gap-1 lg:gap-3">-->
+  <!--      <div class="text-2xl xl:text-4xl">Crafts</div>-->
+  <!--      <p class="text-sm lg:text-lg">-->
+  <!--        Projects crafted and maintained by people of Creatorsgarten. Both-->
+  <!--        on-going and in the making.-->
+  <!--      </p>-->
+  <!--      <div class="mt-1 flex lg:mt-4">-->
+  <!--        <div-->
+  <!--          class="bg-cb rounded-full px-3 py-1 text-sm text-white lg:text-base"-->
+  <!--        >-->
+  <!--          See More ->-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</section>-->
 </BaseLayout>
 
-<script
-  is:inline
-  async
-  src="https://platform.twitter.com/widgets.js"
-  charset="utf-8"></script>
 <style>
   body {
     font-family:
