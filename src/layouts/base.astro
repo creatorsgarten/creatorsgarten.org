@@ -4,6 +4,7 @@ import Blank from './blank.astro'
 import AuthButton from '../components/authButton.astro'
 import Announcement from '$components/announcement.astro'
 import FooterLogo from './footerLogo.astro'
+import HeaderLogo from './headerLogo.astro'
 
 import './base.css'
 import { getFeatureFlags } from '$functions/getFeatureFlags'
@@ -35,13 +36,7 @@ const featureFlags = getFeatureFlags(Astro)
         <nav class="flex flex-col justify-between px-4 pb-8 pt-6 text-lg sm:flex-row lg:px-8">
           <div class="flex w-full justify-between">
             <a href="/" aria-label="back to home" class="flex items-center">
-              <img
-                src="/images/icons/solid.svg"
-                width={888}
-                height={398}
-                class="h-[1.8rem] w-auto"
-                alt="garten"
-              />
+              <HeaderLogo />
             </a>
             <button
               class="ml-auto text-3xl sm:hidden"
