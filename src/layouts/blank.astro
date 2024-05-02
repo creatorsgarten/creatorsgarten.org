@@ -1,58 +1,16 @@
 ---
 import { ViewTransitions } from 'astro:transitions'
 
-import { prng } from '$functions/prng'
-import { sample } from '$functions/sample'
 import './blank.css'
 
 import '@fontsource-variable/work-sans'
 
 const { pathname } = Astro.url
 const isNoIndex = pathname.endsWith('/editor') || pathname.startsWith('/auth')
-
-const accentColor = sample(
-  [
-    '[--accent-300:theme(colors.red.300)] [--accent-100:theme(colors.red.100)]',
-    '[--accent-300:theme(colors.orange.300)] [--accent-100:theme(colors.orange.100)]',
-    '[--accent-300:theme(colors.amber.300)] [--accent-100:theme(colors.amber.100)]',
-    '[--accent-300:theme(colors.yellow.300)] [--accent-100:theme(colors.yellow.100)]',
-    '[--accent-300:theme(colors.lime.300)] [--accent-100:theme(colors.lime.100)]',
-    '[--accent-300:theme(colors.green.300)] [--accent-100:theme(colors.green.100)]',
-    '[--accent-300:theme(colors.emerald.300)] [--accent-100:theme(colors.emerald.100)]',
-    '[--accent-300:theme(colors.sky.300)] [--accent-100:theme(colors.sky.100)]',
-    '[--accent-300:theme(colors.blue.300)] [--accent-100:theme(colors.blue.100)]',
-    '[--accent-300:theme(colors.indigo.300)] [--accent-100:theme(colors.indigo.100)]',
-    '[--accent-300:theme(colors.purple.300)] [--accent-100:theme(colors.purple.100)]',
-    '[--accent-300:theme(colors.fuchsia.300)] [--accent-100:theme(colors.fuchsia.100)]',
-    '[--accent-300:theme(colors.pink.300)] [--accent-100:theme(colors.pink.100)]',
-    '[--accent-300:theme(colors.rose.300)] [--accent-100:theme(colors.rose.100)]',
-  ],
-  prng(Astro, ['page', 1])
-)
-
-const accentColor2 = sample(
-  [
-    '[--accent-400:theme(colors.red.300)] [--accent-100b:theme(colors.red.100)]',
-    '[--accent-400:theme(colors.orange.300)] [--accent-100b:theme(colors.orange.100)]',
-    '[--accent-400:theme(colors.amber.300)] [--accent-100b:theme(colors.amber.100)]',
-    '[--accent-400:theme(colors.yellow.300)] [--accent-100b:theme(colors.yellow.100)]',
-    '[--accent-400:theme(colors.lime.300)] [--accent-100b:theme(colors.lime.100)]',
-    '[--accent-400:theme(colors.green.300)] [--accent-100b:theme(colors.green.100)]',
-    '[--accent-400:theme(colors.emerald.300)] [--accent-100b:theme(colors.emerald.100)]',
-    '[--accent-400:theme(colors.sky.300)] [--accent-100b:theme(colors.sky.100)]',
-    '[--accent-400:theme(colors.blue.300)] [--accent-100b:theme(colors.blue.100)]',
-    '[--accent-400:theme(colors.indigo.300)] [--accent-100b:theme(colors.indigo.100)]',
-    '[--accent-400:theme(colors.purple.300)] [--accent-100b:theme(colors.purple.100)]',
-    '[--accent-400:theme(colors.fuchsia.300)] [--accent-100b:theme(colors.fuchsia.100)]',
-    '[--accent-400:theme(colors.pink.300)] [--accent-100b:theme(colors.pink.100)]',
-    '[--accent-400:theme(colors.rose.300)] [--accent-100b:theme(colors.rose.100)]',
-  ],
-  prng(Astro, ['page', 2])
-)
 ---
 
 <!doctype html>
-<html lang="en" class={accentColor + ' ' + accentColor2}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
