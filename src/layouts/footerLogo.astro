@@ -1,20 +1,24 @@
 ---
-const uwu = Astro.url.searchParams.get('uwu') === 'true'
+import { isUwu } from './isUwu'
+
+const uwu = isUwu(Astro.url.searchParams)
 ---
 
-{uwu ? (
-  <img
-    src="/images/uwugarten.png"
-    alt=""
-    loading="lazy"
-    class="h-16 lg:h-24 shrink-0"
-  />
-) : (
-  <img
-    src="/images/creatorsgarten.svg"
-    alt=""
-    loading="lazy"
-    class="h-8 lg:h-12 shrink-0"
-    style="filter: invert(1);"
-  />
-)}
+{
+  uwu ? (
+    <img
+      src="/images/uwugarten.png"
+      alt=""
+      loading="lazy"
+      class="h-16 shrink-0 lg:h-24"
+    />
+  ) : (
+    <img
+      src="/images/creatorsgarten.svg"
+      alt=""
+      loading="lazy"
+      class="h-8 shrink-0 lg:h-12"
+      style="filter: invert(1);"
+    />
+  )
+}

@@ -1,5 +1,7 @@
 ---
-const uwu = Astro.url.searchParams.get('uwu') === 'true'
+import { isUwu } from './isUwu'
+
+const uwu = isUwu(Astro.url.searchParams)
 ---
 
 {
