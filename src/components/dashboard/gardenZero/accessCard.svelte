@@ -5,7 +5,7 @@
 
   import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 
-  export let user: AuthenticatedUser
+  export let user: AuthenticatedUser | null
 
   interface AccessCard {
     accessKey: string
@@ -37,19 +37,21 @@
   }
 </script>
 
-<div
-  class="relative aspect-square w-full overflow-hidden rounded-2xl border border-neutral-500 bg-gradient-to-b from-[#73A790] from-5% to-[#2E6459] leading-none text-white md:aspect-auto md:h-64"
->
-  {#if accessCard === null}
-    <FrontSide {user} on:click={onClick} />
-  {:else}
-    <BackSide {user} {accessCard} />
-  {/if}
+{#if user !== null}
   <div
-    class={`pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-black/40 transition duration-300 ${
-      loading ? 'opacity-100' : 'opacity-0'
-    }`}
+    class="relative aspect-square w-full overflow-hidden rounded-2xl border border-neutral-500 bg-gradient-to-b from-[#73A790] from-5% to-[#2E6459] leading-none text-white md:aspect-auto md:h-64"
   >
-    <Spinner />
+    {#if accessCard === null}
+      <FrontSide {user} on:click={onClick} />
+    {:else}
+      <BackSide {user} {accessCard} />
+    {/if}
+    <div
+      class={`pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-black/40 transition duration-300 ${
+        loading ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
+      <Spinner />
+    </div>
   </div>
-</div>
+{/if}

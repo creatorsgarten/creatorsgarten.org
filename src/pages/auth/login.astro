@@ -9,7 +9,7 @@ import { getWebsiteConfig } from '$functions/getWebsiteConfig'
 import Blank from '$layouts/blank.astro'
 import type { AstroGlobal } from 'astro'
 
-const generateLoginUri = async ({ redirect, url }: AstroGlobal) => {
+const generateLoginUri = async ({ url }: AstroGlobal) => {
   const redirectDestination = url.searchParams.get('dest') ?? '/'
 
   const csrfInstance = new CSRF()

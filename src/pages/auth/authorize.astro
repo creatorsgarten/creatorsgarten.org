@@ -8,10 +8,11 @@ import type { OAuthClientConfig } from '$constants/oauth'
 
 // if not, redirect to login page
 if (!Astro.locals.user) {
-  const url = `/auth/login?${new URLSearchParams({
-    dest: Astro.url.pathname + Astro.url.search,
-  })}`
-  return Astro.redirect(url)
+  return Astro.redirect(
+    `/auth/login?${new URLSearchParams({
+      dest: Astro.url.pathname + Astro.url.search,
+    })}`
+  )
 }
 
 let trustedClient: OAuthClientConfig | undefined
