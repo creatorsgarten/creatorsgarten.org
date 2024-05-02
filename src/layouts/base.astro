@@ -8,6 +8,7 @@ import HeaderLogo from './headerLogo.astro'
 
 import './base.css'
 import { getFeatureFlags } from '$functions/getFeatureFlags'
+import HeaderOgImage from './headerOgImage.astro'
 
 export interface Props {
   class?: string
@@ -21,13 +22,7 @@ const featureFlags = getFeatureFlags(Astro)
     featureFlags.isEnabled('og:image') ? (
       <Fragment>
         <div class="mb-8 flex h-[285px] items-center justify-center">
-          <img
-            src="/images/creatorsgarten.svg"
-            width={888}
-            height={398}
-            class="h-[200px] w-auto"
-            alt="garten"
-          />
+          <HeaderOgImage />
         </div>
       </Fragment>
     ) : (
@@ -124,7 +119,7 @@ const featureFlags = getFeatureFlags(Astro)
     </div>
   </footer> -->
   <footer
-    class="mt-16 flex flex-col-reverse sm:flex-row h-40 items-start sm:items-end justify-start sm:justify-between bg-ck p-4 text-white lg:p-8 lg:text-lg"
+    class="mt-16 flex h-40 flex-col-reverse items-start justify-start bg-ck p-4 text-white sm:flex-row sm:items-end sm:justify-between lg:p-8 lg:text-lg"
   >
     <div class="mt-4 sm:mt-0">Crafted by 👩‍💻 🧑‍🎨 🧙 🦹‍♀️ & more.</div>
     <FooterLogo />

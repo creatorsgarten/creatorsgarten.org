@@ -1,0 +1,23 @@
+---
+const uwu = Astro.url.searchParams.get('uwu') === 'true'
+---
+
+{
+  uwu ? (
+    <img
+      src="/images/uwugarten.png"
+      alt=""
+      loading="lazy"
+      class="h-[200px] w-auto"
+      alt="garten"
+    />
+  ) : (
+    <img
+      src="/images/creatorsgarten.svg"
+      width={888}
+      height={398}
+      class="h-[200px] w-auto"
+      alt="garten"
+    />
+  )
+}
