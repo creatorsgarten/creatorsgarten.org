@@ -101,10 +101,10 @@ importers:
         version: 7.1.1
       zod:
         specifier: ^3.22.2
-        version: 3.23.5
+        version: 3.23.6
       zod-validation-error:
         specifier: ^3.0.0
-        version: 3.2.0(zod@3.23.5)
+        version: 3.2.0(zod@3.23.6)
     devDependencies:
       '@astrojs/check':
         specifier: ^0.5.0
@@ -4236,8 +4236,8 @@ packages:
     peerDependencies:
       zod: ^3.18.0
 
-  zod@3.23.5:
-    resolution: {integrity: sha512-fkwiq0VIQTksNNA131rDOsVJcns0pfVUjHzLrNBiF/O/Xxb5lQyEXkhZWcJ7npWsYlvs+h0jFWXXy4X46Em1JA==}
+  zod@3.23.6:
+    resolution: {integrity: sha512-RTHJlZhsRbuA8Hmp/iNL7jnfc4nZishjsanDAfEY1QpDQZCahUp3xDzl+zfweE9BklxMUcgBgS1b7Lvie/ZVwA==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -5860,8 +5860,8 @@ snapshots:
       vitefu: 0.2.5(vite@5.2.10(@types/node@20.12.7))
       which-pm: 2.1.1
       yargs-parser: 21.1.1
-      zod: 3.23.5
-      zod-to-json-schema: 3.23.0(zod@3.23.5)
+      zod: 3.23.6
+      zod-to-json-schema: 3.23.0(zod@3.23.6)
     optionalDependencies:
       sharp: 0.33.3
     transitivePeerDependencies:
@@ -6118,9 +6118,9 @@ snapshots:
       liquidjs: 10.7.1
       mongodb: 5.9.2
       octokit: 2.0.14
-      openapi-trpc: 0.1.2(@trpc/server@10.45.2)(zod@3.23.5)
+      openapi-trpc: 0.1.2(@trpc/server@10.45.2)(zod@3.23.6)
       p-memoize: 7.1.1(typescript@5.4.5)
-      zod: 3.23.5
+      zod: 3.23.6
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
       - '@mongodb-js/zstd'
@@ -7520,12 +7520,12 @@ snapshots:
     dependencies:
       mimic-fn: 4.0.0
 
-  openapi-trpc@0.1.2(@trpc/server@10.45.2)(zod@3.23.5):
+  openapi-trpc@0.1.2(@trpc/server@10.45.2)(zod@3.23.6):
     dependencies:
       '@trpc/server': 10.45.2
       openapi-types: 12.1.0
-      zod: 3.23.5
-      zod-to-json-schema: 3.23.0(zod@3.23.5)
+      zod: 3.23.6
+      zod-to-json-schema: 3.23.0(zod@3.23.6)
 
   openapi-types@12.1.0: {}
 
@@ -8863,15 +8863,15 @@ snapshots:
 
   yocto-queue@1.0.0: {}
 
-  zod-to-json-schema@3.23.0(zod@3.23.5):
+  zod-to-json-schema@3.23.0(zod@3.23.6):
     dependencies:
-      zod: 3.23.5
+      zod: 3.23.6
 
-  zod-validation-error@3.2.0(zod@3.23.5):
+  zod-validation-error@3.2.0(zod@3.23.6):
     dependencies:
-      zod: 3.23.5
+      zod: 3.23.6
 
-  zod@3.23.5: {}
+  zod@3.23.6: {}
 
   zwitch@2.0.4: {}
 
