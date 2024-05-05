@@ -1,5 +1,5 @@
-import { collections } from '$constants/mongo'
-import { sha256 } from '$functions/sha256'
+import { collections } from '$constants/mongo.ts'
+import { sha256 } from '$functions/sha256.ts'
 
 export async function getDeviceAuthorization(
   deviceIdBasis: string

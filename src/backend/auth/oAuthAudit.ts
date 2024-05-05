@@ -1,28 +1,16 @@
-import { TRPCError } from '@trpc/server'
 import dayjs from 'dayjs'
 import { ObjectId } from 'mongodb'
-import { z } from 'zod'
+import type { Static } from 'elysia'
 
-import { getAuthenticatedUser } from './getAuthenticatedUser'
-import { collections } from '$constants/mongo'
-
-export const auditInputSchema = z.object({
-  clientId: z.string(),
-  redirectUri: z.string(),
-  scopes: z.array(z.string()),
-})
+import { getAuthenticatedUser } from './getAuthenticatedUser.ts'
+import { collections } from '$constants/mongo.ts'
+import { auditInputSchema } from './models.ts'
 
 export const checkOAuthAudit = async (
   authToken: string | undefined,
-  input: z.infer<typeof auditInputSchema>
+  input: Static<typeof auditInputSchema>
 ) => {
-  const user = await getAuthenticatedUser(authToken)
-  if (!user) {
-    throw new TRPCError({
-      code: 'UNAUTHORIZED',
-      message: 'User is not authenticated',
-    })
-  }
+  const user = (await getAuthenticatedUser(authToken))!
 
   const audit = await collections.oAuthAudits.findOne({
     clientId: input.clientId,
@@ -44,15 +32,9 @@ export const checkOAuthAudit = async (
 
 export const recordOAuthAudit = async (
   authToken: string | undefined,
-  input: z.infer<typeof auditInputSchema>
+  input: Static<typeof auditInputSchema>
 ) => {
-  const user = await getAuthenticatedUser(authToken)
-  if (!user) {
-    throw new TRPCError({
-      code: 'UNAUTHORIZED',
-      message: 'User is not authenticated',
-    })
-  }
+  const user = (await getAuthenticatedUser(authToken))!
 
   await collections.oAuthAudits.updateOne(
     {

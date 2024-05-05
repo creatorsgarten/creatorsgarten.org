@@ -1,25 +1,19 @@
-import { collections } from '$constants/mongo'
-import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import { TRPCError } from '@trpc/server'
+import { collections } from '$constants/mongo.ts'
+import type { AuthenticatedUser } from '$types/AuthenticatedUser.ts'
+import type { Handler } from 'elysia'
+
+type Set = Parameters<Handler>[0]['set']
 
 export async function saveDeviceAuthorization(
-  user: AuthenticatedUser | null,
+  user: AuthenticatedUser,
   deviceId: string,
-  signature: string
+  signature: string,
+  set: Set
 ) {
-  if (!user) {
-    throw new TRPCError({
-      code: 'UNAUTHORIZED',
-      message: 'User is not authenticated',
-    })
-  }
-
   const userDoc = await collections.users.findOne({ uid: user.uid })
   if (!userDoc) {
-    throw new TRPCError({
-      code: 'INTERNAL_SERVER_ERROR',
-      message: 'User not found in database. This should not happen.',
-    })
+    set.status = 500
+    return 'User not found in database. This should not happen.'
   }
 
   const existingDeviceAuthorization =

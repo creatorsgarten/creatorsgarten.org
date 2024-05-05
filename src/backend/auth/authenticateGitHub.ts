@@ -1,10 +1,10 @@
 import { ObjectId } from 'mongodb'
 
-import { githubClient } from '$constants/secrets/githubClient'
-import { collections } from '$constants/mongo'
+import { githubClient } from '$constants/secrets/githubClient.ts'
+import { collections } from '$constants/mongo.ts'
 
-import { getAuthenticatedUser } from './getAuthenticatedUser'
-import { finalizeAuthentication } from './finalizeAuthentication'
+import { getAuthenticatedUser } from './getAuthenticatedUser.ts'
+import { finalizeAuthentication } from './finalizeAuthentication.ts'
 
 import type { User } from '$types/mongo/User'
 

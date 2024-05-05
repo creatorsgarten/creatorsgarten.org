@@ -1,0 +1,15 @@
+---
+import HeaderLogo from './headerLogo.astro'
+---
+
+<nav
+  class="flex flex-col justify-between px-4 pb-8 pt-6 text-lg sm:flex-row lg:px-8"
+>
+  <div class="flex w-full justify-between">
+    <a href="/" aria-label="back to home" class="flex items-center">
+      <HeaderLogo />
+    </a>
+    <slot />
+  </div>
+  <slot name="below" />
+</nav>

@@ -1,10 +1,9 @@
-import { finalizeAuthentication } from './finalizeAuthentication'
+import { collections } from '$constants/mongo.ts'
+import { eventpopClient } from '$constants/secrets/eventpopClient.ts'
 
-import { collections } from '$constants/mongo'
-import { eventpopClient } from '$constants/secrets/eventpopClient'
-
-import { getEventpopUser } from 'src/backend/auth/getEventpopUser'
-import { getEventpopUserTickets } from 'src/backend/auth/getEventpopUserTickets'
+import { finalizeAuthentication } from './finalizeAuthentication.ts'
+import { getEventpopUser } from './getEventpopUser'
+import { getEventpopUserTickets } from './getEventpopUserTickets'
 
 interface EventpopAuthorizationResponse {
   access_token: string

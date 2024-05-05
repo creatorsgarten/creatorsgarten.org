@@ -1,14 +1,14 @@
 ---
 import Blank from './blank.astro'
 
-import AuthButton from '../components/authButton.astro'
+import AuthButton from '$components/authButton.astro'
 import Announcement from '$components/announcement.astro'
 import FooterLogo from './footerLogo.astro'
-import HeaderLogo from './headerLogo.astro'
 
 import './base.css'
 import { getFeatureFlags } from '$functions/getFeatureFlags'
 import HeaderOgImage from './headerOgImage.astro'
+import Navbar from './navbar.astro'
 
 export interface Props {
   class?: string
@@ -28,20 +28,16 @@ const featureFlags = getFeatureFlags(Astro)
     ) : (
       <Fragment>
         <Announcement />
-        <nav class="flex flex-col justify-between px-4 pb-8 pt-6 text-lg sm:flex-row lg:px-8">
-          <div class="flex w-full justify-between">
-            <a href="/" aria-label="back to home" class="flex items-center">
-              <HeaderLogo />
-            </a>
-            <button
-              class="ml-auto text-3xl sm:hidden"
-              onclick="let m=document.getElementById('nav-menu');m.classList.toggle('block');m.classList.toggle('hidden');"
-            >
-              🍔
-            </button>
-          </div>
+        <Navbar>
+          <button
+            class="ml-auto text-3xl sm:hidden"
+            onclick="let m=document.getElementById('nav-menu');m.classList.toggle('block');m.classList.toggle('hidden');"
+          >
+            🍔
+          </button>
           <div
             id="nav-menu"
+            slot="below"
             class="ml-auto hidden w-full items-center pt-6 text-sm font-medium sm:col-span-1 sm:flex sm:w-auto sm:space-x-1 sm:p-0"
           >
             <ul
@@ -59,7 +55,7 @@ const featureFlags = getFeatureFlags(Astro)
             </ul>
             <AuthButton />
           </div>
-        </nav>
+        </Navbar>
       </Fragment>
     )
   }

@@ -1,8 +1,11 @@
 ---
+import type { AstroCookieSetOptions } from 'astro'
+
 import Blank from '$layouts/blank.astro'
 import CSRF from 'csrf'
 
 import { csrfSecret } from '$constants/secrets/csrfSecret'
+import Navbar from '$layouts/navbar.astro'
 
 const code = Astro.url.searchParams.get('code') ?? ''
 const state = Astro.url.searchParams.get('state') ?? ''
@@ -39,34 +42,37 @@ try {
     throw new Error('csrf-verification-fail')
 
   // handle authtication from here
-  const result = await (() => {
+  const { data } = await (() => {
     switch (targetService) {
       case 'eventpop':
         if (code.startsWith('grtn_') && code.includes('|')) {
           const [signature, deviceId] = code.split('|')
-          return Astro.locals.backend.auth.signInWithDeviceAuthorizationSignature.mutate(
+          return Astro.locals.eden.auth.signIn.deviceAuthorizationSignature.post(
             { signature, deviceId }
           )
         } else {
-          return Astro.locals.backend.auth.signInWithEventpopAuthorizationCode.mutate(
-            { code }
-          )
+          return Astro.locals.eden.auth.signIn.eventpopAuthorizationCode.post({
+            code,
+          })
         }
       case 'github':
-        return Astro.locals.backend.auth.linkGitHubAccount.mutate({ code })
+        return Astro.locals.eden.auth.link.github.post({ code })
       case 'discord':
-        return Astro.locals.backend.auth.linkDiscordAccount.mutate({ code })
+        return Astro.locals.eden.auth.link.discord.post({ code })
     }
+
     throw new Error('service-invalid')
   })()
 
-  Astro.cookies.set('authgarten', result.idToken, {
+  if (typeof data === 'string') throw new Error('no-id-token')
+
+  Astro.cookies.set('authgarten', data!.idToken, {
     maxAge: 60 * 60 * 12, // 12 hours
     httpOnly: true,
     secure: import.meta.env.PROD,
     path: '/',
     sameSite: 'lax',
-  })
+  } as AstroCookieSetOptions)
 } catch (e) {
   error = (e as Error).message
 }
@@ -85,6 +91,7 @@ if (redirectTo === '/') {
       )
     }
   </Fragment>
+  <Navbar />
   <main class="mx-auto max-w-7xl px-4 py-12">
     {
       error !== null ? (

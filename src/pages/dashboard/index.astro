@@ -8,10 +8,12 @@ import JoinedEvents from '$components/dashboard/joinedEvents.astro'
 import UserCard from '$components/dashboard/userCard.astro'
 import Head from '$components/head.astro'
 
-const { backend, user } = Astro.locals
+const { eden, user } = Astro.locals
 if (!user) return Astro.redirect('/')
 
-const joinedEvents = await backend.events.getJoinedEvents.query()
+console.log(user)
+
+const { data: joinedEvents } = await eden.events.joined.get()
 ---
 
 <Head title="Dashboard" />
@@ -20,7 +22,7 @@ const joinedEvents = await backend.events.getJoinedEvents.query()
   <UserCard user={user} />
   <Connections connections={user.connections} />
   <Garden0 />
-  <JoinedEvents eventIds={joinedEvents} />
+  <JoinedEvents eventIds={joinedEvents!} />
   <IntegratedServices />
   <section class="flex justify-center pt-4">
     <a

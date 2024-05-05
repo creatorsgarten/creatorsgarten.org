@@ -2,7 +2,7 @@ import 'dotenv/config'
 import { defineConfig } from 'astro/config'
 
 /* Adapter */
-import node from '@astrojs/node'
+// import node from '@astrojs/node'
 
 /* Integrations */
 import react from '@astrojs/react'
@@ -14,9 +14,9 @@ import sentry from '@sentry/astro'
 export default defineConfig({
   output: 'server',
   site: 'https://creatorsgarten.org',
-  adapter: node({
-    mode: 'middleware',
-  }),
+  // adapter: node({
+  //   mode: 'middleware',
+  // }),
   prefetch: true,
   integrations: [
     tailwind(),

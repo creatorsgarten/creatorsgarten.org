@@ -1,9 +1,9 @@
 import { ObjectId } from 'mongodb'
 
-import { collections } from '$constants/mongo'
+import { collections } from '$constants/mongo.ts'
 
-import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import { Role } from '$types/Role'
+import type { AuthenticatedUser } from '$types/AuthenticatedUser.ts'
+import { Role } from '$types/Role.ts'
 
 export const checkAccess = async (user: AuthenticatedUser | null) => {
   if (!user) {

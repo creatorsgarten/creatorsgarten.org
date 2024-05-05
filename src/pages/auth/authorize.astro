@@ -52,11 +52,16 @@ if (client) {
 }
 
 const nonce = Astro.url.searchParams.get('nonce') ?? undefined
-const idTokenInfo = await Astro.locals.backend.auth.mintIdToken.mutate({
+const { data: idTokenInfo } = await Astro.locals.eden.auth.mintIdToken.post({
   audience: clientId,
   scopes,
   nonce,
 })
+
+if (!idTokenInfo)
+  return new Response(null, {
+    status: 400,
+  })
 
 // build final redirect uri
 const redirectTo = new URL(redirectUri)
@@ -100,7 +105,7 @@ if (redirectTo.protocol !== 'https:' && redirectTo.protocol !== 'http:') {
 }
 
 // check if user has authorized this client before
-const hasAuthorized = await Astro.locals.backend.auth.checkOAuthAudit.query({
+const { data: hasAuthorized } = await Astro.locals.eden.auth.oauth.check.get({
   clientId,
   redirectUri,
   scopes,
@@ -113,7 +118,7 @@ if (
   Astro.request.method === 'POST'
 ) {
   if (!hasAuthorized)
-    await Astro.locals.backend.auth.recordOAuthAudit.mutate({
+    await Astro.locals.eden.auth.oauth.record.post({
       clientId,
       redirectUri,
       scopes,

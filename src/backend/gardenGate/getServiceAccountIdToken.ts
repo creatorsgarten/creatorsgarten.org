@@ -1,4 +1,4 @@
-import { readFileSystem, writeFileSystem } from '$functions/fileSystem'
+import { readFileSystem, writeFileSystem } from '$functions/fileSystem.ts'
 import { GoogleAuth } from 'google-auth-library'
 
 export const getServiceAccountIdToken = async (audience: string) => {

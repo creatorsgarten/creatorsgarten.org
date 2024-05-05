@@ -8,11 +8,14 @@ export const GET: APIRoute = async Astro => {
       status: 400,
       headers: { 'content-type': 'application/json' },
     })
-  const result = await Astro.locals.backend.signatures.verifySignature.query({
-    signature,
-  })
-  if (!result.verified) {
-    return fail(result.error)
+  const result = await Astro.locals.eden.signatures.verify
+    .get({
+      signature,
+    })
+    .then(o => o.data)
+
+  if (!result?.verified) {
+    return fail(result?.error!)
   } else {
     return new Response(JSON.stringify(result), {
       headers: { 'content-type': 'application/json' },

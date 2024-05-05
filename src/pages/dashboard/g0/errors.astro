@@ -10,9 +10,9 @@ interface Log {
   message: string
 }
 
-let { granted } = await Astro.locals.backend.gardenGate.checkAccess.query()
+let { data } = await Astro.locals.eden.gardenGate.access.get()
 
-if (!granted)
+if (!data?.granted)
   return new Response(undefined, {
     status: 403,
   })

@@ -1,10 +1,10 @@
 import _ from 'lodash'
 
-import { g0Hostname } from '$constants/secrets/g0Hostname'
-import { collections } from '$constants/mongo'
+import { g0Hostname } from '$constants/secrets/g0Hostname.ts'
+import { collections } from '$constants/mongo.ts'
 
-import { getServiceAccountIdToken } from './getServiceAccountIdToken'
-import { notify } from './notify'
+import { getServiceAccountIdToken } from './getServiceAccountIdToken.ts'
+import { notify } from './notify.ts'
 
 interface PullResponse {
   entries: {

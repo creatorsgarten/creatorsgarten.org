@@ -1,45 +1,40 @@
-import { collections } from '$constants/mongo'
-import { TRPCError } from '@trpc/server'
+import { collections } from '$constants/mongo.ts'
 import { ObjectId } from 'mongodb'
-import { generateMessageHash } from '../signatures/generateSignature'
-import { verifySignature } from '../signatures/verifySignature'
-import { finalizeAuthentication } from './finalizeAuthentication'
+import { generateMessageHash } from '../signatures/generateSignature.ts'
+import { verifySignature } from '../signatures/verifySignature.ts'
+import { finalizeAuthentication } from './finalizeAuthentication.ts'
+import type { Handler } from 'elysia'
+
+type Set = Parameters<Handler>[0]['set']
 
 export async function authenticateDeviceAuthorizationSignature(
   deviceId: string,
-  signature: string
+  signature: string,
+  set: Set
 ) {
   const result = await verifySignature(signature)
   if (!result.verified) {
-    throw new TRPCError({
-      code: 'UNAUTHORIZED',
-      message: 'Signature is not verified',
-    })
+    set.status = 401
+    return 'Signature is not verified'
   }
 
   const expectedMessage = `mobileAuthorize:${deviceId}`
   const expectedMessageHash = generateMessageHash(expectedMessage)
   if (result.messageHash !== expectedMessageHash) {
-    throw new TRPCError({
-      code: 'UNAUTHORIZED',
-      message: 'Signature is not for mobile authorization',
-    })
+    set.status = 401
+    return 'Signature is not for mobile authorization'
   }
 
   if (Date.parse(result.timestamp) < Date.now() - 15 * 60e3) {
-    throw new TRPCError({
-      code: 'UNAUTHORIZED',
-      message: 'Signature is expired',
-    })
+    set.status = 401
+    return 'Signature is expired'
   }
 
   const userId = result.userId
   const user = await collections.users.findOne({ _id: new ObjectId(userId) })
   if (!user) {
-    throw new TRPCError({
-      code: 'INTERNAL_SERVER_ERROR',
-      message: 'User not found in database. This should not happen.',
-    })
+    set.status = 500
+    return 'User not found in database. This should not happen.'
   }
 
   return finalizeAuthentication(user.uid)

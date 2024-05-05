@@ -1,10 +1,10 @@
 import { ObjectId } from 'mongodb'
 
-import { collections } from '$constants/mongo'
-import { discordClient } from '$constants/secrets/discordClient'
+import { collections } from '$constants/mongo.ts'
+import { discordClient } from '$constants/secrets/discordClient.ts'
 
-import { getAuthenticatedUser } from './getAuthenticatedUser'
-import { finalizeAuthentication } from './finalizeAuthentication'
+import { getAuthenticatedUser } from './getAuthenticatedUser.ts'
+import { finalizeAuthentication } from './finalizeAuthentication.ts'
 
 import type { User } from '$types/mongo/User'
 

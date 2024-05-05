@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro'
 
 export const GET: APIRoute = async ({ locals }) => {
-  await locals.backend.gardenGate.pullLogs.query()
+  await locals.eden.gardenGate.logs.get()
 
   return new Response('ok')
 }

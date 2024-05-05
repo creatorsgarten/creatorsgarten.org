@@ -20,19 +20,16 @@ if (Astro.request.method === 'POST') {
   if (!providedSignature) {
     throw new Error('Missing signature')
   }
-  await Astro.locals.backend.deviceAuthorizations.saveDeviceAuthorization.mutate(
-    {
-      deviceId,
-      signature: providedSignature,
-    }
-  )
+  await Astro.locals.eden.deviceAuthorization.index.post({
+    deviceId,
+    signature: providedSignature,
+  })
   return Astro.redirect('/dashboard')
 }
 
-const { signature } =
-  await Astro.locals.backend.signatures.createSignature.mutate({
-    message: authorizationMessage,
-  })
+const { data } = await Astro.locals.eden.signatures.create.post({
+  message: authorizationMessage,
+})
 ---
 
 <Head title="Device Authorization" />
@@ -64,7 +61,7 @@ const { signature } =
           </tbody>
         </table>
         <form method="post">
-          <input type="hidden" name="signature" value={signature} />
+          <input type="hidden" name="signature" value={data?.signature} />
           <button
             type="submit"
             class="inline-flex w-full shrink-0 justify-center rounded-lg bg-[#1c1916] px-4 py-2 text-white sm:w-auto sm:rounded-full"

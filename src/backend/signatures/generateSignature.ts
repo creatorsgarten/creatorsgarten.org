@@ -1,4 +1,4 @@
-import type { AuthenticatedUser } from '$types/AuthenticatedUser'
+import type { AuthenticatedUser } from '$types/AuthenticatedUser.ts'
 import { createHash, createHmac } from 'crypto'
 import { ObjectId } from 'mongodb'
 

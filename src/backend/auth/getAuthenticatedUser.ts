@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken'
 
-import { privateKey } from '$constants/secrets/privateKey'
+import { privateKey } from '$constants/secrets/privateKey.ts'
 
-import type { AuthenticatedUser } from '$types/AuthenticatedUser'
+import type { AuthenticatedUser } from '$types/AuthenticatedUser.ts'
 
 export const getAuthenticatedUser = async (
   token?: string

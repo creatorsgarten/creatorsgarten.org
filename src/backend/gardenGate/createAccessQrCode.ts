@@ -1,45 +1,28 @@
-import { TRPCError } from '@trpc/server'
-import { z } from 'zod'
-import _ from 'lodash'
+import { t, type Static, type Handler } from 'elysia'
 
-import { collections } from '$constants/mongo'
-import { g0Hostname } from '$constants/secrets/g0Hostname'
+import { collections } from '$constants/mongo.ts'
+import { g0Hostname } from '$constants/secrets/g0Hostname.ts'
 
-import { checkAccess } from './checkAccess'
-import { getServiceAccountIdToken } from './getServiceAccountIdToken'
+import { getServiceAccountIdToken } from './getServiceAccountIdToken.ts'
 
-import type { AuthenticatedUser } from '$types/AuthenticatedUser'
+import type { WithId } from 'mongodb'
+import type { User } from '$types/mongo/User'
+import type { AuthenticatedUser } from '$types/AuthenticatedUser.ts'
 
-const GardenZeroResponse = z.object({
-  accessKey: z.string(),
-  createdAt: z.string(),
-  expiresAt: z.string(),
+const GardenZeroResponse = t.Object({
+  accessKey: t.String(),
+  createdAt: t.String(),
+  expiresAt: t.String(),
 })
-type GardenZeroResponse = z.infer<typeof GardenZeroResponse>
+type GardenZeroResponse = Static<typeof GardenZeroResponse>
 
-export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
-  if (!user) {
-    throw new TRPCError({
-      code: 'UNAUTHORIZED',
-      message: 'You must be logged in.',
-    })
-  }
+type Set = Parameters<Handler>[0]['set']
 
-  if (!(await checkAccess(user)).granted) {
-    throw new TRPCError({
-      code: 'FORBIDDEN',
-      message: 'You do not have permission.',
-    })
-  }
-
-  const userDoc = await collections.users.findOne({ uid: user.uid })
-  if (!userDoc) {
-    throw new TRPCError({
-      code: 'INTERNAL_SERVER_ERROR',
-      message: 'User not found in database. This should not happen.',
-    })
-  }
-
+export const createAccessQrCode = async (
+  user: AuthenticatedUser,
+  userDoc: WithId<User>,
+  set: Set
+) => {
   const accessDoc = await collections.gardenAccesses.insertOne({
     user: userDoc._id,
     accessKey: null,
@@ -63,19 +46,22 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
     const idToken = await getServiceAccountIdToken(
       'https://github.com/creatorsgarten/garden-gate'
     )
-    const gardenZeroResponse = await fetch(g0Hostname + '/access/generate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: 'Bearer ' + idToken,
-      },
-      body: JSON.stringify({
-        userId: String(userDoc._id),
-        prefix: prefixedName.slice(0, 9),
-        accessId: String(accessDoc.insertedId),
-      }),
-    })
+    const gardenZeroResponse: GardenZeroResponse = await fetch(
+      g0Hostname + '/access/generate',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: 'Bearer ' + idToken,
+        },
+        body: JSON.stringify({
+          userId: String(userDoc._id),
+          prefix: prefixedName.slice(0, 9),
+          accessId: String(accessDoc.insertedId),
+        }),
+      }
+    )
       .then(async o => {
         if (o.ok) return GardenZeroResponse.parse(await o.json())
         else
@@ -105,16 +91,9 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
 
     return gardenZeroResponse
   } catch (e) {
-    if (e instanceof TRPCError) throw e
-    else if (e instanceof Error)
-      throw new TRPCError({
-        code: 'INTERNAL_SERVER_ERROR',
-        message: e.message ?? '',
-      })
-    else
-      throw new TRPCError({
-        code: 'INTERNAL_SERVER_ERROR',
-        message: 'server-offline',
-      })
+    set.status = 500
+
+    if (e instanceof Error) return e.message ?? ''
+    else return 'server-offline'
   }
 }

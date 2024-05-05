@@ -1,15 +1,15 @@
 ---
 import AccessCard from './accessCard.svelte'
 
-const { user } = Astro.locals
+const { user, eden } = Astro.locals
 
 // determine that user should be able to see access card or not
 // hard-code for now, will build conditions later
-let { granted } = await Astro.locals.backend.gardenGate.checkAccess.query()
+let { data } = await eden.gardenGate.access.get()
 ---
 
 {
-  granted && (
+  data?.granted && (
     <section class="mx-auto max-w-sm md:max-w-2xl">
       <AccessCard client:idle {...{ user }} />
     </section>

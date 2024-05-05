@@ -3,7 +3,7 @@
 
 declare namespace App {
   interface Locals {
-    backend: ReturnType<(typeof import('$functions/getBackend'))['getBackend']>
+    eden: import('src/functions/middleware/backend.ts').Eden['api']['backend']
     user: import('$types/AuthenticatedUser').AuthenticatedUser | null
   }
 }

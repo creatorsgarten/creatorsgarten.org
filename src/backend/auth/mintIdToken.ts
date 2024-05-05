@@ -1,9 +1,11 @@
 import jwt from 'jsonwebtoken'
-import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import { privateKey } from '$constants/secrets/privateKey'
-import { getJoinedEvents } from '../events/getJoinedEvents'
-import type { GitHubConnection } from '$types/mongo/User/GitHubConnection'
-import type { DiscordConnection } from '$types/mongo/User/DiscordConnection'
+import type { Static } from 'elysia'
+import type { AuthenticatedUser } from '$types/AuthenticatedUser.ts'
+import { privateKey } from '$constants/secrets/privateKey.ts'
+import { getJoinedEvents } from '../events/getJoinedEvents.ts'
+import type { GitHubConnection } from '$types/mongo/User/GitHubConnection.ts'
+import type { DiscordConnection } from '$types/mongo/User/DiscordConnection.ts'
+import type { mintIdTokenInputSchema } from './models.ts'
 
 /**
  * Data contained in ID token returned by Authgarten OIDC provider.
@@ -67,9 +69,7 @@ export interface AuthgartenOidcClaims {
 
 export async function mintIdToken(
   user: AuthenticatedUser,
-  audience: string,
-  nonce: string | undefined,
-  scopes: string[]
+  input: Static<typeof mintIdTokenInputSchema>
 ): Promise<{ idToken: string; claims: AuthgartenOidcClaims }> {
   const claims: AuthgartenOidcClaims = {
     sub: String(user.sub),
@@ -82,16 +82,16 @@ export async function mintIdToken(
       github: user.connections.github,
       discord: user.connections.discord,
     },
-    nonce,
+    nonce: input.nonce,
   }
 
-  if (scopes.includes('email')) {
+  if (input.scopes.includes('email')) {
     claims.email = user.email
   }
 
   const eventpopEventRegex = /^https:\/\/eventpop\.me\/e\/(\d+)$/
   const eventIds = new Set<number>()
-  for (const scope of scopes) {
+  for (const scope of input.scopes) {
     const match = eventpopEventRegex.exec(scope)
     if (match) {
       eventIds.add(Number(match[1]))
@@ -117,7 +117,7 @@ export async function mintIdToken(
 
     // https://openid.net/specs/openid-connect-basic-1_0.html#IDToken
     issuer: 'https://creatorsgarten.org',
-    audience: audience,
+    audience: input.audience,
     expiresIn: 3600,
 
     header: {

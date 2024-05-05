@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 
-import { notifyDiscord } from '$constants/secrets/notifyDiscord'
+import { notifyDiscord } from '$constants/secrets/notifyDiscord.ts'
 
 import type { User } from '$types/mongo/User'
 

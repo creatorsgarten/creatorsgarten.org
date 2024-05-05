@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken'
 
-import { collections } from '$constants/mongo'
-import { maxSessionAge } from '$constants/maxSessionAge'
-import { privateKey } from '$constants/secrets/privateKey'
+import { collections } from '$constants/mongo.ts'
+import { maxSessionAge } from '$constants/maxSessionAge.ts'
+import { privateKey } from '$constants/secrets/privateKey.ts'
 
-import type { AuthenticatedUser } from '$types/AuthenticatedUser'
+import type { AuthenticatedUser } from '$types/AuthenticatedUser.ts'
 
 export const finalizeAuthentication = async (uid: number) => {
   // get mongo document
