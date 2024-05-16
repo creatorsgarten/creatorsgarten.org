@@ -80,7 +80,7 @@ importers:
         version: 10.0.0
       mongodb:
         specifier: ^6.0.0
-        version: 6.6.1(socks@2.7.1)
+        version: 6.6.2(socks@2.7.1)
       nanostores:
         specifier: ^0.10.0
         version: 0.10.0
@@ -3062,8 +3062,8 @@ packages:
       snappy:
         optional: true
 
-  mongodb@6.6.1:
-    resolution: {integrity: sha512-FvA9ocQzRzzvhin1HHLrZDEm0gWvnksbiciYrU/0GmET/t/DdDiMJroA7rfDrHM3AInwGVYw2fwAU2oNYUyUEw==}
+  mongodb@6.6.2:
+    resolution: {integrity: sha512-ZF9Ugo2JCG/GfR7DEb4ypfyJJyiKbg5qBYKRintebj8+DNS33CyGMkWbrS9lara+u+h+yEOGSRiLhFO/g1s1aw==}
     engines: {node: '>=16.20.1'}
     peerDependencies:
       '@aws-sdk/credential-providers': ^3.188.0
@@ -7818,7 +7818,7 @@ snapshots:
     optionalDependencies:
       '@mongodb-js/saslprep': 1.1.7
 
-  mongodb@6.6.1(socks@2.7.1):
+  mongodb@6.6.2(socks@2.7.1):
     dependencies:
       '@mongodb-js/saslprep': 1.1.7
       bson: 6.7.0
