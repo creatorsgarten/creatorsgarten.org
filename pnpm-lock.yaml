@@ -35,7 +35,7 @@ importers:
         version: 0.7.2(nanostores@0.10.0)(react@18.3.1)
       '@sentry/astro':
         specifier: ^7.86.0
-        version: 7.114.0(astro@4.8.5(@types/node@20.12.12)(typescript@5.4.5))
+        version: 7.114.0(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5))
       '@tanstack/react-query':
         specifier: ^5.0.0
         version: 5.36.2(react@18.3.1)
@@ -47,7 +47,7 @@ importers:
         version: 10.45.2
       astro-tweet:
         specifier: ^0.0.4
-        version: 0.0.4(astro@4.8.5(@types/node@20.12.12)(typescript@5.4.5))(prettier-plugin-astro@0.13.0)(prettier@3.2.5)
+        version: 0.0.4(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5))(prettier-plugin-astro@0.13.0)(prettier@3.2.5)
       clsx:
         specifier: ^2.0.0
         version: 2.1.0
@@ -111,16 +111,16 @@ importers:
         version: 0.6.0(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.4.5)
       '@astrojs/node':
         specifier: 8.2.5
-        version: 8.2.5(astro@4.8.5(@types/node@20.12.12)(typescript@5.4.5))
+        version: 8.2.5(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5))
       '@astrojs/react':
         specifier: ^3.0.0
         version: 3.3.4(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.2.11(@types/node@20.12.12))
       '@astrojs/svelte':
         specifier: ^5.0.0
-        version: 5.4.0(astro@4.8.5(@types/node@20.12.12)(typescript@5.4.5))(svelte@4.2.17)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.12))
+        version: 5.4.0(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5))(svelte@4.2.17)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.12))
       '@astrojs/tailwind':
         specifier: 5.1.0
-        version: 5.1.0(astro@4.8.5(@types/node@20.12.12)(typescript@5.4.5))(tailwindcss@3.4.3)
+        version: 5.1.0(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5))(tailwindcss@3.4.3)
       '@fontsource-variable/inter':
         specifier: ^5.0.8
         version: 5.0.18
@@ -155,8 +155,8 @@ importers:
         specifier: ^18.2.7
         version: 18.3.0
       astro:
-        specifier: 4.8.5
-        version: 4.8.5(@types/node@20.12.12)(typescript@5.4.5)
+        specifier: 4.8.6
+        version: 4.8.6(@types/node@20.12.12)(typescript@5.4.5)
       astro-seo:
         specifier: ^0.8.0
         version: 0.8.3(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.4.5)
@@ -1749,8 +1749,8 @@ packages:
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
 
-  astro@4.8.5:
-    resolution: {integrity: sha512-h+t4VGLPBk6KjIiJnYGotJ16wsLIdmNVSvnwEk51XhqZ5T2VlbozgDtgDi6y3qP3mqkhpN3Q39YQORhVeuEYsg==}
+  astro@4.8.6:
+    resolution: {integrity: sha512-psHIfK+e+bMPhRwghV9yCGH/uc1jvY4DHmDZdoEepax9yA7kzYH0wt3dpkqlcrO2zxl5jzSC3DmqZfkD6wnW9A==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -4588,9 +4588,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/node@8.2.5(astro@4.8.5(@types/node@20.12.12)(typescript@5.4.5))':
+  '@astrojs/node@8.2.5(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5))':
     dependencies:
-      astro: 4.8.5(@types/node@20.12.12)(typescript@5.4.5)
+      astro: 4.8.6(@types/node@20.12.12)(typescript@5.4.5)
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -4612,10 +4612,10 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/svelte@5.4.0(astro@4.8.5(@types/node@20.12.12)(typescript@5.4.5))(svelte@4.2.17)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.12))':
+  '@astrojs/svelte@5.4.0(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5))(svelte@4.2.17)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.12))':
     dependencies:
       '@sveltejs/vite-plugin-svelte': 3.1.0(svelte@4.2.17)(vite@5.2.11(@types/node@20.12.12))
-      astro: 4.8.5(@types/node@20.12.12)(typescript@5.4.5)
+      astro: 4.8.6(@types/node@20.12.12)(typescript@5.4.5)
       svelte: 4.2.17
       svelte2tsx: 0.6.27(svelte@4.2.17)(typescript@5.4.5)
       typescript: 5.4.5
@@ -4623,9 +4623,9 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/tailwind@5.1.0(astro@4.8.5(@types/node@20.12.12)(typescript@5.4.5))(tailwindcss@3.4.3)':
+  '@astrojs/tailwind@5.1.0(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5))(tailwindcss@3.4.3)':
     dependencies:
-      astro: 4.8.5(@types/node@20.12.12)(typescript@5.4.5)
+      astro: 4.8.6(@types/node@20.12.12)(typescript@5.4.5)
       autoprefixer: 10.4.15(postcss@8.4.32)
       postcss: 8.4.32
       postcss-load-config: 4.0.2(postcss@8.4.32)
@@ -5483,7 +5483,7 @@ snapshots:
       '@sentry/types': 7.114.0
       '@sentry/utils': 7.114.0
 
-  '@sentry/astro@7.114.0(astro@4.8.5(@types/node@20.12.12)(typescript@5.4.5))':
+  '@sentry/astro@7.114.0(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5))':
     dependencies:
       '@sentry/browser': 7.114.0
       '@sentry/core': 7.114.0
@@ -5491,7 +5491,7 @@ snapshots:
       '@sentry/types': 7.114.0
       '@sentry/utils': 7.114.0
       '@sentry/vite-plugin': 2.16.1
-      astro: 4.8.5(@types/node@20.12.12)(typescript@5.4.5)
+      astro: 4.8.6(@types/node@20.12.12)(typescript@5.4.5)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -6154,10 +6154,10 @@ snapshots:
       - prettier-plugin-astro
       - typescript
 
-  astro-tweet@0.0.4(astro@4.8.5(@types/node@20.12.12)(typescript@5.4.5))(prettier-plugin-astro@0.13.0)(prettier@3.2.5):
+  astro-tweet@0.0.4(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5))(prettier-plugin-astro@0.13.0)(prettier@3.2.5):
     dependencies:
       '@astrojs/check': 0.2.1(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.4.5)
-      astro: 4.8.5(@types/node@20.12.12)(typescript@5.4.5)
+      astro: 4.8.6(@types/node@20.12.12)(typescript@5.4.5)
       clsx: 2.1.0
       date-fns: 2.30.0
       typescript: 5.4.5
@@ -6165,7 +6165,7 @@ snapshots:
       - prettier
       - prettier-plugin-astro
 
-  astro@4.8.5(@types/node@20.12.12)(typescript@5.4.5):
+  astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5):
     dependencies:
       '@astrojs/compiler': 2.8.0
       '@astrojs/internal-helpers': 0.4.0
