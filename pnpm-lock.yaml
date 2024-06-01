@@ -38,7 +38,7 @@ importers:
         version: 7.116.0(astro@4.9.2(@types/node@20.12.13)(typescript@5.4.5))
       '@tanstack/react-query':
         specifier: ^5.0.0
-        version: 5.37.1(react@18.3.1)
+        version: 5.40.0(react@18.3.1)
       '@trpc/client':
         specifier: 10.45.2
         version: 10.45.2(@trpc/server@10.45.2)
@@ -1395,11 +1395,11 @@ packages:
   '@tanstack/query-core@4.29.7':
     resolution: {integrity: sha512-GXG4b5hV2Loir+h2G+RXhJdoZhJLnrBWsuLB2r0qBRyhWuXq9w/dWxzvpP89H0UARlH6Mr9DiVj4SMtpkF/aUA==}
 
-  '@tanstack/query-core@5.36.1':
-    resolution: {integrity: sha512-BteWYEPUcucEu3NBcDAgKuI4U25R9aPrHSP6YSf2NvaD2pSlIQTdqOfLRsxH9WdRYg7k0Uom35Uacb6nvbIMJg==}
+  '@tanstack/query-core@5.40.0':
+    resolution: {integrity: sha512-eD8K8jsOIq0Z5u/QbvOmfvKKE/XC39jA7yv4hgpl/1SRiU+J8QCIwgM/mEHuunQsL87dcvnHqSVLmf9pD4CiaA==}
 
-  '@tanstack/react-query@5.37.1':
-    resolution: {integrity: sha512-EhtBNA8GL3XFeSx6VYUjXQ96n44xe3JGKZCzBINrCYlxbZP6UwBafv7ti4eSRWc2Fy+fybQre0w17gR6lMzULA==}
+  '@tanstack/react-query@5.40.0':
+    resolution: {integrity: sha512-iv/W0Axc4aXhFzkrByToE1JQqayxTPNotCoSCnarR/A1vDIHaoKpg7FTIfP3Ev2mbKn1yrxq0ZKYUdLEJxs6Tg==}
     peerDependencies:
       react: 18.3.1
 
@@ -5911,11 +5911,11 @@ snapshots:
 
   '@tanstack/query-core@4.29.7': {}
 
-  '@tanstack/query-core@5.36.1': {}
+  '@tanstack/query-core@5.40.0': {}
 
-  '@tanstack/react-query@5.37.1(react@18.3.1)':
+  '@tanstack/react-query@5.40.0(react@18.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.36.1
+      '@tanstack/query-core': 5.40.0
       react: 18.3.1
 
   '@tiptap/core@2.3.0(@tiptap/pm@2.3.0)':
@@ -9345,7 +9345,7 @@ snapshots:
   volar-service-emmet@0.0.32(@volar/language-service@2.1.2):
     dependencies:
       '@vscode/emmet-helper': 2.9.2
-      vscode-html-languageservice: 5.2.0
+      vscode-html-languageservice: 5.1.2
     optionalDependencies:
       '@volar/language-service': 2.1.2
 
@@ -9359,7 +9359,7 @@ snapshots:
 
   volar-service-html@0.0.32(@volar/language-service@2.1.2):
     dependencies:
-      vscode-html-languageservice: 5.2.0
+      vscode-html-languageservice: 5.1.2
       vscode-languageserver-textdocument: 1.0.11
       vscode-uri: 3.0.8
     optionalDependencies:
