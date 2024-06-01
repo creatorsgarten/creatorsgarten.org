@@ -159,7 +159,7 @@ importers:
         version: 4.9.2(@types/node@20.12.13)(typescript@5.4.5)
       astro-seo:
         specifier: ^0.8.0
-        version: 0.8.3(prettier-plugin-astro@0.14.0)(prettier@3.2.5)(typescript@5.4.5)
+        version: 0.8.4(prettier-plugin-astro@0.14.0)(prettier@3.2.5)(typescript@5.4.5)
       contentsgarten:
         specifier: ^2.0.1
         version: 2.0.1(typescript@5.4.5)
@@ -213,8 +213,8 @@ packages:
     peerDependencies:
       typescript: ^5.0.0
 
-  '@astrojs/check@0.5.9':
-    resolution: {integrity: sha512-+QsQMtYq4oso+gmilJC9HLmdi0glZ+04V/VyyTTPry7n21jqjX9SfgDpLGxMk5cwPC/vwZMkn6ORGPnkZS/L5w==}
+  '@astrojs/check@0.5.10':
+    resolution: {integrity: sha512-vliHXM9cu/viGeKiksUM4mXfO816ohWtawTl2ADPgTsd4nUMjFiyAl7xFZhF34yy4hq4qf7jvK1F2PlR3b5I5w==}
     hasBin: true
     peerDependencies:
       typescript: ^5.0.0
@@ -1844,8 +1844,8 @@ packages:
   array-iterate@2.0.1:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
 
-  astro-seo@0.8.3:
-    resolution: {integrity: sha512-gQeEh0U2yyVM0iyU8DTORK6hXMy5WH2wufrkUuNOKjI3LnYLniqgDxm1LZPQDuD6b4OHabVOi/5L88A9POCcCQ==}
+  astro-seo@0.8.4:
+    resolution: {integrity: sha512-Ou1vzQSXAxa0K8rtNtXNvSpYqOGEgMhh0immMxJeXmbVZac3UKCNWAoXWyOQDFYsZvBugCRSg0N1phBqPMVgCw==}
 
   astro-tweet@0.0.4:
     resolution: {integrity: sha512-D4rpm8r2AiDeY2L+wee1+smVojLd0Qd114NqO4uuczWh4R0hbJTwgd4fpyGp87M6SmF1g85d5QejxLzLjGn3rw==}
@@ -4621,9 +4621,9 @@ snapshots:
       - prettier
       - prettier-plugin-astro
 
-  '@astrojs/check@0.5.9(prettier-plugin-astro@0.14.0)(prettier@3.2.5)(typescript@5.4.5)':
+  '@astrojs/check@0.5.10(prettier-plugin-astro@0.14.0)(prettier@3.2.5)(typescript@5.4.5)':
     dependencies:
-      '@astrojs/language-server': 2.8.1(prettier-plugin-astro@0.14.0)(prettier@3.2.5)(typescript@5.4.5)
+      '@astrojs/language-server': 2.10.0(prettier-plugin-astro@0.14.0)(prettier@3.2.5)(typescript@5.4.5)
       chokidar: 3.6.0
       fast-glob: 3.3.2
       kleur: 4.1.5
@@ -6416,9 +6416,9 @@ snapshots:
 
   array-iterate@2.0.1: {}
 
-  astro-seo@0.8.3(prettier-plugin-astro@0.14.0)(prettier@3.2.5)(typescript@5.4.5):
+  astro-seo@0.8.4(prettier-plugin-astro@0.14.0)(prettier@3.2.5)(typescript@5.4.5):
     dependencies:
-      '@astrojs/check': 0.5.9(prettier-plugin-astro@0.14.0)(prettier@3.2.5)(typescript@5.4.5)
+      '@astrojs/check': 0.5.10(prettier-plugin-astro@0.14.0)(prettier@3.2.5)(typescript@5.4.5)
     transitivePeerDependencies:
       - prettier
       - prettier-plugin-astro
@@ -9345,7 +9345,7 @@ snapshots:
   volar-service-emmet@0.0.32(@volar/language-service@2.1.2):
     dependencies:
       '@vscode/emmet-helper': 2.9.2
-      vscode-html-languageservice: 5.2.0
+      vscode-html-languageservice: 5.1.2
     optionalDependencies:
       '@volar/language-service': 2.1.2
 
@@ -9359,7 +9359,7 @@ snapshots:
 
   volar-service-html@0.0.32(@volar/language-service@2.1.2):
     dependencies:
-      vscode-html-languageservice: 5.2.0
+      vscode-html-languageservice: 5.1.2
       vscode-languageserver-textdocument: 1.0.11
       vscode-uri: 3.0.8
     optionalDependencies:
