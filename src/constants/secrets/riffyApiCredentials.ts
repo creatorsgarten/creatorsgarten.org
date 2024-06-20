@@ -1,2 +1,2 @@
 export const riffyApiCredentials =
-  import.meta.env.RIFFY_CREDENTIALS ?? process.env.RIFFY_CREDENTIALS
+  import.meta.env.RIFFY_API_CREDENTIALS ?? process.env.RIFFY_API_CREDENTIALS
