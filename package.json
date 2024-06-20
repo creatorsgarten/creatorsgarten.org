@@ -10,10 +10,10 @@
     ]
   },
   "scripts": {
-    "dev": "astro dev --port ${PORT:-3000}",
+    "dev": "astro dev --port ${PORT:-5173}",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview --port ${PORT:-3000}",
+    "preview": "astro preview --port ${PORT:-5173}",
     "astro": "astro",
     "format": "prettier --write --plugin-search-dir=. .",
     "prepare": "test -d node_modules/husky && husky install || echo \"husky is not installed\""

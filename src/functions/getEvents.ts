@@ -19,7 +19,11 @@ export const getEvents = async () => {
   const cachedEvents = await readFileSystem<Event[]>(['events'])
 
   if (cachedEvents !== null)
-    return cachedEvents.data.map(o => ({ ...o, date: dayjs(o.date) }))
+    return cachedEvents.data.map(o => ({
+      ...o,
+      date: dayjs(o.date),
+      endDate: o.endDate && dayjs(o.endDate),
+    }))
 
   const fetchedEvents: Event[] = (
     await contentsgarten().search.query({

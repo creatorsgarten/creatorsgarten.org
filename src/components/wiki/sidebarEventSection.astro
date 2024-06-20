@@ -7,10 +7,13 @@ import dayjs from 'dayjs'
 import { stringifyDate } from '$functions/stringifyDate'
 
 import type { FrontMatter } from '$functions/parseFrontMatter'
+import SidebarTicketSection from './sidebarTicketSection.astro'
 
 export interface Props {
   event: NonNullable<FrontMatter['event']>
 }
+
+const isAuthenticated = Astro.locals.user !== null
 
 const { event } = Astro.props
 const from = dayjs(event.date)
@@ -48,3 +51,9 @@ const to = event.endDate ? dayjs(event.endDate) : undefined
     }
   </MetadataTable>
 </SidebarSection>
+
+{
+  isAuthenticated && typeof Astro.props.event.eventpopId === 'number' && (
+    <SidebarTicketSection eventpopId={Astro.props.event.eventpopId} />
+  )
+}
