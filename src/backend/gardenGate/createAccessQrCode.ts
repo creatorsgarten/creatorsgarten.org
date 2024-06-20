@@ -9,6 +9,7 @@ import { checkAccess } from './checkAccess'
 import { getServiceAccountIdToken } from './getServiceAccountIdToken'
 
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
+import { g0Credentials } from '$constants/secrets/g0Credentials.ts'
 
 const GardenZeroResponse = z.object({
   accessKey: z.string(),
@@ -61,7 +62,8 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
 
   try {
     const idToken = await getServiceAccountIdToken(
-      'https://github.com/creatorsgarten/garden-gate'
+      'https://github.com/creatorsgarten/garden-gate',
+      g0Credentials
     )
     const gardenZeroResponse = await fetch(g0Hostname + '/access/generate', {
       method: 'POST',

@@ -2,6 +2,7 @@
 import BaseLayout from '$layouts/base.astro'
 
 import { g0Hostname } from '$constants/secrets/g0Hostname'
+import { g0Credentials } from '$constants/secrets/g0Credentials'
 import { getServiceAccountIdToken } from 'src/backend/gardenGate/getServiceAccountIdToken'
 
 interface Log {
@@ -18,7 +19,8 @@ if (!granted)
   })
 
 const idToken = await getServiceAccountIdToken(
-  'https://github.com/creatorsgarten/garden-gate'
+  'https://github.com/creatorsgarten/garden-gate',
+  g0Credentials
 )
 const gardenZeroResponse: Log[] = await fetch(g0Hostname + '/error-log', {
   method: 'GET',

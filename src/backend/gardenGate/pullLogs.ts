@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 import { g0Hostname } from '$constants/secrets/g0Hostname'
+import { g0Credentials } from '$constants/secrets/g0Credentials.ts'
 import { collections } from '$constants/mongo'
 
 import { getServiceAccountIdToken } from './getServiceAccountIdToken'
@@ -16,7 +17,8 @@ interface PullResponse {
 
 export const pullLogs = async () => {
   const idToken = await getServiceAccountIdToken(
-    'https://github.com/creatorsgarten/garden-gate'
+    'https://github.com/creatorsgarten/garden-gate',
+    g0Credentials
   )
 
   const pullResponse = await fetch(g0Hostname + '/access/log', {
