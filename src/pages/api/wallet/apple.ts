@@ -1,7 +1,8 @@
 import type { APIRoute } from 'astro'
 
 import { getEvents } from '$functions/getEvents.ts'
-import { riffyApiToken } from '$constants/secrets/riffyApiToken'
+import { riffyApiCredentials } from '$constants/secrets/riffyApiCredentials.ts'
+import { getServiceAccountIdToken } from '../../../backend/gardenGate/getServiceAccountIdToken.ts'
 
 export const GET: APIRoute = async ({ locals, request }) => {
   const eventId = new URL(request.url).searchParams.get('event')
@@ -41,10 +42,14 @@ export const GET: APIRoute = async ({ locals, request }) => {
   }
 
   const url = `https://api.rayriffy.com/walletPasses/garten/apple?${new URLSearchParams(payload).toString()}`
+  const verifyToken = await getServiceAccountIdToken(
+    'https://github.com/rayriffy/api',
+    riffyApiCredentials
+  )
 
   return fetch(url, {
     headers: {
-      Authorization: `Bearer ${riffyApiToken}`,
+      Authorization: `Bearer ${verifyToken}`,
     },
   })
 }
