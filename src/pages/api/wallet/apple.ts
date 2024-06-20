@@ -40,7 +40,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
     }),
   }
 
-  const url = `https://api.rayriffy.com/walletPasses/garten?${new URLSearchParams(payload).toString()}`
+  const url = `https://api.rayriffy.com/walletPasses/garten/apple?${new URLSearchParams(payload).toString()}`
 
   return fetch(url, {
     headers: {
