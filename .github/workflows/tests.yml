@@ -57,6 +57,8 @@ jobs:
       - name: env
         run: cp .env.example .env
       - name: tests
+        env:
+          PORT: 3000
         run: pnpm playwright test
       - name: upload
         uses: actions/upload-artifact@v4
