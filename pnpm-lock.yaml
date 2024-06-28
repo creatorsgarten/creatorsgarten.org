@@ -80,7 +80,7 @@ importers:
         version: 10.0.0
       mongodb:
         specifier: ^6.0.0
-        version: 6.7.0(socks@2.7.1)
+        version: 6.8.0(socks@2.7.1)
       nanostores:
         specifier: ^0.10.0
         version: 0.10.0
@@ -1958,8 +1958,8 @@ packages:
     resolution: {integrity: sha512-ix0EwukN2EpC0SRWIj/7B5+A6uQMQy6KMREI9qQqvgpkV2frH63T0UDVd1SYedL6dNCmDBYB3QtXi4ISk9YT+g==}
     engines: {node: '>=14.20.1'}
 
-  bson@6.7.0:
-    resolution: {integrity: sha512-w2IquM5mYzYZv6rs3uN2DZTOBe2a0zXLj53TGDqwF4l6Sz/XsISrisXOJihArF9+BZ6Cq/GjVht7Sjfmri7ytQ==}
+  bson@6.8.0:
+    resolution: {integrity: sha512-iOJg8pr7wq2tg/zSlCCHMi3hMm5JTOxLTagf3zxhcenHsFp+c6uOs6K7W5UE7A4QIJGtqh/ZovFNMP4mOPJynQ==}
     engines: {node: '>=16.20.1'}
 
   btoa-lite@1.0.0:
@@ -3194,8 +3194,8 @@ packages:
       snappy:
         optional: true
 
-  mongodb@6.7.0:
-    resolution: {integrity: sha512-TMKyHdtMcO0fYBNORiYdmM25ijsHs+Njs963r4Tro4OQZzqYigAzYQouwWRg4OIaiLRUEGUh/1UAcH5lxdSLIA==}
+  mongodb@6.8.0:
+    resolution: {integrity: sha512-HGQ9NWDle5WvwMnrvUxsFYPd3JEbqD3RgABHBQRuoCEND0qzhsd0iH5ypHsf1eJ+sXmvmyKpP+FLOKY8Il7jMw==}
     engines: {node: '>=16.20.1'}
     peerDependencies:
       '@aws-sdk/credential-providers': ^3.188.0
@@ -6790,7 +6790,7 @@ snapshots:
 
   bson@5.5.1: {}
 
-  bson@6.7.0: {}
+  bson@6.8.0: {}
 
   btoa-lite@1.0.0: {}
 
@@ -8259,10 +8259,10 @@ snapshots:
     optionalDependencies:
       '@mongodb-js/saslprep': 1.1.7
 
-  mongodb@6.7.0(socks@2.7.1):
+  mongodb@6.8.0(socks@2.7.1):
     dependencies:
       '@mongodb-js/saslprep': 1.1.7
-      bson: 6.7.0
+      bson: 6.8.0
       mongodb-connection-string-url: 3.0.1
     optionalDependencies:
       socks: 2.7.1
