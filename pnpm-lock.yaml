@@ -65,7 +65,7 @@ importers:
         version: 9.10.0
       jose:
         specifier: ^5.0.0
-        version: 5.6.2
+        version: 5.6.3
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
@@ -2749,11 +2749,11 @@ packages:
     resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
     hasBin: true
 
-  jose@4.15.7:
-    resolution: {integrity: sha512-L7ioP+JAuZe8v+T5+zVI9Tx8LtU8BL7NxkyDFVMv+Qr3JW0jSoYDedLtodaXwfqMpeCyx4WXFNyu9tJt4WvC1A==}
+  jose@4.15.9:
+    resolution: {integrity: sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA==}
 
-  jose@5.6.2:
-    resolution: {integrity: sha512-F1t1/WZJ4JdmCE/XoMYw1dPOW5g8JF0xGm6Ox2fwaCAPlCzt+4Bh0EWP59iQuZNHHauDkCdjx+kCZSh5z/PGow==}
+  jose@5.6.3:
+    resolution: {integrity: sha512-1Jh//hEEwMhNYPDDLwXHa2ePWgWiFNNUadVmguAAw2IJ6sj9mNxV5tGXJNqlMkJAybF6Lgw1mISDxTePP/187g==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -6939,7 +6939,7 @@ snapshots:
       axios: 1.4.0
       expiry-map: 2.0.0
       gray-matter: 4.0.3
-      jose: 4.15.7
+      jose: 4.15.9
       js-yaml: 4.1.0
       json-buffer: 3.0.1
       keyv: 4.5.2
@@ -7646,9 +7646,9 @@ snapshots:
 
   jiti@1.21.0: {}
 
-  jose@4.15.7: {}
+  jose@4.15.9: {}
 
-  jose@5.6.2: {}
+  jose@5.6.3: {}
 
   js-tokens@4.0.0: {}
 
@@ -9489,7 +9489,7 @@ snapshots:
   volar-service-emmet@0.0.32(@volar/language-service@2.1.2):
     dependencies:
       '@vscode/emmet-helper': 2.9.2
-      vscode-html-languageservice: 5.2.0
+      vscode-html-languageservice: 5.1.2
     optionalDependencies:
       '@volar/language-service': 2.1.2
 
@@ -9503,7 +9503,7 @@ snapshots:
 
   volar-service-html@0.0.32(@volar/language-service@2.1.2):
     dependencies:
-      vscode-html-languageservice: 5.2.0
+      vscode-html-languageservice: 5.1.2
       vscode-languageserver-textdocument: 1.0.11
       vscode-uri: 3.0.8
     optionalDependencies:
