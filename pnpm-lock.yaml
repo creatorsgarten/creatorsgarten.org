@@ -126,7 +126,7 @@ importers:
         version: 5.1.0(astro@4.11.5(@types/node@20.14.9)(typescript@5.4.5))(tailwindcss@3.4.4)
       '@fontsource-variable/inter':
         specifier: ^5.0.8
-        version: 5.0.18
+        version: 5.0.19
       '@fontsource-variable/recursive':
         specifier: ^5.0.8
         version: 5.0.18
@@ -655,8 +655,8 @@ packages:
   '@fastify/static@7.0.4':
     resolution: {integrity: sha512-p2uKtaf8BMOZWLs6wu+Ihg7bWNBdjNgCwDza4MJtTqg+5ovKmcbgbR9Xs5/smZ1YISfzKOCNYmZV8LaCj+eJ1Q==}
 
-  '@fontsource-variable/inter@5.0.18':
-    resolution: {integrity: sha512-rJzSrtJ3b7djiGFvRuTe6stDfbYJGhdQSfn2SI2WfXviee7Er0yKAHE5u7FU7OWVQQQ1x3+cxdmx9NdiAkcrcA==}
+  '@fontsource-variable/inter@5.0.19':
+    resolution: {integrity: sha512-V5KPpF5o0sI1uNWAdFArC87NDOb/ZJDPXLomEiKmDCYMlDUCTn2flkuAZkyME2rtGOKO7vzCuDJAND0m/5PhDA==}
 
   '@fontsource-variable/recursive@5.0.18':
     resolution: {integrity: sha512-uBvE6vEEfXssr2epyM5fFgVvVZH9mLBKu3ikl320UxyfrGx/x5TWWcZ7pvichFnY/217c9bm7dMx3cDaTteIsA==}
@@ -2667,8 +2667,8 @@ packages:
     resolution: {integrity: sha512-1DKMMzlIHM02eBBVOFQ1+AolGjs6+xEcM4PDL7NqOS6szq7H9jSaEkIUH6/a5Hl241LzW6JLSiAbNvTQjUupUA==}
     engines: {node: '>=12.22.0'}
 
-  ip@2.0.0:
-    resolution: {integrity: sha512-WKa+XuLG1A1R0UWhl2+1XQSi+fZWMsYKffMZTTYsiZaUD8k2yDAj5atimTUD2TZkyCkNEeYE5NhFZmupOGtjYQ==}
+  ip@2.0.1:
+    resolution: {integrity: sha512-lJUL9imLTNi1ZfXT+DU6rBBdbiKGBuay9B6xGSPVjUeQwaH1RIGqef8RZkUtHioLmSNpPR5M4HVKJGm1j8FWVQ==}
 
   ipaddr.js@1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
@@ -5165,7 +5165,7 @@ snapshots:
       fastq: 1.17.1
       glob: 10.3.12
 
-  '@fontsource-variable/inter@5.0.18': {}
+  '@fontsource-variable/inter@5.0.19': {}
 
   '@fontsource-variable/recursive@5.0.18': {}
 
@@ -7548,7 +7548,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ip@2.0.0:
+  ip@2.0.1:
     optional: true
 
   ipaddr.js@1.9.1: {}
@@ -9085,7 +9085,7 @@ snapshots:
 
   socks@2.7.1:
     dependencies:
-      ip: 2.0.0
+      ip: 2.0.1
       smart-buffer: 4.2.0
     optional: true
 
@@ -9461,7 +9461,7 @@ snapshots:
   volar-service-emmet@0.0.32(@volar/language-service@2.1.2):
     dependencies:
       '@vscode/emmet-helper': 2.9.2
-      vscode-html-languageservice: 5.2.0
+      vscode-html-languageservice: 5.1.2
     optionalDependencies:
       '@volar/language-service': 2.1.2
 
@@ -9475,7 +9475,7 @@ snapshots:
 
   volar-service-html@0.0.32(@volar/language-service@2.1.2):
     dependencies:
-      vscode-html-languageservice: 5.2.0
+      vscode-html-languageservice: 5.1.2
       vscode-languageserver-textdocument: 1.0.11
       vscode-uri: 3.0.8
     optionalDependencies:
