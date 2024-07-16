@@ -1,10 +1,10 @@
-import type { APIRoute } from 'astro'
 import { contentsgarten } from '$constants/contentsgarten'
+import { purgeFileSystem } from '$functions/fileSystem'
 import {
   getContentHash,
   getMarkdownFromSlug,
 } from '$functions/wiki/getMarkdownFromSlug'
-import { purgeFileSystem } from '$functions/fileSystem'
+import type { APIRoute } from 'astro'
 import { LRUCache } from 'lru-cache'
 
 const updates = new LRUCache({

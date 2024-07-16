@@ -169,6 +169,10 @@ function getAvatarUrl(from: string) {
   if (from.startsWith('@')) {
     return `https://github.com/${encodeURIComponent(from.slice(1))}.png`
   }
+  if (from === 'ChatGPT') return '/images/chatbots/chatgpt.png'
+  if (from === 'GPT-4o') return '/images/chatbots/chatgpt.png'
+  if (from === 'Claude') return '/images/chatbots/claude.png'
+  if (from === 'Gemini') return '/images/chatbots/gemini.png'
 
   // Otherwise, use a placeholder avatar service
   return (

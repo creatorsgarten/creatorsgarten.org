@@ -2,6 +2,7 @@
 import { Icon } from 'react-iconify-icon-wrapper'
 import MetadataTable from './metadataTable.astro'
 import SidebarSection from './sidebarSection.astro'
+import WikiContributorList from './contributorList.tsx'
 
 import { stringifyDate } from '$functions/stringifyDate'
 
@@ -21,16 +22,8 @@ const { edited, editable, pageRef, grtn } = Astro.props
   <MetadataTable>
     <Fragment slot="table">
       <tr>
-        <td>EDIT</td>
-        <td
-          ><span>{stringifyDate(edited.at)}</span> / <span class="space-x-1"
-            >{
-              edited.by.map(user => (
-                <a href={`https://github.com/${user}`}>@{user}</a>
-              ))
-            }</span
-          >
-        </td>
+        <td>UPDATED</td>
+        <td>{stringifyDate(edited.at)}</td>
       </tr>
       {
         !!editable && (
@@ -81,7 +74,10 @@ const { edited, editable, pageRef, grtn } = Astro.props
   </MetadataTable>
   {
     !!editable && (
-      <div class="flex pt-4">
+      <div class="flex flex-col gap-4 pt-4">
+        <div class="h-8">
+          <WikiContributorList pageRef={pageRef} client:idle />
+        </div>
         <a
           href={`/wiki/${pageRef}/editor`}
           data-js="wiki-edit-link"
