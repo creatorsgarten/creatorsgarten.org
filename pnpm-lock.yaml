@@ -74,7 +74,7 @@ importers:
         version: 4.17.21
       lru-cache:
         specifier: ^10.0.1
-        version: 10.3.0
+        version: 10.4.3
       memoize:
         specifier: 10.0.0
         version: 10.0.0
@@ -2936,9 +2936,8 @@ packages:
   lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
 
-  lru-cache@10.3.0:
-    resolution: {integrity: sha512-CQl19J/g+Hbjbv4Y3mFNNXFEL/5t/KCg8POCuUqd4rMKjGG+j1ybER83hxV58zL+dFI1PTkt3GNFSHRt+d8qEQ==}
-    engines: {node: 14 || >=16.14}
+  lru-cache@10.4.3:
+    resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
@@ -5452,7 +5451,7 @@ snapshots:
       '@octokit/request-error': 5.1.0
       '@octokit/types': 13.5.0
       deprecation: 2.3.1
-      lru-cache: 10.3.0
+      lru-cache: 10.4.3
       universal-github-app-jwt: 1.1.2
       universal-user-agent: 6.0.0
 
@@ -7897,7 +7896,7 @@ snapshots:
     dependencies:
       tslib: 2.6.3
 
-  lru-cache@10.3.0: {}
+  lru-cache@10.4.3: {}
 
   lru-cache@5.1.1:
     dependencies:
@@ -8501,12 +8500,12 @@ snapshots:
 
   path-scurry@1.10.2:
     dependencies:
-      lru-cache: 10.3.0
+      lru-cache: 10.4.3
       minipass: 7.1.0
 
   path-scurry@1.11.1:
     dependencies:
-      lru-cache: 10.3.0
+      lru-cache: 10.4.3
       minipass: 7.1.2
 
   path-to-regexp@6.2.1: {}
