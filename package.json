@@ -39,7 +39,7 @@
     "jose": "^5.0.0",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
-    "lru-cache": "^10.0.1",
+    "lru-cache": "^11.0.0",
     "memoize": "10.0.0",
     "mongodb": "^6.0.0",
     "nanostores": "^0.10.0",
