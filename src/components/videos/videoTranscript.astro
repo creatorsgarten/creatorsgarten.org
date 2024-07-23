@@ -10,7 +10,9 @@ export type Props = {
 
 const transcript = await getVtt(Astro.props.transcriptRef)
 const parsed = subtitle.parseSync(transcript)
-const cues = parsed.filter(c => c.type === 'cue').map(c => c.data)
+const cues = parsed
+  .filter(c => c.type === 'cue')
+  .map(c => c.data as subtitle.Cue)
 ---
 
 <TranscriptViewer cues={cues} chapters={Astro.props.chapters} />
