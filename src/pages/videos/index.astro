@@ -1,0 +1,33 @@
+---
+import Breadcrumb from '$components/breadcrumb.astro'
+import Head from '$components/head.astro'
+import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
+import VideoListing from '$components/videos/videoListing'
+import { filterVideos, getVideoIndex } from '$functions/getVideos'
+import BaseLayout from '$layouts/base.astro'
+
+const index = await getVideoIndex()
+const speaker = Astro.url.searchParams.get('speaker')
+const listing = filterVideos(
+  index,
+  speaker ? { type: 'speaker', speaker } : undefined
+)
+---
+
+<Head title="Videos" />
+
+<BaseLayout>
+  <MainHorizontalPadding>
+    {
+      speaker ? (
+        <Breadcrumb
+          parents={[{ title: 'Videos', href: '/videos' }]}
+          title={`${speaker}`}
+        />
+      ) : (
+        <Breadcrumb parents={[]} title="Videos" />
+      )
+    }
+    <VideoListing filteredListing={listing} />
+  </MainHorizontalPadding>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import Breadcrumb from '$components/breadcrumb.astro'
+import Head from '$components/head.astro'
+import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
+import VideoListing from '$components/videos/videoListing'
+import { filterVideos, getVideoIndex } from '$functions/getVideos'
+import BaseLayout from '$layouts/base.astro'
+
+const index = await getVideoIndex()
+const eventId = Astro.params.eventId!
+const listing = filterVideos(index, { type: 'event', eventId })
+const event = listing.relatedEvent
+if (!event) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found',
+  })
+}
+---
+
+<Head title="Videos" />
+
+<BaseLayout>
+  <MainHorizontalPadding>
+    <Breadcrumb
+      parents={[{ title: 'Videos', href: '/videos' }]}
+      title={`${event.name}`}
+    />
+    <VideoListing filteredListing={listing} />
+  </MainHorizontalPadding>
+</BaseLayout>
