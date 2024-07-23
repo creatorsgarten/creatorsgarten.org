@@ -1,0 +1,123 @@
+---
+import Breadcrumb from '$components/breadcrumb.astro'
+import Head from '$components/head.astro'
+import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
+import VideoTranscript from '$components/videos/videoTranscript.astro'
+import MetadataTable from '$components/wiki/metadataTable.astro'
+import { formatTimecode } from '$functions/formatTimecode'
+import { getVideoIndex } from '$functions/getVideos'
+import { getIframe } from '$functions/wiki/getIframe'
+import BaseLayout from '$layouts/base.astro'
+
+const index = await getVideoIndex()
+const eventId = Astro.params.eventId!
+const slug = Astro.params.slug!
+
+const video = index.videos.find(
+  video => video.eventId === eventId && video.slug === slug
+)
+if (!video) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found',
+  })
+}
+---
+
+<Head title="Videos" />
+
+<BaseLayout>
+  <MainHorizontalPadding>
+    <Breadcrumb
+      parents={[{ title: 'Videos', href: '/videos' }]}
+      title={`${video.title}`}
+    />
+    <div
+      class="my-8 grid grid-cols-[1fr] items-start gap-6 lg:grid-cols-[min(50vw,640px)_1fr]"
+    >
+      <div
+        class="sticky top-0 z-30 -mx-4 bg-white lg:top-20 lg:mx-0"
+        set:html={getIframe(`https://www.youtube.com/embed/${video.youtubeId}`)}
+      />
+      <div>
+        <div class="bg-neutral-100 p-6">
+          <MetadataTable>
+            <Fragment slot="table">
+              <tr>
+                <td>Event</td>
+                <td>
+                  <a href={`/videos/${video.eventId}`}>{video.eventTitle}</a>
+                </td>
+              </tr>
+              {
+                video.speakers.length > 0 && (
+                  <tr>
+                    <td>
+                      {video.speakers.length > 1 ? 'Speakers' : 'Speaker'}
+                    </td>
+                    <td>
+                      {video.speakers.map(speaker => (
+                        <p>
+                          <a
+                            href={`/videos?speaker=${encodeURIComponent(speaker)}`}
+                          >
+                            {speaker}
+                          </a>
+                        </p>
+                      ))}
+                    </td>
+                  </tr>
+                )
+              }
+            </Fragment>
+          </MetadataTable>
+        </div>
+
+        {
+          video.description && (
+            <div class="p-6">
+              <h2 class="mb-2 text-xl font-medium">Description</h2>
+              <div class="prose max-w-full">
+                <p class="whitespace-pre-line">{video.description}</p>
+              </div>
+            </div>
+          )
+        }
+
+        {
+          !!video.chapters && (
+            <div class="p-6">
+              <h2 class="mb-2 text-xl font-medium">Chapters</h2>
+              <div class="prose max-w-full">
+                <ul>
+                  {video.chapters.map(chapter => (
+                    <li>
+                      <span class="flex">
+                        <span class="flex-grow">{chapter.title}</span>
+                        <span class="ml-2 tabular-nums">
+                          {formatTimecode(chapter.time)}
+                        </span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )
+        }
+
+        {
+          !!video.transcriptRef && (
+            <div class="p-6">
+              <h2 class="mb-2 text-xl font-medium">Transcript</h2>
+              <VideoTranscript
+                transcriptRef={video.transcriptRef}
+                chapters={video.chapters}
+              />
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </MainHorizontalPadding>
+</BaseLayout>

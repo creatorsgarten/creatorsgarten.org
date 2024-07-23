@@ -1,6 +1,7 @@
 ---
+import Breadcrumb from '$components/breadcrumb.astro'
+import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
 import BaseLayout from './base.astro'
-import { Icon } from 'react-iconify-icon-wrapper'
 
 export interface Props {
   title: string
@@ -10,69 +11,37 @@ const { title } = Astro.props
 ---
 
 <BaseLayout>
-  <div
-    class="sticky top-0 z-20 mx-4 -mt-6 flex items-center justify-between overflow-hidden whitespace-nowrap break-words border-b border-ck/50 bg-white py-3 text-2xl md:mx-8 lg:py-4 xl:text-3xl"
-  >
-    <h1 class="overflow-hidden text-ellipsis">
-      Wiki → <span class="font-medium" transition:name="wiki:name">{title}</span
-      >
-    </h1>
-    <div class="hidden gap-2 lg:flex">
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href={`https://twitter.com/intent/tweet?${new URLSearchParams({
-          url: Astro.url.toString(),
-          text: 'Check this',
-          via: 'Creatorsgarten',
-        }).toString()}`}
-        aria-label="Share to Twitter"
-      >
-        <Icon icon="mdi:twitter" width={24} />
-      </a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href={`https://www.facebook.com/dialog/share?${new URLSearchParams({
-          app_id: '2314627122104275',
-          href: Astro.url.toString(),
-          feature: 'share',
-          display: 'popup',
-        }).toString()}`}
-        aria-label="Share to Facebook"
-      >
-        <Icon icon="mdi:facebook" width={24} />
-      </a>
-    </div>
-  </div>
-  <div
-    class={`mt-8 grid grid-cols-1 gap-6 mx-4 md:mx-8 mb-10 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1.2fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]`}
-  >
-    <div class="col-span-1">
-      <div class="sticky top-24 flex flex-col sm:border-none">
-        <slot name="sidebar-left" />
-        <div class="hidden flex-col md:flex">
-          <slot name="sidebar-left-at-least-2-columns" />
-        </div>
-        <div class="hidden flex-col md:flex 2xl:hidden">
-          <slot name="sidebar-left-less-than-3-columns" />
-        </div>
-      </div>
-    </div>
+  <MainHorizontalPadding>
+    <Breadcrumb parents={[{ title: 'Wiki', href: '/wiki' }]} title={title} />
     <div
-      class="relative col-span-1 mb-6 h-auto rounded-xl bg-white px-1 md:min-h-[calc(100vh-24rem)] md:px-4 xl:px-6"
+      class={`mt-8 grid grid-cols-1 gap-6 mb-10 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1.2fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]`}
     >
-      <slot />
-    </div>
-    <div class={`col-span-1 hidden 2xl:block`}>
-      <div class="sticky top-0 flex flex-col">
-        <slot name="sidebar-right" />
+      <div class="col-span-1">
+        <div class="sticky top-24 flex flex-col sm:border-none">
+          <slot name="sidebar-left" />
+          <div class="hidden flex-col md:flex">
+            <slot name="sidebar-left-at-least-2-columns" />
+          </div>
+          <div class="hidden flex-col md:flex 2xl:hidden">
+            <slot name="sidebar-left-less-than-3-columns" />
+          </div>
+        </div>
+      </div>
+      <div
+        class="relative col-span-1 mb-6 h-auto rounded-xl bg-white px-1 md:min-h-[calc(100vh-24rem)] md:px-4 xl:px-6"
+      >
+        <slot />
+      </div>
+      <div class={`col-span-1 hidden 2xl:block`}>
+        <div class="sticky top-0 flex flex-col">
+          <slot name="sidebar-right" />
+        </div>
+      </div>
+      <div class={`col-span-1 md:hidden md:border-y-2`}>
+        <div class="flex flex-col pt-0.5">
+          <slot name="sidebar-bottom" />
+        </div>
       </div>
     </div>
-    <div class={`col-span-1 md:hidden md:border-y-2`}>
-      <div class="flex flex-col pt-0.5">
-        <slot name="sidebar-bottom" />
-      </div>
-    </div>
-  </div>
+  </MainHorizontalPadding>
 </BaseLayout>

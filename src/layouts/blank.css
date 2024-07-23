@@ -1,4 +1,5 @@
 html {
   background-color: var(--page-bg);
   --page-bg: #fff;
+  scroll-padding-top: 72px;
 }
