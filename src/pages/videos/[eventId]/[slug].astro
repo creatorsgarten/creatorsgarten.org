@@ -2,6 +2,7 @@
 import Breadcrumb from '$components/breadcrumb.astro'
 import Head from '$components/head.astro'
 import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
+import CueHighlighter from '$components/videos/cueHighlighter'
 import VideoTranscript from '$components/videos/videoTranscript.astro'
 import MetadataTable from '$components/wiki/metadataTable.astro'
 import { formatTimecode } from '$functions/formatTimecode'
@@ -22,6 +23,7 @@ if (!video) {
     statusText: 'Not found',
   })
 }
+const iframeId = `youtube-${video.youtubeId}-${eventId}-${slug}`
 ---
 
 <Head title="Videos" />
@@ -37,9 +39,12 @@ if (!video) {
     >
       <div
         class="sticky top-0 z-30 -mx-4 bg-white lg:top-20 lg:mx-0"
-        set:html={getIframe(`https://www.youtube.com/embed/${video.youtubeId}`)}
+        set:html={getIframe(
+          `https://www.youtube.com/embed/${video.youtubeId}?enablejsapi=1`,
+          iframeId
+        )}
       />
-      <div>
+      <div data-cue-by={iframeId}>
         <div class="bg-neutral-100 p-6">
           <MetadataTable>
             <Fragment slot="table">
@@ -90,9 +95,14 @@ if (!video) {
               <h2 class="mb-2 text-xl font-medium">Chapters</h2>
               <div class="prose max-w-full">
                 <ul>
-                  {video.chapters.map(chapter => (
+                  {video.chapters.map((chapter, index, chapters) => (
                     <li>
-                      <span class="flex">
+                      <span
+                        class="flex"
+                        data-cue={
+                          `${chapter.time}-` + (chapters[index + 1]?.time ?? '')
+                        }
+                      >
                         <span class="flex-grow">{chapter.title}</span>
                         <span class="ml-2 tabular-nums">
                           {formatTimecode(chapter.time)}
@@ -119,5 +129,15 @@ if (!video) {
         }
       </div>
     </div>
+    <CueHighlighter iframeId={iframeId} client:only="react" />
   </MainHorizontalPadding>
 </BaseLayout>
+
+<style>
+  [data-cue-by] :global([data-cue][data-active='true']) {
+    @apply bg-yellow-300;
+  }
+  [data-cue-by][data-interactive='true'] :global([data-cue]) {
+    @apply -mx-1 cursor-pointer rounded-md px-1;
+  }
+</style>

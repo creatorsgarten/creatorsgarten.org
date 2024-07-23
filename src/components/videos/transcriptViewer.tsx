@@ -1,4 +1,5 @@
 import { formatTimecode } from '$functions/formatTimecode'
+import { Fragment } from 'react'
 import type * as subtitle from 'subtitle'
 
 export interface TranscriptViewer {
@@ -25,10 +26,12 @@ export default function TranscriptViewer(props: TranscriptViewer) {
         }
         return (
           <p className={inChapter ? 'pl-6' : ''}>
-            {group.cues.map(cue => (
-              <>
-                <span>{cue.text}</span>{' '}
-              </>
+            {group.cues.map((cue, i) => (
+              <Fragment key={i}>
+                <span key={i} data-cue={`${cue.start}-${cue.end}`}>
+                  {cue.text}
+                </span>{' '}
+              </Fragment>
             ))}
           </p>
         )
