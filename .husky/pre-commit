@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 # To prevent the pre-commit hook from running during a merge
 if ! git rev-parse -q --verify MERGE_HEAD
 then
