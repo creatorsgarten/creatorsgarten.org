@@ -1,0 +1,26 @@
+---
+import { Icon } from 'react-iconify-icon-wrapper'
+
+export type Props = {
+  slug: string
+  eventId: string
+}
+
+const { eventId, slug } = Astro.props
+---
+
+<div class="flex items-center gap-2">
+  <a
+    href={`https://github.com/creatorsgarten/videos/blob/main/data/videos/${eventId}/${slug}.md`}
+    class="videoActionsButton"
+  >
+    <Icon icon="pixelarticons:edit" />
+    Edit metadata on GitHub
+  </a>
+</div>
+
+<style>
+  .videoActionsButton {
+    @apply flex items-center gap-1 rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900;
+  }
+</style>

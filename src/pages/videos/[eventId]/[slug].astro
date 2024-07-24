@@ -3,11 +3,11 @@ import Breadcrumb from '$components/breadcrumb.astro'
 import Head from '$components/head.astro'
 import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
 import CueHighlighter from '$components/videos/cueHighlighter'
+import VideoActions from '$components/videos/videoActions.astro'
 import VideoTranscript from '$components/videos/videoTranscript.astro'
 import MetadataTable from '$components/wiki/metadataTable.astro'
 import { formatTimecode } from '$functions/formatTimecode'
 import { getVideoIndex } from '$functions/getVideos'
-import { getIframe } from '$functions/wiki/getIframe'
 import BaseLayout from '$layouts/base.astro'
 
 const index = await getVideoIndex()
@@ -35,15 +35,22 @@ const iframeId = `youtube-${video.youtubeId}-${eventId}-${slug}`
       title={`${video.title}`}
     />
     <div
-      class="my-8 grid grid-cols-[1fr] items-start gap-6 lg:grid-cols-[min(50vw,640px)_1fr]"
+      class="my-8 grid grid-cols-[1fr] items-start gap-6 lg:grid-cols-[1fr_1fr] xl:grid-cols-[1fr_600px]"
     >
-      <div
-        class="sticky top-0 z-30 -mx-4 bg-white lg:top-20 lg:mx-0"
-        set:html={getIframe(
-          `https://www.youtube.com/embed/${video.youtubeId}?enablejsapi=1`,
-          iframeId
-        )}
-      />
+      <div class="sticky top-0 z-30 -mx-4 bg-white lg:top-20 lg:mx-0">
+        <div class="mx-auto aspect-[16/9] w-full">
+          <iframe
+            id={iframeId}
+            src={`https://www.youtube.com/embed/${video.youtubeId}?enablejsapi=1`}
+            class="aspect-[16/9] w-full"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen></iframe>
+        </div>
+        <div class="mt-4 hidden lg:block">
+          <VideoActions eventId={eventId} slug={slug} />
+        </div>
+      </div>
       <div data-cue-by={iframeId}>
         <div class="bg-neutral-100 p-6">
           <MetadataTable>
@@ -127,6 +134,10 @@ const iframeId = `youtube-${video.youtubeId}-${eventId}-${slug}`
             </div>
           )
         }
+
+        <div class="p-6 lg:hidden">
+          <VideoActions eventId={eventId} slug={slug} />
+        </div>
       </div>
     </div>
     <CueHighlighter iframeId={iframeId} client:only="react" />

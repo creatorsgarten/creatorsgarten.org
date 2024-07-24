@@ -47,7 +47,7 @@ export default function VideoListing(props: VideoListing) {
   )
 
   return (
-    <div className="my-8 grid grid-cols-[1fr] gap-8 md:grid-cols-[240px_1fr]">
+    <div className="my-8 grid grid-cols-[100%] gap-8 md:grid-cols-[240px_1fr]">
       <div className="md:col-start-2 md:row-start-1">
         {!filter && (
           <div className="md:hidden">

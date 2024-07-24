@@ -17,34 +17,6 @@ async function loadYouTubeApi(): Promise<typeof YT> {
     tag.onerror = reject
     document.head.appendChild(tag)
   }))
-
-  // //Holds a reference to the YouTube player
-  // var player;
-
-  // //this function is called by the API
-  // function onYouTubeIframeAPIReady() {
-  //     //creates the player object
-  //     player = new YT.Player('player');
-
-  //     //subscribe to events
-  //     player.addEventListener("onReady",       "onYouTubePlayerReady");
-  //     player.addEventListener("onStateChange", "onYouTubePlayerStateChange");
-  // }
-
-  // function onYouTubePlayerReady(event) {
-  //     event.target.playVideo();
-  // }
-
-  // function onYouTubePlayerStateChange(event) {
-  //     switch (event.data) {
-  //         case YT.PlayerState.ENDED:
-  //             if($('#link-1').length > 0) {
-  //                 var href = $('#link-1').attr('href');
-  //                 window.location.href = href;
-  //             }
-  //             break;
-  //     }
-  // }
 }
 
 export default function CueHighlighter(props: { iframeId: string }) {
@@ -79,7 +51,9 @@ export default function CueHighlighter(props: { iframeId: string }) {
         )
         let active = new Set<(typeof cues)[number]>()
         const interval = setInterval(() => {
-          const time = player.getCurrentTime() * 1000 - 1
+          const time =
+            player.getCurrentTime() * 1000 +
+            (player.getCurrentTime() < 0.1 ? -1 : 50)
           const matching = new Set(
             cues.filter(cue => cue.start <= time && time < cue.end)
           )
