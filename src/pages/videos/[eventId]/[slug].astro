@@ -24,6 +24,8 @@ if (!video) {
   })
 }
 const iframeId = `youtube-${video.youtubeId}-${eventId}-${slug}`
+const transcriptLanguage = video.transcriptRef?.endsWith('_th') ? 'th' : 'en'
+const transcriptUrl = `https://github.com/creatorsgarten/videos/blob/main/data/videos/${video.transcriptRef}.vtt`
 ---
 
 <Head title="Videos" />
@@ -127,6 +129,13 @@ const iframeId = `youtube-${video.youtubeId}-${eventId}-${slug}`
           !!video.transcriptRef && (
             <div class="p-6">
               <h2 class="mb-2 text-xl font-medium">Transcript</h2>
+              <div class="bg-yellow-100 p-4 rounded-md">
+                <p class="mb-4">
+                  {transcriptLanguage === 'th'
+                    ? <span>คำบรรยายนี้ดูแลโดยชุมชนและอาจไม่ถูกต้อง หากคุณพบข้อผิดพลาด คุณสามารถมีส่วนร่วมใน <a href={transcriptUrl}>GitHub</a>.</span>
+                    : <span>These transcripts are community maintained and may not be accurate. If you spot an error, you can contribute on <a href={transcriptUrl}>GitHub</a>.</span>}
+                </p>
+              </div>
               <VideoTranscript
                 transcriptRef={video.transcriptRef}
                 chapters={video.chapters}
