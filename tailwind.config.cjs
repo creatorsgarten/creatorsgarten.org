@@ -24,7 +24,7 @@ module.exports = {
         ],
         prose: [
           'Basier Circle',
-          'Anuphan',
+          'Sarabun',
           ...defaultConfig.theme.fontFamily.sans,
         ],
         casual: [
