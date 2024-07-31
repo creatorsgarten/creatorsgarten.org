@@ -116,8 +116,8 @@ importers:
         version: 3.3.0(zod@3.23.8)
     devDependencies:
       '@astrojs/check':
-        specifier: ^0.8.0
-        version: 0.8.3(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
+        specifier: ^0.9.0
+        version: 0.9.1(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
       '@astrojs/node':
         specifier: 8.3.2
         version: 8.3.2(astro@4.12.3(@types/node@22.0.0)(typescript@5.4.5))
@@ -231,11 +231,14 @@ packages:
     peerDependencies:
       typescript: ^5.0.0
 
-  '@astrojs/check@0.8.3':
-    resolution: {integrity: sha512-ajcSe+ezX5jCc3dreQlWzbknzXgSGnDETNe3C1mawUOtGpO4t5z2YGaD0y+wzB84lmgPWaWZa0fKSPwLq/wUHw==}
+  '@astrojs/check@0.9.1':
+    resolution: {integrity: sha512-VvN5ukVzg0IccKuZlI/pdsp4MSpHxWf9a36eOmS8Wpp+NM0MhJLYv3yvQC+qa472Kdf8DHEt/wmVZYwJUMFW+w==}
     hasBin: true
     peerDependencies:
       typescript: ^5.0.0
+
+  '@astrojs/compiler@2.10.1':
+    resolution: {integrity: sha512-XmM4j6BjvOVMag2xELq0JuG2yKOW8wgIu6dvb9BsjbGYmnvoStJn/pqEzVqc1EBszf2xYT7onIkftIOUz9AwrQ==}
 
   '@astrojs/compiler@2.9.1':
     resolution: {integrity: sha512-s8Ge2lWHx/s3kl4UoerjL/iPtwdtogNM/BLOaGCwQA6crMOVYpphy5wUkYlKyuh8GAeGYH/5haLAFBsgNy9AQQ==}
@@ -248,6 +251,18 @@ packages:
 
   '@astrojs/language-server@2.12.7':
     resolution: {integrity: sha512-Kl/Y/XBZSjN44plPHTVH7xfp1aZtuzXe1VH4CEn2NLdmiOAHN2GO/ujN++YpQih7A5SwbjbfvyeuLbKAS9Je+w==}
+    hasBin: true
+    peerDependencies:
+      prettier: ^3.0.0
+      prettier-plugin-astro: '>=0.11.0'
+    peerDependenciesMeta:
+      prettier:
+        optional: true
+      prettier-plugin-astro:
+        optional: true
+
+  '@astrojs/language-server@2.13.1':
+    resolution: {integrity: sha512-Cl9ynfnge6+MaCpehYn7w9WrAE+sVS7onhxhMzCdqzPtIt/Yo5zIaiGZdu4QgvmOV/mdNBZCZgaTpAIeGjWwsQ==}
     hasBin: true
     peerDependencies:
       prettier: ^3.0.0
@@ -4609,9 +4624,9 @@ snapshots:
       - prettier
       - prettier-plugin-astro
 
-  '@astrojs/check@0.8.3(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)':
+  '@astrojs/check@0.9.1(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)':
     dependencies:
-      '@astrojs/language-server': 2.12.7(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
+      '@astrojs/language-server': 2.13.1(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
       chokidar: 3.6.0
       fast-glob: 3.3.2
       kleur: 4.1.5
@@ -4620,6 +4635,8 @@ snapshots:
     transitivePeerDependencies:
       - prettier
       - prettier-plugin-astro
+
+  '@astrojs/compiler@2.10.1': {}
 
   '@astrojs/compiler@2.9.1': {}
 
@@ -4630,6 +4647,31 @@ snapshots:
   '@astrojs/language-server@2.12.7(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)':
     dependencies:
       '@astrojs/compiler': 2.9.2
+      '@jridgewell/sourcemap-codec': 1.5.0
+      '@volar/kit': 2.4.0-alpha.18(typescript@5.4.5)
+      '@volar/language-core': 2.4.0-alpha.18
+      '@volar/language-server': 2.4.0-alpha.18
+      '@volar/language-service': 2.4.0-alpha.18
+      '@volar/typescript': 2.4.0-alpha.18
+      fast-glob: 3.3.2
+      muggle-string: 0.4.1
+      volar-service-css: 0.0.59(@volar/language-service@2.4.0-alpha.18)
+      volar-service-emmet: 0.0.59(@volar/language-service@2.4.0-alpha.18)
+      volar-service-html: 0.0.59(@volar/language-service@2.4.0-alpha.18)
+      volar-service-prettier: 0.0.59(@volar/language-service@2.4.0-alpha.18)(prettier@3.3.3)
+      volar-service-typescript: 0.0.59(@volar/language-service@2.4.0-alpha.18)
+      volar-service-typescript-twoslash-queries: 0.0.59(@volar/language-service@2.4.0-alpha.18)
+      vscode-html-languageservice: 5.3.0
+      vscode-uri: 3.0.8
+    optionalDependencies:
+      prettier: 3.3.3
+      prettier-plugin-astro: 0.14.1
+    transitivePeerDependencies:
+      - typescript
+
+  '@astrojs/language-server@2.13.1(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)':
+    dependencies:
+      '@astrojs/compiler': 2.10.1
       '@jridgewell/sourcemap-codec': 1.5.0
       '@volar/kit': 2.4.0-alpha.18(typescript@5.4.5)
       '@volar/language-core': 2.4.0-alpha.18
