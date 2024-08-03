@@ -29,7 +29,10 @@ const activeAnnouncement = (() => {
       class="block bg-black px-6 py-4 text-sm text-white sm:text-base"
       href={activeAnnouncement.link}
     >
-      <Icon icon="mdi:megaphone" inline /> {activeAnnouncement.message}
+      <div class="pr-1">
+        <Icon icon="mdi:megaphone" inline />
+      </div>
+      {activeAnnouncement.message}
     </a>
   )
 }
