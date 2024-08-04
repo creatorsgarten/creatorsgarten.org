@@ -29,13 +29,13 @@ importers:
         version: 7.0.4
       '@nanostores/logger':
         specifier: ^0.3.0
-        version: 0.3.0(nanostores@0.10.0)
+        version: 0.3.0(nanostores@0.11.0)
       '@nanostores/persistent':
         specifier: ^0.10.0
-        version: 0.10.2(nanostores@0.10.0)
+        version: 0.10.2(nanostores@0.11.0)
       '@nanostores/react':
         specifier: ^0.7.1
-        version: 0.7.3(nanostores@0.10.0)(react@18.3.1)
+        version: 0.7.3(nanostores@0.11.0)(react@18.3.1)
       '@sentry/astro':
         specifier: ^8.0.0
         version: 8.22.0(astro@4.13.1(@types/node@22.0.2)(typescript@5.4.5))
@@ -85,8 +85,8 @@ importers:
         specifier: ^6.0.0
         version: 6.8.0(socks@2.7.1)
       nanostores:
-        specifier: ^0.10.0
-        version: 0.10.0
+        specifier: ^0.11.0
+        version: 0.11.0
       ofetch:
         specifier: ^1.3.4
         version: 1.3.4
@@ -3160,8 +3160,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanostores@0.10.0:
-    resolution: {integrity: sha512-Poy5+9wFXOD0jAstn4kv9n686U2BFw48z/W8lms8cS8lcbRz7BU20JxZ3e/kkKQVfRrkm4yLWCUA6GQINdvJCQ==}
+  nanostores@0.11.0:
+    resolution: {integrity: sha512-fT2u3vmWmUt93G9dmUgpnbs3AAYJb6lzu7KrJ1FdC/rjFopGiboS3bfKYv6NNkuY6g6eiRakTR48wKSL/F5C+g==}
     engines: {node: ^18.0.0 || >=20.0.0}
 
   nlcst-to-string@4.0.0:
@@ -5189,17 +5189,17 @@ snapshots:
     dependencies:
       sparse-bitfield: 3.0.3
 
-  '@nanostores/logger@0.3.0(nanostores@0.10.0)':
+  '@nanostores/logger@0.3.0(nanostores@0.11.0)':
     dependencies:
-      nanostores: 0.10.0
+      nanostores: 0.11.0
 
-  '@nanostores/persistent@0.10.2(nanostores@0.10.0)':
+  '@nanostores/persistent@0.10.2(nanostores@0.11.0)':
     dependencies:
-      nanostores: 0.10.0
+      nanostores: 0.11.0
 
-  '@nanostores/react@0.7.3(nanostores@0.10.0)(react@18.3.1)':
+  '@nanostores/react@0.7.3(nanostores@0.11.0)(react@18.3.1)':
     dependencies:
-      nanostores: 0.10.0
+      nanostores: 0.11.0
       react: 18.3.1
 
   '@nodelib/fs.scandir@2.1.5':
@@ -8024,7 +8024,7 @@ snapshots:
 
   nanoid@3.3.7: {}
 
-  nanostores@0.10.0: {}
+  nanostores@0.11.0: {}
 
   nlcst-to-string@4.0.0:
     dependencies:
