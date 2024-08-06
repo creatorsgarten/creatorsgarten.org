@@ -24,7 +24,7 @@
     "@dtinth/comparator": "^0.0.3",
     "@fastify/middie": "^8.3.0",
     "@fastify/static": "^7.0.0",
-    "@nanostores/logger": "^0.3.0",
+    "@nanostores/logger": "^0.4.0",
     "@nanostores/persistent": "^0.10.0",
     "@nanostores/react": "^0.7.1",
     "@sentry/astro": "^8.0.0",
