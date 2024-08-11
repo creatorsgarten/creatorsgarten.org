@@ -187,7 +187,7 @@ export const appRouter = t.router({
       const formData = generateCloudinarySignature(params, {
         cloudName,
         apiKey,
-        apiSecret: import.meta.env.CLOUDINARY_API_SECRET,
+        apiSecret: process.env.CLOUDINARY_API_SECRET!,
       })
       return { url, formData }
     }),
