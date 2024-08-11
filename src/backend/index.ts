@@ -25,6 +25,7 @@ import { createAccessQrCode } from './gardenGate/createAccessQrCode'
 import { pullLogs } from './gardenGate/pullLogs'
 import { generateSignature } from './signatures/generateSignature'
 import { verifySignature } from './signatures/verifySignature'
+import { generateCloudinarySignature } from './uploads/generateCloudinarySignature'
 
 interface BackendContext {
   authToken?: string
@@ -154,6 +155,42 @@ export const appRouter = t.router({
       .query(async ({ input }) => {
         return verifySignature(input.signature)
       }),
+  }),
+
+  uploads: t.router({
+    getCloudinaryParameters: t.procedure.query(async ({ ctx }) => {
+      const user = await getAuthenticatedUser(ctx.authToken)
+      if (!user) {
+        throw new TRPCError({
+          code: 'UNAUTHORIZED',
+          message: 'User is not authenticated',
+        })
+      }
+      const params = {
+        public_id_prefix: user.sub,
+        asset_folder: user.sub,
+        use_filename: 'true',
+        use_filename_as_display_name: 'true',
+        overwrite: 'false',
+        metadata: `owner=${user.sub}`,
+        colors: 'true',
+        faces: 'true',
+        quality_analysis: 'true',
+        media_metadata: 'true',
+        phash: 'true',
+        detection: 'captioning',
+        allowed_formats: 'webp,png,svg',
+      }
+      const cloudName = 'creatorsgarten'
+      const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`
+      const apiKey = '537643412116516'
+      const formData = generateCloudinarySignature(params, {
+        cloudName,
+        apiKey,
+        apiSecret: import.meta.env.CLOUDINARY_API_SECRET,
+      })
+      return { url, formData }
+    }),
   }),
 
   deviceAuthorizations: t.router({

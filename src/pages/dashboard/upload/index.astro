@@ -1,0 +1,42 @@
+---
+import Breadcrumb from '$components/breadcrumb.astro'
+import Uploader from '$components/dashboard/upload/uploader'
+import Head from '$components/head.astro'
+import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
+import BaseLayout from '$layouts/base.astro'
+
+const { user, backend } = Astro.locals
+if (!user) {
+  return Astro.redirect(
+    '/auth/login?dest=' +
+      encodeURIComponent(Astro.url.pathname + Astro.url.search)
+  )
+}
+
+const { formData, url } = await backend.uploads.getCloudinaryParameters.query()
+---
+
+<Head title="Upload" />
+
+<BaseLayout>
+  <MainHorizontalPadding>
+    <Breadcrumb
+      parents={[{ title: 'Dashboard', href: '/dashboard' }]}
+      title={'Upload'}
+    />
+    <div
+      class="my-4 bg-yellow-500/15 p-2 font-prose text-sm font-light leading-relaxed antialiased"
+    >
+      <p>
+        <strong
+          >This image uploader is for Creatorsgarten-related content,</strong
+        > such as event photos or wiki images, and should not be used for personal
+        or unrelated purposes. All uploaded images will be publicly accessible, and
+        website administrators have full access to all content. Your image will be
+        compressed and converted to WebP format. By uploading an image, you agree
+        to these terms.
+      </p>
+    </div>
+    <Uploader client:only="react" uploadUrl={url} uploadFormData={formData} />
+  </MainHorizontalPadding>
+</BaseLayout>
