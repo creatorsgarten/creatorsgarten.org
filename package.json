@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.0",
-    "@astrojs/node": "8.3.2",
+    "@astrojs/node": "8.3.3",
     "@astrojs/react": "^3.0.0",
     "@astrojs/svelte": "^5.0.0",
     "@astrojs/tailwind": "5.1.0",
@@ -72,7 +72,7 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@types/youtube": "^0.0.50",
-    "astro": "4.13.3",
+    "astro": "4.13.4",
     "astro-seo": "^0.8.0",
     "contentsgarten": "^2.1.0",
     "dotenv": "^16.3.1",
