@@ -26,9 +26,17 @@ if (!video) {
 const iframeId = `youtube-${video.youtubeId}-${eventId}-${slug}`
 const transcriptLanguage = video.transcriptRef?.endsWith('_th') ? 'th' : 'en'
 const transcriptUrl = `https://github.com/creatorsgarten/videos/blob/main/data/videos/${video.transcriptRef}.vtt`
+
+const title = [video.title, video.speakers.join(', '), video.eventTitle]
+  .filter(x => x.trim())
+  .join(' · ')
+const description = (video.description || '')
+  .split('\n')
+  .filter(x => x.trim())[0]
+const ogImage = `https://screenshot.source.in.th/image/_/creatorsgarten-videos/${eventId}/${slug}`
 ---
 
-<Head title="Videos" />
+<Head title={title} description={description} ogImage={ogImage} />
 
 <BaseLayout>
   <MainHorizontalPadding>
