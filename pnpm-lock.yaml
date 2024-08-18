@@ -135,10 +135,10 @@ importers:
         version: 5.0.20
       '@fontsource-variable/recursive':
         specifier: ^5.0.8
-        version: 5.0.18
+        version: 5.0.19
       '@fontsource-variable/work-sans':
         specifier: ^5.0.9
-        version: 5.0.19
+        version: 5.0.20
       '@playwright/test':
         specifier: 1.46.1
         version: 1.46.1
@@ -638,11 +638,11 @@ packages:
   '@fontsource-variable/inter@5.0.20':
     resolution: {integrity: sha512-dhzG4Zls/tIrf8h0FhTNi8jT/uFwNhdTY2vKe6DYqoXDYOfEcTVZDyh1hKml1rlLT44Y7OoKoGz8w7czDW7twQ==}
 
-  '@fontsource-variable/recursive@5.0.18':
-    resolution: {integrity: sha512-uBvE6vEEfXssr2epyM5fFgVvVZH9mLBKu3ikl320UxyfrGx/x5TWWcZ7pvichFnY/217c9bm7dMx3cDaTteIsA==}
+  '@fontsource-variable/recursive@5.0.19':
+    resolution: {integrity: sha512-Hu0eQ0tFwsdpVbodrEhtSc38VkIYN3N/iHtgE+vdWBUlbQcO+LSvucm2kRpnxOqwDRtA3GfSXppMMbJwfz6JpQ==}
 
-  '@fontsource-variable/work-sans@5.0.19':
-    resolution: {integrity: sha512-UAHRcHDhCt1RyDwzigdQXFwL6skyVDQJxcnD7neHEdAHP9aQuDPWDWeHUfWsmPiBlseOlyczpfsQQcAllOxA9w==}
+  '@fontsource-variable/work-sans@5.0.20':
+    resolution: {integrity: sha512-InVf5/3xZJ1ZQs/wDTk7s5D2iM1i1K0oSCo7bIy6vCQ193Hkp1Uxgw9WhlWMBgJFwSLM6/+EC9ZMtiqnvghRLg==}
 
   '@img/sharp-darwin-arm64@0.33.3':
     resolution: {integrity: sha512-FaNiGX1MrOuJ3hxuNzWgsT/mg5OHG/Izh59WW2mk1UwYHUwtfbhk5QNKYZgxf0pLOhx9ctGiGa2OykD71vOnSw==}
@@ -5083,9 +5083,9 @@ snapshots:
 
   '@fontsource-variable/inter@5.0.20': {}
 
-  '@fontsource-variable/recursive@5.0.18': {}
+  '@fontsource-variable/recursive@5.0.19': {}
 
-  '@fontsource-variable/work-sans@5.0.19': {}
+  '@fontsource-variable/work-sans@5.0.20': {}
 
   '@img/sharp-darwin-arm64@0.33.3':
     optionalDependencies:
