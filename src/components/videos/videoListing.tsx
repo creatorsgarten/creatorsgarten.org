@@ -36,7 +36,7 @@ export default function VideoListing(props: VideoListing) {
     children: React.ReactNode,
     cta?: { text: string; href: string }
   ) => (
-    <div className="mb-6 flex gap-4 rounded-lg bg-neutral-100 p-4 shadow">
+    <div className="mb-6 flex gap-4 bg-neutral-100 p-4">
       <div className="flex-1">{children}</div>
       {!!cta && (
         <a className="text-primary-600 flex items-center gap-1" href={cta.href}>
@@ -68,14 +68,14 @@ export default function VideoListing(props: VideoListing) {
             </>,
             { text: 'Go to event', href: `/event/${relatedEvent.id}` }
           )}
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(256px,1fr))] gap-6 md:col-start-1 md:row-start-1">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(256px,1fr))] gap-4 md:col-start-1 md:row-start-1">
           {filteredVideos.map(video => (
             <a
               href={`/videos/${video.eventId}/${video.slug}`}
               key={`${video.eventId}/${video.slug}`}
               className="flex flex-col"
             >
-              <div className="flex flex-auto flex-col overflow-hidden rounded-lg shadow">
+              <div className="flex flex-auto flex-col overflow-hidden bg-neutral-100 hover:bg-neutral-200">
                 <img
                   src={video.thumbnailUrl}
                   alt={video.title}
@@ -83,16 +83,18 @@ export default function VideoListing(props: VideoListing) {
                   height="225"
                   className="aspect-video w-full flex-none object-cover"
                 />
-                <div className="flex-auto p-4">
-                  <h3 className="line-clamp-2 text-lg font-semibold">
-                    {video.title}
-                  </h3>
-                  <div className="text-muted line-clamp-1">
-                    {video.speakers.join(', ')}
+                <div className="flex h-full flex-col justify-between p-3">
+                  <div className="flex h-full flex-col justify-between gap-3">
+                    <h3 className="line-clamp-2 text-balance text-lg font-semibold leading-snug">
+                      {video.title}
+                    </h3>
+                    <div className="text-muted line-clamp-1 text-sm">
+                      {video.speakers.join(', ')}
+                    </div>
                   </div>
-                  <div className="text-muted line-clamp-1">
+                  {/* <div className="text-muted line-clamp-1 pt-3 text-sm font-medium">
                     {video.eventTitle}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </a>
