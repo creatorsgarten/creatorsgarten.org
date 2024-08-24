@@ -164,8 +164,8 @@ importers:
         specifier: ^18.2.7
         version: 18.3.0
       '@types/youtube':
-        specifier: ^0.0.50
-        version: 0.0.50
+        specifier: ^0.1.0
+        version: 0.1.0
       astro:
         specifier: 4.14.5
         version: 4.14.5(@types/node@22.3.0)(rollup@4.21.0)(typescript@5.4.5)
@@ -1663,8 +1663,8 @@ packages:
   '@types/whatwg-url@11.0.5':
     resolution: {integrity: sha512-coYR071JRaHa+xoEvvYqvnIHaVqaYrLPbsufM9BF63HkwI5Lgmy2QR8Q5K/lYDYo5AK82wOvSOS0UsLTpTG7uQ==}
 
-  '@types/youtube@0.0.50':
-    resolution: {integrity: sha512-d4GpH4uPYp9W07kc487tiq6V/EUHl18vZWFMbQoe4Sk9LXEWzFi/BMf9x7TI4m7/j7gU3KeX8H6M8aPBgykeLw==}
+  '@types/youtube@0.1.0':
+    resolution: {integrity: sha512-Pg33m3X2mFgdmhtvzOlAfUfgOa3341N3/2JCrVY/mXVxb4hagcqqEG6w4vGCfB64StQNWHSj/T8Eotb1Rko/FQ==}
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
@@ -6270,7 +6270,7 @@ snapshots:
     dependencies:
       '@types/webidl-conversions': 7.0.3
 
-  '@types/youtube@0.0.50': {}
+  '@types/youtube@0.1.0': {}
 
   '@ungap/structured-clone@1.2.0': {}
 
