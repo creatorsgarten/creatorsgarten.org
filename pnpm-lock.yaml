@@ -68,7 +68,7 @@ importers:
         version: 9.13.0
       jose:
         specifier: ^5.0.0
-        version: 5.7.0
+        version: 5.8.0
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
@@ -2708,8 +2708,8 @@ packages:
     resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
     hasBin: true
 
-  jose@5.7.0:
-    resolution: {integrity: sha512-3P9qfTYDVnNn642LCAqIKbTGb9a1TBxZ9ti5zEVEr48aDdflgRjhspWFb6WM4PzAfFbGMJYC4+803v8riCRAKw==}
+  jose@5.8.0:
+    resolution: {integrity: sha512-E7CqYpL/t7MMnfGnK/eg416OsFCVUrU/Y3Vwe7QjKhu/BkS1Ms455+2xsqZQVN57/U2MHMBvEb5SrmAZWAIntA==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -6782,7 +6782,7 @@ snapshots:
       axios: 1.4.0
       expiry-map: 2.0.0
       gray-matter: 4.0.3
-      jose: 5.7.0
+      jose: 5.8.0
       js-yaml: 4.1.0
       json-buffer: 3.0.1
       keyv: 4.5.2
@@ -7501,7 +7501,7 @@ snapshots:
 
   jiti@1.21.0: {}
 
-  jose@5.7.0: {}
+  jose@5.8.0: {}
 
   js-tokens@4.0.0: {}
 
