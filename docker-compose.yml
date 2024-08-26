@@ -7,7 +7,7 @@ networks:
 services:
   mongodb:
     container_name: mongogarten
-    image: mongo:7.0.12
+    image: mongo:7.0.14
     ports:
       - 27017:27017
     environment:
