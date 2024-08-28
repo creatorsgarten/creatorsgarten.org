@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@contentsgarten/html": "^1.3.0",
-    "@doist/typist": "^6.0.0",
+    "@doist/typist": "^7.0.0",
     "@dtinth/comparator": "^0.0.3",
     "@fastify/middie": "^8.3.0",
     "@fastify/static": "^7.0.0",
