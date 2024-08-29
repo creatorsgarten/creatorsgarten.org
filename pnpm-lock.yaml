@@ -38,7 +38,7 @@ importers:
         version: 0.7.3(nanostores@0.11.3)(react@18.3.1)
       '@sentry/astro':
         specifier: ^8.0.0
-        version: 8.27.0(astro@4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))
+        version: 8.27.0(astro@4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))
       '@tanstack/react-query':
         specifier: ^5.0.0
         version: 5.52.2(react@18.3.1)
@@ -50,7 +50,7 @@ importers:
         version: 10.45.2
       astro-tweet:
         specifier: ^0.0.4
-        version: 0.0.4(astro@4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3)
+        version: 0.0.4(astro@4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3)
       clsx:
         specifier: ^2.0.0
         version: 2.1.0
@@ -120,16 +120,16 @@ importers:
         version: 0.9.3(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
       '@astrojs/node':
         specifier: 8.3.3
-        version: 8.3.3(astro@4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))
+        version: 8.3.3(astro@4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))
       '@astrojs/react':
         specifier: ^3.0.0
         version: 3.6.2(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.4.2(@types/node@22.5.1))
       '@astrojs/svelte':
         specifier: ^5.0.0
-        version: 5.7.0(astro@4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(svelte@4.2.19)(typescript@5.4.5)(vite@5.4.2(@types/node@22.5.1))
+        version: 5.7.0(astro@4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(svelte@4.2.19)(typescript@5.4.5)(vite@5.4.2(@types/node@22.5.1))
       '@astrojs/tailwind':
         specifier: 5.1.0
-        version: 5.1.0(astro@4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.10)
+        version: 5.1.0(astro@4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.10)
       '@fontsource-variable/inter':
         specifier: ^5.0.8
         version: 5.0.20
@@ -167,8 +167,8 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0
       astro:
-        specifier: 4.14.6
-        version: 4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
+        specifier: 4.15.0
+        version: 4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
       astro-seo:
         specifier: ^0.8.0
         version: 0.8.4(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
@@ -1818,8 +1818,8 @@ packages:
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
 
-  astro@4.14.6:
-    resolution: {integrity: sha512-MIDyNhtu3L4uakHvlTprh21eQPehYOtZSuSLtd+r6xZcl3lB+mlBz/hs1W3iHEQAORyJnKArWSY/aVOBKUyflA==}
+  astro@4.15.0:
+    resolution: {integrity: sha512-bL2ol1+j1Xf/7Q8DQSWP1BfkBd6RkkgVsmp9TCzYklqPSeInpAYGGsAgi+SY7Sf40Vk9o+ku6Zl1zav4MLN4uA==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -2904,6 +2904,9 @@ packages:
   magic-string@0.30.8:
     resolution: {integrity: sha512-ISQTe55T2ao7XtlAStud6qwYPZjE4GK1S/BeVPus4jrq6JuOnQ00YKQC581RWhR122W7msZV263KzVeLoqidyQ==}
     engines: {node: '>=12'}
+
+  magicast@0.3.5:
+    resolution: {integrity: sha512-L0WhttDl+2BOsybvEOLK7fW3UA0OQ0IQ2d6Zl2x/a6vVRs3bAY0ECOSHHeL5jD+SbOpOCUEi0y1DgHEn9Qn1AQ==}
 
   map-age-cleaner@0.2.0:
     resolution: {integrity: sha512-AvxTC6id0fzSf6OyNBTp1syyCuKO7nOJvHgYlhT0Qkkjvk40zZo+av3ayVgXlxnF/DxEzEfY9mMdd7FHsd+wKQ==}
@@ -4120,6 +4123,9 @@ packages:
   thread-stream@3.1.0:
     resolution: {integrity: sha512-OqyPZ9u96VohAyMfJykzmivOrY2wfMSf3C5TtFJVgN+Hm6aj+voFhlK+kZEIv2FBh1X6Xp3DlnCOfEQ3B2J86A==}
 
+  tinyexec@0.3.0:
+    resolution: {integrity: sha512-tVGE0mVJPGb0chKhqmsoosjsS+qUnJVGJpZgsHYQcGoPlG3B51R3PouqTgEGH2Dc9jjFyOqOpix6ZHNMXp1FZg==}
+
   tippy.js@6.3.7:
     resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
 
@@ -4699,9 +4705,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/node@8.3.3(astro@4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))':
+  '@astrojs/node@8.3.3(astro@4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))':
     dependencies:
-      astro: 4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -4723,10 +4729,10 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/svelte@5.7.0(astro@4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(svelte@4.2.19)(typescript@5.4.5)(vite@5.4.2(@types/node@22.5.1))':
+  '@astrojs/svelte@5.7.0(astro@4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(svelte@4.2.19)(typescript@5.4.5)(vite@5.4.2(@types/node@22.5.1))':
     dependencies:
       '@sveltejs/vite-plugin-svelte': 3.1.1(svelte@4.2.19)(vite@5.4.2(@types/node@22.5.1))
-      astro: 4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
       svelte: 4.2.19
       svelte2tsx: 0.7.13(svelte@4.2.19)(typescript@5.4.5)
       typescript: 5.4.5
@@ -4734,9 +4740,9 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/tailwind@5.1.0(astro@4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.10)':
+  '@astrojs/tailwind@5.1.0(astro@4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.10)':
     dependencies:
-      astro: 4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
       autoprefixer: 10.4.15(postcss@8.4.32)
       postcss: 8.4.32
       postcss-load-config: 4.0.2(postcss@8.4.32)
@@ -5753,7 +5759,7 @@ snapshots:
       '@sentry/types': 8.27.0
       '@sentry/utils': 8.27.0
 
-  '@sentry/astro@8.27.0(astro@4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))':
+  '@sentry/astro@8.27.0(astro@4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))':
     dependencies:
       '@sentry/browser': 8.27.0
       '@sentry/core': 8.27.0
@@ -5761,7 +5767,7 @@ snapshots:
       '@sentry/types': 8.27.0
       '@sentry/utils': 8.27.0
       '@sentry/vite-plugin': 2.22.2
-      astro: 4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -6433,10 +6439,10 @@ snapshots:
       - prettier-plugin-astro
       - typescript
 
-  astro-tweet@0.0.4(astro@4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3):
+  astro-tweet@0.0.4(astro@4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3):
     dependencies:
       '@astrojs/check': 0.2.1(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
-      astro: 4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5)
       clsx: 2.1.0
       date-fns: 2.30.0
       typescript: 5.4.5
@@ -6444,17 +6450,14 @@ snapshots:
       - prettier
       - prettier-plugin-astro
 
-  astro@4.14.6(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5):
+  astro@4.15.0(@types/node@22.5.1)(rollup@4.21.0)(typescript@5.4.5):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.4.1
       '@astrojs/markdown-remark': 5.2.0
       '@astrojs/telemetry': 3.1.0
       '@babel/core': 7.25.2
-      '@babel/generator': 7.25.5
-      '@babel/parser': 7.25.4
       '@babel/plugin-transform-react-jsx': 7.25.2(@babel/core@7.25.2)
-      '@babel/traverse': 7.25.4
       '@babel/types': 7.25.4
       '@oslojs/encoding': 0.4.1
       '@rollup/pluginutils': 5.1.0(rollup@4.21.0)
@@ -6478,7 +6481,6 @@ snapshots:
       es-module-lexer: 1.5.4
       esbuild: 0.21.5
       estree-walker: 3.0.3
-      execa: 8.0.1
       fast-glob: 3.3.2
       flattie: 1.1.1
       github-slugger: 2.0.0
@@ -6488,6 +6490,7 @@ snapshots:
       js-yaml: 4.1.0
       kleur: 4.1.5
       magic-string: 0.30.11
+      magicast: 0.3.5
       micromatch: 4.0.8
       mrmime: 2.0.0
       neotraverse: 0.6.18
@@ -6502,6 +6505,7 @@ snapshots:
       shiki: 1.14.1
       string-width: 7.2.0
       strip-ansi: 7.1.0
+      tinyexec: 0.3.0
       tsconfck: 3.1.1(typescript@5.4.5)
       unist-util-visit: 5.0.0
       vfile: 6.0.3
@@ -7690,6 +7694,12 @@ snapshots:
   magic-string@0.30.8:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  magicast@0.3.5:
+    dependencies:
+      '@babel/parser': 7.25.4
+      '@babel/types': 7.25.4
+      source-map-js: 1.2.0
 
   map-age-cleaner@0.2.0:
     dependencies:
@@ -9174,6 +9184,8 @@ snapshots:
   thread-stream@3.1.0:
     dependencies:
       real-require: 0.2.0
+
+  tinyexec@0.3.0: {}
 
   tippy.js@6.3.7:
     dependencies:
