@@ -207,7 +207,7 @@ importers:
         version: 5.4.5
       zx:
         specifier: ^8.0.0
-        version: 8.1.5
+        version: 8.1.6
 
 packages:
 
@@ -1636,9 +1636,6 @@ packages:
 
   '@types/node@20.11.20':
     resolution: {integrity: sha512-7/rR21OS+fq8IyHTgtLkDK949uzsa6n8BkziAKtPVpugIkO6D+/ooXMvzXxDnZrmtXVfjb1bKQafYpb8s89LOg==}
-
-  '@types/node@22.5.1':
-    resolution: {integrity: sha512-KkHsxej0j9IW1KKOOAA/XBA0z08UFSrRQHErzEfA3Vgq57eXIMYboIlHJuYIfd+lwCQjtKqUu3UnmKbtUc9yRw==}
 
   '@types/node@22.5.4':
     resolution: {integrity: sha512-FDuKUJQm/ju9fT/SeX/6+gBzoPzlVCzfzmGkwKvRHQVxi4BntVbyIwf6a4Xn62mrvndLiml6z/UBXIdEVjQLXg==}
@@ -4617,8 +4614,8 @@ packages:
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  zx@8.1.5:
-    resolution: {integrity: sha512-gvmiYPvDDEz2Gcc37x7pJkipTKcFIE18q9QlSI1p5qoPDtoSn3jmGuWD0eEb7HuxEH5aDD7N/RVgH8BqSxbKzA==}
+  zx@8.1.6:
+    resolution: {integrity: sha512-SYAriWG+i2CFqMOJcF8QayI8wprlMYQsrmP6tFD7rSPnDLcImNSW7n/8crOYvNVrB2EFgz8LAQk23U1+Y7WrKA==}
     engines: {node: '>= 12.17.0'}
     hasBin: true
 
@@ -6209,7 +6206,7 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 22.5.1
+      '@types/node': 22.5.4
     optional: true
 
   '@types/hast@2.3.10':
@@ -6222,7 +6219,7 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 22.5.1
+      '@types/node': 22.5.4
     optional: true
 
   '@types/jsonwebtoken@9.0.6':
@@ -6239,7 +6236,7 @@ snapshots:
 
   '@types/multipipe@3.0.5':
     dependencies:
-      '@types/node': 22.5.1
+      '@types/node': 22.5.4
 
   '@types/mysql@2.15.26':
     dependencies:
@@ -6254,10 +6251,6 @@ snapshots:
   '@types/node@20.11.20':
     dependencies:
       undici-types: 5.26.5
-
-  '@types/node@22.5.1':
-    dependencies:
-      undici-types: 6.19.8
 
   '@types/node@22.5.4':
     dependencies:
@@ -9672,7 +9665,7 @@ snapshots:
 
   zwitch@2.0.4: {}
 
-  zx@8.1.5:
+  zx@8.1.6:
     optionalDependencies:
       '@types/fs-extra': 11.0.4
-      '@types/node': 22.5.1
+      '@types/node': 22.5.4
