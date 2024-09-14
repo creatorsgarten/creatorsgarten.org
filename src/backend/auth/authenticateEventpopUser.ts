@@ -82,6 +82,6 @@ export const authenticateEventpopUser = async (code: string) => {
     return finalizeAuthentication(user.id)
   } catch (e) {
     console.error(e)
-    throw new Error('eventpop-varification-failed')
+    throw new Error('eventpop-verification-failed')
   }
 }
