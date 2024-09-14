@@ -1,6 +1,6 @@
 import { createTRPCProxyClient, httpLink } from '@trpc/client'
 
-import { type AppRouter, appRouter } from 'src/backend'
+import { type AppRouter, appRouter } from '$backend'
 import { localLink } from './localLink'
 
 import { privateKey } from '$constants/secrets/privateKey'

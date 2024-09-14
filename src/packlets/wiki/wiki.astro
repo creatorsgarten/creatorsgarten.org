@@ -3,12 +3,12 @@ import type { WikiPageViewModel } from '$functions/wiki/getWikiPageViewModel'
 import BaseLayout from '$layouts/base.astro'
 import '@fontsource-variable/inter'
 import { Icon } from 'react-iconify-icon-wrapper'
-import ContentRenderer from './contentRenderer.astro'
-import Head from './head.astro'
-import WikiEditor from './wiki/editor.astro'
-import WikiUpdateChecker from './wiki/updateChecker'
-import WikiView from './wiki/view.astro'
-import WikiViewShortcuts from './wiki/viewShortcuts.svelte'
+import ContentRenderer from '$markdown/contentRenderer.astro'
+import Head from '$commons/head.astro'
+import WikiEditor from './editor/editor.astro'
+import WikiUpdateChecker from './updateChecker'
+import WikiView from './view.astro'
+import WikiViewShortcuts from './viewShortcuts.svelte'
 
 export interface Props {
   viewModel: WikiPageViewModel

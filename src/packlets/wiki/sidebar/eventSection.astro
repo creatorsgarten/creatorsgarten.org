@@ -1,13 +1,13 @@
 ---
 import { Icon } from 'react-iconify-icon-wrapper'
 import MetadataTable from './metadataTable.astro'
-import SidebarSection from './sidebarSection.astro'
+import SidebarSection from './section.astro'
 
 import dayjs from 'dayjs'
 import { stringifyDate } from '$functions/stringifyDate'
 
 import type { FrontMatter } from '$functions/parseFrontMatter'
-import SidebarTicketSection from './sidebarTicketSection.astro'
+import SidebarTicketSection from './ticketSection.astro'
 
 export interface Props {
   event: NonNullable<FrontMatter['event']>

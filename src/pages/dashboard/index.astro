@@ -2,11 +2,11 @@
 import BaseLayout from '$layouts/base.astro'
 
 import { Connections } from '$components/connections'
-import Garden0 from '$components/dashboard/gardenZero/section.astro'
-import IntegratedServices from '$components/dashboard/integratedServices.astro'
-import JoinedEvents from '$components/dashboard/joinedEvents.astro'
-import UserCard from '$components/dashboard/userCard.astro'
-import Head from '$components/head.astro'
+import Garden0 from '$dashboard/gardenZero/section.astro'
+import IntegratedServices from '$dashboard/integratedServices.astro'
+import JoinedEvents from '$dashboard/joinedEvents.astro'
+import UserCard from '$dashboard/userCard.astro'
+import Head from '$commons/head.astro'
 
 const { backend, user } = Astro.locals
 if (!user) return Astro.redirect('/')

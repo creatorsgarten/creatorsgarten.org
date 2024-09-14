@@ -3,8 +3,8 @@ import { finalizeAuthentication } from './finalizeAuthentication'
 import { collections } from '$constants/mongo'
 import { eventpopClient } from '$constants/secrets/eventpopClient'
 
-import { getEventpopUser } from 'src/backend/auth/getEventpopUser'
-import { getEventpopUserTickets } from 'src/backend/auth/getEventpopUserTickets'
+import { getEventpopUser } from '$backend/auth/getEventpopUser'
+import { getEventpopUserTickets } from '$backend/auth/getEventpopUserTickets'
 
 interface EventpopAuthorizationResponse {
   access_token: string

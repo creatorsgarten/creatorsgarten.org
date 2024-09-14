@@ -1,7 +1,0 @@
-# To prevent the pre-commit hook from running during a merge
-if ! git rev-parse -q --verify MERGE_HEAD
-then
-  pnpm zx ./pre-commit.mjs
-  pnpm lint-staged --no-stash
-fi
-

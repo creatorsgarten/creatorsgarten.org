@@ -1,4 +1,4 @@
-import { readFileSystem, writeFileSystem } from '../fileSystem'
+import { readFileSystem, writeFileSystem } from '$functions/fileSystem'
 
 import type { OembedProvider } from '$types/OembedProvider'
 import type { OembedResult } from '$types/OembedResult'

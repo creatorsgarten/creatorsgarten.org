@@ -1,17 +1,17 @@
 ---
 import CFImage from '$components/cfImage.astro'
 import Layout from '$layouts/wiki.astro'
-import SidebarContentsSection from './sidebarContentsSection.astro'
-import SidebarEventSection from './sidebarEventSection.astro'
+import SidebarContentsSection from './sidebar/contentsSection.astro'
+import SidebarEventSection from './sidebar/eventSection.astro'
 import SidebarMetadataSection, {
   type Props as MetadataProps,
-} from './sidebarMetadataSection.astro'
+} from './sidebar/metadataSection.astro'
+import SidebarPersonSection from './sidebar/personSection.astro'
 
 import dayjs from 'dayjs'
 
 import type { FrontMatter } from '$functions/parseFrontMatter'
 import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
-import SidebarPersonSection from './sidebarPersonSection.astro'
 
 export interface Props {
   pageRef: string
