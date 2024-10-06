@@ -201,7 +201,7 @@ importers:
         version: 5.4.5
       zx:
         specifier: ^8.0.0
-        version: 8.1.8
+        version: 8.1.9
 
 packages:
 
@@ -4586,8 +4586,8 @@ packages:
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  zx@8.1.8:
-    resolution: {integrity: sha512-m8s48skYQ8EcRz9KXfc7rZCjqlZevOGiNxq5tNhDiGnhOvXKRGxVr+ajUma9B6zxMdHGSSbnjV/R/r7Ue2xd+A==}
+  zx@8.1.9:
+    resolution: {integrity: sha512-UHuLHphHmsBYKkAchkSrEN4nzDyagafqC9HUxtc1J7eopaScW6H9dsLJ1lmkAntnLtDTGoM8fa+jrJrXiIfKFA==}
     engines: {node: '>= 12.17.0'}
     hasBin: true
 
@@ -6318,7 +6318,7 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 22.5.5
+      '@types/node': 22.7.4
     optional: true
 
   '@types/hast@2.3.10':
@@ -6331,7 +6331,7 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 22.5.5
+      '@types/node': 22.7.4
     optional: true
 
   '@types/jsonwebtoken@9.0.7':
@@ -6357,7 +6357,7 @@ snapshots:
 
   '@types/multipipe@3.0.5':
     dependencies:
-      '@types/node': 22.5.5
+      '@types/node': 22.7.4
 
   '@types/mysql@2.15.26':
     dependencies:
@@ -9663,7 +9663,7 @@ snapshots:
 
   zwitch@2.0.4: {}
 
-  zx@8.1.8:
+  zx@8.1.9:
     optionalDependencies:
       '@types/fs-extra': 11.0.4
-      '@types/node': 22.5.5
+      '@types/node': 22.7.4
