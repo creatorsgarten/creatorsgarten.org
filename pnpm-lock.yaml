@@ -38,7 +38,7 @@ importers:
         version: 0.8.0(nanostores@0.11.3)(react@18.3.1)
       '@sentry/astro':
         specifier: ^8.0.0
-        version: 8.35.0(astro@4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))
+        version: 8.35.0(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))
       '@tanstack/react-query':
         specifier: ^5.0.0
         version: 5.59.15(react@18.3.1)
@@ -50,7 +50,7 @@ importers:
         version: 10.45.2
       astro-tweet:
         specifier: ^0.0.4
-        version: 0.0.4(astro@4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3)
+        version: 0.0.4(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3)
       clsx:
         specifier: ^2.0.0
         version: 2.1.0
@@ -120,16 +120,16 @@ importers:
         version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
       '@astrojs/node':
         specifier: 8.3.4
-        version: 8.3.4(astro@4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))
+        version: 8.3.4(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))
       '@astrojs/react':
         specifier: ^3.0.0
         version: 3.6.2(@types/react-dom@18.3.1)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.4.9(@types/node@22.7.7))
       '@astrojs/svelte':
         specifier: ^5.0.0
-        version: 5.7.2(astro@4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.0.5)(typescript@5.4.5)(vite@5.4.9(@types/node@22.7.7))
+        version: 5.7.2(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.0.5)(typescript@5.4.5)(vite@5.4.9(@types/node@22.7.7))
       '@astrojs/tailwind':
         specifier: 5.1.2
-        version: 5.1.2(astro@4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.14)
+        version: 5.1.2(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.14)
       '@fontsource-variable/inter':
         specifier: ^5.0.8
         version: 5.1.0
@@ -167,8 +167,8 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0
       astro:
-        specifier: 4.16.6
-        version: 4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
+        specifier: 4.16.7
+        version: 4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
       astro-seo:
         specifier: ^0.8.0
         version: 0.8.4(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
@@ -1778,11 +1778,6 @@ packages:
     peerDependencies:
       acorn: '>=8.9.0'
 
-  acorn@8.12.1:
-    resolution: {integrity: sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-
   acorn@8.13.0:
     resolution: {integrity: sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==}
     engines: {node: '>=0.4.0'}
@@ -1865,8 +1860,8 @@ packages:
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
 
-  astro@4.16.6:
-    resolution: {integrity: sha512-LMMbjr+4aN26MOyJzTdjM+Y+srpAIkx7IX9IcdF3eHQLGr8PgkioZp+VQExRfioDIyA2HY6ottVg3QccTzJqYA==}
+  astro@4.16.7:
+    resolution: {integrity: sha512-nON+8MUEkWTFwXbS4zsQIq4t0Fs42eulM4x236AL+qNnWfqNAOOqAnFxO1dxfJ1q+XopIBbbT9Mtev+0zH47PQ==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -4032,8 +4027,8 @@ packages:
   thread-stream@3.1.0:
     resolution: {integrity: sha512-OqyPZ9u96VohAyMfJykzmivOrY2wfMSf3C5TtFJVgN+Hm6aj+voFhlK+kZEIv2FBh1X6Xp3DlnCOfEQ3B2J86A==}
 
-  tinyexec@0.3.0:
-    resolution: {integrity: sha512-tVGE0mVJPGb0chKhqmsoosjsS+qUnJVGJpZgsHYQcGoPlG3B51R3PouqTgEGH2Dc9jjFyOqOpix6ZHNMXp1FZg==}
+  tinyexec@0.3.1:
+    resolution: {integrity: sha512-WiCJLEECkO18gwqIp6+hJg0//p23HXp4S+gGtAKu3mI2F2/sXC4FvHvXvB0zJVVaTPhx1/tOwdbRsa1sOBIKqQ==}
 
   tippy.js@6.3.7:
     resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
@@ -4614,9 +4609,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/node@8.3.4(astro@4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))':
+  '@astrojs/node@8.3.4(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))':
     dependencies:
-      astro: 4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
       send: 0.19.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -4638,10 +4633,10 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/svelte@5.7.2(astro@4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.0.5)(typescript@5.4.5)(vite@5.4.9(@types/node@22.7.7))':
+  '@astrojs/svelte@5.7.2(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.0.5)(typescript@5.4.5)(vite@5.4.9(@types/node@22.7.7))':
     dependencies:
       '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@5.0.5)(vite@5.4.9(@types/node@22.7.7))
-      astro: 4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
       svelte: 5.0.5
       svelte2tsx: 0.7.21(svelte@5.0.5)(typescript@5.4.5)
       typescript: 5.4.5
@@ -4649,9 +4644,9 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/tailwind@5.1.2(astro@4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.14)':
+  '@astrojs/tailwind@5.1.2(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.14)':
     dependencies:
-      astro: 4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
       autoprefixer: 10.4.20(postcss@8.4.47)
       postcss: 8.4.47
       postcss-load-config: 4.0.2(postcss@8.4.47)
@@ -5740,7 +5735,7 @@ snapshots:
       '@sentry/types': 8.35.0
       '@sentry/utils': 8.35.0
 
-  '@sentry/astro@8.35.0(astro@4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))':
+  '@sentry/astro@8.35.0(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))':
     dependencies:
       '@sentry/browser': 8.35.0
       '@sentry/core': 8.35.0
@@ -5748,7 +5743,7 @@ snapshots:
       '@sentry/types': 8.35.0
       '@sentry/utils': 8.35.0
       '@sentry/vite-plugin': 2.22.6
-      astro: 4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -6374,8 +6369,6 @@ snapshots:
     dependencies:
       acorn: 8.13.0
 
-  acorn@8.12.1: {}
-
   acorn@8.13.0: {}
 
   agent-base@6.0.2:
@@ -6451,10 +6444,10 @@ snapshots:
       - prettier-plugin-astro
       - typescript
 
-  astro-tweet@0.0.4(astro@4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3):
+  astro-tweet@0.0.4(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3):
     dependencies:
       '@astrojs/check': 0.2.1(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
-      astro: 4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
       clsx: 2.1.0
       date-fns: 2.30.0
       typescript: 5.4.5
@@ -6462,7 +6455,7 @@ snapshots:
       - prettier
       - prettier-plugin-astro
 
-  astro@4.16.6(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5):
+  astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.4.1
@@ -6475,7 +6468,7 @@ snapshots:
       '@rollup/pluginutils': 5.1.2(rollup@4.21.0)
       '@types/babel__core': 7.20.5
       '@types/cookie': 0.6.0
-      acorn: 8.12.1
+      acorn: 8.13.0
       aria-query: 5.3.2
       axobject-query: 4.1.0
       boxen: 8.0.1
@@ -6514,7 +6507,7 @@ snapshots:
       rehype: 13.0.2
       semver: 7.6.3
       shiki: 1.22.0
-      tinyexec: 0.3.0
+      tinyexec: 0.3.1
       tsconfck: 3.1.4(typescript@5.4.5)
       unist-util-visit: 5.0.0
       vfile: 6.0.3
@@ -9032,7 +9025,7 @@ snapshots:
     dependencies:
       real-require: 0.2.0
 
-  tinyexec@0.3.0: {}
+  tinyexec@0.3.1: {}
 
   tippy.js@6.3.7:
     dependencies:
