@@ -38,6 +38,10 @@
   @apply no-underline;
 }
 
+a.internal[data-exists='false'] {
+  @apply text-red-500;
+}
+
 /* .edit:hover,
 .prose a:hover {
   font-variation-settings: 'CASL' 1, 'CRSV' 1, 'slnt' -6, 'MONO' 0;

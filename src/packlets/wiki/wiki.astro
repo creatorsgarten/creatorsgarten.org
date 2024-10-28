@@ -1,11 +1,12 @@
 ---
+import Head from '$commons/head.astro'
 import type { WikiPageViewModel } from '$functions/wiki/getWikiPageViewModel'
 import BaseLayout from '$layouts/base.astro'
+import ContentRenderer from '$markdown/contentRenderer.astro'
 import '@fontsource-variable/inter'
 import { Icon } from 'react-iconify-icon-wrapper'
-import ContentRenderer from '$markdown/contentRenderer.astro'
-import Head from '$commons/head.astro'
 import WikiEditor from './editor/editor.astro'
+import WikiLinkChecker from './linkChecker'
 import WikiUpdateChecker from './updateChecker'
 import WikiView from './view.astro'
 import WikiViewShortcuts from './viewShortcuts.svelte'
@@ -50,6 +51,7 @@ const { head, body, perf } = Astro.props.viewModel
             pageRef={body.pageRef}
             client:idle
           />
+          <WikiLinkChecker client:idle />
           {body.filePath ? (
             <WikiViewShortcuts path={body.filePath} client:only="svelte" />
           ) : null}
