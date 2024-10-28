@@ -2,9 +2,7 @@ import { QueryClientContextProvider } from '$constants/queryClient'
 import DataLoader from 'dataloader'
 import { useEffect } from 'react'
 
-export interface WikiLinkChecker {
-  pageRef: string
-}
+export interface WikiLinkChecker {}
 
 export default function WikiLinkChecker(props: WikiLinkChecker) {
   return (
