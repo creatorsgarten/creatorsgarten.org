@@ -26,7 +26,7 @@ function WikiLinkCheckerImpl(props: WikiLinkChecker) {
       { maxBatchSize: 20 }
     )
     const internalLinks = document.querySelectorAll<HTMLAnchorElement>(
-      'a.internal[href^="/wiki/"]'
+      'a.internal[href^="/wiki/"]:not([href^="/wiki/Special/"])'
     )
     const checkLink = async (link: HTMLAnchorElement) => {
       const pageRef = new URL(link.href).pathname.replace('/wiki/', '')
