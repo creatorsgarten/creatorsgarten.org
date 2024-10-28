@@ -129,7 +129,7 @@ importers:
         version: 3.6.2(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.4.9(@types/node@22.7.7))
       '@astrojs/svelte':
         specifier: ^5.0.0
-        version: 5.7.2(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.1.3)(typescript@5.4.5)(vite@5.4.9(@types/node@22.7.7))
+        version: 5.7.2(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.1.4)(typescript@5.4.5)(vite@5.4.9(@types/node@22.7.7))
       '@astrojs/tailwind':
         specifier: 5.1.2
         version: 5.1.2(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.14)
@@ -189,13 +189,13 @@ importers:
         version: 0.14.1
       prettier-plugin-svelte:
         specifier: ^3.0.3
-        version: 3.2.7(prettier@3.3.3)(svelte@5.1.3)
+        version: 3.2.7(prettier@3.3.3)(svelte@5.1.4)
       prettier-plugin-tailwindcss:
         specifier: ^0.6.0
-        version: 0.6.8(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.1.3))(prettier@3.3.3)
+        version: 0.6.8(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.1.4))(prettier@3.3.3)
       svelte:
         specifier: ^5.0.0
-        version: 5.1.3
+        version: 5.1.4
       tailwindcss:
         specifier: 3.4.14
         version: 3.4.14
@@ -1783,6 +1783,11 @@ packages:
 
   acorn@8.13.0:
     resolution: {integrity: sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
+  acorn@8.14.0:
+    resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -4014,8 +4019,8 @@ packages:
       svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
       typescript: ^4.9.4 || ^5.0.0
 
-  svelte@5.1.3:
-    resolution: {integrity: sha512-Sl8UFHlBvF54aK8MElFvyvaUfPE2REOz6LnhR2pBClCL11MU4qpn4V+KgAggaXxDyrP2iQixvHbtpHqL/zXlSQ==}
+  svelte@5.1.4:
+    resolution: {integrity: sha512-qgHDV7AyvBZa2pbf+V0tnvWrN1LKD8LdUsBkR/SSYVVN6zXexiXnOy5Pjcjft2y/2NJJVa8ORUHFVn3oiWCLVQ==}
     engines: {node: '>=18'}
 
   tailwindcss@3.4.14:
@@ -4639,12 +4644,12 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/svelte@5.7.2(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.1.3)(typescript@5.4.5)(vite@5.4.9(@types/node@22.7.7))':
+  '@astrojs/svelte@5.7.2(astro@4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.1.4)(typescript@5.4.5)(vite@5.4.9(@types/node@22.7.7))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@5.1.3)(vite@5.4.9(@types/node@22.7.7))
+      '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@5.1.4)(vite@5.4.9(@types/node@22.7.7))
       astro: 4.16.7(@types/node@22.7.7)(rollup@4.21.0)(typescript@5.4.5)
-      svelte: 5.1.3
-      svelte2tsx: 0.7.21(svelte@5.1.3)(typescript@5.4.5)
+      svelte: 5.1.4
+      svelte2tsx: 0.7.21(svelte@5.1.4)(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -5917,24 +5922,24 @@ snapshots:
 
   '@shikijs/vscode-textmate@9.3.0': {}
 
-  '@sveltejs/vite-plugin-svelte-inspector@2.1.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@5.1.3)(vite@5.4.9(@types/node@22.7.7)))(svelte@5.1.3)(vite@5.4.9(@types/node@22.7.7))':
+  '@sveltejs/vite-plugin-svelte-inspector@2.1.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@5.1.4)(vite@5.4.9(@types/node@22.7.7)))(svelte@5.1.4)(vite@5.4.9(@types/node@22.7.7))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@5.1.3)(vite@5.4.9(@types/node@22.7.7))
+      '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@5.1.4)(vite@5.4.9(@types/node@22.7.7))
       debug: 4.3.7
-      svelte: 5.1.3
+      svelte: 5.1.4
       vite: 5.4.9(@types/node@22.7.7)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@3.1.2(svelte@5.1.3)(vite@5.4.9(@types/node@22.7.7))':
+  '@sveltejs/vite-plugin-svelte@3.1.2(svelte@5.1.4)(vite@5.4.9(@types/node@22.7.7))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 2.1.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@5.1.3)(vite@5.4.9(@types/node@22.7.7)))(svelte@5.1.3)(vite@5.4.9(@types/node@22.7.7))
+      '@sveltejs/vite-plugin-svelte-inspector': 2.1.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@5.1.4)(vite@5.4.9(@types/node@22.7.7)))(svelte@5.1.4)(vite@5.4.9(@types/node@22.7.7))
       debug: 4.3.7
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.12
-      svelte: 5.1.3
-      svelte-hmr: 0.16.0(svelte@5.1.3)
+      svelte: 5.1.4
+      svelte-hmr: 0.16.0(svelte@5.1.4)
       vite: 5.4.9(@types/node@22.7.7)
       vitefu: 0.2.5(vite@5.4.9(@types/node@22.7.7))
     transitivePeerDependencies:
@@ -6367,15 +6372,17 @@ snapshots:
 
   abstract-logging@2.0.1: {}
 
-  acorn-import-attributes@1.9.5(acorn@8.13.0):
+  acorn-import-attributes@1.9.5(acorn@8.14.0):
     dependencies:
-      acorn: 8.13.0
+      acorn: 8.14.0
 
-  acorn-typescript@1.4.13(acorn@8.13.0):
+  acorn-typescript@1.4.13(acorn@8.14.0):
     dependencies:
-      acorn: 8.13.0
+      acorn: 8.14.0
 
   acorn@8.13.0: {}
+
+  acorn@8.14.0: {}
 
   agent-base@6.0.2:
     dependencies:
@@ -7338,8 +7345,8 @@ snapshots:
 
   import-in-the-middle@1.11.2:
     dependencies:
-      acorn: 8.13.0
-      acorn-import-attributes: 1.9.5(acorn@8.13.0)
+      acorn: 8.14.0
+      acorn-import-attributes: 1.9.5(acorn@8.14.0)
       cjs-module-lexer: 1.4.1
       module-details-from-path: 1.0.3
 
@@ -8315,17 +8322,17 @@ snapshots:
       prettier: 3.3.3
       sass-formatter: 0.7.6
 
-  prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.1.3):
+  prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.1.4):
     dependencies:
       prettier: 3.3.3
-      svelte: 5.1.3
+      svelte: 5.1.4
 
-  prettier-plugin-tailwindcss@0.6.8(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.1.3))(prettier@3.3.3):
+  prettier-plugin-tailwindcss@0.6.8(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.1.4))(prettier@3.3.3):
     dependencies:
       prettier: 3.3.3
     optionalDependencies:
       prettier-plugin-astro: 0.14.1
-      prettier-plugin-svelte: 3.2.7(prettier@3.3.3)(svelte@5.1.3)
+      prettier-plugin-svelte: 3.2.7(prettier@3.3.3)(svelte@5.1.4)
 
   prettier@2.8.7:
     optional: true
@@ -8967,24 +8974,24 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte-hmr@0.16.0(svelte@5.1.3):
+  svelte-hmr@0.16.0(svelte@5.1.4):
     dependencies:
-      svelte: 5.1.3
+      svelte: 5.1.4
 
-  svelte2tsx@0.7.21(svelte@5.1.3)(typescript@5.4.5):
+  svelte2tsx@0.7.21(svelte@5.1.4)(typescript@5.4.5):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2
-      svelte: 5.1.3
+      svelte: 5.1.4
       typescript: 5.4.5
 
-  svelte@5.1.3:
+  svelte@5.1.4:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@jridgewell/sourcemap-codec': 1.5.0
       '@types/estree': 1.0.6
-      acorn: 8.13.0
-      acorn-typescript: 1.4.13(acorn@8.13.0)
+      acorn: 8.14.0
+      acorn-typescript: 1.4.13(acorn@8.14.0)
       aria-query: 5.3.2
       axobject-query: 4.1.0
       esm-env: 1.0.0
@@ -9168,7 +9175,7 @@ snapshots:
 
   unplugin@1.0.1:
     dependencies:
-      acorn: 8.13.0
+      acorn: 8.14.0
       chokidar: 3.6.0
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.5.0
