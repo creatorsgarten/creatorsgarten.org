@@ -14,14 +14,17 @@ export default function WikiLinkChecker(props: WikiLinkChecker) {
 
 function WikiLinkCheckerImpl(props: WikiLinkChecker) {
   useEffect(() => {
-    const loader = new DataLoader(async (pageRefs: readonly string[]) => {
-      const response = await fetch(
-        `/api/wiki/checkExists?pageRefs=${pageRefs.join(',')}`
-      )
-      const data = await response.json()
-      const found = new Set(data.result)
-      return pageRefs.map(pageRef => found.has(pageRef))
-    })
+    const loader = new DataLoader(
+      async (pageRefs: readonly string[]) => {
+        const response = await fetch(
+          `/api/wiki/checkExists?pageRefs=${pageRefs.join(',')}`
+        )
+        const data = await response.json()
+        const found = new Set(data.result)
+        return pageRefs.map(pageRef => found.has(pageRef))
+      },
+      { maxBatchSize: 20 }
+    )
     const internalLinks = document.querySelectorAll<HTMLAnchorElement>(
       'a.internal[href^="/wiki/"]'
     )
