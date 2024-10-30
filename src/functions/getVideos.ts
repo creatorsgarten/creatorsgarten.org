@@ -1,7 +1,7 @@
 import { Comparator } from '@dtinth/comparator'
 import { LRUCache } from 'lru-cache'
 import { ofetch } from 'ofetch'
-import { type Event, getEvents } from './getEvents'
+import { getEvents, type Event } from './getEvents'
 
 function tally<K>(map: Map<K, number>, key: K) {
   map.set(key, (map.get(key) || 0) + 1)
@@ -16,17 +16,106 @@ const vttFetcher = new LRUCache({
   },
 })
 
+interface VideoEvent {
+  id: string
+  name: string
+  url: string
+  externalOrganizer?: {
+    name: string
+    url: string
+  }
+}
+
+interface VideoListingEvent {
+  id: string
+  name: string
+  externalUrl?: string
+}
+
+/**
+ * Combine event information from Creatorsgarten’s event DB and video listing DB.
+ * In case of conflict, our own event DB takes precedence.
+ */
+function getEventMap(videoEvents: VideoEvent[], gartenEvents: Event[]) {
+  const eventMap = new Map<string, VideoListingEvent>()
+  for (const event of gartenEvents) {
+    eventMap.set(event.id, {
+      id: event.id,
+      name: event.name,
+    })
+  }
+  for (const event of videoEvents) {
+    if (eventMap.has(event.id)) continue
+    eventMap.set(event.id, {
+      id: event.id,
+      name: event.name,
+      externalUrl: event.url.startsWith('https://grtn.org')
+        ? undefined
+        : event.url,
+    })
+  }
+  return eventMap
+}
+
+/**
+ * Create a map from event ID to the publish date of the first video in that event.
+ */
+function getFirstPublishDateMap(videos: GetVideosResponse['videos']) {
+  const publishedMap = new Map<string, string>()
+  for (const video of videos) {
+    if (typeof video.data.published === 'string') {
+      const existing = publishedMap.get(video.event)
+      publishedMap.set(
+        video.event,
+        !existing || video.data.published < existing
+          ? video.data.published
+          : existing
+      )
+    }
+  }
+  return publishedMap
+}
+
+/**
+ * Create a map from event ID to the date of the event based on our event DB
+ * (plus some manual adjustments).
+ */
+function getEventDateMap(events: Event[]) {
+  const map = new Map(
+    events.map(event => [event.id, event.date.toISOString().slice(0, 10)])
+  )
+
+  // Adjust some events manually
+  map.set('universe2023', '2023-11-18')
+
+  return map
+}
+
 const indexFetcher = new LRUCache({
   max: 1,
   ttl: 300000,
   fetchMethod: async (_dummy: ''): Promise<VideoIndex> => {
-    const events = await getEvents()
-    const eventMap = new Map(events.map(event => [event.id, event]))
+    const gartenEvents = await getEvents()
+    const { videos, events: videoEvents } = await ofetch<GetVideosResponse>(
+      'https://creatorsgarten.github.io/videos/videos.json'
+    )
+
+    const eventMap = getEventMap(videoEvents, gartenEvents)
+
+    // Sort events by date
+    const publishedMap = getFirstPublishDateMap(videos)
+    const eventDateMap = getEventDateMap(gartenEvents)
+    const events = Array.from(eventMap.values()).sort(
+      Comparator.comparing(
+        (event: VideoListingEvent) =>
+          publishedMap.get(event.id) ??
+          eventDateMap.get(event.id) ??
+          '0000-00-00'
+      ).reversed()
+    )
+
     const eventIndexMap = new Map(
       events.map((event, index) => [event.id, index])
-    )
-    const { videos } = await ofetch<GetVideosResponse>(
-      'https://creatorsgarten.github.io/videos/videos.json'
     )
     const eventIdTally = new Map<string, number>()
     const speakerNameTally = new Map<string, number>()
@@ -148,14 +237,14 @@ export function filterVideos(
 
 export interface VideoIndex {
   videos: VideoListingItem[]
-  events: FilterListing<Event>[]
+  events: FilterListing<VideoListingEvent>[]
   speakers: FilterListing<string>[]
 }
 
 export interface FilteredListing {
   filter: VideoFilter
   filteredVideos: VideoListingItem[]
-  relatedEvent?: Event | undefined
+  relatedEvent?: VideoListingEvent | undefined
   index: VideoIndex
 }
 
@@ -197,6 +286,7 @@ function parseTime(time: string): number {
 
 export interface GetVideosResponse {
   videos: Video[]
+  events: VideoEvent[]
 }
 
 export interface Video {

@@ -62,7 +62,10 @@ export default function VideoListing(props: VideoListing) {
           renderInformationBox(
             <>
               Showing videos for event{' '}
-              <a className="font-medium" href={`/event/${relatedEvent.id}`}>
+              <a
+                className="font-medium"
+                href={relatedEvent.externalUrl ?? `/event/${relatedEvent.id}`}
+              >
                 {relatedEvent.name}
               </a>
             </>,
