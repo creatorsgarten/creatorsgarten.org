@@ -1,5 +1,6 @@
 import type { DiscordConnection } from './mongo/User/DiscordConnection'
 import type { GitHubConnection } from './mongo/User/GitHubConnection'
+import type { BlueskyConnection } from './mongo/User/BlueskyConnection'
 
 export interface AuthenticatedUser {
   /** ID in the database */
@@ -15,5 +16,6 @@ export interface AuthenticatedUser {
   connections: {
     github: GitHubConnection
     discord: DiscordConnection
+    bluesky: BlueskyConnection
   }
 }
