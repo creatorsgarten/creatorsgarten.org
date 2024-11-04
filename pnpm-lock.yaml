@@ -38,7 +38,7 @@ importers:
         version: 0.8.0(nanostores@0.11.3)(react@18.3.1)
       '@sentry/astro':
         specifier: ^8.0.0
-        version: 8.36.0(astro@4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))
+        version: 8.36.0(astro@4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))
       '@tanstack/react-query':
         specifier: ^5.0.0
         version: 5.59.19(react@18.3.1)
@@ -50,7 +50,7 @@ importers:
         version: 10.45.2
       astro-tweet:
         specifier: ^0.0.4
-        version: 0.0.4(astro@4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3)
+        version: 0.0.4(astro@4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3)
       clsx:
         specifier: ^2.0.0
         version: 2.1.0
@@ -123,16 +123,16 @@ importers:
         version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
       '@astrojs/node':
         specifier: 8.3.4
-        version: 8.3.4(astro@4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))
+        version: 8.3.4(astro@4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))
       '@astrojs/react':
         specifier: ^3.0.0
         version: 3.6.2(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.4.10(@types/node@22.8.6))
       '@astrojs/svelte':
         specifier: ^5.0.0
-        version: 5.7.2(astro@4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.1.9)(typescript@5.4.5)(vite@5.4.10(@types/node@22.8.6))
+        version: 5.7.2(astro@4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.1.9)(typescript@5.4.5)(vite@5.4.10(@types/node@22.8.6))
       '@astrojs/tailwind':
         specifier: 5.1.2
-        version: 5.1.2(astro@4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.14)
+        version: 5.1.2(astro@4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.14)
       '@fontsource-variable/inter':
         specifier: ^5.0.8
         version: 5.1.0
@@ -170,8 +170,8 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0
       astro:
-        specifier: 4.16.8
-        version: 4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
+        specifier: 4.16.9
+        version: 4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
       astro-seo:
         specifier: ^0.8.0
         version: 0.8.4(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
@@ -341,10 +341,6 @@ packages:
     resolution: {integrity: sha512-j9Db8Suy6yV/VHa4qzrj9yZfZxhLWQdVnRlXxmKLYlhWUVB1sB2G5sxuWYXk/whHD9iW76PmNzxZ4UCnTQTVEQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/helper-module-imports@7.25.7':
-    resolution: {integrity: sha512-o0xCgpNmRohmnoWKQ0Ij8IdddjyBFE4T2kagL/x6M3+4zUgc+4qTOUBoNe4XxDskt1HPKO007ZPiMgLDq2s7Kw==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/helper-module-imports@7.25.9':
     resolution: {integrity: sha512-tnUA4RsrmflIM6W6RFTLFSXITtl0wKjgpnLgXyowocVPrbYrLUXSBXDgTs8BlbmIzIdlBySRQjINYs2BAkiLtw==}
     engines: {node: '>=6.9.0'}
@@ -373,16 +369,8 @@ packages:
     resolution: {integrity: sha512-FPGAkJmyoChQeM+ruBGIDyrT2tKfZJO8NcxdC+CWNJi7N8/rZpSxK7yvBJ5O/nF1gfu5KzN7VKG3YVSLFfRSxQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/helper-string-parser@7.25.7':
-    resolution: {integrity: sha512-CbkjYdsJNHFk8uqpEkpCvRs3YRp9tY6FmFY7wLMSYuGYkrdUi7r2lc4/wqsvlHoMznX3WJ9IP8giGPq68T/Y6g==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/helper-string-parser@7.25.9':
     resolution: {integrity: sha512-4A/SCr/2KLd5jrtOMFzaKjVtAei3+2r/NChoBNoZ3EyP/+GlhoaEGoWOZUmFmoITP7zOJyHIMm+DYRd8o3PvHA==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/helper-validator-identifier@7.25.7':
-    resolution: {integrity: sha512-AM6TzwYqGChO45oiuPqwL2t20/HdMC1rTPAesnBCgPCSF1x3oN9MVUwQV2iyz4xqWrctwK5RNC8LV22kaQCNYg==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-validator-identifier@7.25.9':
@@ -461,10 +449,6 @@ packages:
 
   '@babel/traverse@7.25.9':
     resolution: {integrity: sha512-ZCuvfwOwlz/bawvAuvcj8rrithP2/N55Tzz342AkTvq4qaWbGfmCk/tKhNaV2cthijKrPAA8SRJV5WWe7IBMJw==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/types@7.25.8':
-    resolution: {integrity: sha512-JWtuCu8VQsMladxVz/P4HzHUGCAwpuqacmowgXFs5XjxIgKuNjnLokQzuVjlTvIzODaDmpjT3oxcC48vyk9EWg==}
     engines: {node: '>=6.9.0'}
 
   '@babel/types@7.26.0':
@@ -1938,8 +1922,8 @@ packages:
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
 
-  astro@4.16.8:
-    resolution: {integrity: sha512-BRWFP0UQ8gkOr90KQW7oooedtgCk/j91pyv1WQUmgZwMUZk/v0HJRiddAZgvGCECOnmZFc9ZqRZnBsAMUgApNQ==}
+  astro@4.16.9:
+    resolution: {integrity: sha512-DFYzPZooVArKSGu969BBByUV44tJMVDPGKxgqWNFBaIrkvGljdVUqQSVwD+/iPYACoSkI8BRYvDMEBDkathIUQ==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -4093,10 +4077,6 @@ packages:
   tippy.js@6.3.7:
     resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
 
-  to-fast-properties@2.0.0:
-    resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
-    engines: {node: '>=4'}
-
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -4542,11 +4522,6 @@ packages:
   zimmerframe@1.1.2:
     resolution: {integrity: sha512-rAbqEGa8ovJy4pyBxZM70hg4pE6gDgaQ0Sl9M3enG3I0d6H4XSAM3GeNGLKnsBpuijUow064sf7ww1nutC5/3w==}
 
-  zod-to-json-schema@3.23.3:
-    resolution: {integrity: sha512-TYWChTxKQbRJp5ST22o/Irt9KC5nj7CdBKYB/AosCRdj/wxEMvv4NNaj9XVUHDOIp53ZxArGhnw5HMZziPFjog==}
-    peerDependencies:
-      zod: ^3.23.3
-
   zod-to-json-schema@3.23.5:
     resolution: {integrity: sha512-5wlSS0bXfF/BrL4jPAbz9da5hDlDptdEppYfe+x4eIJ7jioqKG9uUxOwPzqof09u/XeVdrgFu29lZi+8XNDJtA==}
     peerDependencies:
@@ -4674,9 +4649,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/node@8.3.4(astro@4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))':
+  '@astrojs/node@8.3.4(astro@4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))':
     dependencies:
-      astro: 4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
       send: 0.19.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -4698,10 +4673,10 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/svelte@5.7.2(astro@4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.1.9)(typescript@5.4.5)(vite@5.4.10(@types/node@22.8.6))':
+  '@astrojs/svelte@5.7.2(astro@4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.1.9)(typescript@5.4.5)(vite@5.4.10(@types/node@22.8.6))':
     dependencies:
       '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@5.1.9)(vite@5.4.10(@types/node@22.8.6))
-      astro: 4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
       svelte: 5.1.9
       svelte2tsx: 0.7.21(svelte@5.1.9)(typescript@5.4.5)
       typescript: 5.4.5
@@ -4709,9 +4684,9 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/tailwind@5.1.2(astro@4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.14)':
+  '@astrojs/tailwind@5.1.2(astro@4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.14)':
     dependencies:
-      astro: 4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
       autoprefixer: 10.4.20(postcss@8.4.47)
       postcss: 8.4.47
       postcss-load-config: 4.0.2(postcss@8.4.47)
@@ -4761,7 +4736,7 @@ snapshots:
       '@babel/parser': 7.25.8
       '@babel/template': 7.25.7
       '@babel/traverse': 7.25.7
-      '@babel/types': 7.25.8
+      '@babel/types': 7.26.0
       convert-source-map: 2.0.0
       debug: 4.3.7
       gensync: 1.0.0-beta.2
@@ -4792,7 +4767,7 @@ snapshots:
 
   '@babel/generator@7.25.7':
     dependencies:
-      '@babel/types': 7.25.8
+      '@babel/types': 7.26.0
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
       jsesc: 3.0.2
@@ -4825,13 +4800,6 @@ snapshots:
       lru-cache: 5.1.1
       semver: 6.3.1
 
-  '@babel/helper-module-imports@7.25.7':
-    dependencies:
-      '@babel/traverse': 7.25.7
-      '@babel/types': 7.25.8
-    transitivePeerDependencies:
-      - supports-color
-
   '@babel/helper-module-imports@7.25.9':
     dependencies:
       '@babel/traverse': 7.25.9
@@ -4842,10 +4810,10 @@ snapshots:
   '@babel/helper-module-transforms@7.25.7(@babel/core@7.25.2)':
     dependencies:
       '@babel/core': 7.25.2
-      '@babel/helper-module-imports': 7.25.7
+      '@babel/helper-module-imports': 7.25.9
       '@babel/helper-simple-access': 7.25.7
-      '@babel/helper-validator-identifier': 7.25.7
-      '@babel/traverse': 7.25.7
+      '@babel/helper-validator-identifier': 7.25.9
+      '@babel/traverse': 7.25.9
     transitivePeerDependencies:
       - supports-color
 
@@ -4864,16 +4832,12 @@ snapshots:
 
   '@babel/helper-simple-access@7.25.7':
     dependencies:
-      '@babel/traverse': 7.25.7
-      '@babel/types': 7.25.8
+      '@babel/traverse': 7.25.9
+      '@babel/types': 7.26.0
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/helper-string-parser@7.25.7': {}
-
   '@babel/helper-string-parser@7.25.9': {}
-
-  '@babel/helper-validator-identifier@7.25.7': {}
 
   '@babel/helper-validator-identifier@7.25.9': {}
 
@@ -4883,8 +4847,8 @@ snapshots:
 
   '@babel/helpers@7.25.7':
     dependencies:
-      '@babel/template': 7.25.7
-      '@babel/types': 7.25.8
+      '@babel/template': 7.25.9
+      '@babel/types': 7.26.0
 
   '@babel/helpers@7.26.0':
     dependencies:
@@ -4893,7 +4857,7 @@ snapshots:
 
   '@babel/highlight@7.25.7':
     dependencies:
-      '@babel/helper-validator-identifier': 7.25.7
+      '@babel/helper-validator-identifier': 7.25.9
       chalk: 2.4.2
       js-tokens: 4.0.0
       picocolors: 1.1.0
@@ -4938,9 +4902,9 @@ snapshots:
 
   '@babel/template@7.25.7':
     dependencies:
-      '@babel/code-frame': 7.25.7
-      '@babel/parser': 7.25.8
-      '@babel/types': 7.25.8
+      '@babel/code-frame': 7.26.2
+      '@babel/parser': 7.26.2
+      '@babel/types': 7.26.0
 
   '@babel/template@7.25.9':
     dependencies:
@@ -4950,11 +4914,11 @@ snapshots:
 
   '@babel/traverse@7.25.7':
     dependencies:
-      '@babel/code-frame': 7.25.7
-      '@babel/generator': 7.25.7
-      '@babel/parser': 7.25.8
-      '@babel/template': 7.25.7
-      '@babel/types': 7.25.8
+      '@babel/code-frame': 7.26.2
+      '@babel/generator': 7.26.2
+      '@babel/parser': 7.26.2
+      '@babel/template': 7.25.9
+      '@babel/types': 7.26.0
       debug: 4.3.7
       globals: 11.12.0
     transitivePeerDependencies:
@@ -4971,12 +4935,6 @@ snapshots:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
-
-  '@babel/types@7.25.8':
-    dependencies:
-      '@babel/helper-string-parser': 7.25.7
-      '@babel/helper-validator-identifier': 7.25.7
-      to-fast-properties: 2.0.0
 
   '@babel/types@7.26.0':
     dependencies:
@@ -5891,7 +5849,7 @@ snapshots:
       '@sentry/types': 8.36.0
       '@sentry/utils': 8.36.0
 
-  '@sentry/astro@8.36.0(astro@4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))':
+  '@sentry/astro@8.36.0(astro@4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))':
     dependencies:
       '@sentry/browser': 8.36.0
       '@sentry/core': 8.36.0
@@ -5899,7 +5857,7 @@ snapshots:
       '@sentry/types': 8.36.0
       '@sentry/utils': 8.36.0
       '@sentry/vite-plugin': 2.22.6
-      astro: 4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -6289,7 +6247,7 @@ snapshots:
 
   '@types/babel__core@7.20.5':
     dependencies:
-      '@babel/parser': 7.25.8
+      '@babel/parser': 7.26.2
       '@babel/types': 7.26.0
       '@types/babel__generator': 7.6.4
       '@types/babel__template': 7.4.1
@@ -6301,7 +6259,7 @@ snapshots:
 
   '@types/babel__template@7.4.1':
     dependencies:
-      '@babel/parser': 7.25.8
+      '@babel/parser': 7.26.2
       '@babel/types': 7.26.0
 
   '@types/babel__traverse@7.20.1':
@@ -6596,10 +6554,10 @@ snapshots:
       - prettier-plugin-astro
       - typescript
 
-  astro-tweet@0.0.4(astro@4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3):
+  astro-tweet@0.0.4(astro@4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5))(prettier-plugin-astro@0.14.1)(prettier@3.3.3):
     dependencies:
       '@astrojs/check': 0.2.1(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.4.5)
-      astro: 4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
+      astro: 4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5)
       clsx: 2.1.0
       date-fns: 2.30.0
       typescript: 5.4.5
@@ -6607,7 +6565,7 @@ snapshots:
       - prettier
       - prettier-plugin-astro
 
-  astro@4.16.8(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5):
+  astro@4.16.9(@types/node@22.8.6)(rollup@4.21.0)(typescript@5.4.5):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.4.1
@@ -7745,7 +7703,7 @@ snapshots:
 
   magicast@0.3.5:
     dependencies:
-      '@babel/parser': 7.25.8
+      '@babel/parser': 7.26.2
       '@babel/types': 7.26.0
       source-map-js: 1.2.1
 
@@ -8231,7 +8189,7 @@ snapshots:
       '@trpc/server': 10.45.2
       openapi-types: 12.1.0
       zod: 3.23.8
-      zod-to-json-schema: 3.23.3(zod@3.23.8)
+      zod-to-json-schema: 3.23.5(zod@3.23.8)
 
   openapi-types@12.1.0: {}
 
@@ -9163,8 +9121,6 @@ snapshots:
     dependencies:
       '@popperjs/core': 2.11.8
 
-  to-fast-properties@2.0.0: {}
-
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
@@ -9590,10 +9546,6 @@ snapshots:
   yocto-queue@1.1.1: {}
 
   zimmerframe@1.1.2: {}
-
-  zod-to-json-schema@3.23.3(zod@3.23.8):
-    dependencies:
-      zod: 3.23.8
 
   zod-to-json-schema@3.23.5(zod@3.23.8):
     dependencies:
