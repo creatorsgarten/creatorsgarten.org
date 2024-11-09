@@ -204,7 +204,7 @@ importers:
         version: 5.4.5
       zx:
         specifier: ^8.0.0
-        version: 8.2.0
+        version: 8.2.1
 
 packages:
 
@@ -1731,12 +1731,6 @@ packages:
 
   '@types/node@22.5.5':
     resolution: {integrity: sha512-Xjs4y5UPO/CLdzpgR6GirZJx36yScjh73+2NlLlkFRSoQN8B0DpfXPdZGnvVmLRLOsqDpOfTNv7D9trgGhmOIA==}
-
-  '@types/node@22.7.4':
-    resolution: {integrity: sha512-y+NPi1rFzDs1NdQHHToqeiX2TIS79SWEAw9GYhkkx8bD0ChpfqC+n2j5OXOCpzfojBEBt6DnEnnG9MY0zk1XLg==}
-
-  '@types/node@22.8.6':
-    resolution: {integrity: sha512-tosuJYKrIqjQIlVCM4PEGxOmyg3FCPa/fViuJChnGeEIhjA46oy8FMVoF9su1/v8PNs2a8Q0iFNyOx0uOF91nw==}
 
   '@types/node@22.9.0':
     resolution: {integrity: sha512-vuyHg81vvWA1Z1ELfvLko2c8f34gyA0zaic0+Rllc5lbCnbSyuvb2Oxpm6TAUAC/2xZN3QGqxBNggD1nNR2AfQ==}
@@ -4545,8 +4539,8 @@ packages:
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  zx@8.2.0:
-    resolution: {integrity: sha512-ec7Z1Ki9h4CsKqbMjZ8H7G1PbbZYErscxT314LF66Ljx1YRENisqa5m9IN2VjbYgOKxdv5t0MbVd3Hf+II3e7w==}
+  zx@8.2.1:
+    resolution: {integrity: sha512-E3TZRg76QC14RXU8LLKGCnsd8omfM220TJKU4O4R1YuitE4IzDB3cmX6+tF2iffJ8JtlWxBo35YS1TCmpINuaQ==}
     engines: {node: '>= 12.17.0'}
     hasBin: true
 
@@ -6278,7 +6272,7 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 22.8.6
+      '@types/node': 22.9.0
     optional: true
 
   '@types/hast@2.3.10':
@@ -6291,7 +6285,7 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 22.8.6
+      '@types/node': 22.9.0
     optional: true
 
   '@types/jsonwebtoken@9.0.7':
@@ -6317,7 +6311,7 @@ snapshots:
 
   '@types/multipipe@3.0.5':
     dependencies:
-      '@types/node': 22.7.4
+      '@types/node': 22.9.0
 
   '@types/mysql@2.15.26':
     dependencies:
@@ -6336,15 +6330,6 @@ snapshots:
   '@types/node@22.5.5':
     dependencies:
       undici-types: 6.19.8
-
-  '@types/node@22.7.4':
-    dependencies:
-      undici-types: 6.19.8
-
-  '@types/node@22.8.6':
-    dependencies:
-      undici-types: 6.19.8
-    optional: true
 
   '@types/node@22.9.0':
     dependencies:
@@ -9565,7 +9550,7 @@ snapshots:
 
   zwitch@2.0.4: {}
 
-  zx@8.2.0:
+  zx@8.2.1:
     optionalDependencies:
       '@types/fs-extra': 11.0.4
-      '@types/node': 22.8.6
+      '@types/node': 22.9.0
