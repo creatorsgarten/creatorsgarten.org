@@ -129,7 +129,7 @@ importers:
         version: 3.6.2(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.4.10(@types/node@22.9.1))
       '@astrojs/svelte':
         specifier: ^6.0.0
-        version: 6.0.1(astro@4.16.13(@types/node@22.9.1)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.2.6)(typescript@5.4.5)(vite@5.4.10(@types/node@22.9.1))
+        version: 6.0.1(astro@4.16.13(@types/node@22.9.1)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.2.7)(typescript@5.4.5)(vite@5.4.10(@types/node@22.9.1))
       '@astrojs/tailwind':
         specifier: 5.1.2
         version: 5.1.2(astro@4.16.13(@types/node@22.9.1)(rollup@4.21.0)(typescript@5.4.5))(tailwindcss@3.4.15)
@@ -189,13 +189,13 @@ importers:
         version: 0.14.1
       prettier-plugin-svelte:
         specifier: ^3.0.3
-        version: 3.2.8(prettier@3.3.3)(svelte@5.2.6)
+        version: 3.2.8(prettier@3.3.3)(svelte@5.2.7)
       prettier-plugin-tailwindcss:
         specifier: ^0.6.0
-        version: 0.6.9(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.2.8(prettier@3.3.3)(svelte@5.2.6))(prettier@3.3.3)
+        version: 0.6.9(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.2.8(prettier@3.3.3)(svelte@5.2.7))(prettier@3.3.3)
       svelte:
         specifier: ^5.0.0
-        version: 5.2.6
+        version: 5.2.7
       tailwindcss:
         specifier: 3.4.15
         version: 3.4.15
@@ -3974,8 +3974,8 @@ packages:
       svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
       typescript: ^4.9.4 || ^5.0.0
 
-  svelte@5.2.6:
-    resolution: {integrity: sha512-mQBm268315W4lu6LxJK0Nt3Ou/m2uFJTKzLcFWhTTiA7cbCvVUeqwQSEBkGpbxQw84VCSO6my7DUlWsSy1/tQA==}
+  svelte@5.2.7:
+    resolution: {integrity: sha512-cEhPGuLHiH2+Z8B1FwQgiZJgA39uUmJR4516TKrM5zrp0/cuwJkfhUfcTxhAkznanAF5fXUKzvYR4o+Ksx3ZCQ==}
     engines: {node: '>=18'}
 
   tailwindcss@3.4.15:
@@ -4587,12 +4587,12 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/svelte@6.0.1(astro@4.16.13(@types/node@22.9.1)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.2.6)(typescript@5.4.5)(vite@5.4.10(@types/node@22.9.1))':
+  '@astrojs/svelte@6.0.1(astro@4.16.13(@types/node@22.9.1)(rollup@4.21.0)(typescript@5.4.5))(svelte@5.2.7)(typescript@5.4.5)(vite@5.4.10(@types/node@22.9.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 4.0.1(svelte@5.2.6)(vite@5.4.10(@types/node@22.9.1))
+      '@sveltejs/vite-plugin-svelte': 4.0.1(svelte@5.2.7)(vite@5.4.10(@types/node@22.9.1))
       astro: 4.16.13(@types/node@22.9.1)(rollup@4.21.0)(typescript@5.4.5)
-      svelte: 5.2.6
-      svelte2tsx: 0.7.22(svelte@5.2.6)(typescript@5.4.5)
+      svelte: 5.2.7
+      svelte2tsx: 0.7.22(svelte@5.2.7)(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -5886,23 +5886,23 @@ snapshots:
 
   '@shikijs/vscode-textmate@9.3.0': {}
 
-  '@sveltejs/vite-plugin-svelte-inspector@3.0.1(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.2.6)(vite@5.4.10(@types/node@22.9.1)))(svelte@5.2.6)(vite@5.4.10(@types/node@22.9.1))':
+  '@sveltejs/vite-plugin-svelte-inspector@3.0.1(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.2.7)(vite@5.4.10(@types/node@22.9.1)))(svelte@5.2.7)(vite@5.4.10(@types/node@22.9.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 4.0.1(svelte@5.2.6)(vite@5.4.10(@types/node@22.9.1))
+      '@sveltejs/vite-plugin-svelte': 4.0.1(svelte@5.2.7)(vite@5.4.10(@types/node@22.9.1))
       debug: 4.3.7
-      svelte: 5.2.6
+      svelte: 5.2.7
       vite: 5.4.10(@types/node@22.9.1)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.2.6)(vite@5.4.10(@types/node@22.9.1))':
+  '@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.2.7)(vite@5.4.10(@types/node@22.9.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 3.0.1(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.2.6)(vite@5.4.10(@types/node@22.9.1)))(svelte@5.2.6)(vite@5.4.10(@types/node@22.9.1))
+      '@sveltejs/vite-plugin-svelte-inspector': 3.0.1(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.2.7)(vite@5.4.10(@types/node@22.9.1)))(svelte@5.2.7)(vite@5.4.10(@types/node@22.9.1))
       debug: 4.3.7
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.13
-      svelte: 5.2.6
+      svelte: 5.2.7
       vite: 5.4.10(@types/node@22.9.1)
       vitefu: 1.0.3(vite@5.4.10(@types/node@22.9.1))
     transitivePeerDependencies:
@@ -8251,17 +8251,17 @@ snapshots:
       prettier: 3.3.3
       sass-formatter: 0.7.6
 
-  prettier-plugin-svelte@3.2.8(prettier@3.3.3)(svelte@5.2.6):
+  prettier-plugin-svelte@3.2.8(prettier@3.3.3)(svelte@5.2.7):
     dependencies:
       prettier: 3.3.3
-      svelte: 5.2.6
+      svelte: 5.2.7
 
-  prettier-plugin-tailwindcss@0.6.9(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.2.8(prettier@3.3.3)(svelte@5.2.6))(prettier@3.3.3):
+  prettier-plugin-tailwindcss@0.6.9(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.2.8(prettier@3.3.3)(svelte@5.2.7))(prettier@3.3.3):
     dependencies:
       prettier: 3.3.3
     optionalDependencies:
       prettier-plugin-astro: 0.14.1
-      prettier-plugin-svelte: 3.2.8(prettier@3.3.3)(svelte@5.2.6)
+      prettier-plugin-svelte: 3.2.8(prettier@3.3.3)(svelte@5.2.7)
 
   prettier@2.8.7:
     optional: true
@@ -8887,14 +8887,14 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte2tsx@0.7.22(svelte@5.2.6)(typescript@5.4.5):
+  svelte2tsx@0.7.22(svelte@5.2.7)(typescript@5.4.5):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2
-      svelte: 5.2.6
+      svelte: 5.2.7
       typescript: 5.4.5
 
-  svelte@5.2.6:
+  svelte@5.2.7:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@jridgewell/sourcemap-codec': 1.5.0
