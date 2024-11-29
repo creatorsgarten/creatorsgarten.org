@@ -35,7 +35,7 @@ importers:
         version: 0.10.2(nanostores@0.11.3)
       '@nanostores/react':
         specifier: ^0.8.0
-        version: 0.8.1(nanostores@0.11.3)(react@18.3.1)
+        version: 0.8.2(nanostores@0.11.3)(react@18.3.1)
       '@sentry/astro':
         specifier: ^8.0.0
         version: 8.41.0(astro@4.16.16(@types/node@22.10.1)(rollup@4.27.3)(typescript@5.4.5))
@@ -793,8 +793,8 @@ packages:
     peerDependencies:
       nanostores: ^0.9.0 || ^0.10.0 || ^0.11.0
 
-  '@nanostores/react@0.8.1':
-    resolution: {integrity: sha512-wu6tv+RR0KX0lv1ASSMaTbB41kQLD1MUHtE9bVHVJuISK1XB0U2J0pdlSThILMxynL8PUm6F1jOr4DLvxeIoug==}
+  '@nanostores/react@0.8.2':
+    resolution: {integrity: sha512-DW4lIsDpdGqHvr9Ah/5InSsl9GFkIQOiA6FdKbordUT9BNNoAWcObwtCUyNfEhe6UEOC+Kw9rbdU8EcyoZjAGA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       nanostores: ^0.9.0 || ^0.10.0 || ^0.11.0
@@ -5139,7 +5139,7 @@ snapshots:
     dependencies:
       nanostores: 0.11.3
 
-  '@nanostores/react@0.8.1(nanostores@0.11.3)(react@18.3.1)':
+  '@nanostores/react@0.8.2(nanostores@0.11.3)(react@18.3.1)':
     dependencies:
       nanostores: 0.11.3
       react: 18.3.1
