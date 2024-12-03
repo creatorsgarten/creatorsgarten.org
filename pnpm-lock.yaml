@@ -131,8 +131,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.2(@types/node@22.10.1)(astro@4.16.16(@types/node@22.10.1)(rollup@4.27.3)(typescript@5.4.5))(svelte@5.4.0)(typescript@5.4.5)
       '@astrojs/tailwind':
-        specifier: 5.1.2
-        version: 5.1.2(astro@4.16.16(@types/node@22.10.1)(rollup@4.27.3)(typescript@5.4.5))(tailwindcss@3.4.15)
+        specifier: 5.1.3
+        version: 5.1.3(astro@4.16.16(@types/node@22.10.1)(rollup@4.27.3)(typescript@5.4.5))(tailwindcss@3.4.15)
       '@fontsource-variable/inter':
         specifier: ^5.0.8
         version: 5.1.0
@@ -284,10 +284,10 @@ packages:
       svelte: ^5.1.16
       typescript: ^5.3.3
 
-  '@astrojs/tailwind@5.1.2':
-    resolution: {integrity: sha512-IvOF0W/dtHElcXvhrPR35nHmhyV3cfz1EzPitMGtU7sYy9Hci3BNK1To6FWmVuuNKPxza1IgCGetSynJZL7fOg==}
+  '@astrojs/tailwind@5.1.3':
+    resolution: {integrity: sha512-XF7WhXRhqEHGvADqc0kDtF7Yv/g4wAWTaj91jBBTBaYnc4+MQLH94duFfFa4NlTkRG40VQd012eF3MhO3Kk+bg==}
     peerDependencies:
-      astro: ^3.0.0 || ^4.0.0 || ^5.0.0-beta.0
+      astro: ^3.0.0 || ^4.0.0 || ^5.0.0
       tailwindcss: ^3.0.24
 
   '@astrojs/telemetry@3.1.0':
@@ -4631,12 +4631,12 @@ snapshots:
       - supports-color
       - terser
 
-  '@astrojs/tailwind@5.1.2(astro@4.16.16(@types/node@22.10.1)(rollup@4.27.3)(typescript@5.4.5))(tailwindcss@3.4.15)':
+  '@astrojs/tailwind@5.1.3(astro@4.16.16(@types/node@22.10.1)(rollup@4.27.3)(typescript@5.4.5))(tailwindcss@3.4.15)':
     dependencies:
       astro: 4.16.16(@types/node@22.10.1)(rollup@4.27.3)(typescript@5.4.5)
-      autoprefixer: 10.4.20(postcss@8.4.47)
-      postcss: 8.4.47
-      postcss-load-config: 4.0.2(postcss@8.4.47)
+      autoprefixer: 10.4.20(postcss@8.4.49)
+      postcss: 8.4.49
+      postcss-load-config: 4.0.2(postcss@8.4.49)
       tailwindcss: 3.4.15
     transitivePeerDependencies:
       - ts-node
@@ -6489,14 +6489,14 @@ snapshots:
 
   atomic-sleep@1.0.0: {}
 
-  autoprefixer@10.4.20(postcss@8.4.47):
+  autoprefixer@10.4.20(postcss@8.4.49):
     dependencies:
       browserslist: 4.24.0
       caniuse-lite: 1.0.30001666
       fraction.js: 4.3.7
       normalize-range: 0.1.2
-      picocolors: 1.1.0
-      postcss: 8.4.47
+      picocolors: 1.1.1
+      postcss: 8.4.49
       postcss-value-parser: 4.2.0
 
   avvio@9.1.0:
@@ -8186,6 +8186,13 @@ snapshots:
       yaml: 2.5.1
     optionalDependencies:
       postcss: 8.4.47
+
+  postcss-load-config@4.0.2(postcss@8.4.49):
+    dependencies:
+      lilconfig: 3.1.2
+      yaml: 2.5.1
+    optionalDependencies:
+      postcss: 8.4.49
 
   postcss-nested@6.2.0(postcss@8.4.47):
     dependencies:
