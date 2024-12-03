@@ -180,7 +180,7 @@ importers:
         version: 2.1.0(socks@2.7.1)(typescript@5.4.5)
       dotenv:
         specifier: ^16.3.1
-        version: 16.4.6
+        version: 16.4.7
       prettier:
         specifier: 3.4.1
         version: 3.4.1
@@ -2215,8 +2215,8 @@ packages:
   domutils@3.0.1:
     resolution: {integrity: sha512-z08c1l761iKhDFtfXO04C7kTdPBLi41zwOZl00WS8b5eiaebNpY00HKbztwBq+e3vyqWNwWF3mP9YLUeqIrF+Q==}
 
-  dotenv@16.4.6:
-    resolution: {integrity: sha512-JhcR/+KIjkkjiU8yEpaB/USlzVi3i5whwOjpIRNGi9svKEXZSe+Qp6IWAjFjv+2GViAoDRCUv/QLNziQxsLqDg==}
+  dotenv@16.4.7:
+    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
     engines: {node: '>=12'}
 
   dset@3.1.4:
@@ -5738,7 +5738,7 @@ snapshots:
       '@babel/core': 7.26.0
       '@sentry/babel-plugin-component-annotate': 2.22.6
       '@sentry/cli': 2.39.1
-      dotenv: 16.4.6
+      dotenv: 16.4.7
       find-up: 5.0.0
       glob: 9.3.5
       magic-string: 0.30.8
@@ -6800,7 +6800,7 @@ snapshots:
       domelementtype: 2.3.0
       domhandler: 5.0.3
 
-  dotenv@16.4.6: {}
+  dotenv@16.4.7: {}
 
   dset@3.1.4: {}
 
