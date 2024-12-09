@@ -126,7 +126,7 @@ importers:
         version: 9.0.0(astro@5.0.4(@types/node@22.10.1)(jiti@1.21.6)(rollup@4.27.3)(typescript@5.4.5)(yaml@2.5.1))
       '@astrojs/react':
         specifier: ^4.0.0
-        version: 4.0.0(@types/node@22.10.1)(@types/react-dom@18.3.2)(@types/react@18.3.14)(jiti@1.21.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(yaml@2.5.1)
+        version: 4.0.0(@types/node@22.10.1)(@types/react-dom@18.3.3(@types/react@18.3.14))(@types/react@18.3.14)(jiti@1.21.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(yaml@2.5.1)
       '@astrojs/svelte':
         specifier: ^7.0.0
         version: 7.0.1(@types/node@22.10.1)(astro@5.0.4(@types/node@22.10.1)(jiti@1.21.6)(rollup@4.27.3)(typescript@5.4.5)(yaml@2.5.1))(jiti@1.21.6)(svelte@5.9.0)(typescript@5.4.5)(yaml@2.5.1)
@@ -165,7 +165,7 @@ importers:
         version: 18.3.14
       '@types/react-dom':
         specifier: ^18.2.7
-        version: 18.3.2
+        version: 18.3.3(@types/react@18.3.14)
       '@types/youtube':
         specifier: ^0.1.0
         version: 0.1.0
@@ -1835,8 +1835,10 @@ packages:
   '@types/qrcode@1.5.5':
     resolution: {integrity: sha512-CdfBi/e3Qk+3Z/fXYShipBT13OJ2fDO2Q2w5CIP5anLTLIndQG9z6P1cnm+8zCWSpm5dnxMFd/uREtb0EXuQzg==}
 
-  '@types/react-dom@18.3.2':
-    resolution: {integrity: sha512-Fqp+rcvem9wEnGr3RY8dYNvSQ8PoLqjZ9HLgaPUOjJJD120uDyOxOjc/39M4Kddp9JQCxpGQbnhVQF0C0ncYVg==}
+  '@types/react-dom@18.3.3':
+    resolution: {integrity: sha512-uTYkxTLkYp41nq/ULXyXMtkNT1vu5fXJoqad6uTNCOGat5t9cLgF4vMNLBXsTOXpdOI44XzKPY1M5RRm0bQHuw==}
+    peerDependencies:
+      '@types/react': ^18.0.0
 
   '@types/react@18.3.14':
     resolution: {integrity: sha512-NzahNKvjNhVjuPBQ+2G7WlxstQ+47kXZNHlUvFakDViuIEfGY926GqhMueQFZ7woG+sPiQKlF36XfrIUVSUfFg==}
@@ -4677,10 +4679,10 @@ snapshots:
     dependencies:
       prismjs: 1.29.0
 
-  '@astrojs/react@4.0.0(@types/node@22.10.1)(@types/react-dom@18.3.2)(@types/react@18.3.14)(jiti@1.21.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(yaml@2.5.1)':
+  '@astrojs/react@4.0.0(@types/node@22.10.1)(@types/react-dom@18.3.3(@types/react@18.3.14))(@types/react@18.3.14)(jiti@1.21.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(yaml@2.5.1)':
     dependencies:
       '@types/react': 18.3.14
-      '@types/react-dom': 18.3.2
+      '@types/react-dom': 18.3.3(@types/react@18.3.14)
       '@vitejs/plugin-react': 4.3.4(vite@6.0.2(@types/node@22.10.1)(jiti@1.21.6)(yaml@2.5.1))
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -6352,7 +6354,7 @@ snapshots:
     dependencies:
       '@types/node': 20.11.20
 
-  '@types/react-dom@18.3.2':
+  '@types/react-dom@18.3.3(@types/react@18.3.14)':
     dependencies:
       '@types/react': 18.3.14
 
