@@ -86,7 +86,7 @@ importers:
         version: 10.0.0
       mongodb:
         specifier: ^6.0.0
-        version: 6.11.0(socks@2.7.1)
+        version: 6.12.0(socks@2.7.1)
       nanostores:
         specifier: ^0.11.0
         version: 0.11.3
@@ -2169,8 +2169,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
-  bson@6.10.0:
-    resolution: {integrity: sha512-ROchNosXMJD2cbQGm84KoP7vOGPO6/bOAW0veMMbzhXLqoZptcaYRVLitwvuhwhjjpU1qP4YZRWLhgETdgqUQw==}
+  bson@6.10.1:
+    resolution: {integrity: sha512-P92xmHDQjSKPLHqFxefqMxASNq/aWJMEZugpCjf+AF/pgcUpMMQCg7t7+ewko0/u8AapvF3luf/FoehddEK+sA==}
     engines: {node: '>=16.20.1'}
 
   btoa-lite@1.0.0:
@@ -3284,12 +3284,12 @@ packages:
   mongodb-connection-string-url@3.0.1:
     resolution: {integrity: sha512-XqMGwRX0Lgn05TDB4PyG2h2kKO/FfWJyCzYQbIhXUxz7ETt0I/FqHjUeqj37irJ+Dl1ZtU82uYyj14u2XsZKfg==}
 
-  mongodb@6.11.0:
-    resolution: {integrity: sha512-yVbPw0qT268YKhG241vAMLaDQAPbRyTgo++odSgGc9kXnzOujQI60Iyj23B9sQQFPSvmNPvMZ3dsFz0aN55KgA==}
+  mongodb@6.12.0:
+    resolution: {integrity: sha512-RM7AHlvYfS7jv7+BXund/kR64DryVI+cHbVAy9P61fnb1RcWZqOW1/Wj2YhqMCx+MuYhqTRGv7AwHBzmsCKBfA==}
     engines: {node: '>=16.20.1'}
     peerDependencies:
       '@aws-sdk/credential-providers': ^3.188.0
-      '@mongodb-js/zstd': ^1.1.0
+      '@mongodb-js/zstd': ^1.1.0 || ^2.0.0
       gcp-metadata: ^5.2.0
       kerberos: ^2.0.1
       mongodb-client-encryption: '>=6.0.0 <7'
@@ -6926,7 +6926,7 @@ snapshots:
       node-releases: 2.0.19
       update-browserslist-db: 1.1.1(browserslist@4.24.2)
 
-  bson@6.10.0: {}
+  bson@6.10.1: {}
 
   btoa-lite@1.0.0: {}
 
@@ -7042,7 +7042,7 @@ snapshots:
       json-buffer: 3.0.1
       keyv: 4.5.2
       liquidjs: 10.7.1
-      mongodb: 6.11.0(socks@2.7.1)
+      mongodb: 6.12.0(socks@2.7.1)
       octokit: 3.2.1
       openapi-trpc: 0.1.2(@trpc/server@10.45.2)(zod@3.24.1)
       p-memoize: 7.1.1(typescript@5.4.5)
@@ -8302,10 +8302,10 @@ snapshots:
       '@types/whatwg-url': 11.0.5
       whatwg-url: 13.0.0
 
-  mongodb@6.11.0(socks@2.7.1):
+  mongodb@6.12.0(socks@2.7.1):
     dependencies:
       '@mongodb-js/saslprep': 1.1.9
-      bson: 6.10.0
+      bson: 6.10.1
       mongodb-connection-string-url: 3.0.1
     optionalDependencies:
       socks: 2.7.1
