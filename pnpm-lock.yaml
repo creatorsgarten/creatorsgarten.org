@@ -135,13 +135,13 @@ importers:
         version: 5.1.4(astro@5.1.1(@types/node@22.10.2)(jiti@2.4.2)(rollup@4.28.1)(typescript@5.4.5)(yaml@2.5.1))(tailwindcss@3.4.17)
       '@fontsource-variable/inter':
         specifier: ^5.0.8
-        version: 5.1.0
+        version: 5.1.1
       '@fontsource-variable/recursive':
         specifier: ^5.0.8
-        version: 5.1.0
+        version: 5.1.1
       '@fontsource-variable/work-sans':
         specifier: ^5.0.9
-        version: 5.1.0
+        version: 5.1.1
       '@playwright/test':
         specifier: 1.49.1
         version: 1.49.1
@@ -751,14 +751,14 @@ packages:
   '@fastify/static@8.0.3':
     resolution: {integrity: sha512-GHSoOVDIxEYEeVR5l044bRCuAKDErD/+9VE+Z9fnaTRr+DDz0Avrm4kKai1mHbPx6C0U7BVNthjd/gcMquZZUA==}
 
-  '@fontsource-variable/inter@5.1.0':
-    resolution: {integrity: sha512-Wj2dUGP0vUpxRGQTXQTCNJO+aLcFcQm+gUPXfj/aS877bQkEPBPv9JvZJpwdm2vzelt8NTZ+ausKlBCJjh2XIg==}
+  '@fontsource-variable/inter@5.1.1':
+    resolution: {integrity: sha512-OpXFTmiH6tHkYijMvQTycFKBLK4X+SRV6tet1m4YOUH7SzIIlMqDja+ocDtiCA72UthBH/vF+3ZtlMr2rN/wIw==}
 
-  '@fontsource-variable/recursive@5.1.0':
-    resolution: {integrity: sha512-7KNC41jWsceeXjghwgglP4/Pcb+TmSXjQPDipIZLcAAPU5R0/+NsRztclG+1w2ehSuxG9zJ1ZE7Q/16yt35Shg==}
+  '@fontsource-variable/recursive@5.1.1':
+    resolution: {integrity: sha512-yrIPTHMHCgiJ8FH3fq99OOKFRE0DwU4wY8MSX9sKFA66dnv105rpvbW1vHeVowKsCj3gcjXFM7O1OVqpJaAr8Q==}
 
-  '@fontsource-variable/work-sans@5.1.0':
-    resolution: {integrity: sha512-RBJh4FdqqMn6tHPRjBrhTDW6XZJsh9G4Udmxi6ZX09asGse2D/BkznPDycl4gaSNkqa1S54gCf7atX77YLtoKg==}
+  '@fontsource-variable/work-sans@5.1.1':
+    resolution: {integrity: sha512-9p3A0ek+Lcr8Xal7sWlNHY5rTyG3FJIwdZ+Rm59dxULbbrZEbtojiQzcamTC/s76cttmGiT+LpNpGM4VGqFrhg==}
 
   '@img/sharp-darwin-arm64@0.33.3':
     resolution: {integrity: sha512-FaNiGX1MrOuJ3hxuNzWgsT/mg5OHG/Izh59WW2mk1UwYHUwtfbhk5QNKYZgxf0pLOhx9ctGiGa2OykD71vOnSw==}
@@ -5432,11 +5432,11 @@ snapshots:
       fastq: 1.17.1
       glob: 11.0.0
 
-  '@fontsource-variable/inter@5.1.0': {}
+  '@fontsource-variable/inter@5.1.1': {}
 
-  '@fontsource-variable/recursive@5.1.0': {}
+  '@fontsource-variable/recursive@5.1.1': {}
 
-  '@fontsource-variable/work-sans@5.1.0': {}
+  '@fontsource-variable/work-sans@5.1.1': {}
 
   '@img/sharp-darwin-arm64@0.33.3':
     optionalDependencies:
