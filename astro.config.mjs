@@ -30,6 +30,9 @@ export default defineConfig({
       },
     }),
   ],
+  security: {
+    checkOrigin: false
+  },
   vite: {
     build: {
       rollupOptions: {
