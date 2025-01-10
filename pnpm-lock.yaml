@@ -5,8 +5,8 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  react: 18.3.1
-  react-dom: 18.3.1
+  react: 19.0.0
+  react-dom: 19.0.0
 
 importers:
 
@@ -14,10 +14,10 @@ importers:
     dependencies:
       '@contentsgarten/html':
         specifier: ^1.3.0
-        version: 1.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@doist/typist':
         specifier: ^7.0.0
-        version: 7.0.6(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.2.0)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.24.1)(prosemirror-state@1.4.3)(prosemirror-view@1.37.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.1)(rehype@13.0.2)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.1)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.5)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0)
+        version: 7.0.6(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.2.0)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.24.1)(prosemirror-state@1.4.3)(prosemirror-view@1.37.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.1)(rehype@13.0.2)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.1)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.5)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0)
       '@dtinth/comparator':
         specifier: ^0.0.3
         version: 0.0.3
@@ -35,13 +35,13 @@ importers:
         version: 0.10.2(nanostores@0.11.3)
       '@nanostores/react':
         specifier: ^0.8.0
-        version: 0.8.4(nanostores@0.11.3)(react@18.3.1)
+        version: 0.8.4(nanostores@0.11.3)(react@19.0.0)
       '@sentry/astro':
         specifier: ^8.0.0
         version: 8.48.0(astro@5.1.5(@types/node@22.10.5)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1))
       '@tanstack/react-query':
         specifier: ^5.0.0
-        version: 5.63.0(react@18.3.1)
+        version: 5.63.0(react@19.0.0)
       '@trpc/client':
         specifier: 10.45.2
         version: 10.45.2(@trpc/server@10.45.2)
@@ -97,14 +97,14 @@ importers:
         specifier: ^1.5.3
         version: 1.5.4
       react:
-        specifier: 18.3.1
-        version: 18.3.1
+        specifier: 19.0.0
+        version: 19.0.0
       react-dom:
-        specifier: 18.3.1
-        version: 18.3.1(react@18.3.1)
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
       react-iconify-icon-wrapper:
         specifier: ^0.0.3
-        version: 0.0.3(react@18.3.1)
+        version: 0.0.3(react@19.0.0)
       sitemap:
         specifier: ^8.0.0
         version: 8.0.0
@@ -126,7 +126,7 @@ importers:
         version: 9.0.0(astro@5.1.5(@types/node@22.10.5)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1))
       '@astrojs/react':
         specifier: ^4.0.0
-        version: 4.1.3(@types/node@22.10.5)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(jiti@2.4.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(yaml@2.5.1)
+        version: 4.1.3(@types/node@22.10.5)(@types/react-dom@19.0.2(@types/react@19.0.4))(@types/react@19.0.4)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(yaml@2.5.1)
       '@astrojs/svelte':
         specifier: ^7.0.0
         version: 7.0.3(@types/node@22.10.5)(astro@5.1.5(@types/node@22.10.5)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1))(jiti@2.4.2)(svelte@5.17.3)(typescript@5.4.5)(yaml@2.5.1)
@@ -161,11 +161,11 @@ importers:
         specifier: ^1.5.2
         version: 1.5.5
       '@types/react':
-        specifier: ^18.2.21
-        version: 18.3.18
+        specifier: ^19.0.0
+        version: 19.0.4
       '@types/react-dom':
-        specifier: ^18.2.7
-        version: 18.3.5(@types/react@18.3.18)
+        specifier: ^19.0.0
+        version: 19.0.2(@types/react@19.0.4)
       '@types/youtube':
         specifier: ^0.1.0
         version: 0.1.0
@@ -273,8 +273,8 @@ packages:
     peerDependencies:
       '@types/react': ^17.0.50 || ^18.0.21 || ^19.0.0
       '@types/react-dom': ^17.0.17 || ^18.0.6 || ^19.0.0
-      react: 18.3.1
-      react-dom: 18.3.1
+      react: 19.0.0
+      react-dom: 19.0.0
 
   '@astrojs/svelte@7.0.3':
     resolution: {integrity: sha512-cUR9lQ7p3LPZnWpGb7uWBHVzF6wbRbCkyGgEG20EQTx4Am2OyACM/xqZ3KuDKZJQd3HcqKbjkWX/nTJePpNDRw==}
@@ -383,8 +383,8 @@ packages:
   '@contentsgarten/html@1.3.0':
     resolution: {integrity: sha512-5rrYavKflX9qMFMgNgRNAYnSKF9gghDfVlAHHCalFiL/OiSvo5H+GyTo7zm8a4I4LBdvivyJ4/M5hfOvIAmEBg==}
     peerDependencies:
-      react: 18.3.1
-      react-dom: 18.3.1
+      react: 19.0.0
+      react-dom: 19.0.0
 
   '@contentsgarten/markdown@2.0.0':
     resolution: {integrity: sha512-gS0ZMkqfTfO7CAXY+siO2hDzJCTjRzrpdiy++WbuAW9DORbV4CvkYFcU2VFvlie6piiVyeTn/tnX7a3srnJcPg==}
@@ -401,8 +401,8 @@ packages:
       mdast-util-gfm-strikethrough: ^2.0.0
       micromark-extension-gfm-autolink-literal: ^2.0.0
       micromark-extension-gfm-strikethrough: ^2.0.0
-      react: 18.3.1
-      react-dom: 18.3.1
+      react: 19.0.0
+      react-dom: 19.0.0
       rehype: ^13.0.0
       rehype-minify-whitespace: ^6.0.0
       rehype-raw: ^7.0.0
@@ -938,7 +938,7 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       nanostores: ^0.9.0 || ^0.10.0 || ^0.11.0
-      react: 18.3.1
+      react: 19.0.0
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1741,7 +1741,7 @@ packages:
   '@tanstack/react-query@5.63.0':
     resolution: {integrity: sha512-QWizLzSiog8xqIRYmuJRok9VELlXVBAwtINgVCgW1SNvamQwWDO5R0XFSkjoBEj53x9Of1KAthLRBUC5xmtVLQ==}
     peerDependencies:
-      react: 18.3.1
+      react: 19.0.0
 
   '@tiptap/core@2.11.0':
     resolution: {integrity: sha512-0S3AWx6E2QqwdQqb6z0/q6zq2u9lA9oL3BLyAaITGSC9zt8OwjloS2k1zN6wLa9hp2rO0c0vDnWsTPeFaEaMdw==}
@@ -1912,8 +1912,8 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.7.0
       '@tiptap/pm': ^2.7.0
-      react: 18.3.1
-      react-dom: 18.3.1
+      react: 19.0.0
+      react-dom: 19.0.0
 
   '@tiptap/suggestion@2.11.0':
     resolution: {integrity: sha512-f+KcczhzEEy2f7/0N/RSID+Z6NjxCX6ab26NLfWZxdaEm/J+vQ2Pqh/e5Z59vMfKiC0DJXVcO0rdv2LBh23qDw==}
@@ -2022,19 +2022,16 @@ packages:
   '@types/pg@8.6.1':
     resolution: {integrity: sha512-1Kc4oAGzAl7uqUStZCDvaLFqZrW9qWSjXOmBfdgyBP5La7Us6Mg4GBvRlSoaZMhQF/zSj1C8CtKMBkoiT8eL8w==}
 
-  '@types/prop-types@15.7.14':
-    resolution: {integrity: sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ==}
-
   '@types/qrcode@1.5.5':
     resolution: {integrity: sha512-CdfBi/e3Qk+3Z/fXYShipBT13OJ2fDO2Q2w5CIP5anLTLIndQG9z6P1cnm+8zCWSpm5dnxMFd/uREtb0EXuQzg==}
 
-  '@types/react-dom@18.3.5':
-    resolution: {integrity: sha512-P4t6saawp+b/dFrUr2cvkVsfvPguwsxtH6dNIYRllMsefqFzkZk5UIjzyDOv5g1dXIPdG4Sp1yCR4Z6RCUsG/Q==}
+  '@types/react-dom@19.0.2':
+    resolution: {integrity: sha512-c1s+7TKFaDRRxr1TxccIX2u7sfCnc3RxkVyBIUA2lCpyqCF+QoAwQ/CBg7bsMdVwP120HEH143VQezKtef5nCg==}
     peerDependencies:
-      '@types/react': ^18.0.0
+      '@types/react': ^19.0.0
 
-  '@types/react@18.3.18':
-    resolution: {integrity: sha512-t4yC+vtgnkYjNSKlFx1jkAhH8LgTo2N/7Qvi83kdEaUtMDiwpbLAktKDaAMlRcJ5eSxZkH74eEGt1ky31d7kfQ==}
+  '@types/react@19.0.4':
+    resolution: {integrity: sha512-3O4QisJDYr1uTUMZHA2YswiQZRq+Pd8D+GdVFYikTutYsTz+QZgWkAPnP7rx9txoI6EXKcPiluMqWPFV3tT9Wg==}
 
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
@@ -2910,7 +2907,7 @@ packages:
   html-react-parser@3.0.16:
     resolution: {integrity: sha512-ysQZtRFPcg+McVb4B05oNWSnqM14zagpvTgGcI5e1/BvCl38YwzWzKibrbBmXeemg70olN1bAoeixo7o06G5Eg==}
     peerDependencies:
-      react: 18.3.1
+      react: 19.0.0
 
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
@@ -3217,10 +3214,6 @@ packages:
 
   longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
-
-  loose-envify@1.4.0:
-    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
-    hasBin: true
 
   lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
@@ -4011,15 +4004,15 @@ packages:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
 
-  react-dom@18.3.1:
-    resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
+  react-dom@19.0.0:
+    resolution: {integrity: sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==}
     peerDependencies:
-      react: 18.3.1
+      react: 19.0.0
 
   react-iconify-icon-wrapper@0.0.3:
     resolution: {integrity: sha512-rkMXxYJ6Hq5VaAIg5LJTwG5f52o89Tj7UQ+bkpTKR0AXpI96uLFvMv8KR09I3hq5IjHZsfdYoDP9xkQ/I4ECfA==}
     peerDependencies:
-      react: 18.3.1
+      react: 19.0.0
 
   react-property@2.0.0:
     resolution: {integrity: sha512-kzmNjIgU32mO4mmH5+iUyrqlpFQhF8K2k7eZ4fdLSOPFrD1XgEuSBv9LDEgxRXTMBqMd8ppT0x6TIzqE5pdGdw==}
@@ -4028,8 +4021,8 @@ packages:
     resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
     engines: {node: '>=0.10.0'}
 
-  react@18.3.1:
-    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
+  react@19.0.0:
+    resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -4205,8 +4198,8 @@ packages:
   sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
 
-  scheduler@0.23.2:
-    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
+  scheduler@0.25.0:
+    resolution: {integrity: sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==}
 
   section-matter@1.0.0:
     resolution: {integrity: sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==}
@@ -4641,7 +4634,7 @@ packages:
   use-sync-external-store@1.4.0:
     resolution: {integrity: sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==}
     peerDependencies:
-      react: 18.3.1
+      react: 19.0.0
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -5136,13 +5129,13 @@ snapshots:
     dependencies:
       prismjs: 1.29.0
 
-  '@astrojs/react@4.1.3(@types/node@22.10.5)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(jiti@2.4.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(yaml@2.5.1)':
+  '@astrojs/react@4.1.3(@types/node@22.10.5)(@types/react-dom@19.0.2(@types/react@19.0.4))(@types/react@19.0.4)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(yaml@2.5.1)':
     dependencies:
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
+      '@types/react': 19.0.4
+      '@types/react-dom': 19.0.2(@types/react@19.0.4)
       '@vitejs/plugin-react': 4.3.4(vite@6.0.7(@types/node@22.10.5)(jiti@2.4.2)(yaml@2.5.1))
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
       ultrahtml: 1.5.3
       vite: 6.0.7(@types/node@22.10.5)(jiti@2.4.2)(yaml@2.5.1)
     transitivePeerDependencies:
@@ -5321,17 +5314,17 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
-  '@contentsgarten/html@1.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@contentsgarten/html@1.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      html-react-parser: 3.0.16(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      html-react-parser: 3.0.16(react@19.0.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   '@contentsgarten/markdown@2.0.0':
     dependencies:
       '@wooorm/starry-night': 2.0.0
 
-  '@doist/typist@7.0.6(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.2.0)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.24.1)(prosemirror-state@1.4.3)(prosemirror-view@1.37.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.1)(rehype@13.0.2)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.1)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.5)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0)':
+  '@doist/typist@7.0.6(emoji-regex@10.3.0)(hast-util-is-element@3.0.0)(linkifyjs@4.2.0)(lodash-es@4.17.21)(mdast-util-gfm-autolink-literal@2.0.0)(mdast-util-gfm-strikethrough@2.0.0)(micromark-extension-gfm-autolink-literal@2.0.0)(micromark-extension-gfm-strikethrough@2.0.0)(prosemirror-inputrules@1.4.0)(prosemirror-model@1.24.1)(prosemirror-state@1.4.3)(prosemirror-view@1.37.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rehype-minify-whitespace@6.0.0)(rehype-raw@7.0.0)(rehype-stringify@10.0.1)(rehype@13.0.2)(remark-breaks@4.0.0)(remark-gfm@4.0.0)(remark-parse@11.0.0)(remark-rehype@11.1.1)(remark@15.0.1)(turndown@7.1.3)(unified@11.0.5)(unist-util-is@6.0.0)(unist-util-remove@4.0.0)(unist-util-visit@5.0.0)':
     dependencies:
       '@tiptap/core': 2.11.0(@tiptap/pm@2.11.0)
       '@tiptap/extension-blockquote': 2.11.0(@tiptap/core@2.11.0(@tiptap/pm@2.11.0))
@@ -5362,7 +5355,7 @@ snapshots:
       '@tiptap/extension-text-style': 2.11.0(@tiptap/core@2.11.0(@tiptap/pm@2.11.0))
       '@tiptap/extension-typography': 2.11.0(@tiptap/core@2.11.0(@tiptap/pm@2.11.0))
       '@tiptap/pm': 2.11.0
-      '@tiptap/react': 2.11.0(@tiptap/core@2.11.0(@tiptap/pm@2.11.0))(@tiptap/pm@2.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tiptap/react': 2.11.0(@tiptap/core@2.11.0(@tiptap/pm@2.11.0))(@tiptap/pm@2.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@tiptap/suggestion': 2.11.0(@tiptap/core@2.11.0(@tiptap/pm@2.11.0))(@tiptap/pm@2.11.0)
       emoji-regex: 10.3.0
       hast-util-is-element: 3.0.0
@@ -5373,8 +5366,8 @@ snapshots:
       micromark-extension-gfm-autolink-literal: 2.0.0
       micromark-extension-gfm-strikethrough: 2.0.0
       prosemirror-codemark: 0.4.2(prosemirror-inputrules@1.4.0)(prosemirror-model@1.24.1)(prosemirror-state@1.4.3)(prosemirror-view@1.37.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
       rehype: 13.0.2
       rehype-minify-whitespace: 6.0.0
       rehype-raw: 7.0.0
@@ -5747,10 +5740,10 @@ snapshots:
     dependencies:
       nanostores: 0.11.3
 
-  '@nanostores/react@0.8.4(nanostores@0.11.3)(react@18.3.1)':
+  '@nanostores/react@0.8.4(nanostores@0.11.3)(react@19.0.0)':
     dependencies:
       nanostores: 0.11.3
-      react: 18.3.1
+      react: 19.0.0
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -6630,10 +6623,10 @@ snapshots:
 
   '@tanstack/query-core@5.62.16': {}
 
-  '@tanstack/react-query@5.63.0(react@18.3.1)':
+  '@tanstack/react-query@5.63.0(react@19.0.0)':
     dependencies:
       '@tanstack/query-core': 5.62.16
-      react: 18.3.1
+      react: 19.0.0
 
   '@tiptap/core@2.11.0(@tiptap/pm@2.11.0)':
     dependencies:
@@ -6790,7 +6783,7 @@ snapshots:
       prosemirror-transform: 1.10.2
       prosemirror-view: 1.37.1
 
-  '@tiptap/react@2.11.0(@tiptap/core@2.11.0(@tiptap/pm@2.11.0))(@tiptap/pm@2.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@tiptap/react@2.11.0(@tiptap/core@2.11.0(@tiptap/pm@2.11.0))(@tiptap/pm@2.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@tiptap/core': 2.11.0(@tiptap/pm@2.11.0)
       '@tiptap/extension-bubble-menu': 2.11.0(@tiptap/core@2.11.0(@tiptap/pm@2.11.0))(@tiptap/pm@2.11.0)
@@ -6798,9 +6791,9 @@ snapshots:
       '@tiptap/pm': 2.11.0
       '@types/use-sync-external-store': 0.0.6
       fast-deep-equal: 3.1.3
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      use-sync-external-store: 1.4.0(react@18.3.1)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      use-sync-external-store: 1.4.0(react@19.0.0)
 
   '@tiptap/suggestion@2.11.0(@tiptap/core@2.11.0(@tiptap/pm@2.11.0))(@tiptap/pm@2.11.0)':
     dependencies:
@@ -6930,19 +6923,16 @@ snapshots:
       pg-protocol: 1.7.0
       pg-types: 2.2.0
 
-  '@types/prop-types@15.7.14': {}
-
   '@types/qrcode@1.5.5':
     dependencies:
       '@types/node': 20.11.20
 
-  '@types/react-dom@18.3.5(@types/react@18.3.18)':
+  '@types/react-dom@19.0.2(@types/react@19.0.4)':
     dependencies:
-      '@types/react': 18.3.18
+      '@types/react': 19.0.4
 
-  '@types/react@18.3.18':
+  '@types/react@19.0.4':
     dependencies:
-      '@types/prop-types': 15.7.14
       csstype: 3.1.3
 
   '@types/sax@1.2.7':
@@ -8042,11 +8032,11 @@ snapshots:
 
   html-escaper@3.0.3: {}
 
-  html-react-parser@3.0.16(react@18.3.1):
+  html-react-parser@3.0.16(react@19.0.0):
     dependencies:
       domhandler: 5.0.3
       html-dom-parser: 3.1.7
-      react: 18.3.1
+      react: 19.0.0
       react-property: 2.0.0
       style-to-js: 1.1.3
 
@@ -8357,10 +8347,6 @@ snapshots:
   lodash@4.17.21: {}
 
   longest-streak@3.1.0: {}
-
-  loose-envify@1.4.0:
-    dependencies:
-      js-tokens: 4.0.0
 
   lower-case@2.0.2:
     dependencies:
@@ -9271,23 +9257,20 @@ snapshots:
 
   range-parser@1.2.1: {}
 
-  react-dom@18.3.1(react@18.3.1):
+  react-dom@19.0.0(react@19.0.0):
     dependencies:
-      loose-envify: 1.4.0
-      react: 18.3.1
-      scheduler: 0.23.2
+      react: 19.0.0
+      scheduler: 0.25.0
 
-  react-iconify-icon-wrapper@0.0.3(react@18.3.1):
+  react-iconify-icon-wrapper@0.0.3(react@19.0.0):
     dependencies:
-      react: 18.3.1
+      react: 19.0.0
 
   react-property@2.0.0: {}
 
   react-refresh@0.14.2: {}
 
-  react@18.3.1:
-    dependencies:
-      loose-envify: 1.4.0
+  react@19.0.0: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -9561,9 +9544,7 @@ snapshots:
 
   sax@1.4.1: {}
 
-  scheduler@0.23.2:
-    dependencies:
-      loose-envify: 1.4.0
+  scheduler@0.25.0: {}
 
   section-matter@1.0.0:
     dependencies:
@@ -10026,9 +10007,9 @@ snapshots:
 
   uqr@0.1.2: {}
 
-  use-sync-external-store@1.4.0(react@18.3.1):
+  use-sync-external-store@1.4.0(react@19.0.0):
     dependencies:
-      react: 18.3.1
+      react: 19.0.0
 
   util-deprecate@1.0.2: {}
 
