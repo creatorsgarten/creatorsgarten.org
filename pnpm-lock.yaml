@@ -122,8 +122,8 @@ importers:
         specifier: ^0.9.0
         version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.4.2)(typescript@5.4.5)
       '@astrojs/node':
-        specifier: 9.0.0
-        version: 9.0.0(astro@5.1.6(@types/node@22.10.5)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1))
+        specifier: 9.0.1
+        version: 9.0.1(astro@5.1.6(@types/node@22.10.5)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1))
       '@astrojs/react':
         specifier: ^4.0.0
         version: 4.1.4(@types/node@22.10.5)(@types/react-dom@19.0.3(@types/react@19.0.6))(@types/react@19.0.6)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(yaml@2.5.1)
@@ -258,8 +258,8 @@ packages:
   '@astrojs/markdown-remark@6.0.1':
     resolution: {integrity: sha512-CTSYijj25NfxgZi15TU3CwPwgyD1/7yA3FcdcNmB9p94nydupiUbrIiq3IqeTp2m5kCVzxbPZeC7fTwEOaNyGw==}
 
-  '@astrojs/node@9.0.0':
-    resolution: {integrity: sha512-3h/5kFZvpuo+chYAjj75YhtRUxfquxEJrpZRRC7TdiMGp2WhLp2us4VXm2mjezJp/zHKotW2L3qgp0P2ujQ0xw==}
+  '@astrojs/node@9.0.1':
+    resolution: {integrity: sha512-vIKmKYhzK9o3NXANkHyjcFqi9e9N84mhgCESC/+rQ8danWnktu9uR6rGvbj3bdTb9+Dn5LDsmEm123P2Cun9nQ==}
     peerDependencies:
       astro: ^5.0.0
 
@@ -2463,15 +2463,6 @@ packages:
 
   dayjs@1.11.13:
     resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
-
-  debug@4.3.7:
-    resolution: {integrity: sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==}
-    engines: {node: '>=6.0'}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
 
   debug@4.4.0:
     resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==}
@@ -5123,7 +5114,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/node@9.0.0(astro@5.1.6(@types/node@22.10.5)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1))':
+  '@astrojs/node@9.0.1(astro@5.1.6(@types/node@22.10.5)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1))':
     dependencies:
       astro: 5.1.6(@types/node@22.10.5)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1)
       send: 1.1.0
@@ -7500,10 +7491,6 @@ snapshots:
 
   dayjs@1.11.13: {}
 
-  debug@4.3.7:
-    dependencies:
-      ms: 2.1.3
-
   debug@4.4.0:
     dependencies:
       ms: 2.1.3
@@ -9574,7 +9561,7 @@ snapshots:
 
   send@1.1.0:
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0
       destroy: 1.2.0
       encodeurl: 2.0.0
       escape-html: 1.0.3
