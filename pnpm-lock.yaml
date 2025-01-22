@@ -122,8 +122,8 @@ importers:
         specifier: ^0.9.0
         version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.4.2)(typescript@5.4.5)
       '@astrojs/node':
-        specifier: 9.0.1
-        version: 9.0.1(astro@5.1.8(@types/node@22.10.7)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1))
+        specifier: 9.0.2
+        version: 9.0.2(astro@5.1.8(@types/node@22.10.7)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1))
       '@astrojs/react':
         specifier: ^4.0.0
         version: 4.1.6(@types/node@22.10.7)(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(yaml@2.5.1)
@@ -258,8 +258,8 @@ packages:
   '@astrojs/markdown-remark@6.0.2':
     resolution: {integrity: sha512-aAoHGVRK3rebCYbaLjyyR+3VeAuTz4q49syUxJP29Oo5yZHdy4cCAXRqLBdr9mJVlxCUUjZiF0Dau6YBf65SGg==}
 
-  '@astrojs/node@9.0.1':
-    resolution: {integrity: sha512-vIKmKYhzK9o3NXANkHyjcFqi9e9N84mhgCESC/+rQ8danWnktu9uR6rGvbj3bdTb9+Dn5LDsmEm123P2Cun9nQ==}
+  '@astrojs/node@9.0.2':
+    resolution: {integrity: sha512-MFFYRa5yQEBegKrSUPMeKnjDMB4okTrkVRA40/mU3ADKrKY5VV3af0LS+NYkH9pFOvj/OsPbdeQVxQ0jI3f6aQ==}
     peerDependencies:
       astro: ^5.0.0
 
@@ -4644,7 +4644,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/node@9.0.1(astro@5.1.8(@types/node@22.10.7)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1))':
+  '@astrojs/node@9.0.2(astro@5.1.8(@types/node@22.10.7)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1))':
     dependencies:
       astro: 5.1.8(@types/node@22.10.7)(jiti@2.4.2)(rollup@4.30.1)(typescript@5.4.5)(yaml@2.5.1)
       send: 1.1.0
