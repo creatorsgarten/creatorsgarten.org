@@ -43,10 +43,10 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
       {
         websiteConfig?.events.recurring.map(event => (
           <a class={`rounded-md border border-black`} href={event.url}>
-            <p class="text-xl font-medium leading-snug lg:text-xl">
+            <p class="text-lg font-medium leading-snug lg:text-xl">
               {event.name}
             </p>
-            <p class="mt-1 text-sm uppercase">{event.schedule}</p>
+            <p class="mt-1 text-xs uppercase lg:text-sm">{event.schedule}</p>
           </a>
         ))
       }
@@ -68,7 +68,7 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
       </div>
     </div>
 
-    <div class="mt-6 grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-5">
+    <div class="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
       {
         events
           .filter(event => event.date.isBefore(now))
