@@ -9,6 +9,8 @@ import { upcomingEventsFilter } from '$functions/upcomingEventsFilter'
 
 import { getEvents } from '$functions/getEvents'
 
+import { cow, cowblink } from '$constants/animals'
+
 const events = await getEvents()
 const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
 
@@ -81,9 +83,11 @@ const stories = [
 >
   <section class="space-y-8 md:space-y-5 lg:space-y-5">
     <div
-      class="grid grid-cols-3 justify-end gap-4 rounded-lg border border-black bg-black p-4 text-2xl font-medium leading-snug xl:text-3xl"
+      class="grid grid-cols-3 justify-end gap-4 rounded-md border border-black bg-black p-4 text-2xl font-medium xl:text-3xl"
     >
-      <div class="col-span-3 text-balance text-white lg:col-span-2">
+      <div
+        class="col-span-3 text-balance leading-snug text-white lg:col-span-2"
+      >
         🐈 Creatorsgarten is a collective of creative technologists committed to
         sparking new ideas and conversations.
       </div>
@@ -92,7 +96,7 @@ const stories = [
       >
         <a
           href="/wiki/SelfIntroduction"
-          class="text-nowrap rounded-lg border border-black bg-white px-3 py-2 transition-colors hover:border-white hover:bg-black hover:text-white"
+          class="text-nowrap rounded-md border border-black bg-white px-3 py-2 transition-colors hover:border-white hover:bg-black hover:text-white"
         >
           About us →
         </a>
@@ -127,13 +131,13 @@ const stories = [
       class="flex grid-cols-2 flex-col gap-4 md:grid lg:grid-cols-4 lg:gap-5"
     >
       <div
-        class="mt-5 rounded-lg border border-black px-3 py-2 text-xl font-medium md:hidden"
+        class="mt-5 rounded-md border border-black px-3 py-2 text-xl font-medium md:hidden"
       >
         🌟 Up Next
       </div>
 
       <div
-        class="aspect-square w-full overflow-hidden rounded-lg border border-black"
+        class="aspect-square w-full overflow-hidden rounded-md border border-black"
       >
         <img
           src="https://assets.creatorsgarten.org/events/market.png"
@@ -144,7 +148,7 @@ const stories = [
 
       <div class="flex flex-col justify-between gap-4 lg:col-span-3 lg:gap-5">
         <div
-          class="relative hidden h-full flex-col justify-between rounded-lg border border-black bg-[#f0f0f0] p-3 md:flex lg:grid lg:grid-cols-5 lg:p-5"
+          class="relative hidden h-full flex-col justify-between rounded-md border border-black bg-[#f0f0f0] p-3 md:flex lg:grid lg:grid-cols-5 lg:p-5"
         >
           <div class="col-span-4 flex flex-col justify-between">
             <div>
@@ -165,7 +169,7 @@ const stories = [
           </div>
 
           <div class="hidden items-end justify-end md:flex">
-            <!-- <pre class="text-sm">{icon}</pre> -->
+            <pre class="text-sm" id="icon">{cow}</pre>
           </div>
         </div>
 
@@ -173,13 +177,13 @@ const stories = [
           class="flex w-full items-end justify-end text-lg font-medium lg:justify-between lg:text-2xl"
         >
           <div
-            class="hidden rounded-lg border border-black bg-white px-3 py-2 lg:flex"
+            class="hidden rounded-md border border-black bg-white px-3 py-2 lg:flex"
           >
             25 February ⋅ Goethe Institut
           </div>
           <a
             href="/event/market"
-            class="w-full rounded-lg border border-black bg-black px-3 py-2 text-white transition-colors hover:bg-white hover:text-black lg:w-auto"
+            class="w-full rounded-md border border-black bg-black px-3 py-2 text-white transition-colors hover:bg-white hover:text-black lg:w-auto"
           >
             More Info →
           </a>
@@ -208,7 +212,7 @@ const stories = [
 
     <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5">
       <div
-        class="relative col-span-2 flex aspect-video w-full overflow-hidden rounded-lg border border-black lg:aspect-auto"
+        class="relative col-span-2 flex aspect-video w-full overflow-hidden rounded-md border border-black lg:aspect-auto"
       >
         <img
           src="https://assets.creatorsgarten.org/events/cybersubin.jpg"
@@ -234,7 +238,7 @@ const stories = [
       </div>
       <a
         href="/event/sht8125"
-        class="aspect-square w-full overflow-hidden rounded-lg border border-black"
+        class="aspect-square w-full overflow-hidden rounded-md border border-black"
       >
         <img
           src="https://usercontent.creatorsgarten.org/c/v1732134929/644c35a6802c02345887f156/image_zw0xxx.webp"
@@ -244,7 +248,7 @@ const stories = [
       </a>
       <a
         href="/event/bac"
-        class="aspect-square w-full overflow-hidden rounded-lg border border-black"
+        class="aspect-square w-full overflow-hidden rounded-md border border-black"
       >
         <img
           src="https://usercontent.creatorsgarten.org/c/v1732134814/644c35a6802c02345887f156/image_j0xk7s.webp"
@@ -349,7 +353,7 @@ const stories = [
         stories.map(x => (
           <a
             href={x.link}
-            class="group relative overflow-hidden rounded-lg border border-black"
+            class="group relative overflow-hidden rounded-md border border-black"
           >
             <CFImage
               src={x.img}
@@ -587,3 +591,14 @@ const stories = [
     scrollbar-width: none; /* Firefox */
   }
 </style>
+
+<script>
+  import { cow, cowblink } from '$constants/animals'
+
+  setInterval(() => {
+    document.querySelector('#icon')!.innerHTML = cowblink
+    setTimeout(() => {
+      document.querySelector('#icon')!.innerHTML = cow
+    }, 300)
+  }, 3000)
+</script>

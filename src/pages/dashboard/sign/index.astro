@@ -79,7 +79,7 @@ const signature = signMessage
               signature ? (
                 <button
                   type="button"
-                  class="rounded-lg bg-[#1c1916] px-4 py-2 text-white"
+                  class="rounded-md bg-[#1c1916] px-4 py-2 text-white"
                   onclick={`navigator.clipboard.writeText('${signature}').then(r => this.querySelector('iconify-icon').setAttribute('icon', 'pixelarticons:check'))`}
                 >
                   <Icon icon="pixelarticons:copy" inline />
@@ -88,7 +88,7 @@ const signature = signMessage
               ) : (
                 <button
                   type="submit"
-                  class="rounded-lg bg-[#1c1916] px-4 py-2 text-white"
+                  class="rounded-md bg-[#1c1916] px-4 py-2 text-white"
                 >
                   Sign message
                 </button>

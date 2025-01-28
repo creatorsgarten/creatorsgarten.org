@@ -21,7 +21,7 @@ export const GitHub: FunctionComponent<Props> = props => {
       </div>
       <a
         href="/auth/connect/github"
-        className="rounded-lg bg-neutral-700 px-4 py-2 uppercase text-white"
+        className="rounded-md bg-neutral-700 px-4 py-2 uppercase text-white"
       >
         {connection ? 'Reconnect' : 'Connect'}
       </a>

@@ -194,7 +194,7 @@ function FileUploaderView(props: FileUploaderView) {
   }
 
   return (
-    <div className="rounded-lg border-2 border-gray-300 p-4">
+    <div className="rounded-md border-2 border-gray-300 p-4">
       <div className="flex flex-col gap-4 md:h-64 md:flex-row">
         {/* Image section */}
         <div className="relative h-32 w-full md:h-auto md:w-64">
@@ -202,7 +202,7 @@ function FileUploaderView(props: FileUploaderView) {
             <img
               src={imageUrl}
               alt={fileName}
-              className="absolute inset-0 h-full w-full rounded-lg object-contain shadow-md"
+              className="absolute inset-0 h-full w-full rounded-md object-contain shadow-md"
               style={{
                 backgroundImage: `
         linear-gradient(45deg, #ccc 25%, transparent 25%),
@@ -215,7 +215,7 @@ function FileUploaderView(props: FileUploaderView) {
               }}
             />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-gray-200">
+            <div className="absolute inset-0 flex items-center justify-center rounded-md bg-gray-200">
               <p className="text-gray-500">…</p>
             </div>
           )}
@@ -258,7 +258,7 @@ function FileUploaderView(props: FileUploaderView) {
           {(showLogs || !result) && (
             <div className="relative h-[216px]">
               <div
-                className="absolute inset-0 overflow-auto whitespace-pre-wrap rounded-lg bg-gray-100 p-4"
+                className="absolute inset-0 overflow-auto whitespace-pre-wrap rounded-md bg-gray-100 p-4"
                 ref={logsContainerRef}
               >
                 {log}
@@ -330,7 +330,7 @@ function DropZone(props: DropZone) {
 
   return (
     <div
-      className={`flex h-64 w-full cursor-pointer items-center justify-center rounded-lg border-2 border-dashed ${
+      className={`flex h-64 w-full cursor-pointer items-center justify-center rounded-md border-2 border-dashed ${
         isDragging
           ? 'border-blue-500 bg-blue-50 *:pointer-events-none'
           : 'border-gray-300'
