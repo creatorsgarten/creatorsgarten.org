@@ -28,7 +28,8 @@ const featureFlags = getFeatureFlags(Astro)
     ) : (
       <Fragment>
         <Announcement />
-        <nav class="flex flex-col justify-between px-4 pb-8 pt-6 text-lg sm:flex-row lg:px-8">
+
+        {/* <nav class="flex flex-col justify-between px-4 pb-8 pt-6 text-xl sm:flex-row lg:px-8">
           <div class="flex w-full justify-between">
             <a href="/" aria-label="back to home" class="flex items-center">
               <HeaderLogo />
@@ -45,22 +46,54 @@ const featureFlags = getFeatureFlags(Astro)
             class="ml-auto hidden w-full items-center pt-6 text-sm font-medium sm:col-span-1 sm:flex sm:w-auto sm:space-x-1 sm:p-0"
           >
             <ul
-              class={`mb-2 flex shrink-0 justify-between gap-2 px-3 py-1 text-lg sm:mb-0 sm:flex sm:space-x-2 md:list-none md:text-base`}
+              class={`mb-2 flex shrink-0 justify-between gap-2 px-3 py-1 text-lg uppercase sm:mb-0 sm:flex sm:space-x-2 md:list-none md:text-base`}
             >
               <li>
-                <a href="/wiki/SelfIntroduction">US</a>
+                <a href="/wiki/SelfIntroduction">Us</a>
               </li>
               <li>
-                <a href="/events">EVENTS</a>
+                <a href="/events">Events</a>
               </li>
               <li>
-                <a href="/videos">VIDEOS</a>
+                <a href="/videos">Videos</a>
               </li>
               <li>
-                <a href="/wiki">WIKI</a>
+                <a href="/wiki">Wiki</a>
               </li>
             </ul>
             <AuthButton />
+          </div>
+        </nav> */}
+        <nav class="sticky top-0 z-[999] bg-white md:relative">
+          <div class="w-full border-b border-black bg-white p-4">
+            <div class="flex justify-between">
+              <a href="/" aria-label="back to home" class="flex items-center">
+                <img src="/images/icons/solid.svg" class="w-6" alt="" />
+              </a>
+              <div class="text-xl font-semibold">CREATORSGARTEN</div>
+            </div>
+          </div>
+          <div class="flex w-full justify-between gap-5 border-b border-black bg-[#f0f0f0] px-4 py-1 text-sm font-medium lg:text-lg">
+            <ul class="flex gap-5">
+              <li>
+                <a href="/events">Event</a>
+              </li>
+              {/* <li>
+                <a href="https://github.com/creatorsgarten">Code</a>
+              </li> */}
+              <li>
+                <a href="/videos">Videos</a>
+              </li>
+              <li>
+                <a href="/wiki/SelfIntroduction">About</a>
+              </li>
+              <li>
+                <a href="/wiki">Wiki</a>
+              </li>
+            </ul>
+            <div>
+              <AuthButton />
+            </div>
           </div>
         </nav>
       </Fragment>
@@ -70,10 +103,17 @@ const featureFlags = getFeatureFlags(Astro)
     <slot />
   </main>
 
-  <footer
+  <!-- <footer
     class="mt-16 flex h-40 flex-col-reverse items-start justify-start bg-ck p-4 text-white sm:flex-row sm:items-end sm:justify-between lg:p-8 lg:text-lg"
   >
     <div class="mt-4 sm:mt-0">Crafted by 👩‍💻 🧑‍🎨 🧙 🦹‍♀️ & more.</div>
+    <FooterLogo />
+  </footer> -->
+
+  <footer
+    class="mt-12 flex w-full items-end justify-between border-t border-black bg-black p-4 pt-16 text-white"
+  >
+    <div class="text-base md:text-lg">Made with 💗 (+🧋) by 👨‍💻 👩‍🎨 🧙 🦸</div>
     <FooterLogo />
   </footer>
 </Blank>

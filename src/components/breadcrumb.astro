@@ -8,46 +8,57 @@ export interface Props {
 ---
 
 <div
-  class="sticky top-0 z-20 -mt-6 flex items-center justify-between overflow-hidden whitespace-nowrap break-words border-b border-ck/50 bg-white py-3 text-2xl lg:py-4 xl:text-3xl"
+  class="top-0 z-20 mt-8 flex items-center justify-between overflow-hidden whitespace-nowrap break-words py-3 text-2xl lg:py-4 xl:text-3xl"
 >
-  <h1 class="overflow-hidden text-ellipsis">
-    {
-      Astro.props.parents.map((item, index) => (
-        <>
-          <a href={item.href} transition:name={`breadcrumb:${index}`}>
-            {item.title}
-          </a>
-          {' → '}
-        </>
-      ))
-    }
-    <span class="font-medium">{Astro.props.title}</span>
-  </h1>
-  <div class="hidden gap-2 lg:flex">
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      href={`https://twitter.com/intent/tweet?${new URLSearchParams({
-        url: Astro.url.toString(),
-        text: 'Check this',
-        via: 'Creatorsgarten',
-      }).toString()}`}
-      aria-label="Share to Twitter"
-    >
-      <Icon icon="mdi:twitter" width={24} />
-    </a>
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      href={`https://www.facebook.com/dialog/share?${new URLSearchParams({
-        app_id: '2314627122104275',
-        href: Astro.url.toString(),
-        feature: 'share',
-        display: 'popup',
-      }).toString()}`}
-      aria-label="Share to Facebook"
-    >
-      <Icon icon="mdi:facebook" width={24} />
-    </a>
+  <div class="justify-between text-2xl font-medium lg:flex">
+    <div class="text-nowrap rounded-md bg-black px-3 py-2 text-white">
+      <h1 class="overflow-hidden text-ellipsis">
+        {
+          Astro.props.parents?.[0]?.title === 'Wiki'
+            ? '📒 '
+            : Astro.props.parents.map((item, index) => (
+                <>
+                  <a href={item.href} transition:name={`breadcrumb:${index}`}>
+                    {item.title}
+                  </a>
+                  {' → '}
+                </>
+              ))
+        }
+        <span class="font-medium">{Astro.props.title}</span>
+      </h1>
+    </div>
+    <div class="mx-4 my-auto hidden w-full overflow-hidden lg:block">
+      <img src="/images/wavy.svg" class="h-5" alt="" />
+    </div>
+    <div class="hidden items-center text-nowrap text-4xl lg:flex">
+      <div class="hidden gap-2 lg:flex">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`https://twitter.com/intent/tweet?${new URLSearchParams({
+            url: Astro.url.toString(),
+            text: 'Check this',
+            via: 'Creatorsgarten',
+          }).toString()}`}
+          aria-label="Share to Twitter"
+        >
+          <Icon icon="mdi:twitter" width={32} />
+        </a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`https://www.facebook.com/dialog/share?${new URLSearchParams({
+            app_id: '2314627122104275',
+            href: Astro.url.toString(),
+            feature: 'share',
+            display: 'popup',
+          }).toString()}`}
+          aria-label="Share to Facebook"
+        >
+          <Icon icon="mdi:facebook" width={32} />
+        </a>
+      </div>
+    </div>
   </div>
 </div>

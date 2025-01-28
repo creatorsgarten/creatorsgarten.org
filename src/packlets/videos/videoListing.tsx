@@ -36,7 +36,7 @@ export default function VideoListing(props: VideoListing) {
     children: React.ReactNode,
     cta?: { text: string; href: string }
   ) => (
-    <div className="mb-6 flex gap-4 bg-neutral-100 p-4">
+    <div className="mb-6 flex gap-4 rounded-lg border border-black bg-[#f0f0f0] p-3 text-lg">
       <div className="flex-1">{children}</div>
       {!!cta && (
         <a className="text-primary-600 flex items-center gap-1" href={cta.href}>
@@ -61,7 +61,7 @@ export default function VideoListing(props: VideoListing) {
           !!relatedEvent &&
           renderInformationBox(
             <>
-              Showing videos for event{' '}
+              👀 Showing videos for event{' '}
               <a
                 className="font-medium"
                 href={relatedEvent.externalUrl ?? `/event/${relatedEvent.id}`}
@@ -78,7 +78,7 @@ export default function VideoListing(props: VideoListing) {
               key={`${video.eventId}/${video.slug}`}
               className="flex flex-col"
             >
-              <div className="flex flex-auto flex-col overflow-hidden bg-neutral-100 hover:bg-neutral-200">
+              <div className="flex flex-auto flex-col overflow-hidden rounded-lg border border-black">
                 <img
                   src={video.thumbnailUrl}
                   alt={video.title}

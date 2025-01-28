@@ -12,22 +12,20 @@ import { getEvents } from '$functions/getEvents'
 const events = await getEvents()
 const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
 
+// ['👾 Stupid Hackathon in Thailand', '🧑‍💻 BKK.js', '🕹️ Showdown.Space']
 const series = [
   {
-    name: 'Bingsu.js',
-    link: 'https://bingsu.js.org',
+    name: '👾 Stupid Hackathon in Thailand',
+    link: 'https://stupid.hackathon.in.th',
   },
   {
     name: 'BKK.js',
     link: 'https://bkk.js.org',
   },
+
   {
-    name: 'SHiT',
-    link: 'https://stupid.hackathon.in.th',
-  },
-  {
-    name: 'G0 Club',
-    link: '/wiki/GardenZero',
+    name: '🕹️ Showdown.Space',
+    link: 'https://showdown.space',
   },
 ]
 const stories = [
@@ -79,9 +77,181 @@ const stories = [
 <Head />
 
 <BaseLayout
-  class="mx-4 mt-4 grid gap-6 divide-y divide-cbr/30 lg:mx-8 lg:gap-10"
+  class="relative mt-3 flex flex-col space-y-16 p-4 lg:mt-8 lg:space-y-20"
 >
-  <section id="hero" class="relative flex flex-col gap-4 lg:gap-8">
+  <section class="space-y-8 md:space-y-5 lg:space-y-5">
+    <div
+      class="grid grid-cols-3 justify-end gap-4 rounded-lg border border-black bg-black p-4 text-2xl font-medium leading-snug xl:text-3xl"
+    >
+      <div class="col-span-3 text-balance text-white lg:col-span-2">
+        🐈 Creatorsgarten is a collective of creative technologists committed to
+        sparking new ideas and conversations.
+      </div>
+      <div
+        class="col-span-3 flex h-full w-full items-end text-2xl lg:col-span-1 lg:justify-end"
+      >
+        <a
+          href="/wiki/SelfIntroduction"
+          class="text-nowrap rounded-lg border border-black bg-white px-3 py-2 transition-colors hover:border-white hover:bg-black hover:text-white"
+        >
+          About us →
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="hidden flex-col items-center justify-between gap-4 text-xl font-medium lg:flex lg:flex-row lg:gap-5 xl:text-2xl"
+    >
+      <div class="flex h-full items-center text-nowrap">🌏 Warp Drive</div>
+      <div class="my-auto w-full border-b-[1.5px] border-black"></div>
+      <div class="flex w-full flex-col gap-4 md:flex-row lg:gap-5">
+        <!-- {#each ['👾 Stupid Hackathon in Thailand', '🧑‍💻 BKK.js', '🕹️ Showdown.Space'] as i}
+        <div class="rounded-md border border-black bg-white px-3 py-1 lg:text-nowrap">
+          {i} →
+        </div>
+      {/each} -->
+        {
+          series.map(i => (
+            <a
+              href={i.link}
+              class="rounded-md border border-black bg-white px-3 py-1 transition-colors hover:bg-black hover:text-white lg:text-nowrap"
+            >
+              {i.name} →
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div
+      class="flex grid-cols-2 flex-col gap-4 md:grid lg:grid-cols-4 lg:gap-5"
+    >
+      <div
+        class="mt-5 rounded-lg border border-black px-3 py-2 text-xl font-medium md:hidden"
+      >
+        🌟 Up Next
+      </div>
+
+      <div
+        class="aspect-square w-full overflow-hidden rounded-lg border border-black"
+      >
+        <img
+          src="https://assets.creatorsgarten.org/events/market.png"
+          class="w-full object-cover"
+          alt=""
+        />
+      </div>
+
+      <div class="flex flex-col justify-between gap-4 lg:col-span-3 lg:gap-5">
+        <div
+          class="relative hidden h-full flex-col justify-between rounded-lg border border-black bg-[#f0f0f0] p-3 md:flex lg:grid lg:grid-cols-5 lg:p-5"
+        >
+          <div class="col-span-4 flex flex-col justify-between">
+            <div>
+              <div class="text-2xl font-medium md:text-3xl xl:text-4xl">
+                🌟 Up Next:
+              </div>
+              <div
+                class="mt-1 text-balance text-lg leading-snug md:mt-2 lg:mt-4 lg:text-2xl"
+              >
+                Creative Coding Workshop by <a href="#" class="underline"
+                  >@PATT VIRA</a
+                > / Talk Session / Data Marketplace. Detail Soon.
+              </div>
+            </div>
+            <pre
+              class="hidden text-sm xl:block">/\.//.\/\|\./\\__/\..//\|_./\</pre>
+          </div>
+
+          <div class="hidden items-end justify-end md:flex">
+            <!-- <pre class="text-sm">{icon}</pre> -->
+          </div>
+        </div>
+
+        <div
+          class="flex w-full items-end justify-end text-lg font-medium lg:justify-between lg:text-2xl"
+        >
+          <div
+            class="hidden rounded-lg border border-black bg-white px-3 py-2 lg:flex"
+          >
+            25 February ⋅ Goethe Institut
+          </div>
+          <a
+            href="/event/market"
+            class="w-full rounded-lg border border-black bg-black px-3 py-2 text-white transition-colors hover:bg-white hover:text-black lg:w-auto"
+          >
+            More Info →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="space-y-3 lg:space-y-5">
+    <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
+      <div
+        class="text-nowrap rounded-md border border-black bg-white px-3 py-2 text-black"
+      >
+        ⏳ Recently at Creatorsgarten
+      </div>
+      <div class="mx-4 my-auto hidden w-full overflow-hidden lg:block">
+        <img src="/images/wavy.svg" class="h-4" alt="" />
+      </div>
+      <a
+        href="/events"
+        class="hidden text-nowrap rounded-md border border-black bg-white px-3 py-2 transition-colors hover:bg-black hover:text-white lg:flex"
+      >
+        All Events →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5">
+      <div
+        class="relative col-span-2 flex aspect-video w-full overflow-hidden rounded-lg border border-black lg:aspect-auto"
+      >
+        <img
+          src="https://assets.creatorsgarten.org/events/cybersubin.jpg"
+          class="absolute h-full w-full object-cover"
+          alt=""
+        />
+        <div
+          class="absolute bottom-0 left-0 h-48 w-full bg-gradient-to-b from-transparent to-black/80"
+        >
+        </div>
+        <div
+          class="absolute flex h-full w-full flex-col justify-between p-3 text-white lg:p-4"
+        >
+          <div class="text-2xl font-medium lg:text-4xl">
+            AI x Culture Symposium
+          </div>
+          <div class="max-w-[48ch] text-balance text-sm lg:text-lg">
+            In collaboration with MIT Media Lab, Pichet Klunchun Dance Company,
+            and TK Park
+          </div>
+        </div>
+      </div>
+      <div
+        class="aspect-square w-full overflow-hidden rounded-lg border border-black"
+      >
+        <img
+          src="https://usercontent.creatorsgarten.org/c/v1732134929/644c35a6802c02345887f156/image_zw0xxx.webp"
+          class="h-full w-full object-cover"
+          alt=""
+        />
+      </div>
+      <div
+        class="aspect-square w-full overflow-hidden rounded-lg border border-black"
+      >
+        <img
+          src="https://usercontent.creatorsgarten.org/c/v1732134814/644c35a6802c02345887f156/image_j0xk7s.webp"
+          class="h-full w-full object-cover"
+          alt=""
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- <section id="hero" class="relative flex flex-col gap-4 lg:gap-8">
     <h1
       class="text-4xl leading-[1.2] md:text-5xl md:leading-[1.3] lg:w-3/4 xl:text-[3.75rem] xl:leading-[1.2]"
     >
@@ -152,37 +322,54 @@ const stories = [
         </section>
       )
     }
-  </section>
+  </section> -->
 
-  <section
-    id="s"
-    class="grid gap-3 pt-10 md:grid-cols-2 lg:gap-4 xl:grid-cols-3"
-  >
-    {
-      stories.map(x => (
-        <a href={x.link} class="group relative">
-          <CFImage
-            src={x.img}
-            alt={x.name}
-            width={{
-              max: 600,
-              md: 800,
-            }}
-            ratio={16 / 9}
-            class="aspect-video w-full bg-neutral-200 object-cover"
-          />
-          <div
-            class={`${x.color} absolute top-0 flex aspect-video w-full flex-col items-start justify-between gap-4 p-6 pr-12 text-lg text-white opacity-0 transition-all group-hover:opacity-100 md:text-xl`}
+  <section class="space-y-3 lg:space-y-5">
+    <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
+      <div
+        class="text-nowrap rounded-md border border-black bg-white px-3 py-2 text-black"
+      >
+        📌 Some Highlights
+      </div>
+      <div
+        class="mx-6 my-auto hidden w-full border-b-[1.5px] border-black lg:block"
+      >
+      </div>
+      <div class="hidden items-center text-nowrap text-4xl lg:flex">
+        🚙 🏇 🏃‍♀️
+      </div>
+    </div>
+
+    <div id="s" class="grid gap-3 md:grid-cols-2 lg:gap-4 xl:grid-cols-3">
+      {
+        stories.map(x => (
+          <a
+            href={x.link}
+            class="group relative overflow-hidden rounded-lg border border-black"
           >
-            <div>{x.text}</div>
-            <div class="text-base">{x.name}</div>
-          </div>
-        </a>
-      ))
-    }
+            <CFImage
+              src={x.img}
+              alt={x.name}
+              width={{
+                max: 600,
+                md: 800,
+              }}
+              ratio={16 / 9}
+              class="aspect-video w-full bg-neutral-200 object-cover"
+            />
+            <div
+              class={`${x.color} absolute top-0 flex aspect-video w-full flex-col items-start justify-between gap-4 p-6 pr-12 text-lg text-white opacity-0 transition-all group-hover:opacity-100 md:text-xl`}
+            >
+              <div>{x.text}</div>
+              <div class="text-base">{x.name}</div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
   </section>
 
-  <section class="pt-8">
+  <!-- <section class="pt-8">
     <div class="grid gap-6 lg:grid-cols-2">
       <div class="flex flex-col justify-between">
         <h3 class="text-3xl font-medium uppercase">Our presences</h3>
@@ -229,47 +416,51 @@ const stories = [
         </li>
       </ul>
     </div>
-  </section>
-
-  <section class="pt-8">
-    <div class="flex flex-col justify-between">
-      <h3 class="pb-6 text-3xl font-medium uppercase">Our Partners</h3>
-      <ul class="flex flex-wrap gap-8">
-        <li>
-          <a href="https://www.cleverse.com/">
-            <img
-              class="h-14"
-              src="/images/cleverse.svg"
-              loading="lazy"
-              alt="Cleverse"
-            />
-          </a>
-        </li>
-        <li>
-          <a href="https://www.jetbrains.com/">
-            <img
-              class="h-12"
-              src="/images/jetbrains.svg"
-              loading="lazy"
-              alt="JetBrains"
-            />
-          </a>
-        </li>
-        <li>
-          <a href="https://deploys.app/">
-            <img
-              class="h-16"
-              src="/images/deploys.svg"
-              loading="lazy"
-              alt="JetBrains"
-            />
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
+  </section> -->
 
   <section
+    class="flex flex-col items-center justify-between space-y-5 border-y-[1.5px] border-black bg-white py-6 md:flex-row md:space-y-0"
+  >
+    <h3 class="text-nowrap text-2xl font-medium md:text-3xl">
+      🎈 Our Partners
+    </h3>
+    <ul
+      class="flex w-full items-center justify-between gap-3 md:justify-end lg:gap-8"
+    >
+      <li>
+        <a href="https://www.cleverse.com/">
+          <img
+            class="h-8 lg:h-12"
+            src="/images/cleverse.svg"
+            loading="lazy"
+            alt="Cleverse"
+          />
+        </a>
+      </li>
+      <li>
+        <a href="https://www.jetbrains.com/">
+          <img
+            class="h-8 lg:h-10"
+            src="/images/jetbrains.svg"
+            loading="lazy"
+            alt="JetBrains"
+          />
+        </a>
+      </li>
+      <li>
+        <a href="https://deploys.app/">
+          <img
+            class="h-8 lg:h-12"
+            src="/images/deploys.svg"
+            loading="lazy"
+            alt="JetBrains"
+          />
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- <section
     class="flex flex-col items-center gap-8 overflow-x-auto pt-8 md:flex-row"
   >
     <Tweet id="1659598202293866497" />
@@ -307,7 +498,7 @@ const stories = [
           allowfullscreen></iframe>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!--<section class="pt-8">-->
   <!--  <div class="grid grid-cols-2 gap-3 md:grid-cols-4 lg:gap-6">-->

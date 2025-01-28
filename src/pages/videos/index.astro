@@ -21,11 +21,11 @@ const listing = filterVideos(
     {
       speaker ? (
         <Breadcrumb
-          parents={[{ title: 'Videos', href: '/videos' }]}
+          parents={[{ title: '🎞️ Videos', href: '/videos' }]}
           title={`${speaker}`}
         />
       ) : (
-        <Breadcrumb parents={[]} title="Videos" />
+        <Breadcrumb parents={[]} title="🎞️ Videos" />
       )
     }
     <VideoListing filteredListing={listing} />
