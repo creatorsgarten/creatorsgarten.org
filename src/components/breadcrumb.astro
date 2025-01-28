@@ -8,12 +8,12 @@ export interface Props {
 ---
 
 <div
-  class="top-0 z-20 mb-6 mt-8 flex w-full items-center justify-between overflow-hidden whitespace-nowrap break-words py-2 text-2xl xl:text-3xl"
+  class="sticky top-0 z-20 mt-6 flex w-full items-center justify-between overflow-hidden whitespace-nowrap break-words py-3 text-2xl xl:text-3xl"
 >
-  <div class="w-full justify-between text-xl font-medium lg:flex lg:text-2xl">
-    <div
-      class="w-full rounded-md border border-black bg-black px-3 py-2 text-white lg:w-auto"
-    >
+  <div
+    class="sticky top-0 flex w-full items-center justify-between rounded-md border border-black bg-black px-3 py-1 text-xl font-medium text-white lg:flex lg:text-2xl"
+  >
+    <div class="w-full">
       <h1 class="text-wrap lg:text-nowrap">
         {
           Astro.props.parents?.[0]?.title === 'Wiki'
@@ -43,7 +43,7 @@ export interface Props {
           }).toString()}`}
           aria-label="Share to Twitter"
         >
-          <Icon icon="mdi:twitter" width={28} />
+          <Icon icon="mdi:twitter" width={24} />
         </a>
         <a
           target="_blank"
@@ -56,7 +56,7 @@ export interface Props {
           }).toString()}`}
           aria-label="Share to Facebook"
         >
-          <Icon icon="mdi:facebook" width={28} />
+          <Icon icon="mdi:facebook" width={24} />
         </a>
       </div>
     </div>

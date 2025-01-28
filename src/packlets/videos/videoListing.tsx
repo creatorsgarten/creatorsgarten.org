@@ -24,7 +24,9 @@ export default function VideoListing(props: VideoListing) {
     <a
       className={
         'block' +
-        (active ? ' -mx-2 -my-1 rounded-md bg-neutral-200 px-2 py-1' : '')
+        (active
+          ? ' -mx-2 -my-1 rounded-md border border-black bg-neutral-200 px-2 py-1'
+          : '')
       }
       href={href}
     >
