@@ -68,12 +68,15 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
       </div>
     </div>
 
-    <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+    <div class="mt-6 grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-5">
       {
         events
           .filter(event => event.date.isBefore(now))
           .map(event => (
-            <a href={`/event/${event.id}`} class="border border-black">
+            <a
+              href={`/event/${event.id}`}
+              class="overflow-hidden rounded-md border border-black"
+            >
               <CFImage
                 src={event.image}
                 alt={event.name}
