@@ -21,7 +21,7 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
 <Head title="Events" />
 
 <BaseLayout
-  class="relative mt-3 flex flex-col space-y-16 p-4 lg:mt-8 lg:space-y-20"
+  class="relative mt-3 flex flex-col space-y-16 p-3 lg:mt-8 lg:space-y-20 lg:p-4"
 >
   {
     upcomingEvents.length !== 0 && (
@@ -56,7 +56,7 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
   <section class="pb-12">
     <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
       <div
-        class="text-nowrap rounded-md border border-black bg-white px-3 py-2 text-black"
+        class="text-nowrap rounded-md border border-black bg-black px-3 py-2 text-white"
       >
         🌻 Past Events
       </div>
@@ -75,7 +75,7 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
           .map(event => (
             <a
               href={`/event/${event.id}`}
-              class="overflow-hidden rounded-md border border-black"
+              class="overflow-hidden border border-black"
             >
               <CFImage
                 src={event.image}

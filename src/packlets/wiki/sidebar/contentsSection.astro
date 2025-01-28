@@ -11,10 +11,10 @@ export interface Props {
 {
   Astro.props.contents.length > 0 && (
     <section
-      class={`mb-6 rounded-md border border-black p-6`}
+      class={`mb-6 border border-black p-5`}
       transition:name="wiki:section:contents"
     >
-      <p class="pb-4 text-2xl font-medium">Contents</p>
+      <p class="pb-4 text-3xl font-medium">Contents</p>
       <ul class="text-base">
         {Astro.props.contents.map(content => (
           <li class="py-[0.3rem] pr-4">
