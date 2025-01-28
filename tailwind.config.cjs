@@ -91,6 +91,7 @@ module.exports = {
             a: {
               textDecoration: 'none',
               fontWeight: 'inherit',
+              color: colors.blue[600],
             },
             p: {
               fontSize: '1rem',
