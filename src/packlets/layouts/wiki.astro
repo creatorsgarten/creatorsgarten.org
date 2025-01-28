@@ -12,13 +12,7 @@ const { title } = Astro.props
 
 <BaseLayout>
   <MainHorizontalPadding>
-    <div class="z-[999] hidden bg-white lg:block">
-      <Breadcrumb parents={[{ title: 'Wiki', href: '/wiki' }]} title={title} />
-    </div>
-
-    <div class="bg-white py-6 text-center text-3xl font-medium lg:hidden">
-      {title}
-    </div>
+    <Breadcrumb parents={[{ title: 'Wiki', href: '/wiki' }]} title={title} />
 
     <div
       class={`lg:mt-8 grid grid-cols-1 gap-6 mb-10 sm:[grid-template-columns:minmax(240px,1fr)_minmax(0,4fr)] md:[grid-template-columns:minmax(288px,1.2fr)_minmax(0,4fr)] 2xl:[grid-template-columns:minmax(288px,1fr)_minmax(0,3fr)_minmax(288px,1fr)]`}
