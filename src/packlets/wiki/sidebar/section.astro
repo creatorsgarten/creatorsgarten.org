@@ -8,10 +8,10 @@ const { title } = Astro.props
 ---
 
 <section
-  class={`p-5 my-3 md:m-0 md:mb-6 mb-6 border border-black rounded-md bg-neutral-100`}
+  class={`p-5 my-3 md:m-0 md:mb-6 mb-6 border border-black bg-neutral-100`}
   transition:name={`wiki:section:${title}`}
 >
-  <h2 class="pb-4 text-3xl font-medium">
+  <h2 class="pb-4 text-2xl font-medium">
     {title}
   </h2>
   <slot />

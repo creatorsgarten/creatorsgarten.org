@@ -133,12 +133,12 @@ interface Message {
 }
 function Message(props: Message) {
   return (
-    <div className="my-[1em] flex items-start gap-4">
+    <div className="my-[1em] flex items-start gap-6">
       <div className="not-prose flex-none">
         <MarkdownImage
           src={getAvatarUrl(props.attributes.from)}
-          width={32}
-          height={32}
+          width={28}
+          height={28}
           className="mt-0.5 h-8 w-8 rounded-full"
           alt={props.attributes.from}
         />

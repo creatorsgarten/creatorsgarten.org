@@ -56,11 +56,13 @@ module.exports = {
               fontVariationSettings: '"CASL" 0, "CRSV" 0, "slnt" 0, "MONO" 1',
             },
             h1: {
+              fontSize: '1.75rem',
               fontWeight: 500,
               marginTop: '3rem',
               marginBottom: '0.5em',
             },
             h2: {
+              fontSize: '1.5rem',
               fontWeight: 500,
               marginBottom: '0.67em',
             },
