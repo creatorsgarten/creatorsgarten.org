@@ -10,14 +10,12 @@ import WikiLinkChecker from './linkChecker'
 import WikiUpdateChecker from './updateChecker'
 import WikiView from './view.astro'
 import WikiViewShortcuts from './viewShortcuts.svelte'
-import Blank from '../layouts/blank.astro'
 
 export interface Props {
   viewModel: WikiPageViewModel
 }
 
 const { head, body, perf } = Astro.props.viewModel
-const embededView = Astro.url.searchParams.get('embed') === 'true'
 ---
 
 <Head
@@ -27,11 +25,7 @@ const embededView = Astro.url.searchParams.get('embed') === 'true'
 />
 
 {
-  body.mode === 'view' && embededView ? (
-    <Blank>
-      <ContentRenderer content={body.html} pageRef={body.pageRef} />
-    </Blank>
-  ) : body.mode === 'editor' || body.mode === 'view' ? (
+  body.mode === 'editor' || body.mode === 'view' ? (
     <WikiView
       pageRef={body.pageRef}
       title={body.title}
