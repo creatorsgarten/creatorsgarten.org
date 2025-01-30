@@ -26,7 +26,17 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
   {
     upcomingEvents.length !== 0 && (
       <section>
-        <h1 class="text-3xl font-medium">Upcoming Events</h1>
+        <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
+          <div class="text-nowrap rounded-md border border-black bg-black px-3 py-2 text-white">
+            👽 Upcoming
+          </div>
+          <div class="mx-4 my-auto hidden w-full overflow-hidden lg:block">
+            <img src="/images/wavy.svg" class="h-5" alt="" />
+          </div>
+          <div class="hidden items-center text-nowrap text-4xl lg:flex">
+            📣 🎫 🐦‍⬛
+          </div>
+        </div>
         <div class="space-y-6 pt-8 md:grid-cols-2 lg:grid lg:gap-y-12 lg:space-y-0">
           {upcomingEvents.map(event => (
             <EventPoster event={event} />

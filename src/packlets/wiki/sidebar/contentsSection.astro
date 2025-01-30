@@ -18,10 +18,7 @@ export interface Props {
       <ul class="text-base">
         {Astro.props.contents.map(content => (
           <li class="py-[0.3rem] pr-4">
-            <a
-              class="transition-all hover:font-semibold"
-              href={'#' + content.id}
-            >
+            <a class="transition-all hover:font-medium" href={'#' + content.id}>
               > {content.label}
             </a>
           </li>

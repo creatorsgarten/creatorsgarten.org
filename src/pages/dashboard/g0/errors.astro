@@ -3,9 +3,7 @@ import BaseLayout from '$layouts/base.astro'
 
 import { g0Hostname } from '$constants/secrets/g0Hostname'
 import { g0Credentials } from '$constants/secrets/g0Credentials'
-import {
-  getServiceAccountIdToken,
-} from '$backend/gardenGate/getServiceAccountIdToken'
+import { getServiceAccountIdToken } from '$backend/gardenGate/getServiceAccountIdToken'
 
 interface Log {
   _id: string
@@ -22,7 +20,7 @@ if (!granted)
 
 const idToken = await getServiceAccountIdToken(
   'https://github.com/creatorsgarten/garden-gate',
-  g0Credentials,
+  g0Credentials
 )
 const gardenZeroResponse: Log[] = await fetch(g0Hostname + '/error-log', {
   method: 'GET',
@@ -41,7 +39,7 @@ const gardenZeroResponse: Log[] = await fetch(g0Hostname + '/error-log', {
   {
     gardenZeroResponse.map(log => (
       <div class="space-y-4 rounded-xl bg-red-100 p-4 text-red-700">
-        <p class="font-semibold">{log.time}</p>
+        <p class="font-medium">{log.time}</p>
         <pre class="break-all text-sm">{log.message}</pre>
       </div>
     ))

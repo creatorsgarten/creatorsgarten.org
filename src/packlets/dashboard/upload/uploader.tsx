@@ -224,7 +224,7 @@ function FileUploaderView(props: FileUploaderView) {
         {/* Info section */}
         <div className="flex-1">
           <div className="mb-2 flex h-8 items-center justify-between">
-            <h2 className="text-xl font-semibold">{fileName}</h2>
+            <h2 className="text-xl font-medium">{fileName}</h2>
             {result && (
               <button
                 onClick={() => setShowLogs(!showLogs)}

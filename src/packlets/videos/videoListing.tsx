@@ -90,7 +90,7 @@ export default function VideoListing(props: VideoListing) {
                 />
                 <div className="flex h-full flex-col justify-between p-3">
                   <div className="flex h-full flex-col justify-between gap-3">
-                    <h3 className="line-clamp-2 text-balance text-lg font-semibold leading-snug">
+                    <h3 className="line-clamp-2 text-balance text-lg font-medium leading-snug">
                       {video.title}
                     </h3>
                     <div className="text-muted line-clamp-1 text-sm">
