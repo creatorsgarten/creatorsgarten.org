@@ -27,17 +27,17 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
     upcomingEvents.length !== 0 && (
       <section>
         <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
-          <div class="text-nowrap rounded-md border border-black bg-black px-3 py-2 text-white">
+          <div class="rounded-md border border-black bg-black px-3 py-2 text-nowrap text-white">
             👽 Upcoming
           </div>
           <div class="mx-4 my-auto hidden w-full overflow-hidden lg:block">
             <img src="/images/wavy.svg" class="h-5" alt="" />
           </div>
-          <div class="hidden items-center text-nowrap text-4xl lg:flex">
+          <div class="hidden items-center text-4xl text-nowrap lg:flex">
             📣 🎫 🐦‍⬛
           </div>
         </div>
-        <div class="space-y-6 pt-8 md:grid-cols-2 lg:grid lg:gap-y-12 lg:space-y-0">
+        <div class="space-y-6 pt-8 md:grid-cols-2 lg:grid lg:space-y-0 lg:gap-y-12">
           {upcomingEvents.map(event => (
             <EventPoster event={event} />
           ))}
@@ -47,16 +47,14 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
   }
   <section>
     <!-- <h1 class="text-3xl font-medium uppercase">Series</h1> -->
-    <div
-      class="grid gap-4 lg:grid-cols-2 xl:grid-cols-4 *:p-4 lg:*:p-6"
-    >
+    <div class="grid gap-4 *:p-4 lg:grid-cols-2 lg:*:p-6 xl:grid-cols-4">
       {
         websiteConfig?.events.recurring.map(event => (
           <a
             class={`rounded-md border border-black bg-neutral-100`}
             href={event.url}
           >
-            <p class="text-lg font-medium leading-snug lg:text-xl">
+            <p class="text-lg leading-snug font-medium lg:text-xl">
               {event.name}
             </p>
             <p class="mt-1 text-xs uppercase lg:text-sm">{event.schedule}</p>
@@ -68,15 +66,15 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
 
   <section class="pb-12">
     <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
-      <div
-        class="text-nowrap rounded-md border border-black bg-black px-3 py-2 text-white"
+      <h1
+        class="rounded-md border border-black bg-black px-3 py-2 text-nowrap text-white"
       >
         🌻 Past Events
-      </div>
+      </h1>
       <div class="mx-4 my-auto hidden w-full overflow-hidden lg:block">
         <img src="/images/wavy.svg" class="h-5" alt="" />
       </div>
-      <div class="hidden items-center text-nowrap text-4xl lg:flex">
+      <div class="hidden items-center text-4xl text-nowrap lg:flex">
         💻 🏕️ 🏃‍♀️
       </div>
     </div>

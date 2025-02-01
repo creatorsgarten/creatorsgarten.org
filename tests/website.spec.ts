@@ -2,12 +2,12 @@ import { expect, test } from '@playwright/test'
 
 test('Homepage works', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByText('community of creators')).toBeVisible()
+  await expect(page.getByText('creative technologists')).toBeVisible()
 })
 
 test('Can go to events page', async ({ page }) => {
   await page.goto('/')
-  await page.getByText('See More →').click()
+  await page.getByRole('link', { name: 'Events' }).first().click()
   await expect(page.getByRole('heading', { name: 'Past Events' })).toBeVisible()
 })
 
@@ -33,10 +33,3 @@ test('Nonexistent page works', async ({ page }) => {
   await page.goto('/wiki/Nonexistent')
   await expect(page.getByRole('link', { name: 'Edit this page' })).toBeVisible()
 })
-
-// test('Webring page works', async ({ page }) => {
-//   await page.goto('/ring')
-//   await expect(
-//     page.getByRole('heading', { name: 'Us & Our Friends' })
-//   ).toBeVisible()
-// })
