@@ -48,7 +48,7 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
   <section>
     <!-- <h1 class="text-3xl font-medium uppercase">Series</h1> -->
     <div
-      class="grid gap-4 lg:grid-cols-2 xl:grid-cols-4 [&>*]:p-4 [&>*]:lg:p-6"
+      class="grid gap-4 lg:grid-cols-2 xl:grid-cols-4 *:p-4 lg:*:p-6"
     >
       {
         websiteConfig?.events.recurring.map(event => (

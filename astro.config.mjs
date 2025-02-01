@@ -1,5 +1,5 @@
-import 'dotenv/config'
 import { defineConfig } from 'astro/config'
+import 'dotenv/config'
 
 /* Adapter */
 import node from '@astrojs/node'
@@ -7,8 +7,10 @@ import node from '@astrojs/node'
 /* Integrations */
 import react from '@astrojs/react'
 import svelte from '@astrojs/svelte'
-import tailwind from '@astrojs/tailwind'
 import sentry from '@sentry/astro'
+
+/* Vite Plugins */
+import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,7 +21,6 @@ export default defineConfig({
   }),
   prefetch: true,
   integrations: [
-    tailwind(),
     react(),
     svelte(),
     sentry({
@@ -31,9 +32,10 @@ export default defineConfig({
     }),
   ],
   security: {
-    checkOrigin: false
+    checkOrigin: false,
   },
   vite: {
+    plugins: [tailwindcss()],
     build: {
       rollupOptions: {
         onwarn: ({ message, code, ids }) => {

@@ -9,7 +9,7 @@ const websiteConfig = await getWebsiteConfig()
       <div class="rounded-2xl border border-neutral-300 bg-white px-8 pb-8 pt-6">
         <h1 class="text-center text-xl font-medium uppercase">Services</h1>
         <div class="space-y-4">
-          <div class="grid gap-4 pt-4 sm:grid-cols-2 [&>*]:rounded-xl [&>*]:p-4">
+          <div class="grid gap-4 pt-4 sm:grid-cols-2 *:rounded-xl *:p-4">
             {websiteConfig?.integrations.services.map(service => (
               <a
                 class={`border border-neutral-300 bg-white`}

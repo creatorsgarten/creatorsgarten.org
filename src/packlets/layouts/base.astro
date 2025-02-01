@@ -6,7 +6,6 @@ import Announcement from '$components/announcement.astro'
 import FooterLogo from './footerLogo.astro'
 import HeaderLogo from './headerLogo.astro'
 
-import './base.css'
 import { getFeatureFlags } from '$functions/getFeatureFlags'
 import HeaderOgImage from './headerOgImage.astro'
 
@@ -64,7 +63,7 @@ const featureFlags = getFeatureFlags(Astro)
             <AuthButton />
           </div>
         </nav> */}
-        <nav class="z-[999] bg-white md:relative">
+        <nav class="z-999 bg-white md:relative">
           <div class="sticky top-0 w-full border-b border-black bg-white p-4">
             <div class="flex justify-between">
               <a href="/" aria-label="back to home" class="flex items-center">

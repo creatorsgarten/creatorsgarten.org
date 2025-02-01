@@ -38,7 +38,7 @@ const guilds = [
 >
   {
     guilds.map(guild => (
-      <div class="relative aspect-[5/3] w-full overflow-hidden rounded-2xl">
+      <div class="relative aspect-5/3 w-full overflow-hidden rounded-2xl">
         <CFImage
           src={`/images/${guild.id}.jpg`}
           class="h-full w-full object-cover"
@@ -56,7 +56,7 @@ const guilds = [
     ))
   }
   <div
-    class={`aspect-[5/3] flex flex-col justify-evenly ${
+    class={`aspect-5/3 flex flex-col justify-evenly ${
       isLight ? 'text-[#1C1916]' : 'text-white'
     }`}
   >

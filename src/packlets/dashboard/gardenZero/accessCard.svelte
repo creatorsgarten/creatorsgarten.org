@@ -39,7 +39,7 @@
 
 {#if user !== null}
   <div
-    class="relative aspect-square w-full overflow-hidden rounded-2xl border border-neutral-500 bg-gradient-to-b from-[#73A790] from-5% to-[#2E6459] leading-none text-white md:aspect-auto md:h-64"
+    class="relative aspect-square w-full overflow-hidden rounded-2xl border border-neutral-500 bg-linear-to-b from-[#73A790] from-5% to-[#2E6459] leading-none text-white md:aspect-auto md:h-64"
   >
     {#if accessCard === null}
       <FrontSide {user} on:click={onClick} />
