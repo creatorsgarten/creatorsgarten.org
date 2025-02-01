@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+@config '../../../tailwind.config.cjs';
+
+@theme {
+  --font-sans: Basier Circle, Anuphan, ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-prose: Basier Circle, Sarabun, ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-casual: Recursive Variable, ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-mono: Recursive Variable, ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+@utility font-casual {
+  font-variation-settings:
+    'CASL' 1,
+    'CRSV' 1,
+    'slnt' 0,
+    'MONO' 0;
+}
+@utility font-mono {
+  font-variation-settings:
+    'CASL' 0,
+    'CRSV' 0,
+    'slnt' 0,
+    'MONO' 1;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+html {
+  background-color: var(--page-bg);
+  --page-bg: #fff;
+  scroll-padding-top: 72px;
+}
+
+@font-face {
+  font-family: 'Basier Circle';
+  src: url('/fonts/basier-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Basier Circle';
+  src: url('/fonts/basier-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+.word-spread {
+  word-spacing: 100vw;
+}
+
+.prose {
+  @apply font-prose;
+}
+
+.prose > h1 {
+  font-family: 'Basier Circle', 'Anuphan', sans-serif;
+}
+
+.prose > h2 {
+  font-family: 'Basier Circle', 'Anuphan', sans-serif;
+}
+
+.edit,
+.prose a {
+  font-variation-settings:
+    'CASL' 1,
+    'CRSV' 1,
+    'slnt' -3,
+    'MONO' 0;
+  @apply no-underline;
+}
+
+a.internal[data-exists='false'] {
+  @apply text-red-500;
+}

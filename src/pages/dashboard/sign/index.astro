@@ -21,7 +21,7 @@ const signature = signMessage
 
 <Head title="Sign a Message" />
 
-<BaseLayout class="mx-auto max-w-7xl space-y-6 [&>*]:px-6">
+<BaseLayout class="mx-auto max-w-7xl space-y-6 *:px-6">
   <div class="-mx-6 max-w-6xl sm:mx-auto">
     <div class="px-6 pb-10">
       <h1 class="mb-4 text-3xl font-medium">Sign message</h1>
@@ -48,7 +48,7 @@ const signature = signMessage
                 type="text"
                 name="signMessage"
                 class={'w-full ' +
-                  (signature ? '' : 'border rounded border-neutral-400')}
+                  (signature ? '' : 'border rounded-sm border-neutral-400')}
                 value={signMessage}
                 id="signMessage"
                 readonly={!!signature}
@@ -64,7 +64,7 @@ const signature = signMessage
                 <div class="flex-1">
                   <input
                     type="text"
-                    class={'w-full rounded border border-green-400'}
+                    class={'w-full rounded-sm border border-green-400'}
                     value={signature}
                     id="signature"
                     readonly

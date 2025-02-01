@@ -48,11 +48,11 @@ const ogImage = `https://screenshot.source.in.th/image/_/creatorsgarten-videos/$
       class="my-8 grid grid-cols-[1fr] items-start gap-6 lg:grid-cols-[1fr_1fr] xl:grid-cols-[1fr_600px]"
     >
       <div class="sticky top-0 z-30 -mx-4 bg-white lg:top-20 lg:mx-0">
-        <div class="mx-auto aspect-[16/9] w-full">
+        <div class="mx-auto aspect-16/9 w-full">
           <iframe
             id={iframeId}
             src={`https://www.youtube.com/embed/${video.youtubeId}?enablejsapi=1`}
-            class="aspect-[16/9] w-full"
+            class="aspect-16/9 w-full"
             style="border:0"
             loading="lazy"
             allowfullscreen></iframe>
@@ -120,7 +120,7 @@ const ogImage = `https://screenshot.source.in.th/image/_/creatorsgarten-videos/$
                           `${chapter.time}-` + (chapters[index + 1]?.time ?? '')
                         }
                       >
-                        <span class="flex-grow">{chapter.title}</span>
+                        <span class="grow">{chapter.title}</span>
                         <span class="ml-2 tabular-nums">
                           {formatTimecode(chapter.time)}
                         </span>
@@ -137,7 +137,7 @@ const ogImage = `https://screenshot.source.in.th/image/_/creatorsgarten-videos/$
           !!video.transcriptRef && (
             <div class="p-6">
               <h2 class="mb-2 text-xl font-medium">Transcript</h2>
-              <div class="-mx-2 mb-4 bg-yellow-500/15 p-2 font-prose text-xs font-light leading-relaxed antialiased">
+              <div class="font-prose -mx-2 mb-4 bg-yellow-500/15 p-2 text-xs leading-relaxed font-light antialiased">
                 <p>
                   {transcriptLanguage === 'th' ? (
                     <span>
@@ -175,6 +175,8 @@ const ogImage = `https://screenshot.source.in.th/image/_/creatorsgarten-videos/$
 </BaseLayout>
 
 <style>
+  @import 'tailwindcss';
+
   [data-cue-by] :global([data-cue][data-active='true']) {
     @apply bg-yellow-300;
   }

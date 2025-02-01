@@ -102,7 +102,7 @@ function GoogleMap(props: GoogleMap) {
   return (
     <iframe
       src={'https://www.google.com/maps/embed?pb=' + pb}
-      className="h-[450px] w-full rounded shadow"
+      className="h-[450px] w-full rounded-sm shadow-sm"
       allowFullScreen
       loading="lazy"
       referrerPolicy="no-referrer-when-downgrade"
@@ -115,7 +115,7 @@ interface Draft {
 }
 function Draft(props: Draft) {
   return (
-    <div className="relative my-3 rounded border border-dashed border-slate-400 px-2 pt-5 font-casual text-slate-700">
+    <div className="relative my-3 rounded-sm border border-dashed border-slate-400 px-2 pt-5 font-casual text-slate-700">
       <div className="absolute left-0 top-0 rounded-br border-b border-r border-dashed border-slate-400 px-2 py-1 text-xs">
         draft
       </div>
@@ -143,7 +143,7 @@ function Message(props: Message) {
           alt={props.attributes.from}
         />
       </div>
-      <div className="relative rounded border bg-white px-2 py-1">
+      <div className="relative rounded-sm border bg-white px-2 py-1">
         {!!props.label && (
           <Html
             html={`${props.label}`}

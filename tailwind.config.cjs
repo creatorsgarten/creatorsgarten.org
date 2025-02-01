@@ -1,4 +1,4 @@
-const defaultConfig = require('tailwindcss/defaultConfig')
+const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 /** @type {import('tailwindcss').Config} */
@@ -15,26 +15,6 @@ module.exports = {
         ck: '#1C1916',
         cw: '#EDE5DA',
         cbr: '#635548',
-      },
-      fontFamily: {
-        sans: [
-          'Basier Circle',
-          'Anuphan',
-          ...defaultConfig.theme.fontFamily.sans,
-        ],
-        prose: [
-          'Basier Circle',
-          'Sarabun',
-          ...defaultConfig.theme.fontFamily.sans,
-        ],
-        casual: [
-          ['"Recursive Variable"', ...defaultConfig.theme.fontFamily.sans],
-          { fontVariationSettings: '"CASL" 1, "CRSV" 1, "slnt" 0, "MONO" 0' },
-        ],
-        mono: [
-          ['"Recursive Variable"', ...defaultConfig.theme.fontFamily.mono],
-          { fontVariationSettings: '"CASL" 0, "CRSV" 0, "slnt" 0, "MONO" 1' },
-        ],
       },
       animation: {
         loader: 'loader 0.6s infinite alternate',

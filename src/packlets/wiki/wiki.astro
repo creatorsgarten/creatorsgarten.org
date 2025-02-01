@@ -40,7 +40,7 @@ const { head, body, perf } = Astro.props.viewModel
       ) : (
         <Fragment>
           {body.validationError ? (
-            <div class="relative mb-8 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700">
+            <div class="relative mb-8 rounded-sm border border-red-400 bg-red-100 px-4 py-3 text-red-700">
               <strong class="mr-2 font-bold">Invalid front matter:</strong>
               <span class="block sm:inline">{body.validationError}</span>
             </div>

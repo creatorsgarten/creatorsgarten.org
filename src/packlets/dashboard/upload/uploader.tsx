@@ -33,7 +33,7 @@ export default function Uploader(props: Uploader) {
         <div className="mt-4 flex justify-end">
           <button
             onClick={clearUploads}
-            className="rounded bg-red-500 px-4 py-2 text-white transition-colors hover:bg-red-600"
+            className="rounded-sm bg-red-500 px-4 py-2 text-white transition-colors hover:bg-red-600"
           >
             Start over
           </button>
@@ -228,7 +228,7 @@ function FileUploaderView(props: FileUploaderView) {
             {result && (
               <button
                 onClick={() => setShowLogs(!showLogs)}
-                className="text-sm text-blue-500 hover:text-blue-600 focus:outline-none"
+                className="text-sm text-blue-500 hover:text-blue-600 focus:outline-hidden"
               >
                 {showLogs ? 'Show Results' : 'Show Logs'}
               </button>
@@ -241,12 +241,12 @@ function FileUploaderView(props: FileUploaderView) {
                 <input
                   type="text"
                   value={result.url}
-                  className="flex-1 rounded bg-gray-100 p-1 text-gray-600"
+                  className="flex-1 rounded-sm bg-gray-100 p-1 text-gray-600"
                   readOnly
                 />
                 <button
                   onClick={copyUrlToClipboard}
-                  className="ml-2 flex-none rounded bg-blue-500 px-2 py-1 text-sm text-white hover:bg-blue-600 focus:outline-none"
+                  className="ml-2 flex-none rounded-sm bg-blue-500 px-2 py-1 text-sm text-white hover:bg-blue-600 focus:outline-hidden"
                 >
                   {copied ? 'Copied!' : 'Copy URL'}
                 </button>

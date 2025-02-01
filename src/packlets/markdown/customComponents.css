@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 .custom-block {
   @apply my-[1.25em] overflow-hidden border border-[--custom-block-border] bg-[--custom-block-bg] px-3 py-2;
   --custom-block-bg: theme(colors.neutral.100);

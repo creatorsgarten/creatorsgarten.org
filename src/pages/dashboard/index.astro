@@ -16,7 +16,7 @@ const joinedEvents = await backend.events.getJoinedEvents.query()
 
 <Head title="Dashboard" />
 
-<BaseLayout class="mx-auto mt-12 max-w-7xl space-y-6 [&>*]:px-6">
+<BaseLayout class="mx-auto mt-12 max-w-7xl space-y-6 *:px-6">
   <UserCard user={user} />
   <Connections connections={user.connections} />
   <Garden0 />
