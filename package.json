@@ -67,7 +67,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@types/youtube": "^0.1.0",
-    "astro": "5.1.10",
+    "astro": "5.2.3",
     "astro-seo": "^0.8.0",
     "contentsgarten": "^2.1.0",
     "dotenv": "^16.3.1",
