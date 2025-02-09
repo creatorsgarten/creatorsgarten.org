@@ -3,7 +3,7 @@ FROM node:22-alpine as deps-prod
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml* ./
-RUN corepack enable && pnpm -r i --frozen-lockfile --prod
+RUN npm install -g corepack@latest && corepack enable && pnpm -r i --frozen-lockfile --prod
 
 # ? -------------------------
 
@@ -12,7 +12,7 @@ FROM node:22-alpine as builder
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml* ./
-RUN corepack enable && pnpm -r i --frozen-lockfile
+RUN npm install -g corepack@latest && corepack enable && pnpm -r i --frozen-lockfile
 
 COPY astro.config.mjs tailwind.config.cjs tsconfig.json ./
 COPY public ./public
