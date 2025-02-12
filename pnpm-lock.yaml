@@ -113,10 +113,10 @@ importers:
         version: 4.2.1
       zod:
         specifier: ^3.22.2
-        version: 3.24.1
+        version: 3.24.2
       zod-validation-error:
         specifier: ^3.0.0
-        version: 3.4.0(zod@3.24.1)
+        version: 3.4.0(zod@3.24.2)
     devDependencies:
       '@astrojs/check':
         specifier: ^0.9.0
@@ -4714,8 +4714,8 @@ packages:
     peerDependencies:
       zod: ^3.18.0
 
-  zod@3.24.1:
-    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
+  zod@3.24.2:
+    resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -6860,9 +6860,9 @@ snapshots:
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
       yocto-spinner: 0.2.0
-      zod: 3.24.1
-      zod-to-json-schema: 3.24.1(zod@3.24.1)
-      zod-to-ts: 1.2.0(typescript@5.4.5)(zod@3.24.1)
+      zod: 3.24.2
+      zod-to-json-schema: 3.24.1(zod@3.24.2)
+      zod-to-ts: 1.2.0(typescript@5.4.5)(zod@3.24.2)
     optionalDependencies:
       sharp: 0.33.3
     transitivePeerDependencies:
@@ -7074,9 +7074,9 @@ snapshots:
       liquidjs: 10.7.1
       mongodb: 6.13.0(socks@2.7.1)
       octokit: 3.2.1
-      openapi-trpc: 0.1.2(@trpc/server@10.45.2)(zod@3.24.1)
+      openapi-trpc: 0.1.2(@trpc/server@10.45.2)(zod@3.24.2)
       p-memoize: 7.1.1(typescript@5.4.5)
-      zod: 3.24.1
+      zod: 3.24.2
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
       - '@mongodb-js/zstd'
@@ -8425,12 +8425,12 @@ snapshots:
       regex: 5.1.1
       regex-recursion: 5.1.1
 
-  openapi-trpc@0.1.2(@trpc/server@10.45.2)(zod@3.24.1):
+  openapi-trpc@0.1.2(@trpc/server@10.45.2)(zod@3.24.2):
     dependencies:
       '@trpc/server': 10.45.2
       openapi-types: 12.1.0
-      zod: 3.24.1
-      zod-to-json-schema: 3.24.1(zod@3.24.1)
+      zod: 3.24.2
+      zod-to-json-schema: 3.24.1(zod@3.24.2)
 
   openapi-types@12.1.0: {}
 
@@ -9764,20 +9764,20 @@ snapshots:
 
   zimmerframe@1.1.2: {}
 
-  zod-to-json-schema@3.24.1(zod@3.24.1):
+  zod-to-json-schema@3.24.1(zod@3.24.2):
     dependencies:
-      zod: 3.24.1
+      zod: 3.24.2
 
-  zod-to-ts@1.2.0(typescript@5.4.5)(zod@3.24.1):
+  zod-to-ts@1.2.0(typescript@5.4.5)(zod@3.24.2):
     dependencies:
       typescript: 5.4.5
-      zod: 3.24.1
+      zod: 3.24.2
 
-  zod-validation-error@3.4.0(zod@3.24.1):
+  zod-validation-error@3.4.0(zod@3.24.2):
     dependencies:
-      zod: 3.24.1
+      zod: 3.24.2
 
-  zod@3.24.1: {}
+  zod@3.24.2: {}
 
   zwitch@2.0.4: {}
 
