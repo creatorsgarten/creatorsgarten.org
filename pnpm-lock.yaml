@@ -41,7 +41,7 @@ importers:
         version: 9.1.0(astro@5.3.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.32.0)(typescript@5.4.5)(yaml@2.5.1))
       '@tanstack/react-query':
         specifier: ^5.0.0
-        version: 5.66.5(react@19.0.0)
+        version: 5.66.6(react@19.0.0)
       '@trpc/client':
         specifier: 10.45.2
         version: 10.45.2(@trpc/server@10.45.2)
@@ -1599,8 +1599,8 @@ packages:
   '@tanstack/query-core@5.66.4':
     resolution: {integrity: sha512-skM/gzNX4shPkqmdTCSoHtJAPMTtmIJNS0hE+xwTTUVYwezArCT34NMermABmBVUg5Ls5aiUXEDXfqwR1oVkcA==}
 
-  '@tanstack/react-query@5.66.5':
-    resolution: {integrity: sha512-D9aABj3/aFeNmifsdllh5O3hPyA8gUnZ1jAV8MjODQ7blirfAyGed9NjAnm8rgEdr1wChyjTT738ij3vY0EREQ==}
+  '@tanstack/react-query@5.66.6':
+    resolution: {integrity: sha512-Xepc53h+D5sqoO/MZiSH2ROVLTDfRwR+3E4C2oS71/lo9u2mwbneZIEyIGXEHvmfyQpqtbf9voghD+QwLDLzcA==}
     peerDependencies:
       react: 19.0.0
 
@@ -6303,7 +6303,7 @@ snapshots:
 
   '@tanstack/query-core@5.66.4': {}
 
-  '@tanstack/react-query@5.66.5(react@19.0.0)':
+  '@tanstack/react-query@5.66.6(react@19.0.0)':
     dependencies:
       '@tanstack/query-core': 5.66.4
       react: 19.0.0
