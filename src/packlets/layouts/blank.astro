@@ -3,8 +3,6 @@ import { ClientRouter } from 'astro:transitions'
 
 import './global.css'
 
-import '@fontsource-variable/work-sans'
-
 const { pathname } = Astro.url
 const isNoIndex = pathname.endsWith('/editor') || pathname.startsWith('/auth')
 ---
