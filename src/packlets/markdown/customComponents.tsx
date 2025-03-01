@@ -1,7 +1,6 @@
 import type { MarkdownCustomComponents } from '@contentsgarten/html'
 
 import './customComponents.css'
-import '@fontsource-variable/recursive/full.css'
 
 // Import extracted components
 import { RatingTally } from './components/RatingTally'
