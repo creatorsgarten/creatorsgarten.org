@@ -97,7 +97,7 @@ const featureFlags = getFeatureFlags(Astro)
       </Fragment>
     )
   }
-  <main {...{ class: ' ' + Astro.props.class ?? '' }}>
+  <main {...{ class: ' ' + Astro.props.class }}>
     <slot />
   </main>
 
