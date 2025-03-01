@@ -10,6 +10,7 @@ import { fromZodError, type ValidationError } from 'zod-validation-error'
 import { formatPageRef } from './formatPageRef'
 import { getContentHash, getMarkdownFromSlug } from './getMarkdownFromSlug'
 import { getWikiDescription } from './getWikiDescription'
+import { applyResponseActions, type ResponseAction } from './responseHandler'
 
 export interface WikiPageViewModel {
   respond: (response: AstroGlobal['response']) => void
@@ -61,6 +62,9 @@ export interface EditingFile {
   revision?: string | undefined
 }
 
+/**
+ * Process wiki page data and generate a view model for rendering
+ */
 export async function getWikiPageViewModel(input: {
   pageRef: string
   mode: 'view' | 'editor'
@@ -68,6 +72,7 @@ export async function getWikiPageViewModel(input: {
 }): Promise<WikiPageViewModel> {
   const { pageRef, mode, searchParams } = input
 
+  // Get markdown content
   const markdown = await getMarkdownFromSlug<
     z.infer<typeof frontMatterSchema>['event'] & { title: string }
   >(pageRef)
@@ -83,38 +88,21 @@ export async function getWikiPageViewModel(input: {
     perf,
   } = markdown
 
-  let responseActions: ((response: AstroGlobal['response']) => void)[] = []
-
-  if (
-    status === 301 &&
-    targetPageRef &&
+  // Determine response actions based on status
+  const responseActions: ResponseAction[] = getResponseActions(
+    status, 
+    targetPageRef, 
     searchParams.get('redirect') !== 'no'
-  ) {
-    responseActions.push(response => {
-      response.status = 301
-      response.headers.set('Location', `/wiki/${targetPageRef}`)
-    })
-  } else if (status === 404) {
-    responseActions.push(response => {
-      response.status = 404
-      response.headers.set('X-Astro-Reroute', 'no')
-    })
-  } else if (status === 500) {
-    responseActions.push(response => {
-      response.status = 500
-      response.headers.set('X-Astro-Reroute', 'no')
-    })
-  }
+  )
 
+  // Parse front matter
   const frontMatterParsingResult = parseFrontMatter(frontMatter)
   const parsedFrontMatter = frontMatterParsingResult.success
     ? frontMatterParsingResult.data
     : undefined
 
-  const pageTitle =
-    frontMatter.title ||
-    parsedFrontMatter?.event?.name ||
-    formatPageRef(pageRef as string)
+  // Prepare metadata
+  const pageTitle = getPageTitle(frontMatter, parsedFrontMatter, pageRef)
   const title = mode === 'view' ? pageTitle : 'Editor'
   const description = getWikiDescription(rendered?.html)
   const editable = !!file
@@ -122,8 +110,105 @@ export async function getWikiPageViewModel(input: {
   const contentHash = getContentHash(markdown)
   const ogImage = `https://screenshot.source.in.th/image/_/creatorsgarten-new-wiki/${pageRef}`
 
-  let body: WikiPageViewModel['body']
+  // Create the appropriate body type based on mode and status
+  const body = createBodyContent({
+    status,
+    editing,
+    pageRef,
+    contentHash,
+    pageTitle,
+    rendered,
+    parsedFrontMatter,
+    lastModified,
+    lastModifiedBy,
+    editable,
+    frontMatterParsingResult,
+    file
+  })
 
+  return {
+    respond: response => applyResponseActions(response, responseActions),
+    head: {
+      title,
+      description,
+      ogImage,
+    },
+    body,
+    perf,
+  }
+}
+
+/**
+ * Get response actions based on status and target page
+ */
+function getResponseActions(
+  status: number, 
+  targetPageRef?: string, 
+  allowRedirect: boolean = true
+): ResponseAction[] {
+  const actions: ResponseAction[] = []
+  
+  if (status === 301 && targetPageRef && allowRedirect) {
+    actions.push({
+      status: 301,
+      headers: { 'Location': `/wiki/${targetPageRef}` }
+    })
+  } else if (status === 404 || status === 500) {
+    actions.push({
+      status,
+      headers: { 'X-Astro-Reroute': 'no' }
+    })
+  }
+  
+  return actions
+}
+
+/**
+ * Get the page title from available sources
+ */
+function getPageTitle(
+  frontMatter: Record<string, any>,
+  parsedFrontMatter?: FrontMatter,
+  pageRef?: string
+): string {
+  return frontMatter.title || 
+         parsedFrontMatter?.event?.name || 
+         formatPageRef(pageRef as string)
+}
+
+/**
+ * Create the appropriate body content based on status and mode
+ */
+function createBodyContent(params: {
+  status: number
+  editing: EditingFile | null
+  pageRef: string
+  contentHash: string
+  pageTitle: string
+  rendered: ContentsgartenOutput['view']['rendered'] | undefined
+  parsedFrontMatter?: FrontMatter
+  lastModified?: string
+  lastModifiedBy?: string[]
+  editable: boolean
+  frontMatterParsingResult: ReturnType<typeof parseFrontMatter>
+  file: { path: string; content: string; revision?: string } | undefined
+}): WikiPageViewModel['body'] {
+  const {
+    status,
+    editing,
+    pageRef,
+    contentHash,
+    pageTitle,
+    rendered,
+    parsedFrontMatter,
+    lastModified,
+    lastModifiedBy,
+    editable,
+    frontMatterParsingResult,
+    file
+  } = params
+  
+  // Normal view or editor view
   if (status === 200 || editing) {
     const commonProps: PageInfo = {
       pageRef,
@@ -135,8 +220,9 @@ export async function getWikiPageViewModel(input: {
       lastModifiedBy,
       editable,
     }
+    
     if (editing) {
-      body = {
+      return {
         ...commonProps,
         mode: 'editor',
         file: editing,
@@ -147,7 +233,8 @@ export async function getWikiPageViewModel(input: {
         : fromZodError(frontMatterParsingResult.error)
       const html = rendered?.html || ''
       const filePath = file?.path
-      body = {
+      
+      return {
         ...commonProps,
         mode: 'view',
         html,
@@ -155,10 +242,13 @@ export async function getWikiPageViewModel(input: {
         filePath,
       }
     }
-  } else {
+  } 
+  // Simple view for error states
+  else {
     const html = rendered?.html || ''
     const filePath = file?.path
-    body = {
+    
+    return {
       mode: 'simple',
       pageRef,
       contentHash,
@@ -166,20 +256,5 @@ export async function getWikiPageViewModel(input: {
       filePath,
       editable,
     }
-  }
-
-  return {
-    respond: response => {
-      for (const action of responseActions) {
-        action(response)
-      }
-    },
-    head: {
-      title,
-      description,
-      ogImage,
-    },
-    body,
-    perf,
   }
 }

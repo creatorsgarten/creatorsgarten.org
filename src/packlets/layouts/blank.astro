@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions'
+import { ClientRouter } from 'astro:transitions'
 
 import './global.css'
 
@@ -29,7 +29,7 @@ const isNoIndex = pathname.endsWith('/editor') || pathname.startsWith('/auth')
 
     <slot name="head" />
 
-    <ViewTransitions />
+    <ClientRouter />
     <script
       async
       is:inline

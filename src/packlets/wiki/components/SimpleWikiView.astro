@@ -1,0 +1,43 @@
+---
+import BaseLayout from '$layouts/base.astro'
+import { Icon } from 'react-iconify-icon-wrapper'
+import WikiContent from './WikiContent.astro'
+
+export interface Props {
+  pageRef: string
+  html: string
+  contentHash: string
+  editable: boolean
+  filePath?: string
+}
+
+const { pageRef, html, contentHash, editable, filePath } = Astro.props
+---
+
+<BaseLayout>
+  <div class="px-6 pb-10">
+    <div class="relative mx-auto max-w-6xl">
+      <h1 class="mb-8 text-3xl">{pageRef}</h1>
+      
+      <WikiContent 
+        html={html} 
+        pageRef={pageRef} 
+        contentHash={contentHash}
+        filePath={filePath}
+      />
+      
+      {editable && (
+        <div class="mt-8 flex">
+          <a
+            href={`/wiki/${pageRef}/editor`}
+            data-js="wiki-edit-link"
+            class="inline-flex items-center space-x-2"
+          >
+            <span class="edit">Edit this page</span>
+            <Icon icon="pixelarticons:edit" />
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

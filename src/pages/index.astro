@@ -1,15 +1,12 @@
 ---
-import Tweet from 'astro-tweet'
-
 import Head from '$commons/head.astro'
 import BaseLayout from '$layouts/base.astro'
 import CFImage from '$components/cfImage.astro'
-import EventPoster from '$components/eventPoster.astro'
 import { upcomingEventsFilter } from '$functions/upcomingEventsFilter'
 
 import { getEvents } from '$functions/getEvents'
 
-import { cow, cowblink } from '$constants/animals'
+import { cow } from '$constants/animals'
 
 const events = await getEvents()
 const upcomingEvents = events.filter(upcomingEventsFilter).reverse()

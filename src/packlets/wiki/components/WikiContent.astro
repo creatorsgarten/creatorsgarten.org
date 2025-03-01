@@ -1,0 +1,39 @@
+---
+import ContentRenderer from '$markdown/contentRenderer.astro'
+import WikiUpdateChecker from '../updateChecker'
+import WikiLinkChecker from '../linkChecker'
+import WikiViewShortcuts from '../viewShortcuts.svelte'
+
+export interface Props {
+  html: string
+  pageRef: string
+  contentHash: string
+  filePath?: string
+  validationError?: {
+    message: string
+  }
+}
+
+const { html, pageRef, contentHash, filePath, validationError } = Astro.props
+---
+
+{validationError && (
+  <div class="relative mb-8 rounded-sm border border-red-400 bg-red-100 px-4 py-3 text-red-700">
+    <strong class="mr-2 font-bold">Invalid front matter:</strong>
+    <span class="block sm:inline">{validationError}</span>
+  </div>
+)}
+
+<ContentRenderer content={html} pageRef={pageRef} />
+
+<WikiUpdateChecker
+  initialContentHash={contentHash}
+  pageRef={pageRef}
+  client:idle
+/>
+
+<WikiLinkChecker client:idle />
+
+{filePath && (
+  <WikiViewShortcuts path={filePath} client:only="svelte" />
+)}
