@@ -53,7 +53,7 @@ importers:
         version: 0.0.4(astro@5.4.1(@types/node@22.13.7)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.32.0)(typescript@5.4.5)(yaml@2.5.1))(prettier-plugin-astro@0.14.1)(prettier@3.5.3)
       clsx:
         specifier: ^2.0.0
-        version: 2.1.0
+        version: 2.1.1
       csrf:
         specifier: ^3.1.0
         version: 3.1.0
@@ -2051,10 +2051,6 @@ packages:
   cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
-
-  clsx@2.1.0:
-    resolution: {integrity: sha512-m3iNNWpd9rl3jvvcBnu70ylMdrXt8Vlq4HYadnU5fwcOtvkSQWPmj7amUcDT2qYI7risszBjI5AUIUox9D16pg==}
-    engines: {node: '>=6'}
 
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
@@ -6480,7 +6476,7 @@ snapshots:
     dependencies:
       '@astrojs/check': 0.2.1(prettier-plugin-astro@0.14.1)(prettier@3.5.3)(typescript@5.4.5)
       astro: 5.4.1(@types/node@22.13.7)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.32.0)(typescript@5.4.5)(yaml@2.5.1)
-      clsx: 2.1.0
+      clsx: 2.1.1
       date-fns: 2.30.0
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -6702,8 +6698,6 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
-
-  clsx@2.1.0: {}
 
   clsx@2.1.1: {}
 
