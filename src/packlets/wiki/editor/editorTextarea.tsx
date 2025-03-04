@@ -1,19 +1,23 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { EditorSettings } from './editorSettings'
+import { useEffect, useRef, useState } from 'react'
 import { useStore } from '@nanostores/react'
-import { clsx } from 'clsx'
-import { PlainTextarea } from './PlainTextarea'
+import { EditorSettings } from './editorSettings'
+import { EditorView } from './EditorView'
+import { EditorControls } from './EditorControls'
 
-interface EditorTextarea {
+export interface EditorTextareaProps {
   editable: boolean
   defaultValue: string
 }
-interface EditorInitData {
+
+export interface EditorInitData {
   forcePlain: boolean
   defaultValue: string
 }
 
-export function EditorTextarea(props: EditorTextarea) {
+/**
+ * Main editor component that combines controls and the editor view
+ */
+export function EditorTextarea(props: EditorTextareaProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
   const [initData, setInitData] = useState<EditorInitData>(() => ({
@@ -22,8 +26,7 @@ export function EditorTextarea(props: EditorTextarea) {
   }))
 
   const setForcePlain = (forcePlain: boolean) => {
-    const content =
-      ref.current?.querySelector<HTMLInputElement>('[name="content"]')
+    const content = ref.current?.querySelector<HTMLInputElement>('[name="content"]')
     setInitData({
       defaultValue: content?.value ?? props.defaultValue,
       forcePlain,
@@ -43,26 +46,13 @@ export function EditorTextarea(props: EditorTextarea) {
 
   return (
     <>
-      <div className={clsx('mb-2 flex gap-3', mounted ? '' : 'invisible')}>
-        <label>
-          <input
-            type="checkbox"
-            checked={font === 'mono'}
-            onChange={updateFont}
-          />{' '}
-          Use monospace font
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={initData.forcePlain}
-            onChange={e => {
-              setForcePlain(e.target.checked)
-            }}
-          />{' '}
-          Use plain text editor
-        </label>
-      </div>
+      <EditorControls
+        mounted={mounted}
+        font={font}
+        updateFont={updateFont}
+        forcePlain={initData.forcePlain}
+        setForcePlain={setForcePlain}
+      />
 
       <div ref={ref}>
         <EditorView
@@ -73,43 +63,4 @@ export function EditorTextarea(props: EditorTextarea) {
       </div>
     </>
   )
-}
-
-interface EditorView {
-  editable: boolean
-  forcePlain: boolean
-  defaultValue: string
-}
-
-function EditorView(props: EditorView) {
-  const [UpgradedEditor, setUpgraded] = useState<
-    typeof import('./UpgradedEditor').UpgradedEditor | undefined
-  >()
-
-  useEffect(() => {
-    import('./UpgradedEditor').then(module => {
-      setUpgraded(() => module.UpgradedEditor)
-    })
-  }, [])
-
-  const { editable, defaultValue, forcePlain: forceDumb } = props
-
-  const upgradedEditor = useMemo(() => {
-    return UpgradedEditor ? (
-      <UpgradedEditor defaultValue={defaultValue} />
-    ) : null
-  }, [UpgradedEditor, defaultValue])
-
-  const dumbEditor = useMemo(() => {
-    return (
-      <PlainTextarea
-        name="content"
-        rows={40}
-        disabled={!editable}
-        defaultValue={defaultValue}
-      />
-    )
-  }, [editable, defaultValue])
-
-  return (editable && !forceDumb && upgradedEditor) || dumbEditor
 }

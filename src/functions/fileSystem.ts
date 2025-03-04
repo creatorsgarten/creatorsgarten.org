@@ -1,11 +1,11 @@
 import fs from 'fs'
 import path from 'path'
-import { createHash } from 'crypto'
+import { createHash, type BinaryLike } from 'crypto'
 
 const cacheDirectory = path.join(process.cwd(), '.cache')
 
 export const getHash = (
-  items: (string | number | Buffer)[],
+  items: (string | number | BinaryLike)[],
   algorithm = 'sha256'
 ) => {
   const hash = createHash(algorithm)
@@ -15,7 +15,6 @@ export const getHash = (
       hash.update(item)
     }
   }
-  // See https://en.wikipedia.org/wiki/Base64#Filenames
   return hash.digest('base64').replace(/\//g, '-')
 }
 
