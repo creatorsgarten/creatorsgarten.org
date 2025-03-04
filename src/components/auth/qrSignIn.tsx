@@ -40,12 +40,12 @@ function QrSignInView(props: QrSignIn) {
       const result = await response.json()
       if (result.found) {
         console.log('Device authorized.')
-        clearInterval(interval)
+        clearInterval(interval as unknown as NodeJS.Timeout)
         inputRef.current!.value = result.signature + '|' + deviceId
         formRef.current!.submit()
       }
     }, 5000)
-    return () => clearInterval(interval)
+    return () => clearInterval(interval as unknown as NodeJS.Timeout)
   }, [deviceIdBasis, deviceId])
   return (
     <div className="flex flex-col items-center">

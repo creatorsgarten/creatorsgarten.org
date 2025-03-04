@@ -69,7 +69,7 @@ export default function CueHighlighter(props: { iframeId: string }) {
           }
           active = matching
         }, 100)
-        onCancel = () => clearInterval(interval)
+        onCancel = () => clearInterval(interval as unknown as NodeJS.Timeout)
       })
     })
     return () => {
