@@ -31,7 +31,7 @@
     "dayjs": "1.11.13",
     "fastify": "5.2.1",
     "google-auth-library": "9.15.1",
-    "jose": "6.0.9",
+    "jose": "6.0.10",
     "jsonwebtoken": "9.0.2",
     "lodash": "4.17.21",
     "lru-cache": "11.0.2",
