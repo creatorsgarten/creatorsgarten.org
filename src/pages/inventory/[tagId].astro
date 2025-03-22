@@ -1,0 +1,25 @@
+---
+import Head from '$commons/head.astro'
+import Breadcrumb from '$components/breadcrumb.astro'
+import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
+import { getItemByTag } from '$functions/getItemByTag'
+import BaseLayout from '$layouts/base.astro'
+
+const id = Astro.params.tagId!
+const item = await getItemByTag(id)
+if (!item) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found',
+  })
+}
+---
+
+<Head title="Videos" />
+
+<BaseLayout>
+  <MainHorizontalPadding>
+    <Breadcrumb parents={[{ title: '🏷️ Inventory' }]} title={`${id}`} />
+    nyeh
+  </MainHorizontalPadding>
+</BaseLayout>
