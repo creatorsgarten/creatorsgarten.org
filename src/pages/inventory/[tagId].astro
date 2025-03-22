@@ -1,9 +1,9 @@
 ---
-import Head from '$commons/head.astro'
 import Breadcrumb from '$components/breadcrumb.astro'
 import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
 import { getItemByTag } from '$functions/getItemByTag'
 import BaseLayout from '$layouts/base.astro'
+import { Icon } from 'react-iconify-icon-wrapper'
 
 const id = Astro.params.tagId!
 const item = await getItemByTag(id)
@@ -15,11 +15,60 @@ if (!item) {
 }
 ---
 
-<Head title="Videos" />
-
 <BaseLayout>
   <MainHorizontalPadding>
-    <Breadcrumb parents={[{ title: '🏷️ Inventory' }]} title={`${id}`} />
-    nyeh
+    <Breadcrumb
+      parents={[
+        { title: 'Inventory', href: 'https://inventory.creatorsgarten.org/' },
+      ]}
+      title={id}
+    />
+
+    <div class="mt-4 flex flex-col gap-4 px-3">
+      <div class="prose max-w-none">
+        <h1>{item.name}</h1>
+        <div class="mt-4">
+          {item.description}
+        </div>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <a
+          href={`https://inventory.creatorsgarten.org/items/${item.id}`}
+          class="flex items-center gap-1 rounded-md bg-gray-100 px-2 py-1 hover:bg-gray-200"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon icon="lucide:tag" width={16} />
+          <span>View in inventory system</span>
+        </a>
+        {
+          item.tags &&
+            item.tags.length > 0 &&
+            item.tags.map(tag => (
+              <a
+                href={`https://inventory.creatorsgarten.org/tags/${tag}`}
+                class="flex items-center gap-1 rounded-md bg-gray-100 px-2 py-1 hover:bg-gray-200"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon icon="lucide:cpu" width={16} />
+                <span>{tag}</span>
+              </a>
+            ))
+        }
+      </div>
+
+      {
+        // item.notes && (
+        //   <div class="mt-4">
+        //     <div class="font-medium">Notes:</div>
+        //     <div class="mt-2 rounded-md bg-gray-50 p-4">
+        //       <ContentRenderer content={item.notes} pageRef="" />
+        //     </div>
+        //   </div>
+        // )
+      }
+    </div>
   </MainHorizontalPadding>
 </BaseLayout>

@@ -11,6 +11,7 @@ const itemFetcher = new LRUCache({
       name: string
       description: string
       notes: string
+      tags: string[]
     }[]
   },
 })
