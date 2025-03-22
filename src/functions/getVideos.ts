@@ -119,48 +119,46 @@ const indexFetcher = new LRUCache({
     )
     const eventIdTally = new Map<string, number>()
     const speakerNameTally = new Map<string, number>()
-    const videoListingItems = videos
-      .filter(video => {
-        return (
-          video.data.published === true ||
-          (typeof video.data.published === 'string' &&
-            new Date().toISOString() >= video.data.published)
+    
+    // Create a function to map video data to VideoListingItem
+    const mapVideoToListingItem = (video: Video): VideoListingItem => {
+      const thumbnailUrl = `http://img.youtube.com/vi/${video.data.youtube}/hqdefault.jpg`
+      const event = eventMap.get(video.event)
+      let chapters: Chapter[] | undefined
+      if (video.data.chapters) {
+        const localized = Object.fromEntries(
+          Object.entries(video.data.chapters).map(([time, title]) => [
+            time,
+            typeof title === 'string' ? title : title.th,
+          ])
         )
-      })
-      .map((video): VideoListingItem => {
-        const thumbnailUrl = `http://img.youtube.com/vi/${video.data.youtube}/hqdefault.jpg`
-        const event = eventMap.get(video.event)
-        let chapters: Chapter[] | undefined
-        if (video.data.chapters) {
-          const localized = Object.fromEntries(
-            Object.entries(video.data.chapters).map(([time, title]) => [
-              time,
-              typeof title === 'string' ? title : title.th,
-            ])
-          )
-          chapters = processChapters(localized)
-        }
-        return {
-          thumbnailUrl,
-          title: video.data.title,
-          speakers: (video.data.speaker || video.data.team?.name || '')
-            .split(/;\s*/)
-            .map(speaker => speaker.trim())
-            .filter(speaker => speaker),
-          eventId: video.event,
-          eventTitle: event?.name || video.event,
-          publishDate: String(video.data.published),
-          slug: video.slug,
-          youtubeId: video.data.youtube,
-          description: video.data.description || video.data.englishDescription,
-          chapters,
-          transcriptRef: video.data.subtitles?.includes('th')
-            ? `${video.event}/${video.slug}_th`
-            : video.data.subtitles?.includes('en')
-              ? `${video.event}/${video.slug}_en`
-              : undefined,
-        }
-      })
+        chapters = processChapters(localized)
+      }
+      return {
+        thumbnailUrl,
+        title: video.data.title,
+        speakers: (video.data.speaker || video.data.team?.name || '')
+          .split(/;\s*/)
+          .map(speaker => speaker.trim())
+          .filter(speaker => speaker),
+        eventId: video.event,
+        eventTitle: event?.name || video.event,
+        publishDate: String(video.data.published),
+        slug: video.slug,
+        youtubeId: video.data.youtube,
+        description: video.data.description || video.data.englishDescription,
+        chapters,
+        transcriptRef: video.data.subtitles?.includes('th')
+          ? `${video.event}/${video.slug}_th`
+          : video.data.subtitles?.includes('en')
+            ? `${video.event}/${video.slug}_en`
+            : undefined,
+      }
+    }
+    
+    // Get all videos including drafts
+    const videosIncludingDrafts = videos
+      .map(mapVideoToListingItem)
       .sort(
         Comparator.comparing(
           (video: VideoListingItem) => eventIndexMap.get(video.eventId) ?? 9999
@@ -168,6 +166,16 @@ const indexFetcher = new LRUCache({
           .thenComparing(video => video.publishDate, Comparator.reverseOrder())
           .thenComparing(v => v.slug)
       )
+    
+    // Filter to only published videos
+    const videoListingItems = videosIncludingDrafts
+      .filter(video => {
+        const publishDate = video.publishDate;
+        return (
+          publishDate === 'true' ||
+          (publishDate !== 'false' && new Date().toISOString() >= publishDate)
+        )
+      })
 
     for (const item of videoListingItems) {
       tally(eventIdTally, item.eventId)
@@ -181,6 +189,7 @@ const indexFetcher = new LRUCache({
 
     return {
       videos: videoListingItems,
+      videosIncludingDrafts,
       events: events
         .filter(event => eventIdTally.has(event.id))
         .map(event => ({
@@ -237,6 +246,7 @@ export function filterVideos(
 
 export interface VideoIndex {
   videos: VideoListingItem[]
+  videosIncludingDrafts: VideoListingItem[]
   events: FilterListing<VideoListingEvent>[]
   speakers: FilterListing<string>[]
 }

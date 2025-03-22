@@ -13,8 +13,11 @@ import BaseLayout from '$layouts/base.astro'
 const index = await getVideoIndex()
 const eventId = Astro.params.eventId!
 const slug = Astro.params.slug!
+const isPreview = Astro.url.searchParams.has('preview')
 
-const video = index.videos.find(
+// Find video in either published or all videos depending on preview parameter
+const videoSource = isPreview ? index.videosIncludingDrafts : index.videos
+const video = videoSource.find(
   video => video.eventId === eventId && video.slug === slug
 )
 if (!video) {
@@ -34,6 +37,11 @@ const description = (video.description || '')
   .split('\n')
   .filter(x => x.trim())[0]
 const ogImage = `https://screenshot.source.in.th/image/_/creatorsgarten-videos/${eventId}/${slug}`
+
+// Add draft status indicator for unpublished videos
+const isDraft = isPreview && !index.videos.some(
+  v => v.eventId === eventId && v.slug === slug
+)
 ---
 
 <Head title={title} description={description} ogImage={ogImage} />
@@ -42,8 +50,14 @@ const ogImage = `https://screenshot.source.in.th/image/_/creatorsgarten-videos/$
   <MainHorizontalPadding>
     <Breadcrumb
       parents={[{ title: '🎞️ Videos', href: '/videos' }]}
-      title={`${video.title}`}
+      title={`${video.title}${isDraft ? ' (Draft)' : ''}`}
     />
+    {isDraft && (
+      <div class="mt-4 rounded-md bg-yellow-100 p-4 text-yellow-800">
+        <p class="font-medium">⚠️ This is an unpublished draft video</p>
+        <p class="text-sm">This video is not yet published and is only visible with the preview parameter.</p>
+      </div>
+    )}
     <div
       class="my-8 grid grid-cols-[1fr] items-start gap-6 lg:grid-cols-[1fr_1fr] xl:grid-cols-[1fr_600px]"
     >
