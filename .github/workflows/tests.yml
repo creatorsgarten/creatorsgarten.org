@@ -12,7 +12,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
       - name: node
         uses: actions/setup-node@v4
         with:
@@ -32,7 +32,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
       - name: node
         uses: actions/setup-node@v4
         with:
