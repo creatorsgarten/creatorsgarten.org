@@ -40,8 +40,8 @@
     "nanostores": "0.11.4",
     "ofetch": "1.4.1",
     "qrcode": "1.5.4",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "react-iconify-icon-wrapper": "0.0.3",
     "sitemap": "8.0.0",
     "subtitle": "4.2.1",
@@ -76,8 +76,8 @@
   },
   "pnpm": {
     "overrides": {
-      "react": "19.0.0",
-      "react-dom": "19.0.0"
+      "react": "19.1.0",
+      "react-dom": "19.1.0"
     },
     "onlyBuiltDependencies": [
       "esbuild",
