@@ -60,7 +60,7 @@
     "@types/lodash": "4.17.16",
     "@types/qrcode": "1.5.5",
     "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.1",
+    "@types/react-dom": "19.1.2",
     "@types/youtube": "0.1.0",
     "astro": "5.6.1",
     "astro-seo": "0.8.4",
