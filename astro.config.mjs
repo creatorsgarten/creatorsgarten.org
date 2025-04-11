@@ -29,7 +29,7 @@ export default defineConfig({
         access: 'public', 
         default: 'https://wiki.creatorsgarten.org' 
       }),
-      G0_HOSTNAME: envField.string({ context: 'server', access: 'public' }),
+      G0_HOSTNAME: envField.string({ context: 'server', access: 'secret' }),
       
       // API Credentials
       RIFFY_CREDENTIALS: envField.string({ context: 'server', access: 'secret' }),
@@ -40,8 +40,7 @@ export default defineConfig({
       DISCORD_CLIENT_SECRET: envField.string({ context: 'server', access: 'secret' }),
       DISCORD_NOTIFY_WEBHOOK_URL: envField.string({ 
         context: 'server', 
-        access: 'secret', 
-        optional: true 
+        access: 'secret',
       }),
       
       // GitHub
