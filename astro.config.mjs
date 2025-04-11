@@ -32,7 +32,7 @@ export default defineConfig({
       G0_HOSTNAME: envField.string({ context: 'server', access: 'secret' }),
       
       // API Credentials
-      RIFFY_CREDENTIALS: envField.string({ context: 'server', access: 'secret' }),
+      RIFFY_API_CREDENTIALS: envField.string({ context: 'server', access: 'secret' }),
       G0_CREDENTIALS: envField.string({ context: 'server', access: 'secret' }),
       
       // Discord
