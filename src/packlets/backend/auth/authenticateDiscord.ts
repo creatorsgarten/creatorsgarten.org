@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb'
+import { DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET } from 'astro:env/server'
 
 import { collections } from '$constants/mongo'
-import { discordClient } from '$constants/secrets/discordClient'
 
 import { getAuthenticatedUser } from './getAuthenticatedUser'
 import { finalizeAuthentication } from './finalizeAuthentication'
@@ -40,8 +40,8 @@ export const authenticateDiscord = async (
       {
         method: 'POST',
         body: Object.entries({
-          client_id: discordClient.id,
-          client_secret: discordClient.secret,
+          client_id: DISCORD_CLIENT_ID,
+          client_secret: DISCORD_CLIENT_SECRET,
           code: code,
           redirect_uri: 'https://creatorsgarten.org/auth/callback',
           grant_type: 'authorization_code',

@@ -1,10 +1,8 @@
+import { BACKEND_URL, JWT_PRIVATE_KEY } from 'astro:env/server'
 import { createTRPCProxyClient, httpLink } from '@trpc/client'
 
 import { type AppRouter, appRouter } from '$backend'
 import { localLink } from './localLink'
-
-import { privateKey } from '$constants/secrets/privateKey'
-import { backendUrl } from '$constants/secrets/backendUrl'
 
 import type { AstroGlobal } from 'astro'
 
@@ -23,10 +21,10 @@ export function getApiBackend(Astro: Pick<AstroGlobal, 'request'>) {
 function createProxyClient(token: string | undefined) {
   return createTRPCProxyClient<AppRouter>({
     links: [
-      privateKey
+      JWT_PRIVATE_KEY.replaceAll(/\\n/g, '\n')
         ? localLink(appRouter, { authToken: token })
         : httpLink({
-            url: backendUrl || 'https://creatorsgarten.org/api/backend',
+            url: BACKEND_URL || 'https://creatorsgarten.org/api/backend',
             headers: token ? { authorization: `Bearer ${token}` } : {},
           }),
     ],

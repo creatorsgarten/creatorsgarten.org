@@ -3,7 +3,7 @@ import { createPrivateKey, createPublicKey } from 'crypto'
 import { exportJWK } from 'jose'
 import { z } from 'zod'
 
-import { privateKey } from '$constants/secrets/privateKey'
+import { JWT_PRIVATE_KEY } from 'astro:env/server'
 
 import { authenticateDiscord } from './auth/authenticateDiscord'
 import { authenticateEventpopUser } from './auth/authenticateEventpopUser'
@@ -115,7 +115,7 @@ export const appRouter = t.router({
       }),
 
     getPublicKeys: t.procedure.query(async () => {
-      const privateKeyObj = createPrivateKey(privateKey)
+      const privateKeyObj = createPrivateKey(JWT_PRIVATE_KEY)
       const publicKeyObj = createPublicKey(privateKeyObj)
       return [{ ...(await exportJWK(publicKeyObj)), kid: 'riffy1' }]
     }),

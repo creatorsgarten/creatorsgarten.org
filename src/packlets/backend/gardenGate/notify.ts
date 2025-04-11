@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 
-import { notifyDiscord } from '$constants/secrets/notifyDiscord'
+import { DISCORD_NOTIFY_WEBHOOK_URL } from 'astro:env/server'
 
 import type { User } from '$types/mongo/User'
 
@@ -11,7 +11,7 @@ dayjs.extend(timezone)
 
 export const notify = async (user: User, door: string, time: Date) => {
   await Promise.all([
-    fetch(notifyDiscord, {
+    fetch(DISCORD_NOTIFY_WEBHOOK_URL, {
       method: 'POST',
       headers: {
         Accepts: 'application/json',

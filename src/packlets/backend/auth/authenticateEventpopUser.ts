@@ -1,7 +1,7 @@
 import { finalizeAuthentication } from './finalizeAuthentication'
+import { EVENTPOP_CLIENT_ID, EVENTPOP_CLIENT_SECRET } from 'astro:env/server'
 
 import { collections } from '$constants/mongo'
-import { eventpopClient } from '$constants/secrets/eventpopClient'
 
 import { getEventpopUser } from '$backend/auth/getEventpopUser'
 import { getEventpopUserTickets } from '$backend/auth/getEventpopUserTickets'
@@ -24,8 +24,8 @@ export const authenticateEventpopUser = async (code: string) => {
       {
         method: 'POST',
         body: Object.entries({
-          client_id: eventpopClient.id,
-          client_secret: eventpopClient.secret,
+          client_id: EVENTPOP_CLIENT_ID,
+          client_secret: EVENTPOP_CLIENT_SECRET,
           code: code,
           redirect_uri:
             'https://dtinth.github.io/oauth_gateway/eventpop_callback.html',

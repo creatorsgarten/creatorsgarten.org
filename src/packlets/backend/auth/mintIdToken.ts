@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import { privateKey } from '$constants/secrets/privateKey'
+import { JWT_PRIVATE_KEY } from 'astro:env/server'
 import { getJoinedEvents } from '../events/getJoinedEvents'
 import type { GitHubConnection } from '$types/mongo/User/GitHubConnection'
 import type { DiscordConnection } from '$types/mongo/User/DiscordConnection'
@@ -43,13 +43,13 @@ export interface AuthgartenOidcClaims {
     /** Reference code */
     refCode: string
 
-    /** Ticket holder’s first name */
+    /** Ticket holder's first name */
     firstName: string
 
-    /** Ticket holder’s last name */
+    /** Ticket holder's last name */
     lastName: string
 
-    /** Ticket holder’s email address */
+    /** Ticket holder's email address */
     email: string
 
     /** Ticket type */
@@ -112,7 +112,7 @@ export async function mintIdToken(
       }))
   }
 
-  const idToken = jwt.sign(claims, privateKey, {
+  const idToken = jwt.sign(claims, JWT_PRIVATE_KEY, {
     algorithm: 'RS256',
 
     // https://openid.net/specs/openid-connect-basic-1_0.html#IDToken

@@ -1,8 +1,7 @@
 ---
 import Blank from '$layouts/blank.astro'
 import CSRF from 'csrf'
-
-import { csrfSecret } from '$constants/secrets/csrfSecret'
+import { CSRF_SECRET } from 'astro:env/server'
 
 const code = Astro.url.searchParams.get('code') ?? ''
 const state = Astro.url.searchParams.get('state') ?? ''
@@ -35,7 +34,7 @@ try {
   }
 
   // verify csrf that it comes from our platform
-  if (!new CSRF().verify(csrfSecret, csrfToken))
+  if (!new CSRF().verify(CSRF_SECRET, csrfToken))
     throw new Error('csrf-verification-fail')
 
   // handle authtication from here

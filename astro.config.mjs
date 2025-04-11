@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig, envField } from 'astro/config'
 import 'dotenv/config'
 
 /* Adapter */
@@ -20,6 +20,51 @@ export default defineConfig({
     mode: 'middleware',
   }),
   prefetch: true,
+  env: {
+    schema: {
+      // Backend URLs
+      BACKEND_URL: envField.string({ context: 'server', access: 'public', optional: true }),
+      CONTENT_API_URL: envField.string({ 
+        context: 'server', 
+        access: 'public', 
+        default: 'https://wiki.creatorsgarten.org' 
+      }),
+      G0_HOSTNAME: envField.string({ context: 'server', access: 'public' }),
+      
+      // API Credentials
+      RIFFY_CREDENTIALS: envField.string({ context: 'server', access: 'secret' }),
+      G0_CREDENTIALS: envField.string({ context: 'server', access: 'secret' }),
+      
+      // Discord
+      DISCORD_CLIENT_ID: envField.string({ context: 'server', access: 'secret' }),
+      DISCORD_CLIENT_SECRET: envField.string({ context: 'server', access: 'secret' }),
+      DISCORD_NOTIFY_WEBHOOK_URL: envField.string({ 
+        context: 'server', 
+        access: 'secret', 
+        optional: true 
+      }),
+      
+      // GitHub
+      GITHUB_CLIENT_ID: envField.string({ context: 'server', access: 'secret' }),
+      GITHUB_CLIENT_SECRET: envField.string({ context: 'server', access: 'secret' }),
+      
+      // Eventpop
+      EVENTPOP_CLIENT_ID: envField.string({ context: 'server', access: 'secret' }),
+      EVENTPOP_CLIENT_SECRET: envField.string({ context: 'server', access: 'secret' }),
+      
+      // Database
+      MONGO_USER: envField.string({ context: 'server', access: 'secret', optional: true }),
+      MONGO_PASS: envField.string({ context: 'server', access: 'secret', optional: true }),
+      MONGO_ADDRESS: envField.string({ context: 'server', access: 'secret' }),
+      
+      // Security
+      CSRF_SECRET: envField.string({ context: 'server', access: 'secret' }),
+      JWT_PRIVATE_KEY: envField.string({ context: 'server', access: 'secret' }),
+      
+      // Sentry
+      SENTRY_AUTH_TOKEN: envField.string({ context: 'server', access: 'secret', optional: true }),
+    }
+  },
   integrations: [
     react(),
     svelte(),

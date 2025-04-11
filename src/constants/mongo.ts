@@ -1,6 +1,5 @@
 import { MongoClient } from 'mongodb'
-
-import { mongoAddress } from './secrets/mongoAddress'
+import { MONGO_ADDRESS } from 'astro:env/server'
 
 import type { DeviceAuthorization } from '$types/mongo/DeviceAuthorization'
 import type { GardenAccess } from '$types/mongo/GardenAccess'
@@ -11,12 +10,12 @@ const globalMongo = global as unknown as {
   mongo?: MongoClient
 }
 
-export const mongo = globalMongo.mongo || new MongoClient(mongoAddress)
+export const mongo = globalMongo.mongo || new MongoClient(MONGO_ADDRESS)
 
 if (!import.meta.env.PROD) globalMongo.mongo = mongo
 
 // We can call `.db` and `.collection` as much as we like.
-// Until we actually make a query, it won’t connect to the database.
+// Until we actually make a query, it won't connect to the database.
 
 const db = mongo.db('creatorsgarten-org')
 

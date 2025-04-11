@@ -1,19 +1,16 @@
 import CSRF from 'csrf'
-
-import { csrfSecret } from '$constants/secrets/csrfSecret'
-import { discordClient } from '$constants/secrets/discordClient'
-
 import type { APIRoute } from 'astro'
+import { CSRF_SECRET, DISCORD_CLIENT_ID } from 'astro:env/server'
 
 export const GET: APIRoute = async ({ request, redirect }) => {
   const csrfInstance = new CSRF()
   const redirectHint =
     new URL(request.url).hostname === 'localhost' ? 'localhost3000' : 'new'
-  const csrfToken = csrfInstance.create(csrfSecret ?? 'demodash')
+  const csrfToken = csrfInstance.create(CSRF_SECRET ?? 'demodash')
 
   const loginURI = `https://discord.com/api/oauth2/authorize?${new URLSearchParams(
     {
-      client_id: discordClient.id ?? '',
+      client_id: DISCORD_CLIENT_ID ?? '',
       redirect_uri: 'https://creatorsgarten.org/auth/callback',
       state: `${redirectHint}!/dashboard!discord-${csrfToken}`,
       response_type: 'code',

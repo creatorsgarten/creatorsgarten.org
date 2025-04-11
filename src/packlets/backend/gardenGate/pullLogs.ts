@@ -1,7 +1,6 @@
 import _ from 'lodash'
+import { G0_HOSTNAME, G0_CREDENTIALS } from 'astro:env/server'
 
-import { g0Hostname } from '$constants/secrets/g0Hostname'
-import { g0Credentials } from '$constants/secrets/g0Credentials.ts'
 import { collections } from '$constants/mongo'
 
 import { getServiceAccountIdToken } from './getServiceAccountIdToken'
@@ -18,10 +17,10 @@ interface PullResponse {
 export const pullLogs = async () => {
   const idToken = await getServiceAccountIdToken(
     'https://github.com/creatorsgarten/garden-gate',
-    g0Credentials
+    G0_CREDENTIALS
   )
 
-  const pullResponse = await fetch(g0Hostname + '/access/log', {
+  const pullResponse = await fetch(G0_HOSTNAME + '/access/log', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb'
 
-import { githubClient } from '$constants/secrets/githubClient'
+import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from 'astro:env/server'
 import { collections } from '$constants/mongo'
 
 import { getAuthenticatedUser } from './getAuthenticatedUser'
@@ -35,8 +35,8 @@ export const authenticateGitHub = async (
       {
         method: 'POST',
         body: Object.entries({
-          client_id: githubClient.id,
-          client_secret: githubClient.secret,
+          client_id: GITHUB_CLIENT_ID,
+          client_secret: GITHUB_CLIENT_SECRET,
           code: code,
           redirect_uri: 'https://creatorsgarten.org/auth/callback',
         })

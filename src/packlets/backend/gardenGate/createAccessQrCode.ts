@@ -1,15 +1,14 @@
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import _ from 'lodash'
+import { G0_HOSTNAME, G0_CREDENTIALS } from 'astro:env/server'
 
 import { collections } from '$constants/mongo'
-import { g0Hostname } from '$constants/secrets/g0Hostname'
 
 import { checkAccess } from './checkAccess'
 import { getServiceAccountIdToken } from './getServiceAccountIdToken'
 
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import { g0Credentials } from '$constants/secrets/g0Credentials.ts'
 
 const GardenZeroResponse = z.object({
   accessKey: z.string(),
@@ -63,9 +62,9 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
   try {
     const idToken = await getServiceAccountIdToken(
       'https://github.com/creatorsgarten/garden-gate',
-      g0Credentials
+      G0_CREDENTIALS
     )
-    const gardenZeroResponse = await fetch(g0Hostname + '/access/generate', {
+    const gardenZeroResponse = await fetch(G0_HOSTNAME + '/access/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

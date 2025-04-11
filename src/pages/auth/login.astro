@@ -2,12 +2,11 @@
 import CSRF from 'csrf'
 
 import { QrSignIn } from '$components/auth/qrSignIn'
-import { csrfSecret } from '$constants/secrets/csrfSecret'
-import { eventpopClient } from '$constants/secrets/eventpopClient'
 import { getFeatureFlags } from '$functions/getFeatureFlags'
 import { getWebsiteConfig } from '$functions/getWebsiteConfig'
 import Blank from '$layouts/blank.astro'
 import type { AstroGlobal } from 'astro'
+import { CSRF_SECRET, EVENTPOP_CLIENT_ID } from 'astro:env/server'
 
 const generateLoginUri = async ({ url }: AstroGlobal) => {
   const redirectDestination = url.searchParams.get('dest') ?? '/'
@@ -15,12 +14,12 @@ const generateLoginUri = async ({ url }: AstroGlobal) => {
   const csrfInstance = new CSRF()
   const redirectHint =
     url.hostname === 'localhost' ? `localhost${url.port}` : 'new'
-  const csrfToken = csrfInstance.create(csrfSecret ?? 'demodash')
+  const csrfToken = csrfInstance.create(CSRF_SECRET ?? 'demodash')
   const state = `${redirectHint}!${redirectDestination}!eventpop-${csrfToken}`
 
   const loginUri = `https://www.eventpop.me/oauth/authorize?${new URLSearchParams(
     {
-      client_id: eventpopClient.id ?? '',
+      client_id: EVENTPOP_CLIENT_ID ?? '',
       redirect_uri:
         'https://dtinth.github.io/oauth_gateway/eventpop_callback.html',
       response_type: 'code',
