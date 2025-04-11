@@ -18,7 +18,7 @@ COPY astro.config.mjs tailwind.config.mjs tsconfig.json ./
 COPY public ./public
 COPY src ./src
 
-RUN pnpm build
+RUN pnpm astro sync && pnpm build
 
 # ? -------------------------
 

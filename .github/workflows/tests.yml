@@ -20,6 +20,8 @@ jobs:
           cache: pnpm
       - name: install
         run: pnpm -r i --frozen-lockfile
+      - name: sync
+        run: pnpm astro sync
       - name: check-tsc
         run: pnpm tsc
       - name: check-astro
