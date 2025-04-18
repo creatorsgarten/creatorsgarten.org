@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 
-import { collections } from '$constants/mongo'
 import { maxSessionAge } from '$constants/maxSessionAge'
+import { collections } from '$constants/mongo'
 import { JWT_PRIVATE_KEY } from 'astro:env/server'
 
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
@@ -40,6 +40,7 @@ export const finalizeAuthentication = async (uid: number) => {
     })
     return { idToken }
   } catch (e) {
+    console.error('Error signing JWT:', e)
     throw new Error('unable-to-sign')
   }
 }
