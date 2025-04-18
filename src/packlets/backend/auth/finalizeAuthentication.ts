@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 
-import { collections } from '$constants/mongo'
 import { maxSessionAge } from '$constants/maxSessionAge'
+import { collections } from '$constants/mongo'
 import { JWT_PRIVATE_KEY } from 'astro:env/server'
 
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
@@ -25,21 +25,26 @@ export const finalizeAuthentication = async (uid: number) => {
   }
 
   try {
-    const idToken = jwt.sign(payload, JWT_PRIVATE_KEY, {
-      algorithm: 'RS256',
+    const idToken = jwt.sign(
+      payload,
+      JWT_PRIVATE_KEY.replaceAll(/\\n/g, '\n'),
+      {
+        algorithm: 'RS256',
 
-      // https://openid.net/specs/openid-connect-basic-1_0.html#IDToken
-      issuer: 'https://creatorsgarten.org',
-      audience: 'https://creatorsgarten.org',
-      expiresIn: maxSessionAge,
+        // https://openid.net/specs/openid-connect-basic-1_0.html#IDToken
+        issuer: 'https://creatorsgarten.org',
+        audience: 'https://creatorsgarten.org',
+        expiresIn: maxSessionAge,
 
-      header: {
-        alg: 'RS256',
-        kid: 'riffy1',
-      },
-    })
+        header: {
+          alg: 'RS256',
+          kid: 'riffy1',
+        },
+      }
+    )
     return { idToken }
   } catch (e) {
+    console.error('Error signing JWT:', e)
     throw new Error('unable-to-sign')
   }
 }
