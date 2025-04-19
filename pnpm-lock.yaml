@@ -43,11 +43,11 @@ importers:
         specifier: 5.72.2
         version: 5.72.2(react@19.1.0)
       '@trpc/client':
-        specifier: 10.45.2
-        version: 10.45.2(@trpc/server@10.45.2)
+        specifier: 11.1.0
+        version: 11.1.0(@trpc/server@11.1.0(typescript@5.8.3))(typescript@5.8.3)
       '@trpc/server':
-        specifier: 10.45.2
-        version: 10.45.2
+        specifier: 11.1.0
+        version: 11.1.0(typescript@5.8.3)
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -1634,13 +1634,19 @@ packages:
       '@tiptap/core': ^2.7.0
       '@tiptap/pm': ^2.7.0
 
-  '@trpc/client@10.45.2':
-    resolution: {integrity: sha512-ykALM5kYWTLn1zYuUOZ2cPWlVfrXhc18HzBDyRhoPYN0jey4iQHEFSEowfnhg1RvYnrAVjNBgHNeSAXjrDbGwg==}
+  '@trpc/client@11.1.0':
+    resolution: {integrity: sha512-Q3pL4p7AddxI/ZJTEFo1utKSdasDFjZPECIPsKDkthEt52k530JkYVltTdLkYFKrNWXKKBo8MN7NwchelczoRw==}
     peerDependencies:
-      '@trpc/server': 10.45.2
+      '@trpc/server': 11.1.0
+      typescript: '>=5.7.2'
 
   '@trpc/server@10.45.2':
     resolution: {integrity: sha512-wOrSThNNE4HUnuhJG6PfDRp4L2009KDVxsd+2VYH8ro6o/7/jwYZ8Uu5j+VaW+mOmc8EHerHzGcdbGNQSAUPgg==}
+
+  '@trpc/server@11.1.0':
+    resolution: {integrity: sha512-uAJ7ikejeujVkf53XFJ/0W8nr7bDjul+Szk5Rsepq97Hb/WS1RkRXdyX4KqAyCE9b1vDFCJVJwSxiIZdRtbTZQ==}
+    peerDependencies:
+      typescript: '>=5.7.2'
 
   '@types/aws-lambda@8.10.115':
     resolution: {integrity: sha512-kCZuFXKLV3y8NjSoaD5+qKTpRWvPz3uh3W/u1uwlw3Mg+MtaStg1NWgjAwUXo/VJDb6n6KF1ljykFNlNwEJ53Q==}
@@ -6030,11 +6036,16 @@ snapshots:
       '@tiptap/core': 2.11.5(@tiptap/pm@2.11.5)
       '@tiptap/pm': 2.11.5
 
-  '@trpc/client@10.45.2(@trpc/server@10.45.2)':
+  '@trpc/client@11.1.0(@trpc/server@11.1.0(typescript@5.8.3))(typescript@5.8.3)':
     dependencies:
-      '@trpc/server': 10.45.2
+      '@trpc/server': 11.1.0(typescript@5.8.3)
+      typescript: 5.8.3
 
   '@trpc/server@10.45.2': {}
+
+  '@trpc/server@11.1.0(typescript@5.8.3)':
+    dependencies:
+      typescript: 5.8.3
 
   '@types/aws-lambda@8.10.115': {}
 
