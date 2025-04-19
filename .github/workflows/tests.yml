@@ -58,6 +58,24 @@ jobs:
         run: pnpm playwright install --with-deps
       - name: env
         run: cp .env.example .env
+      - name: jwt
+        run: |
+          # Generate RSA private key (4096 bits, no passphrase)
+          ssh-keygen -t rsa -b 4096 -m PEM -f jwt_private.key -q -N ""
+          
+          # Generate public key from the private key
+          openssl rsa -in jwt_private.key -pubout -outform PEM -out jwt_public.key
+          
+          # Convert keys to raw strings with escaped newlines for .env file
+          PRIVATE_KEY=$(cat jwt_private.key | awk '{printf "%s\\n", $0}')
+          PUBLIC_KEY=$(cat jwt_public.key | awk '{printf "%s\\n", $0}')
+          
+          # Update .env file with the keys
+          sed -i "s|JWT_PRIVATE_KEY=\"\"|JWT_PRIVATE_KEY=\"$PRIVATE_KEY\"|" .env
+          sed -i "s|JWT_PUBLIC_KEY=\"\"|JWT_PUBLIC_KEY=\"$PUBLIC_KEY\"|" .env
+          
+          # Cleanup key files
+          rm jwt_private.key jwt_public.key
       - name: tests
         env:
           PORT: 3000
