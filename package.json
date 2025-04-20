@@ -22,7 +22,7 @@
     "@nanostores/persistent": "1.0.0",
     "@nanostores/react": "1.0.0",
     "@sentry/astro": "9.13.0",
-    "@tanstack/react-query": "5.72.2",
+    "@tanstack/react-query": "5.74.4",
     "@trpc/client": "10.45.2",
     "@trpc/server": "10.45.2",
     "clsx": "2.1.1",
