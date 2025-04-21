@@ -28,8 +28,8 @@ importers:
         specifier: 8.1.1
         version: 8.1.1
       '@nanostores/logger':
-        specifier: 0.4.0
-        version: 0.4.0(nanostores@0.11.4)
+        specifier: 1.0.0
+        version: 1.0.0(nanostores@0.11.4)
       '@nanostores/persistent':
         specifier: 1.0.0
         version: 1.0.0(nanostores@0.11.4)
@@ -742,11 +742,11 @@ packages:
   '@mongodb-js/saslprep@1.2.0':
     resolution: {integrity: sha512-+ywrb0AqkfaYuhHs6LxKWgqbh3I72EpEgESCw37o+9qPx9WTCkgDm2B+eMrwehGtHBWHFU4GXvnSCNiFhhausg==}
 
-  '@nanostores/logger@0.4.0':
-    resolution: {integrity: sha512-8ipUQgX9udy3Uc9X9b7CFDZQR7DAKa+ZbZlIOcs3F0F1nDEYejffV2UoTQ1oYQ1F+DTXrNZIyZWhw+IWuSqvRQ==}
-    engines: {node: ^18.0.0 || >=20.0.0}
+  '@nanostores/logger@1.0.0':
+    resolution: {integrity: sha512-QPqkNJWKO9Ya9ne8TeKq8Sv+yZDbgFos5IMCj+mmDxUeUGDqtC7o+YStibECI2B2TnVNF/iuz/Kt3Q64RGJbOQ==}
+    engines: {node: ^20.0.0 || >=22.0.0}
     peerDependencies:
-      nanostores: '>=0.10.2'
+      nanostores: ^0.10.0 || ^0.11.0 || ^1.0.0
 
   '@nanostores/persistent@1.0.0':
     resolution: {integrity: sha512-iuucWTxcxSLwHvcxBTIAwofDc+KO7cw5EiQklAltJX6Ynx/CKTecOCUG76kF42yNnCZZQcMeuIcl99DkxekIig==}
@@ -5111,7 +5111,7 @@ snapshots:
     dependencies:
       sparse-bitfield: 3.0.3
 
-  '@nanostores/logger@0.4.0(nanostores@0.11.4)':
+  '@nanostores/logger@1.0.0(nanostores@0.11.4)':
     dependencies:
       nanostores: 0.11.4
 
