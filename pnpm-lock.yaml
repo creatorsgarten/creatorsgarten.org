@@ -82,8 +82,8 @@ importers:
         specifier: 10.1.0
         version: 10.1.0
       mongodb:
-        specifier: 6.15.0
-        version: 6.15.0(socks@2.7.1)
+        specifier: 6.16.0
+        version: 6.16.0(socks@2.7.1)
       nanostores:
         specifier: 1.0.1
         version: 1.0.1
@@ -3090,8 +3090,8 @@ packages:
   mongodb-connection-string-url@3.0.2:
     resolution: {integrity: sha512-rMO7CGo/9BFwyZABcKAWL8UJwH/Kc2x0g72uhDWzG48URRax5TCIcJ7Rc3RZqffZzO/Gwff/jyKwCU9TN8gehA==}
 
-  mongodb@6.15.0:
-    resolution: {integrity: sha512-ifBhQ0rRzHDzqp9jAQP6OwHSH7dbYIQjD3SbJs9YYk9AikKEettW/9s/tbSFDTpXcRbF+u1aLrhHxDFaYtZpFQ==}
+  mongodb@6.16.0:
+    resolution: {integrity: sha512-D1PNcdT0y4Grhou5Zi/qgipZOYeWrhLEpk33n3nm6LGtz61jvO88WlrWCK/bigMjpnOdAUKKQwsGIl0NtWMyYw==}
     engines: {node: '>=16.20.1'}
     peerDependencies:
       '@aws-sdk/credential-providers': ^3.188.0
@@ -6663,7 +6663,7 @@ snapshots:
       json-buffer: 3.0.1
       keyv: 4.5.2
       liquidjs: 10.7.1
-      mongodb: 6.15.0(socks@2.7.1)
+      mongodb: 6.16.0(socks@2.7.1)
       octokit: 3.2.1
       openapi-trpc: 0.1.2(@trpc/server@10.45.2)(zod@3.24.3)
       p-memoize: 7.1.1(typescript@5.8.3)
@@ -7928,7 +7928,7 @@ snapshots:
       '@types/whatwg-url': 11.0.5
       whatwg-url: 14.1.1
 
-  mongodb@6.15.0(socks@2.7.1):
+  mongodb@6.16.0(socks@2.7.1):
     dependencies:
       '@mongodb-js/saslprep': 1.2.0
       bson: 6.10.3
