@@ -1,9 +1,9 @@
-import jwt from 'jsonwebtoken'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import { JWT_PRIVATE_KEY } from 'astro:env/server'
-import { getJoinedEvents } from '../events/getJoinedEvents'
-import type { GitHubConnection } from '$types/mongo/User/GitHubConnection'
 import type { DiscordConnection } from '$types/mongo/User/DiscordConnection'
+import type { GitHubConnection } from '$types/mongo/User/GitHubConnection'
+import { JWT_PRIVATE_KEY } from 'astro:env/server'
+import jwt from 'jsonwebtoken'
+import { getJoinedEvents } from '../events/getJoinedEvents'
 
 /**
  * Data contained in ID token returned by Authgarten OIDC provider.
@@ -112,7 +112,7 @@ export async function mintIdToken(
       }))
   }
 
-  const idToken = jwt.sign(claims, JWT_PRIVATE_KEY, {
+  const idToken = jwt.sign(claims, JWT_PRIVATE_KEY.replaceAll(/\\n/g, '\n'), {
     algorithm: 'RS256',
 
     // https://openid.net/specs/openid-connect-basic-1_0.html#IDToken
