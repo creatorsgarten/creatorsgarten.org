@@ -1,0 +1,20 @@
+---
+import { Icon } from 'react-iconify-icon-wrapper'
+
+export interface Props {
+  href?: string
+  label?: string
+}
+
+const { href = '/dashboard', label = 'Back to Dashboard' } = Astro.props
+---
+
+<a
+  href={href}
+  class="mb-6 inline-flex items-center text-neutral-600 hover:text-neutral-900"
+>
+  <Icon icon="heroicons:arrow-left" className="mr-1" />
+  <span>{label}</span>
+</a>
+
+<script></script>

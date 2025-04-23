@@ -1,8 +1,11 @@
 ---
-import { G0_HOSTNAME, G0_CREDENTIALS } from 'astro:env/server'
+import { G0_CREDENTIALS, G0_HOSTNAME } from 'astro:env/server'
 
-import BaseLayout from '$layouts/base.astro'
 import { getServiceAccountIdToken } from '$backend/gardenGate/getServiceAccountIdToken'
+import Head from '$commons/head.astro'
+import Breadcrumb from '$components/breadcrumb.astro'
+import BaseLayout from '$layouts/base.astro'
+import { Icon } from 'react-iconify-icon-wrapper'
 
 interface Log {
   _id: string
@@ -34,13 +37,50 @@ const gardenZeroResponse: Log[] = await fetch(G0_HOSTNAME + '/error-log', {
 })
 ---
 
-<BaseLayout class="mx-auto max-w-7xl space-y-6 *:px-6">
-  {
-    gardenZeroResponse.map(log => (
-      <div class="space-y-4 rounded-xl bg-red-100 p-4 text-red-700">
-        <p class="font-medium">{log.time}</p>
-        <pre class="break-all text-sm">{log.message}</pre>
-      </div>
-    ))
-  }
+<Head title="Error Logs | Garden Zero | Dashboard" />
+
+<BaseLayout class="mx-auto mt-8 max-w-7xl space-y-6 *:px-6">
+  <Breadcrumb
+    parents={[
+      { title: 'Dashboard', href: '/dashboard' },
+      { title: 'Garden Zero', href: '/dashboard/g0' },
+    ]}
+    title="Error Logs"
+  />
+
+  <div class="mx-auto max-w-3xl">
+    <div class="rounded-2xl border border-neutral-300 bg-white p-6">
+      <p class="mb-4 text-neutral-700">
+        These are error logs from the Garden Zero system. They can help diagnose
+        any access issues.
+      </p>
+
+      {
+        gardenZeroResponse.length > 0 ? (
+          <div class="space-y-4">
+            {gardenZeroResponse.map(log => (
+              <div class="rounded-md border border-red-200 bg-red-50 p-4 text-red-700">
+                <p class="mb-1 font-medium">
+                  {new Date(log.time).toLocaleString()}
+                </p>
+                <pre class="overflow-x-auto text-sm break-all">
+                  {log.message}
+                </pre>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="py-8 text-center">
+            <div class="mb-3 text-4xl text-neutral-400">
+              <Icon icon="heroicons:check-circle" />
+            </div>
+            <h3 class="mb-1 text-lg font-medium">No Errors</h3>
+            <p class="text-neutral-600">
+              The Garden Zero system is running without errors.
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </div>
 </BaseLayout>

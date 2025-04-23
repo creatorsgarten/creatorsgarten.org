@@ -5,7 +5,12 @@ import { collections } from '$constants/mongo'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import { Role } from '$types/Role'
 
-export const checkAccess = async (user: AuthenticatedUser | null) => {
+export const checkAccess = async (
+  user: AuthenticatedUser | null
+): Promise<{
+  granted: boolean
+  reason?: string
+}> => {
   if (!user) {
     return { granted: false, reason: 'You are not logged in.' }
   }

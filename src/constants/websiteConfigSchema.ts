@@ -34,6 +34,8 @@ export const websiteConfigSchema = z.object({
         name: z.string(),
         description: z.string(),
         url: z.string(),
+        icon: z.string().optional(),
+        image: z.string().optional(),
       })
     ),
   }),

@@ -1,5 +1,6 @@
 ---
 import Head from '$commons/head.astro'
+import Breadcrumb from '$components/breadcrumb.astro'
 import BaseLayout from '$layouts/base.astro'
 import { Icon } from 'react-iconify-icon-wrapper'
 
@@ -19,77 +20,85 @@ const signature = signMessage
   : ''
 ---
 
-<Head title="Sign a Message" />
+<Head title="Sign | Dashboard" />
 
-<BaseLayout class="mx-auto max-w-7xl space-y-6 *:px-6">
-  <div class="-mx-6 max-w-6xl sm:mx-auto">
-    <div class="px-6 pb-10">
-      <h1 class="mb-4 text-3xl font-medium">Sign message</h1>
+<BaseLayout class="mx-auto mt-8 max-w-7xl space-y-6 *:px-6">
+  <Breadcrumb
+    parents={[{ title: 'Dashboard', href: '/dashboard' }]}
+    title="Sign Message"
+  />
+
+  <div class="mx-auto max-w-3xl">
+    <div class="rounded-2xl border border-neutral-300 bg-white p-6">
+      <p class="mb-4 text-neutral-700">
+        Use this tool to digitally sign a message with your Creatorsgarten
+        identity.
+      </p>
 
       <form method="get">
-        <div class="flex flex-col gap-3">
-          <div class="flex gap-3">
-            <label class="w-24 text-neutral-600">User</label>
-            <div class="flex-1">
-              <input
-                type="text"
-                class="w-full"
-                value={`${user.sub} (${user.name})`}
-                readonly
-              />
-            </div>
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col gap-1">
+            <label class="text-sm text-neutral-600">User</label>
+            <input
+              type="text"
+              class="w-full rounded-md border border-neutral-300 bg-neutral-50 px-3 py-2"
+              value={`${user.sub} (${user.name})`}
+              readonly
+            />
           </div>
-          <div class="flex gap-3">
-            <label class="w-24 text-neutral-600" for="signMessage"
+
+          <div class="flex flex-col gap-1">
+            <label class="text-sm text-neutral-600" for="signMessage"
               >Message</label
             >
-            <div class="flex-1">
-              <input
-                type="text"
-                name="signMessage"
-                class={'w-full ' +
-                  (signature ? '' : 'border rounded-sm border-neutral-400')}
-                value={signMessage}
-                id="signMessage"
-                readonly={!!signature}
-              />
-            </div>
+            <input
+              type="text"
+              name="signMessage"
+              class={`w-full rounded-md border px-3 py-2 ${
+                signature
+                  ? 'border-neutral-300 bg-neutral-50'
+                  : 'border-neutral-400'
+              }`}
+              value={signMessage}
+              id="signMessage"
+              readonly={!!signature}
+            />
           </div>
+
           {
             !!signature && (
-              <div class="flex gap-3">
-                <label class="w-24 text-neutral-600" for="signature">
+              <div class="flex flex-col gap-1">
+                <label class="text-sm text-neutral-600" for="signature">
                   Signature
                 </label>
-                <div class="flex-1">
-                  <input
-                    type="text"
-                    class={'w-full rounded-sm border border-green-400'}
-                    value={signature}
-                    id="signature"
-                    readonly
-                  />
-                </div>
+                <input
+                  type="text"
+                  class="w-full rounded-md border border-green-400 bg-green-50 px-3 py-2"
+                  value={signature}
+                  id="signature"
+                  readonly
+                />
               </div>
             )
           }
-          <div class="flex items-baseline gap-3">
-            <div class="w-24"></div>
+
+          <div class="mt-2">
             {
               signature ? (
                 <button
                   type="button"
-                  class="rounded-md bg-[#1c1916] px-4 py-2 text-white"
-                  onclick={`navigator.clipboard.writeText('${signature}').then(r => this.querySelector('iconify-icon').setAttribute('icon', 'pixelarticons:check'))`}
+                  class="rounded-md bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
+                  onclick={`navigator.clipboard.writeText('${signature}').then(r => this.querySelector('.icon').setAttribute('icon', 'heroicons:check'))`}
                 >
-                  <Icon icon="pixelarticons:copy" inline />
+                  <Icon icon="heroicons:clipboard-document" className="mr-1" />
                   Copy signature
                 </button>
               ) : (
                 <button
                   type="submit"
-                  class="rounded-md bg-[#1c1916] px-4 py-2 text-white"
+                  class="rounded-md bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
                 >
+                  <Icon icon="heroicons:document-check" className="mr-1" />
                   Sign message
                 </button>
               )
@@ -97,6 +106,13 @@ const signature = signMessage
           </div>
         </div>
       </form>
+
+      <div class="mt-6 border-t pt-4 text-sm text-neutral-500">
+        <p>
+          Your signature is bound to your Creatorsgarten account and can be
+          verified by others.
+        </p>
+      </div>
     </div>
   </div>
 </BaseLayout>
