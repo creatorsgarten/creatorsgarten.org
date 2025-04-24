@@ -25,7 +25,7 @@ export const workingGroupNameSchema = z
 export const REQUIRED_CONNECTIONS = ['github', 'figma', 'google']
 
 // API representation types - explicitly defining what we expose through the API
-interface WorkingGroupPublicDTO {
+interface PublicWorkingGroupInformation {
   id: string
   name: string
   createdAt: string
@@ -43,15 +43,20 @@ interface WorkingGroupMemberDTO {
   profileSnapshot: ProfileSnapshot
 }
 
-interface WorkingGroupMemberViewDTO extends WorkingGroupPublicDTO {
+interface InviteKeyDTO {
+  key: string
+  enabled: boolean
+  createdAt: string
+  createdBy: string
+}
+
+interface WorkingGroupDetailedResponse {
+  publicWorkingGroupInformation: PublicWorkingGroupInformation
   isCurrentUserAdmin: boolean
-  admins: string[]
-  inviteKeys?: Array<{
-    key: string
-    enabled: boolean
-    createdAt: string
-    createdBy: string
-  }>
+  isCurrentUserMember: boolean
+  admins?: string[]
+  members?: WorkingGroupMemberDTO[]
+  inviteKeys?: InviteKeyDTO[]
 }
 
 interface WorkingGroupInviteViewDTO {
@@ -61,88 +66,79 @@ interface WorkingGroupInviteViewDTO {
 }
 
 /**
- * Get a working group by name - PUBLIC VERSION
- * Only returns non-sensitive information
+ * Get working group details with information based on user role
+ * 
+ * @param name Group name
+ * @param user Optional authenticated user (null for public view)
+ * @returns Combined working group information based on user's role
  */
-export async function getWorkingGroupByNamePublic(
-  name: string
-): Promise<WorkingGroupPublicDTO | null> {
+export async function getWorkingGroupWithDetails(
+  name: string,
+  user?: AuthenticatedUser | null
+): Promise<WorkingGroupDetailedResponse | null> {
   const group = await collections.workingGroups.findOne({
     name: name.toLowerCase(),
   })
 
   if (!group) return null
 
-  // Calculate member counts
+  // Get member information
   const members = await collections.workingGroupMembers
     .find({ groupId: group._id })
     .toArray()
 
+  // Calculate counts
   const adminCount = group.admins.length
-  const memberCount = members.length - adminCount
-
-  // Return only public information in a well-defined format
-  return {
-    id: group._id.toString(),
-    name: group.name,
-    createdAt: group.createdAt.toISOString(),
-    memberCounts: {
-      admins: adminCount,
-      members: memberCount,
-      total: members.length,
+  const memberCount = members.length
+  
+  // Default to public view with minimal information
+  const result: WorkingGroupDetailedResponse = {
+    publicWorkingGroupInformation: {
+      id: group._id.toString(),
+      name: group.name,
+      createdAt: group.createdAt.toISOString(),
+      memberCounts: {
+        admins: adminCount,
+        members: memberCount - adminCount,
+        total: memberCount,
+      },
     },
+    isCurrentUserAdmin: false,
+    isCurrentUserMember: false
   }
-}
-
-/**
- * Get a working group by name with details appropriate for the user's role
- */
-export async function getWorkingGroupForUser(
-  name: string,
-  userId: ObjectId
-): Promise<WorkingGroupMemberViewDTO | null> {
-  const group = await collections.workingGroups.findOne({
-    name: name.toLowerCase(),
-  })
-
-  if (!group) return null
-
-  // Check if user is a member
-  const isMember = await isUserMemberOfGroup(group._id, userId)
+  
+  // If no user provided, return public view only
+  if (!user) {
+    return result
+  }
+  
+  const userId = new ObjectId(user.sub)
+  
+  // Check user roles
   const isAdmin = group.admins.some(adminId => adminId.equals(userId))
-
-  if (!isMember && !isAdmin) {
-    throw new TRPCError({
-      code: 'FORBIDDEN',
-      message: 'You must be a member to access this information',
-    })
+  const isMember = await isUserMemberOfGroup(group._id, userId)
+  
+  // Update result with user-specific information
+  result.isCurrentUserAdmin = isAdmin
+  result.isCurrentUserMember = isMember
+  
+  // If user is a member or admin, provide additional information
+  if (isMember || isAdmin) {
+    result.admins = group.admins.map(id => id.toString())
+    result.members = members.map(transformMemberToDTO)
   }
-
-  // Base member view that both members and admins get
-  const memberView: WorkingGroupMemberViewDTO = {
-    id: group._id.toString(),
-    name: group.name,
-    createdAt: group.createdAt.toISOString(),
-    memberCounts: await getMemberCounts(group._id),
-    isCurrentUserAdmin: isAdmin,
-    admins: group.admins.map(id => id.toString()),
-  }
-
-  // If admin, return additional admin information
+  
+  // If user is an admin, provide admin-specific information
   if (isAdmin) {
-    return {
-      ...memberView,
-      inviteKeys: group.inviteKeys.map(key => ({
-        key: key.key,
-        enabled: key.enabled,
-        createdAt: key.createdAt.toISOString(),
-        createdBy: key.createdBy.toString(),
-      })),
-    }
+    result.inviteKeys = group.inviteKeys.map(key => ({
+      key: key.key,
+      enabled: key.enabled,
+      createdAt: key.createdAt.toISOString(),
+      createdBy: key.createdBy.toString(),
+    }))
   }
-
-  // For regular members, return just the member view
-  return memberView
+  
+  return result
 }
 
 /**
@@ -174,8 +170,9 @@ async function getMemberCounts(groupId: ObjectId) {
 /**
  * Create a new working group
  */
-export async function createWorkingGroup(name: string, userId: ObjectId) {
+export async function createWorkingGroup(name: string, user: AuthenticatedUser) {
   const normalizedName = name.toLowerCase()
+  const userId = new ObjectId(user.sub)
 
   // Check if group already exists
   const existing = await collections.workingGroups.findOne({
@@ -330,24 +327,30 @@ function transformMemberToDTO(
 
 /**
  * Create an invite link for a working group
+ * @param name Working group name
+ * @param user Authenticated user creating the invite
  */
-export async function createInviteLink(groupId: ObjectId, creatorId: ObjectId) {
-  // Check if group exists
-  const group = await collections.workingGroups.findOne({ _id: groupId })
-  if (!group) {
+export async function createInviteLink(name: string, user: AuthenticatedUser) {
+  // Get group with user's role information
+  const groupData = await getWorkingGroupWithDetails(name, user)
+  
+  if (!groupData) {
     throw new TRPCError({
       code: 'NOT_FOUND',
       message: 'Working group not found',
     })
   }
-
+  
   // Check if user is an admin
-  if (!group.admins.some(adminId => adminId.equals(creatorId))) {
+  if (!groupData.isCurrentUserAdmin) {
     throw new TRPCError({
       code: 'FORBIDDEN',
       message: 'Only admins can create invite links',
     })
   }
+  
+  const groupId = new ObjectId(groupData.publicWorkingGroupInformation.id)
+  const creatorId = new ObjectId(user.sub)
 
   // Generate a random invite key
   const key = crypto.randomBytes(16).toString('hex')

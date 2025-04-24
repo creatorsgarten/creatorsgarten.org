@@ -50,10 +50,18 @@ if (key) {
   return Astro.redirect(`/wg/${groupName}/members`)
 }
 
+// Get group with user role information
+let groupWithRole = null
+if (group) {
+  try {
+    groupWithRole = await backend.workingGroups.getWorkingGroup.query({ name: groupName })
+  } catch (error) {
+    console.error('Error fetching group details:', error)
+  }
+}
+
 // Check if user is already a member
-const isUserMember = group
-  ? await backend.workingGroups.isUserMember.query({ groupId: group.id })
-  : false
+const isUserMember = groupWithRole?.isCurrentUserMember || false
 
 if (isUserMember) {
   // If user is already a member, redirect to members page

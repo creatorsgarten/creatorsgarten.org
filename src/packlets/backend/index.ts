@@ -41,10 +41,7 @@ import {
   createInviteLink,
   createWorkingGroup,
   getWorkingGroupByInviteKey,
-  getWorkingGroupByNamePublic,
-  getWorkingGroupForUser,
-  getWorkingGroupMembers,
-  isUserMemberOfGroup,
+  getWorkingGroupWithDetails,
   joinWorkingGroup,
   workingGroupNameSchema,
 } from './workingGroups/workingGroupService'
@@ -366,25 +363,14 @@ export const appRouter = t.router({
   }),
 
   workingGroups: t.router({
-    // Get a working group by its name - PUBLIC SAFE VERSION
-    getByName: t.procedure
-      .input(z.object({ name: workingGroupNameSchema }))
-      .query(async ({ input }) => {
-        return getWorkingGroupByNamePublic(input.name)
-      }),
-
-    // Get group details based on user's role (member/admin)
-    getByNameWithRole: t.procedure
+    // Get a working group by its name with details appropriate for the user's role
+    getWorkingGroup: t.procedure
       .input(z.object({ name: workingGroupNameSchema }))
       .query(async ({ ctx, input }) => {
+        // If user is authenticated, get working group with user-specific details
         const user = await getAuthenticatedUser(ctx.authToken)
-        if (!user) {
-          throw new TRPCError({
-            code: 'UNAUTHORIZED',
-            message: 'You must be logged in to access this information',
-          })
-        }
-        return getWorkingGroupForUser(input.name, new ObjectId(user.sub))
+        
+        return getWorkingGroupWithDetails(input.name, user)
       }),
 
     // Create a new working group
@@ -400,21 +386,20 @@ export const appRouter = t.router({
         }
 
         // Create the working group
-        const userId = new ObjectId(user.sub)
-        const group = await createWorkingGroup(input.name, userId)
+        const group = await createWorkingGroup(input.name, user)
 
         // Add the creator as the first member
         await addMemberToWorkingGroup(group._id, user)
 
-        // Return the public representation
-        return getWorkingGroupByNamePublic(input.name)
+        // Return the group with role-based details
+        return getWorkingGroupWithDetails(input.name, user)
       }),
 
-    // Get members of a working group (members only)
-    getMembers: t.procedure
+    // Get invite keys for a working group (admin only)
+    getInviteKeys: t.procedure
       .input(
         z.object({
-          groupId: z.string(),
+          name: workingGroupNameSchema,
         })
       )
       .query(async ({ ctx, input }) => {
@@ -422,39 +407,27 @@ export const appRouter = t.router({
         if (!user) {
           throw new TRPCError({
             code: 'UNAUTHORIZED',
-            message: 'You must be logged in to view group members',
+            message: 'You must be logged in to view invite keys',
           })
         }
 
-        // Convert string ID to ObjectId
-        const groupId = new ObjectId(input.groupId)
-        const userId = new ObjectId(user.sub)
-
-        return getWorkingGroupMembers(groupId, userId)
-      }),
-
-    // Check if user is a member of a working group
-    isUserMember: t.procedure
-      .input(
-        z.object({
-          groupId: z.string(),
-        })
-      )
-      .query(async ({ ctx, input }) => {
-        const user = await getAuthenticatedUser(ctx.authToken)
-        if (!user) {
-          return false
+        const groupData = await getWorkingGroupWithDetails(input.name, user)
+        
+        if (!groupData || !groupData.isCurrentUserAdmin) {
+          throw new TRPCError({
+            code: 'FORBIDDEN',
+            message: 'You must be an admin to view invite keys',
+          })
         }
-        const groupId = new ObjectId(input.groupId)
-        const userId = new ObjectId(user.sub)
-        return isUserMemberOfGroup(groupId, userId)
+        
+        return groupData.inviteKeys || []
       }),
 
     // Create an invite link for a working group (admins only)
     createInviteLink: t.procedure
       .input(
         z.object({
-          groupId: z.string(),
+          name: workingGroupNameSchema,
         })
       )
       .mutation(async ({ ctx, input }) => {
@@ -465,9 +438,8 @@ export const appRouter = t.router({
             message: 'You must be logged in to create an invite link',
           })
         }
-        const groupId = new ObjectId(input.groupId)
-        const userId = new ObjectId(user.sub)
-        const result = await createInviteLink(groupId, userId)
+        
+        const result = await createInviteLink(input.name, user)
 
         // Return a safe representation with ISO string date
         return {

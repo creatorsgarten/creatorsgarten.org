@@ -26,9 +26,9 @@ if (!user) {
 }
 
 // Fetch the working group by name - first use public endpoint
-let group = await backend.workingGroups.getByNameWithRole
+let group = await backend.workingGroups.getWorkingGroup
   .query({ name: groupName })
-  .catch(error => {
+  .catch((error: Error) => {
     console.error('Error fetching group by name:', error)
     return null
   })
@@ -48,9 +48,9 @@ let error: string | null = null
 if (Astro.request.method === 'POST') {
   try {
     await backend.workingGroups.createInviteLink.mutate({
-      groupId: group.id,
+      name: groupName,
     })
-    group = (await backend.workingGroups.getByNameWithRole.query({
+    group = (await backend.workingGroups.getWorkingGroup.query({
       name: groupName,
     }))!
   } catch (e) {
@@ -60,13 +60,13 @@ if (Astro.request.method === 'POST') {
 }
 
 // Get last active invite key if any
-const activeInviteKey = (group.inviteKeys || []).find(k => k.enabled)
+const activeInviteKey = (group.inviteKeys || []).find((k: { enabled: boolean }) => k.enabled)
 const inviteUrl = new URL(
   `/wg/${groupName}/join?key=${activeInviteKey?.key || ''}`,
   Astro.url.origin
 ).toString()
 
-const title = `Invite to ${group.name} Working Group`
+const title = `Invite to ${group.publicWorkingGroupInformation.name} Working Group`
 ---
 
 <Layout title={title}>
