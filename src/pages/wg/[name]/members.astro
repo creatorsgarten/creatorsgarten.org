@@ -1,0 +1,223 @@
+---
+import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
+import Layout from '$layouts/wiki.astro'
+import type { WorkingGroup } from '$types/mongo/WorkingGroup'
+
+const { name } = Astro.params
+if (!name) {
+  return Astro.redirect('/404')
+}
+
+// Normalize the name to ensure it's lowercase
+const groupName = name.toLowerCase()
+
+// Get backend client from Astro.locals
+const backend = Astro.locals.backend
+
+// Get the authenticated user
+const user = Astro.locals.user
+
+// Fetch the working group by name
+let group: WorkingGroup | null = null
+let wikiPageExists = false
+let error: string | null = null
+let memberCounts = { admins: 0, members: 0, total: 0 }
+let isUserAdmin = false
+
+try {
+  // Check if the group exists
+  group = await backend.workingGroups.getByName.query({ name: groupName })
+
+  // If the group exists, fetch member information
+  if (group) {
+    const membersResult = await backend.workingGroups.getMembers.query({
+      groupId: group._id.toString(),
+    })
+    memberCounts = membersResult.counts
+
+    // Check if current user is an admin of this group
+    if (user) {
+      isUserAdmin = group.admins.some(
+        adminId => adminId.toString() === user.sub
+      )
+    }
+  } else {
+    // If group doesn't exist, check if the wiki page exists
+    const wikiCheck = await backend.workingGroups.checkWikiPageExists.query({
+      name: groupName,
+    })
+    wikiPageExists = wikiCheck.exists
+  }
+} catch (e) {
+  console.error('Error fetching working group:', e)
+  error = e instanceof Error ? e.message : 'Unknown error'
+}
+
+// Handle group creation
+let createError: string | null = null
+let isCreating = false
+
+if (Astro.request.method === 'POST') {
+  isCreating = true
+
+  try {
+    // Ensure user is authenticated
+    if (!user) {
+      createError = 'You must be logged in to create a working group'
+    } else if (!wikiPageExists) {
+      createError =
+        'A corresponding Wiki page must exist before creating this working group'
+    } else {
+      // Create the working group
+      group = await backend.workingGroups.create.mutate({ name: groupName })
+      // After creation, set initial member counts (just the creator as admin)
+      memberCounts = { admins: 1, members: 0, total: 1 }
+      isUserAdmin = true
+    }
+  } catch (e) {
+    console.error('Error creating working group:', e)
+    createError = e instanceof Error ? e.message : 'Unknown error'
+  }
+
+  isCreating = false
+}
+
+const pageRef = `WorkingGroups/${groupName}`
+const title = group ? `${group.name} Working Group` : `${name} Working Group`
+---
+
+<Layout title={title}>
+  <MainHorizontalPadding>
+    <div class="py-8">
+      <h1 class="mb-6 text-3xl font-bold">{title}</h1>
+
+      {
+        error && (
+          <div
+            class="mb-6 border-l-4 border-red-500 bg-red-100 p-4 text-red-700"
+            role="alert"
+          >
+            <p>{error}</p>
+          </div>
+        )
+      }
+
+      {
+        group ? (
+          <div class="rounded-lg bg-white p-6 shadow-md">
+            <h2 class="mb-4 text-xl font-semibold">Working Group Details</h2>
+
+            <div class="mb-6">
+              <p>
+                Wiki Page:{' '}
+                <a
+                  href={`/wiki/${pageRef}`}
+                  class="text-blue-600 hover:underline"
+                >
+                  {pageRef}
+                </a>
+              </p>
+              <p>Created: {group.createdAt.toLocaleDateString()}</p>
+            </div>
+
+            <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div class="rounded bg-gray-50 p-4 text-center">
+                <div class="text-2xl font-bold">{memberCounts.admins}</div>
+                <div class="text-gray-600">Admins</div>
+              </div>
+              <div class="rounded bg-gray-50 p-4 text-center">
+                <div class="text-2xl font-bold">{memberCounts.members}</div>
+                <div class="text-gray-600">Members</div>
+              </div>
+              <div class="rounded bg-gray-50 p-4 text-center">
+                <div class="text-2xl font-bold">{memberCounts.total}</div>
+                <div class="text-gray-600">Total</div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <a
+                href={`/wiki/${pageRef}`}
+                class="inline-flex items-center rounded bg-gray-100 px-4 py-2 transition hover:bg-gray-200"
+              >
+                View Wiki Page
+              </a>
+
+              {user && (
+                <div>
+                  {isUserAdmin ? (
+                    <button class="rounded bg-purple-600 px-4 py-2 text-white transition hover:bg-purple-700">
+                      Manage Group
+                    </button>
+                  ) : (
+                    <button class="rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700">
+                      Join Group
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div class="rounded-lg bg-white p-6 shadow-md">
+            <h2 class="mb-4 text-xl font-semibold">Working Group Not Found</h2>
+
+            {wikiPageExists ? (
+              <div>
+                <p class="mb-4">
+                  This working group hasn't been set up yet, but a corresponding
+                  Wiki page exists. Would you like to create it?
+                </p>
+
+                {user ? (
+                  <form method="POST" class="mt-6">
+                    {createError && (
+                      <div
+                        class="mb-4 border-l-4 border-red-500 bg-red-100 p-4 text-red-700"
+                        role="alert"
+                      >
+                        <p>{createError}</p>
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      class="rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+                      disabled={isCreating}
+                    >
+                      {isCreating ? 'Creating...' : 'Create Working Group'}
+                    </button>
+                  </form>
+                ) : (
+                  <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4">
+                    <p>
+                      You need to{' '}
+                      <a href="/login" class="text-blue-600 hover:underline">
+                        sign in
+                      </a>{' '}
+                      to create a working group.
+                    </p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4">
+                <p>
+                  Before creating this working group, you need to create a Wiki
+                  page at
+                  <strong>WorkingGroups/{name}</strong>.
+                  <a
+                    href={`/wiki/${pageRef}?create=true`}
+                    class="text-blue-600 hover:underline"
+                  >
+                    Create the Wiki page
+                  </a>
+                </p>
+              </div>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </MainHorizontalPadding>
+</Layout>

@@ -35,6 +35,7 @@ import { pullLogs } from './gardenGate/pullLogs'
 import { generateSignature } from './signatures/generateSignature'
 import { verifySignature } from './signatures/verifySignature'
 import { generateCloudinarySignature } from './uploads/generateCloudinarySignature'
+import { createWorkingGroupsRouter } from './workingGroups/workingGroupsRouter'
 
 interface BackendContext {
   authToken?: string
@@ -351,6 +352,9 @@ export const appRouter = t.router({
       return pullLogs()
     }),
   }),
+
+  // Use the modular working groups router
+  workingGroups: createWorkingGroupsRouter(t),
 })
 
 export type AppRouter = typeof appRouter
