@@ -20,15 +20,4 @@ export interface WorkingGroup {
     /** Who created the invite */
     createdBy: ObjectId
   }[]
-  /** Fields to collect from user profiles */
-  profileFields: string[]
-  /** Custom questions for members to answer when joining */
-  customQuestions: {
-    /** Unique ID for the question */
-    id: string
-    /** Question text */
-    text: string
-    /** Whether answering is required */
-    required: boolean
-  }[]
 }
