@@ -5,7 +5,10 @@ import Layout from '$layouts/wiki.astro'
 
 const { name } = Astro.params
 if (!name) {
-  return Astro.redirect('/404')
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found',
+  })
 }
 
 // Normalize the name to ensure it's lowercase
@@ -21,27 +24,44 @@ const user = Astro.locals.user
 let group: Awaited<
   ReturnType<typeof backend.workingGroups.getByName.query>
 > | null = null
+let fullGroupData: any = null // For authenticated members only
 let wikiPageExists = false
 let error: string | null = null
 let memberCounts = { admins: 0, members: 0, total: 0 }
 let isUserAdmin = false
+let isUserMember = false
+let membersList: any[] = []
 
 try {
-  // Check if the group exists
+  // Check if the group exists - use the public endpoint first
   group = await backend.workingGroups.getByName.query({ name: groupName })
 
-  // If the group exists, fetch member information
+  // If the group exists, get member counts from the public endpoint
   if (group) {
-    const membersResult = await backend.workingGroups.getMembers.query({
-      groupId: group._id.toString(),
-    })
-    memberCounts = membersResult.counts
+    memberCounts = group.memberCounts
 
-    // Check if current user is an admin of this group
+    // If user is logged in, check membership status
     if (user) {
-      isUserAdmin = group.admins.some(
-        adminId => adminId.toString() === user.sub
-      )
+      // Check if current user is a member or admin
+      isUserMember = await backend.workingGroups.isUserMember.query({
+        groupId: group.id,
+      })
+
+      // If user is a member, get full group data including member list
+      if (isUserMember) {
+        fullGroupData = await backend.workingGroups.getByNameWithRole.query({
+          name: groupName,
+        })
+
+        // Get member list
+        const membersResult = await backend.workingGroups.getMembers.query({
+          groupId: group.id,
+        })
+        membersList = membersResult.members
+
+        // Check admin status from the full data
+        isUserAdmin = fullGroupData.isCurrentUserAdmin
+      }
     }
   } else {
     // If group doesn't exist, check if the wiki page exists
@@ -72,10 +92,17 @@ if (Astro.request.method === 'POST') {
         'A corresponding Wiki page must exist before creating this working group'
     } else {
       // Create the working group
-      group = await backend.workingGroups.create.mutate({ name: groupName })
-      // After creation, set initial member counts (just the creator as admin)
-      memberCounts = { admins: 1, members: 0, total: 1 }
+      const createdGroup = await backend.workingGroups.create.mutate({
+        name: groupName,
+      })
+
+      // After creation, get the group data again
+      group = await backend.workingGroups.getByName.query({ name: groupName })
+      memberCounts = group?.memberCounts || { admins: 1, members: 0, total: 1 }
+
+      // Set membership status
       isUserAdmin = true
+      isUserMember = true
     }
   } catch (e) {
     console.error('Error creating working group:', e)
@@ -138,6 +165,18 @@ const title = group ? `${group.name} Working Group` : `${name} Working Group`
               </div>
             </div>
 
+            {/* Show member list if user is a member */}
+            {isUserMember && (
+              <div class="mb-6">
+                <h3 class="mb-2 text-lg font-semibold">Members</h3>
+                <div class="overflow-x-auto rounded border border-gray-200">
+                  <pre class="p-4 text-sm">
+                    {JSON.stringify(membersList, null, 2)}
+                  </pre>
+                </div>
+              </div>
+            )}
+
             <div class="flex items-center justify-between">
               <a
                 href={`/wiki/${pageRef}`}
@@ -149,13 +188,16 @@ const title = group ? `${group.name} Working Group` : `${name} Working Group`
               {user && (
                 <div>
                   {isUserAdmin ? (
-                    <button class="rounded bg-purple-600 px-4 py-2 text-white transition hover:bg-purple-700">
-                      Manage Group
-                    </button>
-                  ) : (
-                    <button class="rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700">
-                      Join Group
-                    </button>
+                    <a
+                      href={`/wg/${groupName}/invite`}
+                      class="rounded bg-purple-600 px-4 py-2 text-white transition hover:bg-purple-700"
+                    >
+                      Invite Members
+                    </a>
+                  ) : !isUserMember ? null : (
+                    <span class="rounded bg-green-100 px-4 py-2 text-green-800">
+                      You are a member
+                    </span>
                   )}
                 </div>
               )}

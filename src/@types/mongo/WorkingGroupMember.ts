@@ -18,8 +18,4 @@ export interface WorkingGroupMember {
   joinedAt: Date
   /** Copy of user profile at join time */
   profileSnapshot: ProfileSnapshot
-  questionResponses: {
-    questionId: string
-    response: string
-  }[]
 }

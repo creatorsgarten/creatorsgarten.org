@@ -1,0 +1,169 @@
+---
+import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
+import Layout from '$layouts/wiki.astro'
+
+const { name } = Astro.params
+if (!name) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found',
+  })
+}
+
+// Normalize the name to ensure it's lowercase
+const groupName = name.toLowerCase()
+
+// Get backend client from Astro.locals
+const backend = Astro.locals.backend
+
+// Get the authenticated user
+const user = Astro.locals.user
+if (!user) {
+  return Astro.redirect(
+    '/auth/login?dest=' +
+      encodeURIComponent(Astro.url.pathname + Astro.url.search)
+  )
+}
+
+// Fetch the working group by name - first use public endpoint
+let group = await backend.workingGroups.getByNameWithRole
+  .query({ name: groupName })
+  .catch(error => {
+    console.error('Error fetching group by name:', error)
+    return null
+  })
+if (!group) {
+  return Astro.redirect(`/wg/${groupName}/members`)
+}
+
+// Check if user is an admin
+const isUserAdmin = group.isCurrentUserAdmin
+if (!isUserAdmin) {
+  console.error('User is not an admin of the group', groupName, user.sub)
+  return Astro.redirect(`/wg/${groupName}/members`)
+}
+
+let error: string | null = null
+
+if (Astro.request.method === 'POST') {
+  try {
+    await backend.workingGroups.createInviteLink.mutate({
+      groupId: group.id,
+    })
+    group = (await backend.workingGroups.getByNameWithRole.query({
+      name: groupName,
+    }))!
+  } catch (e) {
+    console.error('Error creating invite link:', e)
+    error = e instanceof Error ? e.message : 'Unknown error'
+  }
+}
+
+// Get last active invite key if any
+const activeInviteKey = (group.inviteKeys || []).find(k => k.enabled)
+const inviteUrl = new URL(
+  `/wg/${groupName}/join?key=${activeInviteKey?.key || ''}`,
+  Astro.url.origin
+).toString()
+
+const title = `Invite to ${group.name} Working Group`
+---
+
+<Layout title={title}>
+  <MainHorizontalPadding>
+    <div class="py-8">
+      <div class="mb-4 flex items-center justify-between">
+        <h1 class="text-3xl font-bold">{title}</h1>
+        <a
+          href={`/wg/${groupName}/members`}
+          class="rounded bg-gray-100 px-4 py-2 text-gray-700 transition hover:bg-gray-200"
+        >
+          Back to Group
+        </a>
+      </div>
+
+      {
+        error && (
+          <div
+            class="mb-6 border-l-4 border-red-500 bg-red-100 p-4 text-red-700"
+            role="alert"
+          >
+            <p>{error}</p>
+          </div>
+        )
+      }
+
+      <div class="rounded-lg bg-white p-6 shadow-md">
+        <h2 class="mb-4 text-xl font-semibold">Invite Members</h2>
+
+        {
+          activeInviteKey ? (
+            <div>
+              <p class="mb-4">
+                Share this link with people you want to invite to the working
+                group:
+              </p>
+              <div class="mb-6 overflow-hidden rounded-md border border-gray-200">
+                <div class="flex items-center">
+                  <input
+                    type="text"
+                    value={inviteUrl}
+                    readonly
+                    class="w-full flex-grow bg-gray-50 px-4 py-2"
+                    id="inviteUrl"
+                  />
+                  <button
+                    onclick="copyInviteUrl()"
+                    class="rounded-r bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+                  >
+                    Copy
+                  </button>
+                </div>
+              </div>
+
+              <p class="text-sm text-gray-600">
+                Invite created:{' '}
+                {new Date(activeInviteKey.createdAt).toLocaleString()}
+              </p>
+
+              <div class="mt-6">
+                <form method="POST">
+                  <button
+                    type="submit"
+                    class="rounded bg-purple-600 px-4 py-2 text-white transition hover:bg-purple-700"
+                  >
+                    Generate New Invite Link
+                  </button>
+                </form>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <p class="mb-4">
+                No active invite link found. Create one to invite members to
+                this working group.
+              </p>
+              <form method="POST">
+                <button
+                  type="submit"
+                  class="rounded bg-purple-600 px-4 py-2 text-white transition hover:bg-purple-700"
+                >
+                  Generate Invite Link
+                </button>
+              </form>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </MainHorizontalPadding>
+</Layout>
+
+<script>
+  function copyInviteUrl() {
+    const urlInput = document.getElementById('inviteUrl') as HTMLInputElement
+    urlInput.select()
+    document.execCommand('copy')
+    alert('Invite URL copied to clipboard')
+  }
+</script>

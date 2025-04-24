@@ -36,10 +36,16 @@ import { generateSignature } from './signatures/generateSignature'
 import { verifySignature } from './signatures/verifySignature'
 import { generateCloudinarySignature } from './uploads/generateCloudinarySignature'
 import {
+  REQUIRED_CONNECTIONS,
   addMemberToWorkingGroup,
+  createInviteLink,
   createWorkingGroup,
-  getWorkingGroupByName,
+  getWorkingGroupByInviteKey,
+  getWorkingGroupByNamePublic,
+  getWorkingGroupForUser,
   getWorkingGroupMembers,
+  isUserMemberOfGroup,
+  joinWorkingGroup,
   workingGroupNameSchema,
 } from './workingGroups/workingGroupService'
 
@@ -360,12 +366,27 @@ export const appRouter = t.router({
   }),
 
   workingGroups: t.router({
-    // Get a working group by its name
+    // Get a working group by its name - PUBLIC SAFE VERSION
     getByName: t.procedure
       .input(z.object({ name: workingGroupNameSchema }))
       .query(async ({ input }) => {
-        return getWorkingGroupByName(input.name)
+        return getWorkingGroupByNamePublic(input.name)
       }),
+
+    // Get group details based on user's role (member/admin)
+    getByNameWithRole: t.procedure
+      .input(z.object({ name: workingGroupNameSchema }))
+      .query(async ({ ctx, input }) => {
+        const user = await getAuthenticatedUser(ctx.authToken)
+        if (!user) {
+          throw new TRPCError({
+            code: 'UNAUTHORIZED',
+            message: 'You must be logged in to access this information',
+          })
+        }
+        return getWorkingGroupForUser(input.name, new ObjectId(user.sub))
+      }),
+
     // Create a new working group
     create: t.procedure
       .input(z.object({ name: workingGroupNameSchema }))
@@ -385,20 +406,110 @@ export const appRouter = t.router({
         // Add the creator as the first member
         await addMemberToWorkingGroup(group._id, user)
 
-        return group
+        // Return the public representation
+        return getWorkingGroupByNamePublic(input.name)
       }),
-    // Get members of a working group
+
+    // Get members of a working group (members only)
     getMembers: t.procedure
       .input(
         z.object({
           groupId: z.string(),
         })
       )
-      .query(async ({ input }) => {
+      .query(async ({ ctx, input }) => {
+        const user = await getAuthenticatedUser(ctx.authToken)
+        if (!user) {
+          throw new TRPCError({
+            code: 'UNAUTHORIZED',
+            message: 'You must be logged in to view group members',
+          })
+        }
+
         // Convert string ID to ObjectId
         const groupId = new ObjectId(input.groupId)
-        return getWorkingGroupMembers(groupId)
+        const userId = new ObjectId(user.sub)
+
+        return getWorkingGroupMembers(groupId, userId)
       }),
+
+    // Check if user is a member of a working group
+    isUserMember: t.procedure
+      .input(
+        z.object({
+          groupId: z.string(),
+        })
+      )
+      .query(async ({ ctx, input }) => {
+        const user = await getAuthenticatedUser(ctx.authToken)
+        if (!user) {
+          return false
+        }
+        const groupId = new ObjectId(input.groupId)
+        const userId = new ObjectId(user.sub)
+        return isUserMemberOfGroup(groupId, userId)
+      }),
+
+    // Create an invite link for a working group (admins only)
+    createInviteLink: t.procedure
+      .input(
+        z.object({
+          groupId: z.string(),
+        })
+      )
+      .mutation(async ({ ctx, input }) => {
+        const user = await getAuthenticatedUser(ctx.authToken)
+        if (!user) {
+          throw new TRPCError({
+            code: 'UNAUTHORIZED',
+            message: 'You must be logged in to create an invite link',
+          })
+        }
+        const groupId = new ObjectId(input.groupId)
+        const userId = new ObjectId(user.sub)
+        const result = await createInviteLink(groupId, userId)
+
+        // Return a safe representation with ISO string date
+        return {
+          key: result.key,
+          enabled: result.enabled,
+          createdAt: result.createdAt.toISOString(),
+        }
+      }),
+
+    // Get a working group by invite key (safe version - for joining)
+    getByInviteKey: t.procedure
+      .input(
+        z.object({
+          inviteKey: z.string(),
+        })
+      )
+      .query(async ({ input }) => {
+        return getWorkingGroupByInviteKey(input.inviteKey)
+      }),
+
+    // Join a working group using an invite key
+    joinWithInviteKey: t.procedure
+      .input(
+        z.object({
+          inviteKey: z.string(),
+        })
+      )
+      .mutation(async ({ ctx, input }) => {
+        const user = await getAuthenticatedUser(ctx.authToken)
+        if (!user) {
+          throw new TRPCError({
+            code: 'UNAUTHORIZED',
+            message: 'You must be logged in to join a working group',
+          })
+        }
+        return joinWorkingGroup(input.inviteKey, user)
+      }),
+
+    // Get list of required connections for joining working groups
+    getRequiredConnections: t.procedure.query(() => {
+      return REQUIRED_CONNECTIONS
+    }),
   }),
 })
 
