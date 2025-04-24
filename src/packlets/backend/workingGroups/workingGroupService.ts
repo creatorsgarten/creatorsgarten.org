@@ -193,6 +193,46 @@ async function getMemberCounts(groupId: ObjectId) {
 }
 
 /**
+ * Add a member to a working group (internal function)
+ */
+async function addMemberToWorkingGroup(
+  groupId: ObjectId,
+  user: AuthenticatedUser
+) {
+  const userId = new ObjectId(user.sub)
+
+  // Check if user is already a member
+  const existingMember = await collections.workingGroupMembers.findOne({
+    groupId,
+    userId,
+  })
+
+  if (existingMember) {
+    throw new TRPCError({
+      code: 'CONFLICT',
+      message: 'User is already a member of this group',
+    })
+  }
+
+  const profileSnapshot: ProfileSnapshot = {
+    name: user.name,
+    email: user.email,
+    githubUsername: user.connections.github?.username,
+    discordName: user.connections.discord?.username,
+    googleAccount: user.connections.google?.email,
+    figmaEmail: user.connections.figma?.email,
+  }
+  
+  // Add user as a member
+  await collections.workingGroupMembers.insertOne({
+    groupId,
+    userId,
+    joinedAt: new Date(),
+    profileSnapshot,
+  })
+}
+
+/**
  * Create a new working group
  */
 export async function createWorkingGroup(name: string, user: AuthenticatedUser) {
@@ -227,49 +267,15 @@ export async function createWorkingGroup(name: string, user: AuthenticatedUser) 
     })
   }
 
-  return {
+  const newGroup = {
     ...group,
     _id: result.insertedId,
   }
-}
+  
+  // Add the creator as the first member
+  await addMemberToWorkingGroup(newGroup._id, user)
 
-/**
- * Add a member to a working group
- */
-export async function addMemberToWorkingGroup(
-  groupId: ObjectId,
-  user: AuthenticatedUser
-) {
-  const userId = new ObjectId(user.sub)
-
-  // Check if user is already a member
-  const existingMember = await collections.workingGroupMembers.findOne({
-    groupId,
-    userId,
-  })
-
-  if (existingMember) {
-    throw new TRPCError({
-      code: 'CONFLICT',
-      message: 'User is already a member of this group',
-    })
-  }
-
-  const profileSnapshot: ProfileSnapshot = {
-    name: user.name,
-    email: user.email,
-    githubUsername: user.connections.github?.username,
-    discordName: user.connections.discord?.username,
-    googleAccount: user.connections.google?.email,
-    figmaEmail: user.connections.figma?.email,
-  }
-  // Add user as a member
-  await collections.workingGroupMembers.insertOne({
-    groupId,
-    userId,
-    joinedAt: new Date(),
-    profileSnapshot,
-  })
+  return newGroup
 }
 
 /**
@@ -281,59 +287,6 @@ export async function isUserMemberOfGroup(groupId: ObjectId, userId: ObjectId) {
     userId,
   })
   return !!member
-}
-
-/**
- * Get members of a working group (authorized users only)
- */
-export async function getWorkingGroupMembers(
-  groupId: ObjectId,
-  requesterId: ObjectId
-): Promise<{
-  members: WorkingGroupMemberDTO[]
-  counts: {
-    admins: number
-    members: number
-    total: number
-  }
-}> {
-  // First get the working group to access admin list
-  const group = await collections.workingGroups.findOne({ _id: groupId })
-  if (!group) {
-    throw new TRPCError({
-      code: 'NOT_FOUND',
-      message: 'Working group not found',
-    })
-  }
-
-  // Check if requester is a member or admin
-  const isMember = await isUserMemberOfGroup(groupId, requesterId)
-  const isAdmin = group.admins.some(adminId => adminId.equals(requesterId))
-
-  if (!isMember && !isAdmin) {
-    throw new TRPCError({
-      code: 'FORBIDDEN',
-      message: 'You must be a member to view the member list',
-    })
-  }
-
-  // Get all members of the group
-  const members = await collections.workingGroupMembers
-    .find({ groupId })
-    .toArray()
-
-  // Count admins and regular members based on the group's admin list
-  const adminCount = group.admins.length
-  const memberCount = members.length - adminCount
-
-  return {
-    members: members.map(transformMemberToDTO),
-    counts: {
-      admins: adminCount,
-      members: memberCount,
-      total: members.length,
-    },
-  }
 }
 
 /**

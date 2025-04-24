@@ -36,7 +36,6 @@ import { generateSignature } from './signatures/generateSignature'
 import { verifySignature } from './signatures/verifySignature'
 import { generateCloudinarySignature } from './uploads/generateCloudinarySignature'
 import {
-  addMemberToWorkingGroup,
   checkJoinability,
   createInviteLink,
   createWorkingGroup,
@@ -384,43 +383,14 @@ export const appRouter = t.router({
           })
         }
 
-        // Create the working group
+        // Create the working group (creator is automatically added as member)
         const group = await createWorkingGroup(input.name, user)
-
-        // Add the creator as the first member
-        await addMemberToWorkingGroup(group._id, user)
 
         // Return the group with role-based details
         return getWorkingGroupWithDetails(input.name, user)
       }),
 
-    // Get invite keys for a working group (admin only)
-    getInviteKeys: t.procedure
-      .input(
-        z.object({
-          name: workingGroupNameSchema,
-        })
-      )
-      .query(async ({ ctx, input }) => {
-        const user = await getAuthenticatedUser(ctx.authToken)
-        if (!user) {
-          throw new TRPCError({
-            code: 'UNAUTHORIZED',
-            message: 'You must be logged in to view invite keys',
-          })
-        }
-
-        const groupData = await getWorkingGroupWithDetails(input.name, user)
-        
-        if (!groupData || !groupData.isCurrentUserAdmin) {
-          throw new TRPCError({
-            code: 'FORBIDDEN',
-            message: 'You must be an admin to view invite keys',
-          })
-        }
-        
-        return groupData.inviteKeys || []
-      }),
+    // Note: Invite keys are available via getWorkingGroup for admins
 
     // Create an invite link for a working group (admins only)
     createInviteLink: t.procedure
