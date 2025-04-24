@@ -23,12 +23,8 @@ const backend = Astro.locals.backend
 
 // Get the authenticated user
 const user = Astro.locals.user
-if (!user) {
-  return Astro.redirect(
-    '/auth/login?dest=' +
-      encodeURIComponent(Astro.url.pathname + Astro.url.search)
-  )
-}
+// Allow unauthenticated users to view the page
+// Authentication requirement will be handled by the checkJoinability service
 
 // Initial states
 let joinabilityResult: any = null 

@@ -427,13 +427,7 @@ export const appRouter = t.router({
       )
       .query(async ({ ctx, input }) => {
         const user = await getAuthenticatedUser(ctx.authToken)
-        if (!user) {
-          throw new TRPCError({
-            code: 'UNAUTHORIZED',
-            message: 'You must be logged in to check join eligibility',
-          })
-        }
-        
+        // User can be null/undefined - service will handle authentication requirement 
         return checkJoinability(input.inviteKey, user)
       }),
 

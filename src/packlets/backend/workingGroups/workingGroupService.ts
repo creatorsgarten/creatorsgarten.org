@@ -29,7 +29,7 @@ const CONNECTION_DISPLAY_NAMES: Record<string, string> = {
   github: 'GitHub',
   figma: 'Figma',
   google: 'Google',
-  discord: 'Discord'
+  discord: 'Discord',
 }
 
 // API representation types - explicitly defining what we expose through the API
@@ -68,9 +68,9 @@ interface WorkingGroupDetailedResponse {
 }
 
 interface JoinRequirement {
-  type: string      // 'connection', 'profile', etc.
-  name: string      // specific requirement name (e.g., 'github', 'email')
-  met: boolean      // whether the requirement is met
+  type: string // 'connection', 'profile', etc.
+  name: string // specific requirement name (e.g., 'github', 'email')
+  met: boolean // whether the requirement is met
   displayName: string // human-readable name for display
   callToAction?: {
     text: string
@@ -92,7 +92,7 @@ interface JoinabilityResult {
 
 /**
  * Get working group details with information based on user role
- * 
+ *
  * @param name Group name
  * @param user Optional authenticated user (null for public view)
  * @returns Combined working group information based on user's role
@@ -115,7 +115,7 @@ export async function getWorkingGroupWithDetails(
   // Calculate counts
   const adminCount = group.admins.length
   const memberCount = members.length
-  
+
   // Default to public view with minimal information
   const result: WorkingGroupDetailedResponse = {
     publicWorkingGroupInformation: {
@@ -129,30 +129,30 @@ export async function getWorkingGroupWithDetails(
       },
     },
     isCurrentUserAdmin: false,
-    isCurrentUserMember: false
+    isCurrentUserMember: false,
   }
-  
+
   // If no user provided, return public view only
   if (!user) {
     return result
   }
-  
+
   const userId = new ObjectId(user.sub)
-  
+
   // Check user roles
   const isAdmin = group.admins.some(adminId => adminId.equals(userId))
   const isMember = await isUserMemberOfGroup(group._id, userId)
-  
+
   // Update result with user-specific information
   result.isCurrentUserAdmin = isAdmin
   result.isCurrentUserMember = isMember
-  
+
   // If user is a member or admin, provide additional information
   if (isMember || isAdmin) {
     result.admins = group.admins.map(id => id.toString())
     result.members = members.map(transformMemberToDTO)
   }
-  
+
   // If user is an admin, provide admin-specific information
   if (isAdmin) {
     result.inviteKeys = group.inviteKeys.map(key => ({
@@ -162,7 +162,7 @@ export async function getWorkingGroupWithDetails(
       createdBy: key.createdBy.toString(),
     }))
   }
-  
+
   return result
 }
 
@@ -222,7 +222,7 @@ async function addMemberToWorkingGroup(
     googleAccount: user.connections.google?.email,
     figmaEmail: user.connections.figma?.email,
   }
-  
+
   // Add user as a member
   await collections.workingGroupMembers.insertOne({
     groupId,
@@ -235,7 +235,10 @@ async function addMemberToWorkingGroup(
 /**
  * Create a new working group
  */
-export async function createWorkingGroup(name: string, user: AuthenticatedUser) {
+export async function createWorkingGroup(
+  name: string,
+  user: AuthenticatedUser
+) {
   const normalizedName = name.toLowerCase()
   const userId = new ObjectId(user.sub)
 
@@ -271,7 +274,7 @@ export async function createWorkingGroup(name: string, user: AuthenticatedUser) 
     ...group,
     _id: result.insertedId,
   }
-  
+
   // Add the creator as the first member
   await addMemberToWorkingGroup(newGroup._id, user)
 
@@ -311,14 +314,14 @@ function transformMemberToDTO(
 export async function createInviteLink(name: string, user: AuthenticatedUser) {
   // Get group with user's role information
   const groupData = await getWorkingGroupWithDetails(name, user)
-  
+
   if (!groupData) {
     throw new TRPCError({
       code: 'NOT_FOUND',
       message: 'Working group not found',
     })
   }
-  
+
   // Check if user is an admin
   if (!groupData.isCurrentUserAdmin) {
     throw new TRPCError({
@@ -326,7 +329,7 @@ export async function createInviteLink(name: string, user: AuthenticatedUser) {
       message: 'Only admins can create invite links',
     })
   }
-  
+
   const groupId = new ObjectId(groupData.publicWorkingGroupInformation.id)
   const creatorId = new ObjectId(user.sub)
 
@@ -355,7 +358,7 @@ export async function createInviteLink(name: string, user: AuthenticatedUser) {
  */
 export async function checkJoinability(
   inviteKey: string,
-  user: AuthenticatedUser
+  user?: AuthenticatedUser | null
 ): Promise<JoinabilityResult> {
   // Find the group with the invite key
   const group = await collections.workingGroups.findOne({
@@ -370,21 +373,52 @@ export async function checkJoinability(
       userIsAlreadyMember: false,
       requirements: [],
       profileSnapshot: {
-        name: user.name,
-        email: user.email,
+        name: user?.name || '',
+        email: user?.email || '',
       },
       errorMessage: 'Invalid or expired invite key',
     }
   }
 
+  // Check authentication requirement
+  if (!user) {
+    return {
+      canJoin: false,
+      group: {
+        id: group._id.toString(),
+        name: group.name,
+      },
+      userIsAlreadyMember: false,
+      requirements: [
+        {
+          type: 'auth',
+          name: 'authenticated',
+          displayName: 'Signed in to Creatorsgarten',
+          met: false,
+          callToAction: {
+            text: 'Sign in',
+            url:
+              '/auth/login?dest=' +
+              encodeURIComponent(`/wg/${group.name}/join?key=${inviteKey}`),
+          },
+        },
+      ],
+      profileSnapshot: {
+        name: '',
+        email: '',
+      },
+      errorMessage: 'You must be signed in to join this group',
+    }
+  }
+
   const userId = new ObjectId(user.sub)
-  
+
   // Check if user is already a member
   const existingMember = await collections.workingGroupMembers.findOne({
     groupId: group._id,
     userId,
   })
-  
+
   // Prepare the profile snapshot that would be saved
   const profileSnapshot: ProfileSnapshot = {
     name: user.name,
@@ -397,18 +431,21 @@ export async function checkJoinability(
 
   // Check all connection requirements
   const requirements: JoinRequirement[] = REQUIRED_CONNECTIONS.map(connType => {
-    const connection = user.connections[connType as keyof typeof user.connections]
+    const connection =
+      user.connections[connType as keyof typeof user.connections]
     return {
       type: 'connection',
       name: connType,
-      displayName: `${CONNECTION_DISPLAY_NAMES[connType] || connType} Account`,
+      displayName: `${CONNECTION_DISPLAY_NAMES[connType] || connType} account connected`,
       met: !!connection,
-      ...(connection ? {} : {
-        callToAction: {
-          text: `Connect ${CONNECTION_DISPLAY_NAMES[connType] || connType}`,
-          url: `/dashboard/profile#${connType}`,
-        }
-      })
+      ...(connection
+        ? {}
+        : {
+            callToAction: {
+              text: `Connect ${CONNECTION_DISPLAY_NAMES[connType] || connType}`,
+              url: `/dashboard/profile#${connType}`,
+            },
+          }),
     }
   })
 
@@ -447,12 +484,14 @@ export async function joinWorkingGroup(
 ) {
   // Check joinability first
   const joinabilityResult = await checkJoinability(inviteKey, user)
-  
+
   // Handle errors
   if (!joinabilityResult.canJoin) {
     if (joinabilityResult.errorMessage) {
       throw new TRPCError({
-        code: joinabilityResult.userIsAlreadyMember ? 'CONFLICT' : 'BAD_REQUEST',
+        code: joinabilityResult.userIsAlreadyMember
+          ? 'CONFLICT'
+          : 'BAD_REQUEST',
         message: joinabilityResult.errorMessage,
       })
     } else {
