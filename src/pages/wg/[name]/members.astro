@@ -1,7 +1,7 @@
 ---
 import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
+import { contentsgarten } from '$constants/contentsgarten'
 import Layout from '$layouts/wiki.astro'
-import type { WorkingGroup } from '$types/mongo/WorkingGroup'
 
 const { name } = Astro.params
 if (!name) {
@@ -18,7 +18,9 @@ const backend = Astro.locals.backend
 const user = Astro.locals.user
 
 // Fetch the working group by name
-let group: WorkingGroup | null = null
+let group: Awaited<
+  ReturnType<typeof backend.workingGroups.getByName.query>
+> | null = null
 let wikiPageExists = false
 let error: string | null = null
 let memberCounts = { admins: 0, members: 0, total: 0 }
@@ -43,10 +45,11 @@ try {
     }
   } else {
     // If group doesn't exist, check if the wiki page exists
-    const wikiCheck = await backend.workingGroups.checkWikiPageExists.query({
-      name: groupName,
-    })
-    wikiPageExists = wikiCheck.exists
+    wikiPageExists = await contentsgarten()
+      .view.query({
+        pageRef: `WorkingGroups/${groupName}`,
+      })
+      .then(r => !!r.file?.revision)
   }
 } catch (e) {
   console.error('Error fetching working group:', e)
@@ -117,7 +120,7 @@ const title = group ? `${group.name} Working Group` : `${name} Working Group`
                   {pageRef}
                 </a>
               </p>
-              <p>Created: {group.createdAt.toLocaleDateString()}</p>
+              <p>Created: {new Date(group.createdAt).toLocaleDateString()}</p>
             </div>
 
             <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -207,7 +210,7 @@ const title = group ? `${group.name} Working Group` : `${name} Working Group`
                   page at
                   <strong>WorkingGroups/{name}</strong>.
                   <a
-                    href={`/wiki/${pageRef}?create=true`}
+                    href={`/wiki/${pageRef}/editor`}
                     class="text-blue-600 hover:underline"
                   >
                     Create the Wiki page

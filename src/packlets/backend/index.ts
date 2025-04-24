@@ -35,7 +35,13 @@ import { pullLogs } from './gardenGate/pullLogs'
 import { generateSignature } from './signatures/generateSignature'
 import { verifySignature } from './signatures/verifySignature'
 import { generateCloudinarySignature } from './uploads/generateCloudinarySignature'
-import { createWorkingGroupsRouter } from './workingGroups/workingGroupsRouter'
+import {
+  addMemberToWorkingGroup,
+  createWorkingGroup,
+  getWorkingGroupByName,
+  getWorkingGroupMembers,
+  workingGroupNameSchema,
+} from './workingGroups/workingGroupService'
 
 interface BackendContext {
   authToken?: string
@@ -353,8 +359,47 @@ export const appRouter = t.router({
     }),
   }),
 
-  // Use the modular working groups router
-  workingGroups: createWorkingGroupsRouter(t),
+  workingGroups: t.router({
+    // Get a working group by its name
+    getByName: t.procedure
+      .input(z.object({ name: workingGroupNameSchema }))
+      .query(async ({ input }) => {
+        return getWorkingGroupByName(input.name)
+      }),
+    // Create a new working group
+    create: t.procedure
+      .input(z.object({ name: workingGroupNameSchema }))
+      .mutation(async ({ ctx, input }) => {
+        const user = await getAuthenticatedUser(ctx.authToken)
+        if (!user) {
+          throw new TRPCError({
+            code: 'UNAUTHORIZED',
+            message: 'You must be logged in to create a working group',
+          })
+        }
+
+        // Create the working group
+        const userId = new ObjectId(user.sub)
+        const group = await createWorkingGroup(input.name, userId)
+
+        // Add the creator as the first member
+        await addMemberToWorkingGroup(group._id, user)
+
+        return group
+      }),
+    // Get members of a working group
+    getMembers: t.procedure
+      .input(
+        z.object({
+          groupId: z.string(),
+        })
+      )
+      .query(async ({ input }) => {
+        // Convert string ID to ObjectId
+        const groupId = new ObjectId(input.groupId)
+        return getWorkingGroupMembers(groupId)
+      }),
+  }),
 })
 
 export type AppRouter = typeof appRouter
