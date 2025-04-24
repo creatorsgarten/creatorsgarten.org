@@ -222,17 +222,8 @@ const title = joinabilityResult?.group?.name
             <form method="POST">
               <input type="hidden" name="inviteKey" value={key} />
 
-              <div class="mb-4">
-                <label class="mb-2 flex items-center">
-                  <input
-                    type="checkbox"
-                    required
-                    class="mr-2 h-4 w-4 rounded border-gray-300"
-                  />
-                  <span>
-                    I agree to share my information with this working group
-                  </span>
-                </label>
+              <div class="mb-4 rounded-md bg-gray-50 p-3 text-sm text-gray-600">
+                By joining this working group, you agree to share the information shown above with other group members.
               </div>
 
               <button
