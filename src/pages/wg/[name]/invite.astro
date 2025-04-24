@@ -136,16 +136,7 @@ const title = `Invite to ${group.publicWorkingGroupInformation.name} Working Gro
                 {new Date(activeInviteKey.createdAt).toLocaleString()}
               </p>
 
-              <div class="mt-6">
-                <form method="POST">
-                  <button
-                    type="submit"
-                    class="rounded bg-purple-600 px-4 py-2 text-white transition hover:bg-purple-700"
-                  >
-                    Generate New Invite Link
-                  </button>
-                </form>
-              </div>
+              {/* Removed "Generate New Invite Link" button since we already have an active link */}
             </div>
           ) : (
             <div>
@@ -169,11 +160,11 @@ const title = `Invite to ${group.publicWorkingGroupInformation.name} Working Gro
   </div>
 </BaseLayout>
 
-<script>
-  function copyInviteUrl() {
-    const urlInput = document.getElementById('inviteUrl') as HTMLInputElement
+<script is:inline>
+  // Assign the function to window so it's accessible from the onclick attribute
+  window.copyInviteUrl = function() {
+    const urlInput = document.getElementById('inviteUrl')
     urlInput.select()
     document.execCommand('copy')
-    alert('Invite URL copied to clipboard')
   }
 </script>
