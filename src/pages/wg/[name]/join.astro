@@ -1,6 +1,7 @@
 ---
-import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
-import Layout from '$layouts/wiki.astro'
+import Head from '$commons/head.astro'
+import Breadcrumb from '$components/breadcrumb.astro'
+import BaseLayout from '$layouts/base.astro'
 
 const { name } = Astro.params
 if (!name) {
@@ -84,22 +85,30 @@ const title = joinabilityResult?.group?.name
   : 'Invalid Invite'
 ---
 
-<Layout title={title}>
-  <MainHorizontalPadding>
-    <div class="py-8">
-      <div class="mb-4 flex items-center justify-between">
-        <h1 class="text-3xl font-bold">{title}</h1>
-        {
-          joinabilityResult?.group?.name && (
-            <a
-              href={`/wg/${groupName}/members`}
-              class="rounded bg-gray-100 px-4 py-2 text-gray-700 transition hover:bg-gray-200"
-            >
-              Back to Group
-            </a>
-          )
-        }
-      </div>
+<Head title={title} />
+
+<BaseLayout class="mx-auto mt-8 max-w-7xl space-y-6 *:px-6">
+  <Breadcrumb
+    parents={[
+      { title: 'Working Groups', href: `/wg/${groupName}/members` }
+    ]}
+    title="Join Working Group"
+  />
+
+  <div class="mx-auto max-w-2xl space-y-6">
+    <div class="mb-4 flex items-center justify-between">
+      <h1 class="text-3xl font-bold">{title}</h1>
+      {
+        joinabilityResult?.group?.name && (
+          <a
+            href={`/wg/${groupName}/members`}
+            class="rounded bg-gray-100 px-4 py-2 text-gray-700 transition hover:bg-gray-200"
+          >
+            Back to Group
+          </a>
+        )
+      }
+    </div>
 
       {/* Error message */}
       {
@@ -253,5 +262,5 @@ const title = joinabilityResult?.group?.name
         )
       }
     </div>
-  </MainHorizontalPadding>
-</Layout>
+  </div>
+</BaseLayout>
