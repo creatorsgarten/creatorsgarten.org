@@ -18,6 +18,7 @@ export const finalizeAuthentication = async (uid: number) => {
     name: userDoc.name,
     avatar: userDoc.avatar,
     email: userDoc.email,
+    username: userDoc.username,
     connections: {
       github: userDoc.connections?.github ?? null,
       discord: userDoc.connections?.discord ?? null,
@@ -33,14 +34,11 @@ export const finalizeAuthentication = async (uid: number) => {
       {
         algorithm: 'RS256',
         expiresIn: maxSessionAge,
-        issuer: 'https://creatorsgarten.org',
-        audience: 'https://creatorsgarten.org',
-        keyid: 'riffy1',
       }
     )
 
-    return { idToken }
+    return { idToken, user: payload }
   } catch (e) {
-    throw new Error('unable-to-sign-token')
+    throw new Error('signing-failure')
   }
 }
