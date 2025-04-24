@@ -21,7 +21,7 @@
     "@nanostores/logger": "1.0.0",
     "@nanostores/persistent": "1.0.0",
     "@nanostores/react": "1.0.0",
-    "@sentry/astro": "9.13.0",
+    "@sentry/astro": "9.14.0",
     "@tanstack/react-query": "5.74.4",
     "@trpc/client": "10.45.2",
     "@trpc/server": "10.45.2",
