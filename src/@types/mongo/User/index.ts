@@ -2,7 +2,9 @@ import type { Role } from '$types/Role'
 
 import type { DiscordConnection } from './DiscordConnection'
 import type { EventTicket } from './EventTicket'
+import type { FigmaConnection } from './FigmaConnection'
 import type { GitHubConnection } from './GitHubConnection'
+import type { GoogleConnection } from './GoogleConnection'
 
 export interface User {
   /** Eventpop user ID */
@@ -15,6 +17,8 @@ export interface User {
   connections: {
     github?: GitHubConnection
     discord?: DiscordConnection
+    google?: GoogleConnection
+    figma?: FigmaConnection
   }
   accessedAt: Date
 }

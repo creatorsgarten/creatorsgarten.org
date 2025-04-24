@@ -7,7 +7,9 @@ import { JWT_PRIVATE_KEY } from 'astro:env/server'
 
 import { authenticateDiscord } from './auth/authenticateDiscord'
 import { authenticateEventpopUser } from './auth/authenticateEventpopUser'
+import { authenticateFigma } from './auth/authenticateFigma'
 import { authenticateGitHub } from './auth/authenticateGitHub'
+import { authenticateGoogle } from './auth/authenticateGoogle'
 import { getAuthenticatedUser } from './auth/getAuthenticatedUser'
 
 import { authenticateDeviceAuthorizationSignature } from './auth/authenticateDeviceAuthorizationSignature'
@@ -112,6 +114,26 @@ export const appRouter = t.router({
       )
       .mutation(({ input, ctx }) => {
         return authenticateDiscord(input.code, ctx.authToken)
+      }),
+
+    linkGoogleAccount: t.procedure
+      .input(
+        z.object({
+          code: z.string(),
+        })
+      )
+      .mutation(({ input, ctx }) => {
+        return authenticateGoogle(input.code, ctx.authToken)
+      }),
+
+    linkFigmaAccount: t.procedure
+      .input(
+        z.object({
+          code: z.string(),
+        })
+      )
+      .mutation(({ input, ctx }) => {
+        return authenticateFigma(input.code, ctx.authToken)
       }),
 
     getPublicKeys: t.procedure.query(async () => {

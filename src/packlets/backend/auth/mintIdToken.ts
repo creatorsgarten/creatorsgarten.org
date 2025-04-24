@@ -1,6 +1,8 @@
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import type { DiscordConnection } from '$types/mongo/User/DiscordConnection'
+import type { FigmaConnection } from '$types/mongo/User/FigmaConnection'
 import type { GitHubConnection } from '$types/mongo/User/GitHubConnection'
+import type { GoogleConnection } from '$types/mongo/User/GoogleConnection'
 import { JWT_PRIVATE_KEY } from 'astro:env/server'
 import jwt from 'jsonwebtoken'
 import { getJoinedEvents } from '../events/getJoinedEvents'
@@ -30,6 +32,8 @@ export interface AuthgartenOidcClaims {
     }
     github?: GitHubConnection
     discord?: DiscordConnection
+    google?: GoogleConnection
+    figma?: FigmaConnection
   }
 
   /** Associated Eventpop tickets */
@@ -81,6 +85,8 @@ export async function mintIdToken(
       eventpop: { id: user.uid },
       github: user.connections.github,
       discord: user.connections.discord,
+      google: user.connections.google,
+      figma: user.connections.figma,
     },
     nonce,
   }

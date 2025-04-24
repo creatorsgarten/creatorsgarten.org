@@ -1,8 +1,10 @@
 import { Discord } from './discord'
+import { Figma } from './figma'
 import { GitHub } from './github'
+import { Google } from './google'
 
-import type { FunctionComponent } from 'react'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
+import type { FunctionComponent } from 'react'
 
 interface Props {
   connections: AuthenticatedUser['connections']
@@ -20,6 +22,8 @@ export const Connections: FunctionComponent<Props> = props => {
         <div className="space-y-4">
           <GitHub connection={connections.github} />
           <Discord connection={connections.discord} />
+          <Google connection={connections.google} />
+          <Figma connection={connections.figma} />
         </div>
       </div>
     </section>

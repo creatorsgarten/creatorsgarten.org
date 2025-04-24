@@ -21,6 +21,8 @@ export const finalizeAuthentication = async (uid: number) => {
     connections: {
       github: userDoc.connections?.github ?? null,
       discord: userDoc.connections?.discord ?? null,
+      google: userDoc.connections?.google ?? null,
+      figma: userDoc.connections?.figma ?? null,
     },
   }
 
@@ -30,21 +32,14 @@ export const finalizeAuthentication = async (uid: number) => {
       JWT_PRIVATE_KEY.replaceAll(/\\n/g, '\n'),
       {
         algorithm: 'RS256',
-
-        // https://openid.net/specs/openid-connect-basic-1_0.html#IDToken
+        expiresIn: maxSessionAge,
         issuer: 'https://creatorsgarten.org',
         audience: 'https://creatorsgarten.org',
-        expiresIn: maxSessionAge,
-
-        header: {
-          alg: 'RS256',
-          kid: 'riffy1',
-        },
       }
     )
+
     return { idToken }
   } catch (e) {
-    console.error('Error signing JWT:', e)
-    throw new Error('unable-to-sign')
+    throw new Error('unable-to-sign-token')
   }
 }

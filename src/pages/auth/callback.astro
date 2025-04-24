@@ -1,7 +1,7 @@
 ---
 import Blank from '$layouts/blank.astro'
-import CSRF from 'csrf'
 import { CSRF_SECRET } from 'astro:env/server'
+import CSRF from 'csrf'
 
 const code = Astro.url.searchParams.get('code') ?? ''
 const state = Astro.url.searchParams.get('state') ?? ''
@@ -55,6 +55,10 @@ try {
         return Astro.locals.backend.auth.linkGitHubAccount.mutate({ code })
       case 'discord':
         return Astro.locals.backend.auth.linkDiscordAccount.mutate({ code })
+      case 'google':
+        return Astro.locals.backend.auth.linkGoogleAccount.mutate({ code })
+      case 'figma':
+        return Astro.locals.backend.auth.linkFigmaAccount.mutate({ code })
     }
     throw new Error('service-invalid')
   })()

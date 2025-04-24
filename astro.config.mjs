@@ -23,46 +23,100 @@ export default defineConfig({
   env: {
     schema: {
       // Backend URLs
-      BACKEND_URL: envField.string({ context: 'server', access: 'public', optional: true }),
-      CONTENT_API_URL: envField.string({ 
-        context: 'server', 
-        access: 'public', 
-        default: 'https://wiki.creatorsgarten.org' 
+      BACKEND_URL: envField.string({
+        context: 'server',
+        access: 'public',
+        optional: true,
+      }),
+      CONTENT_API_URL: envField.string({
+        context: 'server',
+        access: 'public',
+        default: 'https://wiki.creatorsgarten.org',
       }),
       G0_HOSTNAME: envField.string({ context: 'server', access: 'secret' }),
-      
+
       // API Credentials
-      RIFFY_API_CREDENTIALS: envField.string({ context: 'server', access: 'secret' }),
-      G0_CREDENTIALS: envField.string({ context: 'server', access: 'secret' }),
-      
-      // Discord
-      DISCORD_CLIENT_ID: envField.string({ context: 'server', access: 'secret' }),
-      DISCORD_CLIENT_SECRET: envField.string({ context: 'server', access: 'secret' }),
-      DISCORD_NOTIFY_WEBHOOK_URL: envField.string({ 
-        context: 'server', 
+      RIFFY_API_CREDENTIALS: envField.string({
+        context: 'server',
         access: 'secret',
       }),
-      
+      G0_CREDENTIALS: envField.string({ context: 'server', access: 'secret' }),
+
+      // Discord
+      DISCORD_CLIENT_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      DISCORD_CLIENT_SECRET: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      DISCORD_NOTIFY_WEBHOOK_URL: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+
       // GitHub
-      GITHUB_CLIENT_ID: envField.string({ context: 'server', access: 'secret' }),
-      GITHUB_CLIENT_SECRET: envField.string({ context: 'server', access: 'secret' }),
-      
+      GITHUB_CLIENT_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      GITHUB_CLIENT_SECRET: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+
+      // Google
+      GOOGLE_CLIENT_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      GOOGLE_CLIENT_SECRET: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+
+      // Figma
+      FIGMA_CLIENT_ID: envField.string({ context: 'server', access: 'secret' }),
+      FIGMA_CLIENT_SECRET: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+
       // Eventpop
-      EVENTPOP_CLIENT_ID: envField.string({ context: 'server', access: 'secret' }),
-      EVENTPOP_CLIENT_SECRET: envField.string({ context: 'server', access: 'secret' }),
-      
+      EVENTPOP_CLIENT_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      EVENTPOP_CLIENT_SECRET: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+
       // Database
-      MONGO_USER: envField.string({ context: 'server', access: 'secret', optional: true }),
-      MONGO_PASS: envField.string({ context: 'server', access: 'secret', optional: true }),
+      MONGO_USER: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
+      MONGO_PASS: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
       MONGO_ADDRESS: envField.string({ context: 'server', access: 'secret' }),
-      
+
       // Security
       CSRF_SECRET: envField.string({ context: 'server', access: 'secret' }),
       JWT_PRIVATE_KEY: envField.string({ context: 'server', access: 'secret' }),
-      
+
       // Sentry
-      SENTRY_AUTH_TOKEN: envField.string({ context: 'server', access: 'secret', optional: true }),
-    }
+      SENTRY_AUTH_TOKEN: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
+    },
   },
   integrations: [
     react(),

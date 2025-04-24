@@ -1,6 +1,6 @@
-import CSRF from 'csrf'
 import type { APIRoute } from 'astro'
 import { CSRF_SECRET, DISCORD_CLIENT_ID } from 'astro:env/server'
+import CSRF from 'csrf'
 
 export const GET: APIRoute = async ({ request, redirect }) => {
   const csrfInstance = new CSRF()
@@ -12,7 +12,7 @@ export const GET: APIRoute = async ({ request, redirect }) => {
     {
       client_id: DISCORD_CLIENT_ID ?? '',
       redirect_uri: 'https://creatorsgarten.org/auth/callback',
-      state: `${redirectHint}!/dashboard!discord-${csrfToken}`,
+      state: `${redirectHint}!/dashboard/profile!discord-${csrfToken}`,
       response_type: 'code',
       scope: 'identify',
     }
