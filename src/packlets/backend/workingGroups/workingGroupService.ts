@@ -59,12 +59,6 @@ interface WorkingGroupDetailedResponse {
   inviteKeys?: InviteKeyDTO[]
 }
 
-interface WorkingGroupInviteViewDTO {
-  id: string
-  name: string
-  createdAt: string
-}
-
 interface JoinRequirement {
   type: string      // 'connection', 'profile', etc.
   name: string      // specific requirement name (e.g., 'github', 'email')
@@ -481,34 +475,6 @@ export async function checkJoinability(
   }
 
   return result
-}
-
-/**
- * Get a working group by invite key (for joining)
- * Only returns minimal information needed for joining
- * @deprecated Use checkJoinability instead
- */
-export async function getWorkingGroupByInviteKey(
-  inviteKey: string
-): Promise<WorkingGroupInviteViewDTO> {
-  const group = await collections.workingGroups.findOne({
-    'inviteKeys.key': inviteKey,
-    'inviteKeys.enabled': true,
-  })
-
-  if (!group) {
-    throw new TRPCError({
-      code: 'NOT_FOUND',
-      message: 'Invalid or expired invite key',
-    })
-  }
-
-  // Return only necessary information for joining
-  return {
-    id: group._id.toString(),
-    name: group.name,
-    createdAt: group.createdAt.toISOString(),
-  }
 }
 
 /**
