@@ -35,6 +35,7 @@ export const finalizeAuthentication = async (uid: number) => {
         expiresIn: maxSessionAge,
         issuer: 'https://creatorsgarten.org',
         audience: 'https://creatorsgarten.org',
+        keyid: 'riffy1',
       }
     )
 
