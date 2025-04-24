@@ -24,6 +24,14 @@ export const workingGroupNameSchema = z
 // Required connections for joining working groups
 export const REQUIRED_CONNECTIONS = ['github', 'figma', 'google']
 
+// Display names for connection types
+const CONNECTION_DISPLAY_NAMES: Record<string, string> = {
+  github: 'GitHub',
+  figma: 'Figma',
+  google: 'Google',
+  discord: 'Discord'
+}
+
 // API representation types - explicitly defining what we expose through the API
 interface PublicWorkingGroupInformation {
   id: string
@@ -440,12 +448,12 @@ export async function checkJoinability(
     return {
       type: 'connection',
       name: connType,
-      displayName: `${connType.charAt(0).toUpperCase() + connType.slice(1)} Account`,
+      displayName: `${CONNECTION_DISPLAY_NAMES[connType] || connType} Account`,
       met: !!connection,
       ...(connection ? {} : {
         callToAction: {
-          text: `Connect ${connType.charAt(0).toUpperCase() + connType.slice(1)}`,
-          url: `/dashboard/connections#${connType}`,
+          text: `Connect ${CONNECTION_DISPLAY_NAMES[connType] || connType}`,
+          url: `/dashboard/profile#${connType}`,
         }
       })
     }

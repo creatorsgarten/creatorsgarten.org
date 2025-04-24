@@ -1,5 +1,6 @@
 import type { FunctionComponent } from 'react'
 
+import { Connection } from './Connection'
 import type { GitHubConnection } from '$types/mongo/User/GitHubConnection'
 
 export interface Props {
@@ -10,21 +11,12 @@ export const GitHub: FunctionComponent<Props> = props => {
   const { connection } = props
 
   return (
-    <div className="flex items-center justify-between">
-      <div className="leading-none">
-        <p className="inline-flex items-center text-lg font-medium">GitHub</p>
-        <p className="-mt-1 text-sm">
-          {connection
-            ? 'Connected with @' + connection.username
-            : 'Not connected'}
-        </p>
-      </div>
-      <a
-        href="/auth/connect/github"
-        className="rounded-md bg-neutral-700 px-4 py-2 uppercase text-white"
-      >
-        {connection ? 'Reconnect' : 'Connect'}
-      </a>
-    </div>
+    <Connection
+      id="github"
+      serviceName="GitHub"
+      displayText={connection ? 'Connected with @' + connection.username : ''}
+      connectUrl="/auth/connect/github"
+      isConnected={!!connection}
+    />
   )
 }
