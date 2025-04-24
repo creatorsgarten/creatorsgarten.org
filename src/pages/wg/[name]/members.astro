@@ -1,7 +1,8 @@
 ---
-import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
+import Head from '$commons/head.astro'
+import Breadcrumb from '$components/breadcrumb.astro'
 import { contentsgarten } from '$constants/contentsgarten'
-import Layout from '$layouts/wiki.astro'
+import BaseLayout from '$layouts/base.astro'
 
 const { name } = Astro.params
 if (!name) {
@@ -83,10 +84,18 @@ const membersList = groupData?.members || []
 const title = publicInfo ? `${publicInfo.name} Working Group` : `${name} Working Group`
 ---
 
-<Layout title={title}>
-  <MainHorizontalPadding>
-    <div class="py-8">
-      <h1 class="mb-6 text-3xl font-bold">{title}</h1>
+<Head title={title} />
+
+<BaseLayout class="mx-auto mt-8 max-w-7xl space-y-6 *:px-6">
+  <Breadcrumb
+    parents={[
+      { title: 'Working Groups', href: '/dashboard' }
+    ]}
+    title={title}
+  />
+  
+  <div class="mx-auto max-w-2xl space-y-6">
+    <h1 class="mb-6 text-3xl font-bold">{title}</h1>
 
       {
         error && (
@@ -231,5 +240,5 @@ const title = publicInfo ? `${publicInfo.name} Working Group` : `${name} Working
         )
       }
     </div>
-  </MainHorizontalPadding>
-</Layout>
+  </div>
+</BaseLayout>
