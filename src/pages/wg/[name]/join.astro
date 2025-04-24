@@ -1,8 +1,8 @@
 ---
 import Head from '$commons/head.astro'
 import Breadcrumb from '$components/breadcrumb.astro'
+import RequirementsList from '$components/requirementsList.astro'
 import BaseLayout from '$layouts/base.astro'
-import { Icon } from 'react-iconify-icon-wrapper'
 
 const { name } = Astro.params
 if (!name) {
@@ -153,30 +153,8 @@ const title = joinabilityResult?.group?.name
                 requirements:
               </p>
 
-              <div class="mb-4 space-y-2">
-                {joinabilityResult.requirements.map((req: any) => (
-                  <div class="flex items-center">
-                    <span
-                      class={`mr-2 inline-flex items-center justify-center h-5 w-5 rounded-full ${req.met ? 'bg-green-500' : 'bg-red-500'}`}
-                    >
-                      {req.met ? (
-                        <Icon icon="heroicons:check" className="text-white h-4 w-4" />
-                      ) : (
-                        <Icon icon="heroicons:x-mark" className="text-white h-4 w-4" />
-                      )}
-                    </span>
-                    <span>{req.displayName}</span>
-                    {!req.met && req.callToAction && (
-                      <a
-                        href={req.callToAction.url}
-                        class="ml-2 text-sm text-blue-600 hover:underline"
-                        target="_blank"
-                      >
-                        {req.callToAction.text}
-                      </a>
-                    )}
-                  </div>
-                ))}
+              <div class="mb-4">
+                <RequirementsList requirements={joinabilityResult.requirements} />
               </div>
             </div>
 
