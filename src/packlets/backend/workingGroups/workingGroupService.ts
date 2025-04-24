@@ -65,6 +65,29 @@ interface WorkingGroupInviteViewDTO {
   createdAt: string
 }
 
+interface JoinRequirement {
+  type: string      // 'connection', 'profile', etc.
+  name: string      // specific requirement name (e.g., 'github', 'email')
+  met: boolean      // whether the requirement is met
+  displayName: string // human-readable name for display
+  callToAction?: {
+    text: string
+    url: string
+  }
+}
+
+interface JoinabilityResult {
+  canJoin: boolean
+  group: {
+    id: string
+    name: string
+  }
+  userIsAlreadyMember: boolean
+  requirements: JoinRequirement[]
+  profileSnapshot: ProfileSnapshot
+  errorMessage?: string
+}
+
 /**
  * Get working group details with information based on user role
  * 
@@ -372,8 +395,98 @@ export async function createInviteLink(name: string, user: AuthenticatedUser) {
 }
 
 /**
+ * Check if a user can join a working group with the given invite key
+ * Returns detailed information about joinability status and requirements
+ */
+export async function checkJoinability(
+  inviteKey: string,
+  user: AuthenticatedUser
+): Promise<JoinabilityResult> {
+  // Find the group with the invite key
+  const group = await collections.workingGroups.findOne({
+    'inviteKeys.key': inviteKey,
+    'inviteKeys.enabled': true,
+  })
+
+  if (!group) {
+    return {
+      canJoin: false,
+      group: { id: '', name: '' },
+      userIsAlreadyMember: false,
+      requirements: [],
+      profileSnapshot: {
+        name: user.name,
+        email: user.email,
+      },
+      errorMessage: 'Invalid or expired invite key',
+    }
+  }
+
+  const userId = new ObjectId(user.sub)
+  
+  // Check if user is already a member
+  const existingMember = await collections.workingGroupMembers.findOne({
+    groupId: group._id,
+    userId,
+  })
+  
+  // Prepare the profile snapshot that would be saved
+  const profileSnapshot: ProfileSnapshot = {
+    name: user.name,
+    email: user.email,
+    githubUsername: user.connections.github?.username,
+    discordName: user.connections.discord?.username,
+    googleAccount: user.connections.google?.email,
+    figmaEmail: user.connections.figma?.email,
+  }
+
+  // Check all connection requirements
+  const requirements: JoinRequirement[] = REQUIRED_CONNECTIONS.map(connType => {
+    const connection = user.connections[connType as keyof typeof user.connections]
+    return {
+      type: 'connection',
+      name: connType,
+      displayName: `${connType.charAt(0).toUpperCase() + connType.slice(1)} Account`,
+      met: !!connection,
+      ...(connection ? {} : {
+        callToAction: {
+          text: `Connect ${connType.charAt(0).toUpperCase() + connType.slice(1)}`,
+          url: `/dashboard/connections#${connType}`,
+        }
+      })
+    }
+  })
+
+  // Check if all requirements are met
+  const unmetRequirements = requirements.filter(req => !req.met)
+  const canJoin = unmetRequirements.length === 0 && !existingMember
+
+  // Prepare the result
+  const result: JoinabilityResult = {
+    canJoin,
+    group: {
+      id: group._id.toString(),
+      name: group.name,
+    },
+    userIsAlreadyMember: !!existingMember,
+    requirements,
+    profileSnapshot,
+  }
+
+  // Add specific error message if needed
+  if (existingMember) {
+    result.errorMessage = 'You are already a member of this group'
+  } else if (unmetRequirements.length > 0) {
+    result.errorMessage = `You need to fulfill all requirements before joining this group`
+  }
+
+  return result
+}
+
+/**
  * Get a working group by invite key (for joining)
  * Only returns minimal information needed for joining
+ * @deprecated Use checkJoinability instead
  */
 export async function getWorkingGroupByInviteKey(
   inviteKey: string
@@ -405,49 +518,31 @@ export async function joinWorkingGroup(
   inviteKey: string,
   user: AuthenticatedUser
 ) {
-  // Check if the user has all the required connections
-  for (const connection of REQUIRED_CONNECTIONS) {
-    if (!user.connections[connection as keyof typeof user.connections]) {
+  // Check joinability first
+  const joinabilityResult = await checkJoinability(inviteKey, user)
+  
+  // Handle errors
+  if (!joinabilityResult.canJoin) {
+    if (joinabilityResult.errorMessage) {
+      throw new TRPCError({
+        code: joinabilityResult.userIsAlreadyMember ? 'CONFLICT' : 'BAD_REQUEST',
+        message: joinabilityResult.errorMessage,
+      })
+    } else {
       throw new TRPCError({
         code: 'BAD_REQUEST',
-        message: `You must connect your ${connection} account before joining a working group`,
+        message: 'Unable to join the working group',
       })
     }
   }
 
-  const group = await getWorkingGroupByInviteKey(inviteKey)
-  const userId = new ObjectId(user.sub)
-
-  // Check if user is already a member
-  const existingMember = await collections.workingGroupMembers.findOne({
-    groupId: new ObjectId(group.id),
-    userId,
-  })
-
-  if (existingMember) {
-    throw new TRPCError({
-      code: 'CONFLICT',
-      message: 'You are already a member of this group',
-    })
-  }
-
-  // Create the profile snapshot with required fields
-  const profileSnapshot: ProfileSnapshot = {
-    name: user.name,
-    email: user.email,
-    githubUsername: user.connections.github?.username,
-    discordName: user.connections.discord?.username,
-    googleAccount: user.connections.google?.email,
-    figmaEmail: user.connections.figma?.email,
-  }
-
-  // Add user as a member
+  // All checks passed, add the user as a member
   await collections.workingGroupMembers.insertOne({
-    groupId: new ObjectId(group.id),
-    userId,
+    groupId: new ObjectId(joinabilityResult.group.id),
+    userId: new ObjectId(user.sub),
     joinedAt: new Date(),
-    profileSnapshot,
+    profileSnapshot: joinabilityResult.profileSnapshot,
   })
 
-  return group
+  return joinabilityResult.group
 }
