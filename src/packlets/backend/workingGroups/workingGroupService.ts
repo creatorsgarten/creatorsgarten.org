@@ -3,6 +3,9 @@ import { ObjectId } from 'mongodb'
 import { z } from 'zod'
 
 import { collections } from '$constants/mongo'
+import type { AuthenticatedUser } from '$types/AuthenticatedUser'
+import type { WorkingGroup } from '$types/mongo/WorkingGroup'
+import type { ProfileSnapshot } from '$types/mongo/WorkingGroupMember'
 
 // Working group name schema for validation
 export const workingGroupNameSchema = z
@@ -39,7 +42,7 @@ export async function createWorkingGroup(name: string, userId: ObjectId) {
   }
 
   // Create a new working group
-  const group = {
+  const group: Omit<WorkingGroup, '_id'> = {
     name: normalizedName,
     createdAt: new Date(),
     createdBy: userId,
@@ -68,17 +71,7 @@ export async function createWorkingGroup(name: string, userId: ObjectId) {
  */
 export async function addMemberToWorkingGroup(
   groupId: ObjectId,
-  user: {
-    sub: string
-    name: string
-    email: string
-    connections: {
-      github?: { login: string }
-      discord?: { username: string }
-      google?: { email: string }
-      figma?: { email: string }
-    }
-  }
+  user: AuthenticatedUser
 ) {
   const userId = new ObjectId(user.sub)
 
@@ -95,33 +88,22 @@ export async function addMemberToWorkingGroup(
     })
   }
 
+  const profileSnapshot: ProfileSnapshot = {
+    name: user.name,
+    email: user.email,
+    githubUsername: user.connections.github?.username,
+    discordName: user.connections.discord?.username,
+    googleAccount: user.connections.google?.email,
+    figmaEmail: user.connections.figma?.email,
+  }
   // Add user as a member
   await collections.workingGroupMembers.insertOne({
     groupId,
     userId,
     joinedAt: new Date(),
-    profileSnapshot: {
-      name: user.name,
-      email: user.email,
-      githubUsername: user.connections.github?.login,
-      discordName: user.connections.discord?.username,
-      googleAccount: user.connections.google?.email,
-      figmaEmail: user.connections.figma?.email,
-    },
+    profileSnapshot,
     questionResponses: [],
   })
-}
-
-/**
- * Check if a wiki page exists for a working group
- */
-export async function checkWikiPageExists(name: string) {
-  const pageRef = `WorkingGroups/${name.toLowerCase()}`
-
-  // This is a placeholder - in a real implementation,
-  // you would check if the wiki page exists
-  // For now, we'll assume it exists for demonstrational purposes
-  return { exists: true, pageRef }
 }
 
 /**

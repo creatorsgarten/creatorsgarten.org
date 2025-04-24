@@ -1,8 +1,6 @@
 import { ObjectId } from 'mongodb'
 
 export interface WorkingGroup {
-  /** MongoDB ObjectId */
-  _id: ObjectId
   /** Working group name (without the WorkingGroups/ prefix) */
   name: string
   /** When the group was created */
