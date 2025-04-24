@@ -36,12 +36,10 @@ import { generateSignature } from './signatures/generateSignature'
 import { verifySignature } from './signatures/verifySignature'
 import { generateCloudinarySignature } from './uploads/generateCloudinarySignature'
 import {
-  REQUIRED_CONNECTIONS,
   addMemberToWorkingGroup,
   checkJoinability,
   createInviteLink,
   createWorkingGroup,
-  getWorkingGroupByInviteKey,
   getWorkingGroupWithDetails,
   joinWorkingGroup,
   workingGroupNameSchema,
@@ -450,18 +448,6 @@ export const appRouter = t.router({
         }
       }),
 
-    // Get a working group by invite key (safe version - for joining)
-    // @deprecated Use checkJoinability instead
-    getByInviteKey: t.procedure
-      .input(
-        z.object({
-          inviteKey: z.string(),
-        })
-      )
-      .query(async ({ input }) => {
-        return getWorkingGroupByInviteKey(input.inviteKey)
-      }),
-      
     // Check if a user can join a working group with a given invite key
     checkJoinability: t.procedure
       .input(
@@ -498,11 +484,6 @@ export const appRouter = t.router({
         }
         return joinWorkingGroup(input.inviteKey, user)
       }),
-
-    // Get list of required connections for joining working groups
-    getRequiredConnections: t.procedure.query(() => {
-      return REQUIRED_CONNECTIONS
-    }),
   }),
 })
 
