@@ -50,17 +50,6 @@ const services = websiteConfig?.integrations.services ?? []
     />
 
     {
-      hasGardenZeroAccess && (
-        <PortalCard
-          title="Garden Zero"
-          description="Access and manage Garden Zero membership"
-          icon="heroicons:key"
-          href="/dashboard/g0"
-        />
-      )
-    }
-
-    {
       services.map(service => (
         <PortalCard
           title={service.name}
@@ -70,6 +59,17 @@ const services = websiteConfig?.integrations.services ?? []
           image={service.image}
         />
       ))
+    }
+
+    {
+      hasGardenZeroAccess && (
+        <PortalCard
+          title="Garden Zero"
+          description="Access and manage Garden Zero membership"
+          icon="heroicons:key"
+          href="/dashboard/g0"
+        />
+      )
     }
   </div>
 </BaseLayout>
