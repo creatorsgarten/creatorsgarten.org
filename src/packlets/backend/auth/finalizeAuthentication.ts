@@ -34,6 +34,11 @@ export const finalizeAuthentication = async (uid: number) => {
       {
         algorithm: 'RS256',
         expiresIn: maxSessionAge,
+
+        // Do not delete these. They are required for third-party services depending on this JWT having the iss, aud, and kid fields.
+        issuer: 'https://creatorsgarten.org',
+        audience: 'https://creatorsgarten.org',
+        keyid: 'riffy1',
       }
     )
 
