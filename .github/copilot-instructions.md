@@ -33,17 +33,40 @@ Creatorsgarten.org is built with:
 - Use zod for schema validation
 - Use optional chaining and nullish coalescing where appropriate
 
+## Architecture Patterns
+
+### Frontend-Backend Separation
+
+- The application has two distinct parts: Astro server and tRPC backend
+- Astro pages must not import backend functions directly
+- Access backend functionality in Astro via `Astro.locals.backend`
+- Access authenticated user in Astro via `Astro.locals.user`
+
+### Backend Organization
+
+- Backend code should be modular and organized by feature:
+  - Create a directory for each feature under `src/packlets/backend/`
+  - Split implementations into service files (business logic) and router files (API definition)
+  - Keep the main backend index.ts file clean by importing routers from feature modules
+
+### Database Schema Design
+
+- Follow single-source-of-truth principle: avoid redundant data storage
+- Use appropriate MongoDB data types and schemas
+
 ## Current Development Focus
 
 - Implementing username reservation system
 - Expanding user profile fields via Wiki pages
 - User profiles should be stored in Wiki pages rather than in database
+- Working Group system to centralize member information for events
 
 ## Database Schema Notes
 
 - User data structure is defined in `src/@types/mongo/User/index.ts`
 - Only add new fields to the User schema when absolutely necessary
 - Prefer storing public user information in Wiki pages
+- New MongoDB schemas should be defined in `src/@types/mongo/` directory
 
 ## Wiki Content Schema
 
