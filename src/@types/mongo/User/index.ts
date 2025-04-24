@@ -21,4 +21,6 @@ export interface User {
     figma?: FigmaConnection
   }
   accessedAt: Date
+  /** Unique username for the user profile */
+  username?: string
 }

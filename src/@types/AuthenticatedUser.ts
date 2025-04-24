@@ -14,6 +14,9 @@ export interface AuthenticatedUser {
   avatar: string
   email: string
 
+  /** Unique username for the user profile */
+  username?: string
+
   connections: {
     github: GitHubConnection
     discord: DiscordConnection

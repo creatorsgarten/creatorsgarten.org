@@ -1,9 +1,16 @@
 import { TRPCError, initTRPC } from '@trpc/server'
 import { createPrivateKey, createPublicKey } from 'crypto'
 import { exportJWK } from 'jose'
+import { ObjectId } from 'mongodb'
 import { z } from 'zod'
 
+import { collections } from '$constants/mongo'
+import {
+  reservedUsernames,
+  usernameSchema,
+} from '$functions/usernameValidation'
 import { JWT_PRIVATE_KEY } from 'astro:env/server'
+import { finalizeAuthentication } from './auth/finalizeAuthentication'
 
 import { authenticateDiscord } from './auth/authenticateDiscord'
 import { authenticateEventpopUser } from './auth/authenticateEventpopUser'
@@ -143,6 +150,96 @@ export const appRouter = t.router({
       const publicKeyObj = createPublicKey(privateKeyObj)
       return [{ ...(await exportJWK(publicKeyObj)), kid: 'riffy1' }]
     }),
+
+    checkUsernameAvailability: t.procedure
+      .input(
+        z.object({
+          username: usernameSchema,
+        })
+      )
+      .query(async ({ input }) => {
+        const { username } = input
+
+        // Check if username is in reserved list
+        if (reservedUsernames.includes(username.toLowerCase())) {
+          return { available: false, message: 'This username is reserved' }
+        }
+
+        // Check if username already exists in database
+        const existingUser = await collections.users.findOne({
+          username: username.toLowerCase(),
+        })
+
+        if (existingUser) {
+          return { available: false, message: 'This username is already taken' }
+        }
+
+        return { available: true }
+      }),
+
+    reserveUsername: t.procedure
+      .input(
+        z.object({
+          username: usernameSchema,
+        })
+      )
+      .mutation(async ({ ctx, input }) => {
+        const user = await getAuthenticatedUser(ctx.authToken)
+        if (!user) {
+          throw new TRPCError({
+            code: 'UNAUTHORIZED',
+            message: 'You must be logged in to reserve a username',
+          })
+        }
+
+        // Verify user has GitHub connection
+        if (!user.connections.github) {
+          throw new TRPCError({
+            code: 'FORBIDDEN',
+            message:
+              'You must connect your GitHub account before reserving a username',
+          })
+        }
+
+        const { username } = input
+        const lowercaseUsername = username.toLowerCase()
+
+        // Check if username is in reserved list
+        if (reservedUsernames.includes(lowercaseUsername)) {
+          throw new TRPCError({
+            code: 'BAD_REQUEST',
+            message: 'This username is reserved',
+          })
+        }
+
+        // Check if username already exists in database
+        const existingUser = await collections.users.findOne({
+          username: lowercaseUsername,
+        })
+
+        if (existingUser) {
+          throw new TRPCError({
+            code: 'CONFLICT',
+            message: 'This username is already taken',
+          })
+        }
+
+        // Update user document with the new username
+        const result = await collections.users.updateOne(
+          { _id: new ObjectId(user.sub) },
+          { $set: { username: lowercaseUsername } }
+        )
+
+        if (result.modifiedCount === 0) {
+          throw new TRPCError({
+            code: 'INTERNAL_SERVER_ERROR',
+            message: 'Failed to update username',
+          })
+        }
+
+        // Return updated user with new username
+        return finalizeAuthentication(user.uid)
+      }),
   }),
 
   events: t.router({
