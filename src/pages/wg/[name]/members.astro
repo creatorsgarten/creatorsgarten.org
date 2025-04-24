@@ -21,50 +21,18 @@ const backend = Astro.locals.backend
 const user = Astro.locals.user
 
 // Fetch the working group by name
-let group: Awaited<
-  ReturnType<typeof backend.workingGroups.getByName.query>
+let groupData: Awaited<
+  ReturnType<typeof backend.workingGroups.getWorkingGroup.query>
 > | null = null
-let fullGroupData: any = null // For authenticated members only
 let wikiPageExists = false
 let error: string | null = null
-let memberCounts = { admins: 0, members: 0, total: 0 }
-let isUserAdmin = false
-let isUserMember = false
-let membersList: any[] = []
 
 try {
-  // Check if the group exists - use the public endpoint first
-  group = await backend.workingGroups.getByName.query({ name: groupName })
+  // Get all group information in a single call with role-based data
+  groupData = await backend.workingGroups.getWorkingGroup.query({ name: groupName })
 
-  // If the group exists, get member counts from the public endpoint
-  if (group) {
-    memberCounts = group.memberCounts
-
-    // If user is logged in, check membership status
-    if (user) {
-      // Check if current user is a member or admin
-      isUserMember = await backend.workingGroups.isUserMember.query({
-        groupId: group.id,
-      })
-
-      // If user is a member, get full group data including member list
-      if (isUserMember) {
-        fullGroupData = await backend.workingGroups.getByNameWithRole.query({
-          name: groupName,
-        })
-
-        // Get member list
-        const membersResult = await backend.workingGroups.getMembers.query({
-          groupId: group.id,
-        })
-        membersList = membersResult.members
-
-        // Check admin status from the full data
-        isUserAdmin = fullGroupData.isCurrentUserAdmin
-      }
-    }
-  } else {
-    // If group doesn't exist, check if the wiki page exists
+  // If group doesn't exist, check if the wiki page exists
+  if (!groupData) {
     wikiPageExists = await contentsgarten()
       .view.query({
         pageRef: `WorkingGroups/${groupName}`,
@@ -92,17 +60,9 @@ if (Astro.request.method === 'POST') {
         'A corresponding Wiki page must exist before creating this working group'
     } else {
       // Create the working group
-      const createdGroup = await backend.workingGroups.create.mutate({
+      groupData = await backend.workingGroups.create.mutate({
         name: groupName,
       })
-
-      // After creation, get the group data again
-      group = await backend.workingGroups.getByName.query({ name: groupName })
-      memberCounts = group?.memberCounts || { admins: 1, members: 0, total: 1 }
-
-      // Set membership status
-      isUserAdmin = true
-      isUserMember = true
     }
   } catch (e) {
     console.error('Error creating working group:', e)
@@ -113,7 +73,14 @@ if (Astro.request.method === 'POST') {
 }
 
 const pageRef = `WorkingGroups/${groupName}`
-const title = group ? `${group.name} Working Group` : `${name} Working Group`
+
+// Extract public info for cleaner template code
+const publicInfo = groupData?.publicWorkingGroupInformation
+const isUserAdmin = groupData?.isCurrentUserAdmin || false
+const isUserMember = groupData?.isCurrentUserMember || false
+const membersList = groupData?.members || []
+
+const title = publicInfo ? `${publicInfo.name} Working Group` : `${name} Working Group`
 ---
 
 <Layout title={title}>
@@ -133,7 +100,7 @@ const title = group ? `${group.name} Working Group` : `${name} Working Group`
       }
 
       {
-        group ? (
+        publicInfo ? (
           <div class="rounded-lg bg-white p-6 shadow-md">
             <h2 class="mb-4 text-xl font-semibold">Working Group Details</h2>
 
@@ -147,26 +114,26 @@ const title = group ? `${group.name} Working Group` : `${name} Working Group`
                   {pageRef}
                 </a>
               </p>
-              <p>Created: {new Date(group.createdAt).toLocaleDateString()}</p>
+              <p>Created: {new Date(publicInfo.createdAt).toLocaleDateString()}</p>
             </div>
 
             <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
               <div class="rounded bg-gray-50 p-4 text-center">
-                <div class="text-2xl font-bold">{memberCounts.admins}</div>
+                <div class="text-2xl font-bold">{publicInfo.memberCounts.admins}</div>
                 <div class="text-gray-600">Admins</div>
               </div>
               <div class="rounded bg-gray-50 p-4 text-center">
-                <div class="text-2xl font-bold">{memberCounts.members}</div>
+                <div class="text-2xl font-bold">{publicInfo.memberCounts.members}</div>
                 <div class="text-gray-600">Members</div>
               </div>
               <div class="rounded bg-gray-50 p-4 text-center">
-                <div class="text-2xl font-bold">{memberCounts.total}</div>
+                <div class="text-2xl font-bold">{publicInfo.memberCounts.total}</div>
                 <div class="text-gray-600">Total</div>
               </div>
             </div>
 
             {/* Show member list if user is a member */}
-            {isUserMember && (
+            {isUserMember && membersList.length > 0 && (
               <div class="mb-6">
                 <h3 class="mb-2 text-lg font-semibold">Members</h3>
                 <div class="overflow-x-auto rounded border border-gray-200">
