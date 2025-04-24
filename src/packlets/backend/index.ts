@@ -38,6 +38,7 @@ import { generateCloudinarySignature } from './uploads/generateCloudinarySignatu
 import {
   REQUIRED_CONNECTIONS,
   addMemberToWorkingGroup,
+  checkJoinability,
   createInviteLink,
   createWorkingGroup,
   getWorkingGroupByInviteKey,
@@ -450,6 +451,7 @@ export const appRouter = t.router({
       }),
 
     // Get a working group by invite key (safe version - for joining)
+    // @deprecated Use checkJoinability instead
     getByInviteKey: t.procedure
       .input(
         z.object({
@@ -458,6 +460,25 @@ export const appRouter = t.router({
       )
       .query(async ({ input }) => {
         return getWorkingGroupByInviteKey(input.inviteKey)
+      }),
+      
+    // Check if a user can join a working group with a given invite key
+    checkJoinability: t.procedure
+      .input(
+        z.object({
+          inviteKey: z.string(),
+        })
+      )
+      .query(async ({ ctx, input }) => {
+        const user = await getAuthenticatedUser(ctx.authToken)
+        if (!user) {
+          throw new TRPCError({
+            code: 'UNAUTHORIZED',
+            message: 'You must be logged in to check join eligibility',
+          })
+        }
+        
+        return checkJoinability(input.inviteKey, user)
       }),
 
     // Join a working group using an invite key

@@ -29,73 +29,47 @@ if (!user) {
 }
 
 // Initial states
-let group: any = null
+let joinabilityResult: any = null 
 let error: string | null = null
 let success: string | null = null
 let isJoining = false
-const requiredConnections =
-  await backend.workingGroups.getRequiredConnections.query()
 
-// Check if the invite key is valid using the safe public endpoint
-if (key) {
-  try {
-    // This now uses the secure version that only returns minimal info needed for joining
-    group = await backend.workingGroups.getByInviteKey.query({ inviteKey: key })
-  } catch (e) {
-    console.error('Error fetching working group by invite key:', e)
-    error = 'Invalid invite link. Please ask for a new invite.'
-  }
-} else {
+// Check if we have an invite key
+if (!key) {
   // If no key, redirect to members page
   return Astro.redirect(`/wg/${groupName}/members`)
 }
 
-// Get group with user role information
-let groupWithRole = null
-if (group) {
-  try {
-    groupWithRole = await backend.workingGroups.getWorkingGroup.query({ name: groupName })
-  } catch (error) {
-    console.error('Error fetching group details:', error)
-  }
-}
-
-// Check if user is already a member
-const isUserMember = groupWithRole?.isCurrentUserMember || false
-
-if (isUserMember) {
+// Check joinability using the new unified endpoint
+try {
+  joinabilityResult = await backend.workingGroups.checkJoinability.query({ inviteKey: key })
+  
   // If user is already a member, redirect to members page
-  console.error('User is already a member of the group', groupName, user.sub)
-  return Astro.redirect(`/wg/${groupName}/members`)
-}
-
-// Check which connections the user has
-const missingConnections = requiredConnections.filter(
-  conn => !user.connections[conn as keyof typeof user.connections]
-)
-
-// Prepare the profile data to show
-const profileData = {
-  name: user.name,
-  email: user.email,
-  githubUsername: user.connections.github?.username,
-  discordName: user.connections.discord?.username,
-  googleAccount: user.connections.google?.email,
-  figmaEmail: user.connections.figma?.email,
+  if (joinabilityResult.userIsAlreadyMember) {
+    return Astro.redirect(`/wg/${groupName}/members`)
+  }
+  
+  // If there's an error message, set it
+  if (joinabilityResult.errorMessage && !joinabilityResult.canJoin) {
+    error = joinabilityResult.errorMessage
+  }
+} catch (e) {
+  console.error('Error checking joinability:', e)
+  error = 'Unable to verify join eligibility. Please try again.'
 }
 
 // Handle join request
-if (Astro.request.method === 'POST' && group) {
+if (Astro.request.method === 'POST' && joinabilityResult) {
   isJoining = true
 
   try {
-    // Check if user has all required connections
-    if (missingConnections.length > 0) {
-      error = 'You must connect all required accounts before joining'
+    // Check if we can join
+    if (!joinabilityResult.canJoin) {
+      error = 'You must fulfill all requirements before joining'
     } else {
       // Join the working group using the secure endpoint
       await backend.workingGroups.joinWithInviteKey.mutate({ inviteKey: key })
-      success = `You have successfully joined the ${group.name} Working Group`
+      success = `You have successfully joined the ${joinabilityResult.group.name} Working Group`
     }
   } catch (e) {
     console.error('Error joining working group:', e)
@@ -105,7 +79,9 @@ if (Astro.request.method === 'POST' && group) {
   isJoining = false
 }
 
-const title = group ? `Join ${group.name} Working Group` : 'Invalid Invite'
+const title = joinabilityResult?.group?.name 
+  ? `Join ${joinabilityResult.group.name} Working Group` 
+  : 'Invalid Invite'
 ---
 
 <Layout title={title}>
@@ -114,7 +90,7 @@ const title = group ? `Join ${group.name} Working Group` : 'Invalid Invite'
       <div class="mb-4 flex items-center justify-between">
         <h1 class="text-3xl font-bold">{title}</h1>
         {
-          group && (
+          joinabilityResult?.group?.name && (
             <a
               href={`/wg/${groupName}/members`}
               class="rounded bg-gray-100 px-4 py-2 text-gray-700 transition hover:bg-gray-200"
@@ -125,6 +101,7 @@ const title = group ? `Join ${group.name} Working Group` : 'Invalid Invite'
         }
       </div>
 
+      {/* Error message */}
       {
         error && (
           <div
@@ -136,6 +113,7 @@ const title = group ? `Join ${group.name} Working Group` : 'Invalid Invite'
         )
       }
 
+      {/* Success message */}
       {
         success && (
           <div
@@ -155,27 +133,27 @@ const title = group ? `Join ${group.name} Working Group` : 'Invalid Invite'
         )
       }
 
+      {/* Join form */}
       {
-        group && !success && (
+        joinabilityResult?.group?.name && !success && (
           <div class="rounded-lg bg-white p-6 shadow-md">
             <h2 class="mb-4 text-xl font-semibold">Join Working Group</h2>
 
+            {/* Requirements section */}
             <div class="mb-6">
               <h3 class="mb-2 text-lg font-medium">Requirements</h3>
               <p class="mb-4 text-gray-600">
-                To join this working group, you need to connect the following
-                accounts:
+                To join this working group, you need to meet the following
+                requirements:
               </p>
 
               <div class="mb-4 space-y-2">
-                {requiredConnections.map(conn => (
+                {joinabilityResult.requirements.map((req: any) => (
                   <div class="flex items-center">
                     <span
-                      class={`mr-2 inline-block h-5 w-5 rounded-full ${user.connections[conn as keyof typeof user.connections] ? 'bg-green-500' : 'bg-red-500'}`}
+                      class={`mr-2 inline-block h-5 w-5 rounded-full ${req.met ? 'bg-green-500' : 'bg-red-500'}`}
                     >
-                      {user.connections[
-                        conn as keyof typeof user.connections
-                      ] && (
+                      {req.met && (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -190,16 +168,14 @@ const title = group ? `Join ${group.name} Working Group` : 'Invalid Invite'
                         </svg>
                       )}
                     </span>
-                    <span class="capitalize">{conn} Account</span>
-                    {!user.connections[
-                      conn as keyof typeof user.connections
-                    ] && (
+                    <span>{req.displayName}</span>
+                    {!req.met && req.callToAction && (
                       <a
-                        href={`/connections#${conn}`}
+                        href={req.callToAction.url}
                         class="ml-2 text-sm text-blue-600 hover:underline"
                         target="_blank"
                       >
-                        Connect
+                        {req.callToAction.text}
                       </a>
                     )}
                   </div>
@@ -207,6 +183,7 @@ const title = group ? `Join ${group.name} Working Group` : 'Invalid Invite'
               </div>
             </div>
 
+            {/* Profile information section */}
             <div class="mb-6">
               <h3 class="mb-2 text-lg font-medium">Your Information</h3>
               <p class="mb-4 text-gray-600">
@@ -216,7 +193,7 @@ const title = group ? `Join ${group.name} Working Group` : 'Invalid Invite'
 
               <div class="rounded border border-gray-200 bg-gray-50 p-4">
                 <div class="space-y-2">
-                  {Object.entries(profileData).map(([key, value]) => (
+                  {Object.entries(joinabilityResult.profileSnapshot).map(([key, value]: [string, any]) => (
                     <div class="grid grid-cols-3">
                       <div class="text-gray-600 capitalize">
                         {key.replace(/([A-Z])/g, ' $1').trim()}
@@ -232,6 +209,7 @@ const title = group ? `Join ${group.name} Working Group` : 'Invalid Invite'
               </div>
             </div>
 
+            {/* Join form */}
             <form method="POST">
               <input type="hidden" name="inviteKey" value={key} />
 
@@ -251,14 +229,14 @@ const title = group ? `Join ${group.name} Working Group` : 'Invalid Invite'
               <button
                 type="submit"
                 class="rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
-                disabled={missingConnections.length > 0 || isJoining}
+                disabled={!joinabilityResult.canJoin || isJoining}
               >
                 {isJoining ? 'Joining...' : 'Join Working Group'}
               </button>
 
-              {missingConnections.length > 0 && (
+              {!joinabilityResult.canJoin && (
                 <p class="mt-2 text-sm text-red-600">
-                  Please connect all required accounts before joining
+                  Please fulfill all requirements before joining
                 </p>
               )}
             </form>
@@ -266,8 +244,9 @@ const title = group ? `Join ${group.name} Working Group` : 'Invalid Invite'
         )
       }
 
+      {/* Loading state */}
       {
-        !group && !error && (
+        !joinabilityResult && !error && (
           <div class="rounded-lg bg-white p-6 shadow-md">
             <p>Loading...</p>
           </div>
