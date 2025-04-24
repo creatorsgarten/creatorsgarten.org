@@ -2,6 +2,7 @@
 import Head from '$commons/head.astro'
 import Breadcrumb from '$components/breadcrumb.astro'
 import BaseLayout from '$layouts/base.astro'
+import { Icon } from 'react-iconify-icon-wrapper'
 
 const { name } = Astro.params
 if (!name) {
@@ -160,21 +161,12 @@ const title = joinabilityResult?.group?.name
                 {joinabilityResult.requirements.map((req: any) => (
                   <div class="flex items-center">
                     <span
-                      class={`mr-2 inline-block h-5 w-5 rounded-full ${req.met ? 'bg-green-500' : 'bg-red-500'}`}
+                      class={`mr-2 inline-flex items-center justify-center h-5 w-5 rounded-full ${req.met ? 'bg-green-500' : 'bg-red-500'}`}
                     >
-                      {req.met && (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="white"
-                          class="h-5 w-5"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
+                      {req.met ? (
+                        <Icon icon="heroicons:check" className="text-white h-4 w-4" />
+                      ) : (
+                        <Icon icon="heroicons:x-mark" className="text-white h-4 w-4" />
                       )}
                     </span>
                     <span>{req.displayName}</span>
