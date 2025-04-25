@@ -7,6 +7,7 @@ import SidebarMetadataSection, {
   type Props as MetadataProps,
 } from './sidebar/metadataSection.astro'
 import SidebarPersonSection from './sidebar/personSection.astro'
+import SidebarWorkingGroupSection from './sidebar/workingGroupSection.astro'
 
 import dayjs from 'dayjs'
 
@@ -42,6 +43,10 @@ const metadata: MetadataProps = {
   pageRef,
   grtn: parsedFrontMatter?.grtn,
 }
+
+const workingGroupName = pageRef.startsWith('WorkingGroups/')
+  ? pageRef.split('/')[1]
+  : undefined
 
 const coverImage =
   parsedFrontMatter?.image ??
@@ -82,6 +87,11 @@ const coverImage =
     {
       !!parsedFrontMatter?.person && (
         <SidebarPersonSection person={parsedFrontMatter.person} />
+      )
+    }
+    {
+      !!workingGroupName && (
+        <SidebarWorkingGroupSection name={workingGroupName} />
       )
     }
   </Fragment>

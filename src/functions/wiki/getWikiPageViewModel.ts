@@ -1,11 +1,6 @@
-import {
-  parseFrontMatter,
-  type FrontMatter,
-  type frontMatterSchema,
-} from '$functions/parseFrontMatter'
+import { parseFrontMatter, type FrontMatter } from '$functions/parseFrontMatter'
 import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
 import type { AstroGlobal } from 'astro'
-import type { z } from 'zod'
 import { fromZodError, type ValidationError } from 'zod-validation-error'
 import { formatPageRef } from './formatPageRef'
 import { getContentHash, getMarkdownFromSlug } from './getMarkdownFromSlug'
@@ -73,9 +68,7 @@ export async function getWikiPageViewModel(input: {
   const { pageRef, mode, searchParams } = input
 
   // Get markdown content
-  const markdown = await getMarkdownFromSlug<
-    z.infer<typeof frontMatterSchema>['event'] & { title: string }
-  >(pageRef)
+  const markdown = await getMarkdownFromSlug<FrontMatter>(pageRef)
 
   const {
     status,
@@ -90,8 +83,8 @@ export async function getWikiPageViewModel(input: {
 
   // Determine response actions based on status
   const responseActions: ResponseAction[] = getResponseActions(
-    status, 
-    targetPageRef, 
+    status,
+    targetPageRef,
     searchParams.get('redirect') !== 'no'
   )
 
@@ -123,7 +116,7 @@ export async function getWikiPageViewModel(input: {
     lastModifiedBy,
     editable,
     frontMatterParsingResult,
-    file
+    file,
   })
 
   return {
@@ -142,24 +135,24 @@ export async function getWikiPageViewModel(input: {
  * Get response actions based on status and target page
  */
 function getResponseActions(
-  status: number, 
-  targetPageRef?: string, 
+  status: number,
+  targetPageRef?: string,
   allowRedirect: boolean = true
 ): ResponseAction[] {
   const actions: ResponseAction[] = []
-  
+
   if (status === 301 && targetPageRef && allowRedirect) {
     actions.push({
       status: 301,
-      headers: { 'Location': `/wiki/${targetPageRef}` }
+      headers: { Location: `/wiki/${targetPageRef}` },
     })
   } else if (status === 404 || status === 500) {
     actions.push({
       status,
-      headers: { 'X-Astro-Reroute': 'no' }
+      headers: { 'X-Astro-Reroute': 'no' },
     })
   }
-  
+
   return actions
 }
 
@@ -171,9 +164,11 @@ function getPageTitle(
   parsedFrontMatter?: FrontMatter,
   pageRef?: string
 ): string {
-  return frontMatter.title || 
-         parsedFrontMatter?.event?.name || 
-         formatPageRef(pageRef as string)
+  return (
+    frontMatter.title ||
+    parsedFrontMatter?.event?.name ||
+    formatPageRef(pageRef as string)
+  )
 }
 
 /**
@@ -205,9 +200,9 @@ function createBodyContent(params: {
     lastModifiedBy,
     editable,
     frontMatterParsingResult,
-    file
+    file,
   } = params
-  
+
   // Normal view or editor view
   if (status === 200 || editing) {
     const commonProps: PageInfo = {
@@ -220,7 +215,7 @@ function createBodyContent(params: {
       lastModifiedBy,
       editable,
     }
-    
+
     if (editing) {
       return {
         ...commonProps,
@@ -233,7 +228,7 @@ function createBodyContent(params: {
         : fromZodError(frontMatterParsingResult.error)
       const html = rendered?.html || ''
       const filePath = file?.path
-      
+
       return {
         ...commonProps,
         mode: 'view',
@@ -242,12 +237,12 @@ function createBodyContent(params: {
         filePath,
       }
     }
-  } 
+  }
   // Simple view for error states
   else {
     const html = rendered?.html || ''
     const filePath = file?.path
-    
+
     return {
       mode: 'simple',
       pageRef,

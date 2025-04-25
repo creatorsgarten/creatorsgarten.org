@@ -1,0 +1,34 @@
+---
+import { AvatarGrid } from '$components/avatarGrid.tsx'
+import MetadataTable from './metadataTable.astro'
+import SidebarSection from './section.astro'
+
+export interface Props {
+  name: string
+}
+const { name } = Astro.props
+
+const info = await Astro.locals.backend.workingGroups.getWorkingGroup.query({
+  name,
+})
+
+const publicMembers = info?.publicWorkingGroupInformation.publicMemberList || []
+---
+
+{
+  !!info && (
+    <SidebarSection title="Working Group">
+      <MetadataTable data={[['MEMBERS', `${publicMembers.length}`]]} />
+      <div class="pt-4">
+        <a href={`/wg/${name}/members`}>
+          <AvatarGrid
+            items={publicMembers.map(member => ({
+              imageAlt: '',
+              imageUrl: `/api/users/${member.id}/picture`,
+            }))}
+          />
+        </a>
+      </div>
+    </SidebarSection>
+  )
+}

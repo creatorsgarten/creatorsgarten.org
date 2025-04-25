@@ -2,6 +2,7 @@ import { ofetch } from 'ofetch'
 
 import { QueryClientContextProvider } from '$constants/queryClient'
 import { useQuery } from '@tanstack/react-query'
+import { AvatarGrid } from '$components/avatarGrid'
 
 export interface WikiContributorList {
   pageRef: string
@@ -35,23 +36,12 @@ function WikiContributorListImpl(props: WikiContributorList) {
     },
     retry: false,
   })
-  return (
-    <div className="flex gap-2">
-      {query.data?.result?.data?.contributors.map(contributor => (
-        <a
-          key={contributor.login}
-          href={`https://github.com/${contributor.login}`}
-          target="_blank"
-          rel="noreferrer"
-          className="block h-8 w-8 overflow-hidden rounded-full bg-black/10"
-        >
-          <img
-            src={contributor.avatarUrl}
-            alt={contributor.login}
-            className="h-8 w-8 rounded-full"
-          />
-        </a>
-      ))}
-    </div>
-  )
+  
+  const avatarItems = query.data?.result?.data?.contributors.map(contributor => ({
+    href: `https://github.com/${contributor.login}`,
+    imageUrl: contributor.avatarUrl,
+    imageAlt: contributor.login,
+  })) || []
+  
+  return <AvatarGrid items={avatarItems} />
 }
