@@ -4,6 +4,7 @@ import { Icon } from 'react-iconify-icon-wrapper'
 export interface Requirement {
   displayName: string
   met: boolean
+  explanation?: string
   callToAction?: {
     text: string
     url: string
@@ -17,28 +18,37 @@ interface Props {
 const { requirements } = Astro.props
 ---
 
-<div class="space-y-2">
-  {requirements.map((req) => (
-    <div class="flex items-center">
-      <span
-        class={`mr-2 inline-flex items-center justify-center h-5 w-5 rounded-full ${req.met ? 'bg-green-500' : 'bg-red-500'}`}
-      >
-        {req.met ? (
-          <Icon icon="heroicons:check" className="text-white h-4 w-4" />
-        ) : (
-          <Icon icon="heroicons:x-mark" className="text-white h-4 w-4" />
+<div class="space-y-3">
+  {
+    requirements.map(req => (
+      <div>
+        <div class="flex items-center">
+          <span
+            class={`mr-2 inline-flex h-5 w-5 items-center justify-center rounded-full ${req.met ? 'bg-green-500' : 'bg-red-500'}`}
+          >
+            {req.met ? (
+              <Icon icon="heroicons:check" className="text-white h-4 w-4" />
+            ) : (
+              <Icon icon="heroicons:x-mark" className="text-white h-4 w-4" />
+            )}
+          </span>
+          <span>{req.displayName}</span>
+          {!req.met && req.callToAction && (
+            <a
+              href={req.callToAction.url}
+              class="ml-2 text-sm font-bold text-blue-600 hover:underline"
+              target={
+                req.callToAction.url.startsWith('http') ? '_blank' : undefined
+              }
+            >
+              {req.callToAction.text}
+            </a>
+          )}
+        </div>
+        {req.explanation && (
+          <p class="ml-7 text-sm text-gray-600">{req.explanation}</p>
         )}
-      </span>
-      <span>{req.displayName}</span>
-      {!req.met && req.callToAction && (
-        <a
-          href={req.callToAction.url}
-          class="ml-2 text-sm text-blue-600 hover:underline"
-          target={req.callToAction.url.startsWith('http') ? "_blank" : undefined}
-        >
-          {req.callToAction.text}
-        </a>
-      )}
-    </div>
-  ))}
+      </div>
+    ))
+  }
 </div>

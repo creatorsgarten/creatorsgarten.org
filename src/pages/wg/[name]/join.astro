@@ -143,7 +143,9 @@ const title = joinabilityResult?.group?.name
       {
         joinabilityResult?.group?.name && !success && (
           <div class="rounded-lg bg-white p-6 shadow-md">
-            <h2 class="mb-4 text-xl font-semibold">Join Working Group</h2>
+            <p class="mb-4 text-lg">
+              You're invited to join <strong>{joinabilityResult.group.name}</strong> working group.
+            </p>
 
             {/* Requirements section */}
             <div class="mb-6">
@@ -158,54 +160,58 @@ const title = joinabilityResult?.group?.name
               </div>
             </div>
 
-            {/* Profile information section */}
-            <div class="mb-6">
-              <h3 class="mb-2 text-lg font-medium">Your Information</h3>
-              <p class="mb-4 text-gray-600">
-                The following information will be shared with all members of the
-                working group:
-              </p>
+            {/* Profile information section - only shown for authenticated users */}
+            {user && (
+              <div class="mb-6">
+                <h3 class="mb-2 text-lg font-medium">Your Information</h3>
+                <p class="mb-4 text-gray-600">
+                  The following information will be shared with all members of the
+                  working group:
+                </p>
 
-              <div class="rounded border border-gray-200 bg-gray-50 p-4">
-                <div class="space-y-2">
-                  {Object.entries(joinabilityResult.profileSnapshot).map(([key, value]: [string, any]) => (
-                    <div class="grid grid-cols-3">
-                      <div class="text-gray-600 capitalize">
-                        {key.replace(/([A-Z])/g, ' $1').trim()}
+                <div class="rounded border border-gray-200 bg-gray-50 p-4">
+                  <div class="space-y-2">
+                    {Object.entries(joinabilityResult.profileSnapshot).map(([key, value]: [string, any]) => (
+                      <div class="grid grid-cols-3">
+                        <div class="text-gray-600 capitalize">
+                          {key.replace(/([A-Z])/g, ' $1').trim()}
+                        </div>
+                        <div class="col-span-2">
+                          {value || (
+                            <span class="text-gray-400">Not provided</span>
+                          )}
+                        </div>
                       </div>
-                      <div class="col-span-2">
-                        {value || (
-                          <span class="text-gray-400">Not provided</span>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            {/* Join form */}
-            <form method="POST">
-              <input type="hidden" name="inviteKey" value={key} />
+            {/* Join form - only shown for authenticated users */}
+            {user && (
+              <form method="POST">
+                <input type="hidden" name="inviteKey" value={key} />
 
-              <div class="mb-4 rounded-md bg-gray-50 p-3 text-sm text-gray-600">
-                By joining this working group, you agree to share the information shown above with other group members.
-              </div>
+                <div class="mb-4 rounded-md bg-gray-50 p-3 text-sm text-gray-600">
+                  By joining this working group, you agree to share the information shown above with other group members.
+                </div>
 
-              <button
-                type="submit"
-                class="rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
-                disabled={!joinabilityResult.canJoin || isJoining}
-              >
-                {isJoining ? 'Joining...' : 'Join Working Group'}
-              </button>
+                <button
+                  type="submit"
+                  class="rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                  disabled={!joinabilityResult.canJoin || isJoining}
+                >
+                  {isJoining ? 'Joining...' : 'Join Working Group'}
+                </button>
 
-              {!joinabilityResult.canJoin && (
-                <p class="mt-2 text-sm text-red-600">
-                  Please fulfill all requirements before joining
-                </p>
-              )}
-            </form>
+                {!joinabilityResult.canJoin && (
+                  <p class="mt-2 text-sm text-red-600">
+                    Please fulfill all requirements before joining
+                  </p>
+                )}
+              </form>
+            )}
           </div>
         )
       }

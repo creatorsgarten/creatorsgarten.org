@@ -72,6 +72,7 @@ interface JoinRequirement {
   name: string // specific requirement name (e.g., 'github', 'email')
   met: boolean // whether the requirement is met
   displayName: string // human-readable name for display
+  explanation?: string // explanation of why this requirement exists
   callToAction?: {
     text: string
     url: string
@@ -394,6 +395,7 @@ export async function checkJoinability(
           type: 'auth',
           name: 'authenticated',
           displayName: 'Signed in to Creatorsgarten',
+          explanation: 'For membership management and identity verification',
           met: false,
           callToAction: {
             text: 'Sign in',
@@ -429,6 +431,14 @@ export async function checkJoinability(
     figmaEmail: user.connections.figma?.email,
   }
 
+  // Get explanations for each connection type
+  const connectionExplanations: Record<string, string> = {
+    github: 'For Wiki and repository access',
+    figma: 'For sharing design files',
+    google: 'For sharing files via Google Drive',
+    discord: 'For community communication',
+  }
+
   // Check all connection requirements
   const requirements: JoinRequirement[] = REQUIRED_CONNECTIONS.map(connType => {
     const connection =
@@ -437,6 +447,7 @@ export async function checkJoinability(
       type: 'connection',
       name: connType,
       displayName: `${CONNECTION_DISPLAY_NAMES[connType] || connType} account connected`,
+      explanation: connectionExplanations[connType] || `For working group collaboration`,
       met: !!connection,
       ...(connection
         ? {}
