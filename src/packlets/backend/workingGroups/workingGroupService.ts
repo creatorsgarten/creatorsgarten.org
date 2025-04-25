@@ -3,6 +3,10 @@ import crypto from 'crypto'
 import { ObjectId, type WithId } from 'mongodb'
 import { z } from 'zod'
 
+import {
+  getPublicProfiles,
+  type PublicProfile,
+} from '$backend/users/getPublicProfile'
 import { collections } from '$constants/mongo'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import type { WorkingGroup } from '$types/mongo/WorkingGroup'
@@ -65,6 +69,7 @@ interface InviteKeyDTO {
 
 interface WorkingGroupDetailedResponse {
   publicWorkingGroupInformation: PublicWorkingGroupInformation
+  publicProfiles: PublicProfile[]
   isCurrentUserAdmin: boolean
   isCurrentUserMember: boolean
   admins?: string[]
@@ -123,9 +128,11 @@ export async function getWorkingGroupWithDetails(
   const memberCount = members.length
 
   // Create public member list with only IDs
-  const publicMemberList: PublicWorkingGroupMemberInformation[] = members.map(member => ({
-    id: member.userId.toString()
-  }))
+  const publicMemberList: PublicWorkingGroupMemberInformation[] = members.map(
+    member => ({
+      id: member.userId.toString(),
+    })
+  )
 
   // Default to public view with minimal information
   const result: WorkingGroupDetailedResponse = {
@@ -140,6 +147,9 @@ export async function getWorkingGroupWithDetails(
       },
       publicMemberList,
     },
+    publicProfiles: await getPublicProfiles(
+      members.map(member => member.userId.toString())
+    ),
     isCurrentUserAdmin: false,
     isCurrentUserMember: false,
   }
@@ -176,32 +186,6 @@ export async function getWorkingGroupWithDetails(
   }
 
   return result
-}
-
-/**
- * Get member counts for a working group
- */
-async function getMemberCounts(groupId: ObjectId) {
-  const group = await collections.workingGroups.findOne({ _id: groupId })
-  if (!group) {
-    throw new TRPCError({
-      code: 'NOT_FOUND',
-      message: 'Working group not found',
-    })
-  }
-
-  const members = await collections.workingGroupMembers
-    .find({ groupId })
-    .toArray()
-
-  const adminCount = group.admins.length
-  const memberCount = members.length - adminCount
-
-  return {
-    admins: adminCount,
-    members: memberCount,
-    total: members.length,
-  }
 }
 
 /**

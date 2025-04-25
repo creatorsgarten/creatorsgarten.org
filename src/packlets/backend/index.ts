@@ -36,6 +36,7 @@ import { generateSignature } from './signatures/generateSignature'
 import { verifySignature } from './signatures/verifySignature'
 import { generateCloudinarySignature } from './uploads/generateCloudinarySignature'
 import { getProfilePictureUrl } from './users/getProfilePictureUrl'
+import { getPublicProfile, getPublicProfiles } from './users/getPublicProfile'
 import {
   checkJoinability,
   createInviteLink,
@@ -63,6 +64,29 @@ export const appRouter = t.router({
       )
       .query(async ({ input }) => {
         return getProfilePictureUrl(input.userId)
+      }),
+    
+    getPublicProfile: t.procedure
+      .input(
+        z.object({
+          userId: z.string().optional(),
+          username: z.string().optional(),
+        }).refine(data => data.userId || data.username, {
+          message: 'Either userId or username must be provided',
+        })
+      )
+      .query(async ({ input }) => {
+        return getPublicProfile(input)
+      }),
+      
+    getPublicProfiles: t.procedure
+      .input(
+        z.object({
+          userIds: z.array(z.string()),
+        })
+      )
+      .query(async ({ input }) => {
+        return getPublicProfiles(input.userIds)
       }),
   }),
 
