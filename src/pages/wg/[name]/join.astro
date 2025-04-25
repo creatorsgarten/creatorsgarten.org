@@ -27,7 +27,7 @@ const user = Astro.locals.user
 // Authentication requirement will be handled by the checkJoinability service
 
 // Initial states
-let joinabilityResult: any = null 
+let joinabilityResult: any = null
 let error: string | null = null
 let success: string | null = null
 let isJoining = false
@@ -40,13 +40,15 @@ if (!key) {
 
 // Check joinability using the new unified endpoint
 try {
-  joinabilityResult = await backend.workingGroups.checkJoinability.query({ inviteKey: key })
-  
+  joinabilityResult = await backend.workingGroups.checkJoinability.query({
+    inviteKey: key,
+  })
+
   // If user is already a member, redirect to members page
   if (joinabilityResult.userIsAlreadyMember) {
     return Astro.redirect(`/wg/${groupName}/members`)
   }
-  
+
   // If there's an error message, set it
   if (joinabilityResult.errorMessage && !joinabilityResult.canJoin) {
     error = joinabilityResult.errorMessage
@@ -77,8 +79,8 @@ if (Astro.request.method === 'POST' && joinabilityResult) {
   isJoining = false
 }
 
-const title = joinabilityResult?.group?.name 
-  ? `Join ${joinabilityResult.group.name} Working Group` 
+const title = joinabilityResult?.group?.name
+  ? `Join ${joinabilityResult.group.name} Working Group`
   : 'Invalid Invite'
 ---
 
@@ -86,9 +88,7 @@ const title = joinabilityResult?.group?.name
 
 <BaseLayout class="mx-auto mt-8 max-w-7xl space-y-6 *:px-6">
   <Breadcrumb
-    parents={[
-      { title: 'Working Groups', href: `/wg/${groupName}/members` }
-    ]}
+    parents={[{ title: 'Working Groups', href: `/wg/${groupName}/members` }]}
     title="Join Working Group"
   />
 
@@ -107,71 +107,73 @@ const title = joinabilityResult?.group?.name
       }
     </div>
 
-      {/* Error message */}
-      {
-        error && (
-          <div
-            class="mb-6 border-l-4 border-red-500 bg-red-100 p-4 text-red-700"
-            role="alert"
-          >
-            <p>{error}</p>
-          </div>
-        )
-      }
+    {/* Error message */}
+    {
+      error && (
+        <div
+          class="mb-6 border-l-4 border-red-500 bg-red-100 p-4 text-red-700"
+          role="alert"
+        >
+          <p>{error}</p>
+        </div>
+      )
+    }
 
-      {/* Success message */}
-      {
-        success && (
-          <div
-            class="mb-6 border-l-4 border-green-500 bg-green-100 p-4 text-green-700"
-            role="alert"
-          >
-            <p>{success}</p>
-            <p class="mt-2">
-              <a
-                href={`/wg/${groupName}/members`}
-                class="inline-block rounded bg-green-600 px-4 py-2 text-white transition hover:bg-green-700"
-              >
-                View Group Members
-              </a>
+    {/* Success message */}
+    {
+      success && (
+        <div
+          class="mb-6 border-l-4 border-green-500 bg-green-100 p-4 text-green-700"
+          role="alert"
+        >
+          <p>{success}</p>
+          <p class="mt-2">
+            <a
+              href={`/wg/${groupName}/members`}
+              class="inline-block rounded bg-green-600 px-4 py-2 text-white transition hover:bg-green-700"
+            >
+              View Group Members
+            </a>
+          </p>
+        </div>
+      )
+    }
+
+    {/* Join form */}
+    {
+      joinabilityResult?.group?.name && !success && (
+        <div class="rounded-lg bg-white p-6 shadow-md">
+          <p class="mb-4 text-lg">
+            You're invited to join{' '}
+            <strong>{joinabilityResult.group.name}</strong> working group.
+          </p>
+
+          {/* Requirements section */}
+          <div class="mb-6">
+            <h3 class="mb-2 text-lg font-medium">Requirements</h3>
+            <p class="mb-4 text-gray-600">
+              To join this working group, you need to meet the following
+              requirements:
             </p>
+
+            <div class="mb-4">
+              <RequirementsList requirements={joinabilityResult.requirements} />
+            </div>
           </div>
-        )
-      }
 
-      {/* Join form */}
-      {
-        joinabilityResult?.group?.name && !success && (
-          <div class="rounded-lg bg-white p-6 shadow-md">
-            <p class="mb-4 text-lg">
-              You're invited to join <strong>{joinabilityResult.group.name}</strong> working group.
-            </p>
-
-            {/* Requirements section */}
+          {/* Profile information section - only shown for authenticated users */}
+          {user && (
             <div class="mb-6">
-              <h3 class="mb-2 text-lg font-medium">Requirements</h3>
+              <h3 class="mb-2 text-lg font-medium">Your Information</h3>
               <p class="mb-4 text-gray-600">
-                To join this working group, you need to meet the following
-                requirements:
+                The following information will be shared with all members of the
+                working group:
               </p>
 
-              <div class="mb-4">
-                <RequirementsList requirements={joinabilityResult.requirements} />
-              </div>
-            </div>
-
-            {/* Profile information section - only shown for authenticated users */}
-            {user && (
-              <div class="mb-6">
-                <h3 class="mb-2 text-lg font-medium">Your Information</h3>
-                <p class="mb-4 text-gray-600">
-                  The following information will be shared with all members of the
-                  working group:
-                </p>
-
-                <div class="rounded border border-gray-200 bg-gray-50 p-4">
-                  <div class="space-y-2">
-                    {Object.entries(joinabilityResult.profileSnapshot).map(([key, value]: [string, any]) => (
+              <div class="rounded border border-gray-200 bg-gray-50 p-4">
+                <div class="space-y-2">
+                  {Object.entries(joinabilityResult.profileSnapshot).map(
+                    ([key, value]: [string, any]) => (
                       <div class="grid grid-cols-3">
                         <div class="text-gray-600 capitalize">
                           {key.replace(/([A-Z])/g, ' $1').trim()}
@@ -182,48 +184,60 @@ const title = joinabilityResult?.group?.name
                           )}
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    )
+                  )}
                 </div>
               </div>
-            )}
 
-            {/* Join form - only shown for authenticated users */}
-            {user && (
-              <form method="POST">
-                <input type="hidden" name="inviteKey" value={key} />
-
-                <div class="mb-4 rounded-md bg-gray-50 p-3 text-sm text-gray-600">
-                  By joining this working group, you agree to share the information shown above with other group members.
-                </div>
-
-                <button
-                  type="submit"
-                  class="rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
-                  disabled={!joinabilityResult.canJoin || isJoining}
+              <p class="mt-2 text-sm text-gray-600">
+                If this information is not correct, you can update it in your{' '}
+                <a
+                  href="/dashboard/profile"
+                  class="text-blue-600 hover:underline"
                 >
-                  {isJoining ? 'Joining...' : 'Join Working Group'}
-                </button>
+                  profile settings
+                </a>
+                .
+              </p>
+            </div>
+          )}
 
-                {!joinabilityResult.canJoin && (
-                  <p class="mt-2 text-sm text-red-600">
-                    Please fulfill all requirements before joining
-                  </p>
-                )}
-              </form>
-            )}
-          </div>
-        )
-      }
+          {/* Join form - only shown for authenticated users */}
+          {user && (
+            <form method="POST">
+              <input type="hidden" name="inviteKey" value={key} />
 
-      {/* Loading state */}
-      {
-        !joinabilityResult && !error && (
-          <div class="rounded-lg bg-white p-6 shadow-md">
-            <p>Loading...</p>
-          </div>
-        )
-      }
-    </div>
+              <p class="mb-4 text-sm text-gray-600">
+                By joining this working group, you agree to share the
+                information shown above with other group members.
+              </p>
+
+              <button
+                type="submit"
+                class="rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-neutral-600 disabled:opacity-50"
+                disabled={!joinabilityResult.canJoin || isJoining}
+              >
+                {isJoining ? 'Joining...' : 'Join Working Group'}
+              </button>
+
+              {!joinabilityResult.canJoin && (
+                <p class="mt-2 text-sm text-red-600">
+                  Please fulfill all requirements before joining
+                </p>
+              )}
+            </form>
+          )}
+        </div>
+      )
+    }
+
+    {/* Loading state */}
+    {
+      !joinabilityResult && !error && (
+        <div class="rounded-lg bg-white p-6 shadow-md">
+          <p>Loading...</p>
+        </div>
+      )
+    }
   </div>
 </BaseLayout>
