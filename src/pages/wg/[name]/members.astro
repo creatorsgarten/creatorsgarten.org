@@ -34,7 +34,9 @@ let error: string | null = null
 
 try {
   // Get all group information in a single call with role-based data
-  groupData = await backend.workingGroups.getWorkingGroup.query({ name: groupName })
+  groupData = await backend.workingGroups.getWorkingGroup.query({
+    name: groupName,
+  })
 
   // If group doesn't exist, check if the wiki page exists
   if (!groupData) {
@@ -44,38 +46,17 @@ try {
       })
       .then(r => !!r.file?.revision)
   }
-  
-  // Handle JSON response if requested
-  if (asJson) {
-    if (!groupData?.members) {
-      // No access, return 403
-      return new Response(JSON.stringify({ error: 'Forbidden' }), {
-        status: 403,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-    }
-    
-    // Return members data as JSON with indentation for readability
-    return new Response(JSON.stringify({ members: groupData.members }, null, 2), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-  }
 } catch (e) {
   console.error('Error fetching working group:', e)
   error = e instanceof Error ? e.message : 'Unknown error'
-  
+
   // Handle JSON error response
   if (asJson) {
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         error: 'An error occurred',
-        message: error 
-      }), 
+        message: error,
+      }),
       {
         status: 500,
         headers: {
@@ -120,9 +101,42 @@ const pageRef = `WorkingGroups/${groupName}`
 const publicInfo = groupData?.publicWorkingGroupInformation
 const isUserAdmin = groupData?.isCurrentUserAdmin || false
 const isUserMember = groupData?.isCurrentUserMember || false
-const membersList = groupData?.members || []
+const publicProfiles = new Map(
+  (groupData?.publicProfiles || []).map(profile => [profile.id, profile])
+)
+const membersList = (groupData?.members || []).map(member => ({
+  ...member,
+  publicProfile: publicProfiles.get(member.userId),
+}))
 
-const title = publicInfo ? `${publicInfo.name} Working Group Members` : `${name} Working Group Members`
+// Handle JSON response if requested
+if (asJson) {
+  if (!groupData?.members) {
+    return new Response(
+      JSON.stringify({
+        error: 'Only members are allowed to view the full member list.',
+      }),
+      {
+        status: 403,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+  }
+
+  // Return members data as JSON with indentation for readability
+  return new Response(JSON.stringify({ members: membersList }, null, 2), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+}
+
+const title = publicInfo
+  ? `${publicInfo.name} Working Group Members`
+  : `${name} Working Group Members`
 ---
 
 <Head title={title} />
@@ -131,185 +145,198 @@ const title = publicInfo ? `${publicInfo.name} Working Group Members` : `${name}
   <Breadcrumb
     parents={[
       { title: 'Working Groups', href: '/wg' },
-      { title: publicInfo ? publicInfo.name : name, href: `/wg/${groupName}` }
+      { title: publicInfo ? publicInfo.name : name, href: `/wg/${groupName}` },
     ]}
     title="Members"
   />
-  
+
   <div class="mx-auto max-w-2xl space-y-6">
-    <h1 class="mb-6 text-3xl font-bold">{publicInfo ? `${publicInfo.name} Members` : `${name} Members`}</h1>
+    <h1 class="mb-6 text-3xl font-bold">
+      {publicInfo ? `${publicInfo.name} Members` : `${name} Members`}
+    </h1>
 
-      {
-        error && (
-          <div
-            class="mb-6 border-l-4 border-red-500 bg-red-100 p-4 text-red-700"
-            role="alert"
-          >
-            <p>{error}</p>
-          </div>
-        )
-      }
+    {
+      error && (
+        <div
+          class="mb-6 border-l-4 border-red-500 bg-red-100 p-4 text-red-700"
+          role="alert"
+        >
+          <p>{error}</p>
+        </div>
+      )
+    }
 
-      {
-        publicInfo ? (
-          <div class="rounded-lg bg-white p-6 shadow-md">
-
-
-            {/* Show member list */}
-            {publicInfo && (
-              <div class="mb-6">
-                <div class="flex items-center mb-2">
-                  <h3 class="text-lg font-semibold mr-2">Members</h3>
-                  <a href={`?as=json`} title="View as JSON" class="text-gray-500 hover:text-gray-700">
-                    <Icon icon="heroicons:code-bracket" />
-                  </a>
-                </div>
-                
-                {isUserMember ? (
-                  /* For members, show detailed table with avatars and names */
-                  <div class="overflow-x-auto rounded border border-gray-200">
-                    <table class="min-w-full divide-y divide-gray-200">
-                      <thead class="bg-gray-50">
-                        <tr>
-                          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Member
-                          </th>
-                          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Joined
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody class="bg-white divide-y divide-gray-200">
-                        {membersList.map(member => (
-                          <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                              <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10">
-                                  <img class="h-10 w-10 rounded-full" src={`/api/users/${member.userId}/picture`} alt="" />
-                                </div>
-                                <div class="ml-4">
-                                  <div class="text-sm font-medium text-gray-900">
-                                    {member.profileSnapshot.name}
-                                  </div>
-                                  {member.profileSnapshot.email && (
-                                    <div class="text-sm text-gray-500">
-                                      {member.profileSnapshot.email}
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                              {new Date(member.joinedAt).toLocaleDateString()}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                ) : (
-                  /* For non-members, show avatar list */
-                  <div class="flex flex-wrap gap-2 mt-4">
-                    {publicInfo.publicMemberList.map(member => (
-                      <div class="h-12 w-12 rounded-full overflow-hidden border border-gray-200">
-                        <img 
-                          src={`/api/users/${member.id}/picture`} 
-                          alt="Member" 
-                          class="h-full w-full object-cover"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
+    {
+      publicInfo ? (
+        <div class="rounded-lg bg-white p-6 shadow-md">
+          {/* Show member list */}
+          {publicInfo && (
+            <div class="mb-6">
+              <div class="mb-2 flex items-center">
+                <h3 class="mr-2 text-lg font-semibold">Members</h3>
+                <a
+                  href={`?as=json`}
+                  title="View as JSON"
+                  class="text-gray-500 hover:text-gray-700"
+                >
+                  <Icon icon="heroicons:code-bracket" />
+                </a>
               </div>
-            )}
 
-            <div class="flex items-center justify-between">
-              <a
-                href={`/wg/${groupName}`}
-                class="inline-flex items-center rounded bg-gray-100 px-4 py-2 transition hover:bg-gray-200"
-              >
-                Back to Working Group
-              </a>
-
-              {user && (
-                <div>
-                  {isUserAdmin ? (
-                    <a
-                      href={`/wg/${groupName}/invite`}
-                      class="rounded bg-purple-600 px-4 py-2 text-white transition hover:bg-purple-700"
-                    >
-                      Invite Members
-                    </a>
-                  ) : !isUserMember ? null : (
-                    <span class="rounded bg-green-100 px-4 py-2 text-green-800">
-                      You are a member
-                    </span>
-                  )}
+              {isUserMember ? (
+                /* For members, show detailed table with avatars and names */
+                <div class="overflow-x-auto rounded border border-gray-200">
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                        >
+                          Member
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                        >
+                          Joined
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 bg-white">
+                      {membersList.map(member => (
+                        <tr>
+                          <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                              <div class="h-10 w-10 flex-shrink-0">
+                                <img
+                                  class="h-10 w-10 rounded-full"
+                                  src={`/api/users/${member.userId}/picture`}
+                                  alt=""
+                                />
+                              </div>
+                              <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">
+                                  {member.profileSnapshot.name}
+                                </div>
+                                {member.profileSnapshot.email && (
+                                  <div class="text-sm text-gray-500">
+                                    {member.profileSnapshot.email}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </td>
+                          <td class="px-6 py-4 text-sm whitespace-nowrap text-gray-500">
+                            {new Date(member.joinedAt).toLocaleDateString()}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                /* For non-members, show avatar list */
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {publicInfo.publicMemberList.map(member => (
+                    <div class="h-12 w-12 overflow-hidden rounded-full border border-gray-200">
+                      <img
+                        src={`/api/users/${member.id}/picture`}
+                        alt="Member"
+                        class="h-full w-full object-cover"
+                      />
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
-          </div>
-        ) : (
-          <div class="rounded-lg bg-white p-6 shadow-md">
-            <h2 class="mb-4 text-xl font-semibold">Working Group Not Found</h2>
+          )}
 
-            {wikiPageExists ? (
+          <div class="flex items-center justify-between">
+            <a
+              href={`/wg/${groupName}`}
+              class="inline-flex items-center rounded bg-gray-100 px-4 py-2 transition hover:bg-gray-200"
+            >
+              Back to Working Group
+            </a>
+
+            {user && (
               <div>
-                <p class="mb-4">
-                  This working group hasn't been set up yet, but a corresponding
-                  Wiki page exists. Would you like to create it?
-                </p>
-
-                {user ? (
-                  <form method="POST" class="mt-6">
-                    {createError && (
-                      <div
-                        class="mb-4 border-l-4 border-red-500 bg-red-100 p-4 text-red-700"
-                        role="alert"
-                      >
-                        <p>{createError}</p>
-                      </div>
-                    )}
-
-                    <button
-                      type="submit"
-                      class="rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
-                      disabled={isCreating}
-                    >
-                      {isCreating ? 'Creating...' : 'Create Working Group'}
-                    </button>
-                  </form>
-                ) : (
-                  <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4">
-                    <p>
-                      You need to{' '}
-                      <a href="/login" class="text-blue-600 hover:underline">
-                        sign in
-                      </a>{' '}
-                      to create a working group.
-                    </p>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4">
-                <p>
-                  Before creating this working group, you need to create a Wiki
-                  page at
-                  <strong>WorkingGroups/{name}</strong>.
+                {isUserAdmin ? (
                   <a
-                    href={`/wiki/${pageRef}/editor`}
-                    class="text-blue-600 hover:underline"
+                    href={`/wg/${groupName}/invite`}
+                    class="rounded bg-purple-600 px-4 py-2 text-white transition hover:bg-purple-700"
                   >
-                    Create the Wiki page
+                    Invite Members
                   </a>
-                </p>
+                ) : !isUserMember ? null : (
+                  <span class="rounded bg-green-100 px-4 py-2 text-green-800">
+                    You are a member
+                  </span>
+                )}
               </div>
             )}
           </div>
-        )
-      }
-    </div>
+        </div>
+      ) : (
+        <div class="rounded-lg bg-white p-6 shadow-md">
+          <h2 class="mb-4 text-xl font-semibold">Working Group Not Found</h2>
+
+          {wikiPageExists ? (
+            <div>
+              <p class="mb-4">
+                This working group hasn't been set up yet, but a corresponding
+                Wiki page exists. Would you like to create it?
+              </p>
+
+              {user ? (
+                <form method="POST" class="mt-6">
+                  {createError && (
+                    <div
+                      class="mb-4 border-l-4 border-red-500 bg-red-100 p-4 text-red-700"
+                      role="alert"
+                    >
+                      <p>{createError}</p>
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    class="rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+                    disabled={isCreating}
+                  >
+                    {isCreating ? 'Creating...' : 'Create Working Group'}
+                  </button>
+                </form>
+              ) : (
+                <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4">
+                  <p>
+                    You need to{' '}
+                    <a href="/login" class="text-blue-600 hover:underline">
+                      sign in
+                    </a>{' '}
+                    to create a working group.
+                  </p>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4">
+              <p>
+                Before creating this working group, you need to create a Wiki
+                page at
+                <strong>WorkingGroups/{name}</strong>.
+                <a
+                  href={`/wiki/${pageRef}/editor`}
+                  class="text-blue-600 hover:underline"
+                >
+                  Create the Wiki page
+                </a>
+              </p>
+            </div>
+          )}
+        </div>
+      )
+    }
   </div>
 </BaseLayout>
