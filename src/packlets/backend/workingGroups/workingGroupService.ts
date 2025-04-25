@@ -433,9 +433,9 @@ export async function checkJoinability(
 
   // Get explanations for each connection type
   const connectionExplanations: Record<string, string> = {
-    github: 'For Wiki and repository access',
-    figma: 'For sharing design files',
-    google: 'For sharing files via Google Drive',
+    github: 'For wiki and repository access',
+    figma: 'For sharing Figma design files and Figjam boards',
+    google: 'For sharing Google Drive files and Google Calendar invites',
     discord: 'For community communication',
   }
 
@@ -447,7 +447,8 @@ export async function checkJoinability(
       type: 'connection',
       name: connType,
       displayName: `${CONNECTION_DISPLAY_NAMES[connType] || connType} account connected`,
-      explanation: connectionExplanations[connType] || `For working group collaboration`,
+      explanation:
+        connectionExplanations[connType] || `For working group collaboration`,
       met: !!connection,
       ...(connection
         ? {}
