@@ -33,6 +33,10 @@ const CONNECTION_DISPLAY_NAMES: Record<string, string> = {
 }
 
 // API representation types - explicitly defining what we expose through the API
+interface PublicWorkingGroupMemberInformation {
+  id: string
+}
+
 interface PublicWorkingGroupInformation {
   id: string
   name: string
@@ -42,6 +46,7 @@ interface PublicWorkingGroupInformation {
     members: number
     total: number
   }
+  publicMemberList: PublicWorkingGroupMemberInformation[]
 }
 
 interface WorkingGroupMemberDTO {
@@ -117,6 +122,11 @@ export async function getWorkingGroupWithDetails(
   const adminCount = group.admins.length
   const memberCount = members.length
 
+  // Create public member list with only IDs
+  const publicMemberList: PublicWorkingGroupMemberInformation[] = members.map(member => ({
+    id: member.userId.toString()
+  }))
+
   // Default to public view with minimal information
   const result: WorkingGroupDetailedResponse = {
     publicWorkingGroupInformation: {
@@ -128,6 +138,7 @@ export async function getWorkingGroupWithDetails(
         members: memberCount - adminCount,
         total: memberCount,
       },
+      publicMemberList,
     },
     isCurrentUserAdmin: false,
     isCurrentUserMember: false,

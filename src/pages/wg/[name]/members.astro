@@ -3,6 +3,7 @@ import Head from '$commons/head.astro'
 import Breadcrumb from '$components/breadcrumb.astro'
 import { contentsgarten } from '$constants/contentsgarten'
 import BaseLayout from '$layouts/base.astro'
+import { Icon } from 'react-iconify-icon-wrapper'
 
 const { name } = Astro.params
 if (!name) {
@@ -11,6 +12,9 @@ if (!name) {
     statusText: 'Not found',
   })
 }
+
+// Check if JSON output is requested
+const asJson = Astro.url.searchParams.get('as') === 'json'
 
 // Normalize the name to ensure it's lowercase
 const groupName = name.toLowerCase()
@@ -40,9 +44,46 @@ try {
       })
       .then(r => !!r.file?.revision)
   }
+  
+  // Handle JSON response if requested
+  if (asJson) {
+    if (!groupData?.members) {
+      // No access, return 403
+      return new Response(JSON.stringify({ error: 'Forbidden' }), {
+        status: 403,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    }
+    
+    // Return members data as JSON with indentation for readability
+    return new Response(JSON.stringify({ members: groupData.members }, null, 2), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  }
 } catch (e) {
   console.error('Error fetching working group:', e)
   error = e instanceof Error ? e.message : 'Unknown error'
+  
+  // Handle JSON error response
+  if (asJson) {
+    return new Response(
+      JSON.stringify({ 
+        error: 'An error occurred',
+        message: error 
+      }), 
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+  }
 }
 
 // Handle group creation
@@ -81,7 +122,7 @@ const isUserAdmin = groupData?.isCurrentUserAdmin || false
 const isUserMember = groupData?.isCurrentUserMember || false
 const membersList = groupData?.members || []
 
-const title = publicInfo ? `${publicInfo.name} Working Group` : `${name} Working Group`
+const title = publicInfo ? `${publicInfo.name} Working Group Members` : `${name} Working Group Members`
 ---
 
 <Head title={title} />
@@ -89,13 +130,14 @@ const title = publicInfo ? `${publicInfo.name} Working Group` : `${name} Working
 <BaseLayout class="mx-auto mt-8 max-w-7xl space-y-6 *:px-6">
   <Breadcrumb
     parents={[
-      { title: 'Working Groups', href: '/dashboard' }
+      { title: 'Working Groups', href: '/wg' },
+      { title: publicInfo ? publicInfo.name : name, href: `/wg/${groupName}` }
     ]}
-    title={title}
+    title="Members"
   />
   
   <div class="mx-auto max-w-2xl space-y-6">
-    <h1 class="mb-6 text-3xl font-bold">{title}</h1>
+    <h1 class="mb-6 text-3xl font-bold">{publicInfo ? `${publicInfo.name} Members` : `${name} Members`}</h1>
 
       {
         error && (
@@ -111,54 +153,83 @@ const title = publicInfo ? `${publicInfo.name} Working Group` : `${name} Working
       {
         publicInfo ? (
           <div class="rounded-lg bg-white p-6 shadow-md">
-            <h2 class="mb-4 text-xl font-semibold">Working Group Details</h2>
 
-            <div class="mb-6">
-              <p>
-                Wiki Page:{' '}
-                <a
-                  href={`/wiki/${pageRef}`}
-                  class="text-blue-600 hover:underline"
-                >
-                  {pageRef}
-                </a>
-              </p>
-              <p>Created: {new Date(publicInfo.createdAt).toLocaleDateString()}</p>
-            </div>
 
-            <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-              <div class="rounded bg-gray-50 p-4 text-center">
-                <div class="text-2xl font-bold">{publicInfo.memberCounts.admins}</div>
-                <div class="text-gray-600">Admins</div>
-              </div>
-              <div class="rounded bg-gray-50 p-4 text-center">
-                <div class="text-2xl font-bold">{publicInfo.memberCounts.members}</div>
-                <div class="text-gray-600">Members</div>
-              </div>
-              <div class="rounded bg-gray-50 p-4 text-center">
-                <div class="text-2xl font-bold">{publicInfo.memberCounts.total}</div>
-                <div class="text-gray-600">Total</div>
-              </div>
-            </div>
-
-            {/* Show member list if user is a member */}
-            {isUserMember && membersList.length > 0 && (
+            {/* Show member list */}
+            {publicInfo && (
               <div class="mb-6">
-                <h3 class="mb-2 text-lg font-semibold">Members</h3>
-                <div class="overflow-x-auto rounded border border-gray-200">
-                  <pre class="p-4 text-sm">
-                    {JSON.stringify(membersList, null, 2)}
-                  </pre>
+                <div class="flex items-center mb-2">
+                  <h3 class="text-lg font-semibold mr-2">Members</h3>
+                  <a href={`?as=json`} title="View as JSON" class="text-gray-500 hover:text-gray-700">
+                    <Icon icon="heroicons:code-bracket" />
+                  </a>
                 </div>
+                
+                {isUserMember ? (
+                  /* For members, show detailed table with avatars and names */
+                  <div class="overflow-x-auto rounded border border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200">
+                      <thead class="bg-gray-50">
+                        <tr>
+                          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Member
+                          </th>
+                          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Joined
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody class="bg-white divide-y divide-gray-200">
+                        {membersList.map(member => (
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <div class="flex items-center">
+                                <div class="flex-shrink-0 h-10 w-10">
+                                  <img class="h-10 w-10 rounded-full" src={`/api/users/${member.userId}/picture`} alt="" />
+                                </div>
+                                <div class="ml-4">
+                                  <div class="text-sm font-medium text-gray-900">
+                                    {member.profileSnapshot.name}
+                                  </div>
+                                  {member.profileSnapshot.email && (
+                                    <div class="text-sm text-gray-500">
+                                      {member.profileSnapshot.email}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {new Date(member.joinedAt).toLocaleDateString()}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  /* For non-members, show avatar list */
+                  <div class="flex flex-wrap gap-2 mt-4">
+                    {publicInfo.publicMemberList.map(member => (
+                      <div class="h-12 w-12 rounded-full overflow-hidden border border-gray-200">
+                        <img 
+                          src={`/api/users/${member.id}/picture`} 
+                          alt="Member" 
+                          class="h-full w-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
             <div class="flex items-center justify-between">
               <a
-                href={`/wiki/${pageRef}`}
+                href={`/wg/${groupName}`}
                 class="inline-flex items-center rounded bg-gray-100 px-4 py-2 transition hover:bg-gray-200"
               >
-                View Wiki Page
+                Back to Working Group
               </a>
 
               {user && (

@@ -35,6 +35,7 @@ import { pullLogs } from './gardenGate/pullLogs'
 import { generateSignature } from './signatures/generateSignature'
 import { verifySignature } from './signatures/verifySignature'
 import { generateCloudinarySignature } from './uploads/generateCloudinarySignature'
+import { getProfilePictureUrl } from './users/getProfilePictureUrl'
 import {
   checkJoinability,
   createInviteLink,
@@ -52,6 +53,18 @@ const t = initTRPC.context<BackendContext>().create()
 
 export const appRouter = t.router({
   about: t.procedure.query(() => 'creatorsgarten.org'),
+
+  users: t.router({
+    getProfilePictureUrl: t.procedure
+      .input(
+        z.object({
+          userId: z.string(),
+        })
+      )
+      .query(async ({ input }) => {
+        return getProfilePictureUrl(input.userId)
+      }),
+  }),
 
   auth: t.router({
     getAuthenticatedUser: t.procedure.query(({ ctx }) => {

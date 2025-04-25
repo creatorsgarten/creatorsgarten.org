@@ -75,8 +75,9 @@ const title = `Invite to ${group.publicWorkingGroupInformation.name} Working Gro
 <BaseLayout class="mx-auto mt-8 max-w-7xl space-y-6 *:px-6">
   <Breadcrumb
     parents={[
-      { title: 'Working Groups', href: '/dashboard' },
-      { title: `${group.publicWorkingGroupInformation.name} Group`, href: `/wg/${groupName}/members` }
+      { title: 'Working Groups', href: '/wg' },
+      { title: `${group.publicWorkingGroupInformation.name} Group`, href: `/wg/${groupName}` },
+      { title: 'Members', href: `/wg/${groupName}/members` }
     ]}
     title="Invite Members"
   />

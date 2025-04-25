@@ -1,0 +1,13 @@
+---
+const { name } = Astro.params;
+
+if (!name) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found',
+  });
+}
+
+// Redirect to the wiki page for this working group
+return Astro.redirect(`/wiki/WorkingGroups/${name.toLowerCase()}`);
+---
