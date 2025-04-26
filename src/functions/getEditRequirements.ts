@@ -7,7 +7,7 @@ export function getEditRequirements(reason: string): Requirement[] {
     met: true,
     callToAction: {
       text: "sign in",
-      url: "/auth/login",
+      url: "/auth/login?dest=/dashboard/profile",
     },
   };
   
@@ -16,7 +16,7 @@ export function getEditRequirements(reason: string): Requirement[] {
     met: true,
     callToAction: {
       text: "connect",
-      url: "/auth/github",
+      url: "/dashboard/profile#github",
     },
   };
   
