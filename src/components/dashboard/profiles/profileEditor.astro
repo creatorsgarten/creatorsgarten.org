@@ -1,11 +1,9 @@
 ---
-import { Icon } from 'react-iconify-icon-wrapper'
-import matter from 'gray-matter'
-import { getContentsgarten } from '$functions/getContentsgarten'
-import { parseFrontMatter } from '$functions/parseFrontMatter'
-import RequirementsList from '$components/requirementsList.astro'
-import { getEditRequirements } from '$functions/getEditRequirements'
 import { InfoBox } from '$components/infoBox'
+import RequirementsList from '$components/requirementsList.astro'
+import { getContentsgarten } from '$functions/getContentsgarten'
+import { getEditRequirements } from '$functions/getEditRequirements'
+import { parseFrontMatter } from '$functions/parseFrontMatter'
 
 export interface Props {
   username: string
@@ -17,7 +15,7 @@ const { username, success = false, error = '' } = Astro.props
 
 // Throw an error if username is not present
 if (!username) {
-  throw new Error("Username is required")
+  throw new Error('Username is required')
 }
 
 // Create pageRef once
@@ -27,12 +25,12 @@ let profileData = {
   name: '',
   intro: '',
   nickname: '',
-  nicknameTh: ''
+  nicknameTh: '',
 }
 
 // Check if user has edit permissions for wiki
 const wiki = getContentsgarten(Astro)
-let editPermission = { granted: false, reason: "Unknown error" }
+let editPermission = { granted: false, reason: 'Unknown error' }
 
 // Get wiki profile data for the user and check edit permissions
 try {
@@ -40,12 +38,12 @@ try {
   const permissionCheck = await wiki.getEditPermission.query({
     pageRef,
   })
-  
+
   editPermission = {
     granted: permissionCheck.granted,
-    reason: permissionCheck.reason || "Unknown error"
+    reason: permissionCheck.reason || 'Unknown error',
   }
-  
+
   // Get profile data
   const wikiPage = await wiki.search.query({
     pageRef: [pageRef],
@@ -57,7 +55,7 @@ try {
       name: parsed.data.person.name || '',
       intro: parsed.data.person.intro || '',
       nickname: parsed.data.person.nickname || '',
-      nicknameTh: parsed.data.person.nicknameTh || ''
+      nicknameTh: parsed.data.person.nicknameTh || '',
     }
   }
 } catch (error) {
@@ -71,117 +69,127 @@ const allRequirementsMet = requirements.every(req => req.met)
 
 <h2 class="mb-4 text-lg font-medium">Public Profile</h2>
 
-<p class="text-neutral-700 mb-4">
+<p class="mb-4 text-neutral-700">
   Update your public profile information that appears on your wiki page.
 </p>
 
-{success && (
-  <div class="mb-4">
-    <InfoBox type="success" title="Profile Updated">
-      <p>Your profile has been successfully updated.</p>
-    </InfoBox>
-  </div>
-)}
-
-{error && (
-  <div class="mb-4">
-    <InfoBox type="error" title="Error">
-      <p>{error}</p>
-    </InfoBox>
-  </div>
-)}
-
-{!editPermission.granted && (
-  <div class="mb-6">
-    <InfoBox type="warning" title="Profile Editing Unavailable">
-      <p>To edit your profile, please complete the following requirements:</p>
-      <div class="mt-4">
-        <RequirementsList requirements={requirements} />
-      </div>
-    </InfoBox>
-  </div>
-)}
-
-{editPermission.granted && (
-  <form action="/dashboard/profile/update" method="POST" class="space-y-4">
-    <div>
-      <label for="name" class="block text-sm font-medium text-gray-700">
-        Full Name
-      </label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        value={profileData.name}
-        class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-        placeholder="Your full name"
-      />
-    </div>
-
-    <div>
-      <label for="intro" class="block text-sm font-medium text-gray-700">
-        Introduction
-      </label>
-      <textarea
-        id="intro"
-        name="intro"
-        rows={3}
-        class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-        placeholder="Brief introduction or bio"
-      >{profileData.intro}</textarea>
-    </div>
-
-    <div>
-      <label for="nickname" class="block text-sm font-medium text-gray-700">
-        Nickname (English)
-      </label>
-      <input
-        type="text"
-        id="nickname"
-        name="nickname"
-        value={profileData.nickname}
-        class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-        placeholder="Your English nickname"
-      />
-    </div>
-
-    <div>
-      <label for="nicknameTh" class="block text-sm font-medium text-gray-700">
-        Nickname (Thai)
-      </label>
-      <input
-        type="text"
-        id="nicknameTh"
-        name="nicknameTh"
-        value={profileData.nicknameTh}
-        class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-        placeholder="ชื่อเล่นภาษาไทย"
-      />
-    </div>
-
+{
+  success && (
     <div class="mb-4">
-      <InfoBox type="info">
-        <p>
-          These profile details will be visible on your public wiki page at{' '}
-          <a
-            href={`/wiki/${pageRef}`}
-            class="font-medium underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            /wiki/{pageRef}
-          </a>
-        </p>
+      <InfoBox type="success" title="Profile Updated">
+        <p>Your profile has been successfully updated.</p>
       </InfoBox>
     </div>
+  )
+}
 
-    <div class="pt-2">
-      <button
-        type="submit"
-        class="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
-      >
-        Save Profile
-      </button>
+{
+  error && (
+    <div class="mb-4">
+      <InfoBox type="error" title="Error">
+        <p>{error}</p>
+      </InfoBox>
     </div>
-  </form>
-)} 
+  )
+}
+
+{
+  !editPermission.granted && (
+    <div class="mb-6">
+      <InfoBox type="warning" title="Profile Editing Unavailable">
+        <p>To edit your profile, please complete the following requirements:</p>
+        <div class="mt-4">
+          <RequirementsList requirements={requirements} />
+        </div>
+      </InfoBox>
+    </div>
+  )
+}
+
+{
+  editPermission.granted && (
+    <form action="/dashboard/profile/update" method="POST" class="space-y-4">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">
+          Full Name
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={profileData.name || Astro.locals.user?.name || ''}
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          placeholder="Your full name"
+        />
+      </div>
+
+      <div>
+        <label for="intro" class="block text-sm font-medium text-gray-700">
+          Introduction
+        </label>
+        <textarea
+          id="intro"
+          name="intro"
+          rows={3}
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          placeholder="Brief introduction or bio"
+        >
+          {profileData.intro}
+        </textarea>
+      </div>
+
+      <div>
+        <label for="nickname" class="block text-sm font-medium text-gray-700">
+          Nickname (English)
+        </label>
+        <input
+          type="text"
+          id="nickname"
+          name="nickname"
+          value={profileData.nickname}
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          placeholder="Your English nickname"
+        />
+      </div>
+
+      <div>
+        <label for="nicknameTh" class="block text-sm font-medium text-gray-700">
+          Nickname (Thai)
+        </label>
+        <input
+          type="text"
+          id="nicknameTh"
+          name="nicknameTh"
+          value={profileData.nicknameTh}
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          placeholder="ชื่อเล่นภาษาไทย"
+        />
+      </div>
+
+      <div class="mb-4">
+        <InfoBox type="info">
+          <p>
+            These profile details will be visible on your public wiki page at{' '}
+            <a
+              href={`/wiki/${pageRef}`}
+              class="font-medium underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              /wiki/{pageRef}
+            </a>
+          </p>
+        </InfoBox>
+      </div>
+
+      <div class="pt-2">
+        <button
+          type="submit"
+          class="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+        >
+          Save Profile
+        </button>
+      </div>
+    </form>
+  )
+}
