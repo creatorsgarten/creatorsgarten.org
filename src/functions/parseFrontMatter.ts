@@ -32,6 +32,9 @@ export const frontMatterSchema = z.object({
       site: z.string().optional(),
       eventpopId: z.coerce.number().optional(),
       unlisted: z.boolean().optional(),
+      leads: z.array(z.string()).default([]),
+      staff: z.array(z.string()).default([]),
+      speakers: z.array(z.string()).default([]),
     })
     .optional(),
 

@@ -1,0 +1,45 @@
+---
+import SidebarSection from './section.astro'
+import { getEventInvolvements } from '$staffList'
+import { getEventImageUrl } from '$events'
+import CFImage from '$components/cfImage.astro'
+import MetadataTable from './metadataTable.astro'
+
+export interface Props {
+  username: string
+}
+
+const involvements = await getEventInvolvements(Astro.props.username)
+---
+
+{
+  involvements.groups.length > 0 && (
+    <SidebarSection title="Events">
+      <div class="flex flex-col gap-4">
+        {involvements.groups.map(group => (
+          <div>
+            <h3 class="uppercase text-sm font-bold text-neutral-500">{group.title}</h3>
+            <ul class="flex flex-wrap gap-1 mt-1">
+              {group.events.map(event => (
+                <li>
+                  <a href={`/event/${event.eventId}`} title={event.event.name}>
+                    <CFImage
+                      src={getEventImageUrl(
+                        event.eventId,
+                        event.parsedFrontMatter
+                      )}
+                      alt={event.event.name || event.eventId}
+                      width={96}
+                      ratio={1}
+                      class="h-12 w-12 rounded-sm border border-black"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </SidebarSection>
+  )
+}
