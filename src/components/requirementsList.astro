@@ -1,15 +1,6 @@
 ---
 import { Icon } from 'react-iconify-icon-wrapper'
-
-export interface Requirement {
-  displayName: string
-  met: boolean
-  explanation?: string
-  callToAction?: {
-    text: string
-    url: string
-  }
-}
+import type { Requirement } from '../@types/Requirement'
 
 interface Props {
   requirements: Requirement[]

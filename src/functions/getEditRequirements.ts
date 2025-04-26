@@ -1,4 +1,4 @@
-import type { Requirement } from "$components/requirementsList.astro";
+import type { Requirement } from "$types/Requirement";
 
 export function getEditRequirements(reason: string): Requirement[] {
   // Define each requirement with default met state
