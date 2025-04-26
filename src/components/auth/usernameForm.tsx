@@ -1,7 +1,8 @@
 import { QueryClientContextProvider } from '$constants/queryClient'
 import { useQuery } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Icon } from 'react-iconify-icon-wrapper'
+import { InfoBox } from '../infoBox'
 
 interface UsernameFormProps {
   initialUsername?: string
@@ -66,53 +67,29 @@ function UsernameForm({
       </p>
 
       {!hasGithub ? (
-        <div className="rounded-md bg-yellow-50 p-4">
-          <div className="flex">
-            <div className="flex-shrink-0 text-yellow-400">
-              <Icon icon="heroicons:exclamation-triangle" className="h-5 w-5" />
-            </div>
-            <div className="ml-3">
-              <h3 className="text-sm font-medium text-yellow-800">
-                GitHub Connection Required
-              </h3>
-              <div className="mt-2 text-sm text-yellow-700">
-                <p>
-                  You need to connect your GitHub account first before you can
-                  reserve a username.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <InfoBox type="warning" title="GitHub Connection Required">
+          <p>
+            You need to connect your GitHub account first before you can
+            reserve a username.
+          </p>
+        </InfoBox>
       ) : initialUsername ? (
-        <div className="rounded-md bg-blue-50 p-4">
-          <div className="flex">
-            <div className="flex-shrink-0 text-blue-400">
-              <Icon icon="heroicons:information-circle" className="h-5 w-5" />
-            </div>
-            <div className="ml-3">
-              <h3 className="text-sm font-medium text-blue-800">
-                Username Reserved
-              </h3>
-              <div className="mt-2 text-sm text-blue-700">
-                <p>
-                  You have already reserved the username{' '}
-                  <strong>{initialUsername}</strong>.
-                </p>
-                <p className="mt-1">
-                  Your profile page is available at{' '}
-                  <a
-                    href={`/wiki/People/${initialUsername}`}
-                    className="underline hover:text-blue-800"
-                  >
-                    /wiki/People/{initialUsername}
-                  </a>
-                  .
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <InfoBox type="info" title="Username Reserved">
+          <p>
+            You have already reserved the username{' '}
+            <strong>{initialUsername}</strong>.
+          </p>
+          <p className="mt-1">
+            Your profile page is available at{' '}
+            <a
+              href={`/wiki/People/${initialUsername}`}
+              className="underline hover:text-blue-800"
+            >
+              /wiki/People/{initialUsername}
+            </a>
+            .
+          </p>
+        </InfoBox>
       ) : (
         <form method="POST" action={formAction} className="space-y-4">
           <div>
