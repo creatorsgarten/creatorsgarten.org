@@ -9,7 +9,7 @@ describe('getEditRequirements', () => {
     expect(requirements[0].displayName).toBe("Signed in to Creatorsgarten")
     expect(requirements[0].met).toBe(false)
     expect(requirements[0].callToAction?.text).toBe("sign in")
-    expect(requirements[0].callToAction?.url).toBe("/auth/login")
+    expect(requirements[0].callToAction?.url).toBe("/auth/login?dest=/dashboard/profile")
     
     // Subsequent requirements should be not met for cleaner UX
     expect(requirements[1].met).toBe(false)
@@ -25,7 +25,7 @@ describe('getEditRequirements', () => {
     expect(requirements[1].displayName).toBe("GitHub Account connected")
     expect(requirements[1].met).toBe(false)
     expect(requirements[1].callToAction?.text).toBe("connect")
-    expect(requirements[1].callToAction?.url).toBe("/auth/github")
+    expect(requirements[1].callToAction?.url).toBe("/dashboard/profile#github")
     
     // Subsequent requirement should be not met for cleaner UX
     expect(requirements[2].met).toBe(false)
