@@ -1,0 +1,30 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Project Structure Guide
+
+This is the Creatorsgarten.org website codebase, built with Astro. Here's how the project is organized:
+
+## Core Configuration Files
+- [astro.config.mjs](mdc:astro.config.mjs) - Main Astro configuration
+- [tailwind.config.mjs](mdc:tailwind.config.mjs) - Tailwind CSS configuration
+- [tsconfig.json](mdc:tsconfig.json) - TypeScript configuration
+- [package.json](mdc:package.json) - Project dependencies and scripts
+
+## Source Code Structure
+The main source code is in the `src` directory:
+- [src/pages/](mdc:src/pages) - Astro pages and routes
+- [src/components/](mdc:src/components) - Reusable UI components
+- [src/packlets/](mdc:src/packlets) - Modular feature packages
+- [src/functions/](mdc:src/functions) - Utility functions
+- [src/utils/](mdc:src/utils) - Helper utilities
+- [src/constants/](mdc:src/constants) - Shared constants
+- [src/@types/](mdc:src/@types) - TypeScript type definitions
+- [src/middleware.ts](mdc:src/middleware.ts) - Request middleware
+
+## Development and Testing
+- [playwright.config.ts](mdc:playwright.config.ts) - E2E testing configuration
+- [tests/](mdc:tests) - Test files
+- [docker-compose.yml](mdc:docker-compose.yml) - Docker development setup

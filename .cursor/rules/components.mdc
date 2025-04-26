@@ -1,0 +1,26 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Component Architecture
+
+The project uses a mix of Astro components and React components. Here's how they're organized:
+
+## Core Components
+- [src/components/cfImage.astro](mdc:src/components/cfImage.astro) - Cloudflare Image component
+- [src/components/breadcrumb.astro](mdc:src/components/breadcrumb.astro) - Navigation breadcrumbs
+- [src/components/mainHorizontalPadding.astro](mdc:src/components/mainHorizontalPadding.astro) - Layout padding component
+
+## Feature Components
+- [src/components/auth/](mdc:src/components/auth) - Authentication related components
+- [src/components/connections/](mdc:src/components/connections) - Social/external connection components
+- [src/components/frontpage/](mdc:src/components/frontpage) - Homepage specific components
+- [src/components/markdown/](mdc:src/components/markdown) - Markdown rendering components
+
+## Content Components
+- [src/components/eventPoster.astro](mdc:src/components/eventPoster.astro) - Event display component
+- [src/components/guilds.astro](mdc:src/components/guilds.astro) - Guilds listing component
+- [src/components/announcement.astro](mdc:src/components/announcement.astro) - Announcement component
+- [src/components/requirementsList.astro](mdc:src/components/requirementsList.astro) - Requirements display
+- [src/components/avatarGrid.tsx](mdc:src/components/avatarGrid.tsx) - Grid of user avatars

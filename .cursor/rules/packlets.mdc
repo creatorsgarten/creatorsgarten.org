@@ -1,0 +1,56 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Packlets Architecture
+
+Packlets are modular feature packages that encapsulate specific functionality. They are located in [src/packlets/](mdc:src/packlets).
+
+## Core Packlets
+
+### Backend Packlet
+[src/packlets/backend/](mdc:src/packlets/backend)
+- Contains all backend code and tRPC endpoints
+- **ONLY** this packlet can access MongoDB and sensitive secrets
+- Frontend code MUST NOT directly import from this folder
+- All frontend-backend communication goes through tRPC
+- Must implement proper access controls and data filtering
+
+### Commons Packlet
+[src/packlets/commons/](mdc:src/packlets/commons)
+- Shared utilities and components used across other packlets
+- Common types and interfaces
+- Reusable helper functions
+
+### Layouts Packlet
+[src/packlets/layouts/](mdc:src/layouts)
+- Shared layout components
+- Page templates and structures
+
+## Feature Packlets
+
+### Dashboard Packlet
+[src/packlets/dashboard/](mdc:src/packlets/dashboard)
+- User dashboard functionality
+- Account management features
+
+### Wiki Packlet
+[src/packlets/wiki/](mdc:src/packlets/wiki)
+- Wiki system implementation
+- Documentation features
+
+### Videos Packlet
+[src/packlets/videos/](mdc:src/packlets/videos)
+- Video management and playback features
+
+### Markdown Packlet
+[src/packlets/markdown/](mdc:src/packlets/markdown)
+- Markdown processing and rendering
+- Content transformation utilities
+
+## Packlet Guidelines
+- Each packlet should be self-contained with clear responsibilities
+- Cross-packlet dependencies should be minimized
+- Backend packlet is special - other packlets must use tRPC to communicate with it
+- Follow the same code style and best practices as the rest of the project

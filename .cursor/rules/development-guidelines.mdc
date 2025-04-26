@@ -1,0 +1,52 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Development Guidelines
+
+## Code Style and Architecture
+- Use TypeScript with strong typing
+- Use path aliases for imports (e.g., `$components/`, `$functions/`)
+- Follow Prettier config:
+  - [.prettierrc](mdc:.prettierrc) - No semicolons, arrow parens avoid, single quotes
+  - [.prettierignore](mdc:.prettierignore) - Files to ignore from formatting
+  - [.editorconfig](mdc:.editorconfig) - 2 spaces indentation, max line width 80
+
+## Development Commands
+- `pnpm dev` - Run development server (remote mode by default)
+- `pnpm build` - Build for production
+- `pnpm preview` - Preview production build
+- `pnpm format` - Format code with Prettier
+- `npx playwright test` - Run tests
+- `npx astro check` - Type check codebase
+
+## Frontend-Backend Architecture
+- Frontend and backend are separate despite same repository
+- Only `src/packlets/backend/` can access MongoDB and secrets
+- Frontend MUST use tRPC for backend communication
+- Backend API implements proper access controls
+- Use explicit DTO interfaces for backend responses
+
+## Best Practices
+- Use React for interactive components, Astro for static content
+- Use Tailwind for styling
+- Use Zod for schema validation
+- Prefer functional components and hooks
+- Use named exports over default exports
+- Follow file naming: camelCase for utils, PascalCase for components
+
+## Development Environment
+- [.envrc](mdc:.envrc) - Environment configuration
+- [.devcontainer/](mdc:.devcontainer) - VS Code dev container setup
+- [.husky/](mdc:.husky) - Git hooks for code quality
+
+## Docker Development
+The project can be run in Docker:
+- [Dockerfile](mdc:Dockerfile) - Container image definition
+- [docker-compose.yml](mdc:docker-compose.yml) - Local development services
+
+## Package Management
+- Uses pnpm as the package manager
+- [pnpm-lock.yaml](mdc:pnpm-lock.yaml) - Locked dependencies
+- [.npmrc](mdc:.npmrc) - NPM configuration
