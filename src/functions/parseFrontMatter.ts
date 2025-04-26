@@ -91,3 +91,4 @@ export function parseFrontMatter(data: any) {
 }
 
 export type FrontMatter = z.infer<typeof frontMatterSchema>
+export type FrontMatterInput = z.input<typeof frontMatterSchema>
