@@ -1,8 +1,8 @@
 ---
 import Blank from './blank.astro'
 
-import AuthButton from '$components/authButton.astro'
 import Announcement from '$components/announcement.astro'
+import AuthButton from '$components/authButton.astro'
 import FooterLogo from './footerLogo.astro'
 
 import { getFeatureFlags } from '$functions/getFeatureFlags'
@@ -72,7 +72,7 @@ const featureFlags = getFeatureFlags(Astro)
             </div>
           </div>
           <div class="flex w-full justify-between gap-3 border-b border-black bg-neutral-100 px-4 py-2 text-base font-medium lg:gap-5">
-            <ul class="flex gap-5">
+            <ul class="flex gap-3 md:gap-5">
               <li>
                 <a href="/events">Event</a>
               </li>
