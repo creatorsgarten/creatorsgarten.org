@@ -1,0 +1,26 @@
+---
+import RequirementsList from '$components/requirementsList.astro'
+import { getEditRequirements } from '$functions/getEditRequirements'
+export interface Props {
+  reason: string
+  gitHubUrl: string
+}
+const { reason, gitHubUrl } = Astro.props
+const requirements = getEditRequirements(reason)
+const allMet = requirements.every(req => req.met)
+---
+
+<div>
+  <p>
+    (Editor is locked to read-only mode because you don't have enough
+    permissions to edit the page. However,{' '}
+    <a href={gitHubUrl}> you can propose changes to this file on GitHub. </a>
+    )
+    <span class="hidden" id="reason">
+      {reason}
+    </span>
+  </p>
+  <div class="not-prose">
+    {!allMet && <RequirementsList requirements={requirements} />}
+  </div>
+</div>

@@ -1,6 +1,7 @@
 ---
 import { getContentsgarten } from '$functions/getContentsgarten'
 import { EditorTextarea } from './editorTextarea'
+import NotEditableReason from './notEditableReason.astro'
 
 export interface Props {
   pageRef: string
@@ -38,17 +39,7 @@ const gitHubUrl = `https://github.com/creatorsgarten/wiki/blob/main/wiki/${pageR
             (The editor is quite janky, so please save your changes regularly!)
           </p>
         ) : (
-          <p>
-            (Editor is locked to read-only mode because you don't have enough
-            permissions to edit the page. However,{' '}
-            <a href={gitHubUrl}>
-              you can propose changes to this file on GitHub.
-            </a>
-            )
-            <span class="hidden" id="reason">
-              {editable.reason}
-            </span>
-          </p>
+          <NotEditableReason reason={editable.reason || 'Unknown error'} gitHubUrl={gitHubUrl} />
         )
       }
     </div>

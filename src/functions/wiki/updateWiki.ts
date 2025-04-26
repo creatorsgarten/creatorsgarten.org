@@ -9,7 +9,7 @@ export const updateWiki = async (
   Astro: AstroGlobal
 ) => {
   try {
-    const wiki = getContentsgarten({ cookies: Astro.cookies })
+    const wiki = getContentsgarten(Astro)
     await wiki.save.mutate({
       pageRef,
       newContent: content,
