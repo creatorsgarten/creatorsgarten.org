@@ -122,17 +122,17 @@ function UsernameForm({
             >
               Username
             </label>
-            <div className="relative mt-1 rounded-md shadow-sm">
+            <div className="relative mt-1">
               <input
                 type="text"
                 name="username"
                 id="username"
-                className={`block w-full rounded-md pr-10 sm:text-sm ${
+                className={`block w-full rounded-md px-3 py-2 pr-10 sm:text-sm ${
                   isAvailable === false
-                    ? 'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-none'
+                    ? 'border border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-none'
                     : isAvailable === true
-                      ? 'border-green-300 text-green-900 focus:border-green-500 focus:ring-green-500'
-                      : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+                      ? 'border border-green-300 text-green-900 focus:border-green-500 focus:ring-green-500'
+                      : 'border border-gray-300 focus:border-blue-500 focus:ring-blue-500'
                 }`}
                 placeholder="Choose a username"
                 value={username}

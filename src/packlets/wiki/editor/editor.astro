@@ -1,5 +1,5 @@
 ---
-import { contentsgarten } from '$constants/contentsgarten'
+import { getContentsgarten } from '$functions/getContentsgarten'
 import { EditorTextarea } from './editorTextarea'
 
 export interface Props {
@@ -13,10 +13,9 @@ export interface Props {
 
 const { pageRef, file } = Astro.props
 
+const wiki = getContentsgarten(Astro)
 const editable = Astro.cookies.get('authgarten')?.value
-  ? await contentsgarten(
-      Astro.cookies.get('authgarten')?.value
-    ).getEditPermission.query({
+  ? await wiki.getEditPermission.query({
       pageRef,
     })
   : {

@@ -1,0 +1,75 @@
+---
+import { updateFrontMatter } from '$functions/wiki/updateFrontMatter'
+
+// Only authenticated users can access this route
+const { user } = Astro.locals
+if (!user) return Astro.redirect('/dashboard')
+
+// Must have a username to update profile
+if (!user.username) {
+  return Astro.redirect('/dashboard/profile?error=no-username')
+}
+
+// Only handle POST requests
+if (Astro.request.method !== 'POST') {
+  return new Response('Method Not Allowed', {
+    status: 405,
+    headers: {
+      Allow: 'POST',
+      'Content-Type': 'text/plain',
+    },
+  })
+}
+
+try {
+  const formData = await Astro.request.formData()
+  const pageRef = `People/${user.username}`
+
+  // Use updateFrontMatter to handle the update
+  const result = await updateFrontMatter(
+    pageRef,
+    frontmatter => {
+      // Initialize person object if it doesn't exist
+      if (!frontmatter.person) {
+        frontmatter.person = {
+          name: '',
+          intro: '',
+          nickname: '',
+          nicknameTh: '',
+        }
+      }
+
+      // Update person fields from form data
+      if (formData.has('name'))
+        frontmatter.person.name = String(formData.get('name'))
+      if (formData.has('intro'))
+        frontmatter.person.intro = String(formData.get('intro'))
+      if (formData.has('nickname'))
+        frontmatter.person.nickname = String(formData.get('nickname'))
+      if (formData.has('nicknameTh'))
+        frontmatter.person.nicknameTh = String(formData.get('nicknameTh'))
+    },
+    Astro
+  )
+
+  if (result.success) {
+    return Astro.redirect('/dashboard/profile?success=profile-updated')
+  } else {
+    return Astro.redirect(
+      `/dashboard/profile?error=${encodeURIComponent(result.error || 'Unknown error')}`
+    )
+  }
+} catch (error) {
+  console.error('Error processing form:', error)
+  const errorMessage =
+    error instanceof Error ? error.message : 'Failed to process request'
+  return Astro.redirect(
+    `/dashboard/profile?error=${encodeURIComponent(errorMessage)}`
+  )
+}
+---
+
+<!-- 
+This page only processes form submissions and redirects, 
+it doesn't render any content.
+-->

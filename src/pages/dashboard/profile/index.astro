@@ -6,6 +6,7 @@ import { Connections } from '$components/connections'
 import UserCard from '$dashboard/userCard.astro'
 import BaseLayout from '$layouts/base.astro'
 import { Icon } from 'react-iconify-icon-wrapper'
+import ProfileEditor from '$components/dashboard/profiles/profileEditor.astro'
 
 const { user } = Astro.locals
 if (!user) return Astro.redirect('/')
@@ -46,8 +47,12 @@ if (Astro.request.method === 'POST') {
   }
 }
 
-// Check for success message in URL
-const success = Astro.url.searchParams.get('success') === 'true'
+// Check for success/error messages in URL
+const urlSuccess = Astro.url.searchParams.get('success')
+const urlError = Astro.url.searchParams.get('error')
+const profileSuccess = urlSuccess === 'profile-updated'
+const profileError = urlError || ''
+const usernameSuccess = urlSuccess === 'true'
 ---
 
 <Head title="Profile & Connections | Dashboard" />
@@ -59,7 +64,7 @@ const success = Astro.url.searchParams.get('success') === 'true'
   />
 
   {
-    success && !user.username && (
+    usernameSuccess && !user.username && (
       <div class="mx-auto mb-4 max-w-2xl rounded-md bg-green-50 p-4">
         <div class="flex">
           <div class="flex-shrink-0 text-green-400">
@@ -124,6 +129,7 @@ const success = Astro.url.searchParams.get('success') === 'true'
           }
         </div>
 
+
         <div class="mt-6 rounded-md border border-blue-200 bg-blue-50 p-4">
           <div class="flex gap-2">
             <div class="flex-shrink-0 text-blue-500">
@@ -159,12 +165,22 @@ const success = Astro.url.searchParams.get('success') === 'true'
     </div>
 
     <div class="rounded-2xl border border-neutral-300 bg-white p-6">
-      <UsernameFormWrapper
-        client:load
-        initialUsername={user.username}
-        hasGithub={hasGithubConnection}
-        formAction="/dashboard/profile"
-      />
+      {
+        user.username ? (
+          <ProfileEditor 
+            username={user.username} 
+            success={profileSuccess}
+            error={profileError}
+          />
+        ) : (
+          <UsernameFormWrapper
+            client:load
+            initialUsername={user.username}
+            hasGithub={hasGithubConnection}
+            formAction="/dashboard/profile"
+          />
+        )
+      }
     </div>
 
     <div class="rounded-2xl border border-neutral-300 bg-white p-6">
@@ -178,3 +194,5 @@ const success = Astro.url.searchParams.get('success') === 'true'
     </div>
   </div>
 </BaseLayout>
+
+
