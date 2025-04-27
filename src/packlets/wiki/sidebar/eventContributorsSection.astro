@@ -1,0 +1,47 @@
+---
+import SidebarSection from './section.astro'
+import { getPeopleInvolved } from '$staffList'
+import { AvatarGrid } from '$components/avatarGrid'
+
+export interface Props {
+  eventId: string
+}
+
+const involved = await getPeopleInvolved(
+  Astro.props.eventId,
+  Astro.locals.backend
+)
+---
+
+{
+  involved.groups.length > 0 && (
+    <SidebarSection title="Contributors">
+      <div class="flex flex-col gap-4">
+        {involved.groups.map(group => (
+          <div class="flex flex-col gap-1">
+            <h3 class="text-sm font-bold text-neutral-500 uppercase">
+              {group.title}
+            </h3>
+            <AvatarGrid
+              items={group.people.map(p => ({
+                imageUrl: `/api/users/${p.id}/picture`,
+                imageAlt: p.name,
+                href: p.href,
+              }))}
+            />
+          </div>
+        ))}
+      </div>
+      <p class="mt-4 text-xs text-neutral-600">
+        Information may be incomplete. If you contributed to this event but don't
+        see yourself here, you can{' '}
+        <a
+          href="/wiki/EventContributorList#how-to-add-yourself-as-an-event-contributor"
+          class="text-blue-600 hover:underline"
+        >
+          add yourself to the list<!--
+        --></a><!-- -->.
+      </p>
+    </SidebarSection>
+  )
+}

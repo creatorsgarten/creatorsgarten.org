@@ -51,3 +51,10 @@ export const validateUsername = (username: string) => {
     return { valid: false, message: 'Invalid username' }
   }
 }
+
+/**
+ * Normalize a username by removing @ prefix and converting to lowercase
+ */
+export function normalizeUsername(username: string): string {
+  return username.replace(/^@/, '').toLowerCase()
+}

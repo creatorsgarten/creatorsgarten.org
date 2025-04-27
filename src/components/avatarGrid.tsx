@@ -10,14 +10,14 @@ export interface AvatarGridProps {
 
 export function AvatarGrid({ items }: AvatarGridProps) {
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap gap-1">
       {items.map((item, index) => {
         const isExternalLink = item.href?.includes('://')
         const avatar = (
           <img
             src={item.imageUrl}
             alt={item.imageAlt}
-            className="h-8 w-8 rounded-full"
+            className="h-8 w-8 rounded-full border border-black"
           />
         )
 

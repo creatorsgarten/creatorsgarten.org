@@ -93,22 +93,71 @@ export async function resolvePublicProfiles(
 }
 
 /**
- * Get public profiles for multiple users by their IDs
+ * Normalize a username by removing @ prefix and converting to lowercase
  */
-export async function getPublicProfiles(userIds: string[]): Promise<PublicProfile[]> {
-  if (!userIds.length) return []
+function normalizeUsername(username: string): string {
+  return username.replace(/^@/, '').toLowerCase()
+}
+
+/**
+ * Resolve usernames to user IDs
+ */
+async function resolveUserIdsFromUsernames(usernames: string[]): Promise<{ id: string; username: string }[]> {
+  if (!usernames.length) return []
   
-  // Validate user IDs
-  const validIds = userIds.filter(id => ObjectId.isValid(id))
-  if (validIds.length !== userIds.length) {
-    throw new TRPCError({
-      code: 'BAD_REQUEST',
-      message: 'One or more invalid user IDs provided',
-    })
-  }
+  // Normalize usernames (strip @ and convert to lowercase)
+  const normalizedUsernames = usernames.map(normalizeUsername)
+  
+  // Find users by usernames
+  const users = await collections.users.find(
+    { username: { $in: normalizedUsernames } },
+    { projection: { _id: 1, username: 1 } }
+  ).toArray()
+  
+  // Map to id and username pairs
+  return users.map(user => ({
+    id: user._id.toString(),
+    username: user.username || '',
+  }))
+}
+
+/**
+ * Get public profiles for multiple users by their IDs or usernames
+ */
+export async function getPublicProfiles(userIdentifiers: string[]): Promise<PublicProfile[]> {
+  if (!userIdentifiers.length) return []
+  
+  // Separate IDs and usernames
+  const objectIdCandidates: string[] = []
+  const usernameCandidates: string[] = []
+  
+  userIdentifiers.forEach(identifier => {
+    if (identifier.startsWith('@')) {
+      usernameCandidates.push(identifier)
+    } else if (ObjectId.isValid(identifier)) {
+      objectIdCandidates.push(identifier)
+    } else {
+      throw new TRPCError({
+        code: 'BAD_REQUEST',
+        message: `Invalid identifier format: ${identifier}. Must be a valid ObjectId or username with @ prefix.`,
+      })
+    }
+  })
+  
+  // Resolve usernames to IDs
+  const resolvedFromUsernames = await resolveUserIdsFromUsernames(usernameCandidates)
+  
+  // Combine all ObjectIds
+  const allIds = [
+    ...objectIdCandidates,
+    ...resolvedFromUsernames.map(item => item.id)
+  ]
+  
+  // If no valid IDs after resolution, return empty array
+  if (!allIds.length) return []
   
   // Convert string IDs to ObjectIds
-  const objectIds = validIds.map(id => new ObjectId(id))
+  const objectIds = allIds.map(id => new ObjectId(id))
   
   // Find all users in a single query
   const users = await collections.users.find(
@@ -145,7 +194,7 @@ export async function getPublicProfile({
     }
     query._id = new ObjectId(userId)
   } else if (username) {
-    query.username = username.toLowerCase()
+    query.username = normalizeUsername(username)
   }
 
   // Find the user

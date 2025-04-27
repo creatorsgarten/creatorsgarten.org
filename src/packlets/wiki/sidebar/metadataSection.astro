@@ -8,6 +8,7 @@ import { stringifyDate } from '$functions/stringifyDate'
 
 import type { Dayjs } from 'dayjs'
 import PersonEventsSection from './personEventsSection.astro'
+import EventContributorsSection from './eventContributorsSection.astro'
 
 export interface Props {
   pageRef: string
@@ -35,10 +36,10 @@ const { edited, editable, pageRef, grtn } = Astro.props
                 href={`https://github.com/creatorsgarten/wiki/commits/main/wiki/${pageRef}.md`}
                 class="inline-flex items-center"
               >
-                <>
+                <Fragment>
                   <span class="mr-1">GitHub</span>
                   <Icon icon="pixelarticons:external-link" />
-                </>
+                </Fragment>
               </a>
               <span class="space-x-1 pl-1 opacity-0 focus-within:opacity-100 group-hover:opacity-100">
                 <a
@@ -64,8 +65,10 @@ const { edited, editable, pageRef, grtn } = Astro.props
                 event.preventDefault(); navigator.clipboard.writeText(this.href);
                 "
               >
-                <span class="mr-1">grtn.org/{grtn}</span>
-                <Icon icon="pixelarticons:copy" />
+                <Fragment>
+                  <span class="mr-1">grtn.org/{grtn}</span>
+                  <Icon icon="pixelarticons:copy" />
+                </Fragment>
               </a>
             </td>
           </tr>
@@ -94,4 +97,8 @@ const { edited, editable, pageRef, grtn } = Astro.props
 
 {pageRef.startsWith('People/') && (
   <PersonEventsSection username={pageRef.split('/')[1]} server:defer />
+)}
+
+{pageRef.startsWith('Events/') && (
+  <EventContributorsSection eventId={pageRef.split('/')[1]} server:defer />
 )}

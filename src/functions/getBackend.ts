@@ -18,6 +18,8 @@ export function getApiBackend(Astro: Pick<AstroGlobal, 'request'>) {
   return createProxyClient(token)
 }
 
+export type Backend = ReturnType<typeof getBackend>
+
 function createProxyClient(token: string | undefined) {
   return createTRPCProxyClient<AppRouter>({
     links: [

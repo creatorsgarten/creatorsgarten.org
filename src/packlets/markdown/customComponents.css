@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@reference '../layouts/global.css';
 
 .custom-block {
   @apply my-[1.25em] overflow-hidden border border-[--custom-block-border] bg-[--custom-block-bg] px-3 py-2;

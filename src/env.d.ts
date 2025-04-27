@@ -3,7 +3,7 @@
 
 declare namespace App {
   interface Locals {
-    backend: ReturnType<(typeof import('$functions/getBackend'))['getBackend']>
+    backend: import('$functions/getBackend').Backend
     user: import('$types/AuthenticatedUser').AuthenticatedUser | null
   }
 }
