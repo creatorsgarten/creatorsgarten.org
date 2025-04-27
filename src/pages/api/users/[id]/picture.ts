@@ -3,18 +3,19 @@ import type { APIRoute } from 'astro'
 
 export const GET: APIRoute = async ({ params, locals }) => {
   // Get user ID from params
-  const userId = params.id
+  const id = params.id
 
-  if (!userId) {
+  if (!id) {
     // Redirect to a default DiceBear image if no userId
     return redirectToDiceBear('unknown')
   }
 
   try {
     // Use the backend tRPC client to get the profile picture URL
-    const pictureUrl = await locals.backend.users.getProfilePictureUrl.query({
-      userId,
-    })
+    const profile = await locals.backend.users.getPublicProfile.query(
+      id.startsWith('@') ? { username: id.slice(1) } : { userId: id }
+    )
+    const pictureUrl = profile.profilePictureUrl
 
     // Validate if the URL is valid and starts with https://
     if (pictureUrl && isValidImageUrl(pictureUrl)) {
@@ -33,12 +34,12 @@ export const GET: APIRoute = async ({ params, locals }) => {
       })
     } else {
       // If URL is invalid, redirect to DiceBear
-      return redirectToDiceBear(userId)
+      return redirectToDiceBear(id)
     }
   } catch (error: any) {
     // For any error, redirect to DiceBear instead of showing an error
     console.error('Error getting profile picture:', error)
-    return redirectToDiceBear(userId)
+    return redirectToDiceBear(id)
   }
 }
 
