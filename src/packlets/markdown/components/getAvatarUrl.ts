@@ -15,7 +15,7 @@ export function getAvatarUrl(from: string): string {
 
   // For other names, use a placeholder avatar service
   return (
-    `https://api.dicebear.com/6.x/pixel-art-neutral/svg?seed=` +
+    `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=` +
     encodeURIComponent(from)
   )
 }

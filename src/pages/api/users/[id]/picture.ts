@@ -45,7 +45,7 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
 // Function to create a redirect response to DiceBear
 function redirectToDiceBear(seed: string): Response {
-  const diceBearUrl = `https://api.dicebear.com/6.x/pixel-art-neutral/svg?seed=${encodeURIComponent(seed)}`
+  const diceBearUrl = `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${encodeURIComponent(seed)}`
 
   return new Response(null, {
     status: 302,
