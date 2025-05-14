@@ -73,7 +73,7 @@
     "contentsgarten": "2.1.0",
     "dotenv": "16.5.0",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-svelte": "3.3.3",
+    "prettier-plugin-svelte": "3.4.0",
     "prettier-plugin-tailwindcss": "0.6.11",
     "svelte": "5.28.6",
     "tailwindcss": "4.1.6",
