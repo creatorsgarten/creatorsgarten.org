@@ -63,7 +63,7 @@
     "@tailwindcss/vite": "4.1.7",
     "@types/js-yaml": "^4.0.9",
     "@types/jsonwebtoken": "9.0.9",
-    "@types/lodash": "4.17.16",
+    "@types/lodash": "4.17.17",
     "@types/qrcode": "1.5.5",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.2",
