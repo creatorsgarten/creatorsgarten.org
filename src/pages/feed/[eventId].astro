@@ -1,8 +1,8 @@
 ---
 import Head from '$commons/head.astro'
 import Breadcrumb from '$components/breadcrumb.astro'
-import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
 import CFImage from '$components/cfImage.astro'
+import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
 import { getSocialPosts } from '$functions/getSocialPosts'
 import BaseLayout from '$layouts/base.astro'
 
@@ -54,7 +54,7 @@ const { socialPosts } = await getSocialPosts(eventId as string)
                   </div>
 
                   <div class="min-w-0 flex-1">
-                    <h3 class="line-clamp-2 text-sm text-gray-900">
+                    <h3 class="line-clamp-3 text-sm text-gray-900">
                       {post.title}
                     </h3>
                   </div>
