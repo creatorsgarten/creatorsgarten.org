@@ -37,14 +37,16 @@ const socialPostsFetcher = new LRUCache({
       'https://grist.creatorsgarten.org/api/docs/2eCQzv9Ww9mraHnAafRUK9/tables/PR_Facebook/records'
     )
 
-    const socialPosts = response.records.map(record => ({
-      id: record.fields.post_id,
-      publishedAt: new Date(record.fields.created_time * 1000).toISOString(),
-      url: record.fields.permalink_url,
-      events: record.fields.event || [],
-      picture: record.fields.full_picture && record.fields.full_picture !== '-' ? record.fields.full_picture : undefined,
-      title: record.fields.title_override || record.fields.message || record.fields.story || record.fields.status_type
-    }))
+    const socialPosts = response.records
+      .map(record => ({
+        id: record.fields.post_id,
+        publishedAt: new Date(record.fields.created_time * 1000).toISOString(),
+        url: record.fields.permalink_url,
+        events: record.fields.event || [],
+        picture: record.fields.full_picture && record.fields.full_picture !== '-' ? record.fields.full_picture : undefined,
+        title: record.fields.title_override || record.fields.message || record.fields.story || record.fields.status_type
+      }))
+      .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
 
     return { socialPosts }
   }
