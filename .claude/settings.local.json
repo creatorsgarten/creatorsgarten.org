@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx astro check)",
+      "Bash(pnpm astro-check:*)"
+    ],
+    "deny": []
+  }
+}

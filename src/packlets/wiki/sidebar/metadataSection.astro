@@ -9,6 +9,7 @@ import { stringifyDate } from '$functions/stringifyDate'
 import type { Dayjs } from 'dayjs'
 import PersonEventsSection from './personEventsSection.astro'
 import EventContributorsSection from './eventContributorsSection.astro'
+import EventFeedSection from './eventFeedSection.astro'
 
 export interface Props {
   pageRef: string
@@ -101,4 +102,8 @@ const { edited, editable, pageRef, grtn } = Astro.props
 
 {pageRef.startsWith('Events/') && (
   <EventContributorsSection eventId={pageRef.split('/')[1]} server:defer />
+)}
+
+{pageRef.startsWith('Events/') && (
+  <EventFeedSection eventId={pageRef.split('/')[1]} server:defer />
 )}
