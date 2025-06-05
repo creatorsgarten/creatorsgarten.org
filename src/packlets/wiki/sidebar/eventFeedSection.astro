@@ -16,7 +16,7 @@ const postsWithImages = socialPosts.filter(post => post.picture)
     <SidebarSection title="Social Posts">
       {postsWithImages.length > 0 && (
         <ul class="mb-4 flex flex-wrap gap-1">
-          {postsWithImages.slice(0, 9).map(post => (
+          {postsWithImages.map(post => (
             <li>
               <a
                 href={`/feed/${Astro.props.eventId}#${post.id}`}

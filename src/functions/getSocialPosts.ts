@@ -21,6 +21,7 @@ interface GristRecord {
     created_time: number
     event: string[]
     full_picture?: string
+    title_override?: string
   }
 }
 
@@ -42,7 +43,7 @@ const socialPostsFetcher = new LRUCache({
       url: record.fields.permalink_url,
       events: record.fields.event || [],
       picture: record.fields.full_picture && record.fields.full_picture !== '-' ? record.fields.full_picture : undefined,
-      title: record.fields.message || record.fields.story || record.fields.status_type
+      title: record.fields.title_override || record.fields.message || record.fields.story || record.fields.status_type
     }))
 
     return { socialPosts }
