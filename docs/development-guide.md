@@ -1,4 +1,4 @@
-# Creatorsgarten.org Development Guide
+# Development Guide
 
 ## Architecture
 - Frontend and backend code coexist in the same repository
@@ -49,3 +49,18 @@
   # Incorrect - will fail with "no matches found"
   git add src/pages/wg/[name]/members.astro
   ```
+
+## Development Environment
+- [.envrc](../.envrc) - Environment configuration
+- [.devcontainer/](../.devcontainer) - VS Code dev container setup
+- [.husky/](../.husky) - Git hooks for code quality
+
+## Docker Development
+The project can be run in Docker:
+- [Dockerfile](../Dockerfile) - Container image definition
+- [docker-compose.yml](../docker-compose.yml) - Local development services
+
+## Package Management
+- Uses pnpm as the package manager
+- [pnpm-lock.yaml](../pnpm-lock.yaml) - Locked dependencies
+- [.npmrc](../.npmrc) - NPM configuration
