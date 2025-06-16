@@ -152,8 +152,8 @@ importers:
         specifier: ^4.0.9
         version: 4.0.9
       '@types/jsonwebtoken':
-        specifier: 9.0.9
-        version: 9.0.9
+        specifier: 9.0.10
+        version: 9.0.10
       '@types/lodash':
         specifier: 4.17.17
         version: 4.17.17
@@ -1716,8 +1716,8 @@ packages:
   '@types/js-yaml@4.0.9':
     resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
 
-  '@types/jsonwebtoken@9.0.9':
-    resolution: {integrity: sha512-uoe+GxEuHbvy12OUQct2X9JenKM3qAscquYymuQN4fMWG9DBQtykrQEFcAbVACF7qaLw9BePSodUL0kquqBJpQ==}
+  '@types/jsonwebtoken@9.0.10':
+    resolution: {integrity: sha512-asx5hIG9Qmf/1oStypjanR7iKTv0gXQ1Ov/jfrX6kS/EO0OFni8orbmGCn0672NHR3kXHwpAwR+B368ZGN/2rA==}
 
   '@types/linkify-it@5.0.0':
     resolution: {integrity: sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q==}
@@ -6396,7 +6396,7 @@ snapshots:
 
   '@types/js-yaml@4.0.9': {}
 
-  '@types/jsonwebtoken@9.0.9':
+  '@types/jsonwebtoken@9.0.10':
     dependencies:
       '@types/ms': 2.1.0
       '@types/node': 22.13.7
@@ -9371,7 +9371,7 @@ snapshots:
 
   universal-github-app-jwt@1.1.2:
     dependencies:
-      '@types/jsonwebtoken': 9.0.9
+      '@types/jsonwebtoken': 9.0.10
       jsonwebtoken: 9.0.2
 
   universal-user-agent@6.0.0: {}
