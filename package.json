@@ -51,7 +51,7 @@
     "sitemap": "8.0.0",
     "subtitle": "4.2.1",
     "zod": "3.25.64",
-    "zod-validation-error": "3.5.0"
+    "zod-validation-error": "3.5.1"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.4",
