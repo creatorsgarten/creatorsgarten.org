@@ -64,5 +64,6 @@ For more detailed information about the project, please refer to the following d
 *   [**Development Guide (`docs/development-guide.md`)**](./docs/development-guide.md): Information on setting up your development environment, code style, build commands, and other development practices.
 *   [**Project Structure (`docs/project-structure.md`)**](./docs/project-structure.md): An overview of how the project is organized, including directory structure, key configuration files, and environment variables. Includes a high-level architecture diagram.
 *   [**Architecture Deep Dive (`docs/architecture.md`)**](./docs/architecture.md): Detailed insights into the packlet-based architecture, key platform features, backend API (tRPC) structure with a diagram, and external service dependencies.
+*   [**Wiki Guide (`docs/wiki-guide.md`)**](./docs/wiki-guide.md): Comprehensive guide to the wiki-driven content management system, including editing workflows, template system, and site configuration.
 *   [**Component Guide (`docs/components.md`)**](./docs/components.md): Information about the UI components used in the project.
 ```

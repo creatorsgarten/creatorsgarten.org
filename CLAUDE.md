@@ -31,66 +31,22 @@ npx astro check
 npx playwright test --headed  # Run with browser visible
 ```
 
-## Wiki Editing Guide
+## Wiki Editing Instructions for AI Agents
 
-This project uses a sophisticated wiki-driven content management system where content, templates, and configuration are stored in the wiki itself (GitHub repository: `creatorsgarten/wiki`).
+This project uses a sophisticated wiki-driven content management system. For comprehensive wiki documentation, see the [Wiki Guide](./docs/wiki-guide.md).
 
-### Editing Prerequisites
+### Prerequisites for AI Agents
 **IMPORTANT**: Before attempting any wiki edits, you MUST:
 1. **Ask the user to log in** with an account that has editing permissions
-2. **Verify permissions** by checking if editor pages show edit controls (not read-only mode)
+2. **Verify permissions** by checking if editor pages show edit controls (not read-only mode)  
 3. **Refuse to edit** if user lacks proper permissions - tell them they must log in as the right user
 
 The wiki editor pages will display the specific requirements and provide login links if permissions are insufficient.
 
-### Environment URLs
-- **Development**: `http://localhost:5173/` (when dev server is running)
-- **Production**: `https://creatorsgarten.org/` (use when dev server unavailable)
-- Always use relative paths starting with `/` in examples
+### Quick Reference for AI Agents
+- **Environment URLs**: `http://localhost:5173/` (dev) or `https://creatorsgarten.org/` (production)
+- **Editor URL pattern**: `/wiki/[PageName]/editor`
+- **Common editors**: `/wiki/WebsiteConfig/editor`, `/wiki/Events/[name]/editor`, `/wiki/People/[username]/editor`
+- **Template browsing**: `/wiki/Template`
 
-### Content Types & Editor URLs
-- **Events**: `/wiki/Events/[eventname]/editor` (e.g., `/wiki/Events/aliens/editor`)
-- **People profiles**: `/wiki/People/[username]/editor` (e.g., `/wiki/People/dtinth/editor`)
-- **Templates**: `/wiki/Template/[templatename]/editor` (e.g., `/wiki/Template/EventBox/editor`)
-- **Site configuration**: `/wiki/WebsiteConfig/editor`
-- **General pages**: `/wiki/[pagename]/editor`
-- **Browse all templates**: `/wiki/Template`
-
-### Wiki File Structure
-Pages use YAML front matter + Markdown:
-```yaml
----
-# Structured data (YAML)
-image: https://usercontent.creatorsgarten.org/c/v.../image.webp
-event:
-  name: Event Name
-  date: "2025-05-18"
-  location: Venue Name
----
-
-# Markdown content starts here
-Content with template includes like:
-{% render 'EventBox', name: ref %}
-```
-
-### Template System
-- **Available templates**: Check `/wiki/Template` for full list
-- **Usage syntax**: `{% render 'TemplateName', param: value %}`
-- **Common templates**:
-  - `Event` - Event links with icons
-  - `EventBox` - Event navigation with related links  
-  - `EventpopButton` - Ticket purchase buttons
-  - `Person` - Person profile links
-- **Template editing**: Templates themselves are wiki pages at `/wiki/Template/[name]/editor`
-
-### Site Configuration
-- **WebsiteConfig**: Controls feature flags, recurring events, guild listings, service integrations, announcements
-- **Location**: `/wiki/WebsiteConfig/editor`
-- **Cache**: Changes take up to 1 minute to propagate due to caching
-
-### Important Notes
-- All changes are Git version controlled
-- Images must be uploaded to `usercontent.creatorsgarten.org` via `/dashboard/upload`
-- Uses Liquid template engine for dynamic content
-- Templates can reference other templates and query wiki data
-- Content supports both Thai and English naturally
+For detailed information about file structure, available templates, and content creation workflows, refer to the [Wiki Guide](./docs/wiki-guide.md).
