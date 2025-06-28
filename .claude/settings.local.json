@@ -4,7 +4,10 @@
       "Bash(npx astro check)",
       "Bash(pnpm astro-check:*)",
       "mcp__browser__browser_navigate",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "mcp__browser__browser_type",
+      "mcp__browser__browser_press_key",
+      "mcp__browser__browser_click"
     ],
     "deny": []
   }

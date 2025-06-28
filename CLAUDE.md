@@ -50,3 +50,22 @@ The wiki editor pages will display the specific requirements and provide login l
 - **Template browsing**: `/wiki/Template`
 
 For detailed information about file structure, available templates, and content creation workflows, refer to the [Wiki Guide](./docs/wiki-guide.md).
+
+### Wiki Editing Best Practices for AI Agents
+
+**YAML Front Matter Schema**:
+- **CRITICAL**: Read `src/functions/parseFrontMatter.ts` to understand the exact YAML schema requirements
+- Key points from schema:
+  - `eventpopId` is nested under `event:` section and should be a number (will be coerced)
+  - `hosts` is nested under `event:` section as an array of strings
+  - `date` must be ISO format (YYYY-MM-DD) and quoted in YAML
+  - All event properties are nested under the `event:` key
+
+**Browser Editing Efficiency**:
+- Use `browser_type` tool to replace entire content rather than complex text selection
+- When browser navigation fails, restart browser with `browser_close` then `browser_navigate`
+
+**Wiki Templates and Examples**:
+- Browse `/wiki/Template` to see available templates and their usage patterns
+- Examine existing event pages (e.g., `/wiki/Events/bkkjs23/editor`) to understand structure and template usage
+- Common templates include EventpopButton, EventBox, Person, Event - see actual pages for correct syntax and parameters
