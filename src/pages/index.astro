@@ -135,6 +135,27 @@ const stories = [
 			</div>
 		</div> -->
 
+    <!-- 
+    AI AGENT NOTES FOR HOMEPAGE UPDATES:
+    
+    This is the "Up Next" featured event section. When updating for new events:
+    
+    1. LAYOUT: Uses CSS Grid - lg:grid-cols-4 (4 columns total on large screens)
+       - 1 featured image (1 column) + content section (3 columns) = 4 total
+       - Content section MUST have lg:col-span-3 to take remaining space
+    
+    2. WHAT TO UPDATE:
+       - Featured text: Line ~187 "BKK.JS #23 Summer 2025: JavaScript Meetup at..."
+       - Date: Line ~208 "11 July" 
+       - Action button: Line ~212-216 href and text
+       - Hero image: Line ~151 src attribute
+    
+    3. IMAGES: Use official event image from assets.creatorsgarten.org or usercontent.creatorsgarten.org
+       - Don't duplicate images - keep only ONE hero image
+       - Always add proper alt text
+    
+    4. LINKS: Use /event/[eventname] format for internal event links
+    -->
     <div
       class="flex grid-cols-3 flex-col gap-4 md:grid lg:grid-cols-4 lg:gap-5"
     >
@@ -148,23 +169,13 @@ const stories = [
         class="aspect-square w-full overflow-hidden rounded-md border border-black"
       >
         <img
-          src="https://usercontent.creatorsgarten.org/c/v1746359867/644e5254802c0234580bdb52/sonicthread_nfo5by.webp"
+          src="https://assets.creatorsgarten.org/events/bkkjs23.jpg"
           class="w-full object-cover"
-          alt=""
+          alt="BKK.JS #23"
         />
       </div>
 
-      <div
-        class="aspect-square w-full overflow-hidden rounded-md border border-black"
-      >
-        <img
-          src="https://usercontent.creatorsgarten.org/c/v1746235035/644e5254802c0234580bdb52/Frame_40302_skabpd.webp"
-          class="w-full object-cover"
-          alt=""
-        />
-      </div>
-
-      <div class="flex flex-col justify-between gap-4 lg:col-span-2 lg:gap-5">
+      <div class="flex flex-col justify-between gap-4 lg:col-span-3 lg:gap-5">
         <div
           class="relative flex h-full flex-col justify-between rounded-md border border-black bg-white p-3 lg:grid lg:grid-cols-5 lg:p-5"
         >
@@ -184,9 +195,9 @@ const stories = [
                 > & <a href="https://www.yaboihanoi.com/" class="underline"
                   >@yaboihanoi</a
                 > / Talk Session / Data Marketplace. -->
-                May Events: Coding Music and Alien Communication at <a
-                  href="https://learningfest.tkpark.or.th/"
-                  class="underline">Learning Fest 2025</a
+                BKK.JS #23 Summer 2025: JavaScript Meetup at <a
+                  href="/event/bkkjs23"
+                  class="underline">LINE MAN Wongnai</a
                 >!
               </div>
             </div>
@@ -205,20 +216,14 @@ const stories = [
           <div
             class="hidden rounded-md border border-black bg-neutral-100 px-3 py-2 lg:flex"
           >
-            17 & 18 May
+            11 July
           </div>
           <div class="space-x-2 md:space-x-4">
             <a
-              href="/event/soundcodeplay"
+              href="/event/bkkjs23"
               class="w-full rounded-md border border-black bg-black px-3 py-2 text-white transition-colors hover:bg-white hover:text-black lg:w-auto"
             >
-              🎼 Music →
-            </a>
-            <a
-              href="/event/aliens"
-              class="w-full rounded-md border border-black bg-black px-3 py-2 text-white transition-colors hover:bg-white hover:text-black lg:w-auto"
-            >
-              🛸 Aliens →
+              🧑‍💻 BKK.JS #23 →
             </a>
           </div>
         </div>
