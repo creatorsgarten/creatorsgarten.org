@@ -34,6 +34,9 @@ To get started with development, clone the repository and use the following comm
 # Install dependencies
 pnpm install
 
+# Set up environment variables
+cp .env.example .env
+
 # Run development server (uses remote mode by default)
 pnpm dev
 

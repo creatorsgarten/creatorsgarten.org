@@ -17,6 +17,21 @@
 - Never return MongoDB documents directly; always explicitly reconstruct objects with only the fields that should be exposed
 - Use explicit DTO (Data Transfer Object) interfaces to define the shape of data returned by the backend
 
+## Environment Setup
+
+Before running the development server, you need to set up your environment variables:
+
+```bash
+cp .env.example .env
+```
+
+The `.env.example` file contains default values that work for basic development. It includes:
+- Database connection settings (MongoDB)
+- OAuth client IDs and placeholder secrets
+- External service URLs
+
+The default configuration allows you to run the frontend in "remote mode" (connecting to production backend) without needing to set up local services.
+
 ## Build & Development Commands
 - `pnpm dev` - Run development server (uses remote mode by default)
 - `pnpm build` - Build for production

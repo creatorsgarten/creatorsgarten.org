@@ -108,7 +108,11 @@ export default defineConfig({
 
       // Security
       CSRF_SECRET: envField.string({ context: 'server', access: 'secret' }),
-      JWT_PRIVATE_KEY: envField.string({ context: 'server', access: 'secret' }),
+      JWT_PRIVATE_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
 
       // Sentry
       SENTRY_AUTH_TOKEN: envField.string({

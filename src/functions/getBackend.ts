@@ -23,7 +23,7 @@ export type Backend = ReturnType<typeof getBackend>
 function createProxyClient(token: string | undefined) {
   return createTRPCProxyClient<AppRouter>({
     links: [
-      JWT_PRIVATE_KEY.replaceAll(/\\n/g, '\n')
+      JWT_PRIVATE_KEY?.replaceAll(/\\n/g, '\n')
         ? localLink(appRouter, { authToken: token })
         : httpLink({
             url: BACKEND_URL || 'https://creatorsgarten.org/api/backend',
