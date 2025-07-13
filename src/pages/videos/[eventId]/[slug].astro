@@ -184,7 +184,12 @@ const isDraft = isPreview && !index.videos.some(
         </div>
       </div>
     </div>
-    <CueHighlighter iframeId={iframeId} client:only="react" />
+    <CueHighlighter 
+      iframeId={iframeId} 
+      eventId={eventId}
+      slug={slug}
+      client:only="react" 
+    />
   </MainHorizontalPadding>
 </BaseLayout>
 
