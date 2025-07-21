@@ -2,6 +2,7 @@
 import ContentRenderer from '$markdown/contentRenderer.astro'
 import WikiUpdateChecker from '../updateChecker'
 import WikiLinkChecker from '../linkChecker'
+import WikiExpandableLists from '../expandableLists'
 import WikiViewShortcuts from '../viewShortcuts.svelte'
 
 export interface Props {
@@ -33,6 +34,8 @@ const { html, pageRef, contentHash, filePath, validationError } = Astro.props
 />
 
 <WikiLinkChecker client:idle />
+
+<WikiExpandableLists client:idle />
 
 {filePath && (
   <WikiViewShortcuts path={filePath} client:only="svelte" />
