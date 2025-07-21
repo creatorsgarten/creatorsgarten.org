@@ -5,6 +5,7 @@ interface Props {
   eventId: string
   slug: string
   transcriptContainerSelector: string
+  transcriptLanguage: string
 }
 
 interface PopoverState {
@@ -15,23 +16,57 @@ interface PopoverState {
   cues: string[]
 }
 
+interface ToastState {
+  show: boolean
+  message: string
+  type: 'success' | 'error'
+}
+
 async function reportTranscriptInaccuracy(
   eventId: string,
   slug: string,
+  language: string,
   cues: string[],
   selectedText: string
 ) {
-  console.log('Reporting inaccuracy:', { eventId, slug, cues, selectedText })
-  alert(
-    `Under construction\nEvent: ${eventId}\nSlug: ${slug}\nCues: ${cues.join(', ')}\nText: ${selectedText}`
+  
+  // Extract timestamp from cue format "startTime-endTime" (already in milliseconds)
+  // Use the start time of the first cue
+  const firstCue = cues[0]
+  if (!firstCue) {
+    throw new Error('No cues provided')
+  }
+  
+  const [startTimeMs] = firstCue.split('-')
+  const timestamp = parseFloat(startTimeMs) // Keep in milliseconds
+  
+  const response = await fetch(
+    `https://creatorsgarten-video-captions-review.spacet.me/flags/${eventId}/${slug}/${language}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        timestamp,
+        text: selectedText,
+      }),
+    }
   )
-  return { success: true }
+  
+  if (!response.ok) {
+    throw new Error(`Failed to submit flag: ${response.status} ${response.statusText}`)
+  }
+  
+  const result = await response.json()
+  return result
 }
 
 export default function TranscriptInaccuracyReporter({
   eventId,
   slug,
   transcriptContainerSelector,
+  transcriptLanguage,
 }: Props) {
   const [popover, setPopover] = useState<PopoverState>({
     show: false,
@@ -41,14 +76,19 @@ export default function TranscriptInaccuracyReporter({
     cues: [],
   })
 
+  const [toast, setToast] = useState<ToastState>({
+    show: false,
+    message: '',
+    type: 'success',
+  })
+
+  const [isLoading, setIsLoading] = useState(false)
+
   useEffect(() => {
     function handleSelectionChange() {
-      console.log('Selection changed')
       const selection = window.getSelection()
-      console.log('Selection:', selection)
 
       if (!selection || selection.isCollapsed) {
-        console.log('No selection or collapsed')
         setPopover(prev => ({ ...prev, show: false }))
         return
       }
@@ -57,24 +97,18 @@ export default function TranscriptInaccuracyReporter({
       const transcriptContainer = document.querySelector(
         transcriptContainerSelector
       )
-      console.log('Transcript container:', transcriptContainer)
-      console.log('Range ancestor:', range.commonAncestorContainer)
 
       if (
         !transcriptContainer ||
         !transcriptContainer.contains(range.commonAncestorContainer)
       ) {
-        console.log('Selection not in transcript container')
         setPopover(prev => ({ ...prev, show: false }))
         return
       }
 
       const { cues, filteredText } = extractCuesAndTextFromSelection(range)
-      console.log('Extracted cues:', cues)
-      console.log('Filtered text:', filteredText)
 
       if (cues.length === 0 || !filteredText.trim()) {
-        console.log('No cues found or no text in cues')
         setPopover(prev => ({ ...prev, show: false }))
         return
       }
@@ -103,7 +137,6 @@ export default function TranscriptInaccuracyReporter({
         y = rect.bottom + arrowHeight
       }
 
-      console.log('Showing popover at:', { x, y, rect })
 
       setPopover({
         show: true,
@@ -156,7 +189,6 @@ export default function TranscriptInaccuracyReporter({
     
     // Get the actual selected text first
     const actualSelectedText = range.toString().trim()
-    console.log('Actual selected text:', actualSelectedText)
 
     // Find which cue elements the selection intersects with
     const transcriptContainer = document.querySelector(transcriptContainerSelector)
@@ -168,7 +200,6 @@ export default function TranscriptInaccuracyReporter({
       if (range.intersectsNode(element)) {
         const cue = element.getAttribute('data-cue')
         if (cue) {
-          console.log('Selection intersects cue:', cue)
           cues.add(cue)
         }
       }
@@ -186,7 +217,6 @@ export default function TranscriptInaccuracyReporter({
       const isEndInCue = endContainer.nodeType === Node.TEXT_NODE && 
         endContainer.parentElement?.closest('[data-cue]')
       
-      console.log('Start in cue:', isStartInCue, 'End in cue:', isEndInCue)
       
       // If both start and end are in cue elements, use the actual selected text
       if (isStartInCue && isEndInCue) {
@@ -221,66 +251,103 @@ export default function TranscriptInaccuracyReporter({
   }
 
   async function handleReportClick() {
+    if (isLoading) return
+    
+    setIsLoading(true)
     try {
       await reportTranscriptInaccuracy(
         eventId,
         slug,
+        transcriptLanguage,
         popover.cues,
         popover.selectedText
       )
       setPopover(prev => ({ ...prev, show: false }))
+      setToast({
+        show: true,
+        message: 'Transcript inaccuracy reported successfully!',
+        type: 'success',
+      })
+      setTimeout(() => setToast(prev => ({ ...prev, show: false })), 3000)
     } catch (error) {
       console.error('Failed to report transcript inaccuracy:', error)
+      setToast({
+        show: true,
+        message: 'Failed to report transcript inaccuracy. Please try again.',
+        type: 'error',
+      })
+      setTimeout(() => setToast(prev => ({ ...prev, show: false })), 5000)
+    } finally {
+      setIsLoading(false)
     }
   }
 
   async function handleCopyClick() {
     try {
       await navigator.clipboard.writeText(popover.selectedText)
-      console.log('Text copied to clipboard')
       // TODO: Add visual feedback for successful copy
     } catch (error) {
       console.error('Failed to copy text:', error)
     }
   }
 
-  if (!popover.show) {
-    console.log('Popover not showing, state:', popover)
-    return null
-  }
 
-  console.log('Rendering popover with state:', popover)
-
-  // Compact black tooltip with downward arrow
   return (
-    <div
-      data-transcript-popover
-      className="fixed z-[9999] rounded-md bg-black text-white shadow-lg animate-in fade-in-0 zoom-in-95 duration-200 before:absolute before:left-1/2 before:top-full before:h-0 before:w-0 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-black"
-      style={{
-        left: `${popover.x}px`,
-        top: `${popover.y}px`,
-        transform: 'translateX(-50%)',
-        pointerEvents: 'auto',
-      }}
-    >
-      <div className="flex gap-2 px-3 py-2">
-        <button
-          onClick={handleCopyClick}
-          className="flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:bg-gray-700"
-          title="Copy selected text"
+    <>
+      {/* Compact black tooltip with downward arrow */}
+      {popover.show && (
+        <div
+          data-transcript-popover
+          className="fixed z-[9999] rounded-md bg-black text-white shadow-lg animate-in fade-in-0 zoom-in-95 duration-200 before:absolute before:left-1/2 before:top-full before:h-0 before:w-0 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-black"
+          style={{
+            left: `${popover.x}px`,
+            top: `${popover.y}px`,
+            transform: 'translateX(-50%)',
+            pointerEvents: 'auto',
+          }}
         >
-          <Icon icon="pixelarticons:copy" className="h-3 w-3" />
-          Copy
-        </button>
-        <button
-          onClick={handleReportClick}
-          className="flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:bg-gray-700"
-          title="Report transcript inaccuracy"
+          <div className="flex gap-2 px-3 py-2">
+            <button
+              onClick={handleCopyClick}
+              className="flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:bg-gray-700"
+              title="Copy selected text"
+            >
+              <Icon icon="pixelarticons:copy" className="h-3 w-3" />
+              Copy
+            </button>
+            <button
+              onClick={handleReportClick}
+              disabled={isLoading}
+              className="flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              title="Report transcript inaccuracy"
+            >
+              {isLoading ? (
+                <Icon icon="svg-spinners:180-ring" className="h-3 w-3" />
+              ) : (
+                <Icon icon="heroicons:exclamation-triangle" className="h-3 w-3" />
+              )}
+              Report
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Toast notification */}
+      {toast.show && (
+        <div
+          className={`fixed top-4 right-4 z-[10000] rounded-md px-4 py-3 text-white shadow-lg animate-in slide-in-from-right-5 duration-300 ${
+            toast.type === 'success' ? 'bg-green-600' : 'bg-red-600'
+          }`}
         >
-          <Icon icon="heroicons:exclamation-triangle" className="h-3 w-3" />
-          Report
-        </button>
-      </div>
-    </div>
+          <div className="flex items-center gap-2">
+            <Icon
+              icon={toast.type === 'success' ? 'heroicons:check-circle' : 'heroicons:x-circle'}
+              className="h-4 w-4"
+            />
+            <span className="text-sm">{toast.message}</span>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
