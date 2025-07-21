@@ -118,7 +118,7 @@ export async function mintIdToken(
       }))
   }
 
-  const idToken = jwt.sign(claims, JWT_PRIVATE_KEY.replaceAll(/\\n/g, '\n'), {
+  const idToken = jwt.sign(claims, JWT_PRIVATE_KEY!.replaceAll(/\\n/g, '\n'), {
     algorithm: 'RS256',
 
     // https://openid.net/specs/openid-connect-basic-1_0.html#IDToken

@@ -30,7 +30,7 @@ export const finalizeAuthentication = async (uid: number) => {
   try {
     const idToken = jwt.sign(
       payload,
-      JWT_PRIVATE_KEY.replaceAll(/\\n/g, '\n'),
+      JWT_PRIVATE_KEY!.replaceAll(/\\n/g, '\n'),
       {
         algorithm: 'RS256',
         expiresIn: maxSessionAge,
