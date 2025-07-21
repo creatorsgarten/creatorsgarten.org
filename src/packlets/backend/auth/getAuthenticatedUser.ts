@@ -11,7 +11,7 @@ export const getAuthenticatedUser = async (
 
     const session = jwt.verify(
       token,
-      JWT_PRIVATE_KEY.replaceAll(/\\n/g, '\n')
+      JWT_PRIVATE_KEY!.replaceAll(/\\n/g, '\n')
     ) as AuthenticatedUser
     return session
   } catch (e) {
