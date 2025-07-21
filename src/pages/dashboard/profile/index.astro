@@ -10,7 +10,12 @@ import ProfileEditor from '$components/dashboard/profiles/profileEditor.astro'
 import { InfoBox } from '$components/infoBox'
 
 const { user } = Astro.locals
-if (!user) return Astro.redirect('/')
+if (!user) {
+  return Astro.redirect(
+    '/auth/login?dest=' +
+      encodeURIComponent(Astro.url.pathname + Astro.url.search)
+  )
+}
 
 const hasGithubConnection = Boolean(user?.connections?.github)
 let message = ''
