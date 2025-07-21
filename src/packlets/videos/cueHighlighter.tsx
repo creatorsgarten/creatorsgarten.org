@@ -24,8 +24,9 @@ export default function CueHighlighter(props: {
   iframeId: string
   eventId: string
   slug: string
+  transcriptLanguage: string
 }) {
-  const { iframeId, eventId, slug } = props
+  const { iframeId, eventId, slug, transcriptLanguage } = props
   useEffect(() => {
     let canceled = false
     let onCancel = () => {}
@@ -133,6 +134,7 @@ export default function CueHighlighter(props: {
       eventId={eventId}
       slug={slug}
       transcriptContainerSelector={`[data-cue-by="${iframeId}"]`}
+      transcriptLanguage={transcriptLanguage}
     />
   )
 }
