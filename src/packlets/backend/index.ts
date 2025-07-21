@@ -190,7 +190,7 @@ export const appRouter = t.router({
 
     getPublicKeys: t.procedure.query(async () => {
       const privateKeyObj = createPrivateKey(
-        JWT_PRIVATE_KEY.replaceAll(/\\n/g, '\n')
+        JWT_PRIVATE_KEY!.replaceAll(/\\n/g, '\n')
       )
       const publicKeyObj = createPublicKey(privateKeyObj)
       return [{ ...(await exportJWK(publicKeyObj)), kid: 'riffy1' }]

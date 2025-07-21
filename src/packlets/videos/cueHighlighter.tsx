@@ -52,7 +52,7 @@ export default function CueHighlighter(props: {
                 return
               }
               const [start] = element.getAttribute('data-cue')!.split('-')
-              player.seekTo(parseFloat(start) / 1000, true)
+              if (player) player.seekTo(parseFloat(start) / 1000, true)
             })
             return {
               start: parseFloat(start),
@@ -63,6 +63,7 @@ export default function CueHighlighter(props: {
         )
         let active = new Set<(typeof cues)[number]>()
         const interval = setInterval(() => {
+          if (!player) return
           const time =
             player.getCurrentTime() * 1000 +
             (player.getCurrentTime() < 0.1 ? -1 : 50)
@@ -94,6 +95,7 @@ export default function CueHighlighter(props: {
           switch (event.code) {
             case 'Space':
               event.preventDefault()
+              if (!player) return
               const playerState = player.getPlayerState()
               if (playerState === YT.PlayerState.PLAYING) {
                 player.pauseVideo()
@@ -104,12 +106,14 @@ export default function CueHighlighter(props: {
               
             case 'ArrowLeft':
               event.preventDefault()
+              if (!player) return
               const currentTime = player.getCurrentTime()
               player.seekTo(Math.max(0, currentTime - 5), true)
               break
               
             case 'ArrowRight':
               event.preventDefault()
+              if (!player) return
               const currentTimeRight = player.getCurrentTime()
               player.seekTo(currentTimeRight + 5, true)
               break
