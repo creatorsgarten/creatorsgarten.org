@@ -124,8 +124,8 @@ importers:
         specifier: 3.25.67
         version: 3.25.67
       zod-validation-error:
-        specifier: 3.5.2
-        version: 3.5.2(zod@3.25.67)
+        specifier: 3.5.3
+        version: 3.5.3(zod@3.25.67)
     devDependencies:
       '@astrojs/check':
         specifier: 0.9.4
@@ -4707,11 +4707,11 @@ packages:
       typescript: ^4.9.4 || ^5.0.2
       zod: ^3
 
-  zod-validation-error@3.5.2:
-    resolution: {integrity: sha512-mdi7YOLtram5dzJ5aDtm1AG9+mxRma1iaMrZdYIpFO7epdKBUwLHIxTF8CPDeCQ828zAXYtizrKlEJAtzgfgrw==}
+  zod-validation-error@3.5.3:
+    resolution: {integrity: sha512-OT5Y8lbUadqVZCsnyFaTQ4/O2mys4tj7PqhdbBCp7McPwvIEKfPtdA6QfPeFQK2/Rz5LgwmAXRJTugBNBi0btw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      zod: ^3.25.0
+      zod: ^3.25.0 || ^4.0.0
 
   zod@3.25.67:
     resolution: {integrity: sha512-idA2YXwpCdqUSKRCACDE6ItZD9TZzy3OZMtpfLoh6oPR47lipysRrJfjzMqFxQ3uJuUPyUeWe1r9vLH33xO/Qw==}
@@ -9780,7 +9780,7 @@ snapshots:
       typescript: 5.8.3
       zod: 3.25.67
 
-  zod-validation-error@3.5.2(zod@3.25.67):
+  zod-validation-error@3.5.3(zod@3.25.67):
     dependencies:
       zod: 3.25.67
 
