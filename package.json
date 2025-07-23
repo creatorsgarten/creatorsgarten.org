@@ -71,7 +71,7 @@
     "astro": "5.12.2",
     "astro-seo": "0.8.4",
     "contentsgarten": "2.1.0",
-    "dotenv": "17.0.0",
+    "dotenv": "17.2.0",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-svelte": "3.4.0",
     "prettier-plugin-tailwindcss": "0.6.14",
