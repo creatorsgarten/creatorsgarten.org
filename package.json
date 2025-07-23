@@ -58,7 +58,7 @@
     "@astrojs/node": "9.3.0",
     "@astrojs/react": "4.3.0",
     "@astrojs/svelte": "7.1.0",
-    "@playwright/test": "1.53.1",
+    "@playwright/test": "1.54.1",
     "@tailwindcss/typography": "0.5.16",
     "@tailwindcss/vite": "4.1.11",
     "@types/js-yaml": "^4.0.9",
