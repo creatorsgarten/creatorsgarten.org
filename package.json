@@ -32,7 +32,7 @@
     "dataloader": "2.2.3",
     "dayjs": "1.11.13",
     "fastify": "5.4.0",
-    "google-auth-library": "10.1.0",
+    "google-auth-library": "10.2.0",
     "gray-matter": "^4.0.3",
     "jose": "6.0.12",
     "js-yaml": "^4.1.0",
