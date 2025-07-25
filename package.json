@@ -20,7 +20,7 @@
     "@fastify/middie": "9.0.3",
     "@fastify/static": "8.2.0",
     "@nanostores/logger": "1.0.0",
-    "@nanostores/persistent": "1.0.0",
+    "@nanostores/persistent": "1.1.0",
     "@nanostores/react": "1.0.0",
     "@prettier/sync": "^0.6.0",
     "@sentry/astro": "9.33.0",
