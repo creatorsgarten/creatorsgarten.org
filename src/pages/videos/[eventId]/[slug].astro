@@ -72,7 +72,7 @@ const isDraft = isPreview && !index.videos.some(
             allowfullscreen></iframe>
         </div>
         <div class="mt-4 hidden lg:block">
-          <VideoActions eventId={eventId} slug={slug} />
+          <VideoActions eventId={eventId} slug={slug} transcriptUrl={transcriptUrl} />
         </div>
       </div>
       <div data-cue-by={iframeId}>
@@ -155,18 +155,19 @@ const isDraft = isPreview && !index.videos.some(
                 <p>
                   {transcriptLanguage === 'th' ? (
                     <span>
-                      คำบรรยายต่อไปนี้อาจไม่ถูกต้องทั้งหมด หากคุณพบข้อผิดพลาดใดๆ
+                      คำบรรยายต่อไปนี้อาจไม่ถูกต้องทั้งหมด หากคุณพบข้อผิดพลาดใดๆ คุณสามารถคลิกเมาส์ขวาบนข้อความเพื่อรายงานได้ทันที หรือ
                       <a href={transcriptUrl} class="font-medium">
-                        คุณสามารถช่วยแก้ไขข้อผิดพลาดได้บน GitHub
+                        แก้ไขบน GitHub
                       </a>
                     </span>
                   ) : (
                     <span>
                       These community-maintained transcripts may contain
-                      inaccuracies.
+                      inaccuracies. Select any text to report issues instantly, or
                       <a href={transcriptUrl} class="font-medium">
-                        Please submit any corrections on GitHub.
+                        edit on GitHub
                       </a>
+                      for advanced changes.
                     </span>
                   )}
                 </p>

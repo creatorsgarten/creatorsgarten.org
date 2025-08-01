@@ -13,7 +13,7 @@ export default function TranscriptViewer(props: TranscriptViewer) {
   const groups = groupCues(props.cues, props.chapters)
   let inChapter = false
   return (
-    <div className="prose prose-sm max-w-full">
+    <div className="prose prose-sm max-w-full" data-transcript>
       {groups.map(group => {
         if (group.type === 'chapter') {
           inChapter = true

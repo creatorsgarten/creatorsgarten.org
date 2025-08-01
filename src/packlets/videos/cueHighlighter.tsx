@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import TranscriptInaccuracyReporter from './transcriptInaccuracyReporter'
+import { useEffect, useRef } from 'react'
+import TranscriptInaccuracyReporter, { type TranscriptInaccuracyReporterRef } from './transcriptInaccuracyReporter'
 
 let triggered: Promise<typeof YT> | null = null
 async function loadYouTubeApi(): Promise<typeof YT> {
@@ -27,23 +27,26 @@ export default function CueHighlighter(props: {
   transcriptLanguage: string
 }) {
   const { iframeId, eventId, slug, transcriptLanguage } = props
+  const reporterRef = useRef<TranscriptInaccuracyReporterRef>(null)
   useEffect(() => {
     let canceled = false
     let onCancel = () => {}
     let player: YT.Player | null = null
+    let currentSpeedIndex = 0
+    const speeds = [1, 1.5, 2]
     
     loadYouTubeApi().then(YT => {
       if (canceled) return
       player = new YT.Player(iframeId)
       player.addEventListener('onReady', () => {
         for (const context of document.querySelectorAll(
-          `[data-cue-by="${iframeId}"]`
+          `[data-cue-by="${iframeId}"] [data-transcript]`
         )) {
           const element = context as HTMLElement
           element.dataset.interactive = 'true'
         }
         const cues = Array.from(
-          document.querySelectorAll(`[data-cue-by="${iframeId}"] [data-cue]`),
+          document.querySelectorAll(`[data-cue-by="${iframeId}"] [data-transcript] [data-cue]`),
           element => {
             const [start, end] = element.getAttribute('data-cue')!.split('-')
             element.addEventListener('click', () => {
@@ -53,6 +56,17 @@ export default function CueHighlighter(props: {
               }
               const [start] = element.getAttribute('data-cue')!.split('-')
               if (player) player.seekTo(parseFloat(start) / 1000, true)
+            })
+            
+            // Add right-click context menu
+            element.addEventListener('contextmenu', (event: MouseEvent) => {
+              event.preventDefault()
+              const x = event.clientX
+              const y = event.clientY
+              
+              if (reporterRef.current) {
+                reporterRef.current.showPopoverForElement(element as HTMLElement, x, y)
+              }
             })
             return {
               start: parseFloat(start),
@@ -83,6 +97,22 @@ export default function CueHighlighter(props: {
           active = matching
         }, 100)
         
+        // Parse timestamp from clipboard text
+        const parseTimestamp = (text: string): number | null => {
+          // Match patterns like "00:02:20.680", "2:20.680", "1:30:45.123"
+          const timestampRegex = /(?:(\d{1,2}):)?(\d{1,2}):(\d{2})\.(\d{3})/
+          const match = text.trim().match(timestampRegex)
+          
+          if (!match) return null
+          
+          const hours = parseInt(match[1] || '0', 10)
+          const minutes = parseInt(match[2], 10)
+          const seconds = parseInt(match[3], 10)
+          const milliseconds = parseInt(match[4], 10)
+          
+          return hours * 3600 + minutes * 60 + seconds + milliseconds / 1000
+        }
+
         // Add keyboard shortcuts for video control
         const handleKeyDown = (event: KeyboardEvent) => {
           // Don't interfere with typing in input fields
@@ -117,14 +147,60 @@ export default function CueHighlighter(props: {
               const currentTimeRight = player.getCurrentTime()
               player.seekTo(currentTimeRight + 5, true)
               break
+              
+            case 'KeyS':
+              event.preventDefault()
+              if (!player) return
+              currentSpeedIndex = (currentSpeedIndex + 1) % speeds.length
+              const newSpeed = speeds[currentSpeedIndex]
+              player.setPlaybackRate(newSpeed)
+              break
+
           }
         }
         
-        document.addEventListener('keydown', handleKeyDown)
+        // Add paste handler for timestamp navigation
+        const handlePaste = (event: ClipboardEvent) => {
+          // Don't interfere with pasting in input fields
+          if (event.target instanceof HTMLInputElement || 
+              event.target instanceof HTMLTextAreaElement ||
+              (event.target as HTMLElement)?.contentEditable === 'true') {
+            return
+          }
+          
+          const pastedText = event.clipboardData?.getData('text/plain')
+          if (pastedText) {
+            const timestamp = parseTimestamp(pastedText)
+            if (timestamp !== null && player) {
+              event.preventDefault()
+              player.seekTo(timestamp, true)
+              player.setPlaybackRate(1) // Set to 1x speed
+              currentSpeedIndex = 0 // Reset speed index to 1x
+              player.playVideo()
+              
+              // Find and scroll to the cue element that contains this timestamp
+              const timestampMs = timestamp * 1000
+              const targetCue = cues.find(cue => 
+                cue.start <= timestampMs && timestampMs < cue.end
+              )
+              
+              if (targetCue) {
+                targetCue.element.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center'
+                })
+              }
+            }
+          }
+        }
+
+        window.addEventListener('keydown', handleKeyDown)
+        window.addEventListener('paste', handlePaste)
         
         onCancel = () => {
           clearInterval(interval as unknown as NodeJS.Timeout)
-          document.removeEventListener('keydown', handleKeyDown)
+          window.removeEventListener('keydown', handleKeyDown)
+          window.removeEventListener('paste', handlePaste)
         }
       })
     })
@@ -135,9 +211,10 @@ export default function CueHighlighter(props: {
   }, [iframeId])
   return (
     <TranscriptInaccuracyReporter
+      ref={reporterRef}
       eventId={eventId}
       slug={slug}
-      transcriptContainerSelector={`[data-cue-by="${iframeId}"]`}
+      transcriptContainerSelector={`[data-cue-by="${iframeId}"] [data-transcript]`}
       transcriptLanguage={transcriptLanguage}
     />
   )

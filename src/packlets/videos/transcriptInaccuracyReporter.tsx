@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useImperativeHandle, forwardRef } from 'react'
 import { Icon } from 'react-iconify-icon-wrapper'
 
 interface Props {
@@ -6,6 +6,10 @@ interface Props {
   slug: string
   transcriptContainerSelector: string
   transcriptLanguage: string
+}
+
+export interface TranscriptInaccuracyReporterRef {
+  showPopoverForElement: (element: HTMLElement, x: number, y: number) => void
 }
 
 interface PopoverState {
@@ -62,12 +66,12 @@ async function reportTranscriptInaccuracy(
   return result
 }
 
-export default function TranscriptInaccuracyReporter({
+const TranscriptInaccuracyReporter = forwardRef<TranscriptInaccuracyReporterRef, Props>(({
   eventId,
   slug,
   transcriptContainerSelector,
   transcriptLanguage,
-}: Props) {
+}, ref) => {
   const [popover, setPopover] = useState<PopoverState>({
     show: false,
     x: 0,
@@ -83,6 +87,59 @@ export default function TranscriptInaccuracyReporter({
   })
 
   const [isLoading, setIsLoading] = useState(false)
+
+  useImperativeHandle(ref, () => ({
+    showPopoverForElement: (element: HTMLElement, x: number, y: number) => {
+      const cue = element.getAttribute('data-cue')
+      if (!cue) return
+      
+      // Select the entire element text
+      const selection = window.getSelection()
+      if (selection) {
+        selection.removeAllRanges()
+        const range = document.createRange()
+        range.selectNodeContents(element)
+        selection.addRange(range)
+      }
+      
+      const selectedText = element.textContent?.trim() || ''
+      const cues = [cue]
+      
+      // Add a small delay to ensure this doesn't get immediately hidden by selectionchange
+      setTimeout(() => {
+        // Use element's bounding rect for consistent positioning instead of mouse coordinates
+        const rect = element.getBoundingClientRect()
+        const popoverHeight = 50
+        const arrowHeight = 8
+        
+        let posX = rect.left + rect.width / 2
+        let posY = rect.bottom + arrowHeight // Position below element
+        
+        // Keep popover within viewport bounds
+        const popoverWidth = 120
+        const margin = 8
+        
+        if (posX - popoverWidth / 2 < margin) {
+          posX = margin + popoverWidth / 2
+        } else if (posX + popoverWidth / 2 > window.innerWidth - margin) {
+          posX = window.innerWidth - margin - popoverWidth / 2
+        }
+        
+        // If not enough space below, position above
+        if (posY + popoverHeight > window.innerHeight - margin) {
+          posY = rect.top - popoverHeight - arrowHeight
+        }
+        
+        setPopover({
+          show: true,
+          x: posX,
+          y: posY,
+          selectedText,
+          cues,
+        })
+      }, 50) // Small delay to avoid conflicts with selectionchange handler
+    }
+  }), [])
 
   useEffect(() => {
     function handleSelectionChange() {
@@ -115,12 +172,12 @@ export default function TranscriptInaccuracyReporter({
 
       const rect = range.getBoundingClientRect()
       
-      // Unified positioning: above selection, pointing down
+      // Position below selection by default (to avoid mobile copy/paste menu)
       const popoverHeight = 50 // Approximate height of compact popover
       const arrowHeight = 8
       
       let x = rect.left + rect.width / 2
-      let y = rect.top - popoverHeight - arrowHeight
+      let y = rect.bottom + arrowHeight // Position below by default
       
       // Keep popover within viewport bounds
       const popoverWidth = 120 // Approximate width of compact popover
@@ -132,9 +189,9 @@ export default function TranscriptInaccuracyReporter({
         x = window.innerWidth - margin - popoverWidth / 2
       }
       
-      if (y < margin) {
-        // If not enough space above, position below selection
-        y = rect.bottom + arrowHeight
+      // If not enough space below, position above selection
+      if (y + popoverHeight > window.innerHeight - margin) {
+        y = rect.top - popoverHeight - arrowHeight
       }
 
 
@@ -148,6 +205,11 @@ export default function TranscriptInaccuracyReporter({
     }
 
     function handleClickOutside(event: MouseEvent) {
+      // Ignore right-clicks (contextmenu events)
+      if (event.button === 2) {
+        return
+      }
+      
       const target = event.target as Element
       
       // Don't hide if clicking on the popover itself
@@ -165,7 +227,11 @@ export default function TranscriptInaccuracyReporter({
       setPopover(prev => ({ ...prev, show: false }))
     }
 
-    function handleMouseUp() {
+    function handleMouseUp(event: MouseEvent) {
+      // Don't trigger selection change on right mouse button release
+      if (event.button === 2) {
+        return
+      }
       // Add a small delay to ensure selection is finalized
       setTimeout(handleSelectionChange, 10)
     }
@@ -294,11 +360,11 @@ export default function TranscriptInaccuracyReporter({
 
   return (
     <>
-      {/* Compact black tooltip with downward arrow */}
+      {/* Compact black tooltip with upward arrow */}
       {popover.show && (
         <div
           data-transcript-popover
-          className="fixed z-[9999] rounded-md bg-black text-white shadow-lg animate-in fade-in-0 zoom-in-95 duration-200 before:absolute before:left-1/2 before:top-full before:h-0 before:w-0 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-black"
+          className="fixed z-[9999] rounded-md bg-black text-white shadow-lg animate-in fade-in-0 zoom-in-95 duration-200 before:absolute before:left-1/2 before:bottom-full before:h-0 before:w-0 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-black"
           style={{
             left: `${popover.x}px`,
             top: `${popover.y}px`,
@@ -350,4 +416,8 @@ export default function TranscriptInaccuracyReporter({
       )}
     </>
   )
-}
+})
+
+TranscriptInaccuracyReporter.displayName = 'TranscriptInaccuracyReporter'
+
+export default TranscriptInaccuracyReporter
