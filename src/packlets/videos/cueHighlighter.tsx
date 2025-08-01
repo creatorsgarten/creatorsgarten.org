@@ -59,10 +59,11 @@ export default function CueHighlighter(props: {
             })
             
             // Add right-click context menu
-            element.addEventListener('contextmenu', (event: MouseEvent) => {
+            element.addEventListener('contextmenu', (event) => {
               event.preventDefault()
-              const x = event.clientX
-              const y = event.clientY
+              const mouseEvent = event as MouseEvent
+              const x = mouseEvent.clientX
+              const y = mouseEvent.clientY
               
               if (reporterRef.current) {
                 reporterRef.current.showPopoverForElement(element as HTMLElement, x, y)
