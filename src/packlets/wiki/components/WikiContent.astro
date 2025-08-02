@@ -1,8 +1,8 @@
 ---
 import ContentRenderer from '$markdown/contentRenderer.astro'
-import WikiUpdateChecker from '../updateChecker'
-import WikiLinkChecker from '../linkChecker'
 import WikiExpandableLists from '../expandableLists'
+import WikiLinkChecker from '../linkChecker'
+import WikiUpdateChecker from '../updateChecker'
 import WikiViewShortcuts from '../viewShortcuts.svelte'
 
 export interface Props {
@@ -18,14 +18,18 @@ export interface Props {
 const { html, pageRef, contentHash, filePath, validationError } = Astro.props
 ---
 
-{validationError && (
-  <div class="relative mb-8 rounded-sm border border-red-400 bg-red-100 px-4 py-3 text-red-700">
-    <strong class="mr-2 font-bold">Invalid front matter:</strong>
-    <span class="block sm:inline">{validationError}</span>
-  </div>
-)}
+{
+  validationError && (
+    <div class="relative mb-8 rounded-sm border border-red-400 bg-red-100 px-4 py-3 text-red-700">
+      <strong class="mr-2 font-bold">Invalid front matter:</strong>
+      <span class="block sm:inline">{validationError}</span>
+    </div>
+  )
+}
 
-<ContentRenderer content={html} pageRef={pageRef} />
+<div data-region="main">
+  <ContentRenderer content={html} pageRef={pageRef} />
+</div>
 
 <WikiUpdateChecker
   initialContentHash={contentHash}
@@ -37,6 +41,4 @@ const { html, pageRef, contentHash, filePath, validationError } = Astro.props
 
 <WikiExpandableLists client:idle />
 
-{filePath && (
-  <WikiViewShortcuts path={filePath} client:only="svelte" />
-)}
+{filePath && <WikiViewShortcuts path={filePath} client:only="svelte" />}

@@ -111,7 +111,7 @@ const isDraft = isPreview && !index.videos.some(
 
         {
           video.description && (
-            <div class="p-6">
+            <div class="p-6" data-region="description">
               <h2 class="mb-2 text-xl font-medium">Description</h2>
               <div class="prose max-w-full">
                 <p class="whitespace-pre-line">{video.description}</p>
@@ -122,7 +122,7 @@ const isDraft = isPreview && !index.videos.some(
 
         {
           !!video.chapters && (
-            <div class="p-6">
+            <div class="p-6" data-region="chapters">
               <h2 class="mb-2 text-xl font-medium">Chapters</h2>
               <div class="prose max-w-full">
                 <ul>
@@ -149,7 +149,7 @@ const isDraft = isPreview && !index.videos.some(
 
         {
           !!video.transcriptRef && (
-            <div class="p-6">
+            <div class="p-6" data-region="transcript">
               <h2 class="mb-2 text-xl font-medium">Transcript</h2>
               <div class="font-prose -mx-2 mb-4 bg-yellow-500/15 p-2 text-xs leading-relaxed font-light antialiased">
                 <p>
