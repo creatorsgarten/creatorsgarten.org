@@ -121,11 +121,11 @@ importers:
         specifier: 4.2.1
         version: 4.2.1
       zod:
-        specifier: 3.25.76
-        version: 3.25.76
+        specifier: 4.0.14
+        version: 4.0.14
       zod-validation-error:
         specifier: 3.5.3
-        version: 3.5.3(zod@3.25.76)
+        version: 3.5.3(zod@4.0.14)
     devDependencies:
       '@astrojs/check':
         specifier: 0.9.4
@@ -4738,6 +4738,9 @@ packages:
 
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+
+  zod@4.0.14:
+    resolution: {integrity: sha512-nGFJTnJN6cM2v9kXL+SOBq3AtjQby3Mv5ySGFof5UGRHrRioSJ5iG680cYNjE/yWk671nROcpPj4hAS8nyLhSw==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -9831,10 +9834,12 @@ snapshots:
       typescript: 5.8.3
       zod: 3.25.76
 
-  zod-validation-error@3.5.3(zod@3.25.76):
+  zod-validation-error@3.5.3(zod@4.0.14):
     dependencies:
-      zod: 3.25.76
+      zod: 4.0.14
 
   zod@3.25.76: {}
+
+  zod@4.0.14: {}
 
   zwitch@2.0.4: {}
