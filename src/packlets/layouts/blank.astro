@@ -22,6 +22,9 @@ const isNoIndex = pathname.endsWith('/editor') || pathname.startsWith('/auth')
       href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500&family=Sarabun:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- DocSearch performance optimization -->
+    <link rel="preconnect" href="https://V0Z2KP6GX5-dsn.algolia.net" crossorigin />
 
     {isNoIndex && <meta name="robots" content="noindex" />}
 

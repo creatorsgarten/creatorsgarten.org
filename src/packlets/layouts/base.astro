@@ -3,6 +3,7 @@ import Blank from './blank.astro'
 
 import Announcement from '$components/announcement.astro'
 import AuthButton from '$components/authButton.astro'
+import DocSearch from '../docsearch/docsearch.astro'
 import FooterLogo from './footerLogo.astro'
 
 import { getFeatureFlags } from '$functions/getFeatureFlags'
@@ -63,18 +64,25 @@ const featureFlags = getFeatureFlags(Astro)
           </div>
         </nav> */}
         <nav class="z-999 bg-white md:relative">
-          <div class="sticky top-0 w-full border-b border-black bg-white p-4">
-            <div class="flex justify-between">
-              <a href="/" aria-label="back to home" class="flex items-center">
-                <img src="/images/icons/solid.svg" class="w-6" alt="" />
-              </a>
+          <div class="sticky top-0 w-full border-b border-black bg-white px-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <a
+                  href="/"
+                  aria-label="back to home"
+                  class="flex items-center py-4"
+                >
+                  <img src="/images/icons/solid.svg" class="h-6 w-6" alt="" />
+                </a>
+                <DocSearch />
+              </div>
               <div class="text-xl font-medium">CREATORSGARTEN</div>
             </div>
           </div>
           <div class="flex w-full justify-between gap-3 border-b border-black bg-neutral-100 px-4 py-2 text-base font-medium lg:gap-5">
             <ul class="flex gap-3 md:gap-5">
               <li>
-                <a href="/events">Event</a>
+                <a href="/events">Events</a>
               </li>
               {/* <li>
                 <a href="https://github.com/creatorsgarten">Code</a>

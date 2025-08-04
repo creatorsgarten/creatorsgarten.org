@@ -1,0 +1,30 @@
+---
+import { DocSearchComponent } from './docSearchComponent.tsx'
+---
+
+<div class="docsearch-wrapper">
+  <div>
+    <DocSearchComponent client:only="react" />
+  </div>
+</div>
+
+<style>
+  .docsearch-wrapper {
+    --docsearch-searchbox-background: var(--color-neutral-100);
+    --docsearch-muted-color: var(--color-neutral-400);
+    --docsearch-key-shadow:
+      inset 0 -2px 0 0 var(--color-neutral-300), inset 0 0 1px 1px #fff,
+      0 0 0 1px var(--color-neutral-300);
+    --docsearch-key-gradient: linear-gradient(
+      -225deg,
+      var(--color-neutral-100),
+      var(--color-neutral-100)
+    );
+  }
+  :global(.DocSearch.DocSearch-Container) {
+    z-index: 1000;
+  }
+  :global(.DocSearch.DocSearch-Button) {
+    margin-left: 0;
+  }
+</style>
