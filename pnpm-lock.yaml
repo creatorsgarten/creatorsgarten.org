@@ -73,8 +73,8 @@ importers:
         specifier: 5.4.0
         version: 5.4.0
       google-auth-library:
-        specifier: 10.2.0
-        version: 10.2.0
+        specifier: 10.2.1
+        version: 10.2.1
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -2720,8 +2720,8 @@ packages:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
     engines: {node: '>=4'}
 
-  google-auth-library@10.2.0:
-    resolution: {integrity: sha512-gy/0hRx8+Ye0HlUm3GrfpR4lbmJQ6bJ7F44DmN7GtMxxzWSojLzx0Bhv/hj7Wlj7a2On0FcT8jrz8Y1c1nxCyg==}
+  google-auth-library@10.2.1:
+    resolution: {integrity: sha512-HMxFl2NfeHYnaL1HoRIN1XgorKS+6CDaM+z9LSSN+i/nKDDL4KFFEWogMXu7jV4HZQy2MsxpY+wA5XIf3w410A==}
     engines: {node: '>=18'}
 
   google-logging-utils@1.1.1:
@@ -7771,7 +7771,7 @@ snapshots:
 
   globals@11.12.0: {}
 
-  google-auth-library@10.2.0:
+  google-auth-library@10.2.1:
     dependencies:
       base64-js: 1.5.1
       ecdsa-sig-formatter: 1.0.11
