@@ -70,7 +70,7 @@
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.2",
     "@types/youtube": "0.1.2",
-    "astro": "5.13.3",
+    "astro": "5.13.4",
     "astro-seo": "0.8.4",
     "contentsgarten": "2.1.0",
     "dotenv": "17.2.1",
