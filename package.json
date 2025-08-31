@@ -16,7 +16,7 @@
   "dependencies": {
     "@contentsgarten/html": "1.3.0",
     "@docsearch/css": "^3.9.0",
-    "@docsearch/react": "4.0.0-beta.7",
+    "@docsearch/react": "4.0.0-beta.8",
     "@doist/typist": "8.0.2",
     "@dtinth/comparator": "0.0.3",
     "@fastify/middie": "9.0.3",
