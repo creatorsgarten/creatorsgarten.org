@@ -5,12 +5,14 @@ export interface Props {
   title?: string
   description?: string
   ogImage?: string
+  canonical?: string
 }
 
 const {
   title,
   description = 'Creatorsgarten - Democratize creation for all',
   ogImage,
+  canonical,
 } = Astro.props
 
 const builtTitle = title
@@ -23,6 +25,7 @@ const builtImage = ogImage || Astro.url.origin + '/images/og.jpg'
   slot="head"
   title={builtTitle}
   description={description}
+  canonical={canonical}
   openGraph={{
     basic: {
       title: builtTitle,

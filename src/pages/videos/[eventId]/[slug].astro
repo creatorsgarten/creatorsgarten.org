@@ -8,12 +8,18 @@ import VideoTranscript from '$videos/videoTranscript.astro'
 import MetadataTable from '$wiki/sidebar/metadataTable.astro'
 import { formatTimecode } from '$functions/formatTimecode'
 import { getVideoIndex } from '$functions/getVideos'
+import { generateVideoJsonLd } from '$videos/generateVideoJsonLd'
+import { parseTimestamp } from '$functions/parseTimestamp'
 import BaseLayout from '$layouts/base.astro'
 
 const index = await getVideoIndex()
 const eventId = Astro.params.eventId!
 const slug = Astro.params.slug!
 const isPreview = Astro.url.searchParams.has('preview')
+
+// Parse timestamp parameter for direct linking to video moments
+const timestampParam = Astro.url.searchParams.get('t')
+const startTime = parseTimestamp(timestampParam)
 
 // Find video in either published or all videos depending on preview parameter
 const videoSource = isPreview ? index.videosIncludingDrafts : index.videos
@@ -42,9 +48,17 @@ const ogImage = `https://screenshot.source.in.th/image/_/creatorsgarten-videos/$
 const isDraft = isPreview && !index.videos.some(
   v => v.eventId === eventId && v.slug === slug
 )
+
+// Generate JSON-LD structured data for the video
+const videoJsonLd = generateVideoJsonLd(video)
+
+// Generate canonical URL (without timestamp parameter for SEO)
+const canonicalUrl = `https://creatorsgarten.org/videos/${eventId}/${slug}`
 ---
 
-<Head title={title} description={description} ogImage={ogImage} />
+<Head title={title} description={description} ogImage={ogImage} canonical={canonicalUrl} />
+
+<script type="application/ld+json" set:html={JSON.stringify(videoJsonLd)} is:inline />
 
 <BaseLayout>
   <MainHorizontalPadding>
@@ -65,7 +79,7 @@ const isDraft = isPreview && !index.videos.some(
         <div class="mx-auto aspect-16/9 w-full">
           <iframe
             id={iframeId}
-            src={`https://www.youtube.com/embed/${video.youtubeId}?enablejsapi=1`}
+            src={`https://www.youtube.com/embed/${video.youtubeId}?enablejsapi=1${startTime ? `&start=${startTime}` : ''}`}
             class="aspect-16/9 w-full"
             style="border:0"
             loading="lazy"
