@@ -16,8 +16,8 @@ importers:
         specifier: 1.3.0
         version: 1.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@docsearch/css':
-        specifier: ^3.9.0
-        version: 3.9.0
+        specifier: ^4.0.0
+        version: 4.0.1
       '@docsearch/react':
         specifier: 4.0.1
         version: 4.0.1(@algolia/client-search@5.35.0)(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)
@@ -493,9 +493,6 @@ packages:
 
   '@contentsgarten/markdown@2.0.0':
     resolution: {integrity: sha512-gS0ZMkqfTfO7CAXY+siO2hDzJCTjRzrpdiy++WbuAW9DORbV4CvkYFcU2VFvlie6piiVyeTn/tnX7a3srnJcPg==}
-
-  '@docsearch/css@3.9.0':
-    resolution: {integrity: sha512-cQbnVbq0rrBwNAKegIac/t6a8nWoUAn8frnkLFW6YARaRmAQr5/Eoe6Ln2fqkUCZ40KpdrKbpSAmgrkviOxuWA==}
 
   '@docsearch/css@4.0.1':
     resolution: {integrity: sha512-ouRI2SEwAg8qBqX4S3zfm4OJ/07o9Is7TzivNGkqP7FtYU4W0qgigumWkPbYvDwtG0koZw2ZebpcQiEpkCyv+g==}
@@ -5444,8 +5441,6 @@ snapshots:
   '@contentsgarten/markdown@2.0.0':
     dependencies:
       '@wooorm/starry-night': 2.0.0
-
-  '@docsearch/css@3.9.0': {}
 
   '@docsearch/css@4.0.1': {}
 
