@@ -130,11 +130,11 @@ importers:
         specifier: 4.2.1
         version: 4.2.1
       zod:
-        specifier: 3.25.76
-        version: 3.25.76
+        specifier: 4.1.9
+        version: 4.1.9
       zod-validation-error:
         specifier: 3.5.3
-        version: 3.5.3(zod@3.25.76)
+        version: 3.5.3(zod@4.1.9)
     devDependencies:
       '@astrojs/check':
         specifier: 0.9.4
@@ -4973,40 +4973,40 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
-  zod@4.1.8:
-    resolution: {integrity: sha512-5R1P+WwQqmmMIEACyzSvo4JXHY5WiAFHRMg+zBZKgKS+Q1viRa0C1hmUKtHltoIFKtIdki3pRxkmpP74jnNYHQ==}
+  zod@4.1.9:
+    resolution: {integrity: sha512-HI32jTq0AUAC125z30E8bQNz0RQ+9Uc+4J7V97gLYjZVKRjeydPgGt6dvQzFrav7MYOUGFqqOGiHpA/fdbd0cQ==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
 snapshots:
 
-  '@ai-sdk/gateway@1.0.23(zod@4.1.8)':
+  '@ai-sdk/gateway@1.0.23(zod@4.1.9)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.9(zod@4.1.8)
-      zod: 4.1.8
+      '@ai-sdk/provider-utils': 3.0.9(zod@4.1.9)
+      zod: 4.1.9
 
-  '@ai-sdk/provider-utils@3.0.9(zod@4.1.8)':
+  '@ai-sdk/provider-utils@3.0.9(zod@4.1.9)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
       '@standard-schema/spec': 1.0.0
       eventsource-parser: 3.0.6
-      zod: 4.1.8
+      zod: 4.1.9
 
   '@ai-sdk/provider@2.0.0':
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@2.0.44(react@19.1.0)(zod@4.1.8)':
+  '@ai-sdk/react@2.0.44(react@19.1.0)(zod@4.1.9)':
     dependencies:
-      '@ai-sdk/provider-utils': 3.0.9(zod@4.1.8)
-      ai: 5.0.44(zod@4.1.8)
+      '@ai-sdk/provider-utils': 3.0.9(zod@4.1.9)
+      ai: 5.0.44(zod@4.1.9)
       react: 19.1.0
       swr: 2.3.4(react@19.1.0)
       throttleit: 2.1.0
     optionalDependencies:
-      zod: 4.1.8
+      zod: 4.1.9
 
   '@algolia/abtesting@1.1.0':
     dependencies:
@@ -5405,13 +5405,13 @@ snapshots:
 
   '@docsearch/react@4.0.1(@algolia/client-search@5.35.0)(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)':
     dependencies:
-      '@ai-sdk/react': 2.0.44(react@19.1.0)(zod@4.1.8)
+      '@ai-sdk/react': 2.0.44(react@19.1.0)(zod@4.1.9)
       '@algolia/autocomplete-core': 1.19.2(@algolia/client-search@5.35.0)(algoliasearch@5.35.0)(search-insights@2.17.3)
       '@docsearch/css': 4.0.1
-      ai: 5.0.44(zod@4.1.8)
+      ai: 5.0.44(zod@4.1.9)
       algoliasearch: 5.35.0
       marked: 15.0.12
-      zod: 4.1.8
+      zod: 4.1.9
     optionalDependencies:
       '@types/react': 19.1.0
       react: 19.1.0
@@ -7078,13 +7078,13 @@ snapshots:
       clean-stack: 2.2.0
       indent-string: 4.0.0
 
-  ai@5.0.44(zod@4.1.8):
+  ai@5.0.44(zod@4.1.9):
     dependencies:
-      '@ai-sdk/gateway': 1.0.23(zod@4.1.8)
+      '@ai-sdk/gateway': 1.0.23(zod@4.1.9)
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.9(zod@4.1.8)
+      '@ai-sdk/provider-utils': 3.0.9(zod@4.1.9)
       '@opentelemetry/api': 1.9.0
-      zod: 4.1.8
+      zod: 4.1.9
 
   ajv-formats@3.0.1(ajv@8.17.1):
     optionalDependencies:
@@ -10308,12 +10308,12 @@ snapshots:
       typescript: 5.8.3
       zod: 3.25.76
 
-  zod-validation-error@3.5.3(zod@3.25.76):
+  zod-validation-error@3.5.3(zod@4.1.9):
     dependencies:
-      zod: 3.25.76
+      zod: 4.1.9
 
   zod@3.25.76: {}
 
-  zod@4.1.8: {}
+  zod@4.1.9: {}
 
   zwitch@2.0.4: {}
