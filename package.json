@@ -34,7 +34,7 @@
     "dataloader": "2.2.3",
     "dayjs": "1.11.18",
     "fastify": "5.6.1",
-    "google-auth-library": "10.3.1",
+    "google-auth-library": "10.4.0",
     "gray-matter": "^4.0.3",
     "jose": "6.1.0",
     "js-yaml": "^4.1.0",
