@@ -17,7 +17,7 @@ importers:
         version: 1.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@docsearch/css':
         specifier: ^4.0.0
-        version: 4.1.0
+        version: 4.2.0
       '@docsearch/react':
         specifier: 4.1.0
         version: 4.1.0(@algolia/client-search@5.35.0)(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)
@@ -485,6 +485,9 @@ packages:
 
   '@docsearch/css@4.1.0':
     resolution: {integrity: sha512-nuNKGjHj/FQeWgE9t+i83QD/V67QiaAmGY7xS9TVCRUiCqSljOgIKlsLoQZKKVwEG8f+OWKdznzZkJxGZ7d06A==}
+
+  '@docsearch/css@4.2.0':
+    resolution: {integrity: sha512-65KU9Fw5fGsPPPlgIghonMcndyx1bszzrDQYLfierN+Ha29yotMHzVS94bPkZS6On9LS8dE4qmW4P/fGjtCf/g==}
 
   '@docsearch/react@4.1.0':
     resolution: {integrity: sha512-4GHI7TT3sJZ2Vs4Kjadv7vAkMrTsJqHvzvxO3JA7UT8iPRKaDottG5o5uNshPWhVVaBYPC35Ukf8bfCotGpjSg==}
@@ -5408,6 +5411,8 @@ snapshots:
       '@wooorm/starry-night': 2.0.0
 
   '@docsearch/css@4.1.0': {}
+
+  '@docsearch/css@4.2.0': {}
 
   '@docsearch/react@4.1.0(@algolia/client-search@5.35.0)(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)':
     dependencies:
