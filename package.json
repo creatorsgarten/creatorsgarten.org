@@ -51,7 +51,7 @@
     "react-dom": "19.1.0",
     "react-iconify-icon-wrapper": "0.0.3",
     "schema-dts": "^1.1.5",
-    "sitemap": "8.0.0",
+    "sitemap": "8.0.1",
     "subtitle": "4.2.1",
     "zod": "3.25.76",
     "zod-validation-error": "3.5.3"
