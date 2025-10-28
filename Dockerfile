@@ -1,4 +1,4 @@
-FROM node:22-alpine as deps-prod
+FROM node:24-alpine as deps-prod
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN npm install -g corepack@latest && corepack enable && pnpm -r i --frozen-lock
 
 # ? -------------------------
 
-FROM node:22-alpine as builder
+FROM node:24-alpine as builder
 
 WORKDIR /app
 
