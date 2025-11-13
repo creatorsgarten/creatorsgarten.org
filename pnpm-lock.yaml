@@ -49,8 +49,8 @@ importers:
         specifier: 10.25.0
         version: 10.25.0(astro@5.15.5(@types/node@24.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(typescript@5.8.3)(yaml@2.5.1))
       '@tanstack/react-query':
-        specifier: 5.90.7
-        version: 5.90.7(react@19.1.0)
+        specifier: 5.90.8
+        version: 5.90.8(react@19.1.0)
       '@trpc/client':
         specifier: 10.45.2
         version: 10.45.2(@trpc/server@10.45.2)
@@ -1671,11 +1671,11 @@ packages:
   '@tanstack/query-core@4.29.7':
     resolution: {integrity: sha512-GXG4b5hV2Loir+h2G+RXhJdoZhJLnrBWsuLB2r0qBRyhWuXq9w/dWxzvpP89H0UARlH6Mr9DiVj4SMtpkF/aUA==}
 
-  '@tanstack/query-core@5.90.7':
-    resolution: {integrity: sha512-6PN65csiuTNfBMXqQUxQhCNdtm1rV+9kC9YwWAIKcaxAauq3Wu7p18j3gQY3YIBJU70jT/wzCCZ2uqto/vQgiQ==}
+  '@tanstack/query-core@5.90.8':
+    resolution: {integrity: sha512-4E0RP/0GJCxSNiRF2kAqE/LQkTJVlL/QNU7gIJSptaseV9HP6kOuA+N11y4bZKZxa3QopK3ZuewwutHx6DqDXQ==}
 
-  '@tanstack/react-query@5.90.7':
-    resolution: {integrity: sha512-wAHc/cgKzW7LZNFloThyHnV/AX9gTg3w5yAv0gvQHPZoCnepwqCMtzbuPbb2UvfvO32XZ46e8bPOYbfZhzVnnQ==}
+  '@tanstack/react-query@5.90.8':
+    resolution: {integrity: sha512-/3b9QGzkf4rE5/miL6tyhldQRlLXzMHcySOm/2Tm2OLEFE9P1ImkH0+OviDBSvyAvtAOJocar5xhd7vxdLi3aQ==}
     peerDependencies:
       react: 19.1.0
 
@@ -6607,11 +6607,11 @@ snapshots:
 
   '@tanstack/query-core@4.29.7': {}
 
-  '@tanstack/query-core@5.90.7': {}
+  '@tanstack/query-core@5.90.8': {}
 
-  '@tanstack/react-query@5.90.7(react@19.1.0)':
+  '@tanstack/react-query@5.90.8(react@19.1.0)':
     dependencies:
-      '@tanstack/query-core': 5.90.7
+      '@tanstack/query-core': 5.90.8
       react: 19.1.0
 
   '@tiptap/core@2.27.1(@tiptap/pm@2.27.1)':
