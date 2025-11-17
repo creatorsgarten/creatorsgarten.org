@@ -127,8 +127,8 @@ importers:
         specifier: 9.0.0
         version: 9.0.0
       subtitle:
-        specifier: 4.2.1
-        version: 4.2.1
+        specifier: 4.2.2
+        version: 4.2.2
       zod:
         specifier: 3.25.76
         version: 3.25.76
@@ -4389,8 +4389,8 @@ packages:
   style-to-object@0.4.1:
     resolution: {integrity: sha512-HFpbb5gr2ypci7Qw+IOhnP2zOU7e77b+rzM+wTzXzfi1PrtBCX0E7Pk4wL4iTLnhzZ+JgEGAhX81ebTg/aYjQw==}
 
-  subtitle@4.2.1:
-    resolution: {integrity: sha512-ohV7DcQAYjoO8SDTZHaD912g6K+JktbLERlkZyuoNWSXboOOdIvuriF4fZC0T6lbVeiqLfR8mmw3CxIJ5+UTuw==}
+  subtitle@4.2.2:
+    resolution: {integrity: sha512-vCyKEcCFNXJJ3TE7iP6uqyTG/9xlhhWvJ/LGzmt2YGkEG+PUeIaU0443TMSRbs8yQean2gqGMW8O5CtgJKIlWg==}
     engines: {node: '>=10'}
 
   suf-log@2.5.3:
@@ -7064,7 +7064,7 @@ snapshots:
 
   '@types/multipipe@3.0.5':
     dependencies:
-      '@types/node': 22.13.7
+      '@types/node': 24.9.2
 
   '@types/mysql@2.15.27':
     dependencies:
@@ -9825,7 +9825,7 @@ snapshots:
     dependencies:
       inline-style-parser: 0.1.1
 
-  subtitle@4.2.1:
+  subtitle@4.2.2:
     dependencies:
       '@types/multipipe': 3.0.5
       multipipe: 4.0.0
