@@ -63,7 +63,7 @@
     "@astrojs/svelte": "7.2.3",
     "@playwright/test": "1.57.0",
     "@tailwindcss/typography": "0.5.19",
-    "@tailwindcss/vite": "4.1.17",
+    "@tailwindcss/vite": "4.1.18",
     "@types/js-yaml": "^4.0.9",
     "@types/jsonwebtoken": "9.0.10",
     "@types/lodash": "4.17.21",
@@ -79,7 +79,7 @@
     "prettier-plugin-svelte": "3.4.0",
     "prettier-plugin-tailwindcss": "0.7.2",
     "svelte": "5.45.8",
-    "tailwindcss": "4.1.17",
+    "tailwindcss": "4.1.18",
     "typescript": "5.8.3",
     "vitest": "^4.0.0"
   },
