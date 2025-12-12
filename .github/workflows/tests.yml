@@ -100,7 +100,7 @@ jobs:
           PORT: 3000
         run: pnpm playwright test
       - name: upload
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: playwright-report
