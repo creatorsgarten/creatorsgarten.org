@@ -7,6 +7,9 @@ import { JWT_PRIVATE_KEY } from 'astro:env/server'
 import jwt from 'jsonwebtoken'
 import { getJoinedEvents } from '../events/getJoinedEvents'
 
+export const usernameRequiredMessage =
+  'You need to create a public profile first. Go to the dashboard and open the profile section to reserve a username.'
+
 /**
  * Data contained in ID token returned by Authgarten OIDC provider.
  * https://github.com/creatorsgarten/creatorsgarten.org/blob/main/src/backend/auth/mintIdToken.ts
@@ -79,9 +82,7 @@ export async function mintIdToken(
   scopes: string[]
 ): Promise<{ idToken: string; claims: AuthgartenOidcClaims }> {
   if (scopes.includes('username') && !user.username) {
-    throw new Error(
-      'You need to create a public profile first. Go to the dashboard and open the profile section to reserve a username.'
-    )
+    throw new Error(usernameRequiredMessage)
   }
 
   const claims: AuthgartenOidcClaims = {

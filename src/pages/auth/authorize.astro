@@ -2,6 +2,7 @@
 import { IdTokenInspector } from '$components/idTokenInspector'
 import { isSensitiveScope, oauthClients } from '$constants/oauth'
 import { errorPage } from '$functions/errorPage'
+import { usernameRequiredMessage } from '$backend/auth/mintIdToken'
 import Blank from '$layouts/blank.astro'
 
 import type { OAuthClientConfig } from '$constants/oauth'
@@ -30,7 +31,7 @@ if (scopes.includes('username') && !Astro.locals.user.username) {
   return errorPage(
     400,
     'Username required',
-    'You need to create a public profile first. Go to the dashboard and open the profile section to reserve a username.'
+    usernameRequiredMessage
   )
 }
 

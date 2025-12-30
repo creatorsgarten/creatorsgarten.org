@@ -50,6 +50,9 @@ export type OAuthScope =
   | `https://eventpop.me/e/${string}`
 
 export function isSensitiveScope(scope: string) {
+  if (scope === 'username') {
+    return true
+  }
   if (scope === 'email') {
     return true
   }
