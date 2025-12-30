@@ -43,7 +43,11 @@ export interface OAuthClientConfig {
   allowedScopes?: OAuthScope[]
 }
 
-export type OAuthScope = 'openid' | 'email' | `https://eventpop.me/e/${string}`
+export type OAuthScope =
+  | 'openid'
+  | 'email'
+  | 'username'
+  | `https://eventpop.me/e/${string}`
 
 export function isSensitiveScope(scope: string) {
   if (scope === 'email') {

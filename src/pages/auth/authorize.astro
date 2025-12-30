@@ -1,6 +1,7 @@
 ---
 import { IdTokenInspector } from '$components/idTokenInspector'
 import { isSensitiveScope, oauthClients } from '$constants/oauth'
+import { errorPage } from '$functions/errorPage'
 import Blank from '$layouts/blank.astro'
 
 import type { OAuthClientConfig } from '$constants/oauth'
@@ -24,6 +25,14 @@ const scopes = (Astro.url.searchParams.get('scope') ?? '')
   .split(' ')
   .filter(Boolean)
 const redirectUri = Astro.url.searchParams.get('redirect_uri') ?? ''
+
+if (scopes.includes('username') && !Astro.locals.user.username) {
+  return errorPage(
+    400,
+    'Username required',
+    'You need to create a public profile first. Go to the dashboard and open the profile section to reserve a username.'
+  )
+}
 
 // check if client is trusted (trust client will redirect to client without asking user)
 const client = oauthClients.find(c => c.clientId === clientId)

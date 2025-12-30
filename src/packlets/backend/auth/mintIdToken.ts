@@ -24,6 +24,9 @@ export interface AuthgartenOidcClaims {
   /** Email (requires `email` scope) */
   email?: string
 
+  /** Public profile username (requires `username` scope) */
+  username?: string
+
   /** Connections */
   connections: {
     eventpop: {
@@ -75,6 +78,12 @@ export async function mintIdToken(
   nonce: string | undefined,
   scopes: string[]
 ): Promise<{ idToken: string; claims: AuthgartenOidcClaims }> {
+  if (scopes.includes('username') && !user.username) {
+    throw new Error(
+      'You need to create a public profile first. Go to the dashboard and open the profile section to reserve a username.'
+    )
+  }
+
   const claims: AuthgartenOidcClaims = {
     sub: String(user.sub),
     name: user.name,
@@ -93,6 +102,9 @@ export async function mintIdToken(
 
   if (scopes.includes('email')) {
     claims.email = user.email
+  }
+  if (scopes.includes('username') && user.username) {
+    claims.username = user.username
   }
 
   const eventpopEventRegex = /^https:\/\/eventpop\.me\/e\/(\d+)$/
