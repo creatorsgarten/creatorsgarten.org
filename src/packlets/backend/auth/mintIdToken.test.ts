@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import { mintIdToken } from './mintIdToken'
+import { mintIdToken, usernameRequiredMessage } from './mintIdToken'
 
 vi.mock('astro:env/server', () => ({
   JWT_PRIVATE_KEY: `-----BEGIN PRIVATE KEY-----
@@ -93,7 +93,7 @@ describe('mintIdToken', () => {
         'username',
       ])
     ).rejects.toThrow(
-      'You need to create a public profile first. Go to the dashboard and open the profile section to reserve a username.'
+      usernameRequiredMessage
     )
   })
 })
