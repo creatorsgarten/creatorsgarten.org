@@ -52,11 +52,11 @@ importers:
         specifier: 5.90.16
         version: 5.90.16(react@19.1.0)
       '@trpc/client':
-        specifier: 10.45.3
-        version: 10.45.3(@trpc/server@10.45.3)
+        specifier: 10.45.4
+        version: 10.45.4(@trpc/server@10.45.4)
       '@trpc/server':
-        specifier: 10.45.3
-        version: 10.45.3
+        specifier: 10.45.4
+        version: 10.45.4
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -2136,13 +2136,13 @@ packages:
       '@tiptap/core': ^2.7.0
       '@tiptap/pm': ^2.7.0
 
-  '@trpc/client@10.45.3':
-    resolution: {integrity: sha512-Fkr2pUckEyse4HeAj79FL9OIKGrITRzK4Z1KDB0qxlCwA7sgcAeafY23qzOOKHeJxAi+hTJmJx3k9p2iabY90g==}
+  '@trpc/client@10.45.4':
+    resolution: {integrity: sha512-ItpH5FMIJFt862kbAgC8hf5NJnDLo0FwEvMEX6zSLCenzWD0UH6H/fvAX1suFo1e0wcAmMhiEU1Tl6xKk/Pd1g==}
     peerDependencies:
-      '@trpc/server': 10.45.3
+      '@trpc/server': 10.45.4
 
-  '@trpc/server@10.45.3':
-    resolution: {integrity: sha512-CVZM42FdGwqYQxV7vSRwb//AF8REfV60S/fUnwx7xqCnnSDus0FW/UuAOW4eQJ30RQlOPy4MYU8B3dbTAx85Ew==}
+  '@trpc/server@10.45.4':
+    resolution: {integrity: sha512-5MuyK5sDuFVGHOT9EMVHgRjP5I5j3RqGymcb5D47UOp8tzn6LH0g1lEgYrAsOZ12vmk1gpxMw/v/y4xHHK/Qdg==}
 
   '@types/aws-lambda@8.10.115':
     resolution: {integrity: sha512-kCZuFXKLV3y8NjSoaD5+qKTpRWvPz3uh3W/u1uwlw3Mg+MtaStg1NWgjAwUXo/VJDb6n6KF1ljykFNlNwEJ53Q==}
@@ -7282,11 +7282,11 @@ snapshots:
       '@tiptap/core': 2.27.1(@tiptap/pm@2.27.1)
       '@tiptap/pm': 2.27.1
 
-  '@trpc/client@10.45.3(@trpc/server@10.45.3)':
+  '@trpc/client@10.45.4(@trpc/server@10.45.4)':
     dependencies:
-      '@trpc/server': 10.45.3
+      '@trpc/server': 10.45.4
 
-  '@trpc/server@10.45.3': {}
+  '@trpc/server@10.45.4': {}
 
   '@types/aws-lambda@8.10.115': {}
 
@@ -7960,7 +7960,7 @@ snapshots:
       '@contentsgarten/markdown': 2.0.0
       '@keyv/redis': 2.5.8
       '@tanstack/query-core': 4.29.7
-      '@trpc/server': 10.45.3
+      '@trpc/server': 10.45.4
       axios: 1.4.0
       expiry-map: 2.0.0
       gray-matter: 4.0.3
@@ -7971,7 +7971,7 @@ snapshots:
       liquidjs: 10.7.1
       mongodb: 6.20.0
       octokit: 3.2.1
-      openapi-trpc: 0.1.2(@trpc/server@10.45.3)(zod@3.25.76)
+      openapi-trpc: 0.1.2(@trpc/server@10.45.4)(zod@3.25.76)
       p-memoize: 7.1.1(typescript@5.8.3)
       zod: 3.25.76
     transitivePeerDependencies:
@@ -9371,9 +9371,9 @@ snapshots:
       regex: 6.0.1
       regex-recursion: 6.0.2
 
-  openapi-trpc@0.1.2(@trpc/server@10.45.3)(zod@3.25.76):
+  openapi-trpc@0.1.2(@trpc/server@10.45.4)(zod@3.25.76):
     dependencies:
-      '@trpc/server': 10.45.3
+      '@trpc/server': 10.45.4
       openapi-types: 12.1.0
       zod: 3.25.76
       zod-to-json-schema: 3.25.0(zod@3.25.76)
