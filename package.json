@@ -19,7 +19,7 @@
     "@docsearch/react": "4.4.0",
     "@doist/typist": "9.0.0",
     "@dtinth/comparator": "0.0.3",
-    "@fastify/middie": "9.0.3",
+    "@fastify/middie": "9.1.0",
     "@fastify/static": "9.0.0",
     "@nanostores/logger": "1.0.0",
     "@nanostores/persistent": "1.2.0",
