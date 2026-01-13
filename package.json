@@ -72,7 +72,7 @@
     "@types/react-dom": "19.1.2",
     "@types/youtube": "0.1.2",
     "astro": "5.16.9",
-    "astro-seo": "0.8.4",
+    "astro-seo": "1.1.0",
     "contentsgarten": "2.1.0",
     "dotenv": "17.2.3",
     "prettier-plugin-astro": "0.14.1",
