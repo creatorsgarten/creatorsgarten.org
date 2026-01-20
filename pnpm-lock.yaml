@@ -17,7 +17,7 @@ importers:
         version: 1.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@docsearch/css':
         specifier: ^4.0.0
-        version: 4.4.0
+        version: 4.5.0
       '@docsearch/react':
         specifier: 4.4.0
         version: 4.4.0(@algolia/client-search@5.35.0)(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)
@@ -491,6 +491,9 @@ packages:
 
   '@docsearch/css@4.4.0':
     resolution: {integrity: sha512-e9vPgtih6fkawakmYo0Y6V4BKBmDV7Ykudn7ADWXUs5b6pmtBRwDbpSG/WiaUG63G28OkJDEnsMvgIAnZgGwYw==}
+
+  '@docsearch/css@4.5.0':
+    resolution: {integrity: sha512-RgGlYf1WsYf3bmZ1Zmc7YzthUwmnYhtQgdLWp5A7xIs6KwwAxDPkmxYbLW/uYIv/8/Dq/pU3azNzKP6/fSjQfQ==}
 
   '@docsearch/react@4.4.0':
     resolution: {integrity: sha512-z12zeg1mV7WD4Ag4pKSuGukETJLaucVFwszDXL/qLaEgRqxEaVacO9SR1qqnCXvZztlvz2rt7cMqryi/7sKfjA==}
@@ -5492,6 +5495,8 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
 
   '@docsearch/css@4.4.0': {}
+
+  '@docsearch/css@4.5.0': {}
 
   '@docsearch/react@4.4.0(@algolia/client-search@5.35.0)(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)':
     dependencies:
