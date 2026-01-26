@@ -71,27 +71,27 @@ export default function VideoListing(props: VideoListing) {
             </>,
             { text: 'Go to event', href: `/event/${relatedEvent.id}` }
           )}
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(256px,1fr))] gap-2 gap-y-8 md:col-start-1 md:row-start-1">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(256px,1fr))] gap-2 gap-y-3 md:col-start-1 md:row-start-1 md:gap-y-8">
           {filteredVideos.map(video => (
             <a
               href={`/videos/${video.eventId}/${video.slug}`}
               key={`${video.eventId}/${video.slug}`}
               className="flex flex-col"
             >
-              <div className="flex flex-auto flex-col overflow-hidden">
+              <div className="flex flex-auto overflow-hidden max-md:gap-3 md:flex-col">
                 <img
                   src={video.thumbnailUrl}
                   alt={video.title}
                   width="400"
                   height="225"
-                  className="aspect-video w-full flex-none rounded-md object-cover"
+                  className="aspect-video w-1/2 flex-none rounded-md object-cover md:w-full"
                 />
-                <div className="flex h-full flex-col justify-between pt-3">
-                  <div className="flex h-full flex-col justify-between">
-                    <h3 className="line-clamp-2 text-lg leading-snug font-medium text-balance">
+                <div className="flex h-full flex-col justify-start gap-2 md:justify-between md:pt-3">
+                  <div className="flex h-full flex-col justify-start gap-2 md:justify-between">
+                    <h3 className="line-clamp-3 text-lg leading-tight font-medium text-balance md:line-clamp-2 md:leading-snug">
                       {video.title}
                     </h3>
-                    <div className="text-muted line-clamp-1 text-sm">
+                    <div className="text-muted line-clamp-2 text-sm md:line-clamp-1">
                       {video.speakers.join(', ')}
                     </div>
                   </div>
