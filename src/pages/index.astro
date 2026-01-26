@@ -3,10 +3,13 @@ import BaseLayout from '$layouts/base.astro'
 import { Share2 } from '@lucide/astro'
 import { getVideoIndex } from '$functions/getVideos'
 import { getEvents } from '$functions/getEvents'
+import Head from '$commons/head.astro'
 
 const videoIndex = await getVideoIndex()
 const events = await getEvents()
 ---
+
+<Head />
 
 <BaseLayout
   class="relative mt-3 flex flex-col space-y-16 lg:mt-8 lg:space-y-20"
@@ -180,7 +183,7 @@ const events = await getEvents()
         alt=""
       />
       <div
-        class="absolute inset-0 flex items-center justify-center bg-red-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+        class="absolute inset-0 flex items-center justify-center bg-[#FF5F39] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
       >
         Stupid Hackathon Thailand
       </div>
@@ -195,7 +198,7 @@ const events = await getEvents()
         alt=""
       />
       <div
-        class="absolute inset-0 flex items-center justify-center bg-green-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+        class="absolute inset-0 flex items-center justify-center bg-[#916DAF] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
       >
         A Bit of Thai Tunes
       </div>
@@ -210,7 +213,7 @@ const events = await getEvents()
         alt=""
       />
       <div
-        class="absolute inset-0 flex items-center justify-center bg-blue-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+        class="absolute inset-0 flex items-center justify-center bg-[#6d7631] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
       >
         Bangkok Open Source
       </div>
@@ -225,7 +228,7 @@ const events = await getEvents()
         alt=""
       />
       <div
-        class="absolute inset-0 flex items-center justify-center bg-purple-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+        class="absolute inset-0 flex items-center justify-center bg-[#C010B3] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
       >
         Code Golf Party
       </div>
@@ -240,7 +243,7 @@ const events = await getEvents()
         alt=""
       />
       <div
-        class="absolute inset-0 flex items-center justify-center bg-pink-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+        class="absolute inset-0 flex items-center justify-center bg-[#466D67] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
       >
         Sciยศาสตร์ Night
       </div>
@@ -255,7 +258,7 @@ const events = await getEvents()
         alt=""
       />
       <div
-        class="absolute inset-0 flex items-center justify-center bg-orange-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+        class="absolute inset-0 flex items-center justify-center bg-[#CE90B8] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
       >
         How to Learn Almost Anything
       </div>
@@ -376,7 +379,7 @@ const events = await getEvents()
 
     <div class="mx-auto flex w-full flex-col items-center justify-center pt-3">
       <h2
-        class="group relative mb-8 flex -rotate-1 items-center justify-center gap-3 rounded-md bg-blue-600 px-4 py-3 text-center text-3xl font-medium text-white md:text-4xl"
+        class="group relative mb-8 flex -rotate-1 items-center justify-center gap-3 rounded-md bg-gray-800 px-4 py-3 text-center text-3xl font-medium text-white md:text-4xl"
       >
         <Share2 class="h-8 w-8 md:h-10 md:w-10" />
         Learning in public
@@ -553,9 +556,16 @@ const events = await getEvents()
           </span>{' '}
           events
         </p>
-        <a
+        <!-- <a
           href="/videos"
           class="inline-block w-fit rounded-xl bg-pink-600 px-6 py-3 text-lg font-medium text-white transition-all hover:bg-pink-700 max-lg:mx-auto"
+        >
+          Watch all videos →
+        </a> -->
+
+        <a
+          href="/videos"
+          class="inline-block self-center rounded-md bg-neutral-100 px-3 py-1.5 text-xl font-medium transition-all hover:-rotate-2 hover:cursor-pointer hover:bg-blue-500 hover:text-white lg:self-start"
         >
           Watch all videos →
         </a>

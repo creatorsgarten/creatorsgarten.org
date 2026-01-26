@@ -13,7 +13,7 @@ const isNoIndex = pathname.endsWith('/editor') || pathname.startsWith('/auth')
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="shortcut icon" type="image/svg" href="/images/ring.svg" />
+    <link rel="shortcut icon" type="image/svg" href="/images/icon.svg" />
     <link rel="sitemap" href="/sitemap.xml" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,9 +22,13 @@ const isNoIndex = pathname.endsWith('/editor') || pathname.startsWith('/auth')
       href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500&family=Sarabun:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    
+
     <!-- DocSearch performance optimization -->
-    <link rel="preconnect" href="https://V0Z2KP6GX5-dsn.algolia.net" crossorigin />
+    <link
+      rel="preconnect"
+      href="https://V0Z2KP6GX5-dsn.algolia.net"
+      crossorigin
+    />
 
     {isNoIndex && <meta name="robots" content="noindex" />}
 
