@@ -1,643 +1,1104 @@
 ---
-import Head from '$commons/head.astro'
 import BaseLayout from '$layouts/base.astro'
-import CFImage from '$components/cfImage.astro'
-import { upcomingEventsFilter } from '$functions/upcomingEventsFilter'
-
+import { Share2 } from '@lucide/astro'
+import { getVideoIndex } from '$functions/getVideos'
 import { getEvents } from '$functions/getEvents'
 
-import { cow } from '$constants/animals'
-
+const videoIndex = await getVideoIndex()
 const events = await getEvents()
-const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
-
-// ['👾 Stupid Hackathon in Thailand', '🧑‍💻 BKK.js', '🕹️ Showdown.Space']
-const series = [
-  {
-    name: '👾 Stupid Hackathon in Thailand',
-    link: 'https://stupid.hackathon.in.th',
-  },
-  {
-    name: '🧑‍💻 BKK.js',
-    link: 'https://bkk.js.org',
-  },
-
-  {
-    name: '🕹️ Showdown.Space',
-    link: 'https://showdown.space',
-  },
-]
-const stories = [
-  {
-    name: 'The Stupid Hackathon Thailand',
-    text: "Unlocking 🇹🇭 developers' creativity and potential through free-style non-competitive non-business hackathons",
-    link: '/wiki/StupidHackTH',
-    img: '/images/landing/sht7.webp',
-    color: 'bg-linear-to-br from-co to-cp',
-  },
-  {
-    name: 'How to Learn (Almost) Anything',
-    text: '🏰 Exploring the fun in learning through creations and stories -- in collaboration with Thaicom Foundation and Thailand Knowledge Park (TK Park)',
-    link: 'https://www.boomchanneltv.com/content/876/',
-    img: '/images/landing/learn.webp',
-    color: 'bg-co',
-  },
-  {
-    name: 'Creative Coding Series',
-    text: 'Bridging the gap between art and code, artists and coders',
-    link: '/event/creativecodingmeetup',
-    img: '/images/landing/code.webp',
-    color: 'bg-cp',
-  },
-  {
-    name: 'Bangkok Open Source Initiative',
-    text: '🚀 Accelerating Gov Tech, Civic Tech, and Open Source Communities. In partnership with Thai Programmer Association and Bangkok Metropolitan Administration',
-    link: '/event/bangkok',
-    img: '/images/landing/bosh.webp',
-    color: 'bg-cg',
-  },
-  {
-    name: 'Sciยศาสตร์ Night',
-    text: "Taking a tour beyond history classes' metanarrative: an exploration of history of science through history of superstition",
-    link: '/event/scisart',
-    img: '/images/landing/scisart.webp',
-    color: 'bg-cbr',
-  },
-  {
-    name: 'Code Golf Party',
-    text: '🤔 Lighting up code competion? --  code golf competition in a bar sounds fun! 💻🏌️',
-    link: '/event/golf1',
-    img: '/images/landing/golf.webp',
-    color: 'bg-cb',
-  },
-]
 ---
 
-<Head />
-
 <BaseLayout
-  class="relative mt-3 flex flex-col space-y-16 p-4 lg:mt-8 lg:space-y-20"
+  class="relative mt-3 flex flex-col space-y-16 lg:mt-8 lg:space-y-20"
 >
-  <section class="space-y-8 md:space-y-5 lg:space-y-5">
+  <section
+    class="relative m-2 mt-0 flex h-[65vh] w-[calc(100%-1rem)] flex-col items-center justify-center overflow-hidden rounded-lg max-md:mb-6 lg:h-[80vh]"
+  >
+    <!-- Decorative images with intentional composition -->
+    <!-- Corner stars - subtle background -->
     <div
-      class="grid grid-cols-3 justify-end gap-4 rounded-md border border-black bg-black p-4 text-2xl font-medium xl:text-3xl"
+      class="draggable-item absolute top-0 left-0 hidden w-32 sm:block sm:w-40 lg:w-56"
+      data-rotate="0"
     >
-      <div
-        class="col-span-3 leading-snug text-balance text-white lg:col-span-2"
-      >
-        🐈 Creatorsgarten is a collective of creative technologists committed to
-        sparking new ideas and conversations.
-      </div>
-      <div
-        class="col-span-3 flex h-full w-full items-end text-2xl lg:col-span-1 lg:justify-end"
-      >
-        <a
-          href="/wiki/SelfIntroduction"
-          class="rounded-md border border-black bg-white px-3 py-2 text-lg text-nowrap transition-colors hover:border-white hover:bg-black hover:text-white lg:text-2xl"
-        >
-          About us →
-        </a>
-      </div>
+      <img
+        src="/images/landing-new/star1.svg"
+        alt=""
+        class="pointer-events-none h-full w-full"
+        draggable="false"
+      />
+    </div>
+    <div
+      class="draggable-item absolute right-0 bottom-0 w-32 sm:w-40 lg:w-56"
+      data-rotate="0"
+    >
+      <img
+        src="/images/landing-new/star2.svg"
+        alt=""
+        class="pointer-events-none h-full w-full"
+        draggable="false"
+      />
+    </div>
+
+    <!-- Top left cluster -->
+    <div
+      class="draggable-item absolute top-0 left-0 w-20 sm:hidden"
+      data-rotate="-12"
+    >
+      <img
+        src="/images/landing-new/bird1.svg"
+        alt=""
+        class="pointer-events-none h-full w-full"
+        draggable="false"
+      />
+    </div>
+    <div
+      class="draggable-item absolute top-[20%] left-[15%] hidden w-16 sm:block sm:w-14 lg:w-20"
+      data-rotate="-12"
+    >
+      <img
+        src="/images/landing-new/bird1.svg"
+        alt=""
+        class="pointer-events-none h-full w-full"
+        draggable="false"
+      />
+    </div>
+    <div
+      class="draggable-item absolute top-[8%] left-[15%] hidden w-12 sm:block sm:w-12 lg:w-16"
+      data-rotate="12"
+    >
+      <img
+        src="/images/landing-new/flower1.svg"
+        alt=""
+        class="pointer-events-none h-full w-full"
+        draggable="false"
+      />
+    </div>
+
+    <!-- Top right cluster -->
+    <div
+      class="draggable-item absolute top-[10%] right-[10%] w-16 sm:w-16 lg:w-24"
+      data-rotate="15"
+    >
+      <img
+        src="/images/landing-new/saturn1.svg"
+        alt=""
+        class="pointer-events-none h-full w-full"
+        draggable="false"
+      />
+    </div>
+    <div
+      class="draggable-item absolute top-[15%] right-[18%] hidden w-12 sm:block sm:w-12 lg:w-16"
+      data-rotate="-6"
+    >
+      <img
+        src="/images/landing-new/bit1.svg"
+        alt=""
+        class="pointer-events-none h-full w-full"
+        draggable="false"
+      />
+    </div>
+
+    <!-- Bottom left cluster -->
+    <div
+      class="draggable-item absolute bottom-[18%] left-[6%] w-12 sm:w-12 lg:w-16"
+      data-rotate="3"
+    >
+      <img
+        src="/images/landing-new/bkkos.svg"
+        alt=""
+        class="pointer-events-none h-full w-full"
+        draggable="false"
+      />
+    </div>
+    <div
+      class="draggable-item absolute bottom-[12%] left-[14%] w-16 sm:w-14 lg:w-20"
+      data-rotate="-12"
+    >
+      <img
+        src="/images/landing-new/bit2.svg"
+        alt=""
+        class="pointer-events-none h-full w-full"
+        draggable="false"
+      />
+    </div>
+
+    <!-- Bottom right cluster -->
+    <div
+      class="draggable-item absolute right-[15%] bottom-[15%] hidden w-16 sm:block sm:w-14 lg:w-20"
+      data-rotate="20"
+    >
+      <img
+        src="/images/landing-new/bird2.svg"
+        alt=""
+        class="pointer-events-none h-full w-full"
+        draggable="false"
+      />
+    </div>
+    <div
+      class="draggable-item absolute right-[8%] bottom-[25%] hidden w-12 sm:block sm:w-12 lg:w-16"
+      data-rotate="-6"
+    >
+      <img
+        src="/images/landing-new/bit3.svg"
+        alt=""
+        class="pointer-events-none h-full w-full"
+        draggable="false"
+      />
     </div>
 
     <div
-      class="hidden flex-col items-center justify-between gap-4 text-xl font-medium lg:flex lg:flex-row lg:gap-5 xl:text-2xl"
+      class="pointer-events-auto relative z-10 max-w-5xl px-3 text-center font-sans text-[40px] leading-tight font-[500] text-balance lg:text-7xl"
     >
-      <div class="flex h-full items-center text-nowrap">🌏 Warp Drive</div>
-      <div class="my-auto w-full border-b-[1.5px] border-black"></div>
-      <div class="flex w-full flex-col gap-4 md:flex-row lg:gap-5">
-        <!-- {#each ['👾 Stupid Hackathon in Thailand', '🧑‍💻 BKK.js', '🕹️ Showdown.Space'] as i}
-        <div class="rounded-md border border-black bg-white px-3 py-1 lg:text-nowrap">
-          {i} →
-        </div>
-      {/each} -->
-        {
-          series.map(i => (
-            <a
-              href={i.link}
-              class="rounded-md border border-black bg-white px-3 py-1 transition-colors hover:bg-black hover:text-white lg:text-nowrap"
-            >
-              {i.name} →
-            </a>
-          ))
-        }
-      </div>
+      <span class="hover-word" data-emoji="🇹🇭">Thailand's</span>
+      <span class="~hover-word" data-emoji="🛝">playground</span> for <span
+        class="cycling-word"
+        data-words="makers,coders,artists,tinkerers,learners,designers"></span> who
+      <span class="~hover-word" data-emoji="🔨">build 🔨,</span>
+      <span class="~hover-word" data-emoji="🔬">explore 🔭,</span> and <span
+        class="~hover-word"
+        data-emoji="🌟">play 🌟</span
+      >
     </div>
-
-    <!-- <div class="flex flex-col justify-between gap-4 pt-6 md:flex-row md:pt-0">
-			<div class="relative h-full w-full rounded-lg border border-black bg-[#f0f0f0] p-5">
-				<div class="my-5 text-balance text-2xl font-medium leading-snug lg:text-3xl">
-					🤔 No upcoming events as of now... //stay tuned!
-				</div>
-			</div>
-			<div class="justify-end rounded-lg border border-black p-5">
-				<pre class="text-xs">{cow}</pre>
-			</div>
-		</div> -->
-
-    <!-- 
-    AI AGENT NOTES FOR HOMEPAGE UPDATES:
-    
-    This is the "Up Next" featured event section. When updating for new events:
-    
-    1. LAYOUT: Uses CSS Grid - lg:grid-cols-4 (4 columns total on large screens)
-       - 1 featured image (1 column) + content section (3 columns) = 4 total
-       - Content section MUST have lg:col-span-3 to take remaining space
-    
-    2. WHAT TO UPDATE:
-       - Featured text: Line ~187 "BKK.JS #23 Summer 2025: JavaScript Meetup at..."
-       - Date: Line ~208 "11 July" 
-       - Action button: Line ~212-216 href and text
-       - Hero image: Line ~151 src attribute
-    
-    3. IMAGES: Use official event image from assets.creatorsgarten.org or usercontent.creatorsgarten.org
-       - Don't duplicate images - keep only ONE hero image
-       - Always add proper alt text
-    
-    4. LINKS: Use /event/[eventname] format for internal event links
-    -->
     <div
-      class="flex grid-cols-3 flex-col gap-4 md:grid lg:grid-cols-4 lg:gap-5"
+      class="mt-8 rounded-md bg-neutral-100 px-3 py-1.5 text-xl font-medium transition-all hover:-rotate-2 hover:cursor-pointer hover:bg-blue-500 hover:text-white"
     >
-      <div
-        class="mt-5 rounded-md border border-black px-3 py-2 text-xl font-medium md:hidden"
-      >
-        🌟 Up Next
-      </div>
-
-      <div
-        class="aspect-square w-full overflow-hidden rounded-md border border-black"
-      >
-        <img
-          src="https://assets.creatorsgarten.org/events/sht9.webp"
-          class="w-full object-cover"
-          alt="Stupido Hackettino ๙"
-        />
-      </div>
-
-      <div class="flex flex-col justify-between gap-4 lg:col-span-3 lg:gap-5">
-        <div
-          class="relative flex h-full flex-col justify-between rounded-md border border-black bg-white p-3 lg:grid lg:grid-cols-5 lg:p-5"
-        >
-          <div class="col-span-4 flex flex-col justify-between">
-            <div>
-              <div
-                class="hidden text-2xl font-medium md:block md:text-3xl xl:text-4xl"
-              >
-                🌟 Up Next:
-              </div>
-              <div
-                class="mt-1 text-lg leading-snug text-balance md:mt-2 lg:mt-4 lg:text-2xl"
-              >
-                <!-- Interactive Audio Visualization Workshop by <a
-                  href="https://www.pattvira.com/"
-                  class="underline">@Patt Vira</a
-                > & <a href="https://www.yaboihanoi.com/" class="underline"
-                  >@yaboihanoi</a
-                > / Talk Session / Data Marketplace. -->
-                Stupido Hackettino ๙: Create weird things that nobody wants at <a
-                  href="/event/sht9"
-                  class="underline">Game Dev Hub Bangkok</a
-                >!
-              </div>
-            </div>
-            <pre
-              class="hidden text-sm xl:block">/\.//.\/\|\./\\__/\..//\|_./\</pre>
-          </div>
-
-          <div class="hidden items-end justify-end md:flex">
-            <pre class="text-sm" id="icon">{cow}</pre>
-          </div>
-        </div>
-
-        <div
-          class="flex w-full items-end justify-end text-lg font-medium lg:justify-between lg:text-2xl"
-        >
-          <div
-            class="hidden rounded-md border border-black bg-neutral-100 px-3 py-2 lg:flex"
-          >
-            26-27 July
-          </div>
-          <div class="space-x-2 md:space-x-4">
-            <a
-              href="/event/sht9"
-              class="w-full rounded-md border border-black bg-black px-3 py-2 text-white transition-colors hover:bg-white hover:text-black lg:w-auto"
-            >
-              👾 Stupido Hackettino ๙ →
-            </a>
-          </div>
-        </div>
-      </div>
+      More about us →
     </div>
   </section>
-
-  <section class="space-y-3 lg:space-y-5">
-    <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
-      <div
-        class="rounded-md border border-black bg-white px-3 py-2 text-nowrap text-black"
-      >
-        ⏳ Recently at Creatorsgarten
-      </div>
-      <div class="mx-4 my-auto hidden w-full overflow-hidden lg:block">
-        <img src="/images/wavy.svg" class="h-4" alt="" />
-      </div>
-      <a
-        href="/events"
-        class="hidden rounded-md border border-black bg-white px-3 py-2 text-nowrap transition-colors hover:bg-black hover:text-white lg:flex"
-      >
-        All Events →
-      </a>
-    </div>
-
-    <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5">
-      <div
-        class="relative col-span-2 flex aspect-video w-full overflow-hidden rounded-md border border-black lg:aspect-auto"
-      >
-        <img
-          src="https://assets.creatorsgarten.org/events/cybersubin.jpg"
-          class="absolute h-full w-full object-cover"
-          alt=""
-        />
-        <div
-          class="absolute bottom-0 left-0 h-48 w-full bg-linear-to-b from-transparent to-black/80"
-        >
-        </div>
-        <a
-          href="/event/culture"
-          class="absolute flex h-full w-full flex-col justify-between p-3 text-white lg:p-4"
-        >
-          <div class="text-2xl font-medium lg:text-4xl">
-            AI x Culture Symposium
-          </div>
-          <div class="max-w-[48ch] text-sm text-balance lg:text-lg">
-            In collaboration with MIT Media Lab, Pichet Klunchun Dance Company,
-            and TK Park
-          </div>
-        </a>
-      </div>
-      <a
-        href="/event/sht8125"
-        class="aspect-square w-full overflow-hidden rounded-md border border-black"
-      >
-        <img
-          src="https://usercontent.creatorsgarten.org/c/v1732134929/644c35a6802c02345887f156/image_zw0xxx.webp"
-          class="h-full w-full object-cover"
-          alt=""
-        />
-      </a>
-      <a
-        href="/event/bac"
-        class="aspect-square w-full overflow-hidden rounded-md border border-black"
-      >
-        <img
-          src="https://usercontent.creatorsgarten.org/c/v1732134814/644c35a6802c02345887f156/image_j0xk7s.webp"
-          class="h-full w-full object-cover"
-          alt=""
-        />
-      </a>
-    </div>
-  </section>
-
-  <!-- <section id="hero" class="relative flex flex-col gap-4 lg:gap-8">
-    <h1
-      class="text-4xl leading-[1.2] md:text-5xl md:leading-[1.3] lg:w-3/4 xl:text-[3.75rem] xl:leading-[1.2]"
-    >
-      We are a <span class="font-medium">community of creators</span> (mostly) based
-      in Thailand.
-    </h1>
-    <h2
-      class="text-4xl leading-[1.2] md:text-5xl md:leading-[1.3] lg:w-3/4 xl:text-[3.75rem] xl:leading-[1.2]"
-    >
-      We work with 🌃 <span class="link text-cg">open source communities</span>,
-      💻 <span class="link text-cb"> developers</span>, 🚀 <span
-        class="link text-co"
-      >
-        educators</span
-      >, 🦾 <span class="link text-cy"> artists</span>, and more to explore new
-      possibilities and co-create fascinating things <span class="font-medium"
-        >together</span
-      >.
-    </h2>
-    <a
-      href="#s"
-      class="bottom-0 text-xl text-cbr hover:font-medium xl:absolute xl:right-0"
-    >
-      Our Stories ↓
-    </a>
-    <img
-      src="/images/decor.svg"
-      class="absolute right-0 top-0 hidden h-32 lg:block xl:h-48"
-    />
-  </section>
-
-  <section class="pt-10">
-    <div
-      class="justify-left flex flex-col lg:flex-row lg:items-center lg:justify-between"
-    >
-      <h3 class="text-3xl font-medium uppercase">
-        {upcomingEvents.length > 0 ? 'UPCOMING' : 'EVENT SERIES:'}
-      </h3>
-      <div
-        class="mt-6 flex flex-wrap gap-3 text-xl text-neutral-500 lg:mt-0 lg:justify-center"
-      >
-        {
-          series.map(x => (
-            <a
-              href={x.link}
-              class="rounded-full bg-cg px-3 py-[0.15rem] text-sm text-white transition-colors hover:bg-cb md:text-base"
-            >
-              {x.name}
-            </a>
-          ))
-        }
-        <a
-          href="/events"
-          class="rounded-full bg-ck px-3 py-[0.15rem] text-sm text-white md:text-base"
-        >
-          See More →
-        </a>
-      </div>
-    </div>
-    {
-      upcomingEvents.length !== 0 && (
-        <section>
-          <div class="space-y-6 pt-8 md:grid-cols-2 lg:grid lg:gap-y-12 lg:space-y-0">
-            {upcomingEvents.map(event => (
-              <EventPoster event={event} />
-            ))}
-          </div>
-        </section>
-      )
-    }
-  </section> -->
-
-  <section class="space-y-3 lg:space-y-5">
-    <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
-      <div
-        class="rounded-md border border-black bg-white px-3 py-2 text-nowrap text-black"
-      >
-        📌 Past Highlights
-      </div>
-      <div
-        class="mx-6 my-auto hidden w-full border-b-[1.5px] border-black lg:block"
-      >
-      </div>
-      <div class="hidden items-center text-4xl text-nowrap lg:flex">
-        🚙 🏇 🏃‍♀️
-      </div>
-    </div>
-
-    <div id="s" class="grid gap-3 md:grid-cols-2 lg:gap-4 xl:grid-cols-3">
-      {
-        stories.map(x => (
-          <a
-            href={x.link}
-            class="group relative overflow-hidden border border-black"
-          >
-            <CFImage
-              src={x.img}
-              alt={x.name}
-              width={{
-                max: 600,
-                md: 800,
-              }}
-              ratio={16 / 9}
-              class="aspect-video w-full bg-neutral-200 object-cover"
-            />
-            <div
-              class={`absolute top-0 flex aspect-video w-full flex-col items-start justify-between gap-4 bg-black p-3 pr-12 font-medium text-balance text-white opacity-0 transition-all group-hover:opacity-100 md:text-xl lg:p-4 lg:text-lg`}
-            >
-              <div>{x.text}</div>
-              <div class="text-base">{x.name}</div>
-            </div>
-          </a>
-        ))
-      }
-    </div>
-  </section>
-
-  <!-- <section class="pt-8">
-    <div class="grid gap-6 lg:grid-cols-2">
-      <div class="flex flex-col justify-between">
-        <h3 class="text-3xl font-medium uppercase">Our presences</h3>
-        <div class="mt-6 flex gap-3 xl:gap-4">
-          <a href="https://facebook.com/creatorsgarten"
-            ><h5 class="text-xl hover:underline">Facebook</h5></a
-          >
-          <a href="https://instagram.com/creatorsgarten"
-            ><h5 class="text-xl hover:underline">Instagram</h5></a
-          >
-          <a href="https://youtube.com/@creatorsgarten"
-            ><h5 class="text-xl hover:underline">Youtube</h5></a
-          >
-        </div>
-      </div>
-      <ul class="divde-cbr/50 grid gap-4 divide-y lg:w-3/4 lg:divide-y-0">
-        <li class="group">
-          <a href="https://www.boomchanneltv.com/content/876/">
-            <h6 class="text-neutral-500">Interview</h6>
-            <h5 class="text-lg group-hover:underline xl:text-xl">
-              <span class="font-medium">Mappa Media</span> · เนิร์ดได้แต่ต้องสนุกด้วย!
-              Creatorsgarten สวนของนักสร้างที่อยากให้ทุกคนมาลองเล่นและเรียนรู้ไปด้วยกัน
-            </h5>
-          </a>
-        </li>
-        <li class="group pt-4 lg:pt-2">
-          <a
-            href="https://www.thekommon.co/creatorsgarten-sharing-knowledge-change-society/"
-          >
-            <h6 class="text-neutral-500">Interview</h6>
-            <h5 class="text-lg group-hover:underline xl:text-xl">
-              <span class="font-medium">The KOMMON</span> · Creatorsgarten ชุมชนคนเนิร์ดที่สนุกกับไอเดียสร้างสรรค์
-              สวนสวรรค์ของ Creative Technologist
-            </h5>
-          </a>
-        </li>
-        <li class="group pt-4 lg:pt-2">
-          <a href="https://thematter.co/editorial/open-source/203976">
-            <h6 class="text-neutral-500">Write</h6>
-            <h5 class="text-lg group-hover:underline xl:text-xl">
-              <span class="font-medium">The MATTER</span> · ‘Open Source’ จากการแชร์โค้ดของนักพัฒนาสู่ไอเดียพัฒนาประเทศ
-            </h5>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section> -->
 
   <section
-    class="flex flex-col items-center justify-between space-y-5 border-y-[1.5px] border-black bg-white py-6 md:flex-row md:space-y-0"
+    class="grid grid-cols-2 gap-1.5 px-2 text-4xl text-white md:grid-cols-3"
   >
-    <h3 class="mb-4 text-2xl font-medium text-nowrap md:mb-0 md:text-3xl">
-      🎈 Our Partners
-    </h3>
-    <ul
-      class="flex w-full items-center justify-between gap-3 md:justify-end lg:gap-8"
+    <a
+      href="/wiki/StupidHackTH"
+      class="image-card group relative aspect-3/2 w-full overflow-hidden rounded-lg text-3xl"
     >
-      <li>
-        <a href="https://www.cleverse.com/">
-          <img
-            class="h-8 lg:h-12"
-            src="/images/cleverse.svg"
-            loading="lazy"
-            alt="Cleverse"
-          />
-        </a>
-      </li>
-      <li>
-        <a href="https://www.jetbrains.com/">
-          <img
-            class="h-8 lg:h-10"
-            src="/images/jetbrains.svg"
-            loading="lazy"
-            alt="JetBrains"
-          />
-        </a>
-      </li>
-      <li>
-        <a href="https://deploys.app/">
-          <img
-            class="h-8 lg:h-12"
-            src="/images/deploys.svg"
-            loading="lazy"
-            alt="JetBrains"
-          />
-        </a>
-      </li>
-    </ul>
+      <img
+        src="images/landing/sht7.webp"
+        class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+        alt=""
+      />
+      <div
+        class="absolute inset-0 flex items-center justify-center bg-red-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+      >
+        Stupid Hackathon Thailand
+      </div>
+    </a>
+    <a
+      href="/event/algorave"
+      class="image-card group relative aspect-3/2 w-full overflow-hidden rounded-lg"
+    >
+      <img
+        src="images/landing/bit.webp"
+        class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+        alt=""
+      />
+      <div
+        class="absolute inset-0 flex items-center justify-center bg-green-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+      >
+        A Bit of Thai Tunes
+      </div>
+    </a>
+    <a
+      href="/event/bangkok"
+      class="image-card group relative aspect-3/2 w-full overflow-hidden rounded-lg"
+    >
+      <img
+        src="images/landing/bosh.webp"
+        class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+        alt=""
+      />
+      <div
+        class="absolute inset-0 flex items-center justify-center bg-blue-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+      >
+        Bangkok Open Source
+      </div>
+    </a>
+    <a
+      href="/event/golf"
+      class="image-card group relative aspect-3/2 w-full overflow-hidden rounded-lg"
+    >
+      <img
+        src="images/landing/golf.webp"
+        class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+        alt=""
+      />
+      <div
+        class="absolute inset-0 flex items-center justify-center bg-purple-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+      >
+        Code Golf Party
+      </div>
+    </a>
+    <a
+      href="/event/scisart"
+      class="image-card group relative aspect-3/2 w-full overflow-hidden rounded-lg"
+    >
+      <img
+        src="images/landing/scisart.webp"
+        class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+        alt=""
+      />
+      <div
+        class="absolute inset-0 flex items-center justify-center bg-pink-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+      >
+        Sciยศาสตร์ Night
+      </div>
+    </a>
+    <a
+      href="/event/learn"
+      class="image-card group relative aspect-3/2 w-full overflow-hidden rounded-lg"
+    >
+      <img
+        src="images/landing/learn.webp"
+        class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+        alt=""
+      />
+      <div
+        class="absolute inset-0 flex items-center justify-center bg-orange-500 p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+      >
+        How to Learn Almost Anything
+      </div>
+    </a>
   </section>
 
-  <!-- <section
-    class="flex flex-col items-center gap-8 overflow-x-auto pt-8 md:flex-row"
-  >
-    <Tweet id="1659598202293866497" />
+  <section class="px-4 py-8">
     <div
-      class="no-scrollbar hidden items-center justify-start gap-6 overflow-x-auto md:flex"
+      class="mx-auto grid max-w-6xl gap-24 md:grid-cols-2 md:gap-20 xl:gap-24"
     >
-      <div class="flex">
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/N09H1Rbuf9g?si=Ki1f3zMVpsfmCDko"
-          title="The โง่ Hackathon ครั้งที่ 7 แห่งประเทศ Thailand"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
+      <!-- Where ideas come to life -->
+      <div class="flex flex-col">
+        <h2
+          class="mb-6 text-3xl font-medium text-balance max-lg:text-center md:text-4xl"
+        >
+          💡 Where ideas come to life
+        </h2>
+        <p
+          class="mb-4 text-lg text-balance text-neutral-600 max-lg:text-center md:text-xl"
+        >
+          Hackathons. Workshops. Meetups. Talks. We cultivate spaces where
+          creators share, experiment, explore, and bring the cool ideas to
+          reality!
+        </p>
+        <p
+          class="mb-6 text-lg text-balance text-neutral-600 max-lg:text-center md:text-xl"
+        >
+          Total events:{' '}
+          <span
+            class="inline-block rotate-1 rounded-md bg-amber-200 px-2 py-1 font-semibold text-neutral-800"
+          >
+            {events.length}
+          </span>
+        </p>
+        <a
+          href="/events"
+          class="inline-block self-center rounded-md bg-neutral-100 px-3 py-1.5 text-xl font-medium transition-all hover:-rotate-2 hover:cursor-pointer hover:bg-blue-500 hover:text-white lg:self-start"
+        >
+          See all events →
+        </a>
       </div>
-      <div class="flex">
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/Wuxt4HiZtB4?si=bHghMucy6Rbsl2vL"
-          title="A Journey into Next-Gen CSS-in-JS Innovations"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
-      </div>
-      <div class="flex">
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/i58lEAFqDlw?si=rkHlAlEvzEbRLaRM"
-          title="Using GitHub as a database for rich content and video processing"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
+
+      <!-- Things we help grow -->
+      <div class="flex flex-col">
+        <h2
+          class="mb-2 text-3xl font-medium text-balance max-lg:text-center md:mb-6 md:text-4xl"
+        >
+          🌱 Initiatives we cultivate
+        </h2>
+        <div class="grid grid-cols-3 gap-3">
+          <a
+            href="/wiki/StupidHackTH"
+            class="group relative aspect-square overflow-hidden rounded-lg"
+          >
+            <img
+              src="/images/initiatives/sht.svg"
+              class="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+              alt="Stupid Hackathon Thailand"
+            />
+          </a>
+          <a
+            href="/wiki/Showdown"
+            class="group relative aspect-square overflow-hidden rounded-lg p-4"
+          >
+            <img
+              src="/images/initiatives/showdown.png"
+              class="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+              alt="Showdown"
+            />
+          </a>
+          <a
+            href="https://bkk.js.org"
+            class="group relative aspect-square overflow-hidden rounded-lg"
+          >
+            <img
+              src="/images/initiatives/bkkjs.svg"
+              class="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+              alt="bkk.js"
+            />
+          </a>
+        </div>
       </div>
     </div>
-  </section> -->
+  </section>
 
-  <!--<section class="pt-8">-->
-  <!--  <div class="grid grid-cols-2 gap-3 md:grid-cols-4 lg:gap-6">-->
-  <!--    <div-->
-  <!--      class="flex aspect-square w-full flex-col justify-between bg-linear-to-br from-neutral-100 to-neutral-300 p-4 pr-8"-->
-  <!--    >-->
-  <!--      <h4 class="text-2xl xl:text-3xl">✍️ Cluster wiki</h4>-->
-  <!--      <p class="text-sm lg:text-lg">-->
-  <!--        Markdown-based wiki engine, supercharged by liquid-->
-  <!--      </p>-->
-  <!--    </div>-->
-  <!--    <div-->
-  <!--      class="from-co to-cy flex aspect-square w-full flex-col justify-between bg-linear-to-br p-4 pr-8 text-white"-->
-  <!--    >-->
-  <!--      <h4 class="text-2xl xl:text-3xl">🔥 Bonfires</h4>-->
-  <!--      <p class="text-sm lg:text-lg">Toolkit for the art of gatherings</p>-->
-  <!--    </div>-->
-  <!--    <div-->
-  <!--      class="from-cb to-ck flex aspect-square w-full flex-col justify-between bg-linear-to-br p-4 pr-8 text-white"-->
-  <!--    >-->
-  <!--      <h4 class="text-2xl xl:text-3xl">📅 techcal.dev</h4>-->
-  <!--      <div>-->
-  <!--        <p class="text-sm lg:text-lg">-->
-  <!--          All-in-one calendar for Tech events in your town-->
-  <!--        </p>-->
-  <!--      </div>-->
-  <!--    </div>-->
+  <section class="learning-section relative overflow-hidden px-2 pb-16">
+    <!-- Decorative doodles -->
+    <img
+      src="/images/landing-new/cyber.png"
+      alt=""
+      data-rotate="0"
+      class="draggable-item-learning absolute top-12 left-8 hidden h-26 md:block lg:h-32"
+    />
+    <img
+      src="/images/landing-new/doodle2.svg"
+      alt=""
+      data-rotate="5"
+      class="draggable-item-learning absolute top-12 right-8 hidden w-20 md:block lg:w-36"
+    />
+    <img
+      src="/images/landing-new/shit1.svg"
+      alt=""
+      data-rotate="-3"
+      class="draggable-item-learning absolute bottom-20 left-12 hidden w-24 lg:block lg:w-28"
+    />
+    <img
+      src="/images/landing-new/bkk.svg"
+      alt=""
+      data-rotate="2"
+      class="draggable-item-learning absolute right-16 bottom-16 hidden w-16 lg:block lg:w-20"
+    />
+    <img
+      src="/images/landing-new/eye.svg"
+      alt=""
+      data-rotate="-5"
+      class="draggable-item-learning absolute right-8 bottom-8 hidden w-16 lg:block lg:w-24"
+    />
 
-  <!--    <div class="mx-4 flex w-4/5 flex-col gap-1 lg:gap-3">-->
-  <!--      <div class="text-2xl xl:text-4xl">Crafts</div>-->
-  <!--      <p class="text-sm lg:text-lg">-->
-  <!--        Projects crafted and maintained by people of Creatorsgarten. Both-->
-  <!--        on-going and in the making.-->
-  <!--      </p>-->
-  <!--      <div class="mt-1 flex lg:mt-4">-->
-  <!--        <div-->
-  <!--          class="bg-cb rounded-full px-3 py-1 text-sm text-white lg:text-base"-->
-  <!--        >-->
-  <!--          See More ->-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--</section>-->
+    <div class="mx-auto flex w-full flex-col items-center justify-center pt-3">
+      <h2
+        class="group relative mb-8 flex -rotate-1 items-center justify-center gap-3 rounded-md bg-blue-600 px-4 py-3 text-center text-3xl font-medium text-white md:text-4xl"
+      >
+        <Share2 class="h-8 w-8 md:h-10 md:w-10" />
+        Learning in public
+        <!-- Cursor decoration -->
+        <div
+          class="pointer-events-none absolute -right-4 -bottom-6 text-black drop-shadow-lg"
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            class="rotate-4"
+          >
+            <path
+              d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z"
+              fill="currentColor"
+              stroke="white"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </div>
+      </h2>
+      <p
+        class="mx mb-12 max-w-[56ch] text-center text-lg text-balance md:text-xl"
+      >
+        We publicaly document and share things we do. From event plans to
+        creative outputs, our knowledge base is open for everyone!
+      </p>
+      <div class="grid w-full max-w-5xl gap-2 md:grid-cols-3">
+        <!-- Wiki -->
+        <div
+          class="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#449388] p-6 text-white md:p-8"
+        >
+          <!-- Background decorative circles -->
+          <div
+            class="pointer-events-none absolute -top-12 -right-12 h-48 w-48 rounded-full bg-[#5AB4A8] opacity-30"
+          >
+          </div>
+          <div
+            class="pointer-events-none absolute -bottom-12 -left-12 h-48 w-48 rounded-full bg-[#357368] opacity-30"
+          >
+          </div>
+
+          <!-- Content -->
+          <div class="relative z-10"></div>
+          <div class="relative z-10">
+            <h3 class="mb-2 text-xl font-medium md:text-2xl">Wiki</h3>
+            <p
+              class="mb-4 text-base leading-relaxed text-balance opacity-90 md:text-base"
+            >
+              Event guides, runbooks, and community knowledge base
+            </p>
+            <a
+              href="/wiki"
+              class="inline-block rounded-lg bg-white px-4 py-2 text-base font-semibold text-black transition-all hover:bg-neutral-100"
+            >
+              Browse our wiki →
+            </a>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div
+          class="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#DF5D2F] p-6 text-white md:p-8"
+        >
+          <!-- Background decorative circles -->
+          <div
+            class="pointer-events-none absolute -top-8 -left-8 h-40 w-40 rounded-full bg-[#E8784F] opacity-30"
+          >
+          </div>
+          <div
+            class="pointer-events-none absolute -right-8 -bottom-8 h-40 w-40 rounded-full bg-[#C64D1F] opacity-30"
+          >
+          </div>
+
+          <!-- Content -->
+          <div class="relative z-10"></div>
+          <div class="relative z-10">
+            <h3 class="mb-2 text-xl font-medium md:text-2xl">Code</h3>
+            <p
+              class="mb-4 text-base leading-relaxed text-balance opacity-90 md:text-base"
+            >
+              Open source projects and experiments on GitHub
+            </p>
+            <a
+              href="https://github.com/creatorsgarten"
+              class="inline-block rounded-lg bg-white px-4 py-2 text-base font-semibold text-black transition-all hover:bg-neutral-100"
+            >
+              Visit our GitHub →
+            </a>
+          </div>
+        </div>
+
+        <!-- Social Media -->
+        <div
+          class="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#3C7ADF] p-6 text-white md:p-8"
+        >
+          <!-- Background decorative circles -->
+          <div
+            class="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-[#5C94E8] opacity-40"
+          >
+          </div>
+          <div
+            class="pointer-events-none absolute -right-16 -bottom-16 h-56 w-56 rounded-full bg-[#2D63C6] opacity-40"
+          >
+          </div>
+
+          <!-- Content -->
+          <div class="relative z-10"></div>
+          <div class="relative z-10">
+            <h3 class="mb-2 text-xl font-medium md:text-2xl">Social Media</h3>
+            <p
+              class="mb-4 text-base leading-relaxed text-balance opacity-90 md:text-base"
+            >
+              Follow our creative journey and community updates
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://www.facebook.com/creatorsgarten"
+                class="inline-block rounded-lg bg-white px-4 py-2 text-base font-semibold text-black transition-all hover:bg-neutral-100"
+              >
+                Facebook →
+              </a>
+              <a
+                href="https://www.instagram.com/creatorsgarten"
+                class="inline-block rounded-lg bg-white px-4 py-2 text-base font-semibold text-black transition-all hover:bg-neutral-100"
+              >
+                Instagram →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Videos Section -->
+  <section class="px-4 pt-2 pb-16 md:p-2 md:pb-16">
+    <div class="grid gap-8 max-lg:gap-x-0 md:grid-cols-3">
+      <!-- Left column - Copywriting -->
+      <div
+        class="flex flex-col justify-center text-center lg:pl-8 lg:text-left"
+      >
+        <div
+          class="mb-6 flex w-min -rotate-2 items-center gap-2 rounded-md border-2 border-dashed border-pink-600 bg-pink-600/10 px-2 py-2 text-lg leading-none text-pink-600 max-lg:mx-auto"
+        >
+          <div
+            class="aspect-square size-3.5 animate-pulse rounded-full bg-rose-600"
+          >
+          </div>
+          Videos
+        </div>
+        <h2 class="mb-4 text-3xl font-medium md:text-4xl">
+          Watch our recordings
+        </h2>
+        <p class="mb-4 text-lg text-balance text-neutral-600 md:text-xl">
+          From technical talks to creative showcases, catch up on everything you
+          missed from our meetups, workshops, and events.
+        </p>
+        <p class="mb-6 text-lg text-balance text-neutral-600 md:text-xl">
+          Current catalog:{' '}
+          <span
+            class="inline-block translate-y-0.5 rotate-1 rounded-md bg-sky-200 px-2 py-1 font-semibold text-neutral-800"
+          >
+            {videoIndex.videos.length}
+          </span>{' '}
+          videos from{' '}
+          <span
+            class="inline-block -rotate-1 rounded-md bg-green-200 px-2 py-1 font-semibold text-neutral-800"
+          >
+            {videoIndex.events.length}
+          </span>{' '}
+          events
+        </p>
+        <a
+          href="/videos"
+          class="inline-block w-fit rounded-xl bg-pink-600 px-6 py-3 text-lg font-medium text-white transition-all hover:bg-pink-700 max-lg:mx-auto"
+        >
+          Watch all videos →
+        </a>
+      </div>
+
+      <!-- Right two columns - Videos -->
+      <div class="col-span-2 grid gap-2 md:grid-cols-2">
+        <!-- Video 1 -->
+        <div class="aspect-video overflow-hidden rounded-lg">
+          <iframe
+            class="h-full w-full"
+            src="https://www.youtube.com/embed/jjxu614FG80"
+            title="YouTube video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="aspect-video overflow-hidden rounded-lg">
+          <iframe
+            class="h-full w-full"
+            src="https://www.youtube.com/embed/Q3dgS5KFfHk"
+            title="YouTube video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="aspect-video overflow-hidden rounded-lg">
+          <iframe
+            class="h-full w-full"
+            src="https://www.youtube.com/embed/R9ww5Qh13MM"
+            title="YouTube video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="aspect-video overflow-hidden rounded-lg">
+          <iframe
+            class="h-full w-full"
+            src="https://www.youtube.com/embed/i58lEAFqDlw"
+            title="YouTube video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="flex flex-col items-center justify-center space-y-12 bg-white px-4 pb-8"
+  >
+    <div
+      class="inline-block -rotate-4 rounded-md border-2 border-dashed border-indigo-800 bg-indigo-800/10 px-2 py-2 text-lg leading-none text-indigo-800 max-lg:mx-auto"
+    >
+      🎈 Our Partners
+    </div>
+    <div
+      class="grid max-w-4xl gap-10 max-lg:max-w-[80vw] max-lg:gap-14 md:grid-cols-3"
+    >
+      <div class="flex items-center justify-center">
+        <a href="https://www.cleverse.com/">
+          <img
+            src="/images/cleverse.svg"
+            alt="Cleverse"
+            class="h-14 w-auto object-contain lg:h-16"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <a href="https://www.jetbrains.com/">
+          <img
+            src="/images/jetbrains.svg"
+            alt="JetBrains"
+            class="h-12 w-auto object-contain lg:h-16"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <a
+          href="https://deploys.app/"
+          class="flex items-center gap-4 font-medium"
+        >
+          <img
+            src="/images/deploys.svg"
+            alt="Deploys"
+            class="h-8 w-auto object-contain lg:h-20"
+            loading="lazy"
+          />
+          <div class="text-2xl">Deploys.app</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="flex flex-col items-center justify-center space-y-12 bg-white px-4"
+  >
+    <div
+      class="mb-12 inline-block rotate-2 rounded-md border-2 border-dashed border-amber-800 bg-amber-800/10 px-2 py-2 text-lg leading-none text-amber-800 max-lg:mx-auto"
+    >
+      👋 Our Past Collaborators
+    </div>
+    <div class="grid max-w-4xl grid-cols-3 gap-8 lg:gap-10 xl:grid-cols-5">
+      <div class="flex items-center justify-center">
+        <a href="/event/scisart">
+          <img
+            src="/images/collab/bma.png"
+            alt="Bangkok Metropolitan Administration"
+            class="h-16 w-auto object-contain lg:h-20"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <a href="/event/market">
+          <img
+            src="/images/collab/cache.svg"
+            alt="CACHE"
+            class="h-12 w-auto object-contain lg:h-14"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <a href="/event/sht7">
+          <img
+            src="/images/collab/esic.svg"
+            alt="ESIC"
+            class="h-16 w-auto object-contain lg:h-20"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <a href="/event/soundcodeplay">
+          <img
+            src="/images/collab/goethe.svg"
+            alt="Goethe-Institut"
+            class="h-16 w-auto object-contain lg:h-20"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <a href="/event/algorave">
+          <img
+            src="/images/collab/museumsiam.jpg"
+            alt="Museum Siam"
+            class="h-16 w-auto object-contain lg:h-20"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <a href="/event/culture">
+          <img
+            src="/images/collab/pkdc.png"
+            alt="PKDC"
+            class="h-14 w-auto object-contain lg:h-16"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <a href="/event/mathsatsundown">
+          <img
+            src="/images/collab/spaceth.svg"
+            alt="Space Thailand"
+            class="h-16 w-auto object-contain lg:h-20"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <a href="/event/learn2">
+          <img
+            src="/images/collab/thaicom.jpg"
+            alt="Thaicom"
+            class="h-16 w-auto object-contain lg:h-20"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <a href="/event/worldwithoutwork">
+          <img
+            src="/images/collab/tkpark.svg"
+            alt="TK Park"
+            class="h-16 w-auto object-contain lg:h-20"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <a href="/event/sideproject">
+          <img
+            src="/images/collab/tpa.svg"
+            alt="TPA"
+            class="h-16 w-auto object-contain lg:h-20"
+            loading="lazy"
+          />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style is:global>
+    .draggable-item {
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      pointer-events: none;
+      transition: transform 0.05s ease-out;
+    }
+
+    .draggable-item-learning {
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      pointer-events: none;
+      transition: transform 0.05s ease-out;
+    }
+
+    .hover-word {
+      cursor: pointer;
+      display: inline-block;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .hover-word:hover {
+      color: #ddd;
+      transform: translateY(-1px) rotate(-0.5deg);
+    }
+
+    .hover-word::after {
+      content: attr(data-emoji);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition: all 0.2s ease;
+      pointer-events: none;
+      font-size: 0.8em;
+    }
+
+    .hover-word:hover::after {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    .cycling-word {
+      display: inline-block;
+      min-width: 1ch;
+      background-color: rgb(245, 245, 245);
+      padding: 0 0.35rem;
+      border-radius: 0.5rem;
+      position: relative;
+      overflow: visible;
+    }
+
+    @media (min-width: 768px) {
+      .cycling-word {
+        padding: 0 0.75rem;
+      }
+    }
+
+    .typing-cursor {
+      display: inline-block !important;
+      width: 3px !important;
+      height: 0.9em !important;
+      background-color: #3b82f6 !important;
+      margin-left: 3px !important;
+      animation: blink 1.5s infinite !important;
+      vertical-align: baseline !important;
+      transform: translateY(0.1em) !important;
+    }
+
+    @keyframes blink {
+      0%,
+      50% {
+        opacity: 1;
+      }
+      50.01%,
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
+
+  <script>
+    import {
+      forceSimulation,
+      forceX,
+      forceY,
+      forceManyBody,
+      forceCollide,
+    } from 'd3-force'
+
+    function initPage() {
+      // Mobile menu toggle
+      const menuButton = document.getElementById('menu-button')
+      const mobileMenu = document.getElementById('mobile-menu')
+
+      menuButton?.addEventListener('click', e => {
+        e.stopPropagation()
+        mobileMenu?.classList.toggle('hidden')
+        mobileMenu?.classList.toggle('flex')
+      })
+
+      // Close menu when clicking outside
+      document.addEventListener('click', () => {
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden')
+          mobileMenu.classList.remove('flex')
+        }
+      })
+
+      // D3 Force simulation
+      const section = document.querySelector('section') as HTMLElement
+      const items = Array.from(
+        document.querySelectorAll('.draggable-item')
+      ) as HTMLElement[]
+
+      if (!section || items.length === 0) return
+
+      // Store original positions for each item
+      const nodes = items.map(item => {
+        const rect = item.getBoundingClientRect()
+        const sectionRect = section.getBoundingClientRect()
+
+        return {
+          element: item,
+          x: rect.left - sectionRect.left + rect.width / 2,
+          y: rect.top - sectionRect.top + rect.height / 2,
+          originalX: rect.left - sectionRect.left + rect.width / 2,
+          originalY: rect.top - sectionRect.top + rect.height / 2,
+          vx: 0,
+          vy: 0,
+          radius: Math.max(rect.width, rect.height) / 2,
+        }
+      })
+
+      // Mouse position relative to section
+      let mouseX = -1000
+      let mouseY = -1000
+      const mouseRadius = 150 // Radius of mouse influence
+
+      // Create force simulation
+      const simulation = forceSimulation(nodes)
+        .force('x', forceX((d: any) => d.originalX).strength(0.1))
+        .force('y', forceY((d: any) => d.originalY).strength(0.1))
+        .force(
+          'collide',
+          forceCollide((d: any) => d.radius + 10)
+        )
+        .force('mouse', () => {
+          nodes.forEach(node => {
+            const dx = node.x - mouseX
+            const dy = node.y - mouseY
+            const distance = Math.sqrt(dx * dx + dy * dy)
+
+            if (distance < mouseRadius) {
+              // Repel from mouse
+              const strength = (1 - distance / mouseRadius) * 2
+              node.vx += (dx / distance) * strength
+              node.vy += (dy / distance) * strength
+            }
+          })
+        })
+        .on('tick', () => {
+          nodes.forEach(node => {
+            const rotate = node.element.getAttribute('data-rotate') || '0'
+            const offsetX = node.x - node.originalX
+            const offsetY = node.y - node.originalY
+
+            node.element.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg)`
+          })
+        })
+
+      // Track mouse position
+      section.addEventListener('mousemove', e => {
+        const rect = section.getBoundingClientRect()
+        mouseX = e.clientX - rect.left
+        mouseY = e.clientY - rect.top
+        simulation.alpha(0.3).restart()
+      })
+
+      section.addEventListener('mouseleave', () => {
+        mouseX = -1000
+        mouseY = -1000
+        simulation.alpha(0.3).restart()
+      })
+
+      // D3 Force simulation for Learning section
+      const learningSection = document.querySelector(
+        '.learning-section'
+      ) as HTMLElement
+      const learningItems = Array.from(
+        document.querySelectorAll('.draggable-item-learning')
+      ) as HTMLElement[]
+
+      if (learningSection && learningItems.length > 0) {
+        // Store original positions for each item
+        const learningNodes = learningItems.map(item => {
+          const rect = item.getBoundingClientRect()
+          const sectionRect = learningSection.getBoundingClientRect()
+
+          return {
+            element: item,
+            x: rect.left - sectionRect.left + rect.width / 2,
+            y: rect.top - sectionRect.top + rect.height / 2,
+            originalX: rect.left - sectionRect.left + rect.width / 2,
+            originalY: rect.top - sectionRect.top + rect.height / 2,
+            vx: 0,
+            vy: 0,
+            radius: Math.max(rect.width, rect.height) / 2,
+          }
+        })
+
+        // Mouse position relative to learning section
+        let learningMouseX = -1000
+        let learningMouseY = -1000
+        const learningMouseRadius = 150
+
+        // Create force simulation for learning section
+        const learningSimulation = forceSimulation(learningNodes)
+          .force('x', forceX((d: any) => d.originalX).strength(0.1))
+          .force('y', forceY((d: any) => d.originalY).strength(0.1))
+          .force(
+            'collide',
+            forceCollide((d: any) => d.radius + 10)
+          )
+          .force('mouse', () => {
+            learningNodes.forEach(node => {
+              const dx = node.x - learningMouseX
+              const dy = node.y - learningMouseY
+              const distance = Math.sqrt(dx * dx + dy * dy)
+
+              if (distance < learningMouseRadius) {
+                const strength = (1 - distance / learningMouseRadius) * 2
+                node.vx += (dx / distance) * strength
+                node.vy += (dy / distance) * strength
+              }
+            })
+          })
+          .on('tick', () => {
+            learningNodes.forEach(node => {
+              const rotate = node.element.getAttribute('data-rotate') || '0'
+              const offsetX = node.x - node.originalX
+              const offsetY = node.y - node.originalY
+
+              node.element.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg)`
+            })
+          })
+
+        // Track mouse position for learning section
+        learningSection.addEventListener('mousemove', e => {
+          const rect = learningSection.getBoundingClientRect()
+          learningMouseX = e.clientX - rect.left
+          learningMouseY = e.clientY - rect.top
+          learningSimulation.alpha(0.3).restart()
+        })
+
+        learningSection.addEventListener('mouseleave', () => {
+          learningMouseX = -1000
+          learningMouseY = -1000
+          learningSimulation.alpha(0.3).restart()
+        })
+      }
+
+      // Cycling word animation with typewriter effect
+      const cyclingWord = document.querySelector('.cycling-word') as HTMLElement
+      if (cyclingWord) {
+        console.log('Found cycling word element:', cyclingWord)
+        const wordsStr = cyclingWord.getAttribute('data-words') || ''
+        const words = wordsStr.split(',').filter(w => w.trim())
+        let currentIndex = 0
+        let isDeleting = false
+        let charIndex = 0
+
+        // Set initial HTML with cursor
+        cyclingWord.innerHTML = '<span class="typing-cursor"></span>'
+        console.log('Set initial cursor, innerHTML:', cyclingWord.innerHTML)
+
+        function typeWriter() {
+          const targetWord = words[currentIndex]
+
+          if (isDeleting) {
+            // Delete character
+            charIndex--
+            cyclingWord.innerHTML =
+              targetWord.substring(0, charIndex) +
+              '<span class="typing-cursor"></span>'
+
+            if (charIndex === 0) {
+              isDeleting = false
+              currentIndex = (currentIndex + 1) % words.length
+              setTimeout(typeWriter, 200) // Pause before typing new word
+            } else {
+              setTimeout(typeWriter, 100) // Speed of deletion
+            }
+          } else {
+            // Type character
+            charIndex++
+            cyclingWord.innerHTML =
+              targetWord.substring(0, charIndex) +
+              '<span class="typing-cursor"></span>'
+
+            if (charIndex === targetWord.length) {
+              isDeleting = true
+              setTimeout(typeWriter, 5000) // Pause 5 seconds before deleting
+            } else {
+              setTimeout(typeWriter, 100) // Speed of typing
+            }
+          }
+        }
+
+        // Start typing immediately
+        typeWriter()
+      }
+    }
+
+    // Run on initial load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage)
+    } else {
+      initPage()
+    }
+
+    // Run on Astro page transitions (for HMR and view transitions)
+    document.addEventListener('astro:page-load', initPage)
+  </script>
 </BaseLayout>
-
-<style>
-  body {
-    font-family:
-      'Basier Circle',
-      'Anuphan',
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      'Open Sans',
-      'Helvetica Neue',
-      sans-serif;
-  }
-  .mono {
-    font-family: 'Zed Mono Extended', monospace;
-  }
-  #hero a.link {
-    @apply decoration-4 hover:underline;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-</style>
-
-<script>
-  import { cow, cowblink } from '$constants/animals'
-
-  setInterval(() => {
-    document.querySelector('#icon')!.innerHTML = cowblink
-    setTimeout(() => {
-      document.querySelector('#icon')!.innerHTML = cow
-    }, 300)
-  }, 3000)
-</script>

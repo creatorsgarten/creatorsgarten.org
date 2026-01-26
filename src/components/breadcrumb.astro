@@ -8,12 +8,17 @@ export interface Props {
 ---
 
 <div
-  class="sticky top-0 z-20 mt-3 flex w-full items-center justify-between overflow-hidden whitespace-nowrap break-words pb-2 pt-4 text-2xl lg:mt-8 xl:text-3xl"
+  class="sticky top-0 z-20 flex w-full items-center justify-between overflow-hidden text-2xl break-words whitespace-nowrap xl:text-3xl"
 >
   <div
-    class="sticky top-0 flex w-full items-center justify-between rounded-md border border-black bg-black px-3 py-2 text-xl font-medium text-white lg:flex lg:text-2xl"
+    class="sticky top-0 flex w-full items-center justify-between border-b border-neutral-300 bg-white pt-4 pb-3 text-2xl font-medium lg:flex lg:text-3xl"
   >
-    <div class="w-full">
+    <div class="flex w-full">
+      <!-- <div
+        class="flex aspect-square h-full items-center justify-center rounded-md bg-neutral-100"
+      >
+        <img src="images/icons/solid.svg" class="h-5 w-5" alt="" />
+      </div> -->
       <h1 class="text-wrap lg:text-nowrap">
         {
           Astro.props.parents?.[0]?.title === 'Wiki'
@@ -31,7 +36,7 @@ export interface Props {
       </h1>
     </div>
 
-    <div class="hidden items-center text-nowrap text-4xl lg:flex">
+    <div class="hidden items-center text-4xl text-nowrap lg:flex">
       <div class="hidden gap-2 lg:flex">
         <a
           target="_blank"
@@ -43,7 +48,7 @@ export interface Props {
           }).toString()}`}
           aria-label="Share to Twitter"
         >
-          <Icon icon="mdi:twitter" width={24} />
+          <Icon icon="mdi:twitter" width={28} />
         </a>
         <a
           target="_blank"
@@ -56,9 +61,18 @@ export interface Props {
           }).toString()}`}
           aria-label="Share to Facebook"
         >
-          <Icon icon="mdi:facebook" width={24} />
+          <Icon icon="mdi:facebook" width={28} />
         </a>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .glass {
+    /* background: linear-gradient(135deg, rgba(100, 100, 100, 0.07), rgba(100, 100, 100, 0.15)); */
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+</style>

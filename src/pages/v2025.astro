@@ -1,0 +1,643 @@
+---
+import Head from '$commons/head.astro'
+import BaseLayout from '$layouts/base.astro'
+import CFImage from '$components/cfImage.astro'
+import { upcomingEventsFilter } from '$functions/upcomingEventsFilter'
+
+import { getEvents } from '$functions/getEvents'
+
+import { cow } from '$constants/animals'
+
+const events = await getEvents()
+const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
+
+// ['👾 Stupid Hackathon in Thailand', '🧑‍💻 BKK.js', '🕹️ Showdown.Space']
+const series = [
+  {
+    name: '👾 Stupid Hackathon in Thailand',
+    link: 'https://stupid.hackathon.in.th',
+  },
+  {
+    name: '🧑‍💻 BKK.js',
+    link: 'https://bkk.js.org',
+  },
+
+  {
+    name: '🕹️ Showdown.Space',
+    link: 'https://showdown.space',
+  },
+]
+const stories = [
+  {
+    name: 'The Stupid Hackathon Thailand',
+    text: "Unlocking 🇹🇭 developers' creativity and potential through free-style non-competitive non-business hackathons",
+    link: '/wiki/StupidHackTH',
+    img: '/images/landing/sht7.webp',
+    color: 'bg-linear-to-br from-co to-cp',
+  },
+  {
+    name: 'How to Learn (Almost) Anything',
+    text: '🏰 Exploring the fun in learning through creations and stories -- in collaboration with Thaicom Foundation and Thailand Knowledge Park (TK Park)',
+    link: 'https://www.boomchanneltv.com/content/876/',
+    img: '/images/landing/learn.webp',
+    color: 'bg-co',
+  },
+  {
+    name: 'Creative Coding Series',
+    text: 'Bridging the gap between art and code, artists and coders',
+    link: '/event/creativecodingmeetup',
+    img: '/images/landing/code.webp',
+    color: 'bg-cp',
+  },
+  {
+    name: 'Bangkok Open Source Initiative',
+    text: '🚀 Accelerating Gov Tech, Civic Tech, and Open Source Communities. In partnership with Thai Programmer Association and Bangkok Metropolitan Administration',
+    link: '/event/bangkok',
+    img: '/images/landing/bosh.webp',
+    color: 'bg-cg',
+  },
+  {
+    name: 'Sciยศาสตร์ Night',
+    text: "Taking a tour beyond history classes' metanarrative: an exploration of history of science through history of superstition",
+    link: '/event/scisart',
+    img: '/images/landing/scisart.webp',
+    color: 'bg-cbr',
+  },
+  {
+    name: 'Code Golf Party',
+    text: '🤔 Lighting up code competion? --  code golf competition in a bar sounds fun! 💻🏌️',
+    link: '/event/golf1',
+    img: '/images/landing/golf.webp',
+    color: 'bg-cb',
+  },
+]
+---
+
+<Head />
+
+<BaseLayout
+  class="relative mt-3 flex flex-col space-y-16 p-4 lg:mt-8 lg:space-y-20"
+>
+  <section class="space-y-8 md:space-y-5 lg:space-y-5">
+    <div
+      class="grid grid-cols-3 justify-end gap-4 rounded-md border border-black bg-black p-4 text-2xl font-medium xl:text-3xl"
+    >
+      <div
+        class="col-span-3 leading-snug text-balance text-white lg:col-span-2"
+      >
+        🐈 Creatorsgarten is a collective of creative technologists committed to
+        sparking new ideas and conversations.
+      </div>
+      <div
+        class="col-span-3 flex h-full w-full items-end text-2xl lg:col-span-1 lg:justify-end"
+      >
+        <a
+          href="/wiki/SelfIntroduction"
+          class="rounded-md border border-black bg-white px-3 py-2 text-lg text-nowrap transition-colors hover:border-white hover:bg-black hover:text-white lg:text-2xl"
+        >
+          About us →
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="hidden flex-col items-center justify-between gap-4 text-xl font-medium lg:flex lg:flex-row lg:gap-5 xl:text-2xl"
+    >
+      <div class="flex h-full items-center text-nowrap">🌏 Warp Drive</div>
+      <div class="my-auto w-full border-b-[1.5px] border-black"></div>
+      <div class="flex w-full flex-col gap-4 md:flex-row lg:gap-5">
+        <!-- {#each ['👾 Stupid Hackathon in Thailand', '🧑‍💻 BKK.js', '🕹️ Showdown.Space'] as i}
+        <div class="rounded-md border border-black bg-white px-3 py-1 lg:text-nowrap">
+          {i} →
+        </div>
+      {/each} -->
+        {
+          series.map(i => (
+            <a
+              href={i.link}
+              class="rounded-md border border-black bg-white px-3 py-1 transition-colors hover:bg-black hover:text-white lg:text-nowrap"
+            >
+              {i.name} →
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- <div class="flex flex-col justify-between gap-4 pt-6 md:flex-row md:pt-0">
+			<div class="relative h-full w-full rounded-lg border border-black bg-[#f0f0f0] p-5">
+				<div class="my-5 text-balance text-2xl font-medium leading-snug lg:text-3xl">
+					🤔 No upcoming events as of now... //stay tuned!
+				</div>
+			</div>
+			<div class="justify-end rounded-lg border border-black p-5">
+				<pre class="text-xs">{cow}</pre>
+			</div>
+		</div> -->
+
+    <!-- 
+    AI AGENT NOTES FOR HOMEPAGE UPDATES:
+    
+    This is the "Up Next" featured event section. When updating for new events:
+    
+    1. LAYOUT: Uses CSS Grid - lg:grid-cols-4 (4 columns total on large screens)
+       - 1 featured image (1 column) + content section (3 columns) = 4 total
+       - Content section MUST have lg:col-span-3 to take remaining space
+    
+    2. WHAT TO UPDATE:
+       - Featured text: Line ~187 "BKK.JS #23 Summer 2025: JavaScript Meetup at..."
+       - Date: Line ~208 "11 July" 
+       - Action button: Line ~212-216 href and text
+       - Hero image: Line ~151 src attribute
+    
+    3. IMAGES: Use official event image from assets.creatorsgarten.org or usercontent.creatorsgarten.org
+       - Don't duplicate images - keep only ONE hero image
+       - Always add proper alt text
+    
+    4. LINKS: Use /event/[eventname] format for internal event links
+    -->
+    <div
+      class="flex grid-cols-3 flex-col gap-4 md:grid lg:grid-cols-4 lg:gap-5"
+    >
+      <div
+        class="mt-5 rounded-md border border-black px-3 py-2 text-xl font-medium md:hidden"
+      >
+        🌟 Up Next
+      </div>
+
+      <div
+        class="aspect-square w-full overflow-hidden rounded-md border border-black"
+      >
+        <img
+          src="https://assets.creatorsgarten.org/events/sht9.webp"
+          class="w-full object-cover"
+          alt="Stupido Hackettino ๙"
+        />
+      </div>
+
+      <div class="flex flex-col justify-between gap-4 lg:col-span-3 lg:gap-5">
+        <div
+          class="relative flex h-full flex-col justify-between rounded-md border border-black bg-white p-3 lg:grid lg:grid-cols-5 lg:p-5"
+        >
+          <div class="col-span-4 flex flex-col justify-between">
+            <div>
+              <div
+                class="hidden text-2xl font-medium md:block md:text-3xl xl:text-4xl"
+              >
+                🌟 Up Next:
+              </div>
+              <div
+                class="mt-1 text-lg leading-snug text-balance md:mt-2 lg:mt-4 lg:text-2xl"
+              >
+                <!-- Interactive Audio Visualization Workshop by <a
+                  href="https://www.pattvira.com/"
+                  class="underline">@Patt Vira</a
+                > & <a href="https://www.yaboihanoi.com/" class="underline"
+                  >@yaboihanoi</a
+                > / Talk Session / Data Marketplace. -->
+                Stupido Hackettino ๙: Create weird things that nobody wants at <a
+                  href="/event/sht9"
+                  class="underline">Game Dev Hub Bangkok</a
+                >!
+              </div>
+            </div>
+            <pre
+              class="hidden text-sm xl:block">/\.//.\/\|\./\\__/\..//\|_./\</pre>
+          </div>
+
+          <div class="hidden items-end justify-end md:flex">
+            <pre class="text-sm" id="icon">{cow}</pre>
+          </div>
+        </div>
+
+        <div
+          class="flex w-full items-end justify-end text-lg font-medium lg:justify-between lg:text-2xl"
+        >
+          <div
+            class="hidden rounded-md border border-black bg-neutral-100 px-3 py-2 lg:flex"
+          >
+            26-27 July
+          </div>
+          <div class="space-x-2 md:space-x-4">
+            <a
+              href="/event/sht9"
+              class="w-full rounded-md border border-black bg-black px-3 py-2 text-white transition-colors hover:bg-white hover:text-black lg:w-auto"
+            >
+              👾 Stupido Hackettino ๙ →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="space-y-3 lg:space-y-5">
+    <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
+      <div
+        class="rounded-md border border-black bg-white px-3 py-2 text-nowrap text-black"
+      >
+        ⏳ Recently at Creatorsgarten
+      </div>
+      <div class="mx-4 my-auto hidden w-full overflow-hidden lg:block">
+        <img src="/images/wavy.svg" class="h-4" alt="" />
+      </div>
+      <a
+        href="/events"
+        class="hidden rounded-md border border-black bg-white px-3 py-2 text-nowrap transition-colors hover:bg-black hover:text-white lg:flex"
+      >
+        All Events →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5">
+      <div
+        class="relative col-span-2 flex aspect-video w-full overflow-hidden rounded-md border border-black lg:aspect-auto"
+      >
+        <img
+          src="https://assets.creatorsgarten.org/events/cybersubin.jpg"
+          class="absolute h-full w-full object-cover"
+          alt=""
+        />
+        <div
+          class="absolute bottom-0 left-0 h-48 w-full bg-linear-to-b from-transparent to-black/80"
+        >
+        </div>
+        <a
+          href="/event/culture"
+          class="absolute flex h-full w-full flex-col justify-between p-3 text-white lg:p-4"
+        >
+          <div class="text-2xl font-medium lg:text-4xl">
+            AI x Culture Symposium
+          </div>
+          <div class="max-w-[48ch] text-sm text-balance lg:text-lg">
+            In collaboration with MIT Media Lab, Pichet Klunchun Dance Company,
+            and TK Park
+          </div>
+        </a>
+      </div>
+      <a
+        href="/event/sht8125"
+        class="aspect-square w-full overflow-hidden rounded-md border border-black"
+      >
+        <img
+          src="https://usercontent.creatorsgarten.org/c/v1732134929/644c35a6802c02345887f156/image_zw0xxx.webp"
+          class="h-full w-full object-cover"
+          alt=""
+        />
+      </a>
+      <a
+        href="/event/bac"
+        class="aspect-square w-full overflow-hidden rounded-md border border-black"
+      >
+        <img
+          src="https://usercontent.creatorsgarten.org/c/v1732134814/644c35a6802c02345887f156/image_j0xk7s.webp"
+          class="h-full w-full object-cover"
+          alt=""
+        />
+      </a>
+    </div>
+  </section>
+
+  <!-- <section id="hero" class="relative flex flex-col gap-4 lg:gap-8">
+    <h1
+      class="text-4xl leading-[1.2] md:text-5xl md:leading-[1.3] lg:w-3/4 xl:text-[3.75rem] xl:leading-[1.2]"
+    >
+      We are a <span class="font-medium">community of creators</span> (mostly) based
+      in Thailand.
+    </h1>
+    <h2
+      class="text-4xl leading-[1.2] md:text-5xl md:leading-[1.3] lg:w-3/4 xl:text-[3.75rem] xl:leading-[1.2]"
+    >
+      We work with 🌃 <span class="link text-cg">open source communities</span>,
+      💻 <span class="link text-cb"> developers</span>, 🚀 <span
+        class="link text-co"
+      >
+        educators</span
+      >, 🦾 <span class="link text-cy"> artists</span>, and more to explore new
+      possibilities and co-create fascinating things <span class="font-medium"
+        >together</span
+      >.
+    </h2>
+    <a
+      href="#s"
+      class="bottom-0 text-xl text-cbr hover:font-medium xl:absolute xl:right-0"
+    >
+      Our Stories ↓
+    </a>
+    <img
+      src="/images/decor.svg"
+      class="absolute right-0 top-0 hidden h-32 lg:block xl:h-48"
+    />
+  </section>
+
+  <section class="pt-10">
+    <div
+      class="justify-left flex flex-col lg:flex-row lg:items-center lg:justify-between"
+    >
+      <h3 class="text-3xl font-medium uppercase">
+        {upcomingEvents.length > 0 ? 'UPCOMING' : 'EVENT SERIES:'}
+      </h3>
+      <div
+        class="mt-6 flex flex-wrap gap-3 text-xl text-neutral-500 lg:mt-0 lg:justify-center"
+      >
+        {
+          series.map(x => (
+            <a
+              href={x.link}
+              class="rounded-full bg-cg px-3 py-[0.15rem] text-sm text-white transition-colors hover:bg-cb md:text-base"
+            >
+              {x.name}
+            </a>
+          ))
+        }
+        <a
+          href="/events"
+          class="rounded-full bg-ck px-3 py-[0.15rem] text-sm text-white md:text-base"
+        >
+          See More →
+        </a>
+      </div>
+    </div>
+    {
+      upcomingEvents.length !== 0 && (
+        <section>
+          <div class="space-y-6 pt-8 md:grid-cols-2 lg:grid lg:gap-y-12 lg:space-y-0">
+            {upcomingEvents.map(event => (
+              <EventPoster event={event} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </section> -->
+
+  <section class="space-y-3 lg:space-y-5">
+    <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
+      <div
+        class="rounded-md border border-black bg-white px-3 py-2 text-nowrap text-black"
+      >
+        📌 Past Highlights
+      </div>
+      <div
+        class="mx-6 my-auto hidden w-full border-b-[1.5px] border-black lg:block"
+      >
+      </div>
+      <div class="hidden items-center text-4xl text-nowrap lg:flex">
+        🚙 🏇 🏃‍♀️
+      </div>
+    </div>
+
+    <div id="s" class="grid gap-3 md:grid-cols-2 lg:gap-4 xl:grid-cols-3">
+      {
+        stories.map(x => (
+          <a
+            href={x.link}
+            class="group relative overflow-hidden border border-black"
+          >
+            <CFImage
+              src={x.img}
+              alt={x.name}
+              width={{
+                max: 600,
+                md: 800,
+              }}
+              ratio={16 / 9}
+              class="aspect-video w-full bg-neutral-200 object-cover"
+            />
+            <div
+              class={`absolute top-0 flex aspect-video w-full flex-col items-start justify-between gap-4 bg-black p-3 pr-12 font-medium text-balance text-white opacity-0 transition-all group-hover:opacity-100 md:text-xl lg:p-4 lg:text-lg`}
+            >
+              <div>{x.text}</div>
+              <div class="text-base">{x.name}</div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- <section class="pt-8">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="flex flex-col justify-between">
+        <h3 class="text-3xl font-medium uppercase">Our presences</h3>
+        <div class="mt-6 flex gap-3 xl:gap-4">
+          <a href="https://facebook.com/creatorsgarten"
+            ><h5 class="text-xl hover:underline">Facebook</h5></a
+          >
+          <a href="https://instagram.com/creatorsgarten"
+            ><h5 class="text-xl hover:underline">Instagram</h5></a
+          >
+          <a href="https://youtube.com/@creatorsgarten"
+            ><h5 class="text-xl hover:underline">Youtube</h5></a
+          >
+        </div>
+      </div>
+      <ul class="divde-cbr/50 grid gap-4 divide-y lg:w-3/4 lg:divide-y-0">
+        <li class="group">
+          <a href="https://www.boomchanneltv.com/content/876/">
+            <h6 class="text-neutral-500">Interview</h6>
+            <h5 class="text-lg group-hover:underline xl:text-xl">
+              <span class="font-medium">Mappa Media</span> · เนิร์ดได้แต่ต้องสนุกด้วย!
+              Creatorsgarten สวนของนักสร้างที่อยากให้ทุกคนมาลองเล่นและเรียนรู้ไปด้วยกัน
+            </h5>
+          </a>
+        </li>
+        <li class="group pt-4 lg:pt-2">
+          <a
+            href="https://www.thekommon.co/creatorsgarten-sharing-knowledge-change-society/"
+          >
+            <h6 class="text-neutral-500">Interview</h6>
+            <h5 class="text-lg group-hover:underline xl:text-xl">
+              <span class="font-medium">The KOMMON</span> · Creatorsgarten ชุมชนคนเนิร์ดที่สนุกกับไอเดียสร้างสรรค์
+              สวนสวรรค์ของ Creative Technologist
+            </h5>
+          </a>
+        </li>
+        <li class="group pt-4 lg:pt-2">
+          <a href="https://thematter.co/editorial/open-source/203976">
+            <h6 class="text-neutral-500">Write</h6>
+            <h5 class="text-lg group-hover:underline xl:text-xl">
+              <span class="font-medium">The MATTER</span> · ‘Open Source’ จากการแชร์โค้ดของนักพัฒนาสู่ไอเดียพัฒนาประเทศ
+            </h5>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section> -->
+
+  <section
+    class="flex flex-col items-center justify-between space-y-5 border-y-[1.5px] border-black bg-white py-6 md:flex-row md:space-y-0"
+  >
+    <h3 class="mb-4 text-2xl font-medium text-nowrap md:mb-0 md:text-3xl">
+      🎈 Our Partners
+    </h3>
+    <ul
+      class="flex w-full items-center justify-between gap-3 md:justify-end lg:gap-8"
+    >
+      <li>
+        <a href="https://www.cleverse.com/">
+          <img
+            class="h-8 lg:h-12"
+            src="/images/cleverse.svg"
+            loading="lazy"
+            alt="Cleverse"
+          />
+        </a>
+      </li>
+      <li>
+        <a href="https://www.jetbrains.com/">
+          <img
+            class="h-8 lg:h-10"
+            src="/images/jetbrains.svg"
+            loading="lazy"
+            alt="JetBrains"
+          />
+        </a>
+      </li>
+      <li>
+        <a href="https://deploys.app/">
+          <img
+            class="h-8 lg:h-12"
+            src="/images/deploys.svg"
+            loading="lazy"
+            alt="JetBrains"
+          />
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- <section
+    class="flex flex-col items-center gap-8 overflow-x-auto pt-8 md:flex-row"
+  >
+    <Tweet id="1659598202293866497" />
+    <div
+      class="no-scrollbar hidden items-center justify-start gap-6 overflow-x-auto md:flex"
+    >
+      <div class="flex">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/N09H1Rbuf9g?si=Ki1f3zMVpsfmCDko"
+          title="The โง่ Hackathon ครั้งที่ 7 แห่งประเทศ Thailand"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+      <div class="flex">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/Wuxt4HiZtB4?si=bHghMucy6Rbsl2vL"
+          title="A Journey into Next-Gen CSS-in-JS Innovations"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+      <div class="flex">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/i58lEAFqDlw?si=rkHlAlEvzEbRLaRM"
+          title="Using GitHub as a database for rich content and video processing"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </section> -->
+
+  <!--<section class="pt-8">-->
+  <!--  <div class="grid grid-cols-2 gap-3 md:grid-cols-4 lg:gap-6">-->
+  <!--    <div-->
+  <!--      class="flex aspect-square w-full flex-col justify-between bg-linear-to-br from-neutral-100 to-neutral-300 p-4 pr-8"-->
+  <!--    >-->
+  <!--      <h4 class="text-2xl xl:text-3xl">✍️ Cluster wiki</h4>-->
+  <!--      <p class="text-sm lg:text-lg">-->
+  <!--        Markdown-based wiki engine, supercharged by liquid-->
+  <!--      </p>-->
+  <!--    </div>-->
+  <!--    <div-->
+  <!--      class="from-co to-cy flex aspect-square w-full flex-col justify-between bg-linear-to-br p-4 pr-8 text-white"-->
+  <!--    >-->
+  <!--      <h4 class="text-2xl xl:text-3xl">🔥 Bonfires</h4>-->
+  <!--      <p class="text-sm lg:text-lg">Toolkit for the art of gatherings</p>-->
+  <!--    </div>-->
+  <!--    <div-->
+  <!--      class="from-cb to-ck flex aspect-square w-full flex-col justify-between bg-linear-to-br p-4 pr-8 text-white"-->
+  <!--    >-->
+  <!--      <h4 class="text-2xl xl:text-3xl">📅 techcal.dev</h4>-->
+  <!--      <div>-->
+  <!--        <p class="text-sm lg:text-lg">-->
+  <!--          All-in-one calendar for Tech events in your town-->
+  <!--        </p>-->
+  <!--      </div>-->
+  <!--    </div>-->
+
+  <!--    <div class="mx-4 flex w-4/5 flex-col gap-1 lg:gap-3">-->
+  <!--      <div class="text-2xl xl:text-4xl">Crafts</div>-->
+  <!--      <p class="text-sm lg:text-lg">-->
+  <!--        Projects crafted and maintained by people of Creatorsgarten. Both-->
+  <!--        on-going and in the making.-->
+  <!--      </p>-->
+  <!--      <div class="mt-1 flex lg:mt-4">-->
+  <!--        <div-->
+  <!--          class="bg-cb rounded-full px-3 py-1 text-sm text-white lg:text-base"-->
+  <!--        >-->
+  <!--          See More ->-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</section>-->
+</BaseLayout>
+
+<style>
+  body {
+    font-family:
+      'Basier Circle',
+      'Anuphan',
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Open Sans',
+      'Helvetica Neue',
+      sans-serif;
+  }
+  .mono {
+    font-family: 'Zed Mono Extended', monospace;
+  }
+  #hero a.link {
+    @apply decoration-4 hover:underline;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+</style>
+
+<script>
+  import { cow, cowblink } from '$constants/animals'
+
+  setInterval(() => {
+    document.querySelector('#icon')!.innerHTML = cowblink
+    setTimeout(() => {
+      document.querySelector('#icon')!.innerHTML = cow
+    }, 300)
+  }, 3000)
+</script>

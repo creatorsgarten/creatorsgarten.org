@@ -8,7 +8,11 @@
       "mcp__browser__browser_type",
       "mcp__browser__browser_press_key",
       "mcp__browser__browser_click",
-      "Bash(pnpm tsc:*)"
+      "Bash(pnpm tsc:*)",
+      "Bash(pnpm list:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm remove:*)"
     ],
     "deny": []
   }

@@ -17,7 +17,7 @@ export function AvatarGrid({ items }: AvatarGridProps) {
           <img
             src={item.imageUrl}
             alt={item.imageAlt}
-            className="h-8 w-8 rounded-full border border-black"
+            className="h-8 w-8 rounded-full"
           />
         )
 

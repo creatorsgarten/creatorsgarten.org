@@ -27,3 +27,5 @@ test-results
 .data
 .svelte-kit
 .idea
+.claude
+.vscode

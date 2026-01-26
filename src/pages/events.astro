@@ -15,14 +15,205 @@ const events = await getEvents()
 
 const websiteConfig = await getWebsiteConfig()
 const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
+const pastEvents = events.filter(event => event.date.isBefore(now))
 // const upcomingEvents = events.filter(x => x.name.length < 18)
 ---
 
 <Head title="Events" />
 
 <BaseLayout
-  class="relative mt-3 flex flex-col space-y-16 p-3 lg:mt-8 lg:space-y-20 lg:p-4"
+  class="relative mt-3 flex flex-col gap-y-16 p-2 lg:mt-8 lg:gap-y-32"
 >
+  <!-- Hero section with text and parallax -->
+  <section
+    class="-mx-2 mt-0 flex flex-col gap-4 overflow-hidden lg:mx-2 lg:h-[75vh] lg:w-[calc(100%-1rem)] lg:flex-row lg:gap-2"
+  >
+    <!-- Text section -->
+    <div
+      class="flex flex-col justify-center px-4 py-8 lg:w-1/3 lg:px-8 lg:py-0"
+    >
+      <div
+        class="text-left font-sans text-3xl leading-tight font-[500] text-balance max-lg:text-center lg:text-4xl"
+      >
+        <div
+          class="mb-4 w-min rotate-2 rounded-md border-2 border-dashed border-green-800 bg-green-800/10 px-2 py-2 text-lg leading-none text-green-800 max-lg:mx-auto"
+        >
+          Events
+        </div>
+        <p class="text-black">
+          Ideas grow when people gather, so we make gatherings happen.
+        </p>
+        <p
+          class="mt-3 text-lg font-normal text-neutral-600 lg:mt-4 lg:text-2xl"
+        >
+          We host hackathons, meetups, workshops, and talks—for tens of people
+          to a thousand.
+        </p>
+      </div>
+    </div>
+
+    <!-- Parallax section -->
+    <div
+      class="relative flex h-[50vh] w-full flex-col items-center justify-center overflow-hidden bg-white lg:h-auto lg:w-2/3 lg:rounded-lg"
+    >
+      <!-- Floating images with parallax - scattered layout -->
+      <!-- Top left -->
+      <div
+        class="parallax-img absolute top-[5%] -left-4 h-24 w-32 overflow-hidden rounded-md shadow-lg lg:left-[10%] lg:h-40 lg:w-52"
+        data-speed="0.5"
+      >
+        <img
+          src="/images/event1.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <!-- Top center-left -->
+      <div
+        class="parallax-img absolute top-[14%] left-[28%] h-36 w-44 overflow-hidden rounded-md shadow-md lg:h-60 lg:w-72"
+        data-speed="0.4"
+      >
+        <img
+          src="/images/event2.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <!-- Top center-right -->
+      <div
+        class="parallax-img absolute top-[6%] -right-6 h-26 w-34 overflow-hidden rounded-md shadow-lg lg:right-auto lg:left-[55%] lg:h-44 lg:w-56"
+        data-speed="0.55"
+      >
+        <img
+          src="/images/event3.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <!-- Top right -->
+      <div
+        class="parallax-img absolute top-[10%] -right-2 h-22 w-29 overflow-hidden rounded-md shadow-md blur-[1px] lg:right-[4%] lg:h-36 lg:w-48"
+        data-speed="0.45"
+      >
+        <img
+          src="/images/event7.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <!-- Middle left -->
+      <div
+        class="parallax-img absolute top-[38%] -left-8 h-34 w-44 overflow-hidden rounded-md shadow-lg lg:left-[2%] lg:h-56 lg:w-72"
+        data-speed="0.6"
+      >
+        <img
+          src="/images/event4.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <!-- Center -->
+      <div
+        class="parallax-img absolute top-[42%] left-[38%] h-32 w-40 overflow-hidden rounded-md shadow-lg lg:h-52 lg:w-64"
+        data-speed="0.35"
+      >
+        <img
+          src="/images/bkkoss-initiative.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <!-- Middle right -->
+      <div
+        class="parallax-img absolute top-[40%] -right-6 h-29 w-36 overflow-hidden rounded-md shadow-lg lg:right-[5%] lg:h-48 lg:w-60"
+        data-speed="0.65"
+      >
+        <img
+          src="/images/event5.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <!-- Bottom left -->
+      <div
+        class="parallax-img absolute bottom-[2%] -left-4 h-26 w-34 overflow-hidden rounded-md shadow-lg lg:left-[8%] lg:h-44 lg:w-56"
+        data-speed="0.7"
+      >
+        <img
+          src="/images/event6.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <!-- Bottom center-left -->
+      <div
+        class="parallax-img absolute bottom-[10%] left-[35%] h-24 w-29 overflow-hidden rounded-md shadow-md blur-[1px] lg:h-40 lg:w-48"
+        data-speed="0.5"
+      >
+        <img
+          src="/images/marshmallow.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <!-- Bottom center-right -->
+      <div
+        class="parallax-img absolute -right-4 bottom-[2%] h-25 w-32 overflow-hidden rounded-md shadow-lg lg:right-auto lg:left-[58%] lg:h-42 lg:w-52"
+        data-speed="0.55"
+      >
+        <img
+          src="/images/stupidhack-th.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <!-- Bottom right -->
+      <div
+        class="parallax-img absolute -right-6 bottom-[10%] h-28 w-35 overflow-hidden rounded-md shadow-lg lg:right-[8%] lg:h-46 lg:w-58"
+        data-speed="0.75"
+      >
+        <img
+          src="/images/garten.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <!-- Additional scattered images -->
+      <div
+        class="parallax-img absolute right-[25%] bottom-[32%] h-19 w-24 overflow-hidden rounded-md shadow-md blur-[2px] lg:h-32 lg:w-40"
+        data-speed="0.6"
+      >
+        <img
+          src="/images/showdown-space.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <div
+        class="parallax-img absolute top-[60%] left-[24%] h-19 w-24 overflow-hidden rounded-md shadow-md lg:h-32 lg:w-40"
+        data-speed="0.65"
+      >
+        <img
+          src="/images/bkkoss-2.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
   {
     upcomingEvents.length !== 0 && (
       <section>
@@ -45,27 +236,44 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
       </section>
     )
   }
-  <section>
-    <!-- <h1 class="text-3xl font-medium uppercase">Series</h1> -->
-    <div class="grid gap-4 *:p-4 lg:grid-cols-2 lg:*:p-6 xl:grid-cols-4">
+  <section class="mx-auto flex max-w-7xl flex-col gap-8">
+    <!-- Text section at top -->
+    <div class="flex flex-col items-center justify-center text-center">
+      <div
+        class="-rotate-1 rounded-md border-2 border-dashed border-fuchsia-700 bg-fuchsia-700/10 px-3 py-1.5 text-xl font-medium text-fuchsia-700"
+      >
+        Series
+      </div>
+      <p
+        class="mt-2 max-w-[52ch] text-lg leading-relaxed text-balance text-neutral-600 max-lg:pb-4 lg:text-xl"
+      >
+        A recurring series of events we've been hosting. Stay tuned for the next
+        edition of each series.
+      </p>
+    </div>
+
+    <!-- Grid section full width -->
+    <div class="grid grid-cols-2 gap-2 lg:grid-cols-3 lg:gap-3">
       {
         websiteConfig?.events.recurring.map(event => (
           <a
-            class={`rounded-md border border-black bg-neutral-100`}
+            class="group flex flex-col rounded-md bg-neutral-100 p-4 transition-all hover:bg-blue-500 lg:p-6"
             href={event.url}
           >
-            <p class="text-lg leading-snug font-medium lg:text-xl">
+            <p class="text-lg leading-snug font-medium transition-colors group-hover:text-white lg:text-2xl">
               {event.name}
             </p>
-            <p class="mt-1 text-xs uppercase lg:text-sm">{event.schedule}</p>
+            <p class="mt-2 text-xs tracking-wide text-neutral-500 uppercase group-hover:text-blue-200 lg:text-sm">
+              {event.schedule}
+            </p>
           </a>
         ))
       }
     </div>
   </section>
 
-  <section class="pb-12">
-    <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
+  <section class="">
+    <!-- <div class="justify-between text-xl font-medium lg:flex lg:text-2xl">
       <h1
         class="rounded-md border border-black bg-black px-3 py-2 text-nowrap text-white"
       >
@@ -77,27 +285,98 @@ const upcomingEvents = events.filter(upcomingEventsFilter).reverse()
       <div class="hidden items-center text-4xl text-nowrap lg:flex">
         💻 🏕️ 🏃‍♀️
       </div>
+    </div> -->
+
+    <div class="mb-6 pl-2 text-center">
+      <div class="text-3xl font-medium">
+        <span
+          class="inline-block rotate-1 rounded-md bg-amber-200 px-2 py-1 font-semibold text-neutral-800"
+        >
+          {events.length}
+        </span> events hosted to date
+      </div>
+      <p
+        class="mt-2 flex items-center justify-center gap-2 text-lg leading-relaxed text-balance text-neutral-600 max-lg:pb-4 lg:text-xl"
+      >
+        Many more to come...<span class="spinner"></span>
+      </p>
     </div>
 
-    <div class="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
+    <div
+      class="event-grid grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-5"
+    >
       {
         events
           .filter(event => event.date.isBefore(now))
           .map(event => (
             <a
               href={`/event/${event.id}`}
-              class="overflow-hidden border border-black"
+              class="event-item overflow-hidden transition-opacity duration-300"
             >
               <CFImage
                 src={event.image}
                 alt={event.name}
                 width={300}
                 ratio={1}
-                class="w-full"
+                class="w-full overflow-hidden rounded-md"
               />
             </a>
           ))
       }
     </div>
   </section>
+
+  <style is:global>
+    /* .event-grid:has(.event-item:hover) .event-item:not(:hover) {
+    opacity: 0.6;
+  }
+
+  .event-item {
+    transition: opacity 0.3s ease;
+  } */
+
+    .parallax-img {
+      transition: transform 0.1s ease-out;
+      will-change: transform;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      border: 2px solid #525252;
+      border-top-color: #a3a3a3;
+      border-radius: 50%;
+      animation: spinner 0.8s linear infinite;
+    }
+
+    @keyframes spinner {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const parallaxImages = document.querySelectorAll(
+        '.parallax-img'
+      ) as NodeListOf<HTMLElement>
+
+      document.addEventListener('mousemove', e => {
+        const mouseX = e.clientX
+        const mouseY = e.clientY
+        const centerX = window.innerWidth / 2
+        const centerY = window.innerHeight / 2
+
+        parallaxImages.forEach(img => {
+          const speed = parseFloat(img.getAttribute('data-speed') || '0.5')
+          const x = (mouseX - centerX) * speed * 0.02
+          const y = (mouseY - centerY) * speed * 0.02
+
+          img.style.transform = `translate(${x}px, ${y}px)`
+        })
+      })
+    })
+  </script>
 </BaseLayout>

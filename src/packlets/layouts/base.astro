@@ -5,6 +5,7 @@ import Announcement from '$components/announcement.astro'
 import AuthButton from '$components/authButton.astro'
 import DocSearch from '../docsearch/docsearch.astro'
 import FooterLogo from './footerLogo.astro'
+import { Search } from '@lucide/astro'
 
 import { getFeatureFlags } from '$functions/getFeatureFlags'
 import HeaderOgImage from './headerOgImage.astro'
@@ -63,44 +64,114 @@ const featureFlags = getFeatureFlags(Astro)
             <AuthButton />
           </div>
         </nav> */}
-        <nav class="z-999 bg-white md:relative">
-          <div class="sticky top-0 w-full border-b border-black bg-white px-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <a
-                  href="/"
-                  aria-label="back to home"
-                  class="flex items-center py-4"
-                >
-                  <img src="/images/icons/solid.svg" class="h-6 w-6" alt="" />
-                </a>
-                <DocSearch />
+        <nav class="relative bg-white p-2 pt-3">
+          <div class="flex justify-between gap-1.5 text-sm font-medium sm:text-[16px]">
+            <a href="/" class="group flex items-center gap-1.5">
+              <div
+                class="flex aspect-square items-center justify-center rounded-md bg-neutral-100 px-2 py-2 transition-colors group-hover:bg-blue-500 group-hover:text-white"
+              >
+                <img src="/images/icons/solid.svg" class="h-4 w-4 invert-0 transition-all group-hover:invert" alt="Creatorsgarten" />
               </div>
-              <div class="text-xl font-medium">CREATORSGARTEN</div>
+              <div
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] h-full transition-colors group-hover:bg-blue-500 group-hover:text-white"
+              >
+                Creatorsgarten
+              </div>
+            </a>
+
+            <!-- Desktop center menu -->
+            <div class="hidden items-center gap-1.5 md:flex">
+              <a
+                href="/events"
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] h-full transition-colors hover:bg-blue-500 hover:text-white"
+              >
+                <span>Events</span>
+              </a>
+              <a
+                href="/videos"
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] h-full transition-colors hover:bg-blue-500 hover:text-white"
+              >
+                <span>Videos</span>
+              </a>
+              <a
+                href="/wiki/People"
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] h-full transition-colors hover:bg-blue-500 hover:text-white"
+              >
+                <span>People</span>
+              </a>
+              {/* <a
+                href="/wiki/SelfIntroduction"
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] h-full transition-colors hover:bg-blue-500 hover:text-white"
+              >
+                <span>About</span>
+              </a> */}
+              <a
+                href="/wiki"
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] h-full transition-colors hover:bg-blue-500 hover:text-white"
+              >
+                <span>Wiki</span>
+              </a>
             </div>
-          </div>
-          <div class="flex w-full justify-between gap-3 border-b border-black bg-neutral-100 px-4 py-2 text-base font-medium lg:gap-5">
-            <ul class="flex gap-3 md:gap-5">
-              <li>
-                <a href="/events">Events</a>
-              </li>
-              {/* <li>
-                <a href="https://github.com/creatorsgarten">Code</a>
-              </li> */}
-              <li>
-                <a href="/videos">Videos</a>
-              </li>
-              <li>
-                <a href="/wiki/People">People</a>
-              </li>
-              <li>
-                <a href="/wiki/SelfIntroduction">About</a>
-              </li>
-              <li>
-                <a href="/wiki">Wiki</a>
-              </li>
-            </ul>
-            <div>
+
+            <!-- Desktop right menu -->
+            <div class="hidden items-center gap-1.5 md:flex">
+              <button
+                class="flex cursor-pointer items-center justify-center rounded-md bg-neutral-100 px-2 h-full transition-colors hover:bg-blue-500 hover:text-white"
+                onclick="document.querySelector('.DocSearch-Button')?.click()"
+                aria-label="Search"
+              >
+                <Search size={20} strokeWidth={2} />
+              </button>
+              <AuthButton />
+            </div>
+            <div class="hidden">
+              <DocSearch />
+            </div>
+
+            <!-- Mobile hamburger button -->
+            <button
+              id="nav-menu-button"
+              class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] transition-colors hover:bg-blue-500 hover:text-white md:hidden"
+              aria-label="Menu"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+
+            <!-- Mobile menu dropdown -->
+            <div
+              id="nav-mobile-menu"
+              class="absolute top-full right-2 z-50 mt-2 hidden w-48 flex-col gap-1.5 rounded-lg bg-white p-2 shadow-lg"
+            >
+              <a
+                href="/events"
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] transition-colors hover:bg-blue-500 hover:text-white"
+              >
+                <span>Events</span>
+              </a>
+              <a
+                href="/videos"
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] transition-colors hover:bg-blue-500 hover:text-white"
+              >
+                <span>Videos</span>
+              </a>
+              <a
+                href="/wiki/People"
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] transition-colors hover:bg-blue-500 hover:text-white"
+              >
+                <span>People</span>
+              </a>
+              {/* <a
+                href="/wiki/SelfIntroduction"
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] transition-colors hover:bg-blue-500 hover:text-white"
+              >
+                <span>About</span>
+              </a> */}
+              <a
+                href="/wiki"
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] transition-colors hover:bg-blue-500 hover:text-white"
+              >
+                <span>Wiki</span>
+              </a>
               <AuthButton />
             </div>
           </div>
@@ -120,9 +191,42 @@ const featureFlags = getFeatureFlags(Astro)
   </footer> -->
 
   <footer
-    class="mt-12 flex w-full items-end justify-between border-t border-black bg-black p-4 pt-16 text-white"
+    class="mt-12 flex w-full items-end font-medium justify-between border-t border-black bg-black p-4 pt-16 text-white"
   >
     <div class="text-base md:text-lg">Made with 💗 (+🧋) by 👨‍💻 👩‍🎨 🧙 🦸</div>
     <FooterLogo />
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile menu toggle
+      const menuButton = document.getElementById('nav-menu-button')
+      const mobileMenu = document.getElementById('nav-mobile-menu')
+
+      menuButton?.addEventListener('click', e => {
+        e.stopPropagation()
+        mobileMenu?.classList.toggle('hidden')
+        mobileMenu?.classList.toggle('flex')
+      })
+
+      // Close menu when clicking outside
+      document.addEventListener('click', e => {
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          const target = e.target as HTMLElement
+          if (!mobileMenu.contains(target) && target !== menuButton) {
+            mobileMenu.classList.add('hidden')
+            mobileMenu.classList.remove('flex')
+          }
+        }
+      })
+
+      // Close menu when clicking a link inside it
+      mobileMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden')
+          mobileMenu.classList.remove('flex')
+        })
+      })
+    })
+  </script>
 </Blank>

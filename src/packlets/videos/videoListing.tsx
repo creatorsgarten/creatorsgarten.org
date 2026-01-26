@@ -24,9 +24,7 @@ export default function VideoListing(props: VideoListing) {
     <a
       className={
         'block' +
-        (active
-          ? ' -mx-2 -my-1 rounded-md border border-black bg-neutral-200 px-2 py-1'
-          : '')
+        (active ? ' -mx-2 -my-1 rounded-md bg-neutral-200 px-2 py-1' : '')
       }
       href={href}
     >
@@ -38,7 +36,7 @@ export default function VideoListing(props: VideoListing) {
     children: React.ReactNode,
     cta?: { text: string; href: string }
   ) => (
-    <div className="mb-6 flex gap-4 border border-black bg-neutral-100 p-3 text-sm lg:text-base">
+    <div className="mb-6 flex gap-4 bg-neutral-100 p-3 text-sm lg:text-base">
       <div className="flex-1">{children}</div>
       {!!cta && (
         <a className="text-primary-600 flex items-center gap-1" href={cta.href}>
@@ -73,24 +71,24 @@ export default function VideoListing(props: VideoListing) {
             </>,
             { text: 'Go to event', href: `/event/${relatedEvent.id}` }
           )}
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(256px,1fr))] gap-4 md:col-start-1 md:row-start-1">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(256px,1fr))] gap-2 gap-y-8 md:col-start-1 md:row-start-1">
           {filteredVideos.map(video => (
             <a
               href={`/videos/${video.eventId}/${video.slug}`}
               key={`${video.eventId}/${video.slug}`}
               className="flex flex-col"
             >
-              <div className="flex flex-auto flex-col overflow-hidden border border-black">
+              <div className="flex flex-auto flex-col overflow-hidden">
                 <img
                   src={video.thumbnailUrl}
                   alt={video.title}
                   width="400"
                   height="225"
-                  className="aspect-video w-full flex-none object-cover"
+                  className="aspect-video w-full flex-none rounded-md object-cover"
                 />
-                <div className="flex h-full flex-col justify-between p-3">
-                  <div className="flex h-full flex-col justify-between gap-3">
-                    <h3 className="line-clamp-2 text-balance text-lg font-medium leading-snug">
+                <div className="flex h-full flex-col justify-between pt-3">
+                  <div className="flex h-full flex-col justify-between">
+                    <h3 className="line-clamp-2 text-lg leading-snug font-medium text-balance">
                       {video.title}
                     </h3>
                     <div className="text-muted line-clamp-1 text-sm">
@@ -110,9 +108,9 @@ export default function VideoListing(props: VideoListing) {
         {renderLink(
           '/videos',
           filter === undefined,
-          <h3 className="flex text-base font-medium">
+          <h3 className="flex items-center text-base font-medium">
             <span className="block flex-1 truncate">All videos</span>
-            <span className="pl-1 text-neutral-600">{totalVideos}</span>
+            <span className="pl-1 text-sm text-neutral-600">{totalVideos}</span>
           </h3>
         )}
         <div className="flex flex-col gap-2">
@@ -124,11 +122,13 @@ export default function VideoListing(props: VideoListing) {
                   `/videos/${encodeURIComponent(event.entity.id)}`,
                   filter?.type === 'event' &&
                     filter.eventId === event.entity.id,
-                  <span className="flex">
+                  <span className="flex items-center">
                     <span className="block flex-1 truncate">
                       {event.entity.name}
                     </span>
-                    <span className="pl-1 text-neutral-600">{event.count}</span>
+                    <span className="pl-1 text-sm text-neutral-600">
+                      {event.count}
+                    </span>
                   </span>
                 )}
               </li>
@@ -143,11 +143,13 @@ export default function VideoListing(props: VideoListing) {
                 {renderLink(
                   `/videos?speaker=${encodeURIComponent(event.entity)}`,
                   filter?.type === 'speaker' && filter.speaker === event.entity,
-                  <span className="flex">
+                  <span className="flex items-center">
                     <span className="block flex-1 truncate">
                       {event.entity}
                     </span>
-                    <span className="pl-1 text-neutral-600">{event.count}</span>
+                    <span className="pl-1 text-sm text-neutral-600">
+                      {event.count}
+                    </span>
                   </span>
                 )}
               </li>

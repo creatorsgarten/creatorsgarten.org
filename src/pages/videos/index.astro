@@ -18,6 +18,32 @@ const listing = filterVideos(
 
 <BaseLayout>
   <MainHorizontalPadding>
+    <!-- Hero Section -->
+    {
+      !speaker && (
+        <section class="my-8 flex flex-col items-center justify-center gap-4 text-center lg:my-12">
+          <div class="flex w-min items-center gap-2 rounded-md border-2 border-dashed border-pink-600 bg-pink-800/10 px-2 py-2 text-lg leading-none text-pink-600">
+            <div class="aspect-square size-3.5 animate-pulse rounded-full bg-rose-600" />
+            Videos
+          </div>
+          <h1 class="max-w-[32ch] text-3xl font-medium text-balance lg:text-4xl">
+            Recording from meetup, workshop, and hackathon.
+          </h1>
+          <p class="max-w-[52ch] text-xl text-neutral-600 lg:text-2xl">
+            Current catalog:{' '}
+            <span class="inline-block translate-y-0.5 rotate-1 rounded-md bg-sky-200 px-2 py-1 font-semibold text-neutral-800">
+              {index.videos.length}
+            </span>{' '}
+            videos from{' '}
+            <span class="inline-block -rotate-1 rounded-md bg-green-200 px-2 py-1 font-semibold text-neutral-800">
+              {index.events.length}
+            </span>{' '}
+            events
+          </p>
+        </section>
+      )
+    }
+
     {
       speaker ? (
         <Breadcrumb

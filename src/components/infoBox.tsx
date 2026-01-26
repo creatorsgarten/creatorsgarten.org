@@ -13,7 +13,7 @@ export interface InfoBoxProps {
 const typeConfig = {
   info: {
     bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
+    borderColor: '',
     titleColor: 'text-blue-800',
     textColor: 'text-blue-700',
     iconColor: 'text-blue-500',
@@ -21,7 +21,7 @@ const typeConfig = {
   },
   success: {
     bgColor: 'bg-green-50',
-    borderColor: 'border-green-200',
+    borderColor: '',
     titleColor: 'text-green-800',
     textColor: 'text-green-700',
     iconColor: 'text-green-400',
@@ -29,7 +29,7 @@ const typeConfig = {
   },
   warning: {
     bgColor: 'bg-yellow-50',
-    borderColor: 'border-yellow-200',
+    borderColor: '',
     titleColor: 'text-yellow-800',
     textColor: 'text-yellow-700',
     iconColor: 'text-yellow-400',
@@ -37,7 +37,7 @@ const typeConfig = {
   },
   error: {
     bgColor: 'bg-red-50',
-    borderColor: 'border-red-200',
+    borderColor: '',
     titleColor: 'text-red-800',
     textColor: 'text-red-700',
     iconColor: 'text-red-400',
@@ -54,7 +54,9 @@ export function InfoBox({
   const config = typeConfig[type]
 
   return (
-    <div className={`rounded-md border ${config.borderColor} ${config.bgColor} p-4`}>
+    <div
+      className={`rounded-md border ${config.borderColor} ${config.bgColor} p-4`}
+    >
       <div className="flex">
         <div className={`flex-shrink-0 ${config.iconColor}`}>
           <Icon icon={icon || config.icon} className="h-5 w-5" />
@@ -70,4 +72,4 @@ export function InfoBox({
       </div>
     </div>
   )
-} 
+}

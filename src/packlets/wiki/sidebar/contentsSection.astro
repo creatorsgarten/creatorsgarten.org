@@ -11,15 +11,15 @@ export interface Props {
 {
   Astro.props.contents.length > 0 && (
     <section
-      class={`mb-6 border border-black bg-neutral-100 p-5`}
+      class={`mb-3 rounded-md bg-neutral-100 p-5`}
       transition:name="wiki:section:contents"
     >
-      <p class="pb-4 text-2xl font-medium">Contents</p>
+      <p class="pb-3 text-2xl font-medium">Contents</p>
       <ul class="text-base">
         {Astro.props.contents.map(content => (
           <li class="py-[0.3rem] pr-4">
             <a class="transition-all hover:font-medium" href={'#' + content.id}>
-              > {content.label}
+              >&nbsp;&nbsp;{content.label}
             </a>
           </li>
         ))}
