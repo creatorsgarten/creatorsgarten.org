@@ -7,7 +7,6 @@ import WikiContributorList from './contributorList.tsx'
 import { stringifyDate } from '$functions/stringifyDate'
 
 import type { Dayjs } from 'dayjs'
-import PersonEventsSection from './personEventsSection.astro'
 import EventContributorsSection from './eventContributorsSection.astro'
 import EventFeedSection from './eventFeedSection.astro'
 
@@ -96,9 +95,6 @@ const { edited, editable, pageRef, grtn } = Astro.props
   }
 </SidebarSection>
 
-{pageRef.startsWith('People/') && (
-  <PersonEventsSection username={pageRef.split('/')[1]} server:defer />
-)}
 
 {pageRef.startsWith('Events/') && (
   <EventContributorsSection eventId={pageRef.split('/')[1]} server:defer />

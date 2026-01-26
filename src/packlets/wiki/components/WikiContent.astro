@@ -4,6 +4,7 @@ import WikiExpandableLists from '../expandableLists'
 import WikiLinkChecker from '../linkChecker'
 import WikiUpdateChecker from '../updateChecker'
 import WikiViewShortcuts from '../viewShortcuts.svelte'
+import PersonEventsSection from '../sidebar/personEventsSection.astro'
 
 export interface Props {
   html: string
@@ -16,6 +17,8 @@ export interface Props {
 }
 
 const { html, pageRef, contentHash, filePath, validationError } = Astro.props
+const isPeoplePage = pageRef.startsWith('People/')
+const username = isPeoplePage ? pageRef.split('/')[1] : undefined
 ---
 
 {
@@ -30,6 +33,10 @@ const { html, pageRef, contentHash, filePath, validationError } = Astro.props
 <div data-region="main">
   <ContentRenderer content={html} pageRef={pageRef} />
 </div>
+
+{isPeoplePage && username && (
+  <PersonEventsSection username={username} server:defer />
+)}
 
 <WikiUpdateChecker
   initialContentHash={contentHash}
