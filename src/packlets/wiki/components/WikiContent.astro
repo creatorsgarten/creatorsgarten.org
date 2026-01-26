@@ -24,7 +24,7 @@ const username = isPeoplePage ? pageRef.split('/')[1] : undefined
 {
   validationError && (
     <div class="relative mb-8 rounded-sm border border-red-400 bg-red-100 px-4 py-3 text-red-700">
-      <strong class="mr-2 font-bold">Invalid front matter:</strong>
+      <strong class="mr-2 font-medium">Invalid front matter:</strong>
       <span class="block sm:inline">{validationError}</span>
     </div>
   )
@@ -34,9 +34,11 @@ const username = isPeoplePage ? pageRef.split('/')[1] : undefined
   <ContentRenderer content={html} pageRef={pageRef} />
 </div>
 
-{isPeoplePage && username && (
-  <PersonEventsSection username={username} server:defer />
-)}
+{
+  isPeoplePage && username && (
+    <PersonEventsSection username={username} server:defer />
+  )
+}
 
 <WikiUpdateChecker
   initialContentHash={contentHash}

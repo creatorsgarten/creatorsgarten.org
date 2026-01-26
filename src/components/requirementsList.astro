@@ -27,7 +27,7 @@ const { requirements } = Astro.props
           {!req.met && req.callToAction && (
             <a
               href={req.callToAction.url}
-              class="ml-2 text-sm font-bold text-blue-600 hover:underline"
+              class="ml-2 text-sm font-medium text-blue-600 hover:underline"
               target={
                 req.callToAction.url.startsWith('http') ? '_blank' : undefined
               }

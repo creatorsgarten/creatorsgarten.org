@@ -90,14 +90,17 @@ const title = joinabilityResult?.group?.name
   <Breadcrumb
     parents={[
       { title: 'Working Groups', href: '/wg' },
-      { title: joinabilityResult?.group?.name || groupName, href: `/wg/${groupName}` }
+      {
+        title: joinabilityResult?.group?.name || groupName,
+        href: `/wg/${groupName}`,
+      },
     ]}
     title="Join Working Group"
   />
 
   <div class="mx-auto max-w-2xl space-y-6">
     <div class="mb-4 flex items-center justify-between">
-      <h1 class="text-3xl font-bold">{title}</h1>
+      <h1 class="text-3xl font-medium">{title}</h1>
       {
         joinabilityResult?.group?.name && (
           <a

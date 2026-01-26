@@ -20,7 +20,7 @@ export const MarkdownLink = (props: Props) => {
             className={
               (props.className || '') +
               (currentHref === props.href
-                ? ' cursor-default font-bold text-inherit'
+                ? ' cursor-default font-medium text-inherit'
                 : '')
             }
           />

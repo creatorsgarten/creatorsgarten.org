@@ -27,7 +27,7 @@
   --custom-block-title-text: theme(colors.red.600);
 }
 .custom-block > .custom-block-title {
-  @apply -mx-3 -mt-2 mb-0 px-3 pt-2.5 text-sm font-bold text-[var(--custom-block-title-text)];
+  @apply -mx-3 -mt-2 mb-0 px-3 pt-2.5 text-sm font-medium text-[var(--custom-block-title-text)];
 }
 .custom-block > .custom-block-title + p {
   @apply mt-0;
