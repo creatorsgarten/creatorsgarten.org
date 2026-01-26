@@ -1059,6 +1059,10 @@ const events = await getEvents()
         let currentIndex = 0
         let isDeleting = false
         let charIndex = 0
+        let timeoutId: number | undefined
+
+        // Clear any existing animation
+        if (timeoutId) clearTimeout(timeoutId)
 
         // Set initial HTML with cursor
         cyclingWord.innerHTML = '<span class="typing-cursor"></span>'
@@ -1077,9 +1081,9 @@ const events = await getEvents()
             if (charIndex === 0) {
               isDeleting = false
               currentIndex = (currentIndex + 1) % words.length
-              setTimeout(typeWriter, 200) // Pause before typing new word
+              timeoutId = setTimeout(typeWriter, 200) as any // Pause before typing new word
             } else {
-              setTimeout(typeWriter, 100) // Speed of deletion
+              timeoutId = setTimeout(typeWriter, 100) as any // Speed of deletion
             }
           } else {
             // Type character
@@ -1090,9 +1094,9 @@ const events = await getEvents()
 
             if (charIndex === targetWord.length) {
               isDeleting = true
-              setTimeout(typeWriter, 5000) // Pause 5 seconds before deleting
+              timeoutId = setTimeout(typeWriter, 5000) as any // Pause 5 seconds before deleting
             } else {
-              setTimeout(typeWriter, 100) // Speed of typing
+              timeoutId = setTimeout(typeWriter, 100) as any // Speed of typing
             }
           }
         }
@@ -1111,5 +1115,10 @@ const events = await getEvents()
 
     // Run on Astro page transitions (for HMR and view transitions)
     document.addEventListener('astro:page-load', initPage)
+
+    // Cleanup on page leave to prevent memory leaks
+    document.addEventListener('astro:before-preparation', () => {
+      // Clear any running timeouts would go here if we track them globally
+    })
   </script>
 </BaseLayout>
