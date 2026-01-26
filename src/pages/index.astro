@@ -258,7 +258,7 @@ const events = await getEvents()
         alt=""
       />
       <div
-        class="absolute inset-0 flex items-center justify-center bg-[#CE90B8] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
+        class="absolute inset-0 flex items-center justify-center bg-[#c77bac] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
       >
         How to Learn Almost Anything
       </div>
@@ -407,7 +407,7 @@ const events = await getEvents()
       <p
         class="mx mb-12 max-w-[56ch] text-center text-lg text-balance md:text-xl"
       >
-        We publicaly document and share things we do. From event plans to
+        We publicly document and share things we do. From event plans to
         creative outputs, our knowledge base is open for everyone!
       </p>
       <div class="grid w-full max-w-5xl gap-2 md:grid-cols-3">
@@ -1053,7 +1053,14 @@ const events = await getEvents()
       // Cycling word animation with typewriter effect
       const cyclingWord = document.querySelector('.cycling-word') as HTMLElement
       if (cyclingWord) {
-        console.log('Found cycling word element:', cyclingWord)
+        // Check if animation is already running
+        if (cyclingWord.hasAttribute('data-typewriter-running')) {
+          return
+        }
+
+        // Mark as running
+        cyclingWord.setAttribute('data-typewriter-running', 'true')
+
         const wordsStr = cyclingWord.getAttribute('data-words') || ''
         const words = wordsStr.split(',').filter(w => w.trim())
         let currentIndex = 0
@@ -1061,14 +1068,16 @@ const events = await getEvents()
         let charIndex = 0
         let timeoutId: number | undefined
 
-        // Clear any existing animation
-        if (timeoutId) clearTimeout(timeoutId)
-
         // Set initial HTML with cursor
         cyclingWord.innerHTML = '<span class="typing-cursor"></span>'
-        console.log('Set initial cursor, innerHTML:', cyclingWord.innerHTML)
 
         function typeWriter() {
+          // Clear any existing timeout
+          if (timeoutId) {
+            clearTimeout(timeoutId)
+            timeoutId = undefined
+          }
+
           const targetWord = words[currentIndex]
 
           if (isDeleting) {
@@ -1081,9 +1090,9 @@ const events = await getEvents()
             if (charIndex === 0) {
               isDeleting = false
               currentIndex = (currentIndex + 1) % words.length
-              timeoutId = setTimeout(typeWriter, 200) as any // Pause before typing new word
+              timeoutId = window.setTimeout(typeWriter, 200) // Pause before typing new word
             } else {
-              timeoutId = setTimeout(typeWriter, 100) as any // Speed of deletion
+              timeoutId = window.setTimeout(typeWriter, 100) // Speed of deletion
             }
           } else {
             // Type character
@@ -1094,9 +1103,9 @@ const events = await getEvents()
 
             if (charIndex === targetWord.length) {
               isDeleting = true
-              timeoutId = setTimeout(typeWriter, 5000) as any // Pause 5 seconds before deleting
+              timeoutId = window.setTimeout(typeWriter, 5000) // Pause 5 seconds before deleting
             } else {
-              timeoutId = setTimeout(typeWriter, 100) as any // Speed of typing
+              timeoutId = window.setTimeout(typeWriter, 100) // Speed of typing
             }
           }
         }
