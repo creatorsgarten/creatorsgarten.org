@@ -367,12 +367,14 @@ const pastEvents = events.filter(event => event.date.isBefore(now))
   </style>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function initParallax() {
       const parallaxImages = document.querySelectorAll(
         '.parallax-img'
       ) as NodeListOf<HTMLElement>
 
-      document.addEventListener('mousemove', e => {
+      if (!parallaxImages.length) return
+
+      const handleMouseMove = (e: MouseEvent) => {
         const mouseX = e.clientX
         const mouseY = e.clientY
         const centerX = window.innerWidth / 2
@@ -385,7 +387,19 @@ const pastEvents = events.filter(event => event.date.isBefore(now))
 
           img.style.transform = `translate(${x}px, ${y}px)`
         })
-      })
-    })
+      }
+
+      document.addEventListener('mousemove', handleMouseMove)
+    }
+
+    // Run on initial load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initParallax)
+    } else {
+      initParallax()
+    }
+
+    // Run on Astro page transitions (for HMR and view transitions)
+    document.addEventListener('astro:page-load', initParallax)
   </script>
 </BaseLayout>
