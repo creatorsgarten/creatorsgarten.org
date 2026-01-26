@@ -39,13 +39,34 @@ const pastEvents = events.filter(event => event.date.isBefore(now))
   >
     <!-- Text section -->
     <div
-      class="flex flex-col justify-center px-4 py-8 lg:w-1/3 lg:px-8 lg:py-0"
+      class="event-hero-section relative flex flex-col justify-center overflow-hidden px-4 py-8 lg:w-1/3 lg:px-8 lg:py-0"
     >
+      <!-- Decorative doodles with force -->
+      <img
+        src="/images/landing-new/doodle3.svg"
+        alt=""
+        data-rotate="0"
+        class="draggable-item-event absolute top-20 right-12 hidden w-20 lg:block lg:w-24"
+      />
+      <img
+        src="/images/landing-new/bit2.svg"
+        alt=""
+        data-rotate="5"
+        class="draggable-item-event absolute bottom-16 left-12 hidden w-20 lg:block lg:w-24"
+      />
+
+      <img
+        src="/images/landing-new/flower1.svg"
+        alt=""
+        data-rotate="0"
+        class="draggable-item-event absolute bottom-8 left-35 hidden w-8 lg:block lg:w-12"
+      />
+
       <div
         class="text-left font-sans text-3xl leading-tight font-[500] text-balance max-lg:text-center lg:text-4xl"
       >
         <div
-          class="mb-4 w-min rotate-2 rounded-md border-2 border-dashed border-green-800 bg-green-800/10 px-2 py-2 text-lg leading-none text-green-800 max-lg:mx-auto"
+          class="mb-4 w-min rotate-2 rounded-md border-2 border-dashed border-green-700 bg-green-700/10 px-2 py-2 text-lg leading-none text-green-700 max-lg:mx-auto"
         >
           Events
         </div>
@@ -344,6 +365,16 @@ const pastEvents = events.filter(event => event.date.isBefore(now))
     transition: opacity 0.3s ease;
   } */
 
+    .draggable-item-event {
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      pointer-events: none;
+      transition: transform 0.05s ease-out;
+    }
+
     .parallax-img {
       transition: transform 0.1s ease-out;
       will-change: transform;
@@ -367,6 +398,8 @@ const pastEvents = events.filter(event => event.date.isBefore(now))
   </style>
 
   <script>
+    import { forceSimulation, forceX, forceY, forceCollide } from 'd3-force'
+
     function initParallax() {
       const parallaxImages = document.querySelectorAll(
         '.parallax-img'
@@ -392,14 +425,98 @@ const pastEvents = events.filter(event => event.date.isBefore(now))
       document.addEventListener('mousemove', handleMouseMove)
     }
 
+    function initEventHeroForce() {
+      // D3 Force simulation for Event hero section
+      const eventSection = document.querySelector(
+        '.event-hero-section'
+      ) as HTMLElement
+      const eventItems = Array.from(
+        document.querySelectorAll('.draggable-item-event')
+      ) as HTMLElement[]
+
+      if (!eventSection || eventItems.length === 0) return
+
+      // Store original positions for each item
+      const eventNodes = eventItems.map(item => {
+        const rect = item.getBoundingClientRect()
+        const sectionRect = eventSection.getBoundingClientRect()
+
+        return {
+          element: item,
+          x: rect.left - sectionRect.left + rect.width / 2,
+          y: rect.top - sectionRect.top + rect.height / 2,
+          originalX: rect.left - sectionRect.left + rect.width / 2,
+          originalY: rect.top - sectionRect.top + rect.height / 2,
+          vx: 0,
+          vy: 0,
+          radius: Math.max(rect.width, rect.height) / 2,
+        }
+      })
+
+      // Mouse position relative to event section
+      let eventMouseX = -1000
+      let eventMouseY = -1000
+      const eventMouseRadius = 150
+
+      // Create force simulation for event section
+      const eventSimulation = forceSimulation(eventNodes)
+        .force('x', forceX((d: any) => d.originalX).strength(0.1))
+        .force('y', forceY((d: any) => d.originalY).strength(0.1))
+        .force(
+          'collide',
+          forceCollide((d: any) => d.radius + 10)
+        )
+        .force('mouse', () => {
+          eventNodes.forEach(node => {
+            const dx = node.x - eventMouseX
+            const dy = node.y - eventMouseY
+            const distance = Math.sqrt(dx * dx + dy * dy)
+
+            if (distance < eventMouseRadius) {
+              const strength = (1 - distance / eventMouseRadius) * 2
+              node.vx += (dx / distance) * strength
+              node.vy += (dy / distance) * strength
+            }
+          })
+        })
+        .on('tick', () => {
+          eventNodes.forEach(node => {
+            const rotate = node.element.getAttribute('data-rotate') || '0'
+            const offsetX = node.x - node.originalX
+            const offsetY = node.y - node.originalY
+
+            node.element.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg)`
+          })
+        })
+
+      // Track mouse position for event section
+      eventSection.addEventListener('mousemove', e => {
+        const rect = eventSection.getBoundingClientRect()
+        eventMouseX = e.clientX - rect.left
+        eventMouseY = e.clientY - rect.top
+        eventSimulation.alpha(0.3).restart()
+      })
+
+      eventSection.addEventListener('mouseleave', () => {
+        eventMouseX = -1000
+        eventMouseY = -1000
+        eventSimulation.alpha(0.3).restart()
+      })
+    }
+
+    function initPage() {
+      initParallax()
+      initEventHeroForce()
+    }
+
     // Run on initial load
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initParallax)
+      document.addEventListener('DOMContentLoaded', initPage)
     } else {
-      initParallax()
+      initPage()
     }
 
     // Run on Astro page transitions (for HMR and view transitions)
-    document.addEventListener('astro:page-load', initParallax)
+    document.addEventListener('astro:page-load', initPage)
   </script>
 </BaseLayout>
