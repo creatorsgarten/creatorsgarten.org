@@ -22,7 +22,7 @@ export interface Props {
       <h1 class="text-wrap lg:text-nowrap">
         {
           Astro.props.parents?.[0]?.title === 'Wiki'
-            ? '📒 '
+            ? 'Wiki → '
             : Astro.props.parents.map((item, index) => (
                 <>
                   <a href={item.href} transition:name={`breadcrumb:${index}`}>

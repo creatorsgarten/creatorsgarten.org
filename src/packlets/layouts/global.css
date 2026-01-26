@@ -17,6 +17,9 @@
     'Liberation Mono', 'Courier New', monospace;
 }
 
+/* Force include InfoBox colors for Tailwind v4 scanning */
+@source "../../components/infoBox.tsx";
+
 @utility font-casual {
   font-variation-settings:
     'CASL' 1,
@@ -98,4 +101,22 @@ html {
 
 a.internal[data-exists='false'] {
   @apply text-red-500;
+}
+
+/* InfoBox component styles - force colors with !important */
+.infobox-container {
+  background-color: var(--infobox-bg) !important;
+  border: var(--infobox-border) !important;
+}
+
+.infobox-icon {
+  color: var(--infobox-icon-color) !important;
+}
+
+.infobox-title {
+  color: var(--infobox-title-color) !important;
+}
+
+.infobox-text {
+  color: var(--infobox-text-color) !important;
 }
