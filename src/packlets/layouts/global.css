@@ -3,10 +3,10 @@
 
 @theme {
   --font-sans:
-    Basier Square, Anuphan, ui-sans-serif, system-ui, sans-serif,
+    'Basier', Anuphan, ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-prose:
-    Basier Circle, Sarabun, ui-sans-serif, system-ui, sans-serif,
+    'Basier', Sarabun, ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-casual:
     Recursive Variable, ui-sans-serif, system-ui, sans-serif,
@@ -60,14 +60,14 @@ html {
 }
 
 @font-face {
-  font-family: 'Basier Circle';
+  font-family: 'Basier';
   src: url('/fonts/basier-regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Basier Circle';
+  font-family: 'Basier';
   src: url('/fonts/basier-medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
@@ -82,11 +82,11 @@ html {
 }
 
 .prose > h1 {
-  font-family: 'Basier Circle', 'Anuphan', sans-serif;
+  font-family: 'Basier', 'Anuphan', sans-serif;
 }
 
 .prose > h2 {
-  font-family: 'Basier Circle', 'Anuphan', sans-serif;
+  font-family: 'Basier', 'Anuphan', sans-serif;
 }
 
 .edit,
