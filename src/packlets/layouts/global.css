@@ -17,8 +17,8 @@
     'Liberation Mono', 'Courier New', monospace;
 }
 
-/* Force include InfoBox colors for Tailwind v4 scanning */
-@source "../../components/infoBox.tsx";
+/* Force include InfoBox colors for Tailwind v4 scanning
+@source "../../components/infoBox.tsx"; */
 
 @utility font-casual {
   font-variation-settings:
