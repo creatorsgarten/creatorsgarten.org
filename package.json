@@ -40,7 +40,7 @@
     "js-yaml": "^4.1.0",
     "jsonwebtoken": "9.0.3",
     "lodash": "4.17.23",
-    "lru-cache": "11.2.4",
+    "lru-cache": "11.2.5",
     "memoize": "10.2.0",
     "mongodb": "7.0.0",
     "nanostores": "1.1.0",
