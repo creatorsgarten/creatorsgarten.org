@@ -140,7 +140,7 @@ const featureFlags = getFeatureFlags(Astro)
             <!-- Mobile menu dropdown -->
             <div
               id="nav-mobile-menu"
-              class="absolute top-full right-2 z-50 mt-2 hidden w-48 flex-col gap-1.5 rounded-lg bg-white p-2 shadow-lg"
+              class="absolute top-full right-2 z-50 mt-2 hidden w-48 flex-col gap-1.5 rounded-lg bg-white p-2 shadow-lg text-lg border "
             >
               <a
                 href="/events"
@@ -166,12 +166,23 @@ const featureFlags = getFeatureFlags(Astro)
               >
                 <span>About</span>
               </a> */}
+
               <a
                 href="/wiki"
                 class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] transition-colors hover:bg-blue-500 hover:text-white"
               >
                 <span>Wiki</span>
               </a>
+
+              <div class="border-b pb-1 mb-1"></div>
+
+                              <button
+                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] transition-colors hover:bg-blue-500 hover:text-white"
+                onclick="document.querySelector('.DocSearch-Button')?.click()"
+                aria-label="Search"
+              >
+                Search
+              </button>
               <AuthButton />
             </div>
           </div>
