@@ -20,7 +20,7 @@ const involvements = await getEventInvolvements(Astro.props.username)
             <h3 class="mb-3 font-medium text-neutral-500 uppercase">
               {group.title}
             </h3>
-            <ul class="flex flex-wrap gap-2">
+            <ul class="grid grid-cols-3 gap-2 lg:grid-cols-6 xl:grid-cols-7">
               {group.events.map(event => (
                 <li>
                   <a
@@ -34,9 +34,9 @@ const involvements = await getEventInvolvements(Astro.props.username)
                         event.parsedFrontMatter
                       )}
                       alt={event.event.name || event.eventId}
-                      width={250}
+                      width={280}
                       ratio={1}
-                      class="h-32 w-32 rounded"
+                      class="aspect-square w-full rounded"
                     />
                   </a>
                 </li>
