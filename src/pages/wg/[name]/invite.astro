@@ -61,7 +61,9 @@ if (Astro.request.method === 'POST') {
 }
 
 // Get last active invite key if any
-const activeInviteKey = (group.inviteKeys || []).find((k: { enabled: boolean }) => k.enabled)
+const activeInviteKey = (group.inviteKeys || []).find(
+  (k: { enabled: boolean }) => k.enabled
+)
 const inviteUrl = new URL(
   `/wg/${groupName}/join?key=${activeInviteKey?.key || ''}`,
   Astro.url.origin
@@ -76,12 +78,15 @@ const title = `Invite to ${group.publicWorkingGroupInformation.name} Working Gro
   <Breadcrumb
     parents={[
       { title: 'Working Groups', href: '/wg' },
-      { title: `${group.publicWorkingGroupInformation.name} Group`, href: `/wg/${groupName}` },
-      { title: 'Members', href: `/wg/${groupName}/members` }
+      {
+        title: `${group.publicWorkingGroupInformation.name} Group`,
+        href: `/wg/${groupName}`,
+      },
+      { title: 'Members', href: `/wg/${groupName}/members` },
     ]}
     title="Invite Members"
   />
-  
+
   <div class="mx-auto max-w-2xl space-y-6">
     <div class="mb-4 flex items-center justify-between">
       <h1 class="text-3xl font-bold">{title}</h1>
@@ -93,77 +98,76 @@ const title = `Invite to ${group.publicWorkingGroupInformation.name} Working Gro
       </a>
     </div>
 
+    {
+      error && (
+        <div
+          class="mb-6 border-l-4 border-red-500 bg-red-100 p-4 text-red-700"
+          role="alert"
+        >
+          <p>{error}</p>
+        </div>
+      )
+    }
+
+    <div class="rounded-lg bg-white p-6 shadow-md">
+      <h2 class="mb-4 text-xl font-medium">Invite Members</h2>
+
       {
-        error && (
-          <div
-            class="mb-6 border-l-4 border-red-500 bg-red-100 p-4 text-red-700"
-            role="alert"
-          >
-            <p>{error}</p>
+        activeInviteKey ? (
+          <div>
+            <p class="mb-4">
+              Share this link with people you want to invite to the working
+              group:
+            </p>
+            <div class="mb-6 overflow-hidden rounded-md border border-gray-200">
+              <div class="flex items-center">
+                <input
+                  type="text"
+                  value={inviteUrl}
+                  readonly
+                  class="w-full flex-grow bg-gray-50 px-4 py-2"
+                  id="inviteUrl"
+                />
+                <button
+                  onclick="copyInviteUrl()"
+                  class="rounded-r bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+                >
+                  Copy
+                </button>
+              </div>
+            </div>
+
+            <p class="text-sm text-gray-600">
+              Invite created:{' '}
+              {new Date(activeInviteKey.createdAt).toLocaleString()}
+            </p>
+
+            {/* Removed "Generate New Invite Link" button since we already have an active link */}
+          </div>
+        ) : (
+          <div>
+            <p class="mb-4">
+              No active invite link found. Create one to invite members to this
+              working group.
+            </p>
+            <form method="POST">
+              <button
+                type="submit"
+                class="rounded bg-purple-600 px-4 py-2 text-white transition hover:bg-purple-700"
+              >
+                Generate Invite Link
+              </button>
+            </form>
           </div>
         )
       }
-
-      <div class="rounded-lg bg-white p-6 shadow-md">
-        <h2 class="mb-4 text-xl font-semibold">Invite Members</h2>
-
-        {
-          activeInviteKey ? (
-            <div>
-              <p class="mb-4">
-                Share this link with people you want to invite to the working
-                group:
-              </p>
-              <div class="mb-6 overflow-hidden rounded-md border border-gray-200">
-                <div class="flex items-center">
-                  <input
-                    type="text"
-                    value={inviteUrl}
-                    readonly
-                    class="w-full flex-grow bg-gray-50 px-4 py-2"
-                    id="inviteUrl"
-                  />
-                  <button
-                    onclick="copyInviteUrl()"
-                    class="rounded-r bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
-                  >
-                    Copy
-                  </button>
-                </div>
-              </div>
-
-              <p class="text-sm text-gray-600">
-                Invite created:{' '}
-                {new Date(activeInviteKey.createdAt).toLocaleString()}
-              </p>
-
-              {/* Removed "Generate New Invite Link" button since we already have an active link */}
-            </div>
-          ) : (
-            <div>
-              <p class="mb-4">
-                No active invite link found. Create one to invite members to
-                this working group.
-              </p>
-              <form method="POST">
-                <button
-                  type="submit"
-                  class="rounded bg-purple-600 px-4 py-2 text-white transition hover:bg-purple-700"
-                >
-                  Generate Invite Link
-                </button>
-              </form>
-            </div>
-          )
-        }
-      </div>
     </div>
   </div>
 </BaseLayout>
 
 <script is:inline>
   // Assign the function to window so it's accessible from the onclick attribute
-  window.copyInviteUrl = function() {
+  window.copyInviteUrl = function () {
     const urlInput = document.getElementById('inviteUrl')
     urlInput.select()
     document.execCommand('copy')
