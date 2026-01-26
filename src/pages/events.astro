@@ -19,7 +19,16 @@ const pastEvents = events.filter(event => event.date.isBefore(now))
 // const upcomingEvents = events.filter(x => x.name.length < 18)
 ---
 
-<Head title="Events" />
+<Head title="Events">
+  <link rel="preload" href="/images/event1.jpg" as="image" />
+  <link rel="preload" href="/images/event2.jpg" as="image" />
+  <link rel="preload" href="/images/event3.jpg" as="image" />
+  <link rel="preload" href="/images/event4.jpg" as="image" />
+  <link rel="preload" href="/images/event5.jpg" as="image" />
+  <link rel="preload" href="/images/event6.jpg" as="image" />
+  <link rel="preload" href="/images/event7.jpg" as="image" />
+  <link rel="preload" href="/images/bkkoss-initiative.jpg" as="image" />
+</Head>
 
 <BaseLayout
   class="relative mt-3 flex flex-col gap-y-16 p-2 lg:mt-8 lg:gap-y-32"

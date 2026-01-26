@@ -12,7 +12,10 @@
       "Bash(pnpm list:*)",
       "Bash(pnpm install:*)",
       "Bash(pnpm add:*)",
-      "Bash(pnpm remove:*)"
+      "Bash(pnpm remove:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(pnpm astro check:*)"
     ],
     "deny": []
   }
