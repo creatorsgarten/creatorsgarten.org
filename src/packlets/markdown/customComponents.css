@@ -1,38 +1,33 @@
 @reference '../layouts/global.css';
 
 .custom-block {
-  @apply my-[1.25em] overflow-hidden border border-[--custom-block-border] bg-[--custom-block-bg] px-3 py-2;
+  @apply my-[1.25em] overflow-hidden rounded-md bg-[var(--custom-block-bg)] px-3 py-2;
   --custom-block-bg: theme(colors.neutral.100);
   --custom-block-title-bg: theme(colors.neutral.200);
   --custom-block-title-text: theme(colors.neutral.500);
-  --custom-block-border: theme(colors.neutral.300);
 }
 .custom-block.info {
   --custom-block-bg: theme(colors.sky.100);
   --custom-block-title-bg: theme(colors.sky.200);
   --custom-block-title-text: theme(colors.sky.600);
-  --custom-block-border: theme(colors.sky.300);
 }
 .custom-block.tip {
   --custom-block-bg: theme(colors.purple.100);
   --custom-block-title-bg: theme(colors.purple.200);
   --custom-block-title-text: theme(colors.purple.600);
-  --custom-block-border: theme(colors.purple.300);
 }
 .custom-block.warning {
   --custom-block-bg: theme(colors.amber.100);
   --custom-block-title-bg: theme(colors.amber.200);
   --custom-block-title-text: theme(colors.amber.600);
-  --custom-block-border: theme(colors.amber.300);
 }
 .custom-block.danger {
   --custom-block-bg: theme(colors.red.100);
   --custom-block-title-bg: theme(colors.red.200);
   --custom-block-title-text: theme(colors.red.600);
-  --custom-block-border: theme(colors.red.300);
 }
 .custom-block > .custom-block-title {
-  @apply -mx-3 -mt-2 mb-0 px-3 pt-2.5 text-sm font-bold text-[--custom-block-title-text];
+  @apply -mx-3 -mt-2 mb-0 px-3 pt-2.5 text-sm font-bold text-[var(--custom-block-title-text)];
 }
 .custom-block > .custom-block-title + p {
   @apply mt-0;

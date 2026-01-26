@@ -209,35 +209,52 @@ const featureFlags = getFeatureFlags(Astro)
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function initMobileMenu() {
       // Mobile menu toggle
       const menuButton = document.getElementById('nav-menu-button')
       const mobileMenu = document.getElementById('nav-mobile-menu')
 
-      menuButton?.addEventListener('click', e => {
+      if (!menuButton || !mobileMenu) return
+
+      // Remove any existing listeners by cloning and replacing
+      const newMenuButton = menuButton.cloneNode(true) as HTMLElement
+      menuButton.parentNode?.replaceChild(newMenuButton, menuButton)
+
+      newMenuButton.addEventListener('click', e => {
         e.stopPropagation()
-        mobileMenu?.classList.toggle('hidden')
-        mobileMenu?.classList.toggle('flex')
+        mobileMenu.classList.toggle('hidden')
+        mobileMenu.classList.toggle('flex')
       })
 
       // Close menu when clicking outside
-      document.addEventListener('click', e => {
+      const handleOutsideClick = (e: MouseEvent) => {
         if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
           const target = e.target as HTMLElement
-          if (!mobileMenu.contains(target) && target !== menuButton) {
+          if (!mobileMenu.contains(target) && target !== newMenuButton) {
             mobileMenu.classList.add('hidden')
             mobileMenu.classList.remove('flex')
           }
         }
-      })
+      }
+      document.addEventListener('click', handleOutsideClick)
 
       // Close menu when clicking a link inside it
-      mobileMenu?.querySelectorAll('a').forEach(link => {
+      mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           mobileMenu.classList.add('hidden')
           mobileMenu.classList.remove('flex')
         })
       })
-    })
+    }
+
+    // Run on initial load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMobileMenu)
+    } else {
+      initMobileMenu()
+    }
+
+    // Run on Astro page transitions
+    document.addEventListener('astro:page-load', initMobileMenu)
   </script>
 </Blank>

@@ -106,7 +106,6 @@ a.internal[data-exists='false'] {
 /* InfoBox component styles - force colors with !important */
 .infobox-container {
   background-color: var(--infobox-bg) !important;
-  border: var(--infobox-border) !important;
 }
 
 .infobox-icon {
