@@ -26,7 +26,7 @@
     "@nanostores/persistent": "1.2.0",
     "@nanostores/react": "1.0.0",
     "@prettier/sync": "^0.6.0",
-    "@sentry/astro": "10.36.0",
+    "@sentry/astro": "10.37.0",
     "@tanstack/react-query": "5.90.20",
     "@trpc/client": "10.45.4",
     "@trpc/server": "10.45.4",
