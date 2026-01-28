@@ -23,7 +23,7 @@
     "@fastify/static": "9.0.0",
     "@lucide/astro": "^0.563.0",
     "@nanostores/logger": "1.0.0",
-    "@nanostores/persistent": "1.2.0",
+    "@nanostores/persistent": "1.2.1",
     "@nanostores/react": "1.0.0",
     "@prettier/sync": "^0.6.0",
     "@sentry/astro": "10.36.0",
