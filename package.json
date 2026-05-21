@@ -56,6 +56,7 @@
     "react-dom": "19.2.6",
     "react-iconify-icon-wrapper": "0.0.3",
     "schema-dts": "^1.1.5",
+    "sharp": "0.34.5",
     "sitemap": "9.0.1",
     "subtitle": "4.2.2",
     "zod": "3.25.76",
