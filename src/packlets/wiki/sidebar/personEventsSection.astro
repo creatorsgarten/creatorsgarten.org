@@ -1,7 +1,7 @@
 ---
 import { getEventInvolvements } from '$staffList'
 import { getEventImageUrl } from '$events'
-import CFImage from '$components/cfImage.astro'
+import Image from '@urami/astro/image'
 
 export interface Props {
   username: string
@@ -28,14 +28,14 @@ const involvements = await getEventInvolvements(Astro.props.username)
                     title={event.event.name}
                     class="block transition-opacity hover:opacity-80"
                   >
-                    <CFImage
+                    <Image
                       src={getEventImageUrl(
                         event.eventId,
                         event.parsedFrontMatter
                       )}
                       alt={event.event.name || event.eventId}
                       width={280}
-                      ratio={1}
+                      height={280}
                       class="aspect-square w-full rounded"
                     />
                   </a>

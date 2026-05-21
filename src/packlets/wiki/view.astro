@@ -1,5 +1,5 @@
 ---
-import CFImage from '$components/cfImage.astro'
+import Image from '@urami/astro/image'
 import Layout from '$layouts/wiki.astro'
 import SidebarContentsSection from './sidebar/contentsSection.astro'
 import SidebarEventSection from './sidebar/eventSection.astro'
@@ -63,18 +63,14 @@ const coverImage =
     {
       !!coverImage && (
         <div class="mb-6 md:mx-0" transition:name={`wiki:section:image`}>
-          <CFImage
+          <Image
             src={coverImage}
             class="aspect-square w-full rounded-md"
             alt="cover image"
-            width={{
-              max: 360,
-            }}
-            ratio={1}
+            width={360}
+            height={360}
             fetchpriority="high"
-            transform={{
-              quality: 85,
-            }}
+            quality={85}
           />
         </div>
       )

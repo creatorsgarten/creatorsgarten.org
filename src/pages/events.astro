@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import BaseLayout from '$layouts/base.astro'
 import EventPoster from '$components/eventPoster.astro'
 import Head from '$commons/head.astro'
-import CFImage from '$components/cfImage.astro'
+import Image from '@urami/astro/image'
 
 import { getEvents } from '$functions/getEvents'
 import { getWebsiteConfig } from '$functions/getWebsiteConfig'
@@ -375,11 +375,11 @@ const pastEvents = events.filter(event => event.date.isBefore(now))
               href={`/event/${event.id}`}
               class="event-item overflow-hidden transition-opacity duration-300"
             >
-              <CFImage
+              <Image
                 src={event.image}
                 alt={event.name}
                 width={300}
-                ratio={1}
+                height={300}
                 class="w-full overflow-hidden rounded-md"
               />
             </a>

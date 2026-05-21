@@ -1,7 +1,7 @@
 ---
 import Head from '$commons/head.astro'
 import Breadcrumb from '$components/breadcrumb.astro'
-import CFImage from '$components/cfImage.astro'
+import Image from '@urami/astro/image'
 import { getEvents } from '$functions/getEvents'
 import BaseLayout from '$layouts/base.astro'
 import dayjs from 'dayjs'
@@ -45,10 +45,10 @@ const selectedEvents = eventIds
                 >
                   <div class="flex h-24 overflow-hidden rounded-md bg-linear-to-br from-neutral-700 to-neutral-800">
                     <div class="aspect-square h-full shrink-0">
-                      <CFImage
+                      <Image
                         src={event.data.image}
                         width={300}
-                        ratio={1}
+                        height={300}
                         alt="cover"
                         class={`h-full w-auto ${
                           dayjs(event.data.endDate ?? event.data.date).isAfter(

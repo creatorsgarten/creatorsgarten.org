@@ -29,41 +29,6 @@ const featureFlags = getFeatureFlags(Astro)
       <Fragment>
         <Announcement />
 
-        {/* <nav class="flex flex-col justify-between px-4 pb-8 pt-6 text-xl sm:flex-row lg:px-8">
-          <div class="flex w-full justify-between">
-            <a href="/" aria-label="back to home" class="flex items-center">
-              <HeaderLogo />
-            </a>
-            <button
-              class="ml-auto text-3xl sm:hidden"
-              onclick="let m=document.getElementById('nav-menu');m.classList.toggle('block');m.classList.toggle('hidden');"
-            >
-              🍔
-            </button>
-          </div>
-          <div
-            id="nav-menu"
-            class="ml-auto hidden w-full items-center pt-6 text-sm font-medium sm:col-span-1 sm:flex sm:w-auto sm:space-x-1 sm:p-0"
-          >
-            <ul
-              class={`mb-2 flex shrink-0 justify-between gap-2 px-3 py-1 text-lg uppercase sm:mb-0 sm:flex sm:space-x-2 md:list-none md:text-base`}
-            >
-              <li>
-                <a href="/wiki/SelfIntroduction">Us</a>
-              </li>
-              <li>
-                <a href="/events">Events</a>
-              </li>
-              <li>
-                <a href="/videos">Videos</a>
-              </li>
-              <li>
-                <a href="/wiki">Wiki</a>
-              </li>
-            </ul>
-            <AuthButton />
-          </div>
-        </nav> */}
         <nav class="relative bg-white p-2 pt-3">
           <div class="flex justify-between gap-1.5 text-sm font-medium sm:text-[16px]">
             <a href="/" class="group flex items-center gap-1.5">
@@ -99,12 +64,6 @@ const featureFlags = getFeatureFlags(Astro)
               >
                 <span>People</span>
               </a>
-              {/* <a
-                href="/wiki/SelfIntroduction"
-                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] h-full transition-colors hover:bg-blue-500 hover:text-white"
-              >
-                <span>About</span>
-              </a> */}
               <a
                 href="/wiki"
                 class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] h-full transition-colors hover:bg-blue-500 hover:text-white"
@@ -160,12 +119,6 @@ const featureFlags = getFeatureFlags(Astro)
               >
                 <span>People</span>
               </a>
-              {/* <a
-                href="/wiki/SelfIntroduction"
-                class="flex items-center rounded-md bg-neutral-100 px-2 pt-[0.35rem] pb-[0.15rem] transition-colors hover:bg-blue-500 hover:text-white"
-              >
-                <span>About</span>
-              </a> */}
 
               <a
                 href="/wiki"
@@ -193,13 +146,6 @@ const featureFlags = getFeatureFlags(Astro)
   <main {...{ class: ' ' + Astro.props.class }}>
     <slot />
   </main>
-
-  <!-- <footer
-    class="mt-16 flex h-40 flex-col-reverse items-start justify-start bg-ck p-4 text-white sm:flex-row sm:items-end sm:justify-between lg:p-8 lg:text-lg"
-  >
-    <div class="mt-4 sm:mt-0">Crafted by 👩‍💻 🧑‍🎨 🧙 🦹‍♀️ & more.</div>
-    <FooterLogo />
-  </footer> -->
 
   <footer
     class="mt-12 flex w-full items-end font-medium justify-between border-t border-black bg-black p-4 pt-16 text-white"

@@ -8,6 +8,7 @@ import node from '@astrojs/node'
 import react from '@astrojs/react'
 import svelte from '@astrojs/svelte'
 import sentry from '@sentry/astro'
+import urami from '@urami/astro'
 
 /* Vite Plugins */
 import tailwindcss from '@tailwindcss/vite'
@@ -123,6 +124,7 @@ export default defineConfig({
     },
   },
   integrations: [
+    urami(),
     react(),
     svelte(),
     sentry({

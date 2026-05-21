@@ -1,5 +1,9 @@
 ---
-import CFImage from './cfImage.astro'
+import { Picture } from 'astro:assets'
+
+import bkkossInitiative from '$assets/guilds/bkkoss-initiative.jpg'
+import showdownSpace from '$assets/guilds/showdown-space.jpg'
+import stupidHackTh from '$assets/guilds/stupidhack-th.jpg'
 
 export interface Props {
   theme?: 'light' | 'dark'
@@ -11,22 +15,27 @@ const guilds = [
   {
     id: 'stupidhack-th',
     name: 'Stupid Hackathon in Thailand',
+    image: stupidHackTh,
   },
   {
     id: 'showdown-space',
     name: 'Showdown Space',
+    image: showdownSpace,
   },
   {
     id: 'showdown-space',
     name: 'Tech Club Circle',
+    image: showdownSpace,
   },
   {
     id: 'bkkoss-initiative',
     name: 'Bangkok Open Source Initiative',
+    image: bkkossInitiative,
   },
   {
     id: 'showdown-space',
     name: 'Creative Coding',
+    image: showdownSpace,
   },
 ]
 ---
@@ -39,15 +48,11 @@ const guilds = [
   {
     guilds.map(guild => (
       <div class="relative aspect-5/3 w-full overflow-hidden rounded-2xl">
-        <CFImage
-          src={`/images/${guild.id}.jpg`}
+        <Picture
+          src={guild.image}
           class="h-full w-full object-cover"
           alt={guild.name}
-          width={{
-            max: 400,
-            sm: 500,
-          }}
-          ratio={5 / 3}
+          width={500}
         />
         <div class="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-black/40 text-center text-lg uppercase">
           <span>{guild.name}</span>

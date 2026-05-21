@@ -1,7 +1,7 @@
 ---
 import Head from '$commons/head.astro'
 import Breadcrumb from '$components/breadcrumb.astro'
-import CFImage from '$components/cfImage.astro'
+import Image from '@urami/astro/image'
 import MainHorizontalPadding from '$components/mainHorizontalPadding.astro'
 import { getSocialPosts } from '$functions/getSocialPosts'
 import BaseLayout from '$layouts/base.astro'
@@ -36,11 +36,11 @@ const { socialPosts } = await getSocialPosts(eventId as string)
                 <div class="flex items-center gap-4">
                   <div class="relative flex-shrink-0">
                     {post.picture ? (
-                      <CFImage
+                      <Image
                         src={post.picture}
                         alt=""
                         width={64}
-                        ratio={1}
+                        height={64}
                         class="h-16 w-16 rounded-lg"
                       />
                     ) : (

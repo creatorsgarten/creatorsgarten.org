@@ -1,8 +1,13 @@
 allowBuilds:
-  '@sentry/cli': set this to true or false
-  esbuild: set this to true or false
-  sharp: set this to true or false
+  '@rayriffy/filesystem': false
+  '@sentry/cli': false
+  esbuild: false
+  sharp: false
 minimumReleaseAgeExclude:
   - astro@6.3.6
+  - '@urami/astro@2.0.0'
+  - '@urami/core@2.0.0'
+  - '@urami/types@2.0.0'
+  - '@urami/utils@2.0.0'
 overrides:
   "@astrojs/check": "0.9.9"

@@ -8,6 +8,7 @@
       "$components/*": ["src/components/*"],
       "$constants/*": ["src/constants/*"],
       "$functions/*": ["src/functions/*"],
+      "$assets/*": ["src/assets/*"],
       "$*": ["src/packlets/*"]
     },
     "jsx": "react-jsx",

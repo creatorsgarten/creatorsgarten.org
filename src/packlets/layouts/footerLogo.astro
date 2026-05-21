@@ -1,21 +1,26 @@
 ---
+import { Picture } from 'astro:assets'
 import { isUwu } from './isUwu'
+
+import uwugarten from '$assets/logo/uwugarten.png'
+import creatorsgarten from '$assets/logo/creatorsgarten.svg'
 
 const uwu = isUwu(Astro.url.searchParams)
 ---
 
 {
   uwu ? (
-    <img
-      src="/images/uwugarten.png"
-      alt=""
+    <Picture
+      src={uwugarten}
+      formats={['avif', 'webp', 'png']}
+      alt="Uwugarten"
       loading="lazy"
       class="h-16 shrink-0 lg:h-24"
     />
   ) : (
     <img
-      src="/images/creatorsgarten.svg"
-      alt=""
+      src={creatorsgarten.src}
+      alt="Creatorsgarten"
       loading="lazy"
       class="h-8 shrink-0 lg:h-12"
       style="filter: invert(1);"

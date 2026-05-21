@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'react-iconify-icon-wrapper'
 
-import CFImage from './cfImage.astro'
+import Image from '@urami/astro/image'
 
 import { stringifyDate } from '$functions/stringifyDate'
 
@@ -16,13 +16,10 @@ const { event } = Astro.props
 
 <div class="flex space-x-4 space-y-0 sm:space-x-6">
   <a href={`/event/${event.id}`} class="shrink-0" aria-label={event.name}>
-    <CFImage
+    <Image
       src={event.image}
-      width={{
-        max: 600,
-        sm: 256,
-      }}
-      ratio={1}
+      width={600}
+      height={600}
       alt={event.name}
       class="w-32 border border-black sm:w-64"
     />

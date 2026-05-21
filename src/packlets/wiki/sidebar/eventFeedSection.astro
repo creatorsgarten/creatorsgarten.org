@@ -1,5 +1,5 @@
 ---
-import CFImage from '$components/cfImage.astro'
+import Image from '@urami/astro/image'
 import { getSocialPosts } from '$functions/getSocialPosts'
 import SidebarSection from './section.astro'
 
@@ -22,11 +22,11 @@ const postsWithImages = socialPosts.filter(post => post.picture)
                 href={`/feed/${Astro.props.eventId}#${post.id}`}
                 title={post.title}
               >
-                <CFImage
+                <Image
                   src={post.picture!}
                   alt={post.title}
                   width={48}
-                  ratio={1}
+                  height={48}
                   class="h-12 w-12 rounded-sm border border-gray-200"
                 />
               </a>

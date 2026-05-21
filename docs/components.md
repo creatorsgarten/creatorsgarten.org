@@ -3,7 +3,6 @@
 The project uses a mix of Astro components and React components. Here's how they're organized:
 
 ## Core Components
-- [src/components/cfImage.astro](../src/components/cfImage.astro) - Cloudflare Image component
 - [src/components/breadcrumb.astro](../src/components/breadcrumb.astro) - Navigation breadcrumbs
 - [src/components/mainHorizontalPadding.astro](../src/components/mainHorizontalPadding.astro) - Layout padding component
 
