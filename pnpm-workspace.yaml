@@ -1,0 +1,8 @@
+allowBuilds:
+  '@sentry/cli': set this to true or false
+  esbuild: set this to true or false
+  sharp: set this to true or false
+minimumReleaseAgeExclude:
+  - astro@6.3.6
+overrides:
+  "@astrojs/check": "0.9.9"
