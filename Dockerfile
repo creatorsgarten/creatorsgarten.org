@@ -36,4 +36,4 @@ COPY --chown=nonroot:nonroot --from=deps-prod /app/node_modules ./node_modules
 COPY --chown=nonroot:nonroot --from=builder /app/dist ./dist
 COPY server.mjs ./
 
-CMD ["./server.mjs"]
+CMD ["node", "./server.mjs"]
