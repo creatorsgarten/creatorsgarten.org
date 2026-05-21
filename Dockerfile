@@ -22,7 +22,7 @@ RUN pnpm astro sync && pnpm build
 
 # ? -------------------------
 
-FROM gcr.io/distroless/nodejs22-debian12:nonroot as runner
+FROM node:24-alpine as runner
 
 USER nonroot
 EXPOSE 8080
