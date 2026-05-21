@@ -21,7 +21,6 @@ export const GET: APIRoute = async ({ params, locals }) => {
     if (pictureUrl && isValidImageUrl(pictureUrl)) {
       const optimizedPictureUrl = getOptimizedImageUrl(pictureUrl, {
         width: 192,
-        height: 192,
         format: 'webp',
       })
       // Redirect to the picture URL
