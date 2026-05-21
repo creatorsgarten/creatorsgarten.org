@@ -33,8 +33,8 @@ importers:
         specifier: 9.1.3
         version: 9.1.3
       '@lucide/astro':
-        specifier: ^0.563.0
-        version: 0.563.0(astro@6.3.6(@types/node@25.9.1)(ioredis@5.10.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(yaml@2.9.0))
+        specifier: ^0.577.0
+        version: 0.577.0(astro@6.3.6(@types/node@25.9.1)(ioredis@5.10.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(yaml@2.9.0))
       '@nanostores/logger':
         specifier: 1.1.0
         version: 1.1.0(nanostores@1.3.0)
@@ -931,8 +931,8 @@ packages:
     resolution: {integrity: sha512-e9W1faN32A1Wy5726qtorAvPu1Xffh75ngfQQtETQ0hIN/FQtK0RcBTz/OH/vwDvLX8zrzdu0sWq/KoSHDYfVw==}
     engines: {node: '>= 14'}
 
-  '@lucide/astro@0.563.0':
-    resolution: {integrity: sha512-X9fNJvRR6pLJfkIEAFQkizWaNVvcduunJoFyR3fwPu30Y6jOu5S9k4k7HTSk3ZrEfqK2eFEqrBqqWH4fwSNKCg==}
+  '@lucide/astro@0.577.0':
+    resolution: {integrity: sha512-xZcdx+MyYXY74cBzFxr9N49SlofbGjCVD9GxJZcJA40PJvJSLWSeJpD9bgKFcZfFxf1QXkEYaR6BnCS+0lek8Q==}
     peerDependencies:
       astro: ^4 || ^5
 
@@ -5625,7 +5625,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@lucide/astro@0.563.0(astro@6.3.6(@types/node@25.9.1)(ioredis@5.10.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(yaml@2.9.0))':
+  '@lucide/astro@0.577.0(astro@6.3.6(@types/node@25.9.1)(ioredis@5.10.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(yaml@2.9.0))':
     dependencies:
       astro: 6.3.6(@types/node@25.9.1)(ioredis@5.10.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(yaml@2.9.0)
 
