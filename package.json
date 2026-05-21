@@ -84,7 +84,7 @@
     "dotenv": "17.4.2",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-svelte": "3.5.2",
-    "prettier-plugin-tailwindcss": "0.7.2",
+    "prettier-plugin-tailwindcss": "0.8.0",
     "svelte": "5.55.8",
     "tailwindcss": "4.3.0",
     "typescript": "5.8.3",
