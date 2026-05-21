@@ -124,7 +124,9 @@ export default defineConfig({
     },
   },
   integrations: [
-    urami(),
+    urami({
+      allowedDomains: ['creatorsgarten.org'],
+    }),
     react(),
     svelte(),
     sentry({
