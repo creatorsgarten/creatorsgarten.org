@@ -5,8 +5,8 @@ allowBuilds:
   sharp: false
 minimumReleaseAgeExclude:
   - astro@6.3.6
-  - '@urami/astro@2.0.0'
-  - '@urami/core@2.0.0'
+  - '@urami/astro@2.0.1'
+  - '@urami/core@2.0.1'
   - '@urami/types@2.0.0'
   - '@urami/utils@2.0.0'
 overrides:
