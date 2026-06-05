@@ -42,6 +42,8 @@ export const GET: APIRoute = async ({ locals, request }) => {
   }
 
   const url = `https://api.rayriffy.com/walletPasses/garten/apple?${new URLSearchParams(payload).toString()}`
+  console.log(url)
+
   const verifyToken = await getServiceAccountIdToken(
     'https://github.com/rayriffy/api',
     RIFFY_API_CREDENTIALS
