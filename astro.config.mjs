@@ -139,6 +139,12 @@ export default defineConfig({
   ],
   security: {
     checkOrigin: false,
+    allowedDomains: [
+      {
+        hostname: 'creatorsgarten.org',
+        protocol: 'https'
+      }
+    ],
   },
   vite: {
     plugins: [tailwindcss()],
