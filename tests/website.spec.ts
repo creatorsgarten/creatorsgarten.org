@@ -2,13 +2,16 @@ import { expect, test } from '@playwright/test'
 
 test('Homepage works', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByText('creative technologists')).toBeVisible()
+  await expect(
+    page.getByRole('heading', { name: 'Where ideas come to life' })
+  ).toBeVisible()
 })
 
 test('Can go to events page', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('link', { name: 'Events' }).first().click()
-  await expect(page.getByRole('heading', { name: 'Past Events' })).toBeVisible()
+  await expect(page).toHaveURL(/\/events$/)
+  await expect(page.getByText('Series')).toBeVisible()
 })
 
 test('Events page can navigate into an event', async ({ page }) => {
