@@ -1,7 +1,7 @@
 import { parseFrontMatter, type FrontMatter } from '$functions/parseFrontMatter'
 import type { ContentsgartenOutput } from '$types/ContentsgartenOutput'
 import type { AstroGlobal } from 'astro'
-import { fromZodError, type ValidationError } from 'zod-validation-error'
+import { fromZodError, type ValidationError } from 'zod-validation-error/v3'
 import { formatPageRef } from './formatPageRef'
 import { getContentHash, getMarkdownFromSlug } from './getMarkdownFromSlug'
 import { getWikiDescription } from './getWikiDescription'
