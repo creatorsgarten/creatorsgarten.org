@@ -11,7 +11,7 @@ test('Can go to events page', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('link', { name: 'Events' }).first().click()
   await expect(page).toHaveURL(/\/events$/)
-  await expect(page.getByText('Series')).toBeVisible()
+  await expect(page.getByText('Series', { exact: true })).toBeVisible()
 })
 
 test('Events page can navigate into an event', async ({ page }) => {
