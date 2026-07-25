@@ -1,4 +1,11 @@
-import type { inferRouterOutputs } from '@trpc/server'
-import type { ContentsgartenRouter } from 'contentsgarten'
+import type { contentsgarten } from '$constants/contentsgarten'
 
-export type ContentsgartenOutput = inferRouterOutputs<ContentsgartenRouter>
+type Client = ReturnType<typeof contentsgarten>
+
+export interface ContentsgartenOutput {
+  search: Awaited<ReturnType<Client['search']['query']>>
+  view: Awaited<ReturnType<Client['view']['query']>>
+  getContributors: Awaited<ReturnType<Client['getContributors']['query']>>
+  getEditPermission: Awaited<ReturnType<Client['getEditPermission']['query']>>
+  save: Awaited<ReturnType<Client['save']['mutate']>>
+}
