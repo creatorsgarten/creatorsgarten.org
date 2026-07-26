@@ -41,7 +41,7 @@
     "google-auth-library": "10.6.2",
     "gray-matter": "^4.0.3",
     "interactjs": "^1.10.27",
-    "jose": "6.2.3",
+    "jose": "6.2.4",
     "js-yaml": "^4.1.0",
     "jsonwebtoken": "9.0.3",
     "lodash": "4.18.1",
