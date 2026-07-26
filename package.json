@@ -27,7 +27,7 @@
     "@nanostores/react": "1.1.0",
     "@prettier/sync": "^0.6.0",
     "@sentry/astro": "10.53.1",
-    "@tanstack/react-query": "5.100.11",
+    "@tanstack/react-query": "5.101.4",
     "@trpc/client": "10.45.4",
     "@trpc/server": "10.45.4",
     "@urami/astro": "2.0.1",
