@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro'
 import { RIFFY_API_CREDENTIALS } from 'astro:env/server'
 
 import { getEvents } from '$functions/getEvents.ts'
-import { getServiceAccountIdToken } from '$backend/gardenGate/getServiceAccountIdToken.ts'
+import { getServiceAccountIdToken } from '$functions/getServiceAccountIdToken'
 
 export const GET: APIRoute = async ({ locals, request }) => {
   const eventId = new URL(request.url).searchParams.get('event')

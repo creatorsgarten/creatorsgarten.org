@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from 'vitest'
 
+import { usernameRequiredMessage } from '$constants/oauth'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import { mintIdToken, usernameRequiredMessage } from './mintIdToken'
+import { mintIdToken } from './mintIdToken'
 
 vi.mock('astro:env/server', () => ({
   JWT_PRIVATE_KEY: `-----BEGIN PRIVATE KEY-----
@@ -92,8 +93,6 @@ describe('mintIdToken', () => {
         'openid',
         'username',
       ])
-    ).rejects.toThrow(
-      usernameRequiredMessage
-    )
+    ).rejects.toThrow(usernameRequiredMessage)
   })
 })

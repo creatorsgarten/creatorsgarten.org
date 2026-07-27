@@ -3,7 +3,7 @@ import { G0_HOSTNAME, G0_CREDENTIALS } from 'astro:env/server'
 
 import { collections } from '$constants/mongo'
 
-import { getServiceAccountIdToken } from './getServiceAccountIdToken'
+import { getServiceAccountIdToken } from '$functions/getServiceAccountIdToken'
 import { notify } from './notify'
 
 interface PullResponse {

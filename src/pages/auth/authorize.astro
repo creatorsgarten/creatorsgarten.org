@@ -1,9 +1,12 @@
 ---
 import { IdTokenInspector } from '$components/idTokenInspector'
-import { isSensitiveScope, oauthClients } from '$constants/oauth'
+import {
+  isSensitiveScope,
+  oauthClients,
+  usernameRequiredMessage,
+} from '$constants/oauth'
 import { errorPage } from '$functions/errorPage'
 import { backendErrorMessage } from '$functions/getBackend'
-import { usernameRequiredMessage } from '$backend/auth/mintIdToken'
 import Blank from '$layouts/blank.astro'
 
 import type { OAuthClientConfig } from '$constants/oauth'
