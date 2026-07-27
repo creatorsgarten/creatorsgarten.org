@@ -1,11 +1,11 @@
 import { ObjectId } from 'mongodb'
 import { collections } from '$constants/mongo'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import { TRPCError } from '@trpc/server'
+import { ApiError } from '../apiError'
 
 export async function getJoinedEvents(user: AuthenticatedUser | null) {
   if (!user) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'UNAUTHORIZED',
       message: 'You must be logged in.',
     })

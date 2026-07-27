@@ -59,7 +59,7 @@ describe('backend Elysia app', () => {
     })
   })
 
-  it('events.getJoinedEvents: TRPCError thrown by a service function still maps to 401 via onError', async () => {
+  it('events.getJoinedEvents: ApiError thrown by a service function still maps to 401 via onError', async () => {
     const { data, error } = await client.events.getJoinedEvents.get()
     expect(data).toBeNull()
     expect(error?.status).toBe(401)

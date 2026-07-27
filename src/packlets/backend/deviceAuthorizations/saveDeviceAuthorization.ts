@@ -1,6 +1,6 @@
 import { collections } from '$constants/mongo'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
-import { TRPCError } from '@trpc/server'
+import { ApiError } from '../apiError'
 
 export async function saveDeviceAuthorization(
   user: AuthenticatedUser | null,
@@ -8,7 +8,7 @@ export async function saveDeviceAuthorization(
   signature: string
 ) {
   if (!user) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'UNAUTHORIZED',
       message: 'User is not authenticated',
     })
@@ -16,7 +16,7 @@ export async function saveDeviceAuthorization(
 
   const userDoc = await collections.users.findOne({ uid: user.uid })
   if (!userDoc) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'INTERNAL_SERVER_ERROR',
       message: 'User not found in database. This should not happen.',
     })

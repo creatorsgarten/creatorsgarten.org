@@ -29,8 +29,6 @@
     "@prettier/sync": "^0.6.0",
     "@sentry/astro": "10.53.1",
     "@tanstack/react-query": "5.101.4",
-    "@trpc/client": "10.45.4",
-    "@trpc/server": "10.45.4",
     "@urami/astro": "2.0.1",
     "clsx": "2.1.1",
     "csrf": "3.1.0",
