@@ -1,12 +1,10 @@
 import type { APIRoute } from 'astro'
 
 export const GET: APIRoute = async ({ locals }) => {
-  return new Response(
-    JSON.stringify(await locals.backend.gardenGate.createAccessQrCode.mutate()),
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  )
+  const { data } = await locals.backend.gardenGate.createAccessQrCode.post()
+  return new Response(JSON.stringify(data), {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
 }

@@ -9,9 +9,11 @@ const { backend, user } = Astro.locals
 if (!user) return Astro.redirect('/')
 
 // Get data for badges/indicators
-const joinedEvents = await backend.events.getJoinedEvents.query()
-const { granted: hasGardenZeroAccess } =
-  await backend.gardenGate.checkAccess.query()
+const { data: joinedEvents } = await backend.events.getJoinedEvents.get()
+const { data: gardenZeroAccess } = await backend.gardenGate.checkAccess.get()
+const { granted: hasGardenZeroAccess } = gardenZeroAccess ?? {
+  granted: false,
+}
 
 // Get services from website config
 const websiteConfig = await getWebsiteConfig()
@@ -46,7 +48,7 @@ const services = websiteConfig?.integrations.services ?? []
       description="View your event tickets from Eventpop"
       icon="heroicons:ticket"
       href="/dashboard/tickets"
-      badge={joinedEvents.length || undefined}
+      badge={joinedEvents?.length || undefined}
     />
 
     {

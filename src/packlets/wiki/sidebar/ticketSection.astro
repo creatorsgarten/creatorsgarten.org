@@ -7,8 +7,10 @@ export interface Props {
 }
 
 const ticket = await Astro.locals.backend.events.getJoinedEvents
-  .query()
-  .then(events => events.find(e => e.id === Astro.props.eventpopId))
+  .get()
+  .then(({ data: events }) =>
+    events?.find(e => e.id === Astro.props.eventpopId)
+  )
 ---
 
 <SidebarSection title="Ticket">

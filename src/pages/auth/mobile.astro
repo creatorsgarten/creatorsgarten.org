@@ -1,5 +1,6 @@
 ---
 import Head from '$commons/head.astro'
+import { backendErrorMessage } from '$functions/getBackend'
 import BaseLayout from '$layouts/base.astro'
 
 const { user } = Astro.locals
@@ -20,19 +21,26 @@ if (Astro.request.method === 'POST') {
   if (!providedSignature) {
     throw new Error('Missing signature')
   }
-  await Astro.locals.backend.deviceAuthorizations.saveDeviceAuthorization.mutate(
-    {
-      deviceId,
-      signature: providedSignature,
-    }
-  )
+  const { error: saveError } =
+    await Astro.locals.backend.deviceAuthorizations.saveDeviceAuthorization.post(
+      {
+        deviceId,
+        signature: providedSignature,
+      }
+    )
+  if (saveError) throw new Error(backendErrorMessage(saveError, 'Save failed'))
   return Astro.redirect('/dashboard')
 }
 
-const { signature } =
-  await Astro.locals.backend.signatures.createSignature.mutate({
+const { data: signatureData, error: signatureError } =
+  await Astro.locals.backend.signatures.createSignature.post({
     message: authorizationMessage,
   })
+if (signatureError)
+  throw new Error(
+    backendErrorMessage(signatureError, 'User is not authenticated')
+  )
+const { signature } = signatureData
 ---
 
 <Head title="Device Authorization" />
@@ -48,11 +56,11 @@ const { signature } =
         <table class="w-full [&_td]:[vertical-align:top]">
           <tbody>
             <tr>
-              <td class="whitespace-nowrap p-2 font-medium">Your account</td>
+              <td class="p-2 font-medium whitespace-nowrap">Your account</td>
               <td class="p-2">{user.name}</td>
             </tr>
             <tr>
-              <td class="whitespace-nowrap p-2 font-medium">Device code</td>
+              <td class="p-2 font-medium whitespace-nowrap">Device code</td>
               <td class="p-2">
                 {deviceCode}
                 <div class="text-sm text-gray-500">

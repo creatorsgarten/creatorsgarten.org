@@ -2,6 +2,7 @@
 import Head from '$commons/head.astro'
 import Breadcrumb from '$components/breadcrumb.astro'
 import { contentsgarten } from '$constants/contentsgarten'
+import { backendErrorMessage } from '$functions/getBackend'
 import BaseLayout from '$layouts/base.astro'
 import { Icon } from 'react-iconify-icon-wrapper'
 
@@ -27,43 +28,47 @@ const user = Astro.locals.user
 
 // Fetch the working group by name
 let groupData: Awaited<
-  ReturnType<typeof backend.workingGroups.getWorkingGroup.query>
-> | null = null
+  ReturnType<typeof backend.workingGroups.getWorkingGroup.get>
+>['data'] = null
 let wikiPageExists = false
 let error: string | null = null
 
-try {
+{
   // Get all group information in a single call with role-based data
-  groupData = await backend.workingGroups.getWorkingGroup.query({
-    name: groupName,
+  const result = await backend.workingGroups.getWorkingGroup.get({
+    query: { name: groupName },
   })
 
-  // If group doesn't exist, check if the wiki page exists
-  if (!groupData) {
-    wikiPageExists = await contentsgarten()
-      .view.query({
-        pageRef: `WorkingGroups/${groupName}`,
-      })
-      .then(r => !!r.file?.revision)
-  }
-} catch (e) {
-  console.error('Error fetching working group:', e)
-  error = e instanceof Error ? e.message : 'Unknown error'
+  if (result.error) {
+    console.error('Error fetching working group:', result.error)
+    error = backendErrorMessage(result.error, 'Unknown error')
 
-  // Handle JSON error response
-  if (asJson) {
-    return new Response(
-      JSON.stringify({
-        error: 'An error occurred',
-        message: error,
-      }),
-      {
-        status: 500,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    // Handle JSON error response
+    if (asJson) {
+      return new Response(
+        JSON.stringify({
+          error: 'An error occurred',
+          message: error,
+        }),
+        {
+          status: 500,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+    }
+  } else {
+    groupData = result.data
+
+    // If group doesn't exist, check if the wiki page exists
+    if (!groupData) {
+      wikiPageExists = await contentsgarten()
+        .view.query({
+          pageRef: `WorkingGroups/${groupName}`,
+        })
+        .then(r => !!r.file?.revision)
+    }
   }
 }
 
@@ -74,22 +79,23 @@ let isCreating = false
 if (Astro.request.method === 'POST') {
   isCreating = true
 
-  try {
-    // Ensure user is authenticated
-    if (!user) {
-      createError = 'You must be logged in to create a working group'
-    } else if (!wikiPageExists) {
-      createError =
-        'A corresponding Wiki page must exist before creating this working group'
+  // Ensure user is authenticated
+  if (!user) {
+    createError = 'You must be logged in to create a working group'
+  } else if (!wikiPageExists) {
+    createError =
+      'A corresponding Wiki page must exist before creating this working group'
+  } else {
+    // Create the working group
+    const result = await backend.workingGroups.create.post({
+      name: groupName,
+    })
+    if (result.error) {
+      console.error('Error creating working group:', result.error)
+      createError = backendErrorMessage(result.error, 'Unknown error')
     } else {
-      // Create the working group
-      groupData = await backend.workingGroups.create.mutate({
-        name: groupName,
-      })
+      groupData = result.data
     }
-  } catch (e) {
-    console.error('Error creating working group:', e)
-    createError = e instanceof Error ? e.message : 'Unknown error'
   }
 
   isCreating = false

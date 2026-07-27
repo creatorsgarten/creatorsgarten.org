@@ -4,6 +4,7 @@ import { UsernameFormWrapper } from '$components/auth/usernameForm'
 import Breadcrumb from '$components/breadcrumb.astro'
 import { Connections } from '$components/connections'
 import UserCard from '$dashboard/userCard.astro'
+import { backendErrorMessage } from '$functions/getBackend'
 import BaseLayout from '$layouts/base.astro'
 import { Icon } from 'react-iconify-icon-wrapper'
 import ProfileEditor from '$components/dashboard/profiles/profileEditor.astro'
@@ -27,9 +28,16 @@ if (Astro.request.method === 'POST') {
     const username = formData.get('username')
 
     if (typeof username === 'string') {
-      const result = await Astro.locals.backend.auth.reserveUsername.mutate({
-        username,
-      })
+      const { data: result, error } =
+        await Astro.locals.backend.auth.reserveUsername.post({
+          username,
+        })
+
+      if (error) {
+        throw new Error(
+          backendErrorMessage(error, 'Failed to reserve username')
+        )
+      }
 
       // Refresh cookies with new token
       if (result.idToken) {
@@ -89,8 +97,8 @@ const usernameSuccess = urlSuccess === 'true'
     )
   }
 
-  <div class="mx-auto max-w-2xl lg:max-w-7xl space-y-6">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  <div class="mx-auto max-w-2xl space-y-6 lg:max-w-7xl">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
       <!-- Left column (1/2) -->
       <div class="space-y-6">
         <div class="rounded-2xl border border-neutral-300 bg-white p-6">
@@ -154,8 +162,8 @@ const usernameSuccess = urlSuccess === 'true'
         <div class="rounded-2xl border border-neutral-300 bg-white p-6">
           {
             user.username ? (
-              <ProfileEditor 
-                username={user.username} 
+              <ProfileEditor
+                username={user.username}
                 success={profileSuccess}
                 error={profileError}
               />
@@ -173,12 +181,13 @@ const usernameSuccess = urlSuccess === 'true'
 
       <!-- Right column (1/2) -->
       <div>
-        <div class="rounded-2xl border border-neutral-300 bg-white p-6 h-full">
+        <div class="h-full rounded-2xl border border-neutral-300 bg-white p-6">
           <h2 class="mb-4 text-lg font-medium">Connections</h2>
           <p class="mb-6 text-neutral-700">
-            Connect your accounts to access additional features and services. When
-            you join a working group, these connections help group leads know which
-            usernames to use when inviting you to repositories or services.
+            Connect your accounts to access additional features and services.
+            When you join a working group, these connections help group leads
+            know which usernames to use when inviting you to repositories or
+            services.
           </p>
           <Connections connections={user.connections} />
         </div>
@@ -186,5 +195,3 @@ const usernameSuccess = urlSuccess === 'true'
     </div>
   </div>
 </BaseLayout>
-
-

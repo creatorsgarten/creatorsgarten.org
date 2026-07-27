@@ -8,9 +8,10 @@ export interface Props {
 }
 const { name } = Astro.props
 
-const info = await Astro.locals.backend.workingGroups.getWorkingGroup.query({
-  name,
-})
+const { data: info } =
+  await Astro.locals.backend.workingGroups.getWorkingGroup.get({
+    query: { name },
+  })
 
 const publicMembers = info?.publicWorkingGroupInformation.publicMemberList || []
 ---
