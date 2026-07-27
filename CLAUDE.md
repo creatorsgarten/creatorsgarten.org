@@ -10,10 +10,10 @@ Refer to the [README.md](./README.md) for project overview, quick start commands
 
 **Packlets System**: This codebase uses a modular packlets architecture in `src/packlets/`:
 - `backend/` - ONLY this packlet can access MongoDB and secrets. Frontend code MUST NOT import from here.
-- All frontend-backend communication MUST go through tRPC via `Astro.locals.backend`
+- All frontend-backend communication MUST go through the Elysia/Eden treaty client via `Astro.locals.backend`
 - Cross-packlet dependencies should be minimized
 
-**Security Boundaries**: Never directly access database or secrets from frontend code. Use the tRPC interface exclusively.
+**Security Boundaries**: Never directly access database or secrets from frontend code. Use the `Astro.locals.backend` Eden client exclusively.
 
 **Development Patterns**:
 - Check existing patterns and libraries before adding new dependencies

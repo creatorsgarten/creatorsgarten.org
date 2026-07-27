@@ -1,4 +1,4 @@
-import { TRPCError } from '@trpc/server'
+import { ApiError } from '../apiError'
 import { z } from 'zod'
 import _ from 'lodash'
 import { G0_HOSTNAME, G0_CREDENTIALS } from 'astro:env/server'
@@ -19,14 +19,14 @@ type GardenZeroResponse = z.infer<typeof GardenZeroResponse>
 
 export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
   if (!user) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'UNAUTHORIZED',
       message: 'You must be logged in.',
     })
   }
 
   if (!(await checkAccess(user)).granted) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'FORBIDDEN',
       message: 'You do not have permission.',
     })
@@ -34,7 +34,7 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
 
   const userDoc = await collections.users.findOne({ uid: user.uid })
   if (!userDoc) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'INTERNAL_SERVER_ERROR',
       message: 'User not found in database. This should not happen.',
     })
@@ -106,14 +106,14 @@ export const createAccessQrCode = async (user: AuthenticatedUser | null) => {
 
     return gardenZeroResponse
   } catch (e) {
-    if (e instanceof TRPCError) throw e
+    if (e instanceof ApiError) throw e
     else if (e instanceof Error)
-      throw new TRPCError({
+      throw new ApiError({
         code: 'INTERNAL_SERVER_ERROR',
         message: e.message ?? '',
       })
     else
-      throw new TRPCError({
+      throw new ApiError({
         code: 'INTERNAL_SERVER_ERROR',
         message: 'server-offline',
       })

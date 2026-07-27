@@ -1,4 +1,4 @@
-import { TRPCError } from '@trpc/server'
+import { ApiError } from '../apiError'
 import crypto from 'crypto'
 import { ObjectId, type WithId } from 'mongodb'
 import { z } from 'zod'
@@ -204,7 +204,7 @@ async function addMemberToWorkingGroup(
   })
 
   if (existingMember) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'CONFLICT',
       message: 'User is already a member of this group',
     })
@@ -243,7 +243,7 @@ export async function createWorkingGroup(
     name: normalizedName,
   })
   if (existing) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'CONFLICT',
       message: 'A working group with this name already exists',
     })
@@ -260,7 +260,7 @@ export async function createWorkingGroup(
 
   const result = await collections.workingGroups.insertOne(group)
   if (!result.acknowledged) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'INTERNAL_SERVER_ERROR',
       message: 'Failed to create working group',
     })
@@ -312,7 +312,7 @@ export async function createInviteLink(name: string, user: AuthenticatedUser) {
   const groupData = await getWorkingGroupWithDetails(name, user)
 
   if (!groupData) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'NOT_FOUND',
       message: 'Working group not found',
     })
@@ -320,7 +320,7 @@ export async function createInviteLink(name: string, user: AuthenticatedUser) {
 
   // Check if user is an admin
   if (!groupData.isCurrentUserAdmin) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'FORBIDDEN',
       message: 'Only admins can create invite links',
     })
@@ -495,14 +495,14 @@ export async function joinWorkingGroup(
   // Handle errors
   if (!joinabilityResult.canJoin) {
     if (joinabilityResult.errorMessage) {
-      throw new TRPCError({
+      throw new ApiError({
         code: joinabilityResult.userIsAlreadyMember
           ? 'CONFLICT'
           : 'BAD_REQUEST',
         message: joinabilityResult.errorMessage,
       })
     } else {
-      throw new TRPCError({
+      throw new ApiError({
         code: 'BAD_REQUEST',
         message: 'Unable to join the working group',
       })

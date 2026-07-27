@@ -1,5 +1,5 @@
 import { collections } from '$constants/mongo'
-import { TRPCError } from '@trpc/server'
+import { ApiError } from '../apiError'
 import { ObjectId } from 'mongodb'
 import { generateMessageHash } from '../signatures/generateSignature'
 import { verifySignature } from '../signatures/verifySignature'
@@ -11,7 +11,7 @@ export async function authenticateDeviceAuthorizationSignature(
 ) {
   const result = await verifySignature(signature)
   if (!result.verified) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'UNAUTHORIZED',
       message: 'Signature is not verified',
     })
@@ -20,14 +20,14 @@ export async function authenticateDeviceAuthorizationSignature(
   const expectedMessage = `mobileAuthorize:${deviceId}`
   const expectedMessageHash = generateMessageHash(expectedMessage)
   if (result.messageHash !== expectedMessageHash) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'UNAUTHORIZED',
       message: 'Signature is not for mobile authorization',
     })
   }
 
   if (Date.parse(result.timestamp) < Date.now() - 15 * 60e3) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'UNAUTHORIZED',
       message: 'Signature is expired',
     })
@@ -36,7 +36,7 @@ export async function authenticateDeviceAuthorizationSignature(
   const userId = result.userId
   const user = await collections.users.findOne({ _id: new ObjectId(userId) })
   if (!user) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'INTERNAL_SERVER_ERROR',
       message: 'User not found in database. This should not happen.',
     })

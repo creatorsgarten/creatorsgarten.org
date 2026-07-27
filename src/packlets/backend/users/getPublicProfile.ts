@@ -5,7 +5,7 @@ import {
   type FrontMatter,
 } from '$functions/parseFrontMatter'
 import type { User } from '$types/mongo/User'
-import { TRPCError } from '@trpc/server'
+import { ApiError } from '../apiError'
 import { ObjectId, type WithId } from 'mongodb'
 
 /**
@@ -102,18 +102,22 @@ function normalizeUsername(username: string): string {
 /**
  * Resolve usernames to user IDs
  */
-async function resolveUserIdsFromUsernames(usernames: string[]): Promise<{ id: string; username: string }[]> {
+async function resolveUserIdsFromUsernames(
+  usernames: string[]
+): Promise<{ id: string; username: string }[]> {
   if (!usernames.length) return []
-  
+
   // Normalize usernames (strip @ and convert to lowercase)
   const normalizedUsernames = usernames.map(normalizeUsername)
-  
+
   // Find users by usernames
-  const users = await collections.users.find(
-    { username: { $in: normalizedUsernames } },
-    { projection: { _id: 1, username: 1 } }
-  ).toArray()
-  
+  const users = await collections.users
+    .find(
+      { username: { $in: normalizedUsernames } },
+      { projection: { _id: 1, username: 1 } }
+    )
+    .toArray()
+
   // Map to id and username pairs
   return users.map(user => ({
     id: user._id.toString(),
@@ -124,47 +128,52 @@ async function resolveUserIdsFromUsernames(usernames: string[]): Promise<{ id: s
 /**
  * Get public profiles for multiple users by their IDs or usernames
  */
-export async function getPublicProfiles(userIdentifiers: string[]): Promise<PublicProfile[]> {
+export async function getPublicProfiles(
+  userIdentifiers: string[]
+): Promise<PublicProfile[]> {
   if (!userIdentifiers.length) return []
-  
+
   // Separate IDs and usernames
   const objectIdCandidates: string[] = []
   const usernameCandidates: string[] = []
-  
+
   userIdentifiers.forEach(identifier => {
     if (identifier.startsWith('@')) {
       usernameCandidates.push(identifier)
     } else if (ObjectId.isValid(identifier)) {
       objectIdCandidates.push(identifier)
     } else {
-      throw new TRPCError({
+      throw new ApiError({
         code: 'BAD_REQUEST',
         message: `Invalid identifier format: ${identifier}. Must be a valid ObjectId or username with @ prefix.`,
       })
     }
   })
-  
+
   // Resolve usernames to IDs
-  const resolvedFromUsernames = await resolveUserIdsFromUsernames(usernameCandidates)
-  
+  const resolvedFromUsernames =
+    await resolveUserIdsFromUsernames(usernameCandidates)
+
   // Combine all ObjectIds
   const allIds = [
     ...objectIdCandidates,
-    ...resolvedFromUsernames.map(item => item.id)
+    ...resolvedFromUsernames.map(item => item.id),
   ]
-  
+
   // If no valid IDs after resolution, return empty array
   if (!allIds.length) return []
-  
+
   // Convert string IDs to ObjectIds
   const objectIds = allIds.map(id => new ObjectId(id))
-  
+
   // Find all users in a single query
-  const users = await collections.users.find(
-    { _id: { $in: objectIds } },
-    { projection: { _id: 1, username: 1, avatar: 1 } }
-  ).toArray()
-  
+  const users = await collections.users
+    .find(
+      { _id: { $in: objectIds } },
+      { projection: { _id: 1, username: 1, avatar: 1 } }
+    )
+    .toArray()
+
   // Use the batch function to resolve profiles
   return resolvePublicProfiles(users)
 }
@@ -177,7 +186,7 @@ export async function getPublicProfile({
   username?: string
 }): Promise<PublicProfile> {
   if (!userId && !username) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'BAD_REQUEST',
       message: 'Either userId or username must be provided',
     })
@@ -187,7 +196,7 @@ export async function getPublicProfile({
 
   if (userId) {
     if (!ObjectId.isValid(userId)) {
-      throw new TRPCError({
+      throw new ApiError({
         code: 'BAD_REQUEST',
         message: 'Invalid user ID format',
       })
@@ -204,7 +213,7 @@ export async function getPublicProfile({
 
   // If user not found, throw error
   if (!user) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'NOT_FOUND',
       message: 'User not found',
     })

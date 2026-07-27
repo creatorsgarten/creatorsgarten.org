@@ -2,7 +2,7 @@
 
 ## Architecture
 - Frontend and backend code coexist in the same repository
-- Backend exposes a tRPC server that the frontend communicates with
+- Backend exposes an Elysia server that the frontend communicates with via Eden treaty
 - Two development modes:
   - Remote mode (default): Frontend talks to production backend via network (no credentials needed)
   - Local mode: Frontend talks directly to local backend (requires credentials)
@@ -10,8 +10,8 @@
 ## Important Architectural Rules
 - Frontend and backend are treated as separate components despite being in the same repository
 - **Only code inside `src/packlets/backend/` folder can access MongoDB** and sensitive secrets
-- **Frontend code MUST NOT directly import from backend folder** - must use tRPC
-- All frontend-to-backend communication must go through tRPC (available via `Astro.locals.backend`)
+- **Frontend code MUST NOT directly import from backend folder** - must use the Eden client
+- All frontend-to-backend communication must go through the Eden client (available via `Astro.locals.backend`)
 - Backend API is publicly accessible, so it must implement proper access controls
 - Backend must filter responses to only include data the user is authorized to see
 - Never return MongoDB documents directly; always explicitly reconstruct objects with only the fields that should be exposed
@@ -53,7 +53,7 @@ The default configuration allows you to run the frontend in "remote mode" (conne
 - Prefer functional components and hooks over class components
 - Use named exports over default exports when possible
 - Follow existing file naming conventions (camelCase for utils, PascalCase for components)
-- Backend code lives in `src/packlets/backend/` with tRPC endpoints
+- Backend code lives in `src/packlets/backend/` with Elysia endpoints
 
 ## Git Usage Notes
 - When using Git with files that contain special characters like brackets (e.g., `[name]` in Astro file paths), always use quotes:

@@ -6,10 +6,10 @@ Packlets are modular feature packages that encapsulate specific functionality. T
 
 ### Backend Packlet
 [src/packlets/backend/](../src/packlets/backend)
-- Contains all backend code and tRPC endpoints
+- Contains all backend code and Elysia/Eden endpoints
 - **ONLY** this packlet can access MongoDB and sensitive secrets
 - Frontend code MUST NOT directly import from this folder
-- All frontend-backend communication goes through tRPC
+- All frontend-backend communication goes through the Elysia/Eden treaty client
 - Must implement proper access controls and data filtering
 
 ### Commons Packlet
@@ -47,7 +47,7 @@ Packlets are modular feature packages that encapsulate specific functionality. T
 ## Packlet Guidelines
 - Each packlet should be self-contained with clear responsibilities
 - Cross-packlet dependencies should be minimized
-- Backend packlet is special - other packlets must use tRPC to communicate with it
+- Backend packlet is special - other packlets must use the Elysia/Eden treaty client to communicate with it
 - Follow the same code style and best practices as the rest of the project
 
 ## Key Features
@@ -79,22 +79,22 @@ The platform offers a range of features centered around community, collaboration
     *   A system, potentially for physical or digital access, using QR codes. Includes logging capabilities.
 
 *   **Developer Focused:**
-    *   **tRPC Backend:** A fully typed API for robust frontend-backend communication.
+    *   **Elysia/Eden Backend:** A fully typed API for robust frontend-backend communication.
     *   **Signature System:** Allows for creating and verifying data signatures, potentially for custom integrations or security purposes.
 
 ## Backend API Overview
 
-The backend is implemented as a tRPC server, located in `src/packlets/backend/index.ts`. This provides a fully typed API, ensuring type safety between the frontend and backend. All frontend communication with the backend MUST go through this tRPC interface, accessible via `Astro.locals.backend` in Astro components and pages.
+The backend is implemented as an Elysia server, located in `src/packlets/backend/index.ts`. This provides a fully typed API via Eden treaty, ensuring type safety between the frontend and backend. All frontend communication with the backend MUST go through this Eden client, accessible via `Astro.locals.backend` in Astro components and pages.
 
 The API is organized into several routers, each handling a specific domain:
 
 ```mermaid
 graph TD
-    AppRouter[tRPC AppRouter] --> UsersRouter[users]
+    App[Elysia app] --> UsersRouter[users]
     UsersRouter --> GetPublicProfile[getPublicProfile]
     UsersRouter --> GetProfilePicture[getProfilePictureUrl]
 
-    AppRouter --> AuthRouter[auth]
+    App --> AuthRouter[auth]
     AuthRouter --> GetAuthUser[getAuthenticatedUser]
     AuthRouter --> LinkOAuth[linkGitHubAccount, linkGoogleAccount, etc.]
     AuthRouter --> MintIdToken[mintIdToken]
@@ -103,28 +103,28 @@ graph TD
     AuthRouter --> SignInDeviceAuth[signInWithDeviceAuthorizationSignature]
 
 
-    AppRouter --> EventsRouter[events]
+    App --> EventsRouter[events]
     EventsRouter --> GetJoinedEvents[getJoinedEvents]
 
-    AppRouter --> WgRouter[workingGroups]
+    App --> WgRouter[workingGroups]
     WgRouter --> CreateWg[create]
     WgRouter --> JoinWg[joinWithInviteKey]
     WgRouter --> GetWg[getWorkingGroupWithDetails]
     WgRouter --> CreateInviteLink[createInviteLink]
 
-    AppRouter --> GardenGateRouter[gardenGate]
+    App --> GardenGateRouter[gardenGate]
     GardenGateRouter --> CreateAccessQr[createAccessQrCode]
     GardenGateRouter --> CheckAccess[checkAccess]
     GardenGateRouter --> PullLogs[pullLogs]
 
-    AppRouter --> UploadsRouter[uploads]
+    App --> UploadsRouter[uploads]
     UploadsRouter --> GetCloudinaryParams[getCloudinaryParameters]
 
-    AppRouter --> SignaturesRouter[signatures]
+    App --> SignaturesRouter[signatures]
     SignaturesRouter --> CreateSignature[createSignature]
     SignaturesRouter --> VerifySignature[verifySignature]
 
-    AppRouter --> DeviceAuthRouter[deviceAuthorizations]
+    App --> DeviceAuthRouter[deviceAuthorizations]
     DeviceAuthRouter --> SaveDeviceAuth[saveDeviceAuthorization]
     DeviceAuthRouter --> GetDeviceAuth[getDeviceAuthorization]
 ```

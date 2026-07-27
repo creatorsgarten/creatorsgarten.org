@@ -1,5 +1,3 @@
-import { TRPCError } from '@trpc/server'
-import { getHTTPStatusCodeFromError } from '@trpc/server/http'
 import { createPrivateKey, createPublicKey } from 'crypto'
 import { Elysia } from 'elysia'
 import { exportJWK } from 'jose'
@@ -12,6 +10,7 @@ import {
   usernameSchema,
 } from '$functions/usernameValidation'
 import { JWT_PRIVATE_KEY } from 'astro:env/server'
+import { ApiError, httpStatusForApiErrorCode } from './apiError'
 import { finalizeAuthentication } from './auth/finalizeAuthentication'
 
 import { authenticateDiscord } from './auth/authenticateDiscord'
@@ -57,16 +56,15 @@ function nullable<T>(value: T): T {
   return (value === null ? Response.json(null) : value) as T
 }
 
-// Same UNAUTHORIZED/FORBIDDEN/BAD_REQUEST/CONFLICT/etc -> HTTP status mapping
-// tRPC's own fetch adapter used, reused here to translate `TRPCError`s that
-// still originate deep in unmodified service functions (see issue #1995).
+// Translates `ApiError`s thrown deep in service functions (see issue #1995)
+// to the matching HTTP status.
 export const app = new Elysia()
   .derive(({ headers }) => ({
     authToken: headers.authorization?.replace(/^Bearer /, ''),
   }))
   .onError(({ error, status }) => {
-    if (error instanceof TRPCError) {
-      return status(getHTTPStatusCodeFromError(error), {
+    if (error instanceof ApiError) {
+      return status(httpStatusForApiErrorCode(error.code), {
         error: error.message,
       })
     }

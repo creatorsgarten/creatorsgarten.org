@@ -37,7 +37,7 @@ Key directories include:
 *   `src/middleware.ts`: Astro middleware for request processing.
 *   `src/pages/`: Defines the application's routes and web pages, following Astro's file-based routing conventions. This includes API routes under `src/pages/api/`.
 *   `src/packlets/`: This is a core organizational concept in this project. **Packlets** are modules encapsulating specific feature areas or domains. They might contain UI components, backend logic, type definitions, and utility functions relevant to that domain. Notable packlets include:
-    *   `backend/`: Contains all backend logic, primarily the tRPC API router and its procedures. This is the only part of the application that should directly interact with the database and handle sensitive secrets.
+    *   `backend/`: Contains all backend logic, primarily the Elysia API and its procedures, exposed to the frontend via Eden treaty. This is the only part of the application that should directly interact with the database and handle sensitive secrets.
     *   `wiki/`: Manages functionality related to the wiki system.
     *   `events/`: Handles event-related features.
     *   `dashboard/`: Components and logic for the user dashboard.
@@ -49,7 +49,7 @@ Below is a high-level diagram illustrating the architecture:
 ```mermaid
 graph TD
     User -->|HTTPS| AstroFrontend[Astro Frontend (SSR - src/pages, src/components, src/packlets)]
-    AstroFrontend -->|tRPC (via Astro.locals.backend)| BackendAPI[Backend API (src/packlets/backend)]
+    AstroFrontend -->|Eden treaty (via Astro.locals.backend)| BackendAPI[Backend API (src/packlets/backend)]
     BackendAPI -->|MongoDB Driver| MongoDB[(MongoDB)]
     BackendAPI -->|API Calls| Cloudinary[Cloudinary API]
     BackendAPI -->|OAuth2/API| AuthProviders[OAuth Providers (GitHub, Google, Discord, Figma)]

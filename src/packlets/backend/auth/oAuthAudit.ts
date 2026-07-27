@@ -1,4 +1,4 @@
-import { TRPCError } from '@trpc/server'
+import { ApiError } from '../apiError'
 import dayjs from 'dayjs'
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
@@ -18,7 +18,7 @@ export const checkOAuthAudit = async (
 ) => {
   const user = await getAuthenticatedUser(authToken)
   if (!user) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'UNAUTHORIZED',
       message: 'User is not authenticated',
     })
@@ -48,7 +48,7 @@ export const recordOAuthAudit = async (
 ) => {
   const user = await getAuthenticatedUser(authToken)
   if (!user) {
-    throw new TRPCError({
+    throw new ApiError({
       code: 'UNAUTHORIZED',
       message: 'User is not authenticated',
     })
