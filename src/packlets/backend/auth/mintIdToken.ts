@@ -1,3 +1,4 @@
+import { usernameRequiredMessage } from '$constants/oauth'
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 import type { DiscordConnection } from '$types/mongo/User/DiscordConnection'
 import type { FigmaConnection } from '$types/mongo/User/FigmaConnection'
@@ -6,9 +7,6 @@ import type { GoogleConnection } from '$types/mongo/User/GoogleConnection'
 import { JWT_PRIVATE_KEY } from 'astro:env/server'
 import jwt from 'jsonwebtoken'
 import { getJoinedEvents } from '../events/getJoinedEvents'
-
-export const usernameRequiredMessage =
-  'You need to create a public profile first. Go to the dashboard and open the profile section to reserve a username.'
 
 /**
  * Data contained in ID token returned by Authgarten OIDC provider.

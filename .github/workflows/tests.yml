@@ -27,6 +27,23 @@ jobs:
       - name: check-astro
         run: pnpm astro check
 
+  boundaries:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6
+      - name: pnpm
+        uses: pnpm/action-setup@v4
+      - name: node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: install
+        run: pnpm -r i --frozen-lockfile
+      - name: check-boundaries
+        run: pnpm check-boundaries
+
   vitest:
     runs-on: ubuntu-latest
     steps:

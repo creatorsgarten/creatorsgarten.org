@@ -6,7 +6,7 @@ import { G0_HOSTNAME, G0_CREDENTIALS } from 'astro:env/server'
 import { collections } from '$constants/mongo'
 
 import { checkAccess } from './checkAccess'
-import { getServiceAccountIdToken } from './getServiceAccountIdToken'
+import { getServiceAccountIdToken } from '$functions/getServiceAccountIdToken'
 
 import type { AuthenticatedUser } from '$types/AuthenticatedUser'
 

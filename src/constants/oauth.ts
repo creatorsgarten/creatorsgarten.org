@@ -44,10 +44,10 @@ export interface OAuthClientConfig {
 }
 
 export type OAuthScope =
-  | 'openid'
-  | 'email'
-  | 'username'
-  | `https://eventpop.me/e/${string}`
+  'openid' | 'email' | 'username' | `https://eventpop.me/e/${string}`
+
+export const usernameRequiredMessage =
+  'You need to create a public profile first. Go to the dashboard and open the profile section to reserve a username.'
 
 export function isSensitiveScope(scope: string) {
   if (scope === 'username') {
