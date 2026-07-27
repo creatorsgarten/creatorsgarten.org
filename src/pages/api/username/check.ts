@@ -1,3 +1,4 @@
+import { backendErrorMessage } from '$functions/getBackend'
 import type { APIRoute } from 'astro'
 
 export const GET: APIRoute = async ({ url, locals }) => {
@@ -17,9 +18,13 @@ export const GET: APIRoute = async ({ url, locals }) => {
   }
 
   try {
-    const result = await locals.backend.auth.checkUsernameAvailability.query({
-      username: username,
-    })
+    const { data: result, error: apiError } =
+      await locals.backend.auth.checkUsernameAvailability.get({
+        query: { username },
+      })
+    if (apiError) {
+      throw new Error(backendErrorMessage(apiError, 'An error occurred'))
+    }
 
     return new Response(JSON.stringify(result), {
       headers: { 'Content-Type': 'application/json' },

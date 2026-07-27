@@ -2,6 +2,7 @@
 import Head from '$commons/head.astro'
 import Breadcrumb from '$components/breadcrumb.astro'
 import RequirementsList from '$components/requirementsList.astro'
+import { backendErrorMessage } from '$functions/getBackend'
 import BaseLayout from '$layouts/base.astro'
 
 const { name } = Astro.params
@@ -39,10 +40,16 @@ if (!key) {
 }
 
 // Check joinability using the new unified endpoint
-try {
-  joinabilityResult = await backend.workingGroups.checkJoinability.query({
-    inviteKey: key,
+const { data: joinability, error: joinabilityError } =
+  await backend.workingGroups.checkJoinability.get({
+    query: { inviteKey: key },
   })
+
+if (joinabilityError) {
+  console.error('Error checking joinability:', joinabilityError)
+  error = 'Unable to verify join eligibility. Please try again.'
+} else {
+  joinabilityResult = joinability
 
   // If user is already a member, redirect to members page
   if (joinabilityResult.userIsAlreadyMember) {
@@ -53,27 +60,25 @@ try {
   if (joinabilityResult.errorMessage && !joinabilityResult.canJoin) {
     error = joinabilityResult.errorMessage
   }
-} catch (e) {
-  console.error('Error checking joinability:', e)
-  error = 'Unable to verify join eligibility. Please try again.'
 }
 
 // Handle join request
 if (Astro.request.method === 'POST' && joinabilityResult) {
   isJoining = true
 
-  try {
-    // Check if we can join
-    if (!joinabilityResult.canJoin) {
-      error = 'You must fulfill all requirements before joining'
+  // Check if we can join
+  if (!joinabilityResult.canJoin) {
+    error = 'You must fulfill all requirements before joining'
+  } else {
+    // Join the working group using the secure endpoint
+    const { error: joinError } =
+      await backend.workingGroups.joinWithInviteKey.post({ inviteKey: key })
+    if (joinError) {
+      console.error('Error joining working group:', joinError)
+      error = backendErrorMessage(joinError, 'Unknown error')
     } else {
-      // Join the working group using the secure endpoint
-      await backend.workingGroups.joinWithInviteKey.mutate({ inviteKey: key })
       success = `You have successfully joined the ${joinabilityResult.group.name} Working Group`
     }
-  } catch (e) {
-    console.error('Error joining working group:', e)
-    error = e instanceof Error ? e.message : 'Unknown error'
   }
 
   isJoining = false

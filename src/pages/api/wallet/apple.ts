@@ -18,8 +18,8 @@ export const GET: APIRoute = async ({ locals, request }) => {
   if (!joinedEvent) return new Response('Event not found', { status: 404 })
 
   const joinedTicket = await locals.backend.events.getJoinedEvents
-    .query()
-    .then(tickets => tickets.find(t => t.id === Number(eventId)))
+    .get()
+    .then(({ data: tickets }) => tickets?.find(t => t.id === Number(eventId)))
 
   if (!joinedTicket) return new Response('Ticket not found', { status: 404 })
 

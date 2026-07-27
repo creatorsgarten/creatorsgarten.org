@@ -1,3 +1,4 @@
+import { backendErrorMessage } from '$functions/getBackend'
 import { getOptimizedImageUrl } from '$functions/getOptimizedImageUrl'
 import type { APIRoute } from 'astro'
 
@@ -11,10 +12,13 @@ export const GET: APIRoute = async ({ params, locals }) => {
   }
 
   try {
-    // Use the backend tRPC client to get the profile picture URL
-    const profile = await locals.backend.users.getPublicProfile.query(
-      id.startsWith('@') ? { username: id.slice(1) } : { userId: id }
-    )
+    // Use the backend Eden client to get the profile picture URL
+    const { data: profile, error } =
+      await locals.backend.users.getPublicProfile.get({
+        query: id.startsWith('@') ? { username: id.slice(1) } : { userId: id },
+      })
+    if (error)
+      throw new Error(backendErrorMessage(error, 'Failed to get profile'))
     const pictureUrl = profile.profilePictureUrl
 
     // Validate if the URL is valid and starts with https://

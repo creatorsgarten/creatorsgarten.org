@@ -5,7 +5,8 @@ const { user } = Astro.locals
 
 // determine that user should be able to see access card or not
 // hard-code for now, will build conditions later
-let { granted } = await Astro.locals.backend.gardenGate.checkAccess.query()
+const { data } = await Astro.locals.backend.gardenGate.checkAccess.get()
+const { granted } = data ?? { granted: false }
 ---
 
 {

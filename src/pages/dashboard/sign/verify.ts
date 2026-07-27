@@ -8,9 +8,13 @@ export const GET: APIRoute = async Astro => {
       status: 400,
       headers: { 'content-type': 'application/json' },
     })
-  const result = await Astro.locals.backend.signatures.verifySignature.query({
-    signature,
-  })
+  const { data: result } =
+    await Astro.locals.backend.signatures.verifySignature.get({
+      query: { signature },
+    })
+  if (!result) {
+    return fail('Failed to verify signature')
+  }
   if (!result.verified) {
     return fail(result.error)
   } else {

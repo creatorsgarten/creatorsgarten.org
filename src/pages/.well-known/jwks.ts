@@ -1,9 +1,8 @@
 import type { APIRoute } from 'astro'
 
 export const GET: APIRoute = async ({ locals }) => {
-  const body = JSON.stringify({
-    keys: await locals.backend.auth.getPublicKeys.query(),
-  })
+  const { data: keys } = await locals.backend.auth.getPublicKeys.get()
+  const body = JSON.stringify({ keys })
   return new Response(body, {
     headers: {
       'Content-Type': 'application/json',

@@ -13,7 +13,8 @@ interface Log {
   message: string
 }
 
-let { granted } = await Astro.locals.backend.gardenGate.checkAccess.query()
+const { data } = await Astro.locals.backend.gardenGate.checkAccess.get()
+const { granted } = data ?? { granted: false }
 
 if (!granted)
   return new Response(undefined, {

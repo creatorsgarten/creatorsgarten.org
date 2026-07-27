@@ -75,7 +75,10 @@ export async function getEventInvolvements(username: string) {
 }
 
 // Create a function to fetch people involved in an event
-export async function getPeopleInvolved(eventId: string, backend: Backend): Promise<{
+export async function getPeopleInvolved(
+  eventId: string,
+  backend: Backend
+): Promise<{
   groups: {
     title: string
     people: PersonSummary[]
@@ -142,14 +145,14 @@ export async function getPeopleInvolved(eventId: string, backend: Backend): Prom
   const usernamesWithPrefix = usernames.map(username => `@${username}`)
 
   // Fetch public profiles for all collected usernames
-  const profiles = await backend.users.getPublicProfiles.query({
-    userIds: usernamesWithPrefix,
+  const { data: profiles } = await backend.users.getPublicProfiles.get({
+    query: { userIds: usernamesWithPrefix },
   })
 
   // Create a map of username to profile for easy lookup
-  type Profile = (typeof profiles)[number]
+  type Profile = NonNullable<typeof profiles>[number]
   const profileMap = new Map<string, Profile>()
-  profiles.forEach(profile => {
+  profiles?.forEach(profile => {
     if (profile.username) {
       profileMap.set(normalizeUsername(profile.username), profile)
     }
@@ -166,7 +169,9 @@ export async function getPeopleInvolved(eventId: string, backend: Backend): Prom
         username: person.username,
         name: profile.profileInformation?.name || person.username,
         role: person.role,
-        href: profile.profileInformation ? `/wiki/People/${profile.username}` : undefined,
+        href: profile.profileInformation
+          ? `/wiki/People/${profile.username}`
+          : undefined,
       },
     ]
   })

@@ -2,6 +2,7 @@
 import Head from '$commons/head.astro'
 import Breadcrumb from '$components/breadcrumb.astro'
 import Uploader from '$dashboard/upload/uploader'
+import { backendErrorMessage } from '$functions/getBackend'
 import BaseLayout from '$layouts/base.astro'
 
 const { user, backend } = Astro.locals
@@ -12,7 +13,14 @@ if (!user) {
   )
 }
 
-const { formData, url } = await backend.uploads.getCloudinaryParameters.query()
+const { data, error: uploadParamsError } =
+  await backend.uploads.getCloudinaryParameters.get()
+if (uploadParamsError) {
+  throw new Error(
+    backendErrorMessage(uploadParamsError, 'Failed to get upload parameters')
+  )
+}
+const { formData, url } = data
 ---
 
 <Head title="Upload | Dashboard" />
@@ -33,9 +41,9 @@ const { formData, url } = await backend.uploads.getCloudinaryParameters.query()
             >This image uploader is for Creatorsgarten-related content,</strong
           > such as event photos or wiki images, and should not be used for personal
           or unrelated purposes. All uploaded images will be publicly accessible,
-          and website administrators have full access to all content. Your image
-          will be compressed and converted to WebP format. By uploading an image,
-          you agree to these terms.
+          and website administrators have full access to all content. Your image will
+          be compressed and converted to WebP format. By uploading an image, you agree
+          to these terms.
         </p>
       </div>
 

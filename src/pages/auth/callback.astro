@@ -1,4 +1,5 @@
 ---
+import { backendErrorMessage } from '$functions/getBackend'
 import Blank from '$layouts/blank.astro'
 import { CSRF_SECRET } from 'astro:env/server'
 import CSRF from 'csrf'
@@ -38,30 +39,34 @@ try {
     throw new Error('csrf-verification-fail')
 
   // handle authtication from here
-  const result = await (() => {
+  const { data: result, error: authError } = await (() => {
     switch (targetService) {
       case 'eventpop':
         if (code.startsWith('grtn_') && code.includes('|')) {
           const [signature, deviceId] = code.split('|')
-          return Astro.locals.backend.auth.signInWithDeviceAuthorizationSignature.mutate(
+          return Astro.locals.backend.auth.signInWithDeviceAuthorizationSignature.post(
             { signature, deviceId }
           )
         } else {
-          return Astro.locals.backend.auth.signInWithEventpopAuthorizationCode.mutate(
+          return Astro.locals.backend.auth.signInWithEventpopAuthorizationCode.post(
             { code }
           )
         }
       case 'github':
-        return Astro.locals.backend.auth.linkGitHubAccount.mutate({ code })
+        return Astro.locals.backend.auth.linkGitHubAccount.post({ code })
       case 'discord':
-        return Astro.locals.backend.auth.linkDiscordAccount.mutate({ code })
+        return Astro.locals.backend.auth.linkDiscordAccount.post({ code })
       case 'google':
-        return Astro.locals.backend.auth.linkGoogleAccount.mutate({ code })
+        return Astro.locals.backend.auth.linkGoogleAccount.post({ code })
       case 'figma':
-        return Astro.locals.backend.auth.linkFigmaAccount.mutate({ code })
+        return Astro.locals.backend.auth.linkFigmaAccount.post({ code })
     }
     throw new Error('service-invalid')
   })()
+
+  if (authError) {
+    throw new Error(backendErrorMessage(authError, 'Authentication failed'))
+  }
 
   Astro.cookies.set('authgarten', result.idToken, {
     maxAge: 60 * 60 * 12, // 12 hours

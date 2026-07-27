@@ -2,6 +2,7 @@
 import { IdTokenInspector } from '$components/idTokenInspector'
 import { isSensitiveScope, oauthClients } from '$constants/oauth'
 import { errorPage } from '$functions/errorPage'
+import { backendErrorMessage } from '$functions/getBackend'
 import { usernameRequiredMessage } from '$backend/auth/mintIdToken'
 import Blank from '$layouts/blank.astro'
 
@@ -28,11 +29,7 @@ const scopes = (Astro.url.searchParams.get('scope') ?? '')
 const redirectUri = Astro.url.searchParams.get('redirect_uri') ?? ''
 
 if (scopes.includes('username') && !Astro.locals.user.username) {
-  return errorPage(
-    400,
-    'Username required',
-    usernameRequiredMessage
-  )
+  return errorPage(400, 'Username required', usernameRequiredMessage)
 }
 
 // check if client is trusted (trust client will redirect to client without asking user)
@@ -61,11 +58,17 @@ if (client) {
 }
 
 const nonce = Astro.url.searchParams.get('nonce') ?? undefined
-const idTokenInfo = await Astro.locals.backend.auth.mintIdToken.mutate({
-  audience: clientId,
-  scopes,
-  nonce,
-})
+const { data: idTokenInfo, error: mintIdTokenError } =
+  await Astro.locals.backend.auth.mintIdToken.post({
+    audience: clientId,
+    scopes,
+    nonce,
+  })
+if (mintIdTokenError) {
+  throw new Error(
+    backendErrorMessage(mintIdTokenError, 'Failed to mint ID token')
+  )
+}
 
 // build final redirect uri
 const redirectTo = new URL(redirectUri)
@@ -109,11 +112,10 @@ if (redirectTo.protocol !== 'https:' && redirectTo.protocol !== 'http:') {
 }
 
 // check if user has authorized this client before
-const hasAuthorized = await Astro.locals.backend.auth.checkOAuthAudit.query({
-  clientId,
-  redirectUri,
-  scopes,
-})
+const { data: hasAuthorized } =
+  await Astro.locals.backend.auth.checkOAuthAudit.get({
+    query: { clientId, redirectUri, scopes },
+  })
 
 // if trusted client or authorized to oauth before, then redirect
 if (
@@ -122,7 +124,7 @@ if (
   Astro.request.method === 'POST'
 ) {
   if (!hasAuthorized)
-    await Astro.locals.backend.auth.recordOAuthAudit.mutate({
+    await Astro.locals.backend.auth.recordOAuthAudit.post({
       clientId,
       redirectUri,
       scopes,

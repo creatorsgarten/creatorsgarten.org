@@ -15,8 +15,8 @@ if (!user) {
 const signMessage = Astro.url.searchParams.get('signMessage') || ''
 const signature = signMessage
   ? await Astro.locals.backend.signatures.createSignature
-      .mutate({ message: signMessage })
-      .then(r => r.signature)
+      .post({ message: signMessage })
+      .then(r => r.data?.signature ?? '')
   : ''
 ---
 
