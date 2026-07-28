@@ -69,7 +69,7 @@
     "@astrojs/node": "11.0.2",
     "@astrojs/react": "6.0.1",
     "@astrojs/svelte": "9.0.1",
-    "@playwright/test": "1.61.1",
+    "@playwright/test": "1.62.0",
     "@tailwindcss/typography": "0.5.20",
     "@tailwindcss/vite": "4.3.3",
     "@types/d3-force": "^3.0.10",
