@@ -18,7 +18,7 @@
     "@contentsgarten/html": "1.3.0",
     "@docsearch/css": "^4.6.3",
     "@docsearch/react": "4.6.3",
-    "@doist/typist": "9.0.3",
+    "@doist/typist": "15.0.0",
     "@dtinth/comparator": "0.0.3",
     "@elysiajs/eden": "^1.4.9",
     "@fastify/middie": "9.3.3",
