@@ -19,7 +19,7 @@
     "@docsearch/css": "^4.6.3",
     "@docsearch/react": "4.6.3",
     "@doist/typist": "15.0.0",
-    "@dtinth/comparator": "0.0.3",
+    "@dtinth/comparator": "1.0.0",
     "@elysiajs/eden": "^1.4.9",
     "@fastify/middie": "9.3.3",
     "@fastify/static": "9.3.0",
