@@ -1,4 +1,4 @@
-import { treaty } from '@elysiajs/eden'
+import { treaty } from '@elysia/eden'
 import { describe, expect, it, vi } from 'vitest'
 
 vi.mock('astro:env/server', () => ({

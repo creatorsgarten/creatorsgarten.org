@@ -62,7 +62,7 @@ export const app = new Elysia()
   .derive(({ headers }) => ({
     authToken: headers.authorization?.replace(/^Bearer /, ''),
   }))
-  .onError(({ error, status }) => {
+  .error(({ error, status }) => {
     if (error instanceof ApiError) {
       return status(httpStatusForApiErrorCode(error.code), {
         error: error.message,
@@ -74,25 +74,29 @@ export const app = new Elysia()
 
   .get(
     '/users/getProfilePictureUrl',
-    ({ query }) => getProfilePictureUrl(query.userId),
-    { query: z.object({ userId: z.string() }) }
+    { query: z.object({ userId: z.string() }) },
+    ({ query }) => getProfilePictureUrl(query.userId)
   )
 
-  .get('/users/getPublicProfile', ({ query }) => getPublicProfile(query), {
-    query: z
-      .object({
-        userId: z.string().optional(),
-        username: z.string().optional(),
-      })
-      .refine(data => data.userId || data.username, {
-        message: 'Either userId or username must be provided',
-      }),
-  })
+  .get(
+    '/users/getPublicProfile',
+    {
+      query: z
+        .object({
+          userId: z.string().optional(),
+          username: z.string().optional(),
+        })
+        .refine(data => data.userId || data.username, {
+          message: 'Either userId or username must be provided',
+        }),
+    },
+    ({ query }) => getPublicProfile(query)
+  )
 
   .get(
     '/users/getPublicProfiles',
-    ({ query }) => getPublicProfiles(query.userIds),
-    { query: z.object({ userIds: z.array(z.string()) }) }
+    { query: z.object({ userIds: z.array(z.string()) }) },
+    ({ query }) => getPublicProfiles(query.userIds)
   )
 
   .get('/auth/getAuthenticatedUser', async ({ authToken }) =>
@@ -101,69 +105,69 @@ export const app = new Elysia()
 
   .get(
     '/auth/checkOAuthAudit',
-    ({ authToken, query }) => checkOAuthAudit(authToken, query),
-    { query: auditInputSchema }
+    { query: auditInputSchema },
+    ({ authToken, query }) => checkOAuthAudit(authToken, query)
   )
 
   .post(
     '/auth/recordOAuthAudit',
-    ({ authToken, body }) => recordOAuthAudit(authToken, body),
-    { body: auditInputSchema }
+    { body: auditInputSchema },
+    ({ authToken, body }) => recordOAuthAudit(authToken, body)
   )
 
   .post(
     '/auth/mintIdToken',
-    async ({ authToken, body, status }) => {
-      const user = await getAuthenticatedUser(authToken)
-      if (!user) {
-        throw status(401, { error: 'User is not authenticated' })
-      }
-      return mintIdToken(user, body.audience, body.nonce, body.scopes)
-    },
     {
       body: z.object({
         audience: z.string(),
         nonce: z.string().optional(),
         scopes: z.array(z.string()),
       }),
+    },
+    async ({ authToken, body, status }) => {
+      const user = await getAuthenticatedUser(authToken)
+      if (!user) {
+        throw status(401, { error: 'User is not authenticated' })
+      }
+      return mintIdToken(user, body.audience, body.nonce, body.scopes)
     }
   )
 
   .post(
     '/auth/signInWithEventpopAuthorizationCode',
-    ({ body }) => authenticateEventpopUser(body.code),
-    { body: z.object({ code: z.string() }) }
+    { body: z.object({ code: z.string() }) },
+    ({ body }) => authenticateEventpopUser(body.code)
   )
 
   .post(
     '/auth/signInWithDeviceAuthorizationSignature',
+    { body: z.object({ deviceId: z.string(), signature: z.string() }) },
     ({ body }) =>
-      authenticateDeviceAuthorizationSignature(body.deviceId, body.signature),
-    { body: z.object({ deviceId: z.string(), signature: z.string() }) }
+      authenticateDeviceAuthorizationSignature(body.deviceId, body.signature)
   )
 
   .post(
     '/auth/linkGitHubAccount',
-    ({ authToken, body }) => authenticateGitHub(body.code, authToken),
-    { body: z.object({ code: z.string() }) }
+    { body: z.object({ code: z.string() }) },
+    ({ authToken, body }) => authenticateGitHub(body.code, authToken)
   )
 
   .post(
     '/auth/linkDiscordAccount',
-    ({ authToken, body }) => authenticateDiscord(body.code, authToken),
-    { body: z.object({ code: z.string() }) }
+    { body: z.object({ code: z.string() }) },
+    ({ authToken, body }) => authenticateDiscord(body.code, authToken)
   )
 
   .post(
     '/auth/linkGoogleAccount',
-    ({ authToken, body }) => authenticateGoogle(body.code, authToken),
-    { body: z.object({ code: z.string() }) }
+    { body: z.object({ code: z.string() }) },
+    ({ authToken, body }) => authenticateGoogle(body.code, authToken)
   )
 
   .post(
     '/auth/linkFigmaAccount',
-    ({ authToken, body }) => authenticateFigma(body.code, authToken),
-    { body: z.object({ code: z.string() }) }
+    { body: z.object({ code: z.string() }) },
+    ({ authToken, body }) => authenticateFigma(body.code, authToken)
   )
 
   .get('/auth/getPublicKeys', async () => {
@@ -176,6 +180,7 @@ export const app = new Elysia()
 
   .get(
     '/auth/checkUsernameAvailability',
+    { query: z.object({ username: usernameSchema }) },
     async ({ query }) => {
       const { username } = query
 
@@ -192,12 +197,12 @@ export const app = new Elysia()
       }
 
       return { available: true }
-    },
-    { query: z.object({ username: usernameSchema }) }
+    }
   )
 
   .post(
     '/auth/reserveUsername',
+    { body: z.object({ username: usernameSchema }) },
     async ({ authToken, body, status }) => {
       const user = await getAuthenticatedUser(authToken)
       if (!user) {
@@ -238,8 +243,7 @@ export const app = new Elysia()
       }
 
       return finalizeAuthentication(user.uid)
-    },
-    { body: z.object({ username: usernameSchema }) }
+    }
   )
 
   .get('/events/getJoinedEvents', async ({ authToken }) => {
@@ -249,20 +253,20 @@ export const app = new Elysia()
 
   .post(
     '/signatures/createSignature',
+    { body: z.object({ message: z.string() }) },
     async ({ authToken, body, status }) => {
       const user = await getAuthenticatedUser(authToken)
       if (!user) {
         throw status(401, { error: 'User is not authenticated' })
       }
       return generateSignature(user, body.message)
-    },
-    { body: z.object({ message: z.string() }) }
+    }
   )
 
   .get(
     '/signatures/verifySignature',
-    ({ query }) => verifySignature(query.signature),
-    { query: z.object({ signature: z.string() }) }
+    { query: z.object({ signature: z.string() }) },
+    ({ query }) => verifySignature(query.signature)
   )
 
   .get('/uploads/getCloudinaryParameters', async ({ authToken, status }) => {
@@ -298,17 +302,17 @@ export const app = new Elysia()
 
   .post(
     '/deviceAuthorizations/saveDeviceAuthorization',
+    { body: z.object({ deviceId: z.string(), signature: z.string() }) },
     async ({ authToken, body }) => {
       const user = await getAuthenticatedUser(authToken)
       return saveDeviceAuthorization(user, body.deviceId, body.signature)
-    },
-    { body: z.object({ deviceId: z.string(), signature: z.string() }) }
+    }
   )
 
   .get(
     '/deviceAuthorizations/getDeviceAuthorization',
-    ({ query }) => getDeviceAuthorization(query.deviceIdBasis),
-    { query: z.object({ deviceIdBasis: z.string() }) }
+    { query: z.object({ deviceIdBasis: z.string() }) },
+    ({ query }) => getDeviceAuthorization(query.deviceIdBasis)
   )
 
   .post('/gardenGate/createAccessQrCode', async ({ authToken }) => {
@@ -328,15 +332,16 @@ export const app = new Elysia()
 
   .get(
     '/workingGroups/getWorkingGroup',
+    { query: z.object({ name: workingGroupNameSchema }) },
     async ({ authToken, query }) => {
       const user = await getAuthenticatedUser(authToken)
       return nullable(await getWorkingGroupWithDetails(query.name, user))
-    },
-    { query: z.object({ name: workingGroupNameSchema }) }
+    }
   )
 
   .post(
     '/workingGroups/create',
+    { body: z.object({ name: workingGroupNameSchema }) },
     async ({ authToken, body, status }) => {
       const user = await getAuthenticatedUser(authToken)
       if (!user) {
@@ -348,12 +353,12 @@ export const app = new Elysia()
       await createWorkingGroup(body.name, user)
 
       return nullable(await getWorkingGroupWithDetails(body.name, user))
-    },
-    { body: z.object({ name: workingGroupNameSchema }) }
+    }
   )
 
   .post(
     '/workingGroups/createInviteLink',
+    { body: z.object({ name: workingGroupNameSchema }) },
     async ({ authToken, body, status }) => {
       const user = await getAuthenticatedUser(authToken)
       if (!user) {
@@ -369,22 +374,22 @@ export const app = new Elysia()
         enabled: result.enabled,
         createdAt: result.createdAt.toISOString(),
       }
-    },
-    { body: z.object({ name: workingGroupNameSchema }) }
+    }
   )
 
   .get(
     '/workingGroups/checkJoinability',
+    { query: z.object({ inviteKey: z.string() }) },
     async ({ authToken, query }) => {
       const user = await getAuthenticatedUser(authToken)
       // User can be null/undefined - service will handle authentication requirement
       return checkJoinability(query.inviteKey, user)
-    },
-    { query: z.object({ inviteKey: z.string() }) }
+    }
   )
 
   .post(
     '/workingGroups/joinWithInviteKey',
+    { body: z.object({ inviteKey: z.string() }) },
     async ({ authToken, body, status }) => {
       const user = await getAuthenticatedUser(authToken)
       if (!user) {
@@ -393,8 +398,7 @@ export const app = new Elysia()
         })
       }
       return joinWorkingGroup(body.inviteKey, user)
-    },
-    { body: z.object({ inviteKey: z.string() }) }
+    }
   )
 
 export type App = typeof app

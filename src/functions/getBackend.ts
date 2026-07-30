@@ -1,4 +1,4 @@
-import { treaty } from '@elysiajs/eden'
+import { treaty } from '@elysia/eden'
 import { BACKEND_URL, JWT_PRIVATE_KEY } from 'astro:env/server'
 
 import { app, type App } from '$backend'
