@@ -21,8 +21,8 @@ importers:
         specifier: 4.6.3
         version: 4.6.3(@algolia/client-search@5.52.1)(@types/react@19.2.17)(algoliasearch@5.52.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(search-insights@2.17.3)
       '@doist/typist':
-        specifier: 15.0.0
-        version: 15.0.0(emoji-regex@10.6.0)(linkifyjs@4.3.3)(lodash-es@4.18.1)(prosemirror-inputrules@1.5.1)(prosemirror-model@1.25.7)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@7.2.0)
+        specifier: 16.1.0
+        version: 16.1.0(emoji-regex@10.6.0)(linkifyjs@4.3.3)(lodash-es@4.18.1)(prosemirror-inputrules@1.5.1)(prosemirror-model@1.25.7)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@7.2.0)
       '@dtinth/comparator':
         specifier: 1.0.0
         version: 1.0.0
@@ -616,15 +616,15 @@ packages:
       search-insights:
         optional: true
 
-  '@doist/typist@15.0.0':
-    resolution: {integrity: sha512-trNkN9/FwxEQJ6xvC36yyDGMmnOQ8KBua+w6LwLTPZO78RPhX+pMr9BUIdK2/GYnDWyN/JJUIvnRgTf97dTF7Q==}
-    engines: {node: ^22.18.0 || >= 24.11.0, npm: ^10.9.2 || >= 11.5.1}
+  '@doist/typist@16.1.0':
+    resolution: {integrity: sha512-q3CGzdJ1yPg6m2Y4SZwK+Bi01QIWsZAkor11b7grfmbOlbnIFVy/QMKuEOYvA/zrHUkw/5r2FtCQyGNcRufBFg==}
+    engines: {node: '>= 24.13.0', npm: '>= 11.5.1'}
     peerDependencies:
       emoji-regex: ^10.2.1
       linkifyjs: ^4.3.2
       lodash-es: ^4.17.21
-      react: ^18.0.0
-      react-dom: ^18.0.0
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
 
   '@dtinth/comparator@1.0.0':
     resolution: {integrity: sha512-eT21k8n9zblQgkk7kCG4e9rvY1gmPf9R+9G5tofx0Q4QvvRiQatgaU5AC7VcJPbsFG8Mu1JMGbgdxRdi1Cy5PA==}
@@ -5470,7 +5470,7 @@ snapshots:
       - '@algolia/client-search'
       - algoliasearch
 
-  '@doist/typist@15.0.0(emoji-regex@10.6.0)(linkifyjs@4.3.3)(lodash-es@4.18.1)(prosemirror-inputrules@1.5.1)(prosemirror-model@1.25.7)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@7.2.0)':
+  '@doist/typist@16.1.0(emoji-regex@10.6.0)(linkifyjs@4.3.3)(lodash-es@4.18.1)(prosemirror-inputrules@1.5.1)(prosemirror-model@1.25.7)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@7.2.0)':
     dependencies:
       '@tiptap/core': 2.27.2(@tiptap/pm@2.27.2)
       '@tiptap/extension-blockquote': 2.27.2(@tiptap/core@2.27.2(@tiptap/pm@2.27.2))
