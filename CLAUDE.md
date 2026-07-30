@@ -21,6 +21,11 @@ Refer to the [README.md](./README.md) for project overview, quick start commands
 - Environment variables are strictly typed via Astro's env schema in `astro.config.mjs`
 - Use pnpm (required package manager)
 
+**Backend runs on Elysia 2 beta - do not "fix" its API shape from memory**: `src/packlets/backend/index.ts` uses `elysia@2.0.0-beta.x` and `@elysia/eden` (note the org rename from `@elysiajs/*`). This is a pre-release major version, published after most models' training data, so an unverified review may misdiagnose its API as buggy. Two concrete differences from the well-documented Elysia 0.x/1.x API:
+- Route methods take `(path, hook, handler)` - the options/schema object comes *before* the handler, not after (`.get('/x', { query: schema }, ({ query }) => ...)`).
+- The error lifecycle hook is `.error(fn)`, not `.onError(fn)`.
+Before treating anything about the Elysia API as wrong, check `node_modules/elysia/dist/*.d.ts` (or the installed version in `package.json`) rather than relying on prior knowledge of older Elysia versions.
+
 ## Key Commands Beyond README
 
 ```bash
