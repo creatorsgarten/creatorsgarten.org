@@ -12,4 +12,4 @@ minimumReleaseAgeExclude:
   - elysia@2.0.0-beta.1
   - '@elysia/eden@2.0.0-beta.1 || 2.0.0-beta.2'
 overrides:
-  "@astrojs/check": "0.9.9"
+  "@astrojs/check": "0.9.10"
