@@ -26,12 +26,11 @@ export const workingGroupNameSchema = z
   )
 
 // Required connections for joining working groups
-export const REQUIRED_CONNECTIONS = ['github', 'figma', 'google']
+export const REQUIRED_CONNECTIONS = ['github', 'google']
 
 // Display names for connection types
 const CONNECTION_DISPLAY_NAMES: Record<string, string> = {
   github: 'GitHub',
-  figma: 'Figma',
   google: 'Google',
   discord: 'Discord',
 }
@@ -216,7 +215,6 @@ async function addMemberToWorkingGroup(
     githubUsername: user.connections.github?.username,
     discordName: user.connections.discord?.username,
     googleAccount: user.connections.google?.email,
-    figmaEmail: user.connections.figma?.email,
   }
 
   // Add user as a member
@@ -423,13 +421,11 @@ export async function checkJoinability(
     githubUsername: user.connections.github?.username,
     discordName: user.connections.discord?.username,
     googleAccount: user.connections.google?.email,
-    figmaEmail: user.connections.figma?.email,
   }
 
   // Get explanations for each connection type
   const connectionExplanations: Record<string, string> = {
     github: 'For wiki and repository access',
-    figma: 'For sharing Figma design files and Figjam boards',
     google: 'For sharing Google Drive files and Google Calendar invites',
     discord: 'For community communication',
   }

@@ -15,7 +15,6 @@ import { finalizeAuthentication } from './auth/finalizeAuthentication'
 
 import { authenticateDiscord } from './auth/authenticateDiscord'
 import { authenticateEventpopUser } from './auth/authenticateEventpopUser'
-import { authenticateFigma } from './auth/authenticateFigma'
 import { authenticateGitHub } from './auth/authenticateGitHub'
 import { authenticateGoogle } from './auth/authenticateGoogle'
 import { getAuthenticatedUser } from './auth/getAuthenticatedUser'
@@ -162,12 +161,6 @@ export const app = new Elysia()
     '/auth/linkGoogleAccount',
     { body: z.object({ code: z.string() }) },
     ({ authToken, body }) => authenticateGoogle(body.code, authToken)
-  )
-
-  .post(
-    '/auth/linkFigmaAccount',
-    { body: z.object({ code: z.string() }) },
-    ({ authToken, body }) => authenticateFigma(body.code, authToken)
   )
 
   .get('/auth/getPublicKeys', async () => {

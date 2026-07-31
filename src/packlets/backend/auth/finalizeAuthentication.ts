@@ -23,7 +23,6 @@ export const finalizeAuthentication = async (uid: number) => {
       github: userDoc.connections?.github ?? null,
       discord: userDoc.connections?.discord ?? null,
       google: userDoc.connections?.google ?? null,
-      figma: userDoc.connections?.figma ?? null,
     },
   }
 

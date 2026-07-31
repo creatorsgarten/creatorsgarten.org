@@ -58,8 +58,6 @@ try {
         return Astro.locals.backend.auth.linkDiscordAccount.post({ code })
       case 'google':
         return Astro.locals.backend.auth.linkGoogleAccount.post({ code })
-      case 'figma':
-        return Astro.locals.backend.auth.linkFigmaAccount.post({ code })
     }
     throw new Error('service-invalid')
   })()

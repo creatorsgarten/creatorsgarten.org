@@ -1,5 +1,4 @@
 import type { DiscordConnection } from './mongo/User/DiscordConnection'
-import type { FigmaConnection } from './mongo/User/FigmaConnection'
 import type { GitHubConnection } from './mongo/User/GitHubConnection'
 import type { GoogleConnection } from './mongo/User/GoogleConnection'
 
@@ -21,6 +20,5 @@ export interface AuthenticatedUser {
     github: GitHubConnection
     discord: DiscordConnection
     google: GoogleConnection
-    figma: FigmaConnection
   }
 }

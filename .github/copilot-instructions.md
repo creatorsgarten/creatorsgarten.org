@@ -17,7 +17,7 @@ Creatorsgarten.org is built with:
 
 - Users authenticate via Eventpop
 - User data is stored in MongoDB
-- Users can connect external accounts (GitHub, Discord, Google, Figma)
+- Users can connect external accounts (GitHub, Discord, Google)
 - Username system allows users to have unique identifiers
 
 ### Wiki System

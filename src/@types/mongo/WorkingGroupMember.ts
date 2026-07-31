@@ -3,7 +3,6 @@ import { ObjectId } from 'mongodb'
 export interface ProfileSnapshot {
   name: string
   email: string
-  figmaEmail?: string
   githubUsername?: string
   discordName?: string
   googleAccount?: string

@@ -52,7 +52,7 @@ graph TD
     AstroFrontend -->|Eden treaty (via Astro.locals.backend)| BackendAPI[Backend API (src/packlets/backend)]
     BackendAPI -->|MongoDB Driver| MongoDB[(MongoDB)]
     BackendAPI -->|API Calls| Cloudinary[Cloudinary API]
-    BackendAPI -->|OAuth2/API| AuthProviders[OAuth Providers (GitHub, Google, Discord, Figma)]
+    BackendAPI -->|OAuth2/API| AuthProviders[OAuth Providers (GitHub, Google, Discord)]
     BackendAPI -->|API Calls| Eventpop[Eventpop API]
     AstroFrontend -->|Fetch/Embed| WikiContent[wiki.creatorsgarten.org (External Content)]
 
@@ -72,7 +72,7 @@ Key categories of environment variables include:
 
 *   **Backend & Content URLs:** Endpoints for backend services and content APIs.
 *   **API Credentials:** Keys for various internal and third-party services.
-*   **OAuth Client Credentials:** For services like Discord, GitHub, Google, Figma, and Eventpop.
+*   **OAuth Client Credentials:** For services like Discord, GitHub, Google, and Eventpop.
 *   **Database Connection Details:** For connecting to MongoDB.
 *   **Security Keys:** Secrets for CSRF protection, JWT signing, etc.
 *   **Sentry Configuration:** DSN and auth token for error reporting.
