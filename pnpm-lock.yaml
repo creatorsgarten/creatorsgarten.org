@@ -28,7 +28,7 @@ importers:
         version: 1.0.0
       '@elysia/eden':
         specifier: 2.0.0-beta.2
-        version: 2.0.0-beta.2(elysia@2.0.0-exp.57(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))
+        version: 2.0.0-beta.2(elysia@2.0.0-exp.58(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))
       '@fastify/middie':
         specifier: 9.3.3
         version: 9.3.3
@@ -78,8 +78,8 @@ importers:
         specifier: 1.11.21
         version: 1.11.21
       elysia:
-        specifier: 2.0.0-exp.57
-        version: 2.0.0-exp.57(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3)
+        specifier: 2.0.0-exp.58
+        version: 2.0.0-exp.58(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3)
       fastify:
         specifier: 5.10.0
         version: 5.10.0
@@ -2827,8 +2827,8 @@ packages:
   electron-to-chromium@1.5.360:
     resolution: {integrity: sha512-GkcBt6YYAw9SxFWn+xVar4cLVGlXVuswwtRLBozi2zp0GjXs4ZnOrqV4zbXzg35n7w81hCkyJNYicgXlVHAmBA==}
 
-  elysia@2.0.0-exp.57:
-    resolution: {integrity: sha512-nDLqV3N175kBnbLRDeuT7HCtnkTh49g9+7Xh5h+x3S+ptl4tUavgcVkjPrgnqfe36iyRNnZcDZjJUj1CPy/ieA==}
+  elysia@2.0.0-exp.58:
+    resolution: {integrity: sha512-ZarjywMbWVjUV14ZHcze0ILMUD8ybanr0T0vxNxnh+ZZPLgScKdgjxcpN+i9MIo9FdRzKpscRqr3BFfyiLbdqw==}
     peerDependencies:
       '@types/bun': '>= 1.3.0'
       exact-mirror: '>= 1.2.2'
@@ -5542,9 +5542,9 @@ snapshots:
 
   '@dtinth/comparator@1.0.0': {}
 
-  '@elysia/eden@2.0.0-beta.2(elysia@2.0.0-exp.57(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))':
+  '@elysia/eden@2.0.0-beta.2(elysia@2.0.0-exp.58(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))':
     dependencies:
-      elysia: 2.0.0-exp.57(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3)
+      elysia: 2.0.0-exp.58(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3)
 
   '@emmetio/abbreviation@2.3.3':
     dependencies:
@@ -7624,7 +7624,7 @@ snapshots:
 
   electron-to-chromium@1.5.360: {}
 
-  elysia@2.0.0-exp.57(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3):
+  elysia@2.0.0-exp.58(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3):
     dependencies:
       deuri: 3.0.0
       memoirist: 1.2.1
