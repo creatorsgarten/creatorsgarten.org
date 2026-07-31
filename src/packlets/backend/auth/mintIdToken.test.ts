@@ -50,7 +50,6 @@ const baseUser: AuthenticatedUser = {
     github: null,
     discord: null,
     google: null,
-    figma: null,
   },
 }
 

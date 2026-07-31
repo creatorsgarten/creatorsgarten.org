@@ -77,13 +77,6 @@ export default defineConfig({
         access: 'secret',
       }),
 
-      // Figma
-      FIGMA_CLIENT_ID: envField.string({ context: 'server', access: 'secret' }),
-      FIGMA_CLIENT_SECRET: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-
       // Eventpop
       EVENTPOP_CLIENT_ID: envField.string({
         context: 'server',

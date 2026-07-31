@@ -1,5 +1,4 @@
 import { Discord } from './discord'
-import { Figma } from './figma'
 import { GitHub } from './github'
 import { Google } from './google'
 
@@ -23,7 +22,6 @@ export const Connections: FunctionComponent<Props> = props => {
           <GitHub connection={connections.github} />
           <Discord connection={connections.discord} />
           <Google connection={connections.google} />
-          <Figma connection={connections.figma} />
         </div>
       </div>
     </section>

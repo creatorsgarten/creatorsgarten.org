@@ -56,7 +56,7 @@ The platform offers a range of features centered around community, collaboration
 
 *   **Identity & Authentication:**
     *   User accounts with profile information.
-    *   Social login via OAuth with GitHub, Google, Discord, and Figma.
+    *   Social login via OAuth with GitHub, Google, and Discord.
     *   Integration with Eventpop for authentication.
     *   Device authorization flow for CLI or other headless clients.
     *   Username reservation system.
@@ -142,6 +142,5 @@ This project relies on several external services to provide its full functionali
     *   GitHub
     *   Google
     *   Discord
-    *   Figma
 *   **Eventpop:** For event-related authentication and data.
 *   **wiki.creatorsgarten.org:** External source for wiki content, identified by `CONTENT_API_URL`.
