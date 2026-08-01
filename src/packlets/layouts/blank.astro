@@ -41,6 +41,19 @@ const isNoIndex = pathname.endsWith('/editor') || pathname.startsWith('/auth')
       src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.2/dist/iconify-icon.min.js"
       integrity="sha256-kwd+IKkvIXP95TLOfLvp/rHfnja1G+Ve+u1UR22A02k="
       crossorigin="anonymous"></script>
+    <script is:inline>
+      // ClientRouter only executes scripts on the first page load -- an
+      // Astro/Cloudflare interaction bug (withastro/astro#15470): Cloudflare's
+      // email-decode script injected into <body> never re-runs after a
+      // client-side transition, so any obfuscated email stays as literal
+      // "[email protected]" text until a full page reload. Force it to
+      // re-run on every swap by marking it with `data-astro-rerun`.
+      document.addEventListener('astro:before-swap', e => {
+        e.newDocument
+          .querySelector('script[src*="/cloudflare-static/email-decode"]')
+          ?.setAttribute('data-astro-rerun', '')
+      })
+    </script>
   </head>
   <body>
     <slot />
