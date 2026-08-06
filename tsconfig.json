@@ -2,14 +2,13 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "forceConsistentCasingInFileNames": false,
-    "baseUrl": ".",
     "paths": {
-      "$types/*": ["src/@types/*"],
-      "$components/*": ["src/components/*"],
-      "$constants/*": ["src/constants/*"],
-      "$functions/*": ["src/functions/*"],
-      "$assets/*": ["src/assets/*"],
-      "$*": ["src/packlets/*"]
+      "$types/*": ["./src/@types/*"],
+      "$components/*": ["./src/components/*"],
+      "$constants/*": ["./src/constants/*"],
+      "$functions/*": ["./src/functions/*"],
+      "$assets/*": ["./src/assets/*"],
+      "$*": ["./src/packlets/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
