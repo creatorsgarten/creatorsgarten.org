@@ -81,8 +81,8 @@ importers:
         specifier: 2.0.0-exp.61
         version: 2.0.0-exp.61(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3)
       fastify:
-        specifier: 5.11.0
-        version: 5.11.0
+        specifier: 5.11.2
+        version: 5.11.2
       google-auth-library:
         specifier: 11.0.0
         version: 11.0.0(supports-color@7.2.0)
@@ -2849,8 +2849,8 @@ packages:
   fastify-plugin@6.0.0:
     resolution: {integrity: sha512-fZOty7z3O7vOliF6d8bHE3wiEh1KcNnKEQensSgTk9C1DvN6nRLS++XVd86v33Hw/8u9Un8A1zDrQ8ujcQDHEg==}
 
-  fastify@5.11.0:
-    resolution: {integrity: sha512-Y/Ecx1yt0hYzrQR+QVLbxaUN8wCX+MQzMevh29r5RRvlOIArmi4+WAXXaGl5Hw5gBr2wduZpZaT3gRCnXoyVgA==}
+  fastify@5.11.2:
+    resolution: {integrity: sha512-i/eJG7nXR9OkbFgoX4jFiPOHoRq0rXqDACVAXELh5Fdg6BFBErIVZ8MyibGCwup9Go1pYrxZJ0ogIub8vVdEcQ==}
 
   fastq@1.20.1:
     resolution: {integrity: sha512-GGToxJ/w1x32s/D2EKND7kTil4n8OVk/9mycTc4VDza13lOvpUZTGX3mFSCtV9ksdGBVzvsyAVLM6mHFThxXxw==}
@@ -7537,7 +7537,7 @@ snapshots:
 
   fastify-plugin@6.0.0: {}
 
-  fastify@5.11.0:
+  fastify@5.11.2:
     dependencies:
       '@fastify/ajv-compiler': 4.0.5
       '@fastify/error': 4.2.0
