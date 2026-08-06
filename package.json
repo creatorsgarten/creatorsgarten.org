@@ -20,7 +20,7 @@
     "@docsearch/react": "4.7.0",
     "@doist/typist": "16.2.0",
     "@dtinth/comparator": "1.0.0",
-    "@elysia/eden": "2.0.0-beta.2",
+    "@elysia/eden": "2.0.0-exp.1",
     "@fastify/middie": "9.3.3",
     "@fastify/static": "10.1.2",
     "@lucide/astro": "^1.0.0",
