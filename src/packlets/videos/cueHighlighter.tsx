@@ -1,5 +1,8 @@
+/// <reference types="youtube" />
 import { useEffect, useRef } from 'react'
-import TranscriptInaccuracyReporter, { type TranscriptInaccuracyReporterRef } from './transcriptInaccuracyReporter'
+import TranscriptInaccuracyReporter, {
+  type TranscriptInaccuracyReporterRef,
+} from './transcriptInaccuracyReporter'
 
 let triggered: Promise<typeof YT> | null = null
 async function loadYouTubeApi(): Promise<typeof YT> {
@@ -20,7 +23,7 @@ async function loadYouTubeApi(): Promise<typeof YT> {
   }))
 }
 
-export default function CueHighlighter(props: { 
+export default function CueHighlighter(props: {
   iframeId: string
   eventId: string
   slug: string
@@ -34,7 +37,7 @@ export default function CueHighlighter(props: {
     let player: YT.Player | null = null
     let currentSpeedIndex = 0
     const speeds = [1, 1.5, 2]
-    
+
     loadYouTubeApi().then(YT => {
       if (canceled) return
       player = new YT.Player(iframeId)
@@ -46,7 +49,9 @@ export default function CueHighlighter(props: {
           element.dataset.interactive = 'true'
         }
         const cues = Array.from(
-          document.querySelectorAll(`[data-cue-by="${iframeId}"] [data-transcript] [data-cue]`),
+          document.querySelectorAll(
+            `[data-cue-by="${iframeId}"] [data-transcript] [data-cue]`
+          ),
           element => {
             const [start, end] = element.getAttribute('data-cue')!.split('-')
             element.addEventListener('click', () => {
@@ -57,16 +62,20 @@ export default function CueHighlighter(props: {
               const [start] = element.getAttribute('data-cue')!.split('-')
               if (player) player.seekTo(parseFloat(start) / 1000, true)
             })
-            
+
             // Add right-click context menu
-            element.addEventListener('contextmenu', (event) => {
+            element.addEventListener('contextmenu', event => {
               event.preventDefault()
               const mouseEvent = event as MouseEvent
               const x = mouseEvent.clientX
               const y = mouseEvent.clientY
-              
+
               if (reporterRef.current) {
-                reporterRef.current.showPopoverForElement(element as HTMLElement, x, y)
+                reporterRef.current.showPopoverForElement(
+                  element as HTMLElement,
+                  x,
+                  y
+                )
               }
             })
             return {
@@ -97,32 +106,34 @@ export default function CueHighlighter(props: {
           }
           active = matching
         }, 100)
-        
+
         // Parse timestamp from clipboard text
         const parseTimestamp = (text: string): number | null => {
           // Match patterns like "00:02:20.680", "2:20.680", "1:30:45.123"
           const timestampRegex = /(?:(\d{1,2}):)?(\d{1,2}):(\d{2})\.(\d{3})/
           const match = text.trim().match(timestampRegex)
-          
+
           if (!match) return null
-          
+
           const hours = parseInt(match[1] || '0', 10)
           const minutes = parseInt(match[2], 10)
           const seconds = parseInt(match[3], 10)
           const milliseconds = parseInt(match[4], 10)
-          
+
           return hours * 3600 + minutes * 60 + seconds + milliseconds / 1000
         }
 
         // Add keyboard shortcuts for video control
         const handleKeyDown = (event: KeyboardEvent) => {
           // Don't interfere with typing in input fields
-          if (event.target instanceof HTMLInputElement || 
-              event.target instanceof HTMLTextAreaElement ||
-              (event.target as HTMLElement)?.contentEditable === 'true') {
+          if (
+            event.target instanceof HTMLInputElement ||
+            event.target instanceof HTMLTextAreaElement ||
+            (event.target as HTMLElement)?.contentEditable === 'true'
+          ) {
             return
           }
-          
+
           switch (event.code) {
             case 'Space':
               event.preventDefault()
@@ -134,21 +145,21 @@ export default function CueHighlighter(props: {
                 player.playVideo()
               }
               break
-              
+
             case 'ArrowLeft':
               event.preventDefault()
               if (!player) return
               const currentTime = player.getCurrentTime()
               player.seekTo(Math.max(0, currentTime - 5), true)
               break
-              
+
             case 'ArrowRight':
               event.preventDefault()
               if (!player) return
               const currentTimeRight = player.getCurrentTime()
               player.seekTo(currentTimeRight + 5, true)
               break
-              
+
             case 'KeyS':
               event.preventDefault()
               if (!player) return
@@ -156,19 +167,20 @@ export default function CueHighlighter(props: {
               const newSpeed = speeds[currentSpeedIndex]
               player.setPlaybackRate(newSpeed)
               break
-
           }
         }
-        
+
         // Add paste handler for timestamp navigation
         const handlePaste = (event: ClipboardEvent) => {
           // Don't interfere with pasting in input fields
-          if (event.target instanceof HTMLInputElement || 
-              event.target instanceof HTMLTextAreaElement ||
-              (event.target as HTMLElement)?.contentEditable === 'true') {
+          if (
+            event.target instanceof HTMLInputElement ||
+            event.target instanceof HTMLTextAreaElement ||
+            (event.target as HTMLElement)?.contentEditable === 'true'
+          ) {
             return
           }
-          
+
           const pastedText = event.clipboardData?.getData('text/plain')
           if (pastedText) {
             const timestamp = parseTimestamp(pastedText)
@@ -178,17 +190,17 @@ export default function CueHighlighter(props: {
               player.setPlaybackRate(1) // Set to 1x speed
               currentSpeedIndex = 0 // Reset speed index to 1x
               player.playVideo()
-              
+
               // Find and scroll to the cue element that contains this timestamp
               const timestampMs = timestamp * 1000
-              const targetCue = cues.find(cue => 
-                cue.start <= timestampMs && timestampMs < cue.end
+              const targetCue = cues.find(
+                cue => cue.start <= timestampMs && timestampMs < cue.end
               )
-              
+
               if (targetCue) {
                 targetCue.element.scrollIntoView({
                   behavior: 'smooth',
-                  block: 'center'
+                  block: 'center',
                 })
               }
             }
@@ -197,7 +209,7 @@ export default function CueHighlighter(props: {
 
         window.addEventListener('keydown', handleKeyDown)
         window.addEventListener('paste', handlePaste)
-        
+
         onCancel = () => {
           clearInterval(interval as unknown as NodeJS.Timeout)
           window.removeEventListener('keydown', handleKeyDown)
