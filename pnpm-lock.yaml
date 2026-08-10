@@ -28,7 +28,7 @@ importers:
         version: 1.0.0
       '@elysia/eden':
         specifier: 2.0.0-beta.2
-        version: 2.0.0-beta.2(elysia@2.0.0-exp.61(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))
+        version: 2.0.0-beta.2(elysia@2.0.0-exp.62(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))
       '@fastify/middie':
         specifier: 9.3.3
         version: 9.3.3
@@ -78,8 +78,8 @@ importers:
         specifier: 1.11.21
         version: 1.11.21
       elysia:
-        specifier: 2.0.0-exp.61
-        version: 2.0.0-exp.61(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3)
+        specifier: 2.0.0-exp.62
+        version: 2.0.0-exp.62(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3)
       fastify:
         specifier: 5.11.2
         version: 5.11.2
@@ -2676,8 +2676,8 @@ packages:
   electron-to-chromium@1.5.360:
     resolution: {integrity: sha512-GkcBt6YYAw9SxFWn+xVar4cLVGlXVuswwtRLBozi2zp0GjXs4ZnOrqV4zbXzg35n7w81hCkyJNYicgXlVHAmBA==}
 
-  elysia@2.0.0-exp.61:
-    resolution: {integrity: sha512-VQeBnK462rzoZ8v5+L/aon9/XNi0rqZ7V7cbw4OH0r5hWouRkGpM/yxSYfbn15PuuThHcWPnpNK4IHQFMqmoBA==}
+  elysia@2.0.0-exp.62:
+    resolution: {integrity: sha512-3QqPOW6H9F77/9nyWEOG66FhHlypyWv2hmsFeV/Nuhdv+hpCz5Cy9zVo56CWwvCd185GUzqH8cNo9Ysg1F6OTg==}
     peerDependencies:
       '@types/bun': '>= 1.3.0'
       exact-mirror: '>= 1.2.2'
@@ -2687,11 +2687,7 @@ packages:
     peerDependenciesMeta:
       '@types/bun':
         optional: true
-      exact-mirror:
-        optional: true
       openapi-types:
-        optional: true
-      typebox:
         optional: true
       typescript:
         optional: true
@@ -5387,9 +5383,9 @@ snapshots:
 
   '@dtinth/comparator@1.0.0': {}
 
-  '@elysia/eden@2.0.0-beta.2(elysia@2.0.0-exp.61(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))':
+  '@elysia/eden@2.0.0-beta.2(elysia@2.0.0-exp.62(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))':
     dependencies:
-      elysia: 2.0.0-exp.61(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3)
+      elysia: 2.0.0-exp.62(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3)
 
   '@emmetio/abbreviation@2.3.3':
     dependencies:
@@ -7356,14 +7352,14 @@ snapshots:
 
   electron-to-chromium@1.5.360: {}
 
-  elysia@2.0.0-exp.61(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3):
+  elysia@2.0.0-exp.62(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3):
     dependencies:
       deuri: 3.0.0
-      memoirist: 1.2.1
-    optionalDependencies:
       exact-mirror: 1.2.2(typebox@1.3.8)
-      openapi-types: 12.1.3
+      memoirist: 1.2.1
       typebox: 1.3.8
+    optionalDependencies:
+      openapi-types: 12.1.3
       typescript: 5.9.3
 
   emmet@2.4.11:
@@ -7453,7 +7449,6 @@ snapshots:
   exact-mirror@1.2.2(typebox@1.3.8):
     optionalDependencies:
       typebox: 1.3.8
-    optional: true
 
   expect-type@1.4.0: {}
 
@@ -9246,8 +9241,7 @@ snapshots:
     dependencies:
       '@mixmark-io/domino': 2.2.0
 
-  typebox@1.3.8:
-    optional: true
+  typebox@1.3.8: {}
 
   typesafe-path@0.2.2: {}
 
