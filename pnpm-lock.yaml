@@ -21,8 +21,8 @@ importers:
         specifier: 4.7.0
         version: 4.7.0(@algolia/client-search@5.52.1)(@types/react@19.2.18)(algoliasearch@5.52.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(search-insights@2.17.3)
       '@doist/typist':
-        specifier: 17.0.0
-        version: 17.0.0(emoji-regex@10.6.0)(linkifyjs@4.3.3)(lodash-es@4.18.1)(prosemirror-inputrules@1.5.1)(prosemirror-model@1.25.7)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@7.2.0)
+        specifier: 17.0.1
+        version: 17.0.1(emoji-regex@10.6.0)(linkifyjs@4.3.3)(lodash-es@4.18.1)(prosemirror-inputrules@1.5.1)(prosemirror-model@1.25.7)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@7.2.0)
       '@dtinth/comparator':
         specifier: 1.0.0
         version: 1.0.0
@@ -619,8 +619,8 @@ packages:
       search-insights:
         optional: true
 
-  '@doist/typist@17.0.0':
-    resolution: {integrity: sha512-gq4Hw3bcu/i0thG0MkVencCivaphY7rPC9srQDssNDbIXT3Oaus7DW1n14QC2SRP7CyHxiXBQc8KeM9vE+fFUQ==}
+  '@doist/typist@17.0.1':
+    resolution: {integrity: sha512-oGcajeEZsPmX1p4MPQwaGg+5j/V+5Zd5hHTtsXSoJHmMd9FoZ7BaVYl7GVUbekZ1ogPcUFG/Pv3uEdx7h5Nv6g==}
     engines: {node: '>= 24.13.0', npm: '>= 11.5.1'}
     peerDependencies:
       emoji-regex: ^10.2.1
@@ -5322,7 +5322,7 @@ snapshots:
       - '@algolia/client-search'
       - algoliasearch
 
-  '@doist/typist@17.0.0(emoji-regex@10.6.0)(linkifyjs@4.3.3)(lodash-es@4.18.1)(prosemirror-inputrules@1.5.1)(prosemirror-model@1.25.7)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@7.2.0)':
+  '@doist/typist@17.0.1(emoji-regex@10.6.0)(linkifyjs@4.3.3)(lodash-es@4.18.1)(prosemirror-inputrules@1.5.1)(prosemirror-model@1.25.7)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@7.2.0)':
     dependencies:
       '@tiptap/core': 2.27.2(@tiptap/pm@2.27.2)
       '@tiptap/extension-blockquote': 2.27.2(@tiptap/core@2.27.2(@tiptap/pm@2.27.2))
