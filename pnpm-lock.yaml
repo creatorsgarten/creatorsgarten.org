@@ -54,8 +54,8 @@ importers:
         specifier: 10.53.1
         version: 10.53.1(astro@7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.9.1)(jiti@2.7.0)(yaml@2.9.0))(rollup@4.60.4)(supports-color@7.2.0)
       '@tanstack/react-query':
-        specifier: 5.102.3
-        version: 5.102.3(react@19.2.8)
+        specifier: 5.102.4
+        version: 5.102.4(react@19.2.8)
       '@urami/astro':
         specifier: 2.0.1
         version: 2.0.1(astro@7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.9.1)(jiti@2.7.0)(yaml@2.9.0))(supports-color@7.2.0)
@@ -1807,11 +1807,11 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
 
-  '@tanstack/query-core@5.102.3':
-    resolution: {integrity: sha512-5O2VEceonqC4uaTLUGglb0hgPouWCJ4K1ykVWyeV8aThhdNCzwpwu01bYoaRNJ9mgFUXS7Kf9utJ46ysT8m+bw==}
+  '@tanstack/query-core@5.102.4':
+    resolution: {integrity: sha512-6eXkL+KFyVAZdpKoThCjPQQylZK8/ZOMYTJEVoPtHLkLs2PYks6vUiim9qzgvFXakSkRIAZwAZTeZLIJmpgRpQ==}
 
-  '@tanstack/react-query@5.102.3':
-    resolution: {integrity: sha512-nHazxUEUQSGJOswGgSL2DI77f2K75WRCowDgaiyEi0ACocZTFKewTv+A/rJfq6QkuE35rVPff1QUT3ClbaePGQ==}
+  '@tanstack/react-query@5.102.4':
+    resolution: {integrity: sha512-Cn6X2eqFHjCtA/sfM/3eiT6/YmcPqo30twNHUlqkfz9LBqRzdt8GN/mFMWXn/qTacYUo3d4nycMzn3LWZmJ7MQ==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -6394,11 +6394,11 @@ snapshots:
       tailwindcss: 4.3.3
       vite: 8.1.5(@types/node@25.9.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)
 
-  '@tanstack/query-core@5.102.3': {}
+  '@tanstack/query-core@5.102.4': {}
 
-  '@tanstack/react-query@5.102.3(react@19.2.8)':
+  '@tanstack/react-query@5.102.4(react@19.2.8)':
     dependencies:
-      '@tanstack/query-core': 5.102.3
+      '@tanstack/query-core': 5.102.4
       react: 19.2.8
 
   '@tiptap/core@2.27.2(@tiptap/pm@2.27.2)':
