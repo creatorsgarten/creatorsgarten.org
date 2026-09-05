@@ -27,8 +27,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       '@elysia/eden':
-        specifier: 2.0.0-beta.2
-        version: 2.0.0-beta.2(elysia@2.0.0-exp.63(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))
+        specifier: 2.0.0-exp.1
+        version: 2.0.0-exp.1(elysia@2.0.0-exp.63(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))
       '@fastify/middie':
         specifier: 9.3.3
         version: 9.3.3
@@ -632,8 +632,8 @@ packages:
   '@dtinth/comparator@1.0.0':
     resolution: {integrity: sha512-eT21k8n9zblQgkk7kCG4e9rvY1gmPf9R+9G5tofx0Q4QvvRiQatgaU5AC7VcJPbsFG8Mu1JMGbgdxRdi1Cy5PA==}
 
-  '@elysia/eden@2.0.0-beta.2':
-    resolution: {integrity: sha512-GOEbbodTCpMOKqek/Kui5Sl0RCbcWV7IoTpIP3623Dz2r/Kbr2H/aqSEYUWIdVw3elQOvY6VKfupAhU3mTynGA==}
+  '@elysia/eden@2.0.0-exp.1':
+    resolution: {integrity: sha512-l6SB67Q3VoZMnLwjNULCg+friUCvbOs6bMqRW8ckWe0mLA6UmMF96b/GN2boy0M8UMOlusLUGkxOoKgcaPFjEA==}
     peerDependencies:
       elysia: '>= 2.0.0-exp.23'
 
@@ -5523,7 +5523,7 @@ snapshots:
 
   '@dtinth/comparator@1.0.0': {}
 
-  '@elysia/eden@2.0.0-beta.2(elysia@2.0.0-exp.63(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))':
+  '@elysia/eden@2.0.0-exp.1(elysia@2.0.0-exp.63(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3))':
     dependencies:
       elysia: 2.0.0-exp.63(exact-mirror@1.2.2(typebox@1.3.8))(openapi-types@12.1.3)(typebox@1.3.8)(typescript@5.9.3)
 
