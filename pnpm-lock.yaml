@@ -45,8 +45,8 @@ importers:
         specifier: 1.3.5
         version: 1.3.5(nanostores@1.5.3)
       '@nanostores/react':
-        specifier: 1.1.0
-        version: 1.1.0(nanostores@1.5.3)(react@19.2.8)
+        specifier: 2.0.1
+        version: 2.0.1(nanostores@1.5.3)(react@19.2.8)
       '@prettier/sync':
         specifier: ^0.6.0
         version: 0.6.1(prettier@3.9.6)
@@ -1218,9 +1218,9 @@ packages:
     peerDependencies:
       nanostores: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^1.0.0
 
-  '@nanostores/react@1.1.0':
-    resolution: {integrity: sha512-MbH35fjhcf7LAubYX5vhOChYUfTLzNLqH/mBGLVsHkcvjy0F8crO1WQwdmQ2xKbAmtpalDa2zBt3Hlg5kqr8iw==}
-    engines: {node: ^20.0.0 || >=22.0.0}
+  '@nanostores/react@2.0.1':
+    resolution: {integrity: sha512-txbZTd+7/hnO7FhtF8Pmr+cu0ThdCuCnOyEEh0DsEM2Hp9PfOa5EY4uj3wpZpypSzp5BuqDgf2AxVAKoUIWOFQ==}
+    engines: {node: ^22.0.0 || ^24.0.0 || >=26.0.0}
     peerDependencies:
       nanostores: ^1.2.0
       react: '>=18.0.0'
@@ -5951,7 +5951,7 @@ snapshots:
     dependencies:
       nanostores: 1.5.3
 
-  '@nanostores/react@1.1.0(nanostores@1.5.3)(react@19.2.8)':
+  '@nanostores/react@2.0.1(nanostores@1.5.3)(react@19.2.8)':
     dependencies:
       nanostores: 1.5.3
       react: 19.2.8
