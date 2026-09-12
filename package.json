@@ -84,7 +84,7 @@
     "astro-seo": "1.2.0",
     "dependency-cruiser": "^18.1.0",
     "dotenv": "17.4.2",
-    "prettier-plugin-astro": "0.14.1",
+    "prettier-plugin-astro": "1.0.0",
     "prettier-plugin-svelte": "4.1.1",
     "prettier-plugin-tailwindcss": "0.8.1",
     "svelte": "5.57.0",
