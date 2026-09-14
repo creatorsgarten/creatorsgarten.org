@@ -195,7 +195,7 @@ importers:
         version: 10.1.3
       '@lucide/astro':
         specifier: ^1.0.0
-        version: 1.44.0(astro@7.3.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.9.1)(jiti@2.7.0)(yaml@2.9.0))
+        version: 1.45.0(astro@7.3.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.9.1)(jiti@2.7.0)(yaml@2.9.0))
       '@nanostores/logger':
         specifier: 1.1.0
         version: 1.1.0(nanostores@1.5.3)
@@ -1349,8 +1349,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@lucide/astro@1.44.0':
-    resolution: {integrity: sha512-WA7/f3slXUhrffeEGeYtBhKItnG6FitVawY6M40EU26prnJDUcGNQcGb+8Mpyu9ZKu2EnLI3JYGr6AMIVImGFw==}
+  '@lucide/astro@1.45.0':
+    resolution: {integrity: sha512-U4PZYsb90BNPDHzp/GTkLrFfstuVc9Qjj+00kVF2HUA4TLx/JCZozeoyZm3ncODgg3XtqCCXW7b3kIT7xbokgg==}
     peerDependencies:
       astro: ^4 || ^5 || ^6 || ^7
 
@@ -6073,7 +6073,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lucide/astro@1.44.0(astro@7.3.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.9.1)(jiti@2.7.0)(yaml@2.9.0))':
+  '@lucide/astro@1.45.0(astro@7.3.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.9.1)(jiti@2.7.0)(yaml@2.9.0))':
     dependencies:
       astro: 7.3.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.9.1)(jiti@2.7.0)(yaml@2.9.0)
 
