@@ -174,7 +174,7 @@ importers:
         version: 1.3.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@docsearch/css':
         specifier: ^5.0.0
-        version: 5.1.0
+        version: 5.1.1
       '@docsearch/react':
         specifier: 4.7.0
         version: 4.7.0(@algolia/client-search@5.52.1)(@types/react@19.3.0)(algoliasearch@5.52.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(search-insights@2.17.3)
@@ -757,8 +757,8 @@ packages:
   '@docsearch/css@4.7.0':
     resolution: {integrity: sha512-Sk5xkdRFeE7PeWjG9l4AfTwdvMfr9wHiwNNCpHXT4v4SNyNMKdHGvEILc31BgaVFGDDNbv5u/a73tofRiwbEZw==}
 
-  '@docsearch/css@5.1.0':
-    resolution: {integrity: sha512-8+4N7h0MbW4wuPpjVBry3jvqnkBk8ZmBP5EeXrX+b6ysdUeWFt8/OWzriZ9vrHjdkdhMihWxRDYT5+GsHXLWGg==}
+  '@docsearch/css@5.1.1':
+    resolution: {integrity: sha512-+sPTcGV9QVTB7m9KRl2uym1lY3N3lwV2Y4KRttdZF7MPrS3Wd/Dkp5LarZTk81IpqF3hXxxyxhkl5vwQZGuGUQ==}
 
   '@docsearch/react@4.7.0':
     resolution: {integrity: sha512-x6oedjJ8O8/pIDBsMo5Orca3/6cQCz616/CwthVe68l43mqnj2lrJ9kFQITBqy8hMsS3nWeBWFoVO5dJ1DCFKA==}
@@ -5593,7 +5593,7 @@ snapshots:
 
   '@docsearch/css@4.7.0': {}
 
-  '@docsearch/css@5.1.0': {}
+  '@docsearch/css@5.1.1': {}
 
   '@docsearch/react@4.7.0(@algolia/client-search@5.52.1)(@types/react@19.3.0)(algoliasearch@5.52.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(search-insights@2.17.3)':
     dependencies:
