@@ -11,12 +11,8 @@ const events = await getEvents()
 
 <Head />
 
-<BaseLayout
-  class="relative mt-3 flex flex-col space-y-16 lg:mt-8 lg:space-y-20"
->
-  <section
-    class="relative m-2 mt-0 flex h-[65vh] w-[calc(100%-1rem)] flex-col items-center justify-center overflow-hidden rounded-lg max-md:mb-6 lg:h-[80vh]"
-  >
+<BaseLayout class="relative mt-3 flex flex-col space-y-16 lg:mt-8 lg:space-y-20">
+  <section class="relative m-2 mt-0 flex h-[65vh] w-[calc(100%-1rem)] flex-col items-center justify-center overflow-hidden rounded-lg max-md:mb-6 lg:h-[80vh]">
     <!-- Decorative images with intentional composition -->
     <!-- Corner stars - subtle background -->
     <div
@@ -149,18 +145,29 @@ const events = await getEvents()
       />
     </div>
 
-    <div
-      class="pointer-events-auto relative z-10 max-w-5xl px-3 text-center font-sans text-[40px] leading-tight font-[500] text-balance lg:text-7xl"
-    >
-      <span class="hover-word" data-emoji="🇹🇭">Thailand's</span>
-      <span class="~hover-word" data-emoji="🛝">playground</span> for <span
+    <div class="pointer-events-auto relative z-10 max-w-5xl px-3 text-center font-sans text-[40px] leading-tight font-[500] text-balance lg:text-7xl">
+      <span class="hover-word" data-emoji="🇹🇭">
+        Thailand's&nbsp;
+      </span>
+      <span class="~hover-word" data-emoji="🛝">
+        playground&nbsp;
+      </span>
+      for&nbsp;
+      <span
         class="cycling-word"
-        data-words="makers,coders,artists,tinkerers,learners,designers"></span> who
-      <span class="~hover-word" data-emoji="🔨">build 🔨,</span>
-      <span class="~hover-word" data-emoji="🔬">explore 🔭,</span> and <span
-        class="~hover-word"
-        data-emoji="🌟">play 🌟</span
-      >
+        data-words="makers,coders,artists,tinkerers,learners,designers"
+      ></span>
+      &nbsp;who&nbsp;
+      <span class="~hover-word" data-emoji="🔨">
+        build 🔨,&nbsp;
+      </span>
+      <span class="~hover-word" data-emoji="🔬">
+        explore 🔭,&nbsp;
+      </span>
+      and&nbsp;
+      <span class="~hover-word" data-emoji="🌟">
+        play 🌟
+      </span>
     </div>
     <a
       href="https://creatorsgarten.org/wiki/SelfIntroduction"
@@ -170,9 +177,7 @@ const events = await getEvents()
     </a>
   </section>
 
-  <section
-    class="grid grid-cols-2 gap-1.5 px-2 text-4xl text-white md:grid-cols-3"
-  >
+  <section class="grid grid-cols-2 gap-1.5 px-2 text-4xl text-white md:grid-cols-3">
     <a
       href="/wiki/StupidHackTH"
       class="image-card group relative aspect-3/2 w-full overflow-hidden rounded-lg text-3xl"
@@ -182,9 +187,7 @@ const events = await getEvents()
         class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
         alt=""
       />
-      <div
-        class="absolute inset-0 flex items-center justify-center bg-[#FF5F39] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
-      >
+      <div class="absolute inset-0 flex items-center justify-center bg-[#FF5F39] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl">
         Stupid Hackathon Thailand
       </div>
     </a>
@@ -197,9 +200,7 @@ const events = await getEvents()
         class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
         alt=""
       />
-      <div
-        class="absolute inset-0 flex items-center justify-center bg-[#916DAF] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
-      >
+      <div class="absolute inset-0 flex items-center justify-center bg-[#916DAF] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl">
         A Bit of Thai Tunes
       </div>
     </a>
@@ -212,9 +213,7 @@ const events = await getEvents()
         class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
         alt=""
       />
-      <div
-        class="absolute inset-0 flex items-center justify-center bg-[#6d7631] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
-      >
+      <div class="absolute inset-0 flex items-center justify-center bg-[#6d7631] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl">
         Bangkok Open Source
       </div>
     </a>
@@ -227,9 +226,7 @@ const events = await getEvents()
         class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
         alt=""
       />
-      <div
-        class="absolute inset-0 flex items-center justify-center bg-[#C010B3] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
-      >
+      <div class="absolute inset-0 flex items-center justify-center bg-[#C010B3] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl">
         Code Golf Party
       </div>
     </a>
@@ -242,9 +239,7 @@ const events = await getEvents()
         class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
         alt=""
       />
-      <div
-        class="absolute inset-0 flex items-center justify-center bg-[#466D67] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
-      >
+      <div class="absolute inset-0 flex items-center justify-center bg-[#466D67] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl">
         Sciยศาสตร์ Night
       </div>
     </a>
@@ -257,39 +252,27 @@ const events = await getEvents()
         class="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0"
         alt=""
       />
-      <div
-        class="absolute inset-0 flex items-center justify-center bg-[#c77bac] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl"
-      >
+      <div class="absolute inset-0 flex items-center justify-center bg-[#c77bac] p-4 text-center text-xl font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-2xl">
         How to Learn Almost Anything
       </div>
     </a>
   </section>
 
   <section class="px-4 py-8">
-    <div
-      class="mx-auto grid max-w-6xl gap-24 md:grid-cols-2 md:gap-20 xl:gap-24"
-    >
+    <div class="mx-auto grid max-w-6xl gap-24 md:grid-cols-2 md:gap-20 xl:gap-24">
       <!-- Where ideas come to life -->
       <div class="flex flex-col">
-        <h2
-          class="mb-6 text-3xl font-medium text-balance max-lg:text-center md:text-4xl"
-        >
+        <h2 class="mb-6 text-3xl font-medium text-balance max-lg:text-center md:text-4xl">
           Where ideas come to life 💡
         </h2>
-        <p
-          class="mb-4 text-lg text-balance text-neutral-600 max-lg:text-center md:text-xl"
-        >
+        <p class="mb-4 text-lg text-balance text-neutral-600 max-lg:text-center md:text-xl">
           Hackathons. Workshops. Meetups. Talks. We cultivate spaces where
           creators share, experiment, explore, and bring the cool ideas to
           reality!
         </p>
-        <p
-          class="mb-6 text-lg text-balance text-neutral-600 max-lg:text-center md:text-xl"
-        >
+        <p class="mb-6 text-lg text-balance text-neutral-600 max-lg:text-center md:text-xl">
           Total events to date:{' '}
-          <span
-            class="inline-block rotate-1 rounded-md bg-amber-200 px-2 py-1 font-medium text-neutral-800"
-          >
+          <span class="inline-block rotate-1 rounded-md bg-amber-200 px-2 py-1 font-medium text-neutral-800">
             {events.length}
           </span>
         </p>
@@ -303,9 +286,7 @@ const events = await getEvents()
 
       <!-- Things we help grow -->
       <div class="flex flex-col">
-        <h2
-          class="mb-2 text-3xl font-medium text-balance max-lg:text-center md:mb-6 md:text-4xl"
-        >
+        <h2 class="mb-2 text-3xl font-medium text-balance max-lg:text-center md:mb-6 md:text-4xl">
           Initiatives we cultivate 🌱
         </h2>
         <div class="grid grid-cols-3 gap-3">
@@ -393,15 +374,11 @@ const events = await getEvents()
     />
 
     <div class="mx-auto flex w-full flex-col items-center justify-center pt-3">
-      <h2
-        class="group relative mb-8 flex -rotate-1 items-center justify-center gap-3 rounded-md bg-gray-800 px-4 py-3 text-center text-3xl font-medium text-white md:text-4xl"
-      >
+      <h2 class="group relative mb-8 flex -rotate-1 items-center justify-center gap-3 rounded-md bg-gray-800 px-4 py-3 text-center text-3xl font-medium text-white md:text-4xl">
         <Share2 class="h-8 w-8 md:h-10 md:w-10" />
         Public By Default
         <!-- Cursor decoration -->
-        <div
-          class="pointer-events-none absolute -right-4 -bottom-6 text-black drop-shadow-lg"
-        >
+        <div class="pointer-events-none absolute -right-4 -bottom-6 text-black drop-shadow-lg">
           <svg
             width="32"
             height="32"
@@ -415,38 +392,27 @@ const events = await getEvents()
               stroke="white"
               stroke-width="1"
               stroke-linecap="round"
-              stroke-linejoin="round"></path>
+              stroke-linejoin="round"
+            ></path>
           </svg>
         </div>
       </h2>
-      <p
-        class="mx mb-10 max-w-[56ch] text-center text-lg text-balance text-neutral-600 md:text-xl"
-      >
+      <p class="mx mb-10 max-w-[56ch] text-center text-lg text-balance text-neutral-600 md:text-xl">
         We are committed to publicly documenting and sharing what we do. From
         event plans to creative outputs, our knowledge base is open to everyone!
       </p>
       <div class="grid w-full max-w-5xl gap-2 md:grid-cols-3">
         <!-- Wiki -->
-        <div
-          class="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#449388] p-6 text-white md:p-8"
-        >
+        <div class="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#449388] p-6 text-white md:p-8">
           <!-- Background decorative circles -->
-          <div
-            class="pointer-events-none absolute -top-12 -right-12 h-48 w-48 rounded-full bg-[#5AB4A8] opacity-30"
-          >
-          </div>
-          <div
-            class="pointer-events-none absolute -bottom-12 -left-12 h-48 w-48 rounded-full bg-[#357368] opacity-30"
-          >
-          </div>
+          <div class="pointer-events-none absolute -top-12 -right-12 h-48 w-48 rounded-full bg-[#5AB4A8] opacity-30"></div>
+          <div class="pointer-events-none absolute -bottom-12 -left-12 h-48 w-48 rounded-full bg-[#357368] opacity-30"></div>
 
           <!-- Content -->
           <div class="relative z-10"></div>
           <div class="relative z-10">
             <h3 class="mb-2 text-xl font-medium md:text-2xl">Wiki</h3>
-            <p
-              class="mb-4 text-base leading-relaxed text-balance opacity-90 md:text-base"
-            >
+            <p class="mb-4 text-base leading-relaxed text-balance opacity-90 md:text-base">
               Event guides, runbooks, and community knowledge base
             </p>
             <a
@@ -459,26 +425,16 @@ const events = await getEvents()
         </div>
 
         <!-- Code -->
-        <div
-          class="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#DF5D2F] p-6 text-white md:p-8"
-        >
+        <div class="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#DF5D2F] p-6 text-white md:p-8">
           <!-- Background decorative circles -->
-          <div
-            class="pointer-events-none absolute -top-8 -left-8 h-40 w-40 rounded-full bg-[#E8784F] opacity-30"
-          >
-          </div>
-          <div
-            class="pointer-events-none absolute -right-8 -bottom-8 h-40 w-40 rounded-full bg-[#C64D1F] opacity-30"
-          >
-          </div>
+          <div class="pointer-events-none absolute -top-8 -left-8 h-40 w-40 rounded-full bg-[#E8784F] opacity-30"></div>
+          <div class="pointer-events-none absolute -right-8 -bottom-8 h-40 w-40 rounded-full bg-[#C64D1F] opacity-30"></div>
 
           <!-- Content -->
           <div class="relative z-10"></div>
           <div class="relative z-10">
             <h3 class="mb-2 text-xl font-medium md:text-2xl">Code</h3>
-            <p
-              class="mb-4 text-base leading-relaxed text-balance opacity-90 md:text-base"
-            >
+            <p class="mb-4 text-base leading-relaxed text-balance opacity-90 md:text-base">
               Open source projects and experiments on GitHub
             </p>
             <a
@@ -491,26 +447,16 @@ const events = await getEvents()
         </div>
 
         <!-- Social Media -->
-        <div
-          class="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#3C7ADF] p-6 text-white md:p-8"
-        >
+        <div class="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#3C7ADF] p-6 text-white md:p-8">
           <!-- Background decorative circles -->
-          <div
-            class="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-[#5C94E8] opacity-40"
-          >
-          </div>
-          <div
-            class="pointer-events-none absolute -right-16 -bottom-16 h-56 w-56 rounded-full bg-[#2D63C6] opacity-40"
-          >
-          </div>
+          <div class="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-[#5C94E8] opacity-40"></div>
+          <div class="pointer-events-none absolute -right-16 -bottom-16 h-56 w-56 rounded-full bg-[#2D63C6] opacity-40"></div>
 
           <!-- Content -->
           <div class="relative z-10"></div>
           <div class="relative z-10">
             <h3 class="mb-2 text-xl font-medium md:text-2xl">Social Media</h3>
-            <p
-              class="mb-4 text-base leading-relaxed text-balance opacity-90 md:text-base"
-            >
+            <p class="mb-4 text-base leading-relaxed text-balance opacity-90 md:text-base">
               Follow our creative journey and community updates
             </p>
             <div class="flex gap-2">
@@ -546,16 +492,9 @@ const events = await getEvents()
   <section class="px-4 pt-2 pb-16 md:p-2 md:pb-16">
     <div class="grid gap-8 max-lg:gap-x-0 md:grid-cols-3">
       <!-- Left column - Copywriting -->
-      <div
-        class="flex flex-col justify-center text-center lg:pr-4 lg:pl-8 lg:text-left"
-      >
-        <div
-          class="mb-6 flex w-min -rotate-2 items-center gap-2 rounded-md border-2 border-dashed border-pink-600 bg-pink-600/10 px-2 py-2 text-lg leading-none font-medium text-pink-600 max-lg:mx-auto"
-        >
-          <div
-            class="aspect-square size-3.5 animate-pulse rounded-full bg-rose-600"
-          >
-          </div>
+      <div class="flex flex-col justify-center text-center lg:pr-4 lg:pl-8 lg:text-left">
+        <div class="mb-6 flex w-min -rotate-2 items-center gap-2 rounded-md border-2 border-dashed border-pink-600 bg-pink-600/10 px-2 py-2 text-lg leading-none font-medium text-pink-600 max-lg:mx-auto">
+          <div class="aspect-square size-3.5 animate-pulse rounded-full bg-rose-600"></div>
           Videos
         </div>
         <h2 class="mb-4 text-3xl font-medium md:text-4xl">
@@ -567,15 +506,11 @@ const events = await getEvents()
         </p>
         <p class="mb-6 text-lg text-balance text-neutral-600 md:text-xl">
           Current catalog:{' '}
-          <span
-            class="inline-block translate-y-0.5 rotate-1 rounded-md bg-sky-200 px-2 py-1 font-medium text-neutral-800"
-          >
+          <span class="inline-block translate-y-0.5 rotate-1 rounded-md bg-sky-200 px-2 py-1 font-medium text-neutral-800">
             {videoIndex.videos.length}
           </span>{' '}
           videos from{' '}
-          <span
-            class="inline-block -rotate-1 rounded-md bg-green-200 px-2 py-1 font-medium text-neutral-800"
-          >
+          <span class="inline-block -rotate-1 rounded-md bg-green-200 px-2 py-1 font-medium text-neutral-800">
             {videoIndex.events.length}
           </span>{' '}
           events
@@ -605,7 +540,8 @@ const events = await getEvents()
             title="YouTube video"
             style="border: 0;"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+            allowfullscreen
+          ></iframe>
         </div>
 
         <!-- Video 2 -->
@@ -616,7 +552,8 @@ const events = await getEvents()
             title="YouTube video"
             style="border: 0;"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+            allowfullscreen
+          ></iframe>
         </div>
 
         <!-- Video 3 -->
@@ -627,7 +564,8 @@ const events = await getEvents()
             title="YouTube video"
             style="border: 0;"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+            allowfullscreen
+          ></iframe>
         </div>
 
         <!-- Video 4 -->
@@ -638,23 +576,18 @@ const events = await getEvents()
             title="YouTube video"
             style="border: 0;"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
     </div>
   </section>
 
-  <section
-    class="flex flex-col items-center justify-center space-y-12 bg-white px-4 pb-8"
-  >
-    <div
-      class="inline-block -rotate-2 rounded-md border-2 border-dashed border-indigo-800 bg-indigo-800/10 px-2 py-2 text-lg leading-none font-medium text-indigo-800 max-lg:mx-auto"
-    >
+  <section class="flex flex-col items-center justify-center space-y-12 bg-white px-4 pb-8">
+    <div class="inline-block -rotate-2 rounded-md border-2 border-dashed border-indigo-800 bg-indigo-800/10 px-2 py-2 text-lg leading-none font-medium text-indigo-800 max-lg:mx-auto">
       🎈 Our Partners
     </div>
-    <div
-      class="grid max-w-4xl gap-10 max-lg:max-w-[80vw] max-lg:gap-14 md:grid-cols-3"
-    >
+    <div class="grid max-w-4xl gap-10 max-lg:max-w-[80vw] max-lg:gap-14 md:grid-cols-3">
       <div class="flex items-center justify-center">
         <a href="https://www.cleverse.com/">
           <img
@@ -854,80 +787,88 @@ const events = await getEvents()
     </div>
   </section> -->
 
-  <section
-    class="flex flex-col items-center justify-center space-y-12 bg-white px-4 pb-8"
-  >
-    <div
-      class="mb-12 inline-block rotate-1 rounded-md border-2 border-dashed border-amber-800 bg-amber-800/10 px-2 py-2 text-lg leading-none font-medium text-amber-800 max-lg:mx-auto"
-    >
+  <section class="flex flex-col items-center justify-center space-y-12 bg-white px-4 pb-8">
+    <div class="mb-12 inline-block rotate-1 rounded-md border-2 border-dashed border-amber-800 bg-amber-800/10 px-2 py-2 text-lg leading-none font-medium text-amber-800 max-lg:mx-auto">
       👋 People We'd Worked With
     </div>
-    <p
-      class="mx-auto max-w-5xl text-center text-lg leading-loose font-medium text-balance text-neutral-700 md:text-2xl"
-    >
-      <a href="/event/bkkjs22" class="transition-colors hover:text-blue-600"
-        >Agoda Tech</a
-      >
+    <p class="mx-auto max-w-5xl text-center text-lg leading-loose font-medium text-balance text-neutral-700 md:text-2xl">
+      <a href="/event/bkkjs22" class="transition-colors hover:text-blue-600">
+        Agoda Tech
+      </a>
       <span class="text-neutral-300"> • </span>
-      <a href="/event/scisart" class="transition-colors hover:text-blue-600"
-        >Bangkok Metropolitan Administration</a
-      >
+      <a href="/event/scisart" class="transition-colors hover:text-blue-600">
+        Bangkok Metropolitan Administration
+      </a>
       <span class="text-neutral-300"> • </span>
-      <a href="/event/market" class="transition-colors hover:text-blue-600"
-        >Cache Collective</a
-      >
+      <a href="/event/market" class="transition-colors hover:text-blue-600">
+        Cache Collective
+      </a>
       <span class="text-neutral-300"> • </span>
-      <a href="/event/sht7" class="transition-colors hover:text-blue-600"
-        >ESIC Lab</a
-      >
+      <a href="/event/sht7" class="transition-colors hover:text-blue-600">
+        ESIC Lab
+      </a>
       <span class="text-neutral-300"> • </span>
       <a
         href="/event/soundcodeplay"
-        class="transition-colors hover:text-blue-600">Goethe-Institut</a
+        class="transition-colors hover:text-blue-600"
       >
+        Goethe-Institut
+      </a>
       <span class="text-neutral-300"> • </span>
-      <a href="/event/culture" class="transition-colors hover:text-blue-600"
-        >MIT Media Lab</a
-      >
+      <a href="/event/culture" class="transition-colors hover:text-blue-600">
+        MIT Media Lab
+      </a>
       <span class="text-neutral-300"> • </span>
-      <a href="/event/algorave" class="transition-colors hover:text-blue-600"
-        >Museum Siam</a
-      >
+      <a href="/event/algorave" class="transition-colors hover:text-blue-600">
+        Museum Siam
+      </a>
       <span class="text-neutral-300"> • </span>
-      <a href="/event/culture" class="transition-colors hover:text-blue-600"
-        >Pichet Klunchun Dance Company</a
-      >
+      <a href="/event/culture" class="transition-colors hover:text-blue-600">
+        Pichet Klunchun Dance Company
+      </a>
       <span class="text-neutral-300"> • </span>
       <a
         href="/event/cssmeetup0823"
-        class="transition-colors hover:text-blue-600">React ไปวัน ๆ</a
+        class="transition-colors hover:text-blue-600"
       >
+        React ไปวัน ๆ
+      </a>
       <span class="text-neutral-300"> • </span>
       <a
         href="/event/mathsatsundown"
-        class="transition-colors hover:text-blue-600">Spaceth.co</a
+        class="transition-colors hover:text-blue-600"
       >
+        Spaceth.co
+      </a>
       <span class="text-neutral-300"> • </span>
-      <a href="/event/msbuild2023" class="transition-colors hover:text-blue-600"
-        >Spark Tech Thailand</a
+      <a
+        href="/event/msbuild2023"
+        class="transition-colors hover:text-blue-600"
       >
+        Spark Tech Thailand
+      </a>
       <span class="text-neutral-300"> • </span>
-      <a href="/event/learn2" class="transition-colors hover:text-blue-600"
-        >Thaicom Foundation</a
-      >
+      <a href="/event/learn2" class="transition-colors hover:text-blue-600">
+        Thaicom Foundation
+      </a>
       <span class="text-neutral-300"> • </span>
       <a
         href="/event/worldwithoutwork"
-        class="transition-colors hover:text-blue-600">TK Park</a
+        class="transition-colors hover:text-blue-600"
       >
+        TK Park
+      </a>
       <span class="text-neutral-300"> • </span>
-      <a href="/event/sideproject" class="transition-colors hover:text-blue-600"
-        >Thai Programmer Association</a
+      <a
+        href="/event/sideproject"
+        class="transition-colors hover:text-blue-600"
       >
+        Thai Programmer Association
+      </a>
       <span class="text-neutral-300"> • </span>
-      <a href="/event/sht6" class="transition-colors hover:text-blue-600"
-        >UTCC</a
-      >
+      <a href="/event/sht6" class="transition-colors hover:text-blue-600">
+        UTCC
+      </a>
     </p>
   </section>
 

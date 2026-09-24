@@ -62,6 +62,7 @@ html {
 @font-face {
   font-family: 'Basier';
   src: url('/fonts/basier-regular.woff2') format('woff2');
+  font-display: swap;
   font-weight: 400;
   font-style: normal;
 }
@@ -69,6 +70,7 @@ html {
 @font-face {
   font-family: 'Basier';
   src: url('/fonts/basier-medium.woff2') format('woff2');
+  font-display: swap;
   font-weight: 500;
   font-style: normal;
 }
