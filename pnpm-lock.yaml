@@ -369,8 +369,8 @@ importers:
         specifier: ^18.1.0
         version: 18.4.0
       dotenv:
-        specifier: 18.0.1
-        version: 18.0.1
+        specifier: 18.0.9
+        version: 18.0.9
       prettier-plugin-astro:
         specifier: 1.0.1
         version: 1.0.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.8)
@@ -2955,8 +2955,8 @@ packages:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
-  dotenv@18.0.1:
-    resolution: {integrity: sha512-0eR4m4D/jH5eaI3evo2ZqqMii5mrTCR12v12VChdie6O1gPHs7XAjzTep0CWc1Bd+oNx3vVfbi734dK4zghigw==}
+  dotenv@18.0.9:
+    resolution: {integrity: sha512-3fVOW4cB02R066PUSwn8O4TJyz9NckQl7F81blIbaq9jKBm2tSmOKky7ZHIXzGvkVPXCSn6jkpziBPZdGFs8Tw==}
     engines: {node: '>=12'}
     hasBin: true
 
@@ -7709,7 +7709,7 @@ snapshots:
 
   dotenv@16.6.1: {}
 
-  dotenv@18.0.1: {}
+  dotenv@18.0.9: {}
 
   dset@3.1.4: {}
 
