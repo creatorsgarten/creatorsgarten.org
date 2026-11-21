@@ -369,8 +369,8 @@ importers:
         specifier: ^18.1.0
         version: 18.4.0
       dotenv:
-        specifier: 18.0.1
-        version: 18.0.1
+        specifier: 18.0.10
+        version: 18.0.10
       prettier-plugin-astro:
         specifier: 1.0.1
         version: 1.0.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.8)
@@ -780,6 +780,7 @@ packages:
   '@doist/typist@17.0.3':
     resolution: {integrity: sha512-l3jBPOmzzYL0XKEWxnK9T21aP/McMdWCAmW1ZfzqtQrChA9l0WfLkZJPNnpIBtV69hOXdQqQtu2CzgMt00dkFw==}
     engines: {node: '>= 24.13.0', npm: '>= 11.5.1'}
+    deprecated: Moved to @todoist/typist. Replace @doist/typist with @todoist/typist in your dependencies and imports.
     peerDependencies:
       emoji-regex: ^10.2.1
       linkifyjs: ^4.3.2
@@ -2955,8 +2956,8 @@ packages:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
-  dotenv@18.0.1:
-    resolution: {integrity: sha512-0eR4m4D/jH5eaI3evo2ZqqMii5mrTCR12v12VChdie6O1gPHs7XAjzTep0CWc1Bd+oNx3vVfbi734dK4zghigw==}
+  dotenv@18.0.10:
+    resolution: {integrity: sha512-89FAA1xchzK2mxVWdr5F/0rldwiueXs6zJM86rO66EzekR1iBdiXRthyG+m5GvkJaFH3C2LESzamTkgndmLT2A==}
     engines: {node: '>=12'}
     hasBin: true
 
@@ -7709,7 +7710,7 @@ snapshots:
 
   dotenv@16.6.1: {}
 
-  dotenv@18.0.1: {}
+  dotenv@18.0.10: {}
 
   dset@3.1.4: {}
 
